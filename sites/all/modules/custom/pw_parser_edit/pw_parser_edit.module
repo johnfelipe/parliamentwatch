@@ -113,6 +113,7 @@ function pw_parser_edit_field_form($form, &$form_state, $account, $field_name, $
   $form['#user_category'] = 'account';
   $form['#validate'][] = 'user_profile_form_validate';
   $form['#submit'][] = 'user_profile_form_submit';
+  $form['#submit'][] = 'pw_parser_edit_field_form_submit';
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(
     '#type' => 'submit',
@@ -136,4 +137,13 @@ function pw_parser_edit_field_form($form, &$form_state, $account, $field_name, $
   }
 
   return $form;
+}
+
+/**
+ * Form submission handler for pw_parser_edit_field_form().
+ *
+ * @see pw_parser_edit_field_form()
+ */
+function pw_parser_edit_field_form_submit($form, &$form_state) {
+  $form_state['redirect'] = entity_uri('user', $form_state['user']);
 }
