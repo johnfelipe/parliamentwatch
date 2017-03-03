@@ -79,6 +79,7 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
       '#type' => 'submit',
       '#name' => 'replace-' . $sidejob->nid,
       '#submit' => array('pw_parser_edit_sidejobs_replace'),
+      '#value' => t('Replace'),
     );
   }
 
