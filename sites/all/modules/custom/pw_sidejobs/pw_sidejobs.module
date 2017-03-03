@@ -184,7 +184,7 @@ function pw_sidejobs_load($account) {
   $result = $q->execute();
 
   if (!empty($result['node'])) {
-    $nodes = node_load_multiple($result['node']);
+    $nodes = node_load_multiple(array_keys($result['node']));
   }
   else {
     $nodes = array();
