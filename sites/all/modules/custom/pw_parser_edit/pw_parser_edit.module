@@ -119,11 +119,21 @@ function pw_parser_edit_field_form($form, &$form_state, $account, $field_name, $
     '#value' => t('Save'),
   );
 
+  if (isset(drupal_get_query_parameters()['value'])) {
+    $new_values = drupal_get_query_parameters()['value'];
+  }
+
   $options = array(
     'language' => field_valid_language(entity_language('user', $account)),
     'field_name' => $field_name,
   );
   $form += (array) _field_invoke_default('form', 'user', $account, $form, $form_state, $options);
+
+  for ($i = 0; $i < count($new_values); $i++) {
+    $language = $form[$field_name]['#language'];
+    $form[$field_name][$language][$i]['value']['#default_value'] = $new_values[$i];
+    $form[$field_name][$language][$i]['value']['#description'] = $account->{$field_name}[$language][$i]['value'];
+  }
 
   return $form;
 }
