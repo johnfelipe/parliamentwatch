@@ -132,8 +132,16 @@ function pw_parser_edit_field_form($form, &$form_state, $account, $field_name, $
 
   for ($i = 0; $i < count($new_values); $i++) {
     $language = $form[$field_name]['#language'];
-    $form[$field_name][$language][$i]['value']['#default_value'] = $new_values[$i];
-    $form[$field_name][$language][$i]['value']['#description'] = $account->{$field_name}[$language][$i]['value'];
+
+    if ($form[$field_name][$language][$i]['#type'] == 'text_format') {
+      $widget = &$form[$field_name][$language][$i];
+    }
+    elseif (isset($form[$field_name][$language][$i]['value'])) {
+      $widget = &$form[$field_name][$language][$i]['value'];
+    }
+
+    $widget['#default_value'] = $new_values[$i];
+    $widget['#description'] = $account->{$field_name}[$language][$i]['value'];
   }
 
   return $form;
