@@ -221,6 +221,7 @@ function pw_api_user_to_array($user, $activities = array()) {
         ->propertyOrderBy('created', 'DESC');
       $result = $query->execute();
 
+
       $profile['votes'] = array();
       if(isset($result['node'])){
 
@@ -251,43 +252,23 @@ function pw_api_user_to_array($user, $activities = array()) {
             $profile['votes'][$type.'_'.$record->nid]['title'] = $record->title;
             $profile['votes'][$type.'_'.$record->nid]['uuid'] = $record->uuid;
             $profile['votes'][$type.'_'.$record->nid]['date'] = date("Y-m-d", $record->created);
-            /*
-             if(isset($w_vote->field_blogpost_categories)){
-              foreach($w_vote->field_blogpost_categories as $key => $category){
-                $profile['votes'][$type.'_'.$nid]['category_'.$key] = $category;
-              }
-            }
-             */
             $profile['votes'][$type.'_'.$record->nid]['vote'] = $record->vote_label;
-
             $profile['votes'][$type.'_'.$record->nid]['url'] = url('node/'.$record->nid, array('absolute' => TRUE));
-          }
-        }
-      }
-      /*
-       foreach ($votes as $nid => $vote) {
 
-        // wrap vote
-        $w_vote = entity_metadata_wrapper('node', $vote);
-
-        if($w_vote->field_vote_node->value()){
-          if(in_array($w_vote->field_vote_node->type->value(), $types_allowed)){
-            $type = str_replace('pw_', '', $w_vote->field_vote_node->type->value());
-            $profile['votes'][$type.'_'.$nid] = array();
-            $profile['votes'][$type.'_'.$nid]['title'] = $w_vote->field_vote_node->title->value();
-            $profile['votes'][$type.'_'.$nid]['uuid'] = $w_vote->field_vote_node->uuid->value();
-            $profile['votes'][$type.'_'.$nid]['date'] = date("Y-m-d", $w_vote->created->value());
-            if(isset($w_vote->field_blogpost_categories)){
-              foreach($w_vote->field_blogpost_categories as $key => $category){
-                $profile['votes'][$type.'_'.$nid]['category_'.$key] = $category;
-              }
+            // load categories
+            $categories = db_select('field_data_field_blogpost_categories','bc');
+            $categories->join('taxonomy_term_data','ct', "bc.field_blogpost_categories_tid = ct.tid");
+            $categories->fields('ct', array('tid', 'name'));
+            $categories->condition('bc.entity_id', $record->nid);
+            $cr = $categories->execute();
+            $blogtags = array();
+            while ($category = $cr->fetchObject()){
+                $blogtags["tag_".$category->tid] = $category->name;
             }
-            $profile['votes'][$type.'_'.$nid]['vote'] = $w_vote->field_vote->field_votes_label->value();
-            $profile['votes'][$type.'_'.$nid]['url'] = url('node/'.$w_vote->field_vote_node->nid->value(), array('absolute' => TRUE));
+            $profile['votes'][$type.'_'.$record->nid]['blogtags'] = $blogtags;
           }
         }
       }
-      */
     }
 
     // add data from user_archive_cache meta table
