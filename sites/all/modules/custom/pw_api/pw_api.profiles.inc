@@ -36,7 +36,15 @@ function pw_api_profile($username, $parliament=FALSE) {
     }
 
     // load user revision
-    $result = db_query("SELECT uid, vid FROM user_archive_cache WHERE user_name = :username AND parliament_name = :parliament", array(':username' => $username, ':parliament' => $parliament))->fetchAssoc();
+      $query = db_select('user_archive_cache', 'uac');
+      $query->fields('uac', array('uid', 'vid'));
+      _pw_uac_add_conditions($query, array(
+          'parliament' => $parliament,
+          'username' => $username,
+          )
+      );
+    $query->orderBy("uac.user_role = 'deputy'", 'DESC');
+    $result = $query->execute()->fetchAssoc();
     $user = user_revision_load($result['uid'], $result['vid']);
   }
 
@@ -70,7 +78,6 @@ function pw_api_profiles($parliament) {
   _pw_uac_add_conditions($query, array(
       'parliament' => $parliament,
       'roles' => $user_role,
-      'date' => date('Y-m-d'),
     )
   );
   $result = $query->execute()->fetchAll();
@@ -118,7 +125,7 @@ function pw_api_user_to_array($user, $activities = array()) {
 
     // fetch stats into meta
     $query = db_select('user_archive_cache', 'uac');
-    $query->fields('uac', array('number_of_questions', 'number_of_answers'));
+    $query->fields('uac', array('number_of_questions', 'number_of_answers', 'actual_profile'));
     _pw_uac_add_conditions($query, array(
         'vid' => $user->vid,
       )
@@ -135,7 +142,15 @@ function pw_api_user_to_array($user, $activities = array()) {
       }
       $profile['meta']['roles'] = implode(',', $roles);
     }
-    $profile['meta']['url'] = url('profile/' . $w_user->name->value(), array('absolute' => TRUE));
+    dpm($result);
+    if ($result['actual_profile'] == 0) {
+          $path = 'profile/' . $user->name . '/archive/' . $user->vid;
+      }
+    else {
+        $path = 'user/' . $user->uid;
+    }
+    $profile['meta']['url'] = url($path, array('absolute' => TRUE));
+
     $profile['personal'] = array();
     $profile['personal']['degree'] = $w_user->field_user_title->value();
     $profile['personal']['first_name'] = $w_user->field_user_fname->value();
