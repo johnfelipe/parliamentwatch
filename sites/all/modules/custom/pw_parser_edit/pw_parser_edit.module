@@ -52,30 +52,41 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
     $node = $form_state['node'];
   }
 
+  $form['#attached'] = array(
+    'css' => array(drupal_get_path('module', 'pw_parser_edit') . '/pw_parser_edit.css'),
+  );
   $form['#parents'] = array();
   // @todo D8: Remove. Modules should access the node using $form_state['node'].
   $form['#node'] = $node;
 
   // If no language is provided use the default site language.
   $options['language'] = field_valid_language(entity_language('node', $node));
-  $form += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
 
-  $form['field_politician'][LANGUAGE_NONE][0]['target_id']['#type'] = 'hidden';
-  $form['field_politician'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $account->uid;
+  $form['new'] = array(
+    '#prefix' => '<div class="sidejobs-new">',
+    '#suffix' => '</div>'
+  );
+  $form['new'] += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
+  $form['new']['field_politician'][LANGUAGE_NONE][0]['target_id']['#type'] = 'hidden';
+  $form['new']['field_politician'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $account->uid;
 
-  $form['sidejobs'] = array();
+  $form['list'] = array(
+    '#prefix' => '<div class="sidejobs-list">',
+    '#suffix' => '</div>'
+  );
 
   foreach (pw_sidejobs_load($account) as $sidejob) {
-    $elements = node_view($sidejob);
-    $form['sidejobs'][$sidejob->nid] = array('#type' => 'container');
-    $form['sidejobs'][$sidejob->nid]['node'] = array(
+    $elements = node_view($sidejob, 'tabular');
+    $form['list']['#weight'] = 100;
+    $form['list'][$sidejob->nid] = array('#type' => 'container');
+    $form['list'][$sidejob->nid]['node'] = array(
       '#markup' => drupal_render($elements),
     );
-    $form['sidejobs'][$sidejob->nid]['actions'] = array('#type' => 'actions');
-    $form['sidejobs'][$sidejob->nid]['actions']['delete'] = array(
-      '#markup' => l(t('Delete'), 'node/' . $sidejob->nid . '/delete'),
+    $form['list'][$sidejob->nid]['actions'] = array('#type' => 'actions');
+    $form['list'][$sidejob->nid]['actions']['delete'] = array(
+      '#markup' => l(t('Delete'), 'node/' . $sidejob->nid . '/delete')
     );
-    $form['sidejobs'][$sidejob->nid]['actions']['replace'] = array(
+    $form['list'][$sidejob->nid]['actions']['replace'] = array(
       '#type' => 'submit',
       '#name' => 'replace-' . $sidejob->nid,
       '#submit' => array('pw_parser_edit_sidejobs_replace'),
