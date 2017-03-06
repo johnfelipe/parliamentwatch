@@ -142,7 +142,6 @@ function pw_api_user_to_array($user, $activities = array()) {
       }
       $profile['meta']['roles'] = implode(',', $roles);
     }
-    dpm($result);
     if ($result['actual_profile'] == 0) {
       $path = 'profile/' . $user->name . '/archive/' . $user->vid;
     }
