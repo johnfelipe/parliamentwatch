@@ -121,7 +121,7 @@ html {
   position: fixed;
   border-top: 1px solid #5c96c2;
   width: 100%;
-  z-index: 999;  
+  z-index: 999;
   -webkit-box-shadow:  0 -2px 3px 1px rgba(0,0,0,.2);
   box-shadow:  0 -2px 3px 1px rgba(0,0,0,.2);
 
@@ -293,15 +293,17 @@ html {
     width: 550px;
 }
 
-.view-id-profile_list_rev .view-content ul {
+.profile-list {
     background: url(../images/bg_list-rev.png) repeat-y;
 }
-.view-id-profile_list_rev .view-content li {
+
+.profile-list > .profile-item {
     border-width: 1px 0 0;
-    width: 33%;
     float: left;
+    width: 33%;
 }
-.view-id-profile_list_rev .view-content .profile-picture {
+
+.profile-item > .profile-item-picture {
     float: none;
     margin-right: 0;
 }

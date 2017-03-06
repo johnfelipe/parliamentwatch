@@ -38,102 +38,87 @@ div.horizontal-tabs .view-content {
     font-size: 1.2rem;
 }
 
+/* profile lists */
 
-
-
-
-.view-id-profile_list_rev .view-content ul {
-    width: 100%;
+.profile-list {
     margin-bottom: 2.6rem;
+    width: 100%;
 }
-.view-id-profile_list_rev .view-content li {
+
+.profile-list > .profile-item {
     border: 1px solid #eee;
     border-width: 0 0 1px;
-}
-/* IE8 only*/
-html>/**/body .view-id-profile_list_rev .view-content li {
-    height /*\**/: 260px\9;
-}
-.view-id-profile_list_rev .view-content li:nth-child(1),
-.view-id-profile_list_rev .view-content li:nth-child(2),
-.view-id-profile_list_rev .view-content li:nth-child(3) {
-    border-top: 0;
-}
-.view-id-profile_list_rev .view-content li:nth-child(3n) {
-    border-right: 0;
-}
-.view-id-profile_list_rev .view-content li:nth-child(3n+1) {
-    clear: both;
-}
-.view-id-profile_list_rev .view-content .profile-picture {
-    float: left;
-    margin-right: 10px;
-}
-.view-id-profile_list_rev .profile-list-compact-info .file-image .content {
-    width: 140px;
-    height: 210px;
-    background: url(/sites/abgeordnetenwatch.de/files/default_images/profile-picture-default.jpg) no-repeat;
-    outline: 1px solid #ccc;
-}
-.view-id-profile_list_rev .profile-list-compact-info .link-profile {
-    clear: both;
-}
-.view-id-profile_list_rev .profile-list-compact-info .profile-list-compact-info-text {
-    float: left;
-    width: 195px;
-}
-
-.block-views-profile-questions-answers-block .link-report {
-    width: 100%;
-    margin-left: -24px;
-    padding: 20px 24px 0;
-    border-top: 1px solid #fff;
-}
-.block-views-profile-questions-answers-block .link-report a,
-.block-views-profile-questions-answers-block a.link-report {
-    background-position: -440px -2220px;
-    font-weight: normal;
-    color: #999;
-}
-
-.user-profile .field-name-field-user-fname,
-.user-profile .field-name-field-user-lname,
-.user-profile .field-name-field-user-party {
-    display: inline;
-}
-.user-profile .field-name-field-user-fname {
-    margin-right: 0.8ex;
-}
-.user-profile .field-name-field-user-party:before {
-    content: ",\0000a0";
-}
-.page-user.context-profile #page-title,
-.page-profile.context-profile #page-title {
-    display: none;
-}
-
-.profiles-list-compact .file-image {
-    margin-bottom: 4px;
-}
-.profiles-list-compact-wrapper {
     padding: 16px 22px;
     position: relative;
 }
-.profiles-list-compact-wrapper .row {
-    margin-right: -12px;
+
+/* IE8 only*/
+html>/**/body .profile-list > .profile-item {
+    height /*\**/: 260px\9;
+}
+
+.profile-list > .profile-item:nth-child(1),
+.profile-list > .profile-item:nth-child(2),
+.profile-list > .profile-item:nth-child(3) {
+    border-top: 0;
+}
+
+.profile-list .profile-item:nth-child(3n) {
+    border-right: 0;
+}
+
+.profile-list > .profile-item:nth-child(3n+1) {
+    clear: both;
+}
+
+.profile-item > .profile-item-picture {
+    background: url(/sites/abgeordnetenwatch.de/files/default_images/profile-picture-default.jpg) no-repeat;
+    float: left;
+    margin-right: 10px;
+}
+
+.profile-item > .profile-item-picture img {
+  height: 150px;
+  width: 100px;
+}
+
+.profile-item-hidden {
+  display: none;
+}
+
+.profile-item-hidden > .profile-item-picture {
+    background: url(/sites/abgeordnetenwatch.de/files/default_images/profile-picture-default.jpg) no-repeat;
+    float: left;
+    margin: 0 14px 14px 0;
+    outline: 1px solid #ccc;
+}
+
+.profile-item-hidden > .profile-item-picture img {
+    height: 210px;
+    width: 140px;
+}
+
+.profile-item-hidden > .profile-item-link {
+    background-color: white;
+    clear: both;
+    margin: 0 -12px;
     padding: 0 12px;
 }
-.col-last .profiles-list-compact-wrapper h3 {
-    text-align: right;
+
+.profile-item-hidden > .profile-item-link > a {
+  background-image: url(/sites/all/themes/custom/parliamentwatch/images/sprite.png);
+  background-position: -461px -1698px;
+  background-repeat: no-repeat;
+  padding-left: 26px;
 }
-.col-last .profiles-list-compact-wrapper .row {
-    margin-left: -12px;
-    margin-right: 0;
-    text-align: right;
+
+.profile-item-hidden > p {
+    margin-bottom: 0;
 }
-.responsive-layout-normal .profiles-list-compact-wrapper:hover .element-hidden,
-.responsive-layout-normal .profiles-list-compact-wrapper:focus .element-hidden,
-.responsive-layout-normal .profiles-list-compact-wrapper:active .element-hidden {
+
+.responsive-layout-normal .profile-item:hover > .profile-item-hidden,
+.responsive-layout-normal .profile-item:focus > .profile-item-hidden,
+.responsive-layout-normal .profile-item:active > .profile-item-hidden {
     display: block;
     position: absolute;
     z-index: 123;
@@ -147,27 +132,89 @@ html>/**/body .view-id-profile_list_rev .view-content li {
     -moz-box-shadow: 0 0 2px 2px #DEDEDE;
     box-shadow: 0 0 2px 2px #DEDEDE;
     border: 1px solid #dedede;
-
-}
-.col-last .profiles-list-compact-wrapper:hover .element-hidden,
-.col-last .profiles-list-compact-wrapper:focus .element-hidden,
-.col-last .profiles-list-compact-wrapper:active .element-hidden {
-    left: auto;
-    right: 17px;
-}
-.profiles-list-compact-wrapper:hover .element-hidden .profile-image,
-.profiles-list-compact-wrapper:focus .element-hidden .profile-image,
-.profiles-list-compact-wrapper:active .element-hidden .profile-image {
-    float: left;
-    margin: 0 14px 14px 0;
-}
-.col-last .profiles-list-compact-wrapper:hover .element-hidden .profile-image,
-.col-last .profiles-list-compact-wrapper:focus .element-hidden .profile-image,
-.col-last .profiles-list-compact-wrapper:active .element-hidden .profile-image {
-    float: right;
-    margin: 0 0 14px 14px;
 }
 
+/* profile filters */
+
+.profile-filters label {
+    display: block;
+    margin-bottom: .5em;
+}
+
+.profile-filters > div > .form-item {
+    margin-bottom: 1em;
+}
+
+.profile-filters .form-checkboxes label {
+    display: inline;
+}
+
+.profile-filters .form-checkboxes .form-item:hover {
+    background-color: #eee;
+}
+
+.profile-filters input[type="checkbox"] {
+    margin-right: .75em;
+    vertical-align: middle;
+}
+
+.profile-filters .form-radios .form-item-last-name {
+    display: inline-block;
+}
+
+
+.profile-filters .form-item-last-name input {
+    display: none;
+}
+
+.profile-filters .form-item-last-name input + label {
+    background: #ccc;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    min-width: 20px;
+    line-height: 2.0rem;
+    padding: 0 5px;
+    text-align: center;
+}
+
+.profile-filters .form-item-last-name input + label:hover,
+.profile-filters .form-item-last-name input:checked + label {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* questions and answers */
+.block-views-profile-questions-answers-block .link-report {
+    width: 100%;
+    margin-left: -24px;
+    padding: 20px 24px 0;
+    border-top: 1px solid #fff;
+}
+
+.block-views-profile-questions-answers-block .link-report a,
+.block-views-profile-questions-answers-block a.link-report {
+    background-position: -440px -2220px;
+    font-weight: normal;
+    color: #999;
+}
+
+.user-profile .field-name-field-user-fname,
+.user-profile .field-name-field-user-lname,
+.user-profile .field-name-field-user-party {
+    display: inline;
+}
+
+.user-profile .field-name-field-user-fname {
+    margin-right: 0.8ex;
+}
+.user-profile .field-name-field-user-party:before {
+    content: ",\0000a0";
+}
+.page-user.context-profile #page-title,
+.page-profile.context-profile #page-title {
+    display: none;
+}
 
 /* list */
 
@@ -184,7 +231,6 @@ html>/**/body .view-id-profile_list_rev .view-content li {
     bottom: 1rem;
 }
 
-
 /* search */
 
 #region-content #views-exposed-form-profile-list-solr-constituency {
@@ -195,25 +241,28 @@ html>/**/body .view-id-profile_list_rev .view-content li {
     padding: 0;
     margin-top: 20px;
 }
+
 #region-content #views-exposed-form-profile-list-solr-constituency .views-exposed-form .views-exposed-widget {
     float: left;
     padding: 0;
 }
+
 #views-exposed-form-profile-list-solr-constituency  .views-exposed-widget {
     margin-bottom: 0;
     clear: none;
 }
+
 #views-exposed-form-profile-list-solr-constituency {
     float: left;
     padding: 0;
 }
+
 #views-exposed-form-profile-list-solr-constituency .form-submit {
     margin-top: 0;
     width: 40px;
     height: 40px;
     text-indent: -5000rem;
 }
-
 
 /* search deprecated */
 

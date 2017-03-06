@@ -7,10 +7,8 @@
    */
   var formid = 'clientside-validation-testswarm-fapi';
   var validator = {};
-  $(document).bind('clientsideValidationInitialized', function (e, cv_instance){
-    if (cv_instance.form_id === formid) {
-      validator = cv_instance.validator;
-    }
+  $(document).bind('clientsideValidationInitialized', function (){
+    validator = Drupal.myClientsideValidation.validators[formid];
   });
   Drupal.tests.cvfapi = {
     getInfo: function() {
@@ -63,7 +61,7 @@
           validator.form();
 
           // Check for the error.
-          QUnit.equal($('label[for=copy-moderate-group].error:visible').length, 1, Drupal.t('Error label found for "Checkboxes" (Select at least one)'));
+          QUnit.equal($('label[for=copy_group].error:visible').length, 1, Drupal.t('Error label found for "Checkboxes" (Select at least one)'));
 
           // Check one checkbox, random.
           var checkboxes = ['#edit-copy-status', '#edit-copy-moderate', '#edit-copy-promote', '#edit-copy-sticky', '#edit-copy-revision'];
@@ -74,7 +72,7 @@
           validator.form();
 
           // Check for the error.
-          QUnit.equal($('label[for=copy-moderate-group].error:visible').length, 0, Drupal.t('Error label found for "Checkboxes" (Select at least one)'));
+          QUnit.equal($('label[for=' + $checkbox.attr('id') + '].error:visible').length, 0, Drupal.t('Error label found for "Checkboxes" (Select at least one)'));
         };
       },
       requiredPassword: function ($, Drupal, window, document, undefined) {

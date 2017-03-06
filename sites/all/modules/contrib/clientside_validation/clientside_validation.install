@@ -89,6 +89,8 @@ function clientside_validation_uninstall() {
     'clientside_validation_use_minified',
     'clientside_validation_validate_all',
     'clientside_validation_validate_specific',
+    'clientside_validation_usexregxp',
+    'clientside_validation_xregxp_variant',
   );
 
   foreach ($variables as $name) {
@@ -180,6 +182,8 @@ function clientside_validation_update_7101() {
       'show_messages' => variable_get('clientside_validation_show_messages', 0),
     ),
     'error' => array(
+      'prefix' => variable_get('clientside_validation_prefix', ''),
+      'suffix' => variable_get('clientside_validation_suffix', ''),
       'scrollto_errormessage' => variable_get('clientside_validation_scrollto_errormessage', 1),
       'scroll_speed' => variable_get('clientside_validation_scroll_speed', 1000),
       'error_element' => variable_get('clientside_validation_error_element', 'label'),
@@ -350,32 +354,4 @@ function clientside_validation_update_7105() {
     $paths[] = 'admin/structure/views/*';
   }
   variable_set('clientside_validation_path_list', implode("\n", $paths));
-}
-
-/**
- * Update Clientside Validation to 7.x-2.0
- */
-function clientside_validation_update_7200() {
-  db_delete('system')
-    ->condition('name', array('clientside_validation_form', 'clientside_validation_html5'))
-    ->condition('type', 'module')
-    ->execute();
-  $enable_list = array();
-  $modules = array(
-    'captcha',
-    'date',
-    'elements',
-    'email',
-    'hierarchical_select',
-    'link',
-    'phone',
-    'term_reference_tree',
-    'webform_validation',
-  );
-  foreach ($modules as $module) {
-    if (module_exists($module)) {
-      $enable_list[] = 'clientside_validation_' . $module;
-    }
-  }
-  module_enable($enable_list);
 }

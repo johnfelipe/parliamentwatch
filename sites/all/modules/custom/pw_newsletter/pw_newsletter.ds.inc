@@ -729,6 +729,9 @@ function pw_newsletter_ds_layout_settings_info() {
         3 => 'field_pg_content_link',
         4 => 'field_pg_donate_targetgroup',
       ),
+      'ds_hidden' => array(
+        5 => 'field_show',
+      ),
     ),
     'fields' => array(
       'field_pg_content_title' => 'ds_content',
@@ -736,6 +739,7 @@ function pw_newsletter_ds_layout_settings_info() {
       'field_pg_content_body' => 'ds_content',
       'field_pg_content_link' => 'ds_content',
       'field_pg_donate_targetgroup' => 'ds_content',
+      'field_show' => 'ds_hidden',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -769,6 +773,7 @@ function pw_newsletter_ds_layout_settings_info() {
       ),
       'ds_hidden' => array(
         5 => 'field_pg_content_last_element',
+        6 => 'field_show',
       ),
     ),
     'fields' => array(
@@ -778,6 +783,7 @@ function pw_newsletter_ds_layout_settings_info() {
       'field_pg_donate_targetgroup' => 'ds_content',
       'field_pg_content_link' => 'ds_content',
       'field_pg_content_last_element' => 'ds_hidden',
+      'field_show' => 'ds_hidden',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -808,12 +814,16 @@ function pw_newsletter_ds_layout_settings_info() {
         2 => 'field_pg_list_title_small',
         3 => 'field_pg_donate_targetgroup',
       ),
+      'ds_hidden' => array(
+        4 => 'field_show',
+      ),
     ),
     'fields' => array(
       'field_pg_list_title' => 'ds_content',
       'field_pg_list_item' => 'ds_content',
       'field_pg_list_title_small' => 'ds_content',
       'field_pg_donate_targetgroup' => 'ds_content',
+      'field_show' => 'ds_hidden',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -843,11 +853,15 @@ function pw_newsletter_ds_layout_settings_info() {
         1 => 'field_pg_donate_targetgroup',
         2 => 'field_pg_content_link',
       ),
+      'ds_hidden' => array(
+        3 => 'field_show',
+      ),
     ),
     'fields' => array(
       'field_pg_testimonial_er' => 'ds_content',
       'field_pg_donate_targetgroup' => 'ds_content',
       'field_pg_content_link' => 'ds_content',
+      'field_show' => 'ds_hidden',
     ),
     'classes' => array(),
     'wrappers' => array(

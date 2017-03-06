@@ -540,40 +540,6 @@ function pw_subsite_default_fe_block_settings() {
     'visibility' => '0',
   );
 
-  $export['views--exp-profile_list_rev-grid'] = array(
-    'cache' => '5',
-    'css_class' => 'desktop-only',
-    'custom' => '0',
-    'delta' => '-exp-profile_list_rev-grid',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => 'profile/*/candidates
-profile/*/deputies',
-    'roles' => array(),
-    'themes' => array(
-      'blank' => array(
-        'region' => 'sidebar_second',
-        'status' => '1',
-        'theme' => 'blank',
-        'weight' => '0',
-      ),
-      'parliamentwatch' => array(
-        'region' => 'sidebar_second',
-        'status' => '1',
-        'theme' => 'parliamentwatch',
-        'weight' => '47',
-      ),
-      'pw_seven' => array(
-        'region' => 'sidebar_second',
-        'status' => '1',
-        'theme' => 'pw_seven',
-        'weight' => '0',
-      ),
-    ),
-    'title' => 'Liste filtern',
-    'visibility' => '1',
-  );
-
   $export['views-pw_donation_drive-block'] = array(
     'cache' => '-1',
     'css_class' => '',
@@ -713,7 +679,7 @@ profile/*/deputies',
     'delta' => 'pw_donations_recent-recent',
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'ueber-uns/spendenformular',
     'roles' => array(),
     'themes' => array(
       'blank' => array(
@@ -723,10 +689,10 @@ profile/*/deputies',
         'weight' => '0',
       ),
       'parliamentwatch' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'sidebar_second',
+        'status' => '1',
         'theme' => 'parliamentwatch',
-        'weight' => '-74',
+        'weight' => '99',
       ),
       'pw_seven' => array(
         'region' => '',
@@ -769,7 +735,7 @@ profile/*/deputies',
       ),
     ),
     'title' => '',
-    'visibility' => '0',
+    'visibility' => '1',
   );
 
   $export['views-pw_user_revision_switch-block'] = array(

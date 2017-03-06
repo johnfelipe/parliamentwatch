@@ -220,6 +220,10 @@ function pw_profiles_strongarm() {
             'weight' => '4',
             'visible' => FALSE,
           ),
+          'teaser' => array(
+            'weight' => '5',
+            'visible' => TRUE,
+          ),
         ),
         'mimemail' => array(
           'user_premium' => array(
@@ -246,6 +250,10 @@ function pw_profiles_strongarm() {
             'weight' => '49',
             'visible' => FALSE,
           ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
         'masquerade' => array(
           'user_deputy' => array(
@@ -264,6 +272,10 @@ function pw_profiles_strongarm() {
             'weight' => '50',
             'visible' => FALSE,
           ),
+          'teaser' => array(
+            'weight' => '50',
+            'visible' => TRUE,
+          ),
         ),
         'twitter' => array(
           'user_candidate' => array(
@@ -281,6 +293,10 @@ function pw_profiles_strongarm() {
           'user_dialogue_search_snippet' => array(
             'weight' => '0',
             'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => TRUE,
           ),
         ),
       ),

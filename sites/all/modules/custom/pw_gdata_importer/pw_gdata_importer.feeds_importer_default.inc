@@ -1080,8 +1080,8 @@ function pw_gdata_importer_feeds_importer_default() {
           20 => array(
             'source' => 'xpathparser:22',
             'target' => 'field_user_political_roles',
-            'unique' => FALSE,
-            'language' => 'und',
+            'term_search' => '0',
+            'autocreate' => 1,
           ),
           21 => array(
             'source' => 'xpathparser:23',
@@ -1206,6 +1206,7 @@ function pw_gdata_importer_feeds_importer_default() {
             'source' => 'xpathparser:43',
             'target' => 'field_user_list_won',
             'unique' => FALSE,
+            'language' => 'und',
           ),
         ),
         'update_existing' => '2',

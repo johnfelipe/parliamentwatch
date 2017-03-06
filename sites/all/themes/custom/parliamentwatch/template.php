@@ -128,6 +128,14 @@ function parliamentwatch_preprocess_node(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_user_profile().
+ */
+function parliamentwatch_preprocess_user_profile(&$variables) {
+  $variables['theme_hook_suggestions'][] = 'user_profile__' . $variables['elements']['#view_mode'];
+  $variables['user_url'] = url(entity_uri('user', $variables['elements']['#account'])['path']);
+}
+
 /*
  * custom theme functions
  */
@@ -160,6 +168,7 @@ function parliamentwatch_preprocess_field(&$variables) {
   if($element['#bundle'] == 'pw_petition') {
     $variables['theme_hook_suggestions'][] = 'field__' . $element['#bundle'] . '__' . $element['#field_name'];
   }
+  $variables['theme_hook_suggestions'][] = 'field__' . $element['#bundle'] . '__' . $element['#view_mode'];
 }
 
 /*
@@ -394,6 +403,7 @@ function parliamentwatch_addthis_element($variables) {
 //////////////////////////////////////////////////////
 
 function parliamentwatch_delta_blocks_breadcrumb($variables) {
+
   $output = '';
 
   $menu_item = menu_get_item();
@@ -457,7 +467,7 @@ function parliamentwatch_delta_blocks_breadcrumb($variables) {
     else{
 
       // add profiles overview to profile
-      if(arg(0) == 'user' || arg(0) == 'profile'){
+      if(arg(0) == 'user' || arg(0) == 'profile' && $menu_item['path'] != 'profile/%/%'){
         $user = _pw_get_current_user();
         $role = _pw_user_has_role($user, 'Candidate')?'Candidate':'Deputy';
         parliamentwatch_breadcrumb_user($variables, $user, $parliament_name, $role, FALSE);

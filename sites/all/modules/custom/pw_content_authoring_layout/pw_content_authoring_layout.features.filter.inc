@@ -63,13 +63,13 @@ function pw_content_authoring_layout_filter_default_formats() {
         'weight' => '-41',
         'status' => '1',
         'settings' => array(
+          'settings_source' => 'global',
           'local_paths' => 'https://live.de.parliamentwatch.org/
 https://beta.abgeordnetenwatch.de/
 http://live.de.parliamentwatch.org/
 http://beta.abgeordnetenwatch.de/
 /',
           'protocol_style' => 'path',
-          'settings_source' => 'global',
         ),
       ),
       'filter_autop' => array(
@@ -152,13 +152,13 @@ http://beta.abgeordnetenwatch.de/
         'weight' => '50',
         'status' => '1',
         'settings' => array(
+          'settings_source' => 'global',
           'local_paths' => 'https://live.de.parliamentwatch.org/
 https://beta.abgeordnetenwatch.de/
 http://live.de.parliamentwatch.org/
 http://beta.abgeordnetenwatch.de/
 /',
           'protocol_style' => 'full',
-          'settings_source' => 'global',
         ),
       ),
     ),
@@ -207,13 +207,13 @@ http://beta.abgeordnetenwatch.de/
         'weight' => '50',
         'status' => '1',
         'settings' => array(
+          'settings_source' => 'global',
           'local_paths' => 'https://live.de.parliamentwatch.org/
 https://beta.abgeordnetenwatch.de/
 http://live.de.parliamentwatch.org/
 http://beta.abgeordnetenwatch.de/
 /',
           'protocol_style' => 'path',
-          'settings_source' => 'global',
         ),
       ),
     ),
@@ -273,9 +273,9 @@ http://beta.abgeordnetenwatch.de/
         'weight' => '50',
         'status' => '1',
         'settings' => array(
+          'settings_source' => 'global',
           'local_paths' => '',
           'protocol_style' => 'path',
-          'settings_source' => 'global',
         ),
       ),
     ),

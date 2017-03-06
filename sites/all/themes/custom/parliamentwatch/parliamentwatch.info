@@ -53,6 +53,7 @@ scripts[13] = 'js/jquery.mmenu.min.all.js'
 scripts[14] = 'js/jquery.visible.min.js'
 scripts[15] = 'js/jquery.debouncedresize.js'
 scripts[200] = 'js/scripts.js'
+scripts[201] = 'js/form_auto_submit.js'
 
 css[global.css][name] = 'Your custom global styles'
 css[global.css][description] = 'This file holds all the globally active custom CSS of your theme.'

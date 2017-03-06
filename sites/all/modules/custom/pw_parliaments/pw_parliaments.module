@@ -5,3 +5,27 @@
  */
 
 include_once 'pw_parliaments.features.inc';
+
+/**
+ * Implements hook_taxonomy_term_presave().
+ */
+function pw_parliaments_taxonomy_term_presave($term) {
+  // check if is parliaments vocabulary
+  if($term->vid == 18 && function_exists('pw_userarchives_cron')){
+    if(pw_userarchives_check_refresh_profiles($term->original)){
+      db_delete('user_archive_cache')
+        ->condition('parliament_name', $term->original->name)
+        ->execute();
+    }
+  }
+}
+
+/**
+ * Implements hook_taxonomy_term_update().
+ */
+function pw_parliaments_taxonomy_term_update($term) {
+  // check if is parliaments vocabulary
+  if($term->vid == 18 && function_exists('pw_userarchives_cron')){
+    pw_userarchives_cron();
+  }
+}

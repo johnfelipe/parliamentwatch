@@ -158,6 +158,8 @@ function _user_revision_edit_save(&$revision, $edits) {
   // Updates the FAPI fields for the selected revision and restores the user.
   $restore = user_load($revision->uid);
   field_attach_update('user', $revision);
-  field_attach_update('user', $restore);
+  if ($restore->vid != $revision->vid) {
+    field_attach_update('user', $restore);
+  }
   entity_get_controller('user')->resetCache(array($revision->uid));
 }

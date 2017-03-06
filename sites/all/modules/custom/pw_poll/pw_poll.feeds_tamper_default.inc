@@ -94,6 +94,18 @@ function pw_poll_feeds_tamper_default() {
   $feeds_tamper = new stdClass();
   $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
   $feeds_tamper->api_version = 2;
+  $feeds_tamper->id = 'gdata_poll_importer-xpathparser_4-html_entity_decode';
+  $feeds_tamper->importer = 'gdata_poll_importer';
+  $feeds_tamper->source = 'xpathparser:4';
+  $feeds_tamper->plugin_id = 'html_entity_decode';
+  $feeds_tamper->settings = array();
+  $feeds_tamper->weight = 1;
+  $feeds_tamper->description = 'HTML entity decode';
+  $export['gdata_poll_importer-xpathparser_4-html_entity_decode'] = $feeds_tamper;
+
+  $feeds_tamper = new stdClass();
+  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
+  $feeds_tamper->api_version = 2;
   $feeds_tamper->id = 'gdata_poll_importer-xpathparser_5-find_replace';
   $feeds_tamper->importer = 'gdata_poll_importer';
   $feeds_tamper->source = 'xpathparser:5';
@@ -110,6 +122,18 @@ function pw_poll_feeds_tamper_default() {
   $feeds_tamper->weight = 0;
   $feeds_tamper->description = 'Replace â€œ';
   $export['gdata_poll_importer-xpathparser_5-find_replace'] = $feeds_tamper;
+
+  $feeds_tamper = new stdClass();
+  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
+  $feeds_tamper->api_version = 2;
+  $feeds_tamper->id = 'gdata_poll_importer-xpathparser_5-html_entity_decode';
+  $feeds_tamper->importer = 'gdata_poll_importer';
+  $feeds_tamper->source = 'xpathparser:5';
+  $feeds_tamper->plugin_id = 'html_entity_decode';
+  $feeds_tamper->settings = array();
+  $feeds_tamper->weight = 1;
+  $feeds_tamper->description = 'HTML entity decode';
+  $export['gdata_poll_importer-xpathparser_5-html_entity_decode'] = $feeds_tamper;
 
   return $export;
 }

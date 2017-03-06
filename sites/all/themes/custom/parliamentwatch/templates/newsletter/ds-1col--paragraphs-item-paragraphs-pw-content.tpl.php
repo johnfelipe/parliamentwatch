@@ -2,7 +2,7 @@
   <?php $node_url=url($field_pg_content_link[0]['url'], array('absolute' => TRUE)); ?>
 <?php endif; ?>
 
-<div class="archive_<?php print $content['field_show']['und'][0]['value']; ?>">
+<div class="archive_<?php print $field_show[0]['value'] ?>">
     <div class="<?php print render($content['field_pg_donate_targetgroup']); ?>">
       <?php hide($content['field_show']); ?>
       <?php hide($content['field_pg_class']); ?>

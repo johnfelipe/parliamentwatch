@@ -1000,7 +1000,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '4',
+          'weight' => '6',
         ),
         'paragraphs_editor_preview' => array(
           'label' => 'above',
@@ -1592,7 +1592,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
           'type' => 'list_key',
-          'weight' => '5',
+          'weight' => '4',
         ),
         'paragraphs_editor_preview' => array(
           'label' => 'above',
@@ -1662,9 +1662,23 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '6',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => '5',
         ),
         'paragraphs_editor_preview' => array(
           'label' => 'above',
@@ -2418,9 +2432,23 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '5',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => '6',
         ),
         'paragraphs_editor_preview' => array(
           'label' => 'above',
@@ -2932,8 +2960,22 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
           'weight' => '4',
         ),
         'paragraphs_editor_preview' => array(
@@ -3385,8 +3427,22 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
           'weight' => '3',
         ),
         'paragraphs_editor_preview' => array(

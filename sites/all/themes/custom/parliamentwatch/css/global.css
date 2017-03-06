@@ -1924,6 +1924,7 @@ ul.tabs li a:active {
 }
 
 
+
 /* //////////////////////////// floatbox /////////////////// */
 
 .floatbox {
@@ -2384,6 +2385,9 @@ ul.icon-list:after {
 }
 
 /* node newsletter */
+
+.node-type-newsletter .archive_0 { display: none; }
+.node-type-newsletter .archive_1 { display: block; }
 
 .node-newsletter .eyecatcher {
   background: #f8f8f8;

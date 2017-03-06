@@ -73,6 +73,13 @@ function pw_userarchives_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
+      'question_form_open' => array(
+        'description' => 'TODO: please describe this field!',
+        'mysql_type' => 'tinyint',
+        'length' => 4,
+        'not null' => FALSE,
+        'default' => 0,
+      ),
       'user_joined' => array(
         'description' => 'TODO: please describe this field!',
         'mysql_type' => 'date',
@@ -138,5 +145,13 @@ function pw_userarchives_update_7104() {
   db_add_field('user_archive_cache', 'user_retired', array('type' => 'varchar', 'mysql_type' => 'DATE', 'description' => 'Date leaving the parliament.'));
   db_add_index('user_archive_cache', 'user_joined', array('user_joined'));
   db_add_index('user_archive_cache', 'user_retired', array('user_retired'));
+}
+
+/**
+ * Adds further column question_form_open
+ */
+function pw_userarchives_update_7105() {
+  db_add_field('user_archive_cache', 'question_form_open', array('type' => 'int', 'not null' => FALSE, 'default' => 0, 'size' => 'tiny', 'description' => 'Boolean if form is open for questions.'));
+  db_add_index('user_archive_cache', 'question_form_open', array('question_form_open'));
 }
 

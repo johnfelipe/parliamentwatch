@@ -39,7 +39,7 @@ function pw_subsite_strongarm() {
     'domain' => '',
     'prefix' => 'de',
     'weight' => '0',
-    'javascript' => 'fBAMf9UKe7FA_JmDB996GKS7R_OwVd3S6yOuQOE76YI',
+    'javascript' => 'UCZpovnTnwx3c60hRhyPlVi5281GT9C2UKa2GDL3ocE',
   );
   $export['language_default'] = $strongarm;
 
@@ -3978,6 +3978,15 @@ foo
       'callbacks' => array(),
       'wildcards' => array(
         1 => 'profile:uid',
+      ),
+      'weight' => 1,
+      'fit' => 2,
+    ),
+    9 => array(
+      'path' => 'comment/#',
+      'callbacks' => array(),
+      'wildcards' => array(
+        1 => 'comment:cid',
       ),
       'weight' => 1,
       'fit' => 2,

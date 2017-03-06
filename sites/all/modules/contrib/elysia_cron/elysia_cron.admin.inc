@@ -120,10 +120,7 @@ function elysia_cron_admin_page() {
         ));
         $rows[] = array(
           array('data' => $icon_image, 'align' => 'right'),
-          array(
-            'data' => $caption . ': <i>' . elysia_cron_description($job) . '</i> ',
-            'colspan' => 4
-          ),
+          array('data' => $caption . ': <i>' . elysia_cron_description($job) . '</i> ', 'colspan' => 4),
           array('data' => $force_run, 'align' => 'right'),
         );
         $rows[] = array(
@@ -307,25 +304,18 @@ EOT
   );
 
   $options[0] = t('Never / Use external crontab');
-  $options += drupal_map_assoc(array(
-    3600,
-    10800,
-    21600,
-    43200,
-    86400,
-    604800
-  ), 'format_interval');
+  $options += drupal_map_assoc(array(3600, 10800, 21600, 43200, 86400, 604800), 'format_interval');
   $form['installation']['cron_safe_threshold'] = array(
     '#type' => 'select',
     '#title' => t("Run cron on visitor's requests, every"),
     '#default_value' => variable_get('cron_safe_threshold', DRUPAL_CRON_DEFAULT_THRESHOLD),
     '#description' => t('Setting a time here will enable the "poormanscron" method, which runs the Drupal cron operation using normal browser/page requests instead of having to set up a crontab to request the cron.php script. This approach requires that your site gets regular traffic/visitors in order to trigger the cron request.')
-      . '<br>'
-      . t("This way is fine if you don't need a great control over job starting times and execution frequency.")
-      . '<br />'
-      . t('If you need fine-grained control over cron timings use the crontab method, as <a href="!cron_url">described in Drupal installation guide</a>.', array('!cron_url' => url('http://drupal.org/cron')))
-      . '<br />'
-      . t("If you have a very large site, or you need to execute some jobs very often (more than once an hour) refer to Elysia cron's INSTALL.TXT to improve main cron setup."),
+    . '<br>'
+    . t("This way is fine if you don't need a great control over job starting times and execution frequency.")
+    . '<br />'
+    . t('If you need fine-grained control over cron timings use the crontab method, as <a href="!cron_url">described in Drupal installation guide</a>.', array('!cron_url' => url('http://drupal.org/cron')))
+    . '<br />'
+    . t("If you have a very large site, or you need to execute some jobs very often (more than once an hour) refer to Elysia cron's INSTALL.TXT to improve main cron setup."),
     '#options' => $options,
   );
 
@@ -425,16 +415,16 @@ EOT
     '#rows' => 20,
     '#default_value' => variable_get('elysia_cron_script', ''),
     '#description' => t('You can specify new cron jobs or modify existing schedules by adding lines to the script.')
-      . '<br />'
-      . t('<b>Warning</b> All rules specified in the script will OVERRIDE single job settings and channel settings (sections below).'),
+    . '<br />'
+    . t('<b>Warning</b> All rules specified in the script will OVERRIDE single job settings and channel settings (sections below).'),
   );
 
   $form['single_job'] = array(
     '#title' => t('Single job settings'),
     '#description' => '<b>' . t('Disabled') . '</b>: ' . t('Flag this to disable job execution') . '<br />'
-      . '<b>' . t('Schedule rule') . '</b>: ' . t('Timing rule for the job. Leave empty to use default rule (shown after the field in parenthesis)') . '<br />'
-      . '<b>' . t('Weight') . '</b>: ' . t('Use this to specify execution order: low weights are executed before high weights. Default value shown in parenthesis') . '<br />'
-      . '<b>' . t('Channel') . '</b>: ' . t('Specify a channel for the job (create the channel if not exists)') . '<br /><br />',
+    . '<b>' . t('Schedule rule') . '</b>: ' . t('Timing rule for the job. Leave empty to use default rule (shown after the field in parenthesis)') . '<br />'
+    . '<b>' . t('Weight') . '</b>: ' . t('Use this to specify execution order: low weights are executed before high weights. Default value shown in parenthesis') . '<br />'
+    . '<b>' . t('Channel') . '</b>: ' . t('Specify a channel for the job (create the channel if not exists)') . '<br /><br />',
     '#type' => 'fieldset',
     '#collapsible' => TRUE,
   );

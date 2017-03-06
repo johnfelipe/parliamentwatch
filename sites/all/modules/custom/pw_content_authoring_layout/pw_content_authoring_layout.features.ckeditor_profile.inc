@@ -302,7 +302,7 @@ function pw_content_authoring_layout_ckeditor_profile_defaults() {
         'UserFilesAbsolutePath' => '%d%b%f/',
         'forcePasteAsPlainText' => 't',
         'html_entities' => 'f',
-        'scayt_autoStartup' => 'f',
+        'scayt_autoStartup' => 't',
         'theme_config_js' => 'f',
         'js_conf' => 'config.templates_replaceContent = false;',
         'loadPlugins' => array(

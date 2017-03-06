@@ -19,11 +19,12 @@ function pw_maintenance_menu() {
 
   $items['admin/config/pw/maintenance/clear_constituencies'] = array(
     'title' => 'Clear Constituencies',
-    'description' => 'deletes constituencies which have no users in relation, are not a parent of other constituencies and 
+    'description' => 'deletes constituencies which have no users in relation, are not a parent of other constituencies and
     a an other constituency with the same name exists.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('pw_maintenance_clear_constituencies'),
-    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
     'file' => 'pw_maintenance.admin.inc',
     );
 
@@ -32,9 +33,20 @@ function pw_maintenance_menu() {
     'description' => 'deletes all user revisions which are not in relation to any profile.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('pw_maintenance_clear_user_revisions'),
+    'access arguments' => array('administer site configuration'),
     'type' => MENU_LOCAL_TASK,
     'file' => 'pw_maintenance.admin.inc',
     );
+
+  $items['admin/config/pw/maintenance/user_merge'] = array(
+    'title' => 'Merge Users',
+    'description' => 'Merge one user and its revisions into another.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('pw_maintenance_user_merge'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'pw_maintenance.admin.inc',
+  );
 
   return $items;
 }
@@ -44,6 +56,6 @@ function pw_maintenance_menu() {
  */
 function pw_maintenance_watchdog(array $log_entry) {
   if($log_entry['severity'] <= WATCHDOG_ERROR){
-    _pw_send_debug_mail("watchdog error - ".$_SERVER['SERVER_NAME'], $log_entry);
+    // _pw_send_debug_mail("watchdog error - ".$_SERVER['SERVER_NAME'], $log_entry);
   }
 }

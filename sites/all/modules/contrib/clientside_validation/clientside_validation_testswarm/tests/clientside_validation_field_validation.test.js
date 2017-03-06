@@ -7,10 +7,8 @@
    */
   var formid = 'cv-test-field-validation-node-form';
   var validator = {};
-  $(document).bind('clientsideValidationInitialized', function (e, cv_instance){
-    if (cv_instance.form_id === formid) {
-      validator = cv_instance.validator;
-    }
+  $(document).bind('clientsideValidationInitialized', function (){
+    validator = Drupal.myClientsideValidation.validators[formid];
   });
   Drupal.tests.cvfieldvalidation = {
     getInfo: function() {

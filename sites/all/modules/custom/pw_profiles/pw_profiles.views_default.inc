@@ -1892,6 +1892,7 @@ else
   $handler->display->display_options['fields']['field_user_constituency']['id'] = 'field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['table'] = 'field_data_field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['field'] = 'field_user_constituency';
+  $handler->display->display_options['fields']['field_user_constituency']['label'] = 'Wahlkreis';
   $handler->display->display_options['fields']['field_user_constituency']['delta_offset'] = '0';
   /* Feld: Benutzer: Committee */
   $handler->display->display_options['fields']['field_user_commitee']['id'] = 'field_user_commitee';
@@ -2739,7 +2740,7 @@ else
     t('E-Mail'),
     t('Party'),
     t('Parliament'),
-    t('Constituency'),
+    t('Wahlkreis'),
     t('Committee'),
     t('Fragen'),
     t('Antworten'),
@@ -2756,7 +2757,6 @@ else
     t('Suche nach Parteien.'),
     t('Parlament'),
     t('Suche nach Parlamenten.'),
-    t('Wahlkreis'),
     t('Suche nach Wahlkreisen.'),
     t('Ausschuss'),
     t('Suche nach Ausschüssen.'),

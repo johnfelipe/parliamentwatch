@@ -113,7 +113,7 @@ function _pw_get_current_parliament_term() {
 
     // check if current page is a views page
     $menu_item = menu_get_item();
-    if($menu_item['page_callback'] == 'views_page'){
+    if($menu_item['page_callback'] == 'views_page' || $menu_item['path'] == 'profile/%/%'){
       $terms = taxonomy_get_term_by_name(arg(1), 'parliaments');
       if(!empty($terms)){
         $term_parliament = array_shift($terms);

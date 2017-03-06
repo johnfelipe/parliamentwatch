@@ -165,12 +165,7 @@ function __cronDecodeRule($rule, $min, $max) {
  */
 function __cronDecodeRuleMday($rule, $month, $year) {
   $range_from = 1;
-  $range_to = $month != 2 ? (in_array($month, array(
-    4,
-    6,
-    9,
-    11
-  )) ? 30 : 31) : ($year % 4 == 0 ? 29 : 28);
+  $range_to = $month != 2 ? (in_array($month, array(4, 6, 9, 11)) ? 30 : 31) : ($year % 4 == 0 ? 29 : 28);
   $r1 = __cronDecodeRule($rule[0], $range_from, $range_to);
   $r2 = __cronDecodeRule($rule[1], $range_from, $range_to);
   if ($r2['d']) {
@@ -220,239 +215,239 @@ function test_elysia_cron_should_run() {
 
   // @mktime: hr min sec mon day yr.
   dprint(" 1." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '0 12 * * *',
-        'last_run' => mktime(12, 0, 0, 1, 2, 2008),
-      ), mktime(12, 01, 0, 1, 2, 2008))));
+    'rule' => '0 12 * * *',
+    'last_run' => mktime(12, 0, 0, 1, 2, 2008),
+  ), mktime(12, 01, 0, 1, 2, 2008))));
   dprint(" 2." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '0 12 * * *',
-        'last_run' => mktime(12, 0, 0, 1, 2, 2008),
-      ), mktime(15, 00, 0, 1, 2, 2008))));
+    'rule' => '0 12 * * *',
+    'last_run' => mktime(12, 0, 0, 1, 2, 2008),
+  ), mktime(15, 00, 0, 1, 2, 2008))));
   dprint(" 3." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '0 12 * * *',
-        'last_run' => mktime(12, 0, 0, 1, 2, 2008),
-      ), mktime(11, 59, 0, 1, 3, 2008))));
+    'rule' => '0 12 * * *',
+    'last_run' => mktime(12, 0, 0, 1, 2, 2008),
+  ), mktime(11, 59, 0, 1, 3, 2008))));
   dprint(" 4." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '0 12 * * *',
-        'last_run' => mktime(12, 0, 0, 1, 2, 2008),
-      ), mktime(12, 00, 0, 1, 3, 2008))));
+    'rule' => '0 12 * * *',
+    'last_run' => mktime(12, 0, 0, 1, 2, 2008),
+  ), mktime(12, 00, 0, 1, 3, 2008))));
   dprint(" 5." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * *',
-        'last_run' => mktime(23, 59, 0, 1, 2, 2008),
-      ), mktime(0, 00, 0, 1, 3, 2008))));
+    'rule' => '59 23 * * *',
+    'last_run' => mktime(23, 59, 0, 1, 2, 2008),
+  ), mktime(0, 00, 0, 1, 3, 2008))));
   dprint(" 6." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * *',
-        'last_run' => mktime(23, 59, 0, 1, 2, 2008),
-      ), mktime(23, 59, 0, 1, 3, 2008))));
+    'rule' => '59 23 * * *',
+    'last_run' => mktime(23, 59, 0, 1, 2, 2008),
+  ), mktime(23, 59, 0, 1, 3, 2008))));
   dprint(" 7." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * *',
-        'last_run' => mktime(23, 59, 0, 1, 2, 2008),
-      ), mktime(0, 00, 0, 1, 4, 2008))));
+    'rule' => '59 23 * * *',
+    'last_run' => mktime(23, 59, 0, 1, 2, 2008),
+  ), mktime(0, 00, 0, 1, 4, 2008))));
   dprint(" 8." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * *',
-        'last_run' => mktime(23, 58, 0, 1, 2, 2008),
-      ), mktime(23, 59, 0, 1, 2, 2008))));
+    'rule' => '59 23 * * *',
+    'last_run' => mktime(23, 58, 0, 1, 2, 2008),
+  ), mktime(23, 59, 0, 1, 2, 2008))));
   dprint(" 9." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * *',
-        'last_run' => mktime(23, 58, 0, 1, 2, 2008),
-      ), mktime(0, 0, 0, 1, 3, 2008))));
+    'rule' => '59 23 * * *',
+    'last_run' => mktime(23, 58, 0, 1, 2, 2008),
+  ), mktime(0, 0, 0, 1, 3, 2008))));
   dprint("10." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 5, 2008))));
+    'rule' => '59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 5, 2008))));
   dprint("11." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(0, 0, 0, 1, 6, 2008))));
+    'rule' => '59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(0, 0, 0, 1, 6, 2008))));
   dprint("12." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 6, 2008))));
+    'rule' => '59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 6, 2008))));
   dprint("13." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(00, 00, 0, 1, 7, 2008))));
+    'rule' => '59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(00, 00, 0, 1, 7, 2008))));
   dprint("14." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(23, 29, 0, 1, 6, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(23, 29, 0, 1, 6, 2008))));
   dprint("15." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 6, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 6, 2008))));
   dprint("16." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 5, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 5, 2008))));
   dprint("17." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(23, 58, 0, 1, 6, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(23, 58, 0, 1, 6, 2008))));
   dprint("18." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 58, 0, 1, 5, 2008),
-      ), mktime(23, 28, 0, 1, 6, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 58, 0, 1, 5, 2008),
+  ), mktime(23, 28, 0, 1, 6, 2008))));
   dprint("19." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 28, 0, 1, 5, 2008),
-      ), mktime(23, 29, 0, 1, 5, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 28, 0, 1, 5, 2008),
+  ), mktime(23, 29, 0, 1, 5, 2008))));
   dprint("20." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 28, 0, 1, 5, 2008),
-      ), mktime(23, 30, 0, 1, 5, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 28, 0, 1, 5, 2008),
+  ), mktime(23, 30, 0, 1, 5, 2008))));
   dprint("21." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 28, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 5, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 28, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 5, 2008))));
   dprint("22." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 0',
-        'last_run' => mktime(23, 28, 0, 1, 5, 2008),
-      ), mktime(23, 29, 0, 1, 6, 2008))));
+    'rule' => '29,59 23 * * 0',
+    'last_run' => mktime(23, 28, 0, 1, 5, 2008),
+  ), mktime(23, 29, 0, 1, 6, 2008))));
 
   dprint("23." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 5',
-        'last_run' => mktime(23, 59, 0, 2, 22, 2008),
-      ), mktime(23, 59, 0, 2, 28, 2008))));
+    'rule' => '29,59 23 * * 5',
+    'last_run' => mktime(23, 59, 0, 2, 22, 2008),
+  ), mktime(23, 59, 0, 2, 28, 2008))));
   dprint("24." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 5',
-        'last_run' => mktime(23, 59, 0, 2, 22, 2008),
-      ), mktime(23, 59, 0, 2, 29, 2008))));
+    'rule' => '29,59 23 * * 5',
+    'last_run' => mktime(23, 59, 0, 2, 22, 2008),
+  ), mktime(23, 59, 0, 2, 29, 2008))));
   dprint("25." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '29,59 23 * * 5',
-        'last_run' => mktime(23, 59, 0, 2, 22, 2008),
-      ), mktime(0, 0, 0, 3, 1, 2008))));
+    'rule' => '29,59 23 * * 5',
+    'last_run' => mktime(23, 59, 0, 2, 22, 2008),
+  ), mktime(0, 0, 0, 3, 1, 2008))));
 
   dprint("26." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * 3',
-        'last_run' => mktime(23, 59, 0, 12, 31, 2008),
-      ), mktime(0, 0, 0, 1, 1, 2009))));
+    'rule' => '59 23 * * 3',
+    'last_run' => mktime(23, 59, 0, 12, 31, 2008),
+  ), mktime(0, 0, 0, 1, 1, 2009))));
   dprint("27." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * 3',
-        'last_run' => mktime(23, 59, 0, 12, 31, 2008),
-      ), mktime(0, 0, 0, 1, 7, 2009))));
+    'rule' => '59 23 * * 3',
+    'last_run' => mktime(23, 59, 0, 12, 31, 2008),
+  ), mktime(0, 0, 0, 1, 7, 2009))));
   dprint("28." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * * 3',
-        'last_run' => mktime(23, 59, 0, 12, 31, 2008),
-      ), mktime(23, 59, 0, 1, 7, 2009))));
+    'rule' => '59 23 * * 3',
+    'last_run' => mktime(23, 59, 0, 12, 31, 2008),
+  ), mktime(23, 59, 0, 1, 7, 2009))));
 
   dprint("29." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * 2 5',
-        'last_run' => mktime(23, 59, 0, 2, 22, 2008),
-      ), mktime(23, 59, 0, 2, 29, 2008))));
+    'rule' => '59 23 * 2 5',
+    'last_run' => mktime(23, 59, 0, 2, 22, 2008),
+  ), mktime(23, 59, 0, 2, 29, 2008))));
   dprint("30." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * 2 5',
-        'last_run' => mktime(23, 59, 0, 2, 22, 2008),
-      ), mktime(0, 0, 0, 3, 1, 2008))));
+    'rule' => '59 23 * 2 5',
+    'last_run' => mktime(23, 59, 0, 2, 22, 2008),
+  ), mktime(0, 0, 0, 3, 1, 2008))));
   dprint("31." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 * 2 5',
-        'last_run' => mktime(23, 59, 0, 2, 29, 2008),
-      ), mktime(23, 59, 0, 3, 7, 2008))));
+    'rule' => '59 23 * 2 5',
+    'last_run' => mktime(23, 59, 0, 2, 29, 2008),
+  ), mktime(23, 59, 0, 3, 7, 2008))));
   dprint("32." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 * 2 5',
-        'last_run' => mktime(23, 59, 0, 2, 29, 2008),
-      ), mktime(23, 58, 0, 2, 6, 2009))));
+    'rule' => '59 23 * 2 5',
+    'last_run' => mktime(23, 59, 0, 2, 29, 2008),
+  ), mktime(23, 58, 0, 2, 6, 2009))));
   dprint("33." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 * 2 5',
-        'last_run' => mktime(23, 59, 0, 2, 29, 2008),
-      ), mktime(23, 59, 0, 2, 6, 2009))));
+    'rule' => '59 23 * 2 5',
+    'last_run' => mktime(23, 59, 0, 2, 29, 2008),
+  ), mktime(23, 59, 0, 2, 6, 2009))));
   dprint("34." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 *' . '/10 * *',
-        'last_run' => mktime(23, 58, 0, 1, 10, 2008),
-      ), mktime(23, 59, 0, 1, 10, 2008))));
+    'rule' => '59 23 *' . '/10 * *',
+    'last_run' => mktime(23, 58, 0, 1, 10, 2008),
+  ), mktime(23, 59, 0, 1, 10, 2008))));
   dprint("35." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 *' . '/10 * *',
-        'last_run' => mktime(23, 59, 0, 1, 10, 2008),
-      ), mktime(23, 59, 0, 1, 11, 2008))));
+    'rule' => '59 23 *' . '/10 * *',
+    'last_run' => mktime(23, 59, 0, 1, 10, 2008),
+  ), mktime(23, 59, 0, 1, 11, 2008))));
   dprint("36." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 *' . '/10 * *',
-        'last_run' => mktime(23, 59, 0, 1, 10, 2008),
-      ), mktime(23, 59, 0, 1, 20, 2008))));
+    'rule' => '59 23 *' . '/10 * *',
+    'last_run' => mktime(23, 59, 0, 1, 10, 2008),
+  ), mktime(23, 59, 0, 1, 20, 2008))));
   dprint("37." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5,10-15 * *',
-        'last_run' => mktime(23, 59, 0, 1, 4, 2008),
-      ), mktime(23, 59, 0, 1, 5, 2008))));
+    'rule' => '59 23 1-5,10-15 * *',
+    'last_run' => mktime(23, 59, 0, 1, 4, 2008),
+  ), mktime(23, 59, 0, 1, 5, 2008))));
   dprint("38." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5,10-15 * *',
-        'last_run' => mktime(23, 59, 0, 1, 4, 2008),
-      ), mktime(23, 59, 0, 1, 6, 2008))));
+    'rule' => '59 23 1-5,10-15 * *',
+    'last_run' => mktime(23, 59, 0, 1, 4, 2008),
+  ), mktime(23, 59, 0, 1, 6, 2008))));
   dprint("39." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5,10-15 * *',
-        'last_run' => mktime(23, 59, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 6, 2008))));
+    'rule' => '59 23 1-5,10-15 * *',
+    'last_run' => mktime(23, 59, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 6, 2008))));
   dprint("40." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5,10-15 * *',
-        'last_run' => mktime(23, 59, 0, 1, 5, 2008),
-      ), mktime(23, 58, 0, 1, 10, 2008))));
+    'rule' => '59 23 1-5,10-15 * *',
+    'last_run' => mktime(23, 59, 0, 1, 5, 2008),
+  ), mktime(23, 58, 0, 1, 10, 2008))));
   dprint("41." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5,10-15 * *',
-        'last_run' => mktime(23, 59, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 10, 2008))));
+    'rule' => '59 23 1-5,10-15 * *',
+    'last_run' => mktime(23, 59, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 10, 2008))));
   dprint("42." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5,10-15 * *',
-        'last_run' => mktime(23, 59, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 16, 2008))));
+    'rule' => '59 23 1-5,10-15 * *',
+    'last_run' => mktime(23, 59, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 16, 2008))));
 
   dprint("43." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5 1 0',
-        'last_run' => mktime(23, 59, 0, 1, 4, 2008),
-      ), mktime(23, 59, 0, 1, 5, 2008))));
+    'rule' => '59 23 1-5 1 0',
+    'last_run' => mktime(23, 59, 0, 1, 4, 2008),
+  ), mktime(23, 59, 0, 1, 5, 2008))));
   dprint("44." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5 1 0',
-        'last_run' => mktime(23, 59, 0, 1, 5, 2008),
-      ), mktime(23, 59, 0, 1, 6, 2008))));
+    'rule' => '59 23 1-5 1 0',
+    'last_run' => mktime(23, 59, 0, 1, 5, 2008),
+  ), mktime(23, 59, 0, 1, 6, 2008))));
   dprint("45." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5 1 0',
-        'last_run' => mktime(23, 59, 0, 1, 6, 2008),
-      ), mktime(23, 59, 0, 1, 7, 2008))));
+    'rule' => '59 23 1-5 1 0',
+    'last_run' => mktime(23, 59, 0, 1, 6, 2008),
+  ), mktime(23, 59, 0, 1, 7, 2008))));
   dprint("46." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5 1 0',
-        'last_run' => mktime(23, 59, 0, 1, 6, 2008),
-      ), mktime(23, 59, 0, 1, 13, 2008))));
+    'rule' => '59 23 1-5 1 0',
+    'last_run' => mktime(23, 59, 0, 1, 6, 2008),
+  ), mktime(23, 59, 0, 1, 13, 2008))));
   dprint("47." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5 1 0',
-        'last_run' => mktime(23, 59, 0, 2, 4, 2008),
-      ), mktime(23, 59, 0, 2, 5, 2008))));
+    'rule' => '59 23 1-5 1 0',
+    'last_run' => mktime(23, 59, 0, 2, 4, 2008),
+  ), mktime(23, 59, 0, 2, 5, 2008))));
   dprint("48." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5 1 0',
-        'last_run' => mktime(23, 59, 0, 2, 5, 2008),
-      ), mktime(23, 59, 0, 2, 10, 2008))));
+    'rule' => '59 23 1-5 1 0',
+    'last_run' => mktime(23, 59, 0, 2, 5, 2008),
+  ), mktime(23, 59, 0, 2, 10, 2008))));
   dprint("49." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '59 23 1-5 1 0',
-        'last_run' => mktime(23, 59, 0, 2, 10, 2008),
-      ), mktime(23, 59, 0, 2, 17, 2008))));
+    'rule' => '59 23 1-5 1 0',
+    'last_run' => mktime(23, 59, 0, 2, 10, 2008),
+  ), mktime(23, 59, 0, 2, 17, 2008))));
 
   dprint("49." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
-        'last_run' => mktime(8, 58, 0, 2, 10, 2008),
-      ), mktime(8, 59, 0, 2, 10, 2008))));
+    'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
+    'last_run' => mktime(8, 58, 0, 2, 10, 2008),
+  ), mktime(8, 59, 0, 2, 10, 2008))));
   dprint("50." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
-        'last_run' => mktime(8, 59, 0, 2, 10, 2008),
-      ), mktime(9, 00, 0, 2, 10, 2008))));
+    'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
+    'last_run' => mktime(8, 59, 0, 2, 10, 2008),
+  ), mktime(9, 00, 0, 2, 10, 2008))));
   dprint("51." . (FALSE == elysia_cron_should_run(array(
-        'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
-        'last_run' => mktime(8, 59, 0, 2, 10, 2008),
-      ), mktime(17, 59, 0, 2, 10, 2008))));
+    'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
+    'last_run' => mktime(8, 59, 0, 2, 10, 2008),
+  ), mktime(17, 59, 0, 2, 10, 2008))));
   dprint("52." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
-        'last_run' => mktime(8, 59, 0, 2, 10, 2008),
-      ), mktime(18, 00, 0, 2, 10, 2008))));
+    'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
+    'last_run' => mktime(8, 59, 0, 2, 10, 2008),
+  ), mktime(18, 00, 0, 2, 10, 2008))));
   dprint("53." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
-        'last_run' => mktime(18, 00, 0, 2, 10, 2008),
-      ), mktime(18, 01, 0, 2, 10, 2008))));
+    'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
+    'last_run' => mktime(18, 00, 0, 2, 10, 2008),
+  ), mktime(18, 01, 0, 2, 10, 2008))));
   dprint("54." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
-        'last_run' => mktime(18, 00, 0, 2, 10, 2008),
-      ), mktime(19, 0, 0, 2, 10, 2008))));
+    'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
+    'last_run' => mktime(18, 00, 0, 2, 10, 2008),
+  ), mktime(19, 0, 0, 2, 10, 2008))));
   dprint("55." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
-        'last_run' => mktime(18, 00, 0, 2, 10, 2008),
-      ), mktime(9, 0, 0, 3, 10, 2008))));
+    'rule' => '* 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23 * * *',
+    'last_run' => mktime(18, 00, 0, 2, 10, 2008),
+  ), mktime(9, 0, 0, 3, 10, 2008))));
 
   dprint("56." . (TRUE == elysia_cron_should_run(array(
-        'rule' => '* * * * *',
-        'last_run' => mktime(18, 00, 0, 2, 10, 2008),
-      ), mktime(18, 01, 0, 2, 10, 2008))));
+    'rule' => '* * * * *',
+    'last_run' => mktime(18, 00, 0, 2, 10, 2008),
+  ), mktime(18, 01, 0, 2, 10, 2008))));
 
   dprint("End test (" . (microtime(TRUE) - $start) . ")");
 }

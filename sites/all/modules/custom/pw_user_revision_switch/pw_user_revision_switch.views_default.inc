@@ -1760,74 +1760,29 @@ if(_pw_is_premium_user($profile_user)){
   $handler->display->display_options['fields']['nothing_2']['element_wrapper_type'] = 'p';
   $handler->display->display_options['fields']['nothing_2']['element_wrapper_class'] = 'center push-bottom-m';
   $handler->display->display_options['fields']['nothing_2']['element_default_classes'] = FALSE;
-  /* Feld: Excluded | User: Answers Give */
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['id'] = 'field_user_answers_give-revision_id';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['table'] = 'field_revision_field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['field'] = 'field_user_answers_give-revision_id';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['ui_name'] = 'Excluded | User: Answers Give';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['label'] = '';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['settings'] = array(
-    'thousand_separator' => '',
-    'prefix_suffix' => 1,
-  );
-  /* Feld: Excluded | User: Questions Get */
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['id'] = 'field_user_questions_get-revision_id';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['table'] = 'field_revision_field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['field'] = 'field_user_questions_get-revision_id';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['ui_name'] = 'Excluded | User: Questions Get';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['label'] = '';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['settings'] = array(
-    'thousand_separator' => '',
-    'prefix_suffix' => 1,
-  );
-  /* Feld: Excluded | Link to questions and answers */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Excluded | Link to questions and answers';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Zu den Fragen und Antworten';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['nothing']['alter']['path'] = '#pw-block-questions-and-answers';
-  $handler->display->display_options['fields']['nothing']['alter']['link_class'] = 'link-qa';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
-  /* Feld: Benutzer (Historische Daten): Questions Get */
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['id'] = 'field_user_questions_get-revision_id_1';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['table'] = 'field_revision_field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['field'] = 'field_user_questions_get-revision_id';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['label'] = '';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['alter']['text'] = '<div class="pw-dialogues-link">[nothing]</div>
-[field_user_questions_get-revision_id] / [field_user_answers_give-revision_id] <div class="ic-info inline"><div class="info-title"></div><div class="info-content element-hidden">Die Anzahl der Fragen und Antworten bezieht sich auf die aktuelle Legislaturperiode bzw. den aktuellen Wahlkampf. </div></div>';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['element_wrapper_class'] = 'float-left bubble tiny';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['empty'] = '<div class="pw-dialogues-link">An [field_user_fname-revision_id] [field_user_lname-revision_id]  wurden bisher noch keine Fragen gestellt</div>
-[field_user_questions_get-revision_id] / [field_user_answers_give-revision_id]';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['empty_zero'] = TRUE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['settings'] = array(
-    'thousand_separator' => '',
-    'prefix_suffix' => 0,
-    'linked_field' => array(
-      'linked' => 0,
-      'destination' => '',
-      'advanced' => array(
-        'title' => '',
-        'target' => '',
-        'class' => '',
-        'rel' => '',
-        'text' => '',
-      ),
-    ),
-  );
+  /* Feld: PHP: Count Questions &amp; Answers */
+  $handler->display->display_options['fields']['php_2']['id'] = 'php_2';
+  $handler->display->display_options['fields']['php_2']['table'] = 'views';
+  $handler->display->display_options['fields']['php_2']['field'] = 'php';
+  $handler->display->display_options['fields']['php_2']['ui_name'] = 'PHP: Count Questions & Answers';
+  $handler->display->display_options['fields']['php_2']['label'] = '';
+  $handler->display->display_options['fields']['php_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['php_2']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['php_2']['element_wrapper_class'] = 'float-left bubble tiny';
+  $handler->display->display_options['fields']['php_2']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['php_2']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php_2']['php_value'] = '$user = _pw_get_current_user();
+$query = db_select(\'user_archive_cache\', \'uac\')->fields(\'uac\', array(\'number_of_questions\', \'number_of_answers\'));
+_pw_uac_add_conditions($query, array(
+  \'vid\' => $user->vid,
+));
+$result = $query->execute()->fetchAssoc();
+$result[\'fullname\'] = _pw_get_fullname($user);
+return $result;';
+  $handler->display->display_options['fields']['php_2']['php_output'] = '<div class="pw-dialogues-link"><?php print $value[\'number_of_questions\'] > 0?\'<a href="#pw-block-questions-and-answers">Zu den Fragen und Antworten</a>\':\'An \'.$value[\'fullname\'].\' wurden bisher noch keine Fragen gestellt\'; ?> </div>
+<?php print format_plural($value[\'number_of_questions\'], \'@number_of_questions Frage\', \'@number_of_questions Fragen\', array(\'@number_of_questions\' => $value[\'number_of_questions\'])); ?> / <?php print format_plural($value[\'number_of_answers\'], \'@number_of_answers Antwort\', \'@number_of_answers Antworten\', array(\'@number_of_answers\' => $value[\'number_of_answers\'])); ?> <div class="ic-info inline"><div class="info-title"></div><div class="info-content element-hidden">Die Anzahl der Fragen und Antworten bezieht sich auf die aktuelle Legislaturperiode bzw. den aktuellen Wahlkampf. </div></div>';
+  $handler->display->display_options['fields']['php_2']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php_2']['php_click_sortable'] = '';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Kontextfilter: User revision: Vid */
   $handler->display->display_options['arguments']['vid']['id'] = 'vid';
@@ -2407,72 +2362,29 @@ return $result;
   $handler->display->display_options['fields']['nothing_2']['element_wrapper_type'] = 'p';
   $handler->display->display_options['fields']['nothing_2']['element_wrapper_class'] = 'center push-bottom-m';
   $handler->display->display_options['fields']['nothing_2']['element_default_classes'] = FALSE;
-  /* Feld: Excluded | User: Answers Give */
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['id'] = 'field_user_answers_give-revision_id';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['table'] = 'field_revision_field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['field'] = 'field_user_answers_give-revision_id';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['ui_name'] = 'Excluded | User: Answers Give';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['label'] = '';
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_answers_give-revision_id']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Feld: Excluded | User: Questions Get */
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['id'] = 'field_user_questions_get-revision_id';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['table'] = 'field_revision_field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['field'] = 'field_user_questions_get-revision_id';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['ui_name'] = 'Excluded | User: Questions Get';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['label'] = '';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Feld: Excluded | Link to questions and answers */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Excluded | Link to questions and answers';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Zu den Fragen und Antworten';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['nothing']['alter']['path'] = '#pw-block-questions-and-answers';
-  $handler->display->display_options['fields']['nothing']['alter']['link_class'] = 'link-qa';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Feld: Benutzer (Historische Daten): Questions Get */
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['id'] = 'field_user_questions_get-revision_id_1';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['table'] = 'field_revision_field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['field'] = 'field_user_questions_get-revision_id';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['label'] = '';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['alter']['text'] = '<div class="pw-dialogues-link">[nothing]</div>
-[field_user_questions_get-revision_id] / [field_user_answers_give-revision_id] <div class="ic-info inline"><div class="info-title"></div><div class="info-content element-hidden">Die Anzahl der Fragen und Antworten bezieht sich auf die aktuelle Legislaturperiode bzw. den aktuellen Wahlkampf. </div></div>';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['element_wrapper_class'] = 'float-left bubble tiny';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['empty'] = '<div class="pw-dialogues-link">An [field_user_fname-revision_id] [field_user_lname-revision_id]  wurden bisher noch keine Fragen gestellt</div>
-[field_user_questions_get-revision_id] / [field_user_answers_give-revision_id]';
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['empty_zero'] = TRUE;
-  $handler->display->display_options['fields']['field_user_questions_get-revision_id_1']['settings'] = array(
-    'thousand_separator' => '',
-    'prefix_suffix' => 0,
-    'linked_field' => array(
-      'linked' => 0,
-      'destination' => '',
-      'advanced' => array(
-        'title' => '',
-        'target' => '',
-        'class' => '',
-        'rel' => '',
-        'text' => '',
-      ),
-    ),
-  );
+  /* Feld: PHP: Count Questions &amp; Answers */
+  $handler->display->display_options['fields']['php_1']['id'] = 'php_1';
+  $handler->display->display_options['fields']['php_1']['table'] = 'views';
+  $handler->display->display_options['fields']['php_1']['field'] = 'php';
+  $handler->display->display_options['fields']['php_1']['ui_name'] = 'PHP: Count Questions & Answers';
+  $handler->display->display_options['fields']['php_1']['label'] = '';
+  $handler->display->display_options['fields']['php_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['php_1']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['php_1']['element_wrapper_class'] = 'float-left bubble tiny';
+  $handler->display->display_options['fields']['php_1']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['php_1']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php_1']['php_value'] = '$user = _pw_get_current_user();
+$query = db_select(\'user_archive_cache\', \'uac\')->fields(\'uac\', array(\'number_of_questions\', \'number_of_answers\'));
+_pw_uac_add_conditions($query, array(
+  \'vid\' => $user->vid,
+));
+$result = $query->execute()->fetchAssoc();
+$result[\'fullname\'] = _pw_get_fullname($user);
+return $result;';
+  $handler->display->display_options['fields']['php_1']['php_output'] = '<div class="pw-dialogues-link"><?php print $value[\'number_of_questions\'] > 0?\'<a href="#pw-block-questions-and-answers">Zu den Fragen und Antworten</a>\':\'An \'.$value[\'fullname\'].\' wurden bisher noch keine Fragen gestellt\'; ?> </div>
+<?php print format_plural($value[\'number_of_questions\'], \'@number_of_questions Frage\', \'@number_of_questions Fragen\', array(\'@number_of_questions\' => $value[\'number_of_questions\'])); ?> / <?php print format_plural($value[\'number_of_answers\'], \'@number_of_answers Antwort\', \'@number_of_answers Antworten\', array(\'@number_of_answers\' => $value[\'number_of_answers\'])); ?> <div class="ic-info inline"><div class="info-title"></div><div class="info-content element-hidden">Die Anzahl der Fragen und Antworten bezieht sich auf die aktuelle Legislaturperiode bzw. den aktuellen Wahlkampf. </div></div>';
+  $handler->display->display_options['fields']['php_1']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php_1']['php_click_sortable'] = '';
 
   /* Display: Short Profile Deputy Subpage */
   $handler = $view->new_display('block', 'Short Profile Deputy Subpage', 'short_profile_deputy_sub');
@@ -2997,11 +2909,6 @@ return $term->tid;';
     t('[field_user_title-revision_id] [field_user_fname-revision_id] [field_user_lname-revision_id], [field_user_party-revision_id]'),
     t('[name_1][field_user_constituency_won-revision_id][field_user_list_won-revision_id]'),
     t('Frage stellen'),
-    t('Zu den Fragen und Antworten'),
-    t('<div class="pw-dialogues-link">[nothing]</div>
-[field_user_questions_get-revision_id] / [field_user_answers_give-revision_id] <div class="ic-info inline"><div class="info-title"></div><div class="info-content element-hidden">Die Anzahl der Fragen und Antworten bezieht sich auf die aktuelle Legislaturperiode bzw. den aktuellen Wahlkampf. </div></div>'),
-    t('<div class="pw-dialogues-link">An [field_user_fname-revision_id] [field_user_lname-revision_id]  wurden bisher noch keine Fragen gestellt</div>
-[field_user_questions_get-revision_id] / [field_user_answers_give-revision_id]'),
     t('Short Profile Premium Subpage'),
     t('[name][field_user_constituency_won-revision_id][field_user_list_won-revision_id]'),
     t('Short Profile Deputy Mainpage'),
@@ -3257,21 +3164,6 @@ else if ( !empty($urole) && $urole ==  "deputy") print t("Profil");
   $handler->display->display_options['fields']['php_2']['php_output'] = '$static = \'xxx\';';
   $handler->display->display_options['fields']['php_2']['use_php_click_sortable'] = '0';
   $handler->display->display_options['fields']['php_2']['php_click_sortable'] = '';
-  /* Sortierkriterien: User archive cache: Timestamp */
-  $handler->display->display_options['sorts']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['sorts']['timestamp']['table'] = 'user_archive_cache';
-  $handler->display->display_options['sorts']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['sorts']['timestamp']['order'] = 'DESC';
-  /* Sortierkriterien: User archive cache: User role */
-  $handler->display->display_options['sorts']['user_role']['id'] = 'user_role';
-  $handler->display->display_options['sorts']['user_role']['table'] = 'user_archive_cache';
-  $handler->display->display_options['sorts']['user_role']['field'] = 'user_role';
-  $handler->display->display_options['sorts']['user_role']['order'] = 'DESC';
-  /* Sortierkriterien: User archive cache: Vid */
-  $handler->display->display_options['sorts']['vid']['id'] = 'vid';
-  $handler->display->display_options['sorts']['vid']['table'] = 'user_archive_cache';
-  $handler->display->display_options['sorts']['vid']['field'] = 'vid';
-  $handler->display->display_options['sorts']['vid']['order'] = 'DESC';
   /* Kontextfilter: User archive cache: Uid */
   $handler->display->display_options['arguments']['uid']['id'] = 'uid';
   $handler->display->display_options['arguments']['uid']['table'] = 'user_archive_cache';
