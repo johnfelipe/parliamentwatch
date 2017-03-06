@@ -39,6 +39,16 @@ function pw_sidejobs_node_presave($node){
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function pw_sidejobs_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['tabular'] = array(
+    'label' => t('Tabular'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
  * computes total incomes based on min and max income values and time spend in parliament
  * @param object $node
  *
