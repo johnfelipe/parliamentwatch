@@ -54,7 +54,7 @@ function pw_cache_cron() {
   $hosts = explode("\n", variable_get('pw_cache_hosts', ''));
 
   // load paths to expire
-  $result = db_query('SELECT * FROM pw_cache_expire WHERE created < ' . (time() - 60));
+  $result = db_query('SELECT * FROM pw_cache_expire WHERE created < '.(time() - 60).' LIMIT 1000');
 
   $expire_paths = array();
   foreach ($result as $record) {

@@ -11,12 +11,10 @@ include_once 'pw_parliaments.features.inc';
  */
 function pw_parliaments_taxonomy_term_presave($term) {
   // check if is parliaments vocabulary
-  if($term->vid == 18 && function_exists('pw_userarchives_cron')){
-    if(pw_userarchives_check_refresh_profiles($term->original)){
-      db_delete('user_archive_cache')
-        ->condition('parliament_name', $term->original->name)
-        ->execute();
-    }
+  if($term->vid == 18 && module_exists('pw_userarchives')){
+    db_delete('user_archive_cache')
+      ->condition('parliament_name', $term->original->name)
+      ->execute();
   }
 }
 
@@ -25,7 +23,24 @@ function pw_parliaments_taxonomy_term_presave($term) {
  */
 function pw_parliaments_taxonomy_term_update($term) {
   // check if is parliaments vocabulary
-  if($term->vid == 18 && function_exists('pw_userarchives_cron')){
+  if($term->vid == 18 && module_exists('pw_userarchives')){
     pw_userarchives_cron();
+    if(module_exists('pw_cache')){
+      $query = db_select('user_archive_cache', 'uac')
+        ->fields('uac', array('user_name', 'vid', 'actual_profile'))
+        ->condition('parliament_name', $term->name);
+      $result = $query->execute();
+      if($result->rowCount() > 0){
+        while($row = $result->fetchAssoc()){
+          if($row['actual_profile'] == 1){
+            $expire_paths[] = 'profile/'.$row['user_name'];
+          }
+          else{
+            $expire_paths[] = 'profile/'.$row['user_name'].'/archive/'.$row['vid'];
+          }
+        }
+        pw_cache_expire_cache($expire_paths);
+      }
+    }
   }
 }
