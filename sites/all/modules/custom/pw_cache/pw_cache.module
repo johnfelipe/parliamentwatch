@@ -31,15 +31,11 @@ function pw_cache_menu() {
  *
  */
 function pw_cache_expire_cache($expire_paths) {
+  $query = db_insert('pw_cache_expire')->fields(array('path', 'created'));
   foreach ($expire_paths as $expire_path) {
-    $expire_path = strtolower($expire_path);
-    db_insert('pw_cache_expire')
-      ->fields(array(
-        'path' => $expire_path,
-        'created' => time(),
-      ))
-      ->execute();
+    $query->values(array(strtolower($expire_path), time()));
   }
+  $query->execute();
 }
 
 /**
