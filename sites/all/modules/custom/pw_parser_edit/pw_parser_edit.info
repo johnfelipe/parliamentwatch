@@ -1,0 +1,7 @@
+name = PW Parser Edit
+description = API to edit user profiles
+core = 7.x
+package = Parliamentwatch
+php = 5.2.4
+version = 7.x-1.0-20160302
+project = pw_parser_edit

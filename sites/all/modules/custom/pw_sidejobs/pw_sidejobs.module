@@ -39,6 +39,16 @@ function pw_sidejobs_node_presave($node){
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function pw_sidejobs_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['tabular'] = array(
+    'label' => t('Tabular'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
  * computes total incomes based on min and max income values and time spend in parliament
  * @param object $node
  *
@@ -166,3 +176,29 @@ function pw_sidejobs_compute_total_incomes(&$node){
   }
 }
 
+/**
+ * Returns all sideline jobs of the given account.
+ *
+ * @param object $account
+ *   The user entity
+ *
+ * @return array
+ *   The sideline jobs associated with the user entity
+ */
+function pw_sidejobs_load($account) {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'sidejob');
+  $q->fieldCondition('field_politician', 'target_id', $account->uid);
+
+  $result = $q->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+  }
+  else {
+    $nodes = array();
+  }
+
+  return $nodes;
+}
