@@ -39,6 +39,12 @@ function pw_parser_edit_menu() {
 function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament_name) {
   global $user;
 
+  $parliament_terms = taxonomy_get_term_by_name($parliament_name, 'parliaments');
+
+  if (empty($parliament_terms)) {
+    return MENU_ACCESS_DENIED;
+  }
+
   $node = (object) array('uid' => $user->uid, 'name' => (isset($user->name) ? $user->name : ''), 'type' => 'sidejob', 'language' => LANGUAGE_NONE);
 
   if (!isset($form_state['node'])) {
@@ -68,6 +74,7 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
   );
   $form['new'] += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
   $form['new']['field_politician'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $account->name;
+  $form['new']['field_parliament'][LANGUAGE_NONE]['#default_value'] = array(reset($parliament_terms)->tid);
 
   $form['list'] = array(
     '#prefix' => '<div class="sidejobs-list">',
