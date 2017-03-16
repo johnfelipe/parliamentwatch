@@ -67,8 +67,7 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
     '#suffix' => '</div>'
   );
   $form['new'] += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
-  $form['new']['field_politician'][LANGUAGE_NONE][0]['target_id']['#type'] = 'hidden';
-  $form['new']['field_politician'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $account->uid;
+  $form['new']['field_politician'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $account->name;
 
   $form['list'] = array(
     '#prefix' => '<div class="sidejobs-list">',
