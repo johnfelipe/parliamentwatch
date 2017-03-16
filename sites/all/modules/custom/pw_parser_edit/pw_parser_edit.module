@@ -68,13 +68,13 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
   // If no language is provided use the default site language.
   $options['language'] = field_valid_language(entity_language('node', $node));
 
-  $form['new'] = array(
-    '#prefix' => '<div class="sidejobs-new">',
-    '#suffix' => '</div>'
-  );
-  $form['new'] += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
-  $form['new']['field_politician'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $account->name;
-  $form['new']['field_parliament'][LANGUAGE_NONE]['#default_value'] = array(reset($parliament_terms)->tid);
+  $form += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
+  $form['field_politician'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $account->name;
+  $form['field_parliament'][LANGUAGE_NONE]['#default_value'] = array(reset($parliament_terms)->tid);
+
+  $children = element_children($form, TRUE);
+  $form[reset($children)]['#prefix'] = '<div class="sidejobs-new">';
+  $form[end($children)]['#suffix'] = '</div>';
 
   $form['list'] = array(
     '#prefix' => '<div class="sidejobs-list">',
@@ -137,28 +137,23 @@ function pw_parser_edit_field_form($form, &$form_state, $account, $field_name, $
     '#value' => t('Save'),
   );
 
-  if (isset(drupal_get_query_parameters()['value'])) {
-    $new_values = drupal_get_query_parameters()['value'];
-  }
-
   $options = array(
     'language' => field_valid_language(entity_language('user', $account)),
     'field_name' => $field_name,
   );
   $form += (array) _field_invoke_default('form', 'user', $account, $form, $form_state, $options);
 
-  for ($i = 0; $i < count($new_values); $i++) {
-    $language = $form[$field_name]['#language'];
+  $language = $form[$field_name]['#language'];
 
-    if ($form[$field_name][$language][$i]['#type'] == 'text_format') {
-      $widget = &$form[$field_name][$language][$i];
+  foreach (element_children($form[$field_name][$language]) as $child) {
+    if ($form[$field_name][$language][$child]['#type'] == 'text_format') {
+      $widget = &$form[$field_name][$language][$child];
     }
-    elseif (isset($form[$field_name][$language][$i]['value'])) {
-      $widget = &$form[$field_name][$language][$i]['value'];
+    elseif (isset($form[$field_name][$language][$child]['value'])) {
+      $widget = &$form[$field_name][$language][$child]['value'];
     }
 
-    $widget['#default_value'] = $new_values[$i];
-    $widget['#description'] = $account->{$field_name}[$language][$i]['value'];
+    $widget['#description'] = $account->{$field_name}[$language][$child]['value'];
   }
 
   return $form;
