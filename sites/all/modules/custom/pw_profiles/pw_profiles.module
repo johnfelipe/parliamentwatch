@@ -566,6 +566,11 @@ function pw_profiles_user_revision_query($filters = array()) {
   if (!empty($filters['age'])) {
     $query->join('field_revision_field_user_age', 'fua', 'fua.revision_id = ur.vid');
     $query->condition('fua.field_user_age_value', $filters['age'], '>=');
+    /*$or = db_or();
+    $or->condition('fua.field_user_age_value', $filters['age'], '>=');
+    $or->isNull('fua.field_user_age_value');
+    $or->condition('fua.field_user_age_value', '');
+    $query->condition($or);*/
   }
 
   if (!empty($filters['gender'])) {
@@ -714,7 +719,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament_name, $role_n
   $form['age'] = array(
     '#type' => 'select',
     '#title' => t('Age'),
-    '#options' => array_combine(range(18, 90), range(18, 90)),
+    '#options' => array('-' => '')+array_combine(range(18, 90), range(18, 90)),
     '#default_value' => empty($parameters['age']) ? array() : $parameters['age'],
   );
   $form['gender'] = array(
