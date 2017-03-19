@@ -45,7 +45,15 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
     return MENU_ACCESS_DENIED;
   }
 
-  $node = (object) array('uid' => $user->uid, 'name' => (isset($user->name) ? $user->name : ''), 'type' => 'sidejob', 'language' => LANGUAGE_NONE);
+  $node = (object) array(
+    'uid' => $user->uid,
+    'name' => (isset($user->name) ? $user->name : ''),
+    'type' => 'sidejob',
+    'language' => LANGUAGE_NONE,
+    'field_politician' => array(
+      LANGUAG_NONE => array(0 => array('target_id' => $account->uid)),
+    ),
+  );
 
   if (!isset($form_state['node'])) {
     if (!isset($node->title)) {
@@ -69,8 +77,8 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
   $options['language'] = field_valid_language(entity_language('node', $node));
 
   $form += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
-  $form['field_politician'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $account->name;
   $form['field_parliament'][LANGUAGE_NONE]['#default_value'] = array(reset($parliament_terms)->tid);
+  unset($form['field_politician']);
 
   $children = element_children($form, TRUE);
   $form[reset($children)]['#prefix'] = '<div class="sidejobs-new">';
