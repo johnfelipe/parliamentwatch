@@ -92,7 +92,10 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
   foreach (pw_sidejobs_load($account) as $sidejob) {
     $elements = node_view($sidejob, 'tabular');
     $form['list']['#weight'] = 100;
-    $form['list'][$sidejob->nid] = array('#type' => 'container');
+    $form['list'][$sidejob->nid] = array(
+      '#type' => 'container',
+      '#weight' => _pw_parser_edit_sidejob_matching_score($sidejob, isset($_REQUEST['edit']) ? $_REQUEST['edit'] : array()),
+    );
     $form['list'][$sidejob->nid]['node'] = array(
       '#markup' => drupal_render($elements),
     );
@@ -224,4 +227,29 @@ function pw_parser_edit_sidejobs_replace($form, &$form_state) {
   }
   // Clear the page and block caches.
   cache_clear_all();
+}
+
+/**
+ * Returns a score based on matching field values.
+ *
+ * @param object $node
+ *   The sidejob node.
+ * @param array $values
+ *   The values for comparison.
+ *
+ * @return int
+ *   The matching score
+ */
+function _pw_parser_edit_sidejob_matching_score($node, array $values = array()) {
+  $values += array(
+    'field_job' => array(LANGUAGE_NONE => array(0 => array('value' => ''))),
+    'field_sidejob_organization' => array(LANGUAGE_NONE => array(0 => array('value' => ''))),
+  );
+
+  $scores = array(
+    levenshtein(taxonomy_term_load($node->field_job[LANGUAGE_NONE][0]['tid'])->name, $values['field_job'][LANGUAGE_NONE][0]['value']),
+    levenshtein(taxonomy_term_load($node->field_sidejob_organization[LANGUAGE_NONE][0]['tid'])->name, $values['field_sidejob_organization'][LANGUAGE_NONE][0]['value']) / 10,
+  );
+
+  return array_sum($scores);
 }
