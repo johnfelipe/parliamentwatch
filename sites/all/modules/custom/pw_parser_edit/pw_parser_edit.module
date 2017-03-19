@@ -98,7 +98,10 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
     );
     $form['list'][$sidejob->nid]['actions'] = array('#type' => 'actions');
     $form['list'][$sidejob->nid]['actions']['delete'] = array(
-      '#markup' => l(t('Delete'), 'node/' . $sidejob->nid . '/delete')
+      '#type' => 'submit',
+      '#name' => 'delete-' .  $sidejob->nid,
+      '#submit' => array('pw_parser_edit_sidejobs_delete'),
+      '#value' => t('Delete'),
     );
     $form['list'][$sidejob->nid]['actions']['replace'] = array(
       '#type' => 'submit',
@@ -174,4 +177,15 @@ function pw_parser_edit_field_form($form, &$form_state, $account, $field_name, $
  */
 function pw_parser_edit_field_form_submit($form, &$form_state) {
   $form_state['redirect'] = entity_uri('user', $form_state['user']);
+}
+
+/**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ *
+ * @see pw_parser_edit_sidejobs_form()
+ */
+function pw_parser_edit_sidejobs_delete($form, &$form_state) {
+  $destination = array('destination' => current_path());
+  $nid = substr(strrchr($form_state['triggering_element']['#name'], '-'), 1);
+  $form_state['redirect'] = array("node/$nid/delete", array('query' => $destination));
 }
