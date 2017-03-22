@@ -77,7 +77,7 @@ function pw_maintenance_get_constituencies($parliament_tid) {
     $term_ids = array_keys($result['taxonomy_term']);
 
     // load terms which have no users in relation and have no children
-    $empty_term_ids = db_query("SELECT td.tid 
+    $empty_term_ids = db_query("SELECT td.tid
       FROM taxonomy_term_data td
       LEFT OUTER JOIN field_revision_field_user_constituency fr_const ON fr_const.entity_type = 'user' AND fr_const.field_user_constituency_tid  = td.tid
       LEFT OUTER JOIN taxonomy_term_hierarchy th ON td.tid = th.parent
@@ -87,9 +87,9 @@ function pw_maintenance_get_constituencies($parliament_tid) {
 
     // try to find a second constituency with same name
     foreach($terms as $term){
-      $non_empty_query = db_query("SELECT td.tid 
+      $non_empty_query = db_query("SELECT td.tid
       FROM taxonomy_term_data td
-      INNER JOIN field_revision_field_parliament fr_parliament ON fr_parliament.entity_type = 'taxonomy_term' AND fr_parliament.entity_id = td.tid 
+      INNER JOIN field_revision_field_parliament fr_parliament ON fr_parliament.entity_type = 'taxonomy_term' AND fr_parliament.entity_id = td.tid
       WHERE td.vid = :vid AND td.tid NOT IN (:empty_term_id) AND td.name = :empty_term_name AND fr_parliament.field_parliament_tid = :parliament_tid
       GROUP BY td.tid",
         array(
@@ -279,7 +279,7 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
   pw_userarchives_cron($user_target->uid);
 
 // message to the frontend
-  $msg = 'User '.$user_source_fullname.' merged into '.l(_pw_get_fullname($user_target), 'user/'.$user_target->uid);
+  $msg = 'User '.$user_source_fullname.' (UUID: '.$user_source->uuid.') merged into '.l(_pw_get_fullname($user_target), 'user/'.$user_target->uid).' (UUID: '.$user_target->uuid.')';
   drupal_set_message($msg);
   watchdog('pw_maintenance', $msg);
 }
