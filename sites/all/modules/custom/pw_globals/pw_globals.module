@@ -37,7 +37,7 @@ function pw_globals_menu() {
 function pw_globals_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['tabular'] = array(
     'label' => t('Tabular'),
-    'custom settings' => TRUE,
+    'custom settings' => FALSE,
   );
 }
 
