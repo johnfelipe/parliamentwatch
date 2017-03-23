@@ -242,13 +242,13 @@ function pw_parser_edit_sidejobs_replace($form, &$form_state) {
  */
 function _pw_parser_edit_sidejob_matching_score($node, array $values = array()) {
   $values += array(
-    'field_job' => array(LANGUAGE_NONE => array(0 => array('value' => ''))),
-    'field_sidejob_organization' => array(LANGUAGE_NONE => array(0 => array('value' => ''))),
+    'field_job' => array(LANGUAGE_NONE => ''),
+    'field_sidejob_organization' => array(LANGUAGE_NONE => ''),
   );
 
   $scores = array(
-    levenshtein(taxonomy_term_load($node->field_job[LANGUAGE_NONE][0]['tid'])->name, $values['field_job'][LANGUAGE_NONE][0]['value']),
-    levenshtein(taxonomy_term_load($node->field_sidejob_organization[LANGUAGE_NONE][0]['tid'])->name, $values['field_sidejob_organization'][LANGUAGE_NONE][0]['value']) / 10,
+    levenshtein($node->field_job[LANGUAGE_NONE][0]['taxonomy_term']->name, $values['field_job'][LANGUAGE_NONE]),
+    levenshtein($node->field_sidejob_organization[LANGUAGE_NONE][0]['taxonomy_term']->name, $values['field_sidejob_organization'][LANGUAGE_NONE]) / 10,
   );
 
   return array_sum($scores);
