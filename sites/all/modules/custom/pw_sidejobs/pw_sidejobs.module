@@ -180,6 +180,7 @@ function pw_sidejobs_load($account) {
   $q->entityCondition('entity_type', 'node');
   $q->entityCondition('bundle', 'sidejob');
   $q->fieldCondition('field_politician', 'target_id', $account->uid);
+  $q->propertyOrderBy('changed', 'DESC');
 
   $result = $q->execute();
 
