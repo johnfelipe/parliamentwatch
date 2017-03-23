@@ -94,7 +94,7 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account, $parliament
     $form['list']['#weight'] = 100;
     $form['list'][$sidejob->nid] = array(
       '#type' => 'container',
-      '#weight' => _pw_parser_edit_sidejob_matching_score($sidejob, isset($_REQUEST['edit']) ? $_REQUEST['edit'] : array()),
+      '#weight' => isset($_REQUEST['edit']) ? _pw_parser_edit_sidejob_matching_score($sidejob, $_REQUEST['edit']) : 0,
     );
     $form['list'][$sidejob->nid]['node'] = array(
       '#markup' => drupal_render($elements),
