@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the pw_parser_edit module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function pw_parser_edit_install() {
+  pw_parser_edit_configure_sidejob_tabular();
+}
+
+/**
+ * Configure view mode tabular for sidejobs.
+ */
+function pw_parser_edit_update_7001() {
+  pw_parser_edit_configure_sidejob_tabular();
+}
+
+/**
+ * Configures view mode tabular for sidejobs.
+ */
+function pw_parser_edit_configure_sidejob_tabular() {
+  $bundle = 'sidejob';
+  $bundle_settings = field_bundle_settings('node', $bundle);
+  $bundle_settings['view_modes']['tabular']['custom_settings'] = TRUE;
+  field_bundle_settings('node', $bundle, $bundle_settings);
+
+  $weight = 0;
+
+  $instance = field_info_instance('node', 'field_job', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'taxonomy_term_reference_plain';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_organization', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'taxonomy_term_reference_plain';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_date_start', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'date_default';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_date_end', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'date_default';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_classification', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'text_default';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_income_min', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'text_default';
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_income_min_total', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'text_default';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_income_max', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'text_default';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_income_max', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'text_default';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_income_max_total', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'text_default';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+
+  $instance = field_info_instance('node', 'field_sidejob_income_interval', $bundle);
+  $instance['display']['tabular']['label'] = 'above';
+  $instance['display']['tabular']['type'] = 'text_default';
+  $instance['display']['tabular']['weight'] = $weight++;
+  field_update_instance($instance);
+}
