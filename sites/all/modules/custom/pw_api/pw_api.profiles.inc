@@ -94,9 +94,11 @@ function pw_api_profiles($parliament) {
     }
   }
 
+  /*
   if(empty($profiles)){
     return MENU_NOT_FOUND;
   }
+  */
 
   $profiles = array('profiles' => $profiles);
 
