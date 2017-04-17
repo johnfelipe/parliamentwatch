@@ -70,6 +70,12 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
   // If no language is provided use the default site language.
   $options['language'] = field_valid_language(entity_language('node', $node));
 
+  if (isset($_REQUEST['raw'])) {
+    $form['raw'] = array(
+      '#markup' => '<pre>' . $_REQUEST['raw'] . '</pre>',
+    );
+  }
+
   $form += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
   unset($form['field_politician']);
 
