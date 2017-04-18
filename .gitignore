@@ -15,13 +15,11 @@ sites/*/files
 sites/*/private/*
 sites/sites.php
 
+# Ignore theme css
+sites/all/themes/custom/*/css
+
 # Ignore receipts path
 /r
-
-# Ignore development stuff
-/.idea/
-/nbproject/private/
-nbproject/.gitignore
 
 # Do NOT ignore .htaccess rules (Drupal SA-CORE-2013-003)
 !*/.htaccess
