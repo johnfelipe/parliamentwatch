@@ -24,6 +24,10 @@ function pw_newsletter_menu() {
 
 function subscribe_to_newsletter(){
   drupal_add_http_header('Content-type', 'text/html; charset=utf8');
+  $http_origin = $_SERVER['HTTP_ORIGIN'];
+  if ($http_origin) {
+      drupal_add_http_header('Access-Control-Allow-Origin', $http_origin);
+  }
 
   // check if email address is submitted via get parameter
   $email = false;
