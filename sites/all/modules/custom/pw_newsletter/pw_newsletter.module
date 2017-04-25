@@ -35,6 +35,11 @@ function subscribe_to_newsletter(){
     $email = $_GET['email'];
   }
 
+  $source = '';
+  if(isset($_GET['source'])){
+    $source = $_GET['source'];
+  }
+
   // validate email address
   if(valid_email_address($email)){
 
@@ -69,7 +74,8 @@ function subscribe_to_newsletter(){
       $data = array(
         'e_mail' => $email,
         'status' => 'subscribed',
-        'node_path' => $internal_path
+        'node_path' => $internal_path,
+        'source' => $source
         );
 
       // get indexed data array
