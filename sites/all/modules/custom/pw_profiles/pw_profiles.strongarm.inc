@@ -62,6 +62,27 @@ function pw_profiles_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_calendar_entry';
+  $strongarm->value = 0;
+  $export['diff_enable_revisions_page_node_calendar_entry'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_calendar_entry';
+  $strongarm->value = 0;
+  $export['diff_show_preview_changes_node_calendar_entry'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_calendar_entry';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_calendar_entry'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings';
   $strongarm->value = '';
   $export['field_bundle_settings'] = $strongarm;
@@ -130,27 +151,30 @@ function pw_profiles_strongarm() {
         'custom_settings' => FALSE,
       ),
       'user_search' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'user_premium' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
       'user_deputy' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'premium_user' => array(
         'custom_settings' => FALSE,
       ),
       'user_candidate' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'search_result' => array(
         'custom_settings' => TRUE,
       ),
       'user_dialogue_search_snippet' => array(
+        'custom_settings' => TRUE,
+      ),
+      'teaser' => array(
         'custom_settings' => TRUE,
       ),
     ),
@@ -276,6 +300,10 @@ function pw_profiles_strongarm() {
             'weight' => '50',
             'visible' => TRUE,
           ),
+          'default' => array(
+            'weight' => '50',
+            'visible' => TRUE,
+          ),
         ),
         'twitter' => array(
           'user_candidate' => array(
@@ -295,6 +323,10 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'default' => array(
             'weight' => '0',
             'visible' => TRUE,
           ),
