@@ -27,9 +27,9 @@ Vagrant.configure(2) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   #
   config.vm.provider "virtualbox" do |vb, override|
-    vb.cpus = 2
+    vb.cpus = 1
     vb.linked_clone = true
-    vb.memory = 4096
+    vb.memory = 1024
     override.vm.network "forwarded_port", guest: 80, host: 8080
     override.vm.synced_folder ".", "/vagrant", 
       nfs: true, 
