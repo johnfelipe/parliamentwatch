@@ -762,6 +762,7 @@ if($tiff_diff >= 60){
 
 // trim output
 $display_output = rtrim($display_output);',
+        'recalculate' => FALSE,
         'store' => 1,
       ),
       'translatable' => '0',
@@ -2845,7 +2846,7 @@ $display_output = rtrim($display_output);',
             'thousand_separator' => ' ',
           ),
           'type' => 'number_integer',
-          'weight' => 12,
+          'weight' => '12',
         ),
         'full' => array(
           'label' => 'above',

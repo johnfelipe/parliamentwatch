@@ -481,12 +481,15 @@ node/*/edit';
         'custom_settings' => FALSE,
       ),
       'colorbox' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'pw_newsletter' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -514,7 +517,7 @@ node/*/edit';
         'sharethis' => array(
           'default' => array(
             'weight' => '0',
-            'visible' => TRUE,
+            'visible' => FALSE,
           ),
           'teaser' => array(
             'weight' => '0',

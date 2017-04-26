@@ -29,8 +29,8 @@ function pw_menu_default_fe_block_settings() {
         'weight' => '0',
       ),
       'parliamentwatch' => array(
-        'region' => 'menu',
-        'status' => '1',
+        'region' => '',
+        'status' => 0,
         'theme' => 'parliamentwatch',
         'weight' => '0',
       ),

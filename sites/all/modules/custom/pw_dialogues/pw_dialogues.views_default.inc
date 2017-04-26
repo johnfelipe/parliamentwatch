@@ -501,8 +501,6 @@ if($data->field_field_dialogue_before_election[0][\'raw\'][\'value\'] == 1 && $p
     'combine_rewrite' => NULL,
     'reset_label' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
@@ -828,8 +826,6 @@ if($data->field_field_dialogue_before_election[0][\'raw\'][\'value\'] == 1 && $p
     'combine_rewrite' => NULL,
     'reset_label' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'load_more';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -1748,7 +1744,6 @@ print \'<input type="text" value="\'.$path.\'" readonly />\';
     t('Aufsteigend'),
     t('Absteigend'),
     t('Erweiterte Optionen'),
-    t('Wählen Sie eine beliebige Filter und klicken Sie auf Anwenden, um Ergebnisse zu sehen'),
     t('Elemente pro Seite'),
     t('- Alle -'),
     t('Offset'),

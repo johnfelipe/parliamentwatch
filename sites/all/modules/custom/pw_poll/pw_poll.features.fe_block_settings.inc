@@ -33,8 +33,8 @@ function pw_poll_default_fe_block_settings() {
         'weight' => '0',
       ),
       'parliamentwatch' => array(
-        'region' => 'sidebar_second',
-        'status' => '1',
+        'region' => '',
+        'status' => 0,
         'theme' => 'parliamentwatch',
         'weight' => '28',
       ),

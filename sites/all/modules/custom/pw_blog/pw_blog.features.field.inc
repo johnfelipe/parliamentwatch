@@ -461,6 +461,7 @@ function pw_blog_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
+            'show_empty_blocks' => FALSE,
           ),
           'type' => 'blockreference_without_title',
           'weight' => '6',

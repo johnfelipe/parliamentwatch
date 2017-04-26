@@ -425,8 +425,6 @@ function pw_blog_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['row_class'] = 'pw-list-item clearfix';
@@ -824,8 +822,6 @@ function pw_blog_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['row_class'] = 'pw-list-item clearfix';
@@ -1319,8 +1315,6 @@ print render($block[\'content\']);
     'combine_rewrite' => NULL,
     'reset_label' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['row_class'] = 'pw-list-item clearfix';
@@ -1623,7 +1617,6 @@ print render($block[\'content\']);
     t('Page'),
     t('Erweiterte Optionen'),
     t('Sortieroptionen'),
-    t('Wählen Sie eine beliebige Filter und klicken Sie auf Anwenden, um Ergebnisse zu sehen'),
     t('Feldgruppe'),
     t('Thema'),
     t('Themen'),

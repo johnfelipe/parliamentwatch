@@ -32,6 +32,11 @@ function pw_globals_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'page';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
+    'sharethis' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'body' => array(
       'formatter_settings' => array(
         'ft' => array(

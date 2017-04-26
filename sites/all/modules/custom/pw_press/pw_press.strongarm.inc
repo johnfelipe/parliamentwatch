@@ -136,7 +136,7 @@ function pw_press_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'full' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'teaser' => array(
         'custom_settings' => TRUE,
@@ -163,6 +163,9 @@ function pw_press_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'pw_newsletter' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -186,6 +189,12 @@ function pw_press_strongarm() {
             'visible' => FALSE,
           ),
         ),
+        'sharethis' => array(
+          'default' => array(
+            'weight' => '-100',
+            'visible' => TRUE,
+          ),
+        ),
       ),
     ),
   );
@@ -204,7 +213,7 @@ function pw_press_strongarm() {
         'custom_settings' => FALSE,
       ),
       'full' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -225,6 +234,9 @@ function pw_press_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'pw_newsletter' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -259,6 +271,10 @@ function pw_press_strongarm() {
           'full' => array(
             'weight' => '0',
             'visible' => TRUE,
+          ),
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
           ),
         ),
       ),

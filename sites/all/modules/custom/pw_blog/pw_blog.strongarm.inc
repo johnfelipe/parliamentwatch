@@ -101,7 +101,7 @@ function pw_blog_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'full' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'teaser' => array(
         'custom_settings' => TRUE,
@@ -110,7 +110,7 @@ function pw_blog_strongarm() {
         'custom_settings' => FALSE,
       ),
       'rss' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'search_index' => array(
         'custom_settings' => FALSE,
