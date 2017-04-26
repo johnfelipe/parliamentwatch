@@ -4,4 +4,3 @@ core = 7.x
 package = Features
 php = 5.2.4
 version = 7.x-1.0-20160729
-dependencies[] = twitter

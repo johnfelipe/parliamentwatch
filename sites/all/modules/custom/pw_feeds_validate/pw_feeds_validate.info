@@ -1,6 +1,5 @@
 name = PW Feeds Validate
 description = Validates Feeds Results
-dependencies[] = feeds
 version = 7.x-1.0-20160729
 core = 7.x
 package = Feeds

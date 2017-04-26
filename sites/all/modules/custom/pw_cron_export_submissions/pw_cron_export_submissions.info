@@ -5,6 +5,4 @@ package = PW Modules
 php = 5.2.4
 version = 7.x-1.0-20160316
 project = pw_cron_export_submissions
-dependencies[] = webform
-dependencies[] = webform_confirm_email
 files[] = tests/pw_cron_export_submissions.test

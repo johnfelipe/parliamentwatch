@@ -2,9 +2,6 @@ name = "Migrate Parliament"
 description = "Migrate Parliament"
 package = "Development"
 
-dependencies[] = date
-dependencies[] = migrate
-dependencies[] = date_migrate
 
 files[] = migrate_parliament.module
 files[] = migrate_parliament.inc

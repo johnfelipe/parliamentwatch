@@ -5,4 +5,3 @@ package = Features
 php = 5.2.4
 version = 7.x-1.0-20160429
 project = profiles
-dependencies[] = ds

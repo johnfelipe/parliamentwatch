@@ -2,7 +2,6 @@ name = "Migrate Constituency"
 description = "Migrate Constituency"
 package = "Development"
 
-dependencies[] = migrate
 
 files[] = migrate_constituency.module
 files[] = migrate_constituency.inc

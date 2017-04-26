@@ -7,6 +7,4 @@ core = 7.x
 files[] = pw_profile_extender.module
 
 
-dependencies[] = views
-dependencies[] = better_exposed_filters
 
