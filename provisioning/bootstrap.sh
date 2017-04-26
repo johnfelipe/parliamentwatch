@@ -43,6 +43,18 @@ if [ ! -L /etc/apache2/mods-enabled/rewrite.load ]; then
         a2enmod rewrite
 fi
 
+if [ ! -L /etc/apache2/mods-enabled/proxy.load ]; then
+        a2enmod proxy
+fi
+
+if [ ! -L /etc/apache2/mods-enabled/proxy_http.load ]; then
+        a2enmod proxy_http
+fi
+
+if [ ! -L /etc/apache2/mods-enabled/ssl.load ]; then
+        a2enmod ssl
+fi
+
 # Disable the system's default virtual host.
 if [ -L /etc/apache2/sites-enabled/000-default.conf ]; then
 	a2dissite 000-default
