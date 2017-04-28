@@ -48,6 +48,7 @@ dependencies[] = schemaorg
 dependencies[] = shs
 dependencies[] = strongarm
 dependencies[] = textformatter
+dependencies[] = transliteration
 dependencies[] = twitter
 dependencies[] = uuid
 dependencies[] = viewfield
