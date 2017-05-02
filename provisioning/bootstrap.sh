@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 export DEBIAN_FRONTEND=noninteractive
+cp -r /vagrant/provisioning/etc/* /etc/
+apt-key add /vagrant/provisioning/nodesource.gpg.key
 apt-get update
 apt-get -y upgrade
 apt-get -y install \
@@ -7,6 +9,7 @@ apt-get -y install \
 	git \
 	libapache2-mod-php5 \
 	mysql-server \
+	nodejs \
 	php5-apcu \
 	php5-cli \
 	php5-curl \
@@ -20,7 +23,6 @@ apt-get -y autoremove
 
 adduser vagrant adm
 
-cp -r /vagrant/provisioning/etc/* /etc/
 chmod -R u+w /vagrant/sites/default
 cp /vagrant/provisioning/settings.php /vagrant/sites/default/
 cp /vagrant/sites/all/modules/contrib/search_api_solr/solr-conf/3.x/* /usr/share/solr/conf/
