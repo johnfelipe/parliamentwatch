@@ -10,9 +10,11 @@
 1. `$ vagrant up`
 1. Open [http://localhost:8080](http://localhost:8080) in your browser.
 
+In case `vagrant up` exits with the error "No guest IP was given to the Vagrant core NFS helper...", run `vagrant reload --provision`.
+
 ## Vagrant
 
-The virtual machine for local development is managed with Vagrant. There are two provisioners which are executed automatically when running `vagrant up` for the first time or when provisioning is requested explicitly. The *bootstrap* provisioner installs and configures the packages. The *database* provisioner downloads the latest backup, loads it into the database and reverts the features. Accessing the backup requires credentials which need to be made available to the shell environment before running the database provisioner:
+The virtual machine for local development is managed with Vagrant. There are two provisioners which are executed automatically when running `vagrant up` for the first time or when provisioning is requested explicitly. The *bootstrap* provisioner installs and configures the packages. The *database* provisioner downloads the latest backup from http://backups.parliamentwatch.org, loads it into the database and reverts the features. It needs HTTP Basic credentials in order to download the backup. Those can be exported to the shell:
 
     $ export AW_USERNAME=... AW_PASSWORD=...
 
