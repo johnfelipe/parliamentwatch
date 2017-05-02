@@ -1,0 +1,9 @@
+{
+    "name": "parliamentwatch",
+    "version": "1.0.0",
+    "description": "Asset generation for parliamentwatch drupal-theme",
+    "keywords": [],
+    "homepage": "http://www.abgeordnetenwatch.de",
+    "private": true,
+    "dependencies": {}
+}

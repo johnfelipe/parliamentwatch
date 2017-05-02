@@ -21,7 +21,9 @@ apt-get -y install \
 	vim-nox
 apt-get -y autoremove
 
-npm install -g grunt
+if [ ! -f /usr/bin/grunt ]; then
+	npm install -g grunt
+fi
 
 adduser vagrant adm
 

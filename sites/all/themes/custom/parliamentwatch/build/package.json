@@ -1,0 +1,16 @@
+{
+    "name": "parliamentwatch",
+    "description": "Asset generation for parliamentwatch drupal-theme",
+    "homepage": "http://www.abgeordnetenwatch.de",
+    "version": "1.0.0",
+    "license": "GPL-3.0",
+    "devDependencies": {
+        "grunt": "1.0.x",
+        "grunt-npm-install": "0.3.x",
+        "grunt-contrib-cssmin": "2.0.x",
+        "grunt-sass": "2.0.x",
+        "grunt-contrib-watch": "1.0.x",
+        "grunt-bower-just-install": "0.0.3",
+        "grunt-bowercopy": "1.2.x"
+    }
+}
