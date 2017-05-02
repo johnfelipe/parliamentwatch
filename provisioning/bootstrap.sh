@@ -21,6 +21,8 @@ apt-get -y install \
 	vim-nox
 apt-get -y autoremove
 
+npm install -g grunt
+
 adduser vagrant adm
 
 chmod -R u+w /vagrant/sites/default
