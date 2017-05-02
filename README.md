@@ -4,7 +4,7 @@
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 1. Install [Vagrant](http://vagrantup.com)
-1. `$ git clone git@github.com:parliamentwatch/parliamentwatch.git`
+1. `$ git clone -b r2017 git@github.com:parliamentwatch/parliamentwatch.git`
 1. `$ cd parliamentwatch`
 1. `$ export AW_USERNAME=... AW_PASSSWORD=...`
 1. `$ vagrant up`
