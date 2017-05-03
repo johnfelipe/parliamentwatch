@@ -298,23 +298,23 @@ function pw_profiles_page($parliament_name, $role_name) {
 function pw_profiles_page_title($parliament_name, $role_name) {
 
   $parliament = taxonomy_get_term_by_name($parliament_name, 'parliaments');
-  if(!$parliament){
+  if (!$parliament) {
     return '';
   }
   $parliament = array_pop($parliament);
 
   $role = $role_name == 'candidates' ? 'Kandidierende' : 'Abgeordnete';
 
-  if(stripos($parliament->name, 'Bundestag') > -1) {
+  if (stripos($parliament->name, 'Bundestag') > -1) {
     $text = $role_name == 'candidates' ? '@role für den @parliament' : '@role aus dem @parliament';
   }
-  elseif(stripos($parliament->name, 'Saarland') > -1) {
+  elseif (stripos($parliament->name, 'Saarland') > -1) {
     $text = '@role für das @parliament';
   }
-  elseif(substr($parliament->name, 0, 2) == "EU") {
+  elseif (substr($parliament->name, 0, 2) == "EU") {
     $text = '@role für die @parliament';
   }
-  else{
+  else {
     $text = '@role für @parliament';
   }
 
