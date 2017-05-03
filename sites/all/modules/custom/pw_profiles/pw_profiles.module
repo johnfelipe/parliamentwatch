@@ -260,10 +260,8 @@ function pw_profiles_user_uri($user) {
  */
 function pw_profiles_page($parliament_name, $role_name) {
 
-  $role_name = $role_name == 'candidates' ? 'candidate' : 'deputy';
-
   $filters = array(
-      'roles' => $role_name,
+      'roles' => $role_name == 'candidates' ? 'candidate' : 'deputy',
       'parliament' => $parliament_name,
       'date' => date('Y-m-d'),
     ) + drupal_get_query_parameters();
