@@ -175,6 +175,13 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   $variables['theme_hook_suggestions'][] = 'user_profile__' . $variables['elements']['#view_mode'];
   $variables['user_url'] = url(entity_uri('user', $account)['path']);
   $variables['display_name'] = _pw_get_fullname($account);
+
+  if (isset($variables['elements']['#account']->number_of_questions)){
+    $num_questions = $variables['elements']['#account']->number_of_questions;
+    $num_answers = $variables['elements']['#account']->number_of_answers;
+    $variables['questions'] = format_plural($num_questions, t('@num_questions Question'), t('@num_questions Questions'), array('@num_questions' => $num_questions));
+    $variables['answers'] = format_plural($num_answers, t('@num_answers Answer'), t('@num_answers Answers'), array('@num_answers' => $num_answers));
+  }
 }
 
 /**

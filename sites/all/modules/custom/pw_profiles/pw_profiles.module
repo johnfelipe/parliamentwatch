@@ -244,17 +244,6 @@ function pw_profiles_user_uri($user) {
   );
 }
 
-function pw_profiles_preprocess_user_profile(&$variables){
-
-  // add formatted questions and answers
-  if(isset($variables['elements']['#account']->number_of_questions)){
-    $num_questions = $variables['elements']['#account']->number_of_questions;
-    $num_answers = $variables['elements']['#account']->number_of_answers;
-    $variables['questions'] = format_plural($num_questions, t('@num_questions Question'), t('@num_questions Questions'), array('@num_questions' => $num_questions));
-    $variables['answers'] = format_plural($num_answers, t('@num_answers Answer'), t('@num_answers Answers'), array('@num_answers' => $num_answers));
-  }
-}
-
 /**
  * Page callback; displays a list of profiles.
  *
