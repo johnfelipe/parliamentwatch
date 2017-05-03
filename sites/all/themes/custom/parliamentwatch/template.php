@@ -1,18 +1,7 @@
 <?php
 
 /**
- * @file
- * This file is empty by default because the base theme chain (Alpha & Omega) provides
- * all the basic functionality. However, in case you wish to customize the output that Drupal
- * generates through Alpha & Omega this file is a good place to do so.
- *
- * Alpha comes with a neat solution for keeping this file as clean as possible while the code
- * for your subtheme grows. Please read the README.txt in the /preprocess and /process subfolders
- * for more information on this topic.
- */
-
-/*
- * preprocess nodes
+ * Implements hook_preprocess_node().
  */
 function parliamentwatch_preprocess_node(&$variables) {
   if ($variables['type'] == 'pw_petition') {
@@ -136,8 +125,8 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   $variables['user_url'] = url(entity_uri('user', $variables['elements']['#account'])['path']);
 }
 
-/*
- * custom theme functions
+/**
+ * Implements hook_theme().
  */
 function parliamentwatch_theme(&$existing, $type, $theme, $path) {
   return array(
@@ -148,20 +137,22 @@ function parliamentwatch_theme(&$existing, $type, $theme, $path) {
   );
 }
 
-/*
- * adding jqueryui libraries
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Adds jQuery UI libraries.
  */
 function parliamentwatch_preprocess_page(&$variables) {
   drupal_add_library('system', 'ui');
   drupal_add_library('system', 'ui.position');
 
-  if(isset($variables['node']) && $variables['node']->type == 'dialogue'){
+  if(isset($variables['node']) && $variables['node']->type == 'dialogue') {
     drupal_set_title('');
   }
 }
 
-/*
- * preprocess field
+/**
+ * Implements hook_preprocess_field().
  */
 function parliamentwatch_preprocess_field(&$variables) {
   $element = $variables['element'];
@@ -172,7 +163,7 @@ function parliamentwatch_preprocess_field(&$variables) {
 }
 
 /**
- * Customize the linear output of addressfield tokens.
+ * Overrides theme_addressfield_formatter__linear().
  */
 function parliamentwatch_addressfield_formatter__linear($vars) {
   $loc = $vars['address'];
@@ -211,7 +202,7 @@ function parliamentwatch_addressfield_formatter__linear($vars) {
 }
 
 /**
- * changing the path to the file icons.
+ * Overrides theme_file_icon().
  */
 function parliamentwatch_file_icon($variables) {
   $file = $variables['file'];
@@ -224,9 +215,8 @@ function parliamentwatch_file_icon($variables) {
 
 
 /**
- * slying element for the views_load_more_pager.
+ * Overrides theme_pager_link().
  */
-
 function abgeordnetenwatch_pager_link($variables) {
   $text = $variables['text'];
   $page_new = $variables['page_new'];
@@ -275,9 +265,9 @@ function abgeordnetenwatch_pager_link($variables) {
   return '<a'.drupal_attributes($attributes).'><span>'.check_plain($text).'</span></a>';
 }
 
-/////////////////////////// customize forms (ruth)
-//////////////////////////////////////////////////////
-
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function parliamentwatch_form_comment_form_alter(&$form, &$form_state) {
   global $user;
   if ($user->uid) {
@@ -286,6 +276,10 @@ function parliamentwatch_form_comment_form_alter(&$form, &$form_state) {
   $form['actions']['submit']['#value'] = t('Add comment');
   $form['author']['homepage']['#access'] = FALSE;
 }
+
+/**
+ * Implements hook_form_alter().
+ */
 function parliamentwatch_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'webform_client_form_104846') {
     $form['#attributes']['class'][] = 'row';
@@ -294,9 +288,9 @@ function parliamentwatch_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-/////////////////////////// customize RSS block (ruth)
-//////////////////////////////////////////////////////
-
+/**
+ * Overrides theme_feed_icon().
+ */
 function parliamentwatch_feed_icon($variables) {
   $text = t('Subscribe to @feed-title', array('@feed-title' => $variables['title']));
   if ($image = theme('image', array('path' => 'misc/feed.png', 'width' => 16, 'height' => 16, 'alt' => $text))) {
@@ -304,9 +298,11 @@ function parliamentwatch_feed_icon($variables) {
   }
 }
 
-/////////////////////////// hide the more link in tagclouds (ruth)
-//////////////////////////////////////////////////////
-
+/**
+ * Overrides theme_tagadelic_weighted().
+ *
+ * Hides the more link in tag clouds.
+ */
 function parliamentwatch_tagadelic_weighted(array $vars) {
   $terms = $vars['terms'];
   $output = '';
@@ -327,10 +323,9 @@ function parliamentwatch_tagadelic_weighted(array $vars) {
   return $output;
 }
 
-
-/////////////////////////// cusomize the pager (waqar)
-//////////////////////////////////////////////////////
-
+/**
+ * Overrides theme_pager().
+ */
 function parliamentwatch_pager($variables) {
   $tags = $variables['tags'];
   $element = $variables['element'];
@@ -466,10 +461,9 @@ function parliamentwatch_pager($variables) {
   }
 }
 
-
-/////////////////////////// hide filter tips
-//////////////////////////////////////////////////////
-
+/**
+ * Overrides theme_filter_tips_more_info().
+ */
 function parliamentwatch_filter_tips_more_info() {
   return '';
 }
