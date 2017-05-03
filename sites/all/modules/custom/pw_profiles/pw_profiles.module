@@ -208,9 +208,17 @@ function pw_profiles_block_view($delta) {
  * Implements hook_entity_info_alter().
  */
 function pw_profiles_entity_info_alter(&$entity_info) {
-  $entity_info['user']['view modes']['teaser'] = array(
-    'label' => t('Teaser'),
-    'custom settings' => TRUE,
+  $entity_info['user']['view modes']['detail'] = array(
+    'label' => t('Detail'),
+    'custom settings' => FALSE,
+  );
+  $entity_info['user']['view modes']['list_item'] = array(
+    'label' => t('List item'),
+    'custom settings' => FALSE,
+  );
+  $entity_info['user']['view modes']['tile'] = array(
+    'label' => t('Tile'),
+    'custom settings' => FALSE,
   );
   $entity_info['user']['uri callback'] = 'pw_profiles_user_uri';
 }
