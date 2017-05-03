@@ -170,8 +170,10 @@ function parliamentwatch_preprocess_node(&$variables) {
  * Implements hook_preprocess_user_profile().
  */
 function parliamentwatch_preprocess_user_profile(&$variables) {
+  $account = $variables['elements']['#account'];
+
   $variables['theme_hook_suggestions'][] = 'user_profile__' . $variables['elements']['#view_mode'];
-  $variables['user_url'] = url(entity_uri('user', $variables['elements']['#account'])['path']);
+  $variables['user_url'] = url(entity_uri('user', $account)['path']);
 }
 
 /**
