@@ -146,49 +146,6 @@ function pw_profiles_user_presave(&$edit, $account, $category) {
 }
 
 /**
- * Implements hook_views_pre_render().
- *
- * Overwrites label of constituency in basic infos view in specific cases like "Stimmkreis" for Bremen.
- */
-function pw_profiles_views_pre_render(&$view) {
-  if ($view->name == 'pw_user_profile_fields_rev' && $view->current_display == 'basic_info') {
-    $parliament = _pw_get_current_parliament_term();
-    if (!empty($parliament)) {
-      $field_rename_value = field_get_items('taxonomy_term', $parliament, 'field_parliament_constit_rename');
-      if (!empty($field_rename_value)) {
-        if(isset($view->field['field_user_constituency-revision_id'])){
-          $view->field['field_user_constituency-revision_id']->options['label'] = $field_rename_value[0]['value'];
-        }
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_ds_pre_render_alter().
- * Trys to find string "[field_user_fname]" in question and answers view in profiles.
- * If found don't render the fields user_questions_and_answers and question_and_answers_filter .
- */
-function pw_profiles_ds_pre_render_alter(&$layout_render_array, $context) {
-  if (isset($layout_render_array['left_2'])) {
-    foreach ($layout_render_array['left_2'] as $index => $render_array) {
-      if ($render_array['#field_name'] == 'user_questions_and_answers' && strpos($render_array['#items'][0]['value'], '[field_user_fname]')) {
-        unset($layout_render_array['left_2'][$index]);
-        if (isset($layout_render_array['right_2'])) {
-          foreach ($layout_render_array['right_2'] as $index => $render_array) {
-            if ($render_array['#field_name'] == 'question_and_answers_filter') {
-              unset($layout_render_array['right_2'][$index]);
-              break;
-            }
-          }
-          break;
-        }
-      }
-    }
-  }
-}
-
-/**
  *  Implements hook_user_update().
  */
 function pw_profiles_user_update(&$edit, $account, $category) {
