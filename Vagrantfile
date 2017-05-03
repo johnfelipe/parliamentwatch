@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb, override|
     vb.cpus = 1
     vb.linked_clone = true
-    vb.memory = 1024
+    vb.memory = 2048
     override.vm.network "forwarded_port", guest: 80, host: 8080
     override.vm.synced_folder ".", "/vagrant", 
       nfs: true, 
