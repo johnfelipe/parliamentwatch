@@ -6,6 +6,9 @@
 
 include_once 'pw_profiles.features.inc';
 
+/**
+ * Implements hook_menu().
+ */
 function pw_profiles_menu() {
   $items = array();
 
@@ -21,6 +24,9 @@ function pw_profiles_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_form_alter().
+ */
 function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == "user_profile_form") {
     unset($form["locale"]);
@@ -74,6 +80,11 @@ function pw_profiles_form_pw_profiles_filters_form_alter(&$form, &$form_state) {
   $form['form_id']['#access'] = FALSE;
 }
 
+/**
+ * Form validation handler for user_profile_form().
+ *
+ * @see pw_profiles_form_alter()
+ */
 function pw_profiles_form_validate($form, &$form_state) {
   if (isset($form_state['input']['name'])) {
     $username = $form_state['input']['name'];
@@ -96,6 +107,8 @@ function pw_profiles_form_validate($form, &$form_state) {
 }
 
 /**
+ * Implements hook_user_presave().
+ *
  * FFI: Saves changes to the user role in the corresponding taxonomy.
  * This is important for the profile switch that relies on this taxonomy.
  */
@@ -133,8 +146,9 @@ function pw_profiles_user_presave(&$edit, $account, $category) {
 }
 
 /**
- *  Implements hook_views_pre_render().
- *  Overwrites label of constituency in basic infos view in specific cases like "Stimmkreis" for Bremen.
+ * Implements hook_views_pre_render().
+ *
+ * Overwrites label of constituency in basic infos view in specific cases like "Stimmkreis" for Bremen.
  */
 function pw_profiles_views_pre_render(&$view) {
   if ($view->name == 'pw_user_profile_fields_rev' && $view->current_display == 'basic_info') {
