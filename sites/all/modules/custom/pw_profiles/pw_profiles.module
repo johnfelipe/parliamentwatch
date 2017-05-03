@@ -350,9 +350,6 @@ function pw_profiles_user_load_multiple($filters = array(), $limit = NULL) {
 
   foreach ($query->execute()->fetchAll() as $row) {
     $users[$row->uid] = $row;
-    if($row->uid == 29050){
-      $x = $row;
-    }
   }
 
   field_attach_load_revision('user', $users);
