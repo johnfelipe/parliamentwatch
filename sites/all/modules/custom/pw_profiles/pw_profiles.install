@@ -1,0 +1,121 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the pw_profiles module.
+ */
+
+/**
+ * Configure view mode teaser for user.
+ */
+function pw_profiles_update_7105() {
+  $text_fields = array(
+    'field_user_title' => 'text_plain',
+    'field_user_fname' => 'text_plain',
+    'field_user_lname' => 'text_plain',
+    'field_user_constituency' => 'taxonomy_term_reference_plain',
+    'field_user_party' => 'taxonomy_term_reference_plain',
+    'field_user_questions_get' => 'number_integer',
+    'field_user_answers_give' => 'number_integer',
+  );
+
+  foreach ($text_fields as $field_name => $type) {
+    $instance = field_info_instance('user', $field_name, 'user');
+    $instance['display']['teaser']['label'] = 'hidden';
+    $instance['display']['teaser']['type'] = $type;
+    field_update_instance($instance);
+  }
+
+  $field_user_picture = field_info_instance('user', 'field_user_picture', 'user');
+  $field_user_picture['display']['teaser']['label'] = 'hidden';
+  $field_user_picture['display']['teaser']['type'] = 'image';
+  $field_user_picture['display']['teaser']['settings']['image_style'] = 'pw_portrait_l__normal';
+  $field_user_picture['display']['teaser']['settings']['image_link'] = 'content';
+  field_update_instance($field_user_picture);
+}
+
+/**
+ * Enlarges field output_name field in table user_filter_cache to 255 characters:
+ */
+function pw_profiles_update_7104() {
+  db_change_field('user_filter_cache', 'output_name', 'output_name', array(
+    'type' => 'varchar',
+    'length' => 255,
+    'not null' => TRUE,
+    'default' => '',
+  ));
+}
+
+/**
+ * Add index to the table to optimize select queries from pw_forms_filter_alter:
+ */
+function pw_profiles_update_7103() {
+  db_add_index('user_filter_cache', 'pw_forms_filter_alter_ix', array(
+    'input_output_type',
+    'input_role_name',
+    'input_parliament_name'
+  ));
+}
+
+/**
+ * (Un-)Installs the needed cache table for user filters
+ * @return array
+ */
+function pw_profiles_schema() {
+  $schema['user_filter_cache'] = array(
+    'fields' =>
+      array(
+        'output_tid' =>
+          array(
+            'type' => 'int',
+            'unsigned' => TRUE,
+            'not null' => TRUE,
+            'default' => 0,
+          ),
+        'output_name' =>
+          array(
+            'type' => 'varchar',
+            'length' => 45,
+            'not null' => TRUE,
+            'default' => '',
+          ),
+        'input_output_type' =>
+          array(
+            'type' => 'varchar',
+            'length' => 45,
+            'not null' => TRUE,
+            'default' => '',
+          ),
+        'input_role_name' =>
+          array(
+            'type' => 'varchar',
+            'length' => 45,
+            'not null' => TRUE,
+            'default' => '',
+          ),
+        'input_parliament_name' =>
+          array(
+            'type' => 'varchar',
+            'length' => 45,
+            'not null' => TRUE,
+            'default' => '',
+          ),
+      ),
+    'indexes' =>
+      array(),
+    'unique_keys' =>
+      array(
+        'uniqueness' =>
+          array(
+            0 => 'output_tid',
+            1 => 'output_name',
+            2 => 'input_output_type',
+            3 => 'input_role_name',
+            4 => 'input_parliament_name',
+          ),
+      ),
+    'module' => 'pw_profiles',
+    'name' => 'user_filter_cache',
+  );
+  return $schema;
+}
