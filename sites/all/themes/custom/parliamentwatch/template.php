@@ -176,11 +176,9 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   $variables['user_url'] = url(entity_uri('user', $account)['path']);
   $variables['display_name'] = _pw_get_fullname($account);
 
-  if (isset($variables['elements']['#account']->number_of_questions)){
-    $num_questions = $variables['elements']['#account']->number_of_questions;
-    $num_answers = $variables['elements']['#account']->number_of_answers;
-    $variables['questions'] = format_plural($num_questions, t('@num_questions Question'), t('@num_questions Questions'), array('@num_questions' => $num_questions));
-    $variables['answers'] = format_plural($num_answers, t('@num_answers Answer'), t('@num_answers Answers'), array('@num_answers' => $num_answers));
+  if (isset($account->number_of_questions)) {
+    $variables['questions'] = format_plural($account->number_of_questions, t('@num_questions Question'), t('@num_questions Questions'), array('@num_questions' => $account->number_of_questions));
+    $variables['answers'] = format_plural($account->number_of_answers, t('@num_answers Answer'), t('@num_answers Answers'), array('@num_answers' => $account->number_of_answers));
   }
 }
 
