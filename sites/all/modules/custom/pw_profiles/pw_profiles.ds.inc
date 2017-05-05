@@ -243,6 +243,11 @@ function pw_profiles_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'user';
   $ds_fieldsetting->view_mode = 'user_candidate';
   $ds_fieldsetting->settings = array(
+    'wdr_kandidatencheck_video' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'pw_kandidatencheck' => array(
       'weight' => '2',
       'label' => 'hidden',
@@ -264,7 +269,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'question_form' => array(
-      'weight' => '8',
+      'weight' => '9',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -312,7 +317,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'user_profile_api_link' => array(
-      'weight' => '5',
+      'weight' => '6',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -328,7 +333,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'user_wrong_data' => array(
-      'weight' => '4',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -344,7 +349,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'user_revision_switch' => array(
-      'weight' => '3',
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -360,7 +365,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'dialogues_profle' => array(
-      'weight' => '7',
+      'weight' => '8',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -379,17 +384,17 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'dialogues_profle_filters_header' => array(
-      'weight' => '9',
+      'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'dialogues_profle_filters_topic' => array(
-      'weight' => '11',
+      'weight' => '12',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'dialogues_profle_keyword_search' => array(
-      'weight' => '10',
+      'weight' => '11',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -680,6 +685,11 @@ function pw_profiles_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'user';
   $ds_fieldsetting->view_mode = 'user_premium';
   $ds_fieldsetting->settings = array(
+    'wdr_kandidatencheck_video' => array(
+      'weight' => '9',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'pw_kandidatencheck' => array(
       'weight' => '8',
       'label' => 'hidden',
@@ -717,7 +727,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'question_form' => array(
-      'weight' => '99',
+      'weight' => '15',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -829,7 +839,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'user_profile_api_link' => array(
-      'weight' => '11',
+      'weight' => '12',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -861,7 +871,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'user_wrong_data' => array(
-      'weight' => '10',
+      'weight' => '11',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -877,7 +887,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'user_revision_switch' => array(
-      'weight' => '9',
+      'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -893,7 +903,7 @@ function pw_profiles_ds_field_settings_info() {
       ),
     ),
     'dialogues_profle' => array(
-      'weight' => '98',
+      'weight' => '14',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -1450,6 +1460,21 @@ if($field_user_parliament == 6501){
   );
   $export['user_wrong_data'] = $ds_field;
 
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'wdr_kandidatencheck_video';
+  $ds_field->label = 'WDR Kandidatencheck Video';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'user' => 'user',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'block|174',
+    'block_render' => '1',
+  );
+  $export['wdr_kandidatencheck_video'] = $ds_field;
+
   return $export;
 }
 
@@ -1564,30 +1589,32 @@ function pw_profiles_ds_layout_settings_info() {
         0 => 'short_profile_deputy_main',
         1 => 'user_basic_info',
         2 => 'pw_kandidatencheck',
+        3 => 'wdr_kandidatencheck_video',
       ),
       'right_1' => array(
-        3 => 'user_revision_switch',
-        4 => 'user_wrong_data',
-        5 => 'user_profile_api_link',
-        6 => 'masquerade',
+        4 => 'user_revision_switch',
+        5 => 'user_wrong_data',
+        6 => 'user_profile_api_link',
+        7 => 'masquerade',
       ),
       'left_2' => array(
-        7 => 'dialogues_profle',
-        8 => 'question_form',
+        8 => 'dialogues_profle',
+        9 => 'question_form',
       ),
       'right_2' => array(
-        9 => 'dialogues_profle_filters_header',
-        10 => 'dialogues_profle_keyword_search',
+        10 => 'dialogues_profle_filters_header',
+        11 => 'dialogues_profle_keyword_search',
       ),
       'ds_hidden' => array(
-        11 => 'dialogues_profle_filters_topic',
-        12 => 'field_user_party',
+        12 => 'dialogues_profle_filters_topic',
+        13 => 'field_user_party',
       ),
     ),
     'fields' => array(
       'short_profile_deputy_main' => 'left_1',
       'user_basic_info' => 'left_1',
       'pw_kandidatencheck' => 'left_1',
+      'wdr_kandidatencheck_video' => 'left_1',
       'user_revision_switch' => 'right_1',
       'user_wrong_data' => 'right_1',
       'user_profile_api_link' => 'right_1',
@@ -1752,24 +1779,25 @@ function pw_profiles_ds_layout_settings_info() {
         6 => 'user_calendar',
         7 => 'additional_links',
         8 => 'pw_kandidatencheck',
+        9 => 'wdr_kandidatencheck_video',
       ),
       'right_1' => array(
-        9 => 'user_revision_switch',
-        10 => 'user_wrong_data',
-        11 => 'user_profile_api_link',
-        12 => 'masquerade',
-      ),
-      'right_2' => array(
-        13 => 'dialogues_profle_filters_header',
-        14 => 'dialogues_profle_keyword_search',
-      ),
-      'ds_hidden' => array(
-        15 => 'dialogues_profle_filters_topic',
-        16 => 'field_user_party',
+        10 => 'user_revision_switch',
+        11 => 'user_wrong_data',
+        12 => 'user_profile_api_link',
+        13 => 'masquerade',
       ),
       'left_2' => array(
-        17 => 'dialogues_profle',
-        18 => 'question_form',
+        14 => 'dialogues_profle',
+        15 => 'question_form',
+      ),
+      'right_2' => array(
+        16 => 'dialogues_profle_filters_header',
+        17 => 'dialogues_profle_keyword_search',
+      ),
+      'ds_hidden' => array(
+        18 => 'dialogues_profle_filters_topic',
+        19 => 'field_user_party',
       ),
     ),
     'fields' => array(
@@ -1782,16 +1810,17 @@ function pw_profiles_ds_layout_settings_info() {
       'user_calendar' => 'left_1',
       'additional_links' => 'left_1',
       'pw_kandidatencheck' => 'left_1',
+      'wdr_kandidatencheck_video' => 'left_1',
       'user_revision_switch' => 'right_1',
       'user_wrong_data' => 'right_1',
       'user_profile_api_link' => 'right_1',
       'masquerade' => 'right_1',
+      'dialogues_profle' => 'left_2',
+      'question_form' => 'left_2',
       'dialogues_profle_filters_header' => 'right_2',
       'dialogues_profle_keyword_search' => 'right_2',
       'dialogues_profle_filters_topic' => 'ds_hidden',
       'field_user_party' => 'ds_hidden',
-      'dialogues_profle' => 'left_2',
-      'question_form' => 'left_2',
     ),
     'classes' => array(),
     'wrappers' => array(

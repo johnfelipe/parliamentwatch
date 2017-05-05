@@ -62,6 +62,27 @@ function pw_profiles_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_calendar_entry';
+  $strongarm->value = 0;
+  $export['diff_enable_revisions_page_node_calendar_entry'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_calendar_entry';
+  $strongarm->value = 0;
+  $export['diff_show_preview_changes_node_calendar_entry'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_calendar_entry';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_calendar_entry'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings';
   $strongarm->value = '';
   $export['field_bundle_settings'] = $strongarm;
@@ -197,7 +218,7 @@ function pw_profiles_strongarm() {
             'visible' => TRUE,
           ),
           'user_premium' => array(
-            'weight' => '69',
+            'weight' => '71',
             'visible' => FALSE,
           ),
           'user_deputy' => array(
@@ -205,7 +226,7 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'user_candidate' => array(
-            'weight' => '69',
+            'weight' => '71',
             'visible' => FALSE,
           ),
           'user_search' => array(
@@ -227,7 +248,7 @@ function pw_profiles_strongarm() {
         ),
         'mimemail' => array(
           'user_premium' => array(
-            'weight' => '49',
+            'weight' => '51',
             'visible' => FALSE,
           ),
           'user_deputy' => array(
@@ -247,7 +268,7 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'user_candidate' => array(
-            'weight' => '49',
+            'weight' => '51',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -261,11 +282,11 @@ function pw_profiles_strongarm() {
             'visible' => TRUE,
           ),
           'user_candidate' => array(
-            'weight' => '6',
+            'weight' => '7',
             'visible' => TRUE,
           ),
           'user_premium' => array(
-            'weight' => '12',
+            'weight' => '13',
             'visible' => TRUE,
           ),
           'user_dialogue_search_snippet' => array(
@@ -279,7 +300,7 @@ function pw_profiles_strongarm() {
         ),
         'twitter' => array(
           'user_candidate' => array(
-            'weight' => '24',
+            'weight' => '45',
             'visible' => FALSE,
           ),
           'user_deputy' => array(
@@ -287,7 +308,7 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'user_premium' => array(
-            'weight' => '28',
+            'weight' => '45',
             'visible' => FALSE,
           ),
           'user_dialogue_search_snippet' => array(
