@@ -1,4 +1,5 @@
 <?php
+
 $account_parliament = _pw_get_current_parliament_term()->name;
 $account_name = _pw_get_current_user()->name;
 if($account_parliament != "Nordrhein-Westfalen" || empty($account_name)){
@@ -17,7 +18,7 @@ foreach($json->k as $candidate) {
   }
 }
 if(!isset($wdr_id)){
-  break;
+  return;
 }
 ?>
 <?php $tag = $block->subject ? 'section' : 'div'; ?>
