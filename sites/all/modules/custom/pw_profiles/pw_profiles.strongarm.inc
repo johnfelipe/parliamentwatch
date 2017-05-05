@@ -175,7 +175,19 @@ function pw_profiles_strongarm() {
         'custom_settings' => TRUE,
       ),
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
+      ),
+      'tile' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'detail' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
@@ -217,8 +229,8 @@ function pw_profiles_strongarm() {
       'display' => array(
         'summary' => array(
           'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
+            'weight' => '14',
+            'visible' => FALSE,
           ),
           'user_premium' => array(
             'weight' => '69',
@@ -263,8 +275,8 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
+            'weight' => '21',
+            'visible' => FALSE,
           ),
           'user_dialogue_search_snippet' => array(
             'weight' => '3',
@@ -301,8 +313,8 @@ function pw_profiles_strongarm() {
             'visible' => TRUE,
           ),
           'default' => array(
-            'weight' => '50',
-            'visible' => TRUE,
+            'weight' => '13',
+            'visible' => FALSE,
           ),
         ),
         'twitter' => array(
@@ -327,8 +339,8 @@ function pw_profiles_strongarm() {
             'visible' => TRUE,
           ),
           'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
+            'weight' => '20',
+            'visible' => FALSE,
           ),
         ),
       ),
