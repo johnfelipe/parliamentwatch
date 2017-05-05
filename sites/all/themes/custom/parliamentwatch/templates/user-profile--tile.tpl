@@ -38,5 +38,12 @@
 ?>
 
 <div class="profile"<?php print $attributes; ?>>
-  <?php print render($user_profile); ?>
+  <h3><?php print $display_name; ?></h3>
+  <?php print render($user_profile['field_user_picture']); ?>
+  <?php print render($user_profile['field_user_picture_copyright']); ?>
+  <?php print render($user_profile['field_user_party']); ?>
+  <p>
+    <span><?php print $questions; ?></span>
+    <span><?php print $answer_ratio; ?> %</span>
+  </p>
 </div>
