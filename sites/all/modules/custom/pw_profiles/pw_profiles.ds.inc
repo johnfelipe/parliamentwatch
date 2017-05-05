@@ -1460,6 +1460,21 @@ if($field_user_parliament == 6501){
   );
   $export['user_wrong_data'] = $ds_field;
 
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'wdr_kandidatencheck_video';
+  $ds_field->label = 'WDR Kandidatencheck Video';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'user' => 'user',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'block|174',
+    'block_render' => '1',
+  );
+  $export['wdr_kandidatencheck_video'] = $ds_field;
+
   return $export;
 }
 
