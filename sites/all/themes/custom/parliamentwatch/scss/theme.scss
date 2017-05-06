@@ -1,0 +1,39 @@
+/**
+* Parliamentwatch.de Theme
+*
+* Main file for the parliamentwatch-theme. This file includes all contributed and custom scss-files.
+* This file is compiled by the 'grunt watch' task.
+*/
+
+// Include precompiled contrib-css
+@import "../css/contrib/normalize.css";
+@import "../css/contrib/awfont.css";
+
+// Include bourbon mixins
+
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "breakpoint/breakpoint";
+
+
+// Include custom variables
+
+@import "variables";
+
+// Include custom mixins
+
+@import "mixins/mixins";
+
+// Include custom modules
+
+@import "utilities";
+@import "typography";
+@import "box";
+@import "button";
+
+@import "scaffolding";
+@import "header";
+@import "content";
+@import "footer";
+
+@import "seconded";

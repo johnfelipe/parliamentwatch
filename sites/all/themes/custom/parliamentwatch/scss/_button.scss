@@ -1,0 +1,7 @@
+/**
+* Buttons
+*/
+
+.btn {
+  @include button($orange, 10px, 20px);
+}

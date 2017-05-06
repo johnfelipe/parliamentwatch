@@ -37,9 +37,11 @@
  */
 ?>
 
-<div class="profile"<?php print $attributes; ?>>
+<div class="seconded tile"<?php print $attributes; ?>>
   <h3><?php print $display_name; ?></h3>
-  <?php print render($user_profile['field_user_picture']); ?>
+  <div class="seconded__image">
+    <?php print render($user_profile['field_user_picture']); ?>
+  </div>
   <?php print render($user_profile['field_user_picture_copyright']); ?>
   <?php print render($user_profile['field_user_party']); ?>
   <p>

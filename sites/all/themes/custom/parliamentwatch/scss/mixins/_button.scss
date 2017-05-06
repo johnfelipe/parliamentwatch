@@ -1,0 +1,8 @@
+/**
+* Buttons
+*/
+
+@mixin button($background-color, $padding-h, $padding-v) {
+  background-color: $background-color;
+  padding: $padding-v $padding-h;
+}

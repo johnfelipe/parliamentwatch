@@ -1,0 +1,46 @@
+/**
+* Scaffolding
+*
+* Defines global settings for page background, width and spacings
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.page-container {
+    overflow: hidden;
+    position: relative;
+    min-height: 100%;
+    min-height: 100vh;
+}
+
+/* images */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* container-elements */
+
+.container {
+    max-width: 1400px;
+    @include margin(null auto);
+    @include padding(null $space-mobile);
+    @include grid-container;
+    @include breakpoint($breakpoint-m-min) {
+        @include padding(null $space);
+    }
+}
+.row {
+    @include grid-container;
+    @include breakpoint($breakpoint-xs-min) {
+        @include grid-collapse;
+    }
+}

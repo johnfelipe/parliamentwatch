@@ -1,0 +1,105 @@
+/**
+* Footer-Section
+*
+* Defines the global footer section with complete navigation separated by
+* first-level navigation itemes.
+*/
+
+
+#footer {
+    background-color: $darkGray;
+    color: $brightGray;
+    @include padding($space-large null);
+    @include grid-container();
+}
+.footer__maincol {
+    @include grid-container();
+    .row > strong {
+        @include grid-column(12);
+    }
+    strong {
+        font-family: $font-serif;
+        display: block;
+        padding-bottom: $space;
+    }
+    @include breakpoint($breakpoint-s-min) {
+        padding-bottom: $space-large;
+    }
+    @include breakpoint($breakpoint-m-min) {
+        @include grid-column(6);
+        margin: 0;
+    }
+}
+.footer__maincol__col {
+    padding-bottom: $space-large;
+    @include breakpoint($breakpoint-xs-min) {
+        @include grid-column(6);
+    }
+    @include breakpoint($breakpoint-s-min) {
+        @include grid-column(4);
+        padding-bottom: 0;
+    }
+    @include breakpoint($breakpoint-m-min) {
+        @include grid-column(4);
+    }
+}
+.footer__maincol__col__nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.footer__maincol__col__nav__item {
+    padding-left: $space;
+    margin-bottom: $space-xsmall;
+    position: relative;
+    &:before {
+        content: '\e805';
+        font-family: "awfont";
+        color: $brightGray - 80;
+        font-size: .6em;
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        @include transform(translate(0, -50%));
+    }
+}
+.footer__maincol__col__nav__item__link {
+    color: $brightGray - 80;
+    display: block;
+    text-decoration: none;
+    @include transition(color 300ms ease);
+    &:hover {
+        color: $brightGray;
+    }
+}
+
+.footer__mediapartner {
+    border-top: 1px solid $mediumGray;
+    border-bottom: 1px solid $mediumGray;
+    padding: $space 0;
+    @include grid-container();
+}
+.footer__mediapartner__title {
+    float: left;
+    font-family: $font-serif;
+    font-weight: 300;
+    font-size: 1em;
+
+    line-height: $space;
+    @include margin($space 30px $space null);
+}
+.footer__mediapartner__link {
+    float: left;
+    display: block;
+    height: $space;
+    margin: $space;
+    opacity: .6;
+    @include transition(opacity 300ms)
+    img {
+        width: auto;
+        height: 100%;
+    }
+    &:hover {
+        opacity: 1;
+    }
+}

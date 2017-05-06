@@ -1,0 +1,326 @@
+/**
+* Header-Section
+*
+* Defines the global header section with logo and navigtion (primary-/secondary)
+*/
+
+
+#header {
+    background: $beige;
+    border-bottom: 1px solid $beige-dark;
+    width: 100%;
+    z-index: 9;
+    @include breakpoint($breakpoint-m-min) {
+        position: fixed;
+    }
+}
+
+/* Logo */
+
+.header__logo {
+    max-width: 220px;
+    float: left;
+    @include padding($space null);
+    @include breakpoint($breakpoint-xs-min) {
+        max-width: 250px;
+    }
+    @include breakpoint($breakpoint-m-min) {
+        max-width: 270px;
+    }
+    @include breakpoint($breakpoint-l-min) {
+        @include padding($space-large null);
+    }
+}
+
+/* Navigation */
+
+.header__nav {
+    list-style: none;
+    background: $white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+    height: 100%;
+    width: 280px;
+    box-shadow: 0 0 20px rgba(0,0,0,.3);
+    perspective: 1000px;
+    @include padding(0);
+    @include margin(0);
+    @include transform(translate3d(120%, 0, 0));
+    @include transition(transform 0.5s);
+    @include breakpoint($breakpoint-m-min) {
+        position: static;
+        display: block;
+        width: auto;
+        background: transparent;
+        float: right;
+        box-shadow: none;
+        
+        @include perspective(initial);
+        @include transition(initial);
+        @include transform(initial);
+        @include grid-container;
+    }
+}
+.header__nav__item {
+    border-bottom: 1px solid $beige-dark;
+    @include padding(0);
+    @include margin(0);
+    &:nth-child(1) .header__nav__item__link:before { content: '\e84f'; }
+    &:nth-child(2) .header__nav__item__link:before { content: '\e81d'; }
+    &:nth-child(3) .header__nav__item__link:before { content: '\e824'; }
+    &:nth-child(4) .header__nav__item__link:before { content: '\e900'; }
+    &:nth-child(5) .header__nav__item__link:before { content: '\e829'; }
+    &:nth-child(6) .header__nav__item__link:before { content: '\e901'; margin: 0 }
+    @include breakpoint($breakpoint-m-min) {
+        float: left;
+        border-bottom: 0;
+        border-right: 1px solid $beige-dark;
+        &:first-child {
+            border-left: 1px solid $beige-dark;
+        }
+    }
+}
+.header__nav__item__link {
+    display: block;
+    font-family: $font-serif;
+    line-height: 23px;
+    text-decoration: none;
+    color: $darkGray;
+    border-bottom: 1px solid transparent;
+    @include padding($space ($space*0.7));
+    @include transition(background 200ms ease-in-out);
+    &:before {
+        font-family: 'awfont';
+        display: inline-block;
+        margin-right: 4px;
+    }
+    &:hover {
+        background: $beige - 10;
+    }
+    @include breakpoint($breakpoint-l-min) {
+        @include padding($space-large ($space-large*0.7));
+    }
+}
+
+
+// active
+
+.header__nav__item--active {
+    .header__nav__item__link {
+        background: $white;
+        position: relative;
+        z-index: 99;
+        border-bottom: 1px solid $white;
+    }
+}
+
+
+/* Sub-Navigation */
+
+.header__subnav {
+    @include breakpoint($breakpoint-m-min) {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        margin-top: -1px;
+        background: $white;
+        border-top: 1px solid $beige-dark;
+        border-bottom: 1px solid $beige-dark;
+    }
+}
+.header__subnav__list {
+    list-style: none;
+    @include margin(0 0 $space-mobile);
+    @include padding(0);
+    @include grid-container;
+    @include breakpoint($breakpoint-m-min) {
+        text-align: right;
+        @include margin(0);
+    }
+}
+.header__subnav__list__item {
+    display: block;
+    &:nth-child(1) .header__subnav__list__item__link:before { content: '\e84d'; }
+    &:nth-child(2) .header__subnav__list__item__link:before { content: '\e836'; }
+    &:nth-child(3) .header__subnav__list__item__link:before { content: '\e835'; }
+    &:nth-child(4) .header__subnav__list__item__link:before { content: '\e83c'; }
+    &:nth-child(5) .header__subnav__list__item__link:before { content: '\e829'; }
+    &:nth-child(6) .header__subnav__list__item__link:before { content: '\e822'; }
+    @include breakpoint($breakpoint-m-min) {
+        display: inline-block;
+    }
+}
+
+.header__subnav__list__item__link {
+    display: block;
+    font-family: $font-serif;
+    color: $mediumGray;
+    line-height: 18px;
+    text-decoration: none;
+    @include padding($space-mobile 0);
+    @include transition(color 200ms ease-in-out);
+    &:before {
+        font-family: 'awfont';
+        display: inline-block;
+        margin-right: 4px;
+        width: $space-large;
+        text-align: center;
+        @include breakpoint($breakpoint-m-min) {
+            width: auto;
+            text-align: left;
+        }
+    }
+    &:hover {
+        color: $darkGray;
+    }
+    @include breakpoint($breakpoint-m-min) {
+        @include padding($space ($space*0.7));
+    }
+    @include breakpoint($breakpoint-l-min) {
+        @include padding($space-large ($space-large*0.7));
+    }
+}
+
+// active
+
+.header__subnav__list__item--active {
+    position: relative;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        right: calc(100% + #{$space-mobile + 1});
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: ($space/2) ($space/2) ($space/2) 0;
+        @include transform(translate(0, -50%));
+        @include breakpoint($breakpoint-m-min) {
+            border-width: ($space/2) ($space/2) 0 ($space/2);
+            right: auto;
+            left: 50%;
+            top: calc(100% + 1px);
+            @include transform(translate(-50%, 0));
+        }
+    }
+    &:before {
+        border-color: transparent $beige-dark transparent transparent;
+        @include breakpoint($breakpoint-m-min) {
+            border-color: $beige-dark transparent transparent transparent;
+        }
+    }
+    &:after {
+        right: calc(100% + #{$space-mobile});
+        border-color: transparent $white transparent transparent;
+        @include breakpoint($breakpoint-m-min) {
+            right: auto;
+            top: 100%;
+            border-color: $white transparent transparent transparent;
+        }
+    }
+    .header__subnav__list__item__link {
+        color: $darkGray;
+    }
+}
+
+
+
+/* Open Navigation for Mobile devices */
+[data-sidebar-container] {
+    &:after {
+        content: '';
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        z-index: 97;
+        @include transition(opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s);
+    }
+}
+.sidebar-open {
+    &:after {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        -webkit-transition: opacity 0.5s;
+        transition: opacity 0.5s;
+    }
+
+    .header__nav {
+        @include transform(translate3d(0, 0, 0));
+    }
+}
+
+
+/* Nav-Trigger for small devices */
+
+.header__navtrigger {
+    float: right;
+    color: $gray;
+    position: relative;
+    z-index: 99;
+    padding: 5px;
+    @include margin(($space - 5px) null);
+    @include breakpoint($breakpoint-m-min) {
+        display: none;
+    }
+    &:hover {
+        color: $darkGray;
+        .lines {
+            background: $darkGray;
+            &:before, &:after { background: $darkGray; }
+        }
+    }
+}
+
+/* Indicator */
+.header__subnav__indicator {
+    clear: both;
+    background-color: $white;
+    line-height: 20px;
+    @include margin(null ($space*-1));
+    @include padding($space);
+    @include grid-container();
+    @include breakpoint($breakpoint-m-min) {
+        margin: 0;
+        padding: 0;
+        background-color: initial;
+    }
+    a { text-decoration: none; }
+}
+.header__subnav__indicator__first,
+.header__subnav__indicator__second {
+    color: $gray;
+}
+.header__subnav__indicator__first {
+    float: left;
+    font-size: 18px;
+    font-family: $font-serif;
+    @include breakpoint($breakpoint-m-min) {
+        display: block;
+        float: none;
+        position: absolute;
+        top: 100%;
+        font-size: 24px;
+        line-height: 18px;
+        @include padding(($space) 0);
+    }
+    @include breakpoint($breakpoint-l-min) {
+        @include padding($space-large 0);
+    }
+}
+.header__subnav__indicator__second {
+    display: block;
+    float: right;
+    @include breakpoint($breakpoint-m-min) {
+        display: none;
+    }
+}

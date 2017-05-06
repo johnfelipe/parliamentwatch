@@ -1,0 +1,29 @@
+/**
+* Image Styles
+*/
+
+@mixin image-circle($width, $height) {
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  width: $width;
+  height: $height;
+  border: 5px solid $white;
+  box-shadow: 0 4px 10px 0 rgba(0,0,0,.15);
+  position: relative;
+  img {
+    width: 100%;
+    max-width: none;
+    margin-top: -20%;
+  }
+  &:after {
+    border-radius: 50%;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: inset 0 1px 6px 0 rgba(0,0,0,.1);
+  }
+}

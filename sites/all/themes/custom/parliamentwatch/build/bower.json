@@ -5,5 +5,10 @@
     "keywords": [],
     "homepage": "http://www.abgeordnetenwatch.de",
     "private": true,
-    "dependencies": {}
+    "dependencies": {
+        "bourbon": "4.3.x",
+        "neat": "2.0.x",
+        "breakpoint-sass": "2.x.x",
+        "normalize-css": "5.0.x"
+    }
 }

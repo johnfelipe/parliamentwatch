@@ -1,0 +1,15 @@
+/**
+* Box mixins
+*/
+
+@mixin box($background-color) {
+  background-color: $background-color;
+}
+
+@mixin box-padded($background-color) {
+  background-color: $background-color;
+  padding: $space-mobile;
+  @include breakpoint($breakpoint-m-min) {
+    padding: $space;
+  }
+}

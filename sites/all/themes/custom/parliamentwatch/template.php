@@ -475,3 +475,19 @@ function abgeordnetenwatch_pager_link($variables) {
 function parliamentwatch_filter_tips_more_info() {
   return '';
 }
+
+/**
+ * Overrides menu_tree_output().
+ */
+function parliamentwatch_menu_link(array $variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  $element['#attributes']['class'][] = 'header__nav__item level-' . $element['#original_link']['depth'];
+
+  if ($element['#below']) {
+    $sub_menu = drupal_render($element['#below']);
+  }
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  return '' . $output . $sub_menu . "\n";
+}

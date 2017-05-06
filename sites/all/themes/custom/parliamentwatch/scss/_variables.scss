@@ -1,0 +1,70 @@
+/**
+* Variables
+*
+* Global variables-definitions
+*/
+
+
+/* Typography */
+
+// Custom Font Stacks
+
+$font-serif: $georgia;
+$font-sans-serif: "Open Sans", $helvetica;
+
+$base-font-size: 16px;
+
+
+/* Color-Definitions */
+
+$orange: #f3efe6;
+$orange-bright: $orange + 80;
+$beige: #f3efe6;
+$beige-dark: $beige - 20;
+
+$black: #000;
+$white: #fff;
+$darkGray: #444;
+$mediumGray: #888;
+$gray: #aaa;
+$brightGray: #f3f3f3;
+
+
+/* Breakpoints */
+
+$breakpoint-xs-min: 480px;
+$breakpoint-xs-max: $breakpoint-xs-min - 1;
+
+$breakpoint-s-min: 768px;
+$breakpoint-s-max: $breakpoint-s-min - 1;
+
+$breakpoint-m-min: 992px;
+$breakpoint-m-max: $breakpoint-m-min - 1;
+
+$breakpoint-l-min: 1200px;
+$breakpoint-l-max: $breakpoint-l-min - 1;
+
+
+/* spacer */
+
+$space-xsmall-mobile: 5px;
+$space-xsmall: 10px;
+
+$space-small-mobile: 10px;
+$space-small: 15px;
+
+$space-mobile: 15px;
+$space: 20px;
+
+$space-large-mobile: 20px;
+$space-large: 30px;
+
+/* Grids */
+
+$neat-grid: (
+    columns: 12,
+    gutter: 20px,
+    media: 1200px,
+    color: rgba(#00d4ff, 0.25),
+    direction: ltr
+);

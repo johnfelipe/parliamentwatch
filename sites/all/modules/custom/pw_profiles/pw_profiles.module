@@ -276,7 +276,7 @@ function pw_profiles_page($parliament_name, $role_name) {
   else {
     $build = entity_view('user', $users, 'tile');
     $build['user']['#theme_wrappers'] = array('container');
-    $build['user']['#attributes']['class'] = array('profile-list', 'clearfix');
+    $build['user']['#attributes']['class'] = array('secondend-list', 'container');
     $build['pager'] = array('#theme' => 'pager', '#weight' => 5);
   }
 

@@ -1,0 +1,79 @@
+/**
+* Utilities
+*
+* Helper Classes
+*/
+
+
+.svg-container {
+    svg {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Screen-reader only */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+
+/* Burger / Close Button */
+
+$button-size : 22px;
+$transition-length: .3s;
+
+.lines-button {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  outline: none;
+  transition: .3s;
+}
+@mixin line() {
+  display: inline-block;
+  width: $button-size;
+  height: $button-size/10;
+  background-color: $gray;
+  @include transition($transition-length);
+}
+.lines {
+  @include line();
+  top: -$button-size/10;
+  position: relative;
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    @include transform-origin($button-size/14 center);
+    @include line();
+  }
+  &:before { top: $button-size/3.5; }
+  &:after { top: -$button-size/3.5; }
+}
+.lines-button.x.lines-button-close .lines {
+    background-color: transparent;
+    &:before, &:after {
+        @include transform-origin(50% 50%);
+        top: 0;
+        background-color: $darkGray;
+        width: $button-size;
+    }
+    &:before {
+        @include transform(rotate3d(0,0,1,45deg));
+    }
+    &:after {
+        @include transform(rotate3d(0,0,1,-45deg));
+    }
+}
