@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Update functions for the pw_globals module.
+ */
+
+/**
+ * Disable obsolete modules.
+ */
+function pw_globals_update_7001() {
+  $uninstall = [
+    'menu_attributes',
+    'tb_megamenu',
+  ];
+
+  module_disable($uninstall);
+  drupal_uninstall_modules($uninstall);
+}
