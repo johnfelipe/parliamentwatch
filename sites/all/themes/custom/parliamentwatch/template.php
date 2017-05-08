@@ -177,8 +177,8 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   $variables['display_name'] = _pw_get_fullname($account);
 
   if (isset($account->number_of_questions)) {
-    $variables['questions'] = format_plural($account->number_of_questions, t('@num_questions Question'), t('@num_questions Questions'), array('@num_questions' => $account->number_of_questions));
-    $variables['answers'] = format_plural($account->number_of_answers, t('@num_answers Answer'), t('@num_answers Answers'), array('@num_answers' => $account->number_of_answers));
+    $variables['questions'] = $account->number_of_questions;
+    $variables['answers'] = $account->number_of_answers;
     $variables['answer_ratio'] = round(100 * $account->number_of_answers / $account->number_of_questions, 0);
   }
 }

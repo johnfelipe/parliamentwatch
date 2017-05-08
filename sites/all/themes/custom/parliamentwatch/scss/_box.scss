@@ -3,6 +3,51 @@
 */
 
 
+
+
+/* tile */
+
 .tile {
   @include box-padded($white);
+}
+
+/* tile-Links */
+
+.tile__links {
+  list-style: none;
+  padding: 0;
+  @include grid-container($neat-grid-small-gutter);
+  @include grid-collapse($neat-grid-small-gutter);
+  margin-bottom: -$space-mobile;
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-container();
+    @include grid-collapse();
+    margin-bottom: -$space;
+  }
+}
+.tile__links__item {
+  margin: 0;
+  border-right: 1px solid $gray;
+  &:last-child {
+    border-right: 0;
+    .tile__links__item__link {
+      color: $orange;
+      font-weight: 600;
+      &:hover {
+        color: $orange-dark;
+      }
+    }
+  }
+}
+.tile__links__item__link {
+  padding: $space-small;
+  display: block;
+  color: $gray;
+  &:hover {
+    color: $darkGray;
+  }
+}
+
+.tile__links--2 .tile__links__item {
+  @include grid-column(6, $neat-grid-no-gutter);
 }

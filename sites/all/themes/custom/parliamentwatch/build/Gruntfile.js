@@ -11,7 +11,7 @@ module.exports = function (grunt) {
       contrib: '<%= paths.root %>contrib/',
       sass: '<%= paths.root %>scss/',
       css: '<%= paths.root %>css/',
-      js: '<%= paths.root %>javaScript/',
+      js: '<%= paths.root %>js/',
       fonts: '<%= paths.root %>fonts/'
     },
     cssmin: {
@@ -44,7 +44,11 @@ module.exports = function (grunt) {
           '<%= paths.sass %>/bourbon': 'bourbon/app/assets/stylesheets',
           '<%= paths.sass %>/neat': 'neat/core',
           '<%= paths.sass %>/breakpoint': 'breakpoint-sass/stylesheets',
-          '<%= paths.css %>/contrib/normalize.css': 'normalize-css/normalize.css'
+          '<%= paths.css %>/contrib/normalize.css': 'normalize-css/normalize.css',
+          '<%= paths.js %>/contrib/jquery.circliful.js': 'circliful/js/jquery.circliful.js',
+          '<%= paths.css %>/contrib/jquery.circliful.css': 'circliful/css/jquery.circliful.css',
+          '<%= paths.js %>/contrib/d3.js': 'd3/d3.js',
+          '<%= paths.js %>/contrib/jquery.matchHeight.js': 'matchHeight/dist/jquery.matchHeight.js'
         }
       }
     },

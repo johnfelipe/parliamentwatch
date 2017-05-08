@@ -9,6 +9,9 @@
         "bourbon": "4.3.x",
         "neat": "2.0.x",
         "breakpoint-sass": "2.x.x",
-        "normalize-css": "5.0.x"
+        "normalize-css": "5.0.x",
+        "matchHeight": "0.7.x",
+        "d3": "4.8.x",
+        "circliful": "1.x.x"
     }
 }

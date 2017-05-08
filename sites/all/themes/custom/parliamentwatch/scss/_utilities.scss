@@ -26,6 +26,22 @@
 }
 
 
+/* party indicator */
+
+.party-indicator {
+  font-size: .9em;
+  color: $darkGray;
+  &:before {
+    content: '';
+    background-color: $gray;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    @include margin(0px 5px null null);
+  }
+}
+
 /* Burger / Close Button */
 
 $button-size : 22px;

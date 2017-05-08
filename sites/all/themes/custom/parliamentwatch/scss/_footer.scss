@@ -84,6 +84,7 @@
     font-family: $font-serif;
     font-weight: 300;
     font-size: 1em;
+    color: $brightGray;
 
     line-height: $space;
     @include margin($space 30px $space null);

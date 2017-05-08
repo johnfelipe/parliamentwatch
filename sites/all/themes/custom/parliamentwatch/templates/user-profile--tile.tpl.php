@@ -38,14 +38,29 @@
 ?>
 
 <div class="seconded tile"<?php print $attributes; ?>>
-  <h3><?php print $display_name; ?></h3>
   <div class="seconded__image">
     <?php print render($user_profile['field_user_picture']); ?>
+    <?php print render($user_profile['field_user_picture_copyright']); ?>
   </div>
-  <?php print render($user_profile['field_user_picture_copyright']); ?>
-  <?php print render($user_profile['field_user_party']); ?>
-  <p>
-    <span><?php print $questions; ?></span>
-    <span><?php print $answer_ratio; ?> %</span>
-  </p>
+
+  <h2 class="seconded__title h3 text-center"><?php print $display_name; ?></h2>
+  <div class="seconded__party-indicator"><?php print render($user_profile['field_user_party']); ?></div>
+  <div class="seconded__stats hstats hstats--2">
+    <div class="hstats__item hstats__item--digit">
+      <span class="hstats__item__display mh-item-nr" data-mh="hstats"><?php print $questions; ?></span>
+      <span class="hstats__item__label mh-item-nr" data-mh="hstats">
+        <?php print format_plural($questions, t('Question'), t('Questions')) ?>
+      </span>
+    </div>
+    <div class="hstats__item hstats__item--donut">
+      <span class="hstats__item__display mh-item-nr" data-mh="hstats">
+        <span class="circle" data-percent="<?php print $answer_ratio; ?>"></span>
+      </span>
+      <span class="hstats__item__label mh-item-nr" data-mh="hstats"><?php print t('beantwortet') ?></span>
+    </div>
+  </div>
+  <ul class="seconded__links tile__links tile__links--2">
+    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen"><?php print t('Jetzt befragen') ?></a></li>
+    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+  </ul>
 </div>

@@ -15,7 +15,10 @@ var windowWidth = window.innerWidth,
     breakpointMMax = breakpointMMin - 1,
 
     breakpointLMin = 1200,
-    breakpointLMax = breakpointLMin - 1;
+    breakpointLMax = breakpointLMin - 1,
+
+    beige = '#f3efe6',
+    orange = '#f46b3b';
 
 console.log(windowWidth);
 /*
@@ -86,12 +89,35 @@ $(function() {
     mainNavigation();
     contentOffset();
 
+    // Init global matchHeight-plugin class
+
+    $(".mh-item").matchHeight();
+    $(".mh-item-nr").matchHeight({
+        byRow: false
+    });
+
     // Init functions on window resize
 
     var windowResize = debounce(function() {
         contentOffset();
     }, 150);
 
+    // Init Circle-Stats -  WIP
+
+    $(".circle").each(function( index ) {
+        var circle = $(this),
+            percent = circle.data('percent');
+        $(this).circliful({
+            foregroundColor: orange,
+            animationStep: 18,
+            animateInView: true,
+            foregroundBorderWidth: 10,
+            backgroundBorderWidth: 10,
+            percentageTextSize: 44,
+            percent: percent
+        }, function(){
+        });
+    });
 
     // Event-Listener
 

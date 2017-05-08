@@ -5,9 +5,10 @@
 
 
 .secondend-list {
+  text-align: center;
   @include grid-container();
   @include grid-collapse();
-  .seconded {
+  .seconded.tile {
     @include margin( null null $space);
     @include breakpoint($breakpoint-xs-min) {
       @include grid-column(6);
@@ -17,6 +18,23 @@
     }
     @include breakpoint($breakpoint-l-min) {
       @include grid-column(3);
+    }
+    .seconded__image {
+      @include margin(null auto $space);
+    }
+    .h3 {
+      font-weight: 300;
+    }
+    .hstats {
+      margin-bottom: $space;
+      &:before {
+        content: '';
+        display: block;
+        width: 60%;
+        height: 1px;
+        background: $gray;
+        @include margin($space auto);
+      }
     }
   }
 }
