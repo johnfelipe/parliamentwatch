@@ -477,7 +477,7 @@ function parliamentwatch_filter_tips_more_info() {
 }
 
 /**
- * Overrides menu_tree_output().
+ * Overrides theme_menu_link().
  */
 function parliamentwatch_menu_link(array $variables) {
   $element = $variables['element'];
