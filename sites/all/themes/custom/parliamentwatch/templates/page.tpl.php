@@ -238,35 +238,13 @@
         <button class="header__navtrigger lines-button x" type="button" role="button" aria-label="Toggle Navigation" data-sidebar-trigger>
           <span class="lines"></span>
         </button>
-        <ul class="header__nav">
-          <li class="header__nav__item header__nav__item--active">
-            <a class="header__nav__item__link" href="index.php">Bundestag</a>
-            <div class="header__subnav">
-              <div class="container">
-                <ul class="header__subnav__list">
-                  <li class="header__subnav__list__item header__subnav__list__item--active"><a href="#" class="header__subnav__list__item__link">Abgeordnete</a></li>
-                  <li class="header__subnav__list__item"><a href="#" class="header__subnav__list__item__link">Abstimmungen</a></li>
-                  <li class="header__subnav__list__item"><a href="#" class="header__subnav__list__item__link">Ausschüsse</a></li>
-                  <li class="header__subnav__list__item"><a href="#" class="header__subnav__list__item__link">Petitionen</a></li>
-                  <li class="header__subnav__list__item"><a href="#" class="header__subnav__list__item__link">Statistiken</a></li>
-                  <li class="header__subnav__list__item"><a href="#" class="header__subnav__list__item__link">Wahlrecht</a></li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li class="header__nav__item"><a class="header__nav__item__link" href="#">Landtag</a></li>
-          <li class="header__nav__item"><a class="header__nav__item__link" href="#">EU-Parlament</a></li>
-          <li class="header__nav__item"><a class="header__nav__item__link" href="#">Blog</a></li>
-          <li class="header__nav__item"><a class="header__nav__item__link" href="#">Info</a></li>
-          <li class="header__nav__item"><a class="header__nav__item__link" href="#"><span class="sr-only">Suche</span></a></li>
-        </ul>
+        <?php print render($page['header']); ?>
         <div class="header__subnav__indicator">
           <a href="#" class="header__subnav__indicator__first">Bundestag</a><span class="sr-only">/</span>
           <a href="#" class="header__subnav__indicator__second">Abgeordnete</a>
         </div>
         <?php endif; ?>
 
-        <?php print render($page['header']); ?>
       </div>
     </div>
 

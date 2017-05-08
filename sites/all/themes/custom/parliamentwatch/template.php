@@ -477,17 +477,26 @@ function parliamentwatch_filter_tips_more_info() {
 }
 
 /**
- * Overrides theme_menu_link().
+ * Overrides theme_menu_tree() for main menu.
  */
-function parliamentwatch_menu_link(array $variables) {
+function parliamentwatch_menu_tree__menu_main(&$variables) {
+  return '<ul class="header__nav">' . $variables['tree'] . '</ul>';
+}
+
+/**
+ * Overrides theme_menu_link() for main menu.
+ */
+function parliamentwatch_menu_link__menu_main(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
 
-  $element['#attributes']['class'][] = 'header__nav__item level-' . $element['#original_link']['depth'];
+  $element['#attributes']['class'] = ['header__nav__item'];
+  $element['#localized_options']['attributes']['class'][] = 'header__nav__item__link';
 
   if ($element['#below']) {
     $sub_menu = drupal_render($element['#below']);
   }
+
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  return '' . $output . $sub_menu . "\n";
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
