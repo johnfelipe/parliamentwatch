@@ -479,14 +479,14 @@ function parliamentwatch_filter_tips_more_info() {
 /**
  * Overrides theme_menu_tree() for main menu.
  */
-function parliamentwatch_menu_tree__menu_main(&$variables) {
+function parliamentwatch_menu_tree__main_menu(&$variables) {
   return '<ul class="header__nav">' . $variables['tree'] . '</ul>';
 }
 
 /**
  * Overrides theme_menu_link() for main menu.
  */
-function parliamentwatch_menu_link__menu_main(array $variables) {
+function parliamentwatch_menu_link__main_menu(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
 
