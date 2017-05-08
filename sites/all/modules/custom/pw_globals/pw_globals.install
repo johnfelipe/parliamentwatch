@@ -17,3 +17,146 @@ function pw_globals_update_7001() {
   module_disable($uninstall);
   drupal_uninstall_modules($uninstall);
 }
+
+/**
+ * Configure main menu blocks.
+ */
+function pw_globals_update_7002() {
+  $block_1 = [
+    'theme' => 'parliamentwatch',
+    'status' => BLOCK_CUSTOM_ENABLED,
+    'weight' => 0,
+    'region' => 'header',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_NO_CACHE,
+    'title' => '<none>',
+  ];
+  $config_1 = [
+    'admin_title' => '',
+    'depth' => 1,
+    'depth_relative' => 0,
+    'expanded' => 0,
+    'follow' => 0,
+    'level' => 1,
+    'parent' => 'main-menu:0',
+    'sort' => FALSE,
+    'title_link' => FALSE,
+  ];
+  _pw_globals_add_menu_block($block_1, $config_1);
+  $block_2 = [
+    'theme' => 'parliamentwatch',
+    'status' => BLOCK_CUSTOM_ENABLED,
+    'weight' => 1,
+    'region' => 'header',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_NO_CACHE,
+    'title' => '<none>',
+  ];
+  $config_2 = [
+    'admin_title' => '',
+    'depth' => 1,
+    'depth_relative' => 0,
+    'expanded' => 0,
+    'follow' => 0,
+    'level' => 2,
+    'parent' => 'main-menu:0',
+    'sort' => 0,
+    'title_link' => 0,
+  ];
+  _pw_globals_add_menu_block($block_2, $config_2);
+}
+
+/**
+ * Adds a new menu block.
+ */
+function _pw_globals_add_menu_block($block, $config) {
+  $block_ids = variable_get('menu_block_ids', array());
+  $delta = empty($block_ids) ? 1 : max($block_ids) + 1;
+  $block_ids[] = $delta;
+  variable_set('menu_block_ids', $block_ids);
+  $block['delta'] = $config['delta'] = $delta;
+  $block['module'] = 'menu_block';
+  menu_block_block_save($delta, $config);
+  _pw_globals_add_block($block);
+}
+
+/**
+ * Adds a block.
+ *
+ * @param array $block
+ *   The block configuration
+ */
+function _pw_globals_add_block($block) {
+  db_insert('block')
+    ->fields(array(
+      'module',
+      'delta',
+      'theme',
+      'status',
+      'weight',
+      'region',
+      'visibility',
+      'pages',
+      'cache',
+      'title',
+    ))
+    ->values($block)
+    ->execute();
+  if (array_key_exists('roles', $block)) {
+    db_delete('block_role')
+      ->condition('module', $block['module'])
+      ->condition('delta', $block['delta'])
+      ->execute();
+    $query = db_insert('block_role')->fields(array('module', 'delta', 'rid'));
+    foreach ($block['roles'] as $rid) {
+      $query->values(array(
+        $block['module'],
+        $block['delta'],
+        $rid,
+      ));
+      $query->execute();
+    }
+  }
+  if (array_key_exists('node_types', $block)) {
+    db_delete('block_node_type')
+      ->condition('module', $block['module'])
+      ->condition('delta', $block['delta'])
+      ->execute();
+    $query = db_insert('block_node_type')->fields(array('module', 'delta', 'type'));
+    foreach ($block['node_types'] as $type) {
+      $query->values(array(
+        $block['module'],
+        $block['delta'],
+        $type,
+      ));
+      $query->execute();
+    }
+  }
+}
+
+/**
+ * Updates a block.
+ *
+ * @param array $block
+ *   An array representing a block record
+ * @param string $module
+ *   A module
+ * @param string $delta
+ *   A block delta
+ * @param string $theme
+ *   A theme
+ */
+function _pw_globals_update_block($block, $module, $delta, $theme = NULL) {
+  $query = db_update('block')
+    ->fields($block)
+    ->condition('module', $module)
+    ->condition('delta', $delta);
+
+  if (isset($theme)) {
+    $query->condition('theme', $theme);
+  }
+
+  $query->execute();
+}
