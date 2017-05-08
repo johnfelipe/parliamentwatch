@@ -5,9 +5,9 @@ engine = 'phptemplate'
 screenshot = 'screenshot.png'
 version = '7.x-4.0'
 
-regions[header] = 'Header';
-regions[content] = 'Content';
-regions[footer] = 'Footer';
+regions[header] = Header
+regions[content] = Content
+regions[footer] = Footer
 
 stylesheets[screen][] = css/theme.css
 
