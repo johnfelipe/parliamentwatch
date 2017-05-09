@@ -50,6 +50,17 @@ function parliamentwatch_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_block().
+ */
+function parliamentwatch_preprocess_menu_block_wrapper(&$variables) {
+  $variables['classes_array'] = [
+    'nav',
+    'nav--' . $variables['config']['menu_name'],
+    'nav--' . $variables['config']['menu_name'] . '--level-' . $variables['config']['level'],
+  ];
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function parliamentwatch_preprocess_node(&$variables) {
