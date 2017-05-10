@@ -95,7 +95,7 @@
     height: $space;
     margin: $space;
     opacity: .6;
-    @include transition(opacity 300ms)
+    @include transition(opacity 300ms);
     img {
         width: auto;
         height: 100%;
