@@ -48,12 +48,19 @@ function parliamentwatch_preprocess_page(&$variables) {
  * Implements hook_preprocess_block().
  */
 function parliamentwatch_preprocess_block(&$variables) {
-  $exclude_classes = array(
+  $exclude_classes = [
     'block',
     drupal_html_class('block-' . $variables['block']->module),
     drupal_html_class('block-menu'),
-  );
+  ];
   $variables['classes_array'] = array_diff($variables['classes_array'], $exclude_classes);
+
+  if ($variables['block']->module == 'menu_block') {
+    $config = $variables['elements']['#config'];
+    if ($config['menu_name'] == 'main-menu' && $config['level'] == 2) {
+      $variables['classes_array'][] = 'container';
+    }
+  }
 }
 
 /**
