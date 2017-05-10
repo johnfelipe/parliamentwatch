@@ -70,6 +70,48 @@ function pw_globals_update_7002() {
 }
 
 /**
+ * Set variable parliamentwatch_state_parliament_tids.
+ */
+function pw_globals_update_7003() {
+  variable_set('parliamentwatch_state_parliament_tids', [
+    21316,
+    16285,
+    23273,
+    17180,
+    18064,
+    18030,
+    16284,
+    23275,
+    16282,
+    23615,
+    21393,
+    16278,
+    17178,
+    16266,
+    23616,
+    17179,
+  ]);
+}
+
+/**
+ * Add links to main menu.
+ */
+function pw_globals_update_7004() {
+  menu_delete_links('main-menu');
+
+  $state_parliament_terms = taxonomy_term_load_multiple(variable_get('parliamentwatch_state_parliament_tids', []));
+  $weight = 0;
+
+  _pw_globals_menu_parliament_tree_add('bundestag', 'Bundestag', $weight++);
+  foreach ($state_parliament_terms as $term) {
+    _pw_globals_menu_parliament_tree_add(drupal_lookup_path('alias', "taxonomy/term/$term->tid"), $term->name, $weight++);
+  }
+  _pw_globals_menu_parliament_tree_add('eu', 'EU', $weight++);
+  _pw_globals_menu_link_add('blog', 'Blog', $weight++);
+  _pw_globals_menu_link_add('ueber-uns', 'Info', $weight++);
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
@@ -160,4 +202,64 @@ function _pw_globals_update_block($block, $module, $delta, $theme = NULL) {
   }
 
   $query->execute();
+}
+
+/**
+ * Adds a link to the main menu.
+ *
+ * @param string $path
+ *   The link path.
+ * @param string $title
+ *   The link title.
+ * @param int $weight
+ *   The weight.
+ * @param int $plid
+ *   The (optional) parent item ID.
+ *
+ * @return int
+ *   The mlid of the saved menu link, or FALSE if the menu link could not be
+ *   saved.
+ */
+function _pw_globals_menu_link_add($path, $title, $weight, $plid = 0) {
+  $item = [
+    'link_path' => drupal_lookup_path('source', $path),
+    'link_title' => $title,
+    'menu_name' => 'main-menu',
+    'weight' => $weight,
+    'expanded' => TRUE,
+    'plid' => $plid,
+  ];
+  return menu_link_save($item);
+}
+
+/**
+ * Adds parliament menu link and its tree to the main menu.
+ *
+ * @param string $path
+ *   The link path.
+ * @param string $title
+ *   The link title.
+ * @param int $weight
+ *   The weight.
+ *
+ * @return int
+ *   The mlid of the saved menu link, or FALSE if the menu link could not be
+ *   saved.
+ */
+function _pw_globals_menu_parliament_tree_add($path, $title, $weight) {
+  $sub_items = [
+    'Abgeordnete' => 'profile',
+    'Abstimmungen' => 'abstimmungen',
+    'Ausschüsse' => 'ausschuesse',
+    'Petitionen' => 'petitionen',
+    'Wahlrecht' => 'wahlrecht',
+  ];
+
+  $plid = _pw_globals_menu_link_add($path, $title, $weight);
+
+  foreach ($sub_items as $key => $value) {
+    _pw_globals_menu_link_add("$path/$value", $key, $weight++, $plid);
+  }
+
+  return $plid;
 }
