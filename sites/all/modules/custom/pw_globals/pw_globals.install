@@ -112,6 +112,13 @@ function pw_globals_update_7004() {
 }
 
 /**
+ * Delete obsolete redirects.
+ */
+function pw_globals_update_7005() {
+  redirect_delete(32872);
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
