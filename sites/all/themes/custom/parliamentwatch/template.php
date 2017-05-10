@@ -37,14 +37,9 @@ function parliamentwatch_form_comment_form_alter(&$form, &$form_state) {
 
 /**
  * Implements hook_preprocess_page().
- *
- * Adds jQuery UI libraries.
  */
 function parliamentwatch_preprocess_page(&$variables) {
-  drupal_add_library('system', 'ui');
-  drupal_add_library('system', 'ui.position');
-
-  if(isset($variables['node']) && $variables['node']->type == 'dialogue') {
+  if (isset($variables['node']) && $variables['node']->type == 'dialogue') {
     drupal_set_title('');
   }
 }
