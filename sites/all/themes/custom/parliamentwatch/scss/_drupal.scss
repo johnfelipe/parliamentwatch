@@ -1,0 +1,12 @@
+/**
+* drupal
+*
+* Defines drupal-specific style exceptions
+*/
+
+/* Admin-Menu */
+#admin-menu .dropdown {
+  &:after {
+    content: none;
+  }
+}
