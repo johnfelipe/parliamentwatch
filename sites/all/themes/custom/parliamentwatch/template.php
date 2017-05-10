@@ -47,6 +47,18 @@ function parliamentwatch_preprocess_page(&$variables) {
 /**
  * Implements hook_preprocess_block().
  */
+function parliamentwatch_preprocess_block(&$variables) {
+  $exclude_classes = array(
+    'block',
+    drupal_html_class('block-' . $variables['block']->module),
+    drupal_html_class('block-menu'),
+  );
+  $variables['classes_array'] = array_diff($variables['classes_array'], $exclude_classes);
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
 function parliamentwatch_preprocess_menu_block_wrapper(&$variables) {
   $variables['classes_array'] = [
     'nav',
