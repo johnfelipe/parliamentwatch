@@ -6,6 +6,7 @@ screenshot = 'screenshot.png'
 version = '7.x-4.0'
 
 regions[header] = Header
+regions[header_secondary] = Secondary header
 regions[content] = Content
 regions[footer] = Footer
 

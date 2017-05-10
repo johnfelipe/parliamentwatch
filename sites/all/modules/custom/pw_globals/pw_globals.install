@@ -49,7 +49,7 @@ function pw_globals_update_7002() {
     'theme' => 'parliamentwatch',
     'status' => BLOCK_CUSTOM_ENABLED,
     'weight' => 1,
-    'region' => 'header',
+    'region' => 'header_secondary',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_NO_CACHE,

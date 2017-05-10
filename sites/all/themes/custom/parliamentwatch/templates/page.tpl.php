@@ -242,6 +242,9 @@
         <?php endif; ?>
 
       </div>
+      <div class="header__secondary">
+        <?php print render($page['header_secondary']); ?>
+      </div>
     </div>
 
     <?php print $messages; ?>
