@@ -30,6 +30,8 @@
   vertical-align: middle;
   text-align: left;
 }
+
+
 /* hstats variants */
 
 .hstats__item--digit {
@@ -46,8 +48,7 @@
 .hstats__item--donut {
   .hstats__item__display {
     margin-right: 0;
-    > .circle {
-      width: 45px;
+    > .d3--gauge {
       display: block;
     }
   }

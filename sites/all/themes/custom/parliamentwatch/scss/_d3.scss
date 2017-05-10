@@ -1,0 +1,19 @@
+.d3 {
+  display: block;
+  position: relative;
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+.d3--executed {
+  span {
+    display: none;
+  }
+}
+.d3--gauge {
+  .d3__text {
+    font-size: 46px;
+  }
+}

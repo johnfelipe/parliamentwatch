@@ -45,8 +45,6 @@ module.exports = function (grunt) {
           '<%= paths.sass %>/neat': 'neat/core',
           '<%= paths.sass %>/breakpoint': 'breakpoint-sass/stylesheets',
           '<%= paths.css %>/contrib/normalize.css': 'normalize-css/normalize.css',
-          '<%= paths.js %>/contrib/jquery.circliful.js': 'circliful/js/jquery.circliful.js',
-          '<%= paths.css %>/contrib/jquery.circliful.css': 'circliful/css/jquery.circliful.css',
           '<%= paths.js %>/contrib/d3.js': 'd3/d3.js',
           '<%= paths.js %>/contrib/jquery.matchHeight.js': 'matchHeight/dist/jquery.matchHeight.js'
         }

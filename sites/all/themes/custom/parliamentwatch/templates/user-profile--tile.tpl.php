@@ -54,7 +54,17 @@
     </div>
     <div class="hstats__item hstats__item--donut">
       <span class="hstats__item__display mh-item-nr" data-mh="hstats">
-        <span class="circle" data-percent="<?php print $answer_ratio; ?>"></span>
+        <span class="d3 d3--gauge"
+              data-d3-gauge
+              data-percentage="<?php print $answer_ratio; ?>"
+              data-track-width="10"
+              data-track-colour="ccc"
+              data-fill-colour="f46b3b"
+              data-text-colour="444"
+              data-stroke-colour="FFFFFF"
+              data-stroke-spacing="2">
+          <span><?php print $answer_ratio; ?>%</span>
+        </span>
       </span>
       <span class="hstats__item__label mh-item-nr" data-mh="hstats"><?php print t('beantwortet') ?></span>
     </div>

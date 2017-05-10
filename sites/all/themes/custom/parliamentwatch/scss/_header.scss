@@ -215,10 +215,11 @@
 
 
 /* Sub-Navigation */
-
-.nav--main-menu--level-2 {
+.header__secondary {
   background: $white;
   border-top: 1px solid $beige-dark;
+}
+.nav--main-menu--level-2 {
   @include breakpoint($breakpoint-m-min) {
     position: relative;
     z-index: 97;

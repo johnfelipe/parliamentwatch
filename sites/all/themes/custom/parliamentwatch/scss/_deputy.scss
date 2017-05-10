@@ -2,12 +2,9 @@
 .deputy__image {
   @include image-circle(130px, 130px);
 }
-
-
-.secondend-list {
+.deputy-list {
   text-align: center;
   @include grid-container();
-  @include grid-collapse();
   .deputy.tile {
     @include margin( null null $space);
     @include breakpoint($breakpoint-xs-min) {
@@ -34,6 +31,28 @@
         height: 1px;
         background: $gray;
         @include margin($space auto);
+      }
+    }
+    .hstats__item__display {
+      height: 35px;
+      @include breakpoint($breakpoint-m-min) {
+        height: 40px;
+      }
+    }
+    .d3--gauge {
+      width: 40px;
+      float: right;
+      margin-right: $space-small;
+      @include breakpoint($breakpoint-xs-min) {
+        width: 30px;
+        margin-right: $space-small-mobile;
+      }
+      @include breakpoint($breakpoint-s-min) {
+        width: 40px;
+        margin-right: $space-small-mobile;
+      }
+      @include breakpoint($breakpoint-m-min) {
+        width: 40px;
       }
     }
   }

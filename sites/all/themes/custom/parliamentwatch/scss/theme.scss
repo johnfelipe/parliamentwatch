@@ -8,7 +8,6 @@
 // Include precompiled contrib-css
 @import "../css/contrib/normalize.css";
 @import "../css/contrib/awfont.css";
-@import "../css/contrib/jquery.circliful.css";
 
 // Include bourbon mixins
 
@@ -31,6 +30,7 @@
 @import "typography";
 @import "box";
 @import "button";
+@import "d3";
 @import "stats";
 @import "nav";
 @import "drupal";

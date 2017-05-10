@@ -12,7 +12,6 @@ regions[footer] = Footer
 
 stylesheets[screen][] = css/theme.css
 
-scripts[] = js/contrib/jquery.circliful.js
 scripts[] = js/contrib/d3.js
 scripts[] = js/contrib/jquery.matchHeight.js
 scripts[] = js/script.js
