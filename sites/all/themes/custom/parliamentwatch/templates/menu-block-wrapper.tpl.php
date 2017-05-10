@@ -17,6 +17,6 @@
  * @see template_preprocess_menu_block_wrapper()
  */
 ?>
-<nav class="<?php print $classes; ?>">
+<ul class="<?php print $classes; ?>">
   <?php print render($content); ?>
-</nav>
+<ul>

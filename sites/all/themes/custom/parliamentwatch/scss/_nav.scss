@@ -5,11 +5,9 @@
 */
 
 .nav {
-}
-.nav__list {
   list-style: none;
 }
-.nav__list__item {
+.nav__item {
   display: block;
   @include padding(0);
   @include margin(0);
@@ -17,8 +15,8 @@
     float: left;
   }
 }
-.nav__list__item__trigger,
-.nav__list__item__link {
+.nav__item__trigger,
+.nav__item__link {
   display: block;
   text-decoration: none;
   color: $mediumGray;
@@ -26,9 +24,9 @@
     color: $darkGray;
   }
 }
-.nav__list__item--active {
-  .nav__list__item__trigger,
-  .nav__list__item__link {
+.nav__item--active {
+  .nav__item__trigger,
+  .nav__item__link {
     color: $darkGray;
   }
 }
@@ -36,7 +34,7 @@
 
 // Variant: Dropdown
 
-.nav__list__item--dropdown {
+.nav__item--dropdown {
 
 }
 

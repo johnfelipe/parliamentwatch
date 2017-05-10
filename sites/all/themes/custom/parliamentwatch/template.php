@@ -498,7 +498,7 @@ function parliamentwatch_filter_tips_more_info() {
  * Overrides theme_menu_tree() for main menu.
  */
 function parliamentwatch_menu_tree__main_menu(&$variables) {
-  return '<ul class="nav__list">' . $variables['tree'] . '</ul>';
+  return $variables['tree'];
 }
 
 /**
@@ -520,9 +520,9 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
   }
 
   if ($element['#href'] == reset($state_parliament_paths)) {
-    $prefix .= '<li class="nav__list__item nav__list__item--dropdown dropdown">';
-    $prefix .= '<a class="nav__list__item__link dropdown__text" href="#">Landtag</a>';
-    $prefix .= '<a class="nav__list__item__trigger dropdown__trigger" href="#"><i class="icon icon-arrow-down"></i></a>';
+    $prefix .= '<li class="nav__item nav__list__item--dropdown dropdown">';
+    $prefix .= '<a class="nav__item__link dropdown__text" href="#">Landtag</a>';
+    $prefix .= '<a class="nav__item__trigger dropdown__trigger" href="#"><i class="icon icon-arrow-down"></i></a>';
     $prefix .= '<ul class="dropdown__list">';
   }
   elseif ($element['#href'] == end($state_parliament_paths)) {
@@ -534,8 +534,8 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
     $element['#localized_options']['attributes']['class'][] = 'dropdown__list__item__link';
   }
   else {
-    $element['#attributes']['class'] = ['nav__list__item'];
-    $element['#localized_options']['attributes']['class'][] = 'nav__list__item__link';
+    $element['#attributes']['class'] = ['nav__item'];
+    $element['#localized_options']['attributes']['class'][] = 'nav__item__link';
   }
 
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
