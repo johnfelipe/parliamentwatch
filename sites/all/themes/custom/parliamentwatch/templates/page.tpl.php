@@ -239,10 +239,6 @@
           <span class="lines"></span>
         </button>
         <?php print render($page['header']); ?>
-        <div class="header__subnav__indicator">
-          <a href="#" class="header__subnav__indicator__first">Bundestag</a><span class="sr-only">/</span>
-          <a href="#" class="header__subnav__indicator__second">Abgeordnete</a>
-        </div>
         <?php endif; ?>
 
       </div>
