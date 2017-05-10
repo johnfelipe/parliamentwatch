@@ -1,5 +1,5 @@
-.seconded {}
-.seconded__image {
+.deputy {}
+.deputy__image {
   @include image-circle(130px, 130px);
 }
 
@@ -8,7 +8,7 @@
   text-align: center;
   @include grid-container();
   @include grid-collapse();
-  .seconded.tile {
+  .deputy.tile {
     @include margin( null null $space);
     @include breakpoint($breakpoint-xs-min) {
       @include grid-column(6);
@@ -19,7 +19,7 @@
     @include breakpoint($breakpoint-l-min) {
       @include grid-column(3);
     }
-    .seconded__image {
+    .deputy__image {
       @include margin(null auto $space);
     }
     .h3 {

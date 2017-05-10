@@ -37,15 +37,15 @@
  */
 ?>
 
-<div class="seconded tile"<?php print $attributes; ?>>
-  <div class="seconded__image">
+<div class="deputy tile"<?php print $attributes; ?>>
+  <div class="deputy__image">
     <?php print render($user_profile['field_user_picture']); ?>
     <?php print render($user_profile['field_user_picture_copyright']); ?>
   </div>
 
-  <h2 class="seconded__title h3 text-center"><?php print $display_name; ?></h2>
-  <div class="seconded__party-indicator"><?php print render($user_profile['field_user_party']); ?></div>
-  <div class="seconded__stats hstats hstats--2">
+  <h2 class="deputy__title h3 text-center"><?php print $display_name; ?></h2>
+  <div class="deputy__party-indicator"><?php print render($user_profile['field_user_party']); ?></div>
+  <div class="deputy__stats hstats hstats--2">
     <div class="hstats__item hstats__item--digit">
       <span class="hstats__item__display mh-item-nr" data-mh="hstats"><?php print $questions; ?></span>
       <span class="hstats__item__label mh-item-nr" data-mh="hstats">
@@ -59,7 +59,7 @@
       <span class="hstats__item__label mh-item-nr" data-mh="hstats"><?php print t('beantwortet') ?></span>
     </div>
   </div>
-  <ul class="seconded__links tile__links tile__links--2">
+  <ul class="deputy__links tile__links tile__links--2">
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen"><?php print t('Jetzt befragen') ?></a></li>
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
   </ul>
