@@ -1,0 +1,285 @@
+@font-face {
+  font-family: 'awfont';
+  src:  url('../../fonts/awfont/awfont.eot?ndlfky');
+  src:  url('../../fonts/awfont/awfont.eot?ndlfky#iefix') format('embedded-opentype'),
+    url('../../fonts/awfont/awfont.ttf?ndlfky') format('truetype'),
+    url('../../fonts/awfont/awfont.woff?ndlfky') format('woff'),
+    url('../../fonts/awfont/awfont.svg?ndlfky#awfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'awfont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+  content: "\e901";
+}
+.icon-blog:before {
+  content: "\e900";
+}
+.icon-clock:before {
+  content: "\e800";
+}
+.icon-quote-right:before {
+  content: "\e801";
+}
+.icon-quote-left:before {
+  content: "\e802";
+}
+.icon-answer:before {
+  content: "\e803";
+}
+.icon-arrow-left:before {
+  content: "\e804";
+}
+.icon-arrow-right:before {
+  content: "\e805";
+}
+.icon-books:before {
+  content: "\e806";
+}
+.icon-check:before {
+  content: "\e807";
+}
+.icon-close:before {
+  content: "\e808";
+}
+.icon-commitee:before {
+  content: "\e809";
+}
+.icon-folders:before {
+  content: "\e80a";
+}
+.icon-community:before {
+  content: "\e80b";
+}
+.icon-copy:before {
+  content: "\e80c";
+}
+.icon-de-bb:before {
+  content: "\e80d";
+}
+.icon-de-be:before {
+  content: "\e80e";
+}
+.icon-de-bw:before {
+  content: "\e80f";
+}
+.icon-de-by:before {
+  content: "\e810";
+}
+.icon-de-hb:before {
+  content: "\e811";
+}
+.icon-de-he:before {
+  content: "\e812";
+}
+.icon-de-hh:before {
+  content: "\e813";
+}
+.icon-de-mv:before {
+  content: "\e814";
+}
+.icon-de-ni:before {
+  content: "\e815";
+}
+.icon-de-nw:before {
+  content: "\e816";
+}
+.icon-de-rp:before {
+  content: "\e817";
+}
+.icon-de-sh:before {
+  content: "\e818";
+}
+.icon-de-sl:before {
+  content: "\e819";
+}
+.icon-de-sn:before {
+  content: "\e81a";
+}
+.icon-de-st:before {
+  content: "\e81b";
+}
+.icon-de-th:before {
+  content: "\e81c";
+}
+.icon-de:before {
+  content: "\e81d";
+}
+.icon-demand:before {
+  content: "\e81e";
+}
+.icon-dialogue:before {
+  content: "\e81f";
+}
+.icon-dollar:before {
+  content: "\e820";
+}
+.icon-download:before {
+  content: "\e821";
+}
+.icon-election:before {
+  content: "\e822";
+}
+.icon-error:before {
+  content: "\e823";
+}
+.icon-eu:before {
+  content: "\e824";
+}
+.icon-external:before {
+  content: "\e825";
+}
+.icon-eye:before {
+  content: "\e826";
+}
+.icon-feedback:before {
+  content: "\e827";
+}
+.icon-glasses:before {
+  content: "\e828";
+}
+.icon-info:before {
+  content: "\e829";
+}
+.icon-investigation:before {
+  content: "\e82a";
+}
+.icon-lamp:before {
+  content: "\e82b";
+}
+.icon-link:before {
+  content: "\e82c";
+}
+.icon-mail:before {
+  content: "\e82d";
+}
+.icon-members:before {
+  content: "\e82e";
+}
+.icon-more:before {
+  content: "\e82f";
+}
+.icon-mouse:before {
+  content: "\e830";
+}
+.icon-news:before {
+  content: "\e831";
+}
+.icon-newsletter:before {
+  content: "\e832";
+}
+.icon-parliament:before {
+  content: "\e833";
+}
+.icon-phone:before {
+  content: "\e834";
+}
+.icon-politicians:before {
+  content: "\e835";
+}
+.icon-poll:before {
+  content: "\e836";
+}
+.icon-print:before {
+  content: "\e837";
+}
+.icon-reply:before {
+  content: "\e838";
+}
+.icon-rss:before {
+  content: "\e839";
+}
+.icon-search:before {
+  content: "\e83a";
+}
+.icon-share:before {
+  content: "\e83b";
+}
+.icon-signing:before {
+  content: "\e83c";
+}
+.icon-sound:before {
+  content: "\e83d";
+}
+.icon-star:before {
+  content: "\e83e";
+}
+.icon-suitcase:before {
+  content: "\e83f";
+}
+.icon-tags:before {
+  content: "\e840";
+}
+.icon-thanks:before {
+  content: "\e841";
+}
+.icon-thesis:before {
+  content: "\e842";
+}
+.icon-thumb-down:before {
+  content: "\e843";
+}
+.icon-thumb-up:before {
+  content: "\e844";
+}
+.icon-user:before {
+  content: "\e845";
+}
+.icon-video:before {
+  content: "\e846";
+}
+.icon-arrow-down:before {
+  content: "\e847";
+}
+.icon-arrow-up:before {
+  content: "\e848";
+}
+.icon-ok:before {
+  content: "\e849";
+}
+.icon-group:before {
+  content: "\e84a";
+}
+.icon-logo-aw:before {
+  content: "\e84b";
+}
+.icon-microphone:before {
+  content: "\e84c";
+}
+.icon-politician:before {
+  content: "\e84d";
+}
+.icon-voting:before {
+  content: "\e84e";
+}
+.icon-bundestag:before {
+  content: "\e84f";
+}
+.icon-checkbox-unchecked:before {
+  content: "\e850";
+}
+.icon-icon-calendar:before {
+  content: "\e851";
+}
+.icon-icon-comment:before {
+  content: "\e852";
+}
+.icon-icon-nl_registration:before {
+  content: "\e853";
+}
+

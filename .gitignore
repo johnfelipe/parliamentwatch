@@ -15,11 +15,11 @@ sites/*/files
 sites/*/private/*
 sites/sites.php
 
-# Ignore theme css
-sites/all/themes/custom/parliamentwatch/css
-
-# Do NOT ignore css of the aw-iconfont
-!sites/all/themes/custom/parliamentwatch/css/contrib/awfont.css
+# Ignore generated theme css
+sites/all/themes/custom/*/css/*
+!sites/all/themes/custom/*/css/contrib
+sites/all/themes/custom/*/css/contrib/*
+!sites/all/themes/custom/*/css/contrib/awfont.css
 
 # Ignore receipts path
 /r
