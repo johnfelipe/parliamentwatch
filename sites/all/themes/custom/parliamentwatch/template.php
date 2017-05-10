@@ -495,14 +495,38 @@ function parliamentwatch_menu_tree__main_menu(&$variables) {
 function parliamentwatch_menu_link__main_menu(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
+  $prefix = '';
+  $suffix = '';
 
-  $element['#attributes']['class'] = ['nav__list__item'];
-  $element['#localized_options']['attributes']['class'][] = 'nav__list__item__link';
+  $callback = function ($tid) {
+    return "taxonomy/term/$tid";
+  };
+  $state_parliament_paths = array_map($callback, variable_get('parliamentwatch_state_parliament_tids', []));
 
   if ($element['#below']) {
     $sub_menu = drupal_render($element['#below']);
   }
 
+  if ($element['#href'] == reset($state_parliament_paths)) {
+    $prefix .= '<li class="nav__list__item nav__list__item--dropdown dropdown">';
+    $prefix .= '<a class="nav__list__item__link dropdown__text" href="#">Landtag</a>';
+    $prefix .= '<a class="nav__list__item__trigger dropdown__trigger" href="#"><i class="icon icon-arrow-down"></i></a>';
+    $prefix .= '<ul class="dropdown__list">';
+  }
+  elseif ($element['#href'] == end($state_parliament_paths)) {
+    $suffix .= '</ul></li>';
+  }
+
+  if (in_array($element['#href'], $state_parliament_paths)) {
+    $element['#attributes']['class'] = ['dropdown__list__item'];
+    $element['#localized_options']['attributes']['class'][] = 'dropdown__list__item__link';
+  }
+  else {
+    $element['#attributes']['class'] = ['nav__list__item'];
+    $element['#localized_options']['attributes']['class'][] = 'nav__list__item__link';
+  }
+
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+
+  return $prefix . '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>$suffix\n";
 }
