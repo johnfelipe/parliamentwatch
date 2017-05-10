@@ -491,7 +491,7 @@ function parliamentwatch_filter_tips_more_info() {
  * Overrides theme_menu_tree() for main menu.
  */
 function parliamentwatch_menu_tree__main_menu(&$variables) {
-  return '<ul class="header__nav">' . $variables['tree'] . '</ul>';
+  return '<ul class="nav__list">' . $variables['tree'] . '</ul>';
 }
 
 /**
@@ -501,8 +501,8 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
 
-  $element['#attributes']['class'] = ['header__nav__item'];
-  $element['#localized_options']['attributes']['class'][] = 'header__nav__item__link';
+  $element['#attributes']['class'] = ['nav__list__item'];
+  $element['#localized_options']['attributes']['class'][] = 'nav__list__item__link';
 
   if ($element['#below']) {
     $sub_menu = drupal_render($element['#below']);
