@@ -11,6 +11,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   @include breakpoint($breakpoint-m-min) {
+    font-size: $base-font-size - 1;
+  }
+  @include breakpoint($breakpoint-l-min) {
     font-size: $base-font-size;
   }
 }

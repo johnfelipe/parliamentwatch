@@ -1,0 +1,85 @@
+/**
+* Nav
+*
+* Defines common navigation styles
+*/
+
+.nav {
+}
+.nav__list {
+  list-style: none;
+}
+.nav__list__item {
+  display: block;
+  @include padding(0);
+  @include margin(0);
+  @include breakpoint($breakpoint-m-min) {
+    float: left;
+  }
+}
+.nav__list__item__trigger,
+.nav__list__item__link {
+  display: block;
+  text-decoration: none;
+  color: $mediumGray;
+  &:hover {
+    color: $darkGray;
+  }
+}
+.nav__list__item--active {
+  .nav__list__item__trigger,
+  .nav__list__item__link {
+    color: $darkGray;
+  }
+}
+
+
+// Variant: Dropdown
+
+.nav__list__item--dropdown {
+
+}
+
+
+// Dropdown
+
+.dropdown {
+  position: relative;
+  @include grid-container;
+
+}
+.dropdown__text {
+  float: left;
+}
+.dropdown__trigger {
+  float: right;
+  text-align: center;
+}
+.dropdown__list {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include breakpoint($breakpoint-m-min) {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 99;
+  }
+}
+.dropdown__list--open {
+  display: block;
+
+  @include breakpoint($breakpoint-m-min) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+.dropdown__list__item__link {
+  color: $mediumGray;
+  &:hover {
+    color: $darkGray;
+  }
+}

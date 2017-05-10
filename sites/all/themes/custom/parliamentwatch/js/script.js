@@ -1,5 +1,5 @@
 /*
-* Custom global js/jquery
+ * Custom global js/jquery
  */
 
 var windowWidth = window.innerWidth,
@@ -28,37 +28,40 @@ console.log(windowWidth);
  * */
 
 function debounce(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this, args = arguments;
-    var later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
+    var timeout;
+    return function () {
+        var context = this, args = arguments;
+        var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
     };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
 };
 
 
-
 /*
-* Main-Navigation
-* Set mobile behaviour for the main-navigation as sidebar
+ * Main-Navigation
+ * Set mobile behaviour for the main-navigation as sidebar
  * */
 
 function mainNavigation() {
-    $('[data-sidebar-trigger]').click(function() {
+    $('[data-sidebar-trigger]').click(function () {
         $(this).toggleClass('lines-button-close');
         $('[data-sidebar-container]').toggleClass('sidebar-open');
     });
-    $('[data-sidebar-container]:after').click(function() {
-        $('[data-sidebar-trigger]').toggleClass('lines-button-close');
-        $('[data-sidebar-container]').toggleClass('sidebar-open');
+}
+
+function dropdown() {
+    $('.dropdown__trigger').click(function () {
+        $(this).toggleClass('dropdown__trigger--active');
+        $(this).parent('.dropdown').find('.dropdown__list').toggleClass('dropdown__list--open');
     });
 }
+
 
 /*
  * Content-Offset
@@ -82,11 +85,12 @@ function contentOffset() {
 
 }
 
-$(function() {
+$(function () {
 
     // Init functions when document is ready loaded
 
     mainNavigation();
+    dropdown();
     contentOffset();
 
     // Init global matchHeight-plugin class
@@ -98,13 +102,13 @@ $(function() {
 
     // Init functions on window resize
 
-    var windowResize = debounce(function() {
+    var windowResize = debounce(function () {
         contentOffset();
     }, 150);
 
     // Init Circle-Stats -  WIP
 
-    $(".circle").each(function( index ) {
+    $(".circle").each(function (index) {
         var circle = $(this),
             percent = circle.data('percent');
         $(this).circliful({
@@ -115,7 +119,7 @@ $(function() {
             backgroundBorderWidth: 10,
             percentageTextSize: 44,
             percent: percent
-        }, function(){
+        }, function () {
         });
     });
 
