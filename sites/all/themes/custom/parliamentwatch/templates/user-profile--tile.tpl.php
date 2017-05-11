@@ -43,7 +43,7 @@
     <?php print render($user_profile['field_user_picture_copyright']); ?>
   </div>
 
-  <h2 class="deputy__title h3 text-center"><?php print $display_name; ?></h2>
+  <h2 class="deputy__title"><?php print $display_name; ?></h2>
   <div class="deputy__party-indicator"><?php print render($user_profile['field_user_party']); ?></div>
   <div class="deputy__stats hstats hstats--2">
     <div class="hstats__item hstats__item--digit">

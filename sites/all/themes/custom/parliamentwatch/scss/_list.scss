@@ -1,0 +1,24 @@
+/**
+* List definitions
+*/
+
+
+/* Definition List */
+
+.dl {
+  padding: 0;
+  margin: 0;
+}
+.dl__dt {
+  padding: 0;
+  margin: 0;
+  @include padding($space-small-mobile null);
+  @include breakpoint($breakpoint-m-min) {
+    width: 300px;
+    float: left;
+  }
+}
+.dl__dd {
+  margin: 0;
+  @include padding($space-small-mobile null);
+}

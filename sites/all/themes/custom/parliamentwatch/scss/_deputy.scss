@@ -4,56 +4,60 @@
 }
 .deputy-list {
   text-align: center;
+  background: $beige;
   @include grid-container();
-  .deputy.tile {
-    @include margin( null null $space);
+}
+
+
+.deputy.tile {
+  @include margin( null null $space);
+  @include breakpoint($breakpoint-xs-min) {
+    @include grid-column(6);
+  }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4);
+  }
+  @include breakpoint($breakpoint-l-min) {
+    @include grid-column(3);
+  }
+  .deputy__image {
+    @include margin(null auto $space);
+  }
+  .deputy__title {
+    text-align: center;
+    @include h3();
+  }
+  .hstats {
+    margin-bottom: $space;
+    &:before {
+      content: '';
+      display: block;
+      width: 60%;
+      height: 1px;
+      background: $gray;
+      @include margin($space auto);
+    }
+  }
+  .hstats__item__display {
+    height: 35px;
+    @include breakpoint($breakpoint-m-min) {
+      height: 40px;
+    }
+  }
+  .d3--gauge {
+    width: 40px;
+    float: right;
+    margin-right: $space-small;
     @include breakpoint($breakpoint-xs-min) {
-      @include grid-column(6);
+      width: 30px;
+      margin-right: $space-small-mobile;
+    }
+    @include breakpoint($breakpoint-s-min) {
+      width: 40px;
+      margin-right: $space-small-mobile;
     }
     @include breakpoint($breakpoint-m-min) {
-      @include grid-column(4);
-    }
-    @include breakpoint($breakpoint-l-min) {
-      @include grid-column(3);
-    }
-    .deputy__image {
-      @include margin(null auto $space);
-    }
-    .h3 {
-      font-weight: 300;
-    }
-    .hstats {
-      margin-bottom: $space;
-      &:before {
-        content: '';
-        display: block;
-        width: 60%;
-        height: 1px;
-        background: $gray;
-        @include margin($space auto);
-      }
-    }
-    .hstats__item__display {
-      height: 35px;
-      @include breakpoint($breakpoint-m-min) {
-        height: 40px;
-      }
-    }
-    .d3--gauge {
       width: 40px;
-      float: right;
-      margin-right: $space-small;
-      @include breakpoint($breakpoint-xs-min) {
-        width: 30px;
-        margin-right: $space-small-mobile;
-      }
-      @include breakpoint($breakpoint-s-min) {
-        width: 40px;
-        margin-right: $space-small-mobile;
-      }
-      @include breakpoint($breakpoint-m-min) {
-        width: 40px;
-      }
     }
   }
 }

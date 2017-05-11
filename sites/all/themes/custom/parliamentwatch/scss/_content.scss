@@ -4,8 +4,7 @@
 
 #content {
     min-height: 400px;
-    background: $beige;
+    background: $white;
     @include padding($space-large 0);
-
     //@include transition(margin-top 300ms ease);
 }
