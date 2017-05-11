@@ -74,7 +74,7 @@
 ?>
 
   <div class="page-container" data-sidebar-container>
-    <div id="header">
+    <header id="header">
       <div class="container">
         <?php if ($logo): ?>
         <a class="header__logo" href="<?php print $front_page; ?>" title="<?php print t('Back to home'); ?>" rel="home">
@@ -245,11 +245,11 @@
       <div class="header__secondary">
         <?php print render($page['header_secondary']); ?>
       </div>
-    </div>
+    </header>
 
     <?php print $messages; ?>
 
-    <div id="content">
+    <main id="content">
       <a id="main-content"></a>
       <div class="container">
         <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
@@ -262,9 +262,9 @@
       </div>
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
-    </div> <!-- /.section, /#content -->
+    </main>
 
-    <div id="footer">
+    <footer id="footer">
       <div class="container">
         <div class="footer__maincol">
           <div class="footer__maincol__col">
@@ -330,5 +330,5 @@
       <div class="container">
         <?php print render($page['footer']); ?>
       </div>
-    </div>
+    </footer>
   </div>
