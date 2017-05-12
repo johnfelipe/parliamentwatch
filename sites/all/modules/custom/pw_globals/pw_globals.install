@@ -10,9 +10,10 @@
  */
 function pw_globals_update_7001() {
   $uninstall = [
+    'content_menu',
     'menu_attributes',
-    'tb_megamenu',
     'scroll_to_top',
+    'tb_megamenu',
   ];
 
   module_disable($uninstall);
