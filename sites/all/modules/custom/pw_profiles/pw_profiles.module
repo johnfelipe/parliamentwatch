@@ -208,8 +208,8 @@ function pw_profiles_block_view($delta) {
  * Implements hook_entity_info_alter().
  */
 function pw_profiles_entity_info_alter(&$entity_info) {
-  $entity_info['user']['view modes']['detail'] = array(
-    'label' => t('Detail'),
+  $entity_info['user']['view modes']['full'] = array(
+    'label' => t('Full'),
     'custom settings' => FALSE,
   );
   $entity_info['user']['view modes']['list_item'] = array(
