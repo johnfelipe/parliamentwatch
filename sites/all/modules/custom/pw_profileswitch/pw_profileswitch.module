@@ -63,21 +63,6 @@ function pw_user_set_custom_title($account){
 }
 
 /**
- * Modify the default page callbacks from user.and user revisions modules to a custom one.
- * This is needed for the display mode switch between standard profiles and premium profiles.
- *
- * @param array $items
- */
-function pw_profileswitch_menu_alter(&$items) {
-  $items['user/%/revisions/%/view'] = array(
-    'page callback' => 'pw_profileswitch_user_custom_view',
-    'access callback' => 'user_view_access', // default access callback for users
-    'access arguments' => array(1),
-  );
-  $items['user/%'] = $items['user/%/revisions/%/view'];
-}
-
-/**
  * Implementation of hook_menu().
  */
 function pw_profileswitch_menu() {
