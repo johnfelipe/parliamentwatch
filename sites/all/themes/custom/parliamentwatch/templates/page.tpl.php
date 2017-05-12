@@ -56,12 +56,9 @@
  *   comment/reply/12345).
  *
  * Regions:
- * - $page['help']: Dynamic help text, mostly for admin pages.
- * - $page['highlighted']: Items for the highlighted content region.
+ * - $page['header_top']: Items for the header-top region.
+ * - $page['header_bottom']: Items for the header-bottom region.
  * - $page['content']: The main content of the current page.
- * - $page['sidebar_first']: Items for the first sidebar.
- * - $page['sidebar_second']: Items for the second sidebar.
- * - $page['header']: Items for the header region.
  * - $page['footer']: Items for the footer region.
  *
  * @see template_preprocess()
@@ -238,13 +235,15 @@
         <button class="header__navtrigger lines-button x" type="button" role="button" aria-label="Toggle Navigation" data-sidebar-trigger>
           <span class="lines"></span>
         </button>
-        <?php print render($page['header']); ?>
+        <?php print render($page['header_top']); ?>
         <?php endif; ?>
 
       </div>
-      <div class="header__secondary">
-        <?php print render($page['header_secondary']); ?>
+      <?php if ($page['header_bottom']): ?>
+      <div class="header__bottom">
+        <?php print render($page['header_bottom']); ?>
       </div>
+      <?php endif; ?>
     </header>
 
     <?php print $messages; ?>
