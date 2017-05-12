@@ -560,6 +560,10 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
   else {
     $element['#attributes']['class'] = ['nav__item'];
     $element['#localized_options']['attributes']['class'][] = 'nav__item__link';
+
+    if (in_array('active-trail', $element['#localized_options']['attributes']['class'])) {
+      $element['#attributes']['class'][] = 'nav__item--active';
+    }
   }
 
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
