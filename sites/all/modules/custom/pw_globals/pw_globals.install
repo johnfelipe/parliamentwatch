@@ -120,6 +120,15 @@ function pw_globals_update_7005() {
 }
 
 /**
+ * Switch admin theme to Seven.
+ */
+function pw_globals_update_7006() {
+  theme_enable(['seven']);
+  theme_disable(['pw_seven']);
+  variable_set('admin_theme', 'seven');
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
