@@ -36,6 +36,23 @@ function parliamentwatch_form_comment_form_alter(&$form, &$form_state) {
 }
 
 /**
+ * Implements hook_css_alter().
+ *
+ * Removes unnecessary core css files.
+ */
+function parliamentwatch_css_alter(&$css) {
+  unset($css[drupal_get_path('module','system').'/system.base.css']);
+  unset($css[drupal_get_path('module','system').'/system.menus.css']);
+  unset($css[drupal_get_path('module','system').'/system.theme.css']);
+  unset($css[drupal_get_path('module','system').'/system.messages.css']);
+  unset($css[drupal_get_path('module','comment').'/comment.css']);
+  unset($css[drupal_get_path('module','search').'/search.css']);
+  unset($css[drupal_get_path('module','node').'/node.css']);
+  unset($css[drupal_get_path('module','field').'/theme/field.css']);
+  unset($css[drupal_get_path('module','user').'/user.css']);
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function parliamentwatch_preprocess_page(&$variables) {
@@ -548,19 +565,4 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
 
   return $prefix . '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>$suffix\n";
-}
-
-/**
- * Remove unnecessary core css files
- */
-function parliamentwatch_css_alter(&$css) {
-  unset($css[drupal_get_path('module','system').'/system.base.css']);
-  unset($css[drupal_get_path('module','system').'/system.menus.css']);
-  unset($css[drupal_get_path('module','system').'/system.theme.css']);
-  unset($css[drupal_get_path('module','system').'/system.messages.css']);
-  unset($css[drupal_get_path('module','comment').'/comment.css']);
-  unset($css[drupal_get_path('module','search').'/search.css']);
-  unset($css[drupal_get_path('module','node').'/node.css']);
-  unset($css[drupal_get_path('module','field').'/theme/field.css']);
-  unset($css[drupal_get_path('module','user').'/user.css']);
 }
