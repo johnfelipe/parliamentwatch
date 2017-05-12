@@ -170,7 +170,7 @@
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
     <pre>
-    <?php //print_r($user_profile['field_user_election_result']); ?>
+    <?php print_r($user_profile['field_user_constituency']); ?>
     </pre>
   </div>
 </article>

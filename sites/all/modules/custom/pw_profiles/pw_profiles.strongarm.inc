@@ -145,7 +145,7 @@ function pw_profiles_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'token' => array(
         'custom_settings' => FALSE,
@@ -260,6 +260,10 @@ function pw_profiles_strongarm() {
             'weight' => '5',
             'visible' => TRUE,
           ),
+          'full' => array(
+            'weight' => '30',
+            'visible' => FALSE,
+          ),
         ),
         'mimemail' => array(
           'user_premium' => array(
@@ -290,6 +294,10 @@ function pw_profiles_strongarm() {
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'full' => array(
+            'weight' => '36',
+            'visible' => FALSE,
+          ),
         ),
         'masquerade' => array(
           'user_deputy' => array(
@@ -316,6 +324,10 @@ function pw_profiles_strongarm() {
             'weight' => '13',
             'visible' => FALSE,
           ),
+          'full' => array(
+            'weight' => '29',
+            'visible' => FALSE,
+          ),
         ),
         'twitter' => array(
           'user_candidate' => array(
@@ -340,6 +352,10 @@ function pw_profiles_strongarm() {
           ),
           'default' => array(
             'weight' => '20',
+            'visible' => FALSE,
+          ),
+          'full' => array(
+            'weight' => '35',
             'visible' => FALSE,
           ),
         ),
