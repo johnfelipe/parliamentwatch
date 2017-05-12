@@ -2,7 +2,14 @@
 * Buttons
 */
 
-@mixin button($background-color, $padding-h, $padding-v) {
+@mixin button($background-color, $color, $padding-h, $padding-v) {
   background-color: $background-color;
+  color: $color;
   padding: $padding-v $padding-h;
+  border: 1px solid $background-color;
+  @include transition(color 300ms ease, background-color 300ms ease);
+  &:hover {
+    color: $background-color;
+    background-color: $color;
+  }
 }

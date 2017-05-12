@@ -570,3 +570,26 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
 
   return $prefix . '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>$suffix\n";
 }
+
+/**
+ * Overrides theme_menu_local_tasks() for local task tab-navigation.
+ */
+
+function parliamentwatch_menu_local_tasks(&$variables) {
+  $output = '';
+
+  if (!empty($variables['primary'])) {
+    $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
+    $variables['primary']['#prefix'] .= '<div class="nav-mobile-trigger"><i class="icon icon-investigation"></i></div>';
+    $variables['primary']['#prefix'] .= '<ul class="nav nav--tab primary">';
+    $variables['primary']['#suffix'] = '</ul>';
+    $output .= drupal_render($variables['primary']);
+  }
+  if (!empty($variables['secondary'])) {
+    $variables['secondary']['#prefix'] = '<h2 class="element-invisible">' . t('Secondary tabs') . '</h2>';
+    $variables['secondary']['#prefix'] .= '<ul class="nav nav--tab secondary">';
+    $variables['secondary']['#suffix'] = '</ul>';
+    $output .= drupal_render($variables['secondary']);
+  }
+  return $output;
+}

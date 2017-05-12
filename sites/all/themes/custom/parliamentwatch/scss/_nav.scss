@@ -6,11 +6,13 @@
 
 .nav {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .nav__item {
   display: block;
-  @include padding(0);
-  @include margin(0);
+  margin: 0;
+  padding: 0;
   @include breakpoint($breakpoint-m-min) {
     float: left;
   }
@@ -79,5 +81,20 @@
   color: $mediumGray;
   &:hover {
     color: $darkGray;
+  }
+}
+
+
+// Tabs
+.nav-mobile-trigger {
+  display: block;
+  @include breakpoint($breakpoint-m-min) {
+    display: none;
+  }
+}
+.nav--tab {
+  display: none;
+  @include breakpoint($breakpoint-m-min) {
+    display: block;
   }
 }

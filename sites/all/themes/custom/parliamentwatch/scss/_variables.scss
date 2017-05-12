@@ -60,8 +60,9 @@ $space: 20px;
 $space-large-mobile: 20px;
 $space-large: 30px;
 
-/* Grids */
 
+
+/* Grids */
 $neat-grid: (
     columns: 12,
     gutter: 20px,
@@ -82,4 +83,27 @@ $neat-grid-no-gutter: (
   media: 1200px,
   color: rgba(#00d4ff, 0.25),
   direction: ltr
+);
+
+/* Grids - rtl */
+$neat-grid-rtl: (
+  columns: 12,
+  gutter: 20px,
+  media: 1200px,
+  color: rgba(#00d4ff, 0.25),
+  direction: rtl
+);
+$neat-grid-rtl-small-gutter: (
+  columns: 12,
+  gutter: 15px,
+  media: 1200px,
+  color: rgba(#00d4ff, 0.25),
+  direction: rtl
+);
+$neat-grid-rtl-no-gutter: (
+  columns: 12,
+  gutter: 0px,
+  media: 1200px,
+  color: rgba(#00d4ff, 0.25),
+  direction: rtl
 );

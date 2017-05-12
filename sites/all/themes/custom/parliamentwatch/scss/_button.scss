@@ -3,5 +3,13 @@
 */
 
 .btn {
-  @include button($orange, 10px, 20px);
+  @include button($orange, $white, 15px, 12px);
+}
+.btn--large {
+  @include button($orange, $white, 20px, 15px);
+  font-size: 1.2em;
+}
+.btn--block {
+  display: block;
+  text-align: center;
 }

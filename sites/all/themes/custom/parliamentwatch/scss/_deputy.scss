@@ -1,13 +1,12 @@
 .deputy {}
-.deputy__image {
-  @include image-circle(130px, 130px);
-}
 .deputy-list {
   text-align: center;
   background: $beige;
   @include grid-container();
 }
 
+
+/* View-Mode: Tile */
 
 .deputy.tile {
   @include margin( null null $space);
@@ -22,6 +21,7 @@
   }
   .deputy__image {
     @include margin(null auto $space);
+    @include image-circle(130px, 130px);
   }
   .deputy__title {
     text-align: center;
@@ -29,6 +29,10 @@
   }
   .hstats {
     margin-bottom: $space;
+    @include grid-collapse($neat-grid-small-gutter);
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-collapse();
+    }
     &:before {
       content: '';
       display: block;
@@ -58,6 +62,123 @@
     }
     @include breakpoint($breakpoint-m-min) {
       width: 40px;
+    }
+  }
+  .party-indicator {
+    font-size: .9em;
+  }
+}
+
+/* View-Mode: Detail (user_candidate) */
+
+.deputy.detail {
+  .deputy__title {
+    margin-bottom: $space-xsmall-mobile;
+  }
+  .deputy__subtitle {
+    padding-bottom: $space-large;
+    color: $mediumGray;
+    opacity: .8;
+  }
+  .party-indicator {
+    color: $mediumGray;
+  }
+
+  /* Intro */
+
+  .deputy__intro {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-container();
+      @include grid-collapse();
+    }
+  }
+
+  /* Intro - Stats */
+
+  .hstats {
+    border-top: 1px solid $gray;
+  }
+  .hstats__item {
+    &:first-child {
+      @include breakpoint($breakpoint-l-min - 100) {
+        margin-right: $space-large * 2;
+        width: 30%;
+        width: calc(30% - #{$space-large * 2});
+      }
+    }
+  }
+  .hstats__item--donut-digit {
+    padding-bottom: $space-small;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 50%;
+      float: left;
+    }
+    @include breakpoint($breakpoint-l-min - 100) {
+      padding-bottom: 0;
+      width: auto;
+    }
+  }
+  .hstats__item--digit {
+    padding-top: $space-small;
+    border-top: 1px solid $gray + 50;
+    width: 100%;
+    @include breakpoint($breakpoint-l-min - 100) {
+      border-top: 0;
+      padding-top: 0;
+      width: auto;
+      margin-right: 0;
+      float: right;
+    }
+  }
+
+
+  .hstats__item__display {
+    width: 45px;
+  }
+  .hstats__item__label {
+    padding-left: $space-small;
+    width:auto;
+    @include breakpoint($breakpoint-m-min) {
+      font-size: .8em;
+    }
+  }
+  .hstats__item__label__value {
+    font-size: 2.6em;
+    line-height: 1em;
+    padding-bottom: 4px;
+  }
+  .hstats__item--digit .hstats__item__label {
+    padding: 0;
+    @include breakpoint($breakpoint-l-min - 100) {
+      text-align: right;
+    }
+  }
+
+  /* Intro - Content */
+
+  .deputy__intro__content {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(9, $neat-grid-rtl);
+    }
+  }
+  .deputy__intro__sidebar {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(3, $neat-grid-rtl);
+    }
+    @include breakpoint($breakpoint-m-min) {
+      padding-left: $space;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      padding-left: $space-large;
+    }
+  }
+  .deputy__image {
+    padding-bottom: $space-small-mobile;
+    img {
+      display: block;
+    }
+    @media (max-width: $breakpoint-s-max) {
+      @include image-circle(130px, 130px);
     }
   }
 }

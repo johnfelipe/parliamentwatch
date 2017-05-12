@@ -1,0 +1,32 @@
+/**
+* Tooltip
+*/
+
+[data-tooltip-content] {
+  position: relative;
+  &.icon {
+    color: $gray;
+  }
+}
+.tooltip {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: 3px;
+  font-family: $font-sans-serif;
+  color: $darkGray;
+  line-height: 1.3em;
+  padding: $space;
+  width: 200px;
+  background: $white;
+  opacity: 0;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  @include transform(translate(-50%,0));
+  @include transition(opacity 300ms ease 500ms);
+}
+
+:hover .tooltip {
+  opacity: 1;
+}

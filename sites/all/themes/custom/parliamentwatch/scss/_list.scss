@@ -8,17 +8,38 @@
 .dl {
   padding: 0;
   margin: 0;
+  border-bottom: 1px solid $gray;
+  position: relative;
+  @include paragraph();
 }
+
 .dl__dt {
   padding: 0;
   margin: 0;
+  width: 40%;
+  float: left;
   @include padding($space-small-mobile null);
   @include breakpoint($breakpoint-m-min) {
-    width: 300px;
-    float: left;
+    width: 30%;
+    @include padding($space-small null);
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid $gray;
+    margin-top: -$space-small-mobile;
+    @include breakpoint($breakpoint-m-min) {
+      margin-top: -$space-small;
+    }
   }
 }
 .dl__dd {
-  margin: 0;
+  margin: 0 0 0 40%;
   @include padding($space-small-mobile null);
+  @include breakpoint($breakpoint-m-min) {
+    margin: 0 0 0 30%;
+    @include padding($space-small null);
+  }
 }

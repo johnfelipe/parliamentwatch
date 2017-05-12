@@ -7,11 +7,9 @@
 
 .hstats {
   @include grid-container($neat-grid-small-gutter);
-  @include grid-collapse($neat-grid-small-gutter);
   @include padding($space-small null);
   @include breakpoint($breakpoint-m-min) {
     @include grid-container();
-    @include grid-collapse();
   }
 }
 .hstats__item {

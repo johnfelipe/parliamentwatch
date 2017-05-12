@@ -84,6 +84,19 @@ function contentOffset() {
 }
 
 
+/*
+ * Tooltips
+ * */
+
+function tooltip() {
+    $('[data-tooltip-content]').hover(function () {
+        var tooltipContent = $(this).attr('data-tooltip-content');
+        $(this).append('<div class="tooltip">' + tooltipContent + '</div>');
+    }, function () {
+        $(this).find('.tooltip').remove();
+    });
+}
+
 
 /*
  * D3: Radial Gauge
@@ -180,6 +193,7 @@ $(function () {
     mainNavigation();
     dropdown();
     contentOffset();
+    tooltip()
 
     // Init global matchHeight-plugin class
 

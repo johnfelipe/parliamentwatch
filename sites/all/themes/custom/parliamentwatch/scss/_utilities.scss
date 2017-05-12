@@ -30,8 +30,8 @@
 /* party indicator */
 
 .party-indicator {
-  font-size: .9em;
   color: $darkGray;
+  display: inline-block;
   &:before {
     content: '';
     background-color: $gray;

@@ -35,7 +35,6 @@
   @include breakpoint($breakpoint-m-min) {
     float: right;
   }
-
   background: $white;
   position: absolute;
   top: 0;
@@ -46,8 +45,6 @@
   width: 280px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .3);
   perspective: 1000px;
-  @include padding(0);
-  @include margin(0);
   @include transform(translate3d(120%, 0, 0));
   @include transition(transform 0.5s);
   @include breakpoint($breakpoint-m-min) {
@@ -213,22 +210,19 @@
 
 
 
-
 /* Sub-Navigation */
 .header__bottom {
   background: $white;
+  margin-top: -1px;
   border-top: 1px solid $beige-dark;
 }
 .nav--main-menu--level-2 {
   @include breakpoint($breakpoint-m-min) {
     position: relative;
     z-index: 97;
-    margin-top: -1px;
   }
   list-style: none;
   float: right;
-  @include margin(0);
-  @include padding(0);
   @include grid-container;
   @include breakpoint($breakpoint-m-min) {
     text-align: right;
