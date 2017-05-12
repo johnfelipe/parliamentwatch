@@ -13,6 +13,7 @@ echo "Downloading latest backup from http://backups.parliamentwatch.org/abgeordn
 wget --http-user=$AW_USERNAME --http-password=$AW_PASSWORD --progress=bar:force -qO- http://backups.parliamentwatch.org/abgeordnetenwatch.de/abgeordnetenwatch.de_latest.sql.gz | gunzip > /tmp/backup.sql
 echo "Loading data..."
 drush sql-cli -p < /tmp/backup.sql
-drush cc all -p
+echo "Running update hooks..."
+drush updb -y -p
 echo "Resetting configuration..."
 drush fr-all -y -p
