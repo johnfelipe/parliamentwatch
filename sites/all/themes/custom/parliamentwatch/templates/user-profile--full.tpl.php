@@ -165,12 +165,63 @@
         </dl>
       </div>
     </div>
-
-
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <pre>
-    <?php print_r($user_profile['field_user_constituency']); ?>
-    </pre>
+  </div>
+  <div class="tabs">
+    <div class="tabs__navigation">
+      <div class="container">
+        <ul class="nav nav--tab">
+          <li class="nav__item nav__item--active"><a class="nav__item__link" href="#fragen-und-antworten" data-tab-content="fragen-und-antworten">Fragen & Antworten</a></li>
+          <li class="nav__item"><a class="nav__item__link" href="#abstimmverhalten" data-tab-content="abstimmverhalten">Abstimmverhalten</a></li>
+          <li class="nav__item"><a class="nav__item__link" href="#nebentaetigkeiten" data-tab-content="nebentaetigkeiten">Nebentätigkeiten</a></li>
+          <li class="nav__item"><a class="nav__item__link" href="#ausschussmitgliedschaften" data-tab-content="ausschussmitgliedschaften">Ausschußmitgliedschaften</a></li>
+        </ul>
+      </div>
+    </div>
+    <section id="fragen-und-antworten" class="tabs__content tabs__content--active" data-tab-content="fragen-und-antworten">
+      <div class="container">
+        <h2>Fragen und Antworten</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
+          incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
+        <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
+          nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
+          dignissimos, sit?</p>
+      </div>
+    </section>
+    <section id="abstimmverhalten" class="tabs__content" data-tab-content="abstimmverhalten">
+      <div class="container">
+        <h2>Abstimmverhalten</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
+          incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
+        <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
+          nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
+          dignissimos, sit?</p>
+      </div>
+    </section>
+    <section id="nebentaetigkeiten" class="tabs__content" data-tab-content="nebentaetigkeiten">
+      <div class="container">
+        <h2>Nebentätigkeiten</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
+          incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
+        <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
+          nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
+          dignissimos, sit?</p>
+      </div>
+    </section>
+    <section id="ausschussmitgliedschaften" class="tabs__content" data-tab-content=ausschussmitgliedschaften">
+      <div class="container">
+        <h2>Ausschußmitgliedschaften</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
+          incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
+        <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
+          nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
+          dignissimos, sit?</p>
+      </div>
+    </section>
   </div>
 </article>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<pre>
+  <?php print_r($user_profile['field_user_constituency']); ?>
+</pre>

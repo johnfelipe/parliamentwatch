@@ -1,0 +1,49 @@
+/**
+* Tabs
+*/
+
+.tabs {
+  position: relative;
+}
+.nav--tab {
+  .nav__item__link {
+    display: block;
+    @include padding($space $space-large);
+    @include breakpoint($breakpoint-m-min) {
+    }
+  }
+  .nav__item--active .nav__item__link {
+    background: $beige;
+  }
+}
+
+.tabs__content {
+  display: none;
+  background: $beige;
+}
+.tabs__content--active {
+  display: block;
+}
+.tabs__content__title {
+  margin-bottom: $space;
+  @include breakpoint($breakpoint-s-min) {
+    margin-bottom: $space-large;
+  }
+  h2 { font-family: $font-sans-serif; }
+}
+
+
+
+/* Trigger-Element for collapsed nav-tabs */
+
+.nav-mobile-trigger {
+  display: block;
+  font-size: 1.6em;
+
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  @include breakpoint($breakpoint-m-min) {
+    display: none;
+  }
+}

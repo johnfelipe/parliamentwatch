@@ -1,0 +1,16 @@
+/**
+* Utilities
+*
+* Helper Mixins
+*/
+
+
+@mixin tag($background, $color) {
+  background-color: $background;
+  border-radius: 2px;
+  border: 1px solid $background - 30;
+  color: $color;
+  .select2-selection__choice__remove {
+    color: $color;
+  }
+}

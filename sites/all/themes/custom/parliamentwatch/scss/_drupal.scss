@@ -13,11 +13,15 @@
 
 /* Tabs */
 .nav--tab.primary {
+  display: none;
   padding: 0;
   margin: 0;
   margin-bottom: $space-large;
   border-bottom: 1px solid $gray + 40;
   @include grid-container();
+  @include breakpoint($breakpoint-m-min) {
+    display: block;
+  }
   li {
     padding: 0;
     margin: 0 0 -1px;

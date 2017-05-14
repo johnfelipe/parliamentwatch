@@ -13,3 +13,33 @@
     padding: $space;
   }
 }
+@mixin box-inset() {
+  @include grid-container($neat-grid-small-gutter);
+  @include grid-collapse($neat-grid-small-gutter);
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-container();
+    @include grid-collapse();
+  }
+}
+@mixin box-inset-padded() {
+  @include grid-container($neat-grid-small-gutter);
+  @include grid-collapse($neat-grid-small-gutter);
+  padding-left: $space-mobile;
+  padding-right: $space-mobile;
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-container();
+    @include grid-collapse();
+    padding-left: $space;
+    padding-right: $space;
+  }
+}
+@mixin box-inset-bottom() {
+  @include grid-container($neat-grid-small-gutter);
+  @include grid-collapse($neat-grid-small-gutter);
+  margin-bottom: -$space-mobile;
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-container();
+    @include grid-collapse();
+    margin-bottom: -$space;
+  }
+}
