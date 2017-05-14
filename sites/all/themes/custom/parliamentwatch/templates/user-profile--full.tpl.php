@@ -180,7 +180,7 @@
     <section id="fragen-und-antworten" class="tabs__content tabs__content--active" data-tab-content="fragen-und-antworten">
       <div class="container">
         <div class="tabs__content__title option-title">
-          <h2>Fragen & Antworten</h2>
+          <h2 data-tab-content="fragen-und-antworten">Fragen & Antworten</h2>
           <div class="form__item form__item--select">
             <select name="#" id="#" class="form__item__control" multiple="multiple" data-placeholder="Tags auswählen" data-width="100%">
               <option value="#">Tag 1</option>
@@ -197,206 +197,218 @@
             </label>
           </div>
         </div>
-
-        <div class="swiper-container swiper-container--tile">
-          <div class="swiper-wrapper">
-            <div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+        <div class="tabs__content__content">
+          <div class="swiper-container swiper-container--tile">
+            <div class="swiper-wrapper">
+              <div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
               </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
+              <div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] lorem ipsum dolor sit amet invidunt?</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
               </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+              <div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
               </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
+              <div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
+              </div>
+              <div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
+              </div>
+              <div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
+              </div>
+              <div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
+              </div><div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
+              </div>
+              <div class="question tile">
+                <div class="question__meta tile__meta">
+                  <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
+                  <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
+                </div>
+                <div class="question__question mh-item-tile" data-mh="questionTitle">
+                  <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
+                  <p class="question__question__author">Von: Wilfried Meißner</p>
+                </div>
+                <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+                  <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+                </div>
+                <ul class="question__links tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+                </ul>
+              </div>
             </div>
-            <div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
-              </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] lorem ipsum dolor sit amet invidunt?</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
-              </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-              </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
-            </div>
-            <div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
-              </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
-              </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-              </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
-            </div>
-            <div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
-              </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
-              </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-              </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
-            </div>
-            <div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
-              </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
-              </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-              </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
-            </div>
-            <div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
-              </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
-              </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-              </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
-            </div>
-            <div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
-              </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
-              </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-              </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
-            </div><div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
-              </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
-              </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-              </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
-            </div>
-            <div class="question tile">
-              <div class="question__meta tile__meta">
-                <a href="#" class="quesion__meta__tag tile__meta__tag"># Demokratie & Bürgerrechte</a>
-                <span class="question__meta__date tile__meta__date">17. Jan. 2017</span>
-              </div>
-              <div class="question__question mh-item-tile" data-mh="questionTitle">
-                <h3 class="question__question__title">[...] für wie wirkungsvoll halten Sie Grenzkontrollen um Terroranschläge zu verhindern? [...]</h3>
-                <p class="question__question__author">Von: Wilfried Meißner</p>
-              </div>
-              <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-                <p class="question__answer__author">Antwort von <strong>Gregor Gysi</strong></p>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-              </div>
-              <ul class="question__links tile__links tile__links--2">
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-                <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
-              </ul>
-            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
           </div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+          <a href="#" class="btn btn--white">Alle Fragen in der Übersicht</a>
         </div>
-
-        <a href="#" class="btn btn--white">Alle Fragen in der Übersicht</a>
       </div>
     </section>
     <section id="abstimmverhalten" class="tabs__content" data-tab-content="abstimmverhalten">
       <div class="container">
-        <h2>Abstimmverhalten</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
-          incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
-        <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
-          nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
-          dignissimos, sit?</p>
+        <div class="tabs__content__title option-title">
+          <h2 data-tab-content="abstimmverhalten">Abstimmverhalten</h2>
+        </div>
+        <div class="tabs__content__content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
+            incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
+          <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
+            nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
+            dignissimos, sit?</p>
+        </div>
       </div>
     </section>
     <section id="nebentaetigkeiten" class="tabs__content" data-tab-content="nebentaetigkeiten">
       <div class="container">
-        <h2>Nebentätigkeiten</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
-          incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
-        <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
-          nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
-          dignissimos, sit?</p>
+        <div class="tabs__content__title option-title">
+          <h2 data-tab-content="nebentaetigkeiten">Nebentätigkeiten</h2>
+        </div>
+        <div class="tabs__content__content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
+            incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
+          <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
+            nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
+            dignissimos, sit?</p>
+        </div>
       </div>
     </section>
     <section id="ausschussmitgliedschaften" class="tabs__content" data-tab-content=ausschussmitgliedschaften">
       <div class="container">
-        <h2>Ausschußmitgliedschaften</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
-          incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
-        <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
-          nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
-          dignissimos, sit?</p>
+        <div class="tabs__content__title option-title">
+          <h2 data-tab-content="ausschussmitgliedschaften">Ausschußmitgliedschaften</h2>
+        </div>
+        <div class="tabs__content__content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
+            incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
+          <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
+            nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
+            dignissimos, sit?</p>
+        </div>
       </div>
     </section>
   </div>

@@ -103,11 +103,10 @@ function tooltip() {
  * */
 
 function tabs() {
-    $('a[data-tab-content]').click(function () {
+    $('[data-tab-content]').click(function () {
         var tabContent = $(this).attr('data-tab-content');
 
         $(this).parents('.tabs').find('.nav__item').removeClass('nav__item--active');
-
         $(this).parent('.nav__item').addClass('nav__item--active');
 
         $(this).parents('.tabs').find('.tabs__content').removeClass('tabs__content--active');

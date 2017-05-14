@@ -16,4 +16,7 @@
 
 .btn--white {
   @include button($white, $orange, 15px, 12px);
+  &:hover {
+    @include button($white, transparent, 15px, 12px);
+  }
 }

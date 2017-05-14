@@ -32,10 +32,9 @@
 .option-title {
   @include grid-container();
   h1, h2, h3 {
-    margin-bottom: $space-small;
+    margin-bottom: 0;
     @include breakpoint($breakpoint-s-min) {
       float: left;
-      margin-bottom: 0;
     }
   }
   .form__item {

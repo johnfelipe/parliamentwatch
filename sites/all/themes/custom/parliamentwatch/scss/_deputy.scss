@@ -209,7 +209,10 @@
     margin-bottom: -1px;
   }
   .tabs__content {
-    @include padding($space-large null);
+    @include padding($space-small null);
+    @include breakpoint($breakpoint-m-min) {
+      @include padding($space-large null);
+    }
     /* Exceptions for first Q&A-Tab */
     &#fragen-und-antworten {
       background: $orangeBG;
@@ -239,6 +242,13 @@
         float: right;
       }
     }
-
+    &.tabs__content--active {
+      .tabs__content__title {
+        padding-bottom: $space;
+        @include breakpoint($breakpoint-m-min) {
+          padding-bottom: 0;
+        }
+      }
+    }
   }
 }

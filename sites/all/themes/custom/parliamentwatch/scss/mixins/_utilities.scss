@@ -14,3 +14,10 @@
     color: $color;
   }
 }
+
+@mixin text-overflow() {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+}

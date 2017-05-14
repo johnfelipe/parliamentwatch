@@ -24,6 +24,7 @@ li {
   margin: 0;
   width: 40%;
   float: left;
+  @include text-overflow();
   @include padding($space-small-mobile null);
   @include breakpoint($breakpoint-m-min) {
     width: 30%;
@@ -43,6 +44,7 @@ li {
 }
 .dl__dd {
   margin: 0 0 0 40%;
+  padding-left: $space-small-mobile;
   @include padding($space-small-mobile null);
   @include breakpoint($breakpoint-m-min) {
     margin: 0 0 0 30%;
