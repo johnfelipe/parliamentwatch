@@ -45,7 +45,11 @@ module.exports = function (grunt) {
           '<%= paths.sass %>/neat': 'neat/core',
           '<%= paths.sass %>/breakpoint': 'breakpoint-sass/stylesheets',
           '<%= paths.css %>/contrib/normalize.css': 'normalize-css/normalize.css',
+          '<%= paths.css %>/contrib/select2.css': 'select2/dist/css/select2.css',
+          '<%= paths.css %>/contrib/swiper.css': 'swiper/dist/css/swiper.css',
           '<%= paths.js %>/contrib/d3.js': 'd3/d3.js',
+          '<%= paths.js %>/contrib/swiper.jquery.js': 'swiper/dist/js/swiper.jquery.js',
+          '<%= paths.js %>/contrib/select2.js': 'select2/dist/js/select2.js',
           '<%= paths.js %>/contrib/jquery.matchHeight.js': 'matchHeight/dist/jquery.matchHeight.js'
         }
       }

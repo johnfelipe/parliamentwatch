@@ -27,6 +27,36 @@
 }
 
 
+/* Title with options */
+
+.option-title {
+  @include grid-container();
+  h1, h2, h3 {
+    margin-bottom: $space-small;
+    @include breakpoint($breakpoint-s-min) {
+      float: left;
+      margin-bottom: 0;
+    }
+  }
+  .form__item {
+    display: block;
+    position: relative;
+    margin-bottom: 0;
+    @include breakpoint($breakpoint-s-min) {
+      float: right;
+      width: 260px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Tag-Styling */
+
+.tag {
+  @include tag($beige, $mediumGray);
+}
+
+
 /* party indicator */
 
 .party-indicator {

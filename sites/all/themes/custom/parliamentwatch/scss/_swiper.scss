@@ -1,0 +1,44 @@
+/**
+* Swiper definitions
+*/
+
+.swiper-container {
+  width: 100%;
+  position: static;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: $white;
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  background-image: none;
+
+  &:before {
+    font-family: "awfont";
+    font-size: 1.3em;
+    line-height: 55px;
+    color: $orangeBG;
+  }
+}
+.swiper-button-next {
+  right: 0;
+  &:before { content: '\e805' }
+}
+.swiper-button-prev {
+  left: 0;
+  &:before { content: '\e804' }
+}
+.swiper-container--tile {
+  .swiper-wrapper{
+
+  }
+  .tile {
+    color: $darkGray;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    @include flex-shrink(0);
+  }
+}

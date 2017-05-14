@@ -85,16 +85,3 @@
 }
 
 
-// Tabs
-.nav-mobile-trigger {
-  display: block;
-  @include breakpoint($breakpoint-m-min) {
-    display: none;
-  }
-}
-.nav--tab {
-  display: none;
-  @include breakpoint($breakpoint-m-min) {
-    display: block;
-  }
-}

@@ -11,19 +11,47 @@
   @include box-padded($white);
 }
 
-/* tile-Links */
+
+
+.tile__meta {
+  margin-bottom: $space;
+  @include grid-container();
+}
+
+/* tile: tags */
+
+.tile__meta__tag {
+  background: $beige;
+  color: $darkGray;
+  font-size: .8em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 60%;
+  display: inline-block;
+  overflow: hidden;
+  margin-left: -$space-small;
+  padding: $space-xsmall-mobile $space-xsmall-mobile $space-xsmall-mobile $space-small;
+  @include breakpoint($breakpoint-m-min) {
+    padding-left: $space;
+    margin-left: -$space;
+  }
+}
+
+/* tile: date */
+
+.tile__meta__date {
+  font-size: .8em;
+  float: right;
+  padding: $space-xsmall-mobile 0;
+}
+
+/* tile: Links */
 
 .tile__links {
   list-style: none;
   padding: 0;
-  @include grid-container($neat-grid-small-gutter);
-  @include grid-collapse($neat-grid-small-gutter);
-  margin-bottom: -$space-mobile;
-  @include breakpoint($breakpoint-m-min) {
-    @include grid-container();
-    @include grid-collapse();
-    margin-bottom: -$space;
-  }
+  text-align: center;
+  @include box-inset-bottom();
 }
 .tile__links__item {
   margin: 0;
@@ -34,7 +62,7 @@
       color: $orange;
       font-weight: 600;
       &:hover {
-        color: $orange-dark;
+        color: $darkOrange;
       }
     }
   }

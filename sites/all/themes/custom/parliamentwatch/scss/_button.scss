@@ -13,3 +13,7 @@
   display: block;
   text-align: center;
 }
+
+.btn--white {
+  @include button($white, $orange, 15px, 12px);
+}

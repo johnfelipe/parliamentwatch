@@ -1,0 +1,84 @@
+/**
+* Forms
+*/
+
+
+.form {
+}
+.form__item {
+  margin-bottom: $space-small;
+}
+.form__item--inline {
+  display: inline-block;
+}
+.form__item__control {
+  border: 1px solid $gray;
+  display: block;
+  width: 100%;
+  padding: $space-xsmall;
+}
+.form__item__label {
+
+}
+
+/* Type: Checkbox */
+
+.form__item--checkbox {
+  .form__item__label {
+    padding: $space-xsmall 0;
+    display: inline-block;
+  }
+  .form__item__control {
+    display: inline-block;
+    padding: 0;
+    width: $space-small-mobile;
+    height: $space-small-mobile;
+    cursor: pointer;
+    @include appearance(none);
+    &:checked { background-color: $gray; }
+    &:focus { outline: none; }
+  }
+}
+
+
+/* Select2 Elements */
+
+
+.select2-container .select2-selection {
+  min-height: 0;
+  height: auto;
+  border-radius: 0;
+  border-color: $gray;
+}
+.select2-container .select2-selection .select2-selection__rendered {
+  display: block;
+  padding: 0;
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding: $space-xsmall ($space-large + $space) $space-xsmall $space-xsmall;
+  line-height: 1.15;
+}
+.select2-container .select2-selection--single .select2-selection__arrow {
+  height: auto;
+  width: $space-large;
+  bottom: 1px;
+  border-left: 1px solid $gray;
+}
+.select2-container .select2-search--inline {
+  margin: 0;
+  .select2-search__field {
+    margin: 0;
+    display: block;
+    padding: $space-xsmall;
+  }
+}
+.select2-container .select2-selection--multiple .select2-selection__choice {
+  margin: $space-xsmall - 3;
+  @include tag($beige, $mediumGray);
+}
+.select2-container--default .select2-selection--multiple .select2-selection__clear {
+  margin-top: $space-xsmall;
+}
+
+
+/* Select2 Elements */

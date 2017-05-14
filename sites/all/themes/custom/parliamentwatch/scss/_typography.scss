@@ -6,6 +6,7 @@
 body {
   font-family: $font-sans-serif;
   font-size: $base-font-size - 2;
+  font-weight: 300;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,6 +42,9 @@ p {
   @include paragraph();
 }
 
+
+
+
 /* Links */
 
 a {
@@ -48,7 +52,7 @@ a {
   color: $orange;
 
   &:hover {
-    color: $orange-dark;
+    color: $darkOrange;
   }
 }
 

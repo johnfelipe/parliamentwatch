@@ -6,7 +6,7 @@
 
 #header {
   background: $beige;
-  border-bottom: 1px solid $beige-dark;
+  border-bottom: 1px solid $darkBeige;
   width: 100%;
   z-index: 9;
   @include breakpoint($breakpoint-m-min) {
@@ -61,7 +61,7 @@
     @include grid-container;
   }
   .nav__item {
-    border-bottom: 1px solid $beige-dark;
+    border-bottom: 1px solid $darkBeige;
     &:nth-child(1) .nav__item__link:before {
       content: '\e84f';
     }
@@ -84,9 +84,9 @@
     @include breakpoint($breakpoint-m-min) {
       float: left;
       border-bottom: 0;
-      border-right: 1px solid $beige-dark;
+      border-right: 1px solid $darkBeige;
       &:first-child {
-        border-left: 1px solid $beige-dark;
+        border-left: 1px solid $darkBeige;
       }
     }
   }
@@ -145,7 +145,7 @@
   // Dropdown
 
   .nav__item__trigger {
-    border-left: 1px solid $beige-dark + 10;
+    border-left: 1px solid $darkBeige + 10;
     border-bottom: 1px solid transparent;
     line-height: 23px;
     font-size: .8em;
@@ -214,7 +214,7 @@
 .header__bottom {
   background: $white;
   margin-top: -1px;
-  border-top: 1px solid $beige-dark;
+  border-top: 1px solid $darkBeige;
 }
 .nav--main-menu--level-2 {
   @include breakpoint($breakpoint-m-min) {
@@ -295,9 +295,9 @@
       }
     }
     &:before {
-      border-color: transparent $beige-dark transparent transparent;
+      border-color: transparent $darkBeige transparent transparent;
       @include breakpoint($breakpoint-m-min) {
-        border-color: $beige-dark transparent transparent transparent;
+        border-color: $darkBeige transparent transparent transparent;
       }
     }
     &:after {

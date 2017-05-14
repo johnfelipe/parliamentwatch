@@ -116,6 +116,66 @@ function tabs() {
         return false;
     });
 }
+
+
+/*
+ * Select2 Implementation
+ * */
+function select2init() {
+    $('select').select2({
+        placeholder: 'This is my placeholder',
+        allowClear: true,
+        dropdownParent: $('.page-container')
+    });
+}
+
+
+/*
+ * Swiper Implementation
+ * */
+
+
+function swiperTile() {
+    //initialize swiper when document ready
+    $(".swiper-container--tile").each(function(index, element){
+        var $this = $(this);
+        $this.swiper({
+            slideClass: 'tile',
+            loop: false,
+            spaceBetween: 20,
+            slidesPerView: 4,
+            slidesPerGroup: 4,
+            nextButton: $this.find('.swiper-button-next'),
+            prevButton: $this.find('.swiper-button-prev'),
+            pagination: $this.find('.swiper-pagination'),
+            paginationType: 'fraction',
+            breakpoints: {
+                550: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    slidesPerGroup: 1
+                },
+                768: {
+                    slidesPerView: 2,
+                    slidesPerGroup: 2,
+                    spaceBetween: 20
+                },
+                992: {
+                    slidesPerView: 3,
+                    slidesPerGroup: 3
+                }
+            },
+            onImagesReady: function(){
+                $(".mh-item-tile").matchHeight();
+            }
+        });
+    });
+
+}
+
+
+
+/*
  * D3: Radial Gauge
  * */
 function d3RadialGauge(element) {
@@ -210,7 +270,11 @@ $(function () {
     mainNavigation();
     dropdown();
     contentOffset();
-    tooltip()
+    tooltip();
+    tabs();
+    select2init();
+    swiperTile();
+
 
     // Init global matchHeight-plugin class
 

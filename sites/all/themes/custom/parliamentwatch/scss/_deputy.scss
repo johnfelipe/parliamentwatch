@@ -1,3 +1,7 @@
+/**
+* Deputy
+*/
+
 .deputy {}
 .deputy-list {
   text-align: center;
@@ -87,9 +91,11 @@
   /* Intro */
 
   .deputy__intro {
+    padding-bottom: $space;
     @include breakpoint($breakpoint-s-min) {
       @include grid-container();
       @include grid-collapse();
+      padding-bottom: $space-large;
     }
   }
 
@@ -180,5 +186,59 @@
     @media (max-width: $breakpoint-s-max) {
       @include image-circle(130px, 130px);
     }
+  }
+
+  /* Tabs */
+  .tabs {
+    margin-top: $space-large;
+    border-top: 1px solid $gray;
+    .nav__item {
+      @include breakpoint($breakpoint-l-min) {
+        font-size: 1.2em;
+      }
+      /* Exceptions for first Q&A-Tab */
+      &.nav__item--active:first-child .nav__item__link {
+        background: $orangeBG;
+        color: $white;
+      }
+    }
+  }
+  .tabs__navigation {
+    border-bottom: 1px solid $gray;
+    background: $white;
+    margin-bottom: -1px;
+  }
+  .tabs__content {
+    @include padding($space-large null);
+    /* Exceptions for first Q&A-Tab */
+    &#fragen-und-antworten {
+      background: $orangeBG;
+      color: $white;
+      h2 { color: $white; }
+      .option-title {
+        .select2-container--default .select2-selection--multiple { border-color: $orangeBG; }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+          margin: $space-xsmall - 3;
+          @include tag($orangeBG, $white);
+        }
+        .form__item--checkbox {
+          @include breakpoint($breakpoint-m-min) {
+            text-align: right;
+            margin-right: $space-small;
+          }
+          .form__item__control {
+            border-color: $white;
+            &:checked { background-color: $white; }
+          }
+        }
+      }
+    }
+    .swiper-container--tile {
+      margin-bottom: $space;
+      & + .btn {
+        float: right;
+      }
+    }
+
   }
 }

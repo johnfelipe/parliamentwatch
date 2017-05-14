@@ -18,10 +18,13 @@ $base-font-size: 16px;
 /* Color-Definitions */
 
 $orange: #f46b3b;
-$orange-bright: $orange + 80;
-$orange-dark: $orange - 20;
+$brightOrange: $orange + 80;
+$darkOrange: $orange - 20;
+
+$orangeBG: #f68a66;
+
 $beige: #f3efe6;
-$beige-dark: $beige - 20;
+$darkBeige: $beige - 20;
 
 $black: #000;
 $white: #fff;
