@@ -19,13 +19,17 @@
 .header__logo {
   max-width: 220px;
   float: left;
-  @include padding($space null);
+  @include padding($space-mobile null);
   @include breakpoint($breakpoint-xs-min) {
     max-width: 250px;
   }
+  @include breakpoint($breakpoint-s-min) {
+    max-width: 280px;
+    @include padding(($space-mobile - 3) null);
+  }
   @include breakpoint($breakpoint-l-min) {
-    max-width: 270px;
-    @include padding($space-large null);
+    max-width: 290px;
+    @include padding($space null);
   }
 }
 
