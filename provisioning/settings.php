@@ -522,6 +522,7 @@ $conf['404_fast_html'] = '<html xmlns="http://www.w3.org/1999/xhtml"><head><titl
 /**
  * Local development configuration:
  */
+$conf['cache'] = FALSE;
 $conf['drupal_http_request_fails'] = FALSE;
 $conf['file_private_path'] = '/srv/drupal/private';
 $conf['file_public_path'] = 'sites/default/files';
