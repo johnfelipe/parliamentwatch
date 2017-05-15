@@ -74,6 +74,7 @@ function parliamentwatch_preprocess_block(&$variables) {
 
   if ($variables['block']->module == 'menu_block') {
     $config = $variables['elements']['#config'];
+    $variables['theme_hook_suggestions'][] = strtr('block__' . $config['menu_name'] . '__level-' . $config['level'], '-', '_');
 
     if ($config['menu_name'] == 'main-menu' && $config['level'] == 2) {
       $trail = menu_get_active_trail();
