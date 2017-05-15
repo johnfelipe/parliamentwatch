@@ -74,8 +74,13 @@ function parliamentwatch_preprocess_block(&$variables) {
 
   if ($variables['block']->module == 'menu_block') {
     $config = $variables['elements']['#config'];
+
     if ($config['menu_name'] == 'main-menu' && $config['level'] == 2) {
+      $trail = menu_get_active_trail();
       $variables['classes_array'][] = 'container';
+      $variables['title_suffix']['indicator'] = [
+        '#markup' => l($trail[1]['link_title'], $trail[1]['link_path'], ['attributes' => ['class' => ['header__subnav__indicator']]])
+      ];
     }
   }
 }
