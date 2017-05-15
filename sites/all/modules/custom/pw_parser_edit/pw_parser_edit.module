@@ -78,6 +78,11 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
 
   $form += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
   unset($form['field_politician']);
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+    '#weight' => 100,
+  );
 
   $children = element_children($form, TRUE);
   $form[reset($children)]['#prefix'] = '<div class="sidejobs-new">';
