@@ -231,12 +231,7 @@
         </a>
         <?php endif; ?>
 
-        <?php if ($main_menu): ?>
-        <button class="header__navtrigger lines-button x" type="button" role="button" aria-label="Toggle Navigation" data-sidebar-trigger>
-          <span class="lines"></span>
-        </button>
         <?php print render($page['header_top']); ?>
-        <?php endif; ?>
 
       </div>
       <?php if ($page['header_bottom']): ?>
