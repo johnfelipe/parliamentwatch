@@ -44,6 +44,8 @@
  * @ingroup themeable
  */
 ?>
-<nav class="<?php print $classes ?>">
-  <?php print $content ?>
+<nav class="<?php print $classes; ?>">
+  <?php print render($title_prefix); ?>
+  <?php print render($title_suffix); ?>
+  <?php print $content; ?>
 </nav>
