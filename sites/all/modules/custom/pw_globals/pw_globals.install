@@ -129,6 +129,19 @@ function pw_globals_update_7006() {
 }
 
 /**
+ * Delete obsolete menus.
+ */
+function pw_globals_update_7007() {
+  menu_delete(menu_load('devel'));
+  menu_delete(menu_load('features'));
+  menu_delete(menu_load('menu-main-menu-de'));
+  menu_delete(menu_load('menu-meta-de'));
+  menu_delete(menu_load('menu-support-us-de'));
+  menu_delete(menu_load('menu-about-us-de'));
+  menu_delete(menu_load('menu-elections-de'));
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
