@@ -361,6 +361,54 @@
             <div class="swiper-button-next"></div>
           </div>
           <a href="#" class="btn btn--white">Alle Fragen in der Übersicht</a>
+          <div class="tab-qa-stats">
+            <div class="tab-qa-stats__col">
+              <div class="hstats__item hstats__item--donut-digit">
+                <div class="hstats__item__display mh-item-nr" data-mh="qa_hstats">
+                  <span class="d3 d3--gauge"
+                    data-d3-gauge
+                    data-percentage="30"
+                    data-track-width="16"
+                    data-track-colour="f6997a"
+                    data-fill-colour="ffffff"
+                    data-text-colour="ffffff"
+                    data-stroke-colour="f68a66"
+                    data-stroke-spacing="2">
+                    <span>%</span>
+                  </span>
+                </div>
+                <div class="hstats__item__label mh-item-nr" data-mh="qa_hstats">
+                  84 <?php print t('of total') ?><br>89 <?php print t('questions answered') ?>
+                </div>
+              </div>
+
+              <div class="hstats__item hstats__item--donut-digit">
+                <div class="hstats__item__display mh-item-nr" data-mh="qa_hstats">
+                  <span class="d3 d3--gauge"
+                        data-d3-gauge
+                        data-percentage="30"
+                        data-track-width="16"
+                        data-track-colour="f6997a"
+                        data-fill-colour="ffffff"
+                        data-text-colour="ffffff"
+                        data-stroke-colour="f68a66"
+                        data-stroke-spacing="2">
+                    <span>%</span>
+                  </span>
+                </div>
+                <div class="hstats__item__label mh-item-nr" data-mh="qa_hstats">
+                  34 <?php print t('of total') ?><br>89 <?php print t('questions commented') ?>
+                </div>
+              </div>
+            </div>
+            <div class="tab-qa-stats__col">
+              <div class="hstats__item hstats__item--digit">
+                <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats">16,5 h</span>
+                <span class="hstats__item__label mh-item-nr" data-mh="qa_hstats"><?php print t('average time to answer') ?></span>
+              </div>
+            </div>
+            <div class="tab-qa-stats__col--large"></div>
+          </div>
         </div>
       </div>
     </section>

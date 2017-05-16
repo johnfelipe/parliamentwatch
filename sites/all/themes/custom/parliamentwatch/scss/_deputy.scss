@@ -102,72 +102,71 @@
     }
   }
 
-  /* Intro - Stats */
-
-  .hstats {
-    border-top: 1px solid $gray;
-  }
-  .hstats__item {
-    &:first-child {
-      @include breakpoint($breakpoint-l-min - 100) {
-        margin-right: $space-large * 2;
-        width: 30%;
-        width: calc(30% - #{$space-large * 2});
-      }
-    }
-  }
-  .hstats__item--donut-digit {
-    padding-bottom: $space-small;
-    @include breakpoint($breakpoint-xs-min) {
-      width: 50%;
-      float: left;
-    }
-    @include breakpoint($breakpoint-l-min - 100) {
-      padding-bottom: 0;
-      width: auto;
-    }
-  }
-  .hstats__item--digit {
-    padding-top: $space-small;
-    border-top: 1px solid $gray + 50;
-    width: 100%;
-    @include breakpoint($breakpoint-l-min - 100) {
-      border-top: 0;
-      padding-top: 0;
-      width: auto;
-      margin-right: 0;
-      float: right;
-    }
-  }
-
-
-  .hstats__item__display {
-    width: 45px;
-  }
-  .hstats__item__label {
-    padding-left: $space-small;
-    width:auto;
-    @include breakpoint($breakpoint-m-min) {
-      font-size: .8em;
-    }
-  }
-  .hstats__item__label__value {
-    font-size: 2.6em;
-    line-height: 1em;
-    padding-bottom: 4px;
-  }
-  .hstats__item--digit .hstats__item__label {
-    padding: 0;
-    @include breakpoint($breakpoint-l-min - 100) {
-      text-align: right;
-    }
-  }
 
   /* Intro - Content */
 
   .deputy__intro__content {
     @include breakpoint($breakpoint-s-min) {
       @include grid-column(9, $neat-grid-rtl);
+    }
+
+    /* Intro - Stats */
+
+    .hstats {
+      border-top: 1px solid $gray;
+    }
+    .hstats__item {
+      &:first-child {
+        @include breakpoint($breakpoint-l-min - 100) {
+          margin-right: $space-large * 2;
+          width: 30%;
+          width: calc(30% - #{$space-large * 2});
+        }
+      }
+    }
+    .hstats__item--donut-digit {
+      padding-bottom: $space-small;
+      @include breakpoint($breakpoint-xs-min) {
+        width: 50%;
+        float: left;
+      }
+      @include breakpoint($breakpoint-l-min - 100) {
+        padding-bottom: 0;
+        width: auto;
+      }
+    }
+    .hstats__item--digit {
+      padding-top: $space-small;
+      border-top: 1px solid $gray + 50;
+      width: 100%;
+      @include breakpoint($breakpoint-l-min - 100) {
+        border-top: 0;
+        padding-top: 0;
+        width: auto;
+        margin-right: 0;
+        float: right;
+      }
+    }
+    .hstats__item__display {
+      width: 45px;
+    }
+    .hstats__item__label {
+      padding-left: $space-small;
+      width:auto;
+      @include breakpoint($breakpoint-m-min) {
+        font-size: .8em;
+      }
+    }
+    .hstats__item__label__value {
+      font-size: 2.6em;
+      line-height: 1em;
+      padding-bottom: 4px;
+    }
+    .hstats__item--digit .hstats__item__label {
+      padding: 0;
+      @include breakpoint($breakpoint-l-min - 100) {
+        text-align: right;
+      }
     }
   }
   .deputy__intro__sidebar {
@@ -239,10 +238,51 @@
         }
       }
     }
+    .tab-qa-stats {
+      clear: both;
+      padding: $space 0;
+      border-top: 1px solid $brightOrange;
+      @include grid-container();
+      .hstats__item {
+        margin-bottom: $space;
+      }
+      .hstats__item__display {
+        width: 45px;
+      }
+      .hstats__item__label {
+        color: $white;
+        padding-left: $space-small;
+        font-size: .9em;
+        font-weight: 500;
+        line-height: 1.2em;
+        width: auto;
+      }
+      .hstats__item--digit .hstats__item__display {
+        white-space: nowrap;
+        font-size: 2em;
+      }
+    }
+    .tab-qa-stats__col {
+      @include grid-column(12);
+      @include breakpoint($breakpoint-xs-min) {
+        @include grid-column(6);
+      }
+      @include breakpoint($breakpoint-m-min) {
+        @include grid-column(3);
+      }
+      @include breakpoint($breakpoint-l-min) {
+        @include grid-column(3);
+      }
+    }
+    .tab-qa-stats__col--large {
+      @include grid-column(6);
+    }
+
     .swiper-container--tile {
       margin-bottom: $space;
       & + .btn {
         float: right;
+        margin-bottom: $space-large;
       }
     }
     &.tabs__content--active {
