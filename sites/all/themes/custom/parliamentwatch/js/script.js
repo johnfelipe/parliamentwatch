@@ -131,17 +131,49 @@ function tooltip() {
  * */
 
 function tabs() {
-    $('[data-tab-content]').click(function () {
-        var tabContent = $(this).attr('data-tab-content');
+    $('a[data-tab-content]').on( "click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-        $(this).parents('.tabs').find('.nav__item').removeClass('nav__item--active');
-        $(this).parent('.nav__item').addClass('nav__item--active');
+        var link = $(this);
+        var tabContent = link.attr('data-tab-content');
+        var id = link[0].hash;
 
-        $(this).parents('.tabs').find('.tabs__content').removeClass('tabs__content--active');
+        // add hash-value of the clicked link-element to url
+        if(history.pushState) {
+            history.pushState(id, null, id);
+        }
+        // Set nav-item classes
+        link.parents('.tabs').find('.nav__item').removeClass('nav__item--active');
+        link.parent('.nav__item').addClass('nav__item--active');
+
+        // Set tab-content classes
+        link.parents('.tabs').find('.tabs__content').removeClass('tabs__content--active');
         $('#' + tabContent).addClass('tabs__content--active');
 
-        return false;
+        swiperTile();
     });
+
+    // Set initial tab by checking url for hash
+    if(history.pushState) {
+        var hashValue = window.location.hash;
+        var hashValueClean = hashValue.substring(1);
+        $('a[data-tab-content=' + hashValueClean + ']').trigger("click");
+    }
+    if (history && history.pushState) {
+        $(window).on('popstate', function(event) {
+            var hashValueClean = history.state.substring(1);
+
+            // Set nav-item classes
+            $('.tabs').find('.nav__item').removeClass('nav__item--active');
+            $('.nav__item__link[data-tab-content="'+ hashValueClean +'"]').parents('.nav__item').addClass('nav__item--active');
+
+            // Set tab-content classes
+            $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
+            $('#' + hashValueClean).addClass('tabs__content--active');
+
+        });
+    }
 }
 
 
@@ -160,7 +192,6 @@ function select2init() {
 /*
  * Swiper Implementation
  * */
-
 
 function swiperTile() {
     //initialize swiper when document ready
@@ -187,7 +218,7 @@ function swiperTile() {
                     slidesPerGroup: 2,
                     spaceBetween: 20
                 },
-                992: {
+                1200: {
                     slidesPerView: 3,
                     slidesPerGroup: 3
                 }
