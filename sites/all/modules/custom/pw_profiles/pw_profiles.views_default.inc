@@ -85,8 +85,6 @@ function pw_profiles_views_default_views() {
     'combine_rewrite' => NULL,
     'reset_label' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '500';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -1245,7 +1243,6 @@ print_r($link);
     t('Aufsteigend'),
     t('Absteigend'),
     t('Erweiterte Optionen'),
-    t('Wählen Sie eine beliebige Filter und klicken Sie auf Anwenden, um Ergebnisse zu sehen'),
     t('Autor'),
     t('Profile Calendar'),
     t('Wahlkampftermine von [field_user_fname] [field_user_lname]'),
@@ -3792,8 +3789,6 @@ if($record->value == 0){
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '30';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -6376,7 +6371,6 @@ return FALSE;';
     t('Aufsteigend'),
     t('Absteigend'),
     t('Erweiterte Optionen'),
-    t('Wählen Sie eine beliebige Filter und klicken Sie auf Anwenden, um Ergebnisse zu sehen'),
     t('Profile pro Seite'),
     t('- Alle -'),
     t('Offset'),

@@ -130,11 +130,15 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
 
   // join user archive cache for comparing
   $query->leftJoin('user_archive_cache', 'uac', "ur.vid = uac.vid");
-  $query->where('(ISNULL(uac.number_of_questions)
-          OR uac.number_of_questions != number_of_questions
-          OR uac.number_of_answers != number_of_answers)');
+
+  // need fields for comparison in having clause
+  $query->addField("uac", "number_of_questions", "uac_number_of_questions");
+  $query->addField("uac", "number_of_answers", "uac_number_of_answers");
 
   # $result = $query->execute()->fetchAllAssoc('vid', PDO::FETCH_ASSOC);
+  $query->having('(ISNULL(uac.number_of_questions)
+          OR uac_number_of_questions != number_of_questions
+          OR uac_number_of_answers != number_of_answers)');
 
   // nothing to update
   if (empty($query) || $query->execute()->rowCount() == 0) {
@@ -144,9 +148,13 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   // fetch vids and uids
   $result = $query->execute()->fetchAllAssoc('vid', PDO::FETCH_ASSOC);
   $uids = array_unique(array_column($result, 'uid'));
-  #$vids = array_column($result, 'vid');
 
-  // delete archive cache
+  // delete and insert archive cache
+  $fields = array_merge(array_keys($query->getFields()), array_keys($query->getExpressions()));
+  unset($fields[array_search('uac_number_of_questions', $fields)]);
+  unset($fields[array_search('uac_number_of_answers', $fields)]);
+  sort($fields);
+
   foreach($result as $row){
     db_delete('user_archive_cache')
       ->condition('parliament_name', $row['parliament_name'])
@@ -154,12 +162,16 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
       ->condition('uid', $row['uid'])
       ->condition('fraction_name', $row['fraction_name'])
       ->execute();
-  }
 
-  // insert by select query
-  db_insert('user_archive_cache')
-    ->from($query)
-    ->execute();
+    unset($row['uac_number_of_questions']);
+    unset($row['uac_number_of_answers']);
+    ksort($row);
+
+    db_insert('user_archive_cache')
+      ->fields($fields)
+      ->values($row)
+      ->execute();
+  }
 
   // set actual / newest profile
   if ($reset_actual_profile) {

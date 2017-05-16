@@ -2454,6 +2454,7 @@ ul.icon-list:after {
     height: 0;
     overflow: hidden;
 }
+.media_embed video,
 .media_embed iframe {
     position: absolute;
     top: 0;
@@ -2462,6 +2463,87 @@ ul.icon-list:after {
     height: 100%;
 }
 
+
+/* kandidatencheck - WDR Video-Teaser */
+
+.kc_wdr_teaser {
+    padding: 20px;
+    background: #f4f4f4;
+    border: 1px solid #dedede;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 0px 4px 1px #ebebeb;
+    -moz-box-shadow: 0px 0px 4px 1px #ebebeb;
+    box-shadow: 0px 0px 4px 1px #ebebeb;
+    text-align: right;
+
+    position: relative;
+    margin-bottom: 7em;
+    padding: 12px 10px 10px 10px;
+}
+    .kc_wdr_teaser__image {
+        display: block;
+        padding: 0 0 5px;
+        position: relative;
+    }
+    .kc_wdr_teaser__link {
+        display: inline-block;
+        margin: 15px 0;
+        line-height: 14px;
+    }
+    .kc_wdr_teaser__image:before {
+        content: '';
+        display: block;
+        width: 90px;
+        height: 90px;
+        background: #ff6733;
+        background-image: #ff8157;
+        background-image: -moz-linear-gradient(top,#ff8157 0%,#ff6c3f 64%,#ff622d 65%,#ff602b 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#ff8157),color-stop(64%,#ff6c3f),color-stop(65%,#ff622d),color-stop(100%,#ff602b));
+        background-image: -webkit-linear-gradient(top,#ff8157 0%,#ff6c3f 64%,#ff622d 65%,#ff602b 100%);
+        background-image: -o-linear-gradient(top,#ff8157 0%,#ff6c3f 64%,#ff622d 65%,#ff602b 100%);
+        background-image: -ms-linear-gradient(top,#ff8157 0%,#ff6c3f 64%,#ff622d 65%,#ff602b 100%);
+        background-image: linear-gradient(top,#ff8157 0%,#ff6c3f 64%,#ff622d 65%,#ff602b 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8157',endColorstr='#ff602b',GradientType=0);
+        border-color: 0;
+        border: none;
+        font-weight: normal;
+        text-shadow: 0 0 0;
+        vertical-align: top;
+        margin-top: 1px;
+        -webkit-box-shadow: 0 0 2px 2px #DEDEDE;
+        -moz-box-shadow: 0 0 2px 2px #DEDEDE;
+        box-shadow: 0 0 2px 2px #DEDEDE;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 4;
+        transform: translate(-50%,-50%);
+    }
+    .kc_wdr_teaser__image:after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 25px 0 25px 50px;
+        border-color: transparent transparent transparent #ffffff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 5;
+        transform: translate(-50%,-50%);
+    }
+    @media (max-width: 639px) {
+        .kc_wdr_teaser__image:before {
+            width: 60px;
+            height: 60px;
+        }
+        .kc_wdr_teaser__image:after {
+            border-width: 15px 0 15px 30px;
+        }
+    }
 /* forward */
 
 #forward-form #edit-instructions p:first-child {

@@ -24,11 +24,20 @@ function pw_newsletter_menu() {
 
 function subscribe_to_newsletter(){
   drupal_add_http_header('Content-type', 'text/html; charset=utf8');
+  $http_origin = $_SERVER['HTTP_ORIGIN'];
+  if ($http_origin) {
+      drupal_add_http_header('Access-Control-Allow-Origin', $http_origin);
+  }
 
   // check if email address is submitted via get parameter
   $email = false;
   if(isset($_GET['email'])){
     $email = $_GET['email'];
+  }
+
+  $source = '';
+  if(isset($_GET['source'])){
+    $source = $_GET['source'];
   }
 
   // validate email address
@@ -65,7 +74,8 @@ function subscribe_to_newsletter(){
       $data = array(
         'e_mail' => $email,
         'status' => 'subscribed',
-        'node_path' => $internal_path
+        'node_path' => $internal_path,
+        'source' => $source
         );
 
       // get indexed data array
