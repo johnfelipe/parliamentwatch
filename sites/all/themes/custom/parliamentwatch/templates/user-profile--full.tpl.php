@@ -142,17 +142,12 @@
           <?php endif; ?>
           <?php if ($user_profile['field_user_list']): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_list']['#title']; ?></dt>
-            <dd class="dl__dd"><?php print $user_profile['field_user_list'][0]['#markup']; ?></dd>
-          <?php endif; ?>
-          <?php if ($user_profile['field_user_list_position']): ?>
-            <dt class="dl__dt"><?php print $user_profile['field_user_list_position']['#title']; ?></dt>
-            <dd class="dl__dd"><?php print $user_profile['field_user_list_position'][0]['#markup']; ?></dd>
+            <dd class="dl__dd"><?php print $user_profile['field_user_list'][0]['#markup']; ?><?php if ($user_profile['field_user_list_position']): ?>, Platz <?php print $user_profile['field_user_list_position'][0]['#markup']; ?><?php endif; ?></dd>
           <?php endif; ?>
           <?php if ($user_profile['field_user_parliament']): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_parliament']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_parliament'][0]['#markup']; ?></dd>
           <?php endif; ?>
-
           <?php if ($user_profile['field_user_election_result']): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_election_result']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_election_result'][0]['#markup']; ?></dd>
@@ -417,5 +412,5 @@
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <pre>
-  <?php print_r($user_profile['field_user_constituency']); ?>
+  <?php //print_r($user_profile); ?>
 </pre>
