@@ -67,6 +67,9 @@
     @include breakpoint($breakpoint-m-min) {
       width: 40px;
     }
+    svg {
+      height: 40px;
+    }
   }
   .party-indicator {
     font-size: .9em;
