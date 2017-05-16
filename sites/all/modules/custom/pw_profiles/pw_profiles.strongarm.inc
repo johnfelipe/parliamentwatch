@@ -178,22 +178,22 @@ function pw_profiles_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'ckeditor' => array(
-          'weight' => '12',
+          'weight' => '13',
         ),
         'piwik' => array(
-          'weight' => '16',
+          'weight' => '17',
         ),
         'redirect' => array(
-          'weight' => '15',
+          'weight' => '16',
         ),
         'account' => array(
           'weight' => '5',
         ),
         'timezone' => array(
-          'weight' => '14',
+          'weight' => '15',
         ),
         'locale' => array(
-          'weight' => '13',
+          'weight' => '14',
         ),
         'overlay_control' => array(
           'weight' => '0',
@@ -202,7 +202,7 @@ function pw_profiles_strongarm() {
           'weight' => '7',
         ),
         'xmlsitemap' => array(
-          'weight' => '18',
+          'weight' => '19',
         ),
         'masquerade' => array(
           'weight' => '17',

@@ -243,11 +243,6 @@ function pw_profiles_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'user';
   $ds_fieldsetting->view_mode = 'user_candidate';
   $ds_fieldsetting->settings = array(
-    'wdr_kandidatencheck_video' => array(
-      'weight' => '3',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'pw_kandidatencheck' => array(
       'weight' => '2',
       'label' => 'hidden',
@@ -347,6 +342,11 @@ function pw_profiles_ds_field_settings_info() {
           'ow-def-at' => FALSE,
         ),
       ),
+    ),
+    'wdr_kandidatencheck_video' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
     ),
     'user_revision_switch' => array(
       'weight' => '4',
@@ -685,11 +685,6 @@ function pw_profiles_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'user';
   $ds_fieldsetting->view_mode = 'user_premium';
   $ds_fieldsetting->settings = array(
-    'wdr_kandidatencheck_video' => array(
-      'weight' => '9',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'pw_kandidatencheck' => array(
       'weight' => '8',
       'label' => 'hidden',
@@ -885,6 +880,11 @@ function pw_profiles_ds_field_settings_info() {
           'ow-def-at' => TRUE,
         ),
       ),
+    ),
+    'wdr_kandidatencheck_video' => array(
+      'weight' => '9',
+      'label' => 'hidden',
+      'format' => 'default',
     ),
     'user_revision_switch' => array(
       'weight' => '10',

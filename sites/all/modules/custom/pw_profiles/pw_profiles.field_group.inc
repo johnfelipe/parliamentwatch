@@ -254,6 +254,7 @@ function pw_profiles_field_group_info() {
       7 => 'timezone',
       8 => 'xmlsitemap',
       9 => 'locale',
+      10 => 'field_user_data_url',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
