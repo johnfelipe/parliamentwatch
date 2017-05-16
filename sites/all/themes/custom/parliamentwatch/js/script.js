@@ -52,6 +52,34 @@ function mainNavigation() {
         $(this).toggleClass('lines-button-close');
         $('[data-sidebar-container]').toggleClass('sidebar-open');
     });
+
+    /* 2nd-Navigation level with optional swiper integration */
+    var secondlevel = $('.header__bottom nav');
+    secondlevel.append('<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>');
+
+    var mySwiper = new Swiper('.header__bottom nav', {
+        slideClass: 'nav__item',
+        wrapperClass: 'nav',
+        speed: 400,
+        slidesPerView: 'auto',
+        nextButton: secondlevel.find('.swiper-button-next'),
+        prevButton: secondlevel.find('.swiper-button-prev'),
+        onInit: function(swiper){
+            var subnavOffset = $('.header__subnav__indicator').outerWidth();
+            var subnavOffsetValue = subnavOffset;
+            secondlevel.css('padding-left', subnavOffsetValue + 'px');
+            secondlevel.css('padding-right', '30px');
+            swiper.update();
+        }
+    });
+}
+
+function resizeMainNavigation() {
+    var secondlevel = $('.header__bottom nav');
+    var subnavOffset = $('.header__subnav__indicator').outerWidth();
+    var subnavOffsetValue = subnavOffset;
+    secondlevel.css('padding-left', subnavOffsetValue + 'px');
+    secondlevel.css('padding-right', '30px');
 }
 
 function dropdown() {
@@ -293,6 +321,7 @@ $(function () {
 
     var windowResize = debounce(function () {
         contentOffset();
+        resizeMainNavigation()
     }, 150);
 
     // Event-Listener
