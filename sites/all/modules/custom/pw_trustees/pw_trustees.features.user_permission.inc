@@ -37,15 +37,6 @@ function pw_trustees_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: ds_switch trustee.
-  $permissions['ds_switch trustee'] = array(
-    'name' => 'ds_switch trustee',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'ds_extras',
-  );
-
   // Exported permission: edit any trustee content.
   $permissions['edit any trustee content'] = array(
     'name' => 'edit any trustee content',

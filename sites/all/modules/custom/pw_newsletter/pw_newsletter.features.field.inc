@@ -222,7 +222,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'display' => array(
         'default' => array(
           'label' => 'inline',
-          'module' => 'ds',
+          'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
             'linked_field' => array(
@@ -239,12 +239,12 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             'taxonomy_term_link' => 1,
             'taxonomy_term_separator' => ', ',
           ),
-          'type' => 'ds_taxonomy_separator',
+          'type' => 'taxonomy_term_reference_link',
           'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'inline',
-          'module' => 'ds',
+          'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
             'linked_field' => array(
@@ -261,7 +261,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             'taxonomy_term_link' => 1,
             'taxonomy_term_separator' => ', ',
           ),
-          'type' => 'ds_taxonomy_separator',
+          'type' => 'taxonomy_term_reference_link',
           'weight' => '4',
         ),
       ),

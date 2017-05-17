@@ -55,15 +55,6 @@ function pw_blog_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: ds_switch blogpost.
-  $permissions['ds_switch blogpost'] = array(
-    'name' => 'ds_switch blogpost',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'ds_extras',
-  );
-
   // Exported permission: edit any blogpost content.
   $permissions['edit any blogpost content'] = array(
     'name' => 'edit any blogpost content',

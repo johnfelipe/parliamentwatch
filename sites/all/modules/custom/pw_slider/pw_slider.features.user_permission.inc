@@ -37,15 +37,6 @@ function pw_slider_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: ds_switch pw_slider.
-  $permissions['ds_switch pw_slider'] = array(
-    'name' => 'ds_switch pw_slider',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'ds_extras',
-  );
-
   // Exported permission: edit any pw_slider content.
   $permissions['edit any pw_slider content'] = array(
     'name' => 'edit any pw_slider content',

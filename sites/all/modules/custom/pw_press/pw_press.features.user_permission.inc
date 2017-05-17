@@ -88,24 +88,6 @@ function pw_press_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: ds_switch press_article.
-  $permissions['ds_switch press_article'] = array(
-    'name' => 'ds_switch press_article',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'ds_extras',
-  );
-
-  // Exported permission: ds_switch press_release.
-  $permissions['ds_switch press_release'] = array(
-    'name' => 'ds_switch press_release',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'ds_extras',
-  );
-
   // Exported permission: edit any press_article content.
   $permissions['edit any press_article content'] = array(
     'name' => 'edit any press_article content',

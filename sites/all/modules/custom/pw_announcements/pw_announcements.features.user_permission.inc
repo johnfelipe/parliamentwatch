@@ -31,13 +31,6 @@ function pw_announcements_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: ds_switch announcement.
-  $permissions['ds_switch announcement'] = array(
-    'name' => 'ds_switch announcement',
-    'roles' => array(),
-    'module' => 'ds_extras',
-  );
-
   // Exported permission: edit any announcement content.
   $permissions['edit any announcement content'] = array(
     'name' => 'edit any announcement content',

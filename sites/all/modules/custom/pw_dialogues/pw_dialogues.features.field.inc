@@ -2846,7 +2846,7 @@ $display_output = rtrim($display_output);',
             'thousand_separator' => ' ',
           ),
           'type' => 'number_integer',
-          'weight' => '12',
+          'weight' => 12,
         ),
         'full' => array(
           'label' => 'above',
