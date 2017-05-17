@@ -34,6 +34,10 @@ function pw_parser_edit_menu() {
 
 /**
  * Form constructor for the user sidejobs edit form.
+ *
+ * @see pw_parser_edit_sidejobs_add()
+ * @see pw_parser_edit_sidejobs_delete()
+ * @see pw_parser_edit_sidejobs_replace()
  */
 function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
   global $user;
@@ -63,6 +67,22 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
     'css' => array(drupal_get_path('module', 'pw_parser_edit') . '/pw_parser_edit.css'),
   );
   $form['#parents'] = array();
+
+  // Basic node information.
+  // These elements are just values so they are not even sent to the client.
+  foreach (array('nid', 'vid', 'uid', 'created', 'type', 'language') as $key) {
+    $form[$key] = array(
+      '#type' => 'value',
+      '#value' => isset($node->$key) ? $node->$key : NULL,
+    );
+  }
+
+  // Changed must be sent to the client, for later overwrite error checking.
+  $form['changed'] = array(
+    '#type' => 'hidden',
+    '#default_value' => isset($node->changed) ? $node->changed : NULL,
+  );
+
   // @todo D8: Remove. Modules should access the node using $form_state['node'].
   $form['#node'] = $node;
 
@@ -78,15 +98,17 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
   $form += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
   unset($form['field_politician']);
 
-  if(isset($form_state['input']['edit']['address-organisation_name'])){
+  if (isset($form_state['input']['edit']['address-organisation_name'])) {
     $form['field_sidejob_address']['und'][0]['#address']['organisation_name'] = $form_state['input']['edit']['address-organisation_name'];
   }
-  if(isset($form_state['input']['edit']['address-locality'])){
+  if (isset($form_state['input']['edit']['address-locality'])) {
     $form['field_sidejob_address']['und'][0]['#address']['locality'] = $form_state['input']['edit']['address-locality'];
   }
 
   $form['submit'] = array(
+    '#submit' => array('pw_parser_edit_sidejobs_add_submit'),
     '#type' => 'submit',
+    '#validate' => array('pw_parser_edit_sidejobs_add_validate'),
     '#value' => t('Save'),
     '#weight' => 100,
   );
@@ -129,7 +151,73 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
 }
 
 /**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ *
+ * @see pw_parser_edit_sidejobs_add_submit()
+ */
+function pw_parser_edit_sidejobs_add_validate($form, &$form_state) {
+  module_load_include('inc', 'node', 'node.pages');
+  node_form_validate($form, $form_state);
+}
+
+/**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ *
+ * @see pw_parser_edit_sidejobs_add_validate()
+ */
+function pw_parser_edit_sidejobs_add_submit($form, &$form_state) {
+  module_load_include('inc', 'node', 'node.pages');
+  node_form_submit($form, $form_state);
+  $form_state['redirect'] = current_path();
+}
+
+/**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ */
+function pw_parser_edit_sidejobs_delete($form, &$form_state) {
+  $destination = array('destination' => current_path());
+  $nid = substr(strrchr($form_state['triggering_element']['#name'], '-'), 1);
+  $form_state['redirect'] = array("node/$nid/delete", array('query' => $destination));
+}
+
+/**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ */
+function pw_parser_edit_sidejobs_replace($form, &$form_state) {
+  module_load_include('inc', 'node', 'node.pages');
+
+  $nid = substr(strrchr($form_state['triggering_element']['#name'], '-'), 1);
+  $form_state['node'] = node_load($nid);
+
+  $node = node_form_submit_build_node($form, $form_state);
+  node_save($node);
+
+  $node_link = l(t('view'), 'node/' . $node->nid);
+  $watchdog_args = array('@type' => $node->type, '%title' => $node->title);
+  $t_args = array('@type' => node_type_get_name($node), '%title' => $node->title);
+
+  watchdog('content', '@type: updated %title.', $watchdog_args, WATCHDOG_NOTICE, $node_link);
+  drupal_set_message(t('@type %title has been updated.', $t_args));
+
+  if ($node->nid) {
+    $form_state['values']['nid'] = $node->nid;
+    $form_state['nid'] = $node->nid;
+    $form_state['redirect'] = array(current_path());
+  }
+  else {
+    // In the unlikely case something went wrong on save, the node will be
+    // rebuilt and node form redisplayed the same way as in preview.
+    drupal_set_message(t('The post could not be saved.'), 'error');
+    $form_state['rebuild'] = TRUE;
+  }
+  // Clear the page and block caches.
+  cache_clear_all();
+}
+
+/**
  * Form constructor for the user field edit form.
+ *
+ * @see pw_parser_edit_field_form_submit().
  */
 function pw_parser_edit_field_form($form, &$form_state, $account, $field_name) {
   // Include user.pages.inc for user profile form handlers.
@@ -186,58 +274,9 @@ function pw_parser_edit_field_form($form, &$form_state, $account, $field_name) {
 
 /**
  * Form submission handler for pw_parser_edit_field_form().
- *
- * @see pw_parser_edit_field_form()
  */
 function pw_parser_edit_field_form_submit($form, &$form_state) {
   $form_state['redirect'] = entity_uri('user', $form_state['user']);
-}
-
-/**
- * Form submission handler for pw_parser_edit_sidejobs_form().
- *
- * @see pw_parser_edit_sidejobs_form()
- */
-function pw_parser_edit_sidejobs_delete($form, &$form_state) {
-  $destination = array('destination' => current_path());
-  $nid = substr(strrchr($form_state['triggering_element']['#name'], '-'), 1);
-  $form_state['redirect'] = array("node/$nid/delete", array('query' => $destination));
-}
-
-/**
- * Form submission handler for pw_parser_edit_sidejobs_form().
- *
- * @see pw_parser_edit_sidejobs_form()
- */
-function pw_parser_edit_sidejobs_replace($form, &$form_state) {
-  module_load_include('inc', 'node', 'node.pages');
-
-  $nid = substr(strrchr($form_state['triggering_element']['#name'], '-'), 1);
-  $form_state['node'] = node_load($nid);
-
-  $node = node_form_submit_build_node($form, $form_state);
-  node_save($node);
-
-  $node_link = l(t('view'), 'node/' . $node->nid);
-  $watchdog_args = array('@type' => $node->type, '%title' => $node->title);
-  $t_args = array('@type' => node_type_get_name($node), '%title' => $node->title);
-
-  watchdog('content', '@type: updated %title.', $watchdog_args, WATCHDOG_NOTICE, $node_link);
-  drupal_set_message(t('@type %title has been updated.', $t_args));
-
-  if ($node->nid) {
-    $form_state['values']['nid'] = $node->nid;
-    $form_state['nid'] = $node->nid;
-    $form_state['redirect'] = array(current_path());
-  }
-  else {
-    // In the unlikely case something went wrong on save, the node will be
-    // rebuilt and node form redisplayed the same way as in preview.
-    drupal_set_message(t('The post could not be saved.'), 'error');
-    $form_state['rebuild'] = TRUE;
-  }
-  // Clear the page and block caches.
-  cache_clear_all();
 }
 
 /**
