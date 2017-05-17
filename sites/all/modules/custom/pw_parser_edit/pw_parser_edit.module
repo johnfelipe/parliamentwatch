@@ -44,7 +44,7 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
     'type' => 'sidejob',
     'language' => LANGUAGE_NONE,
     'field_politician' => array(
-      LANGUAG_NONE => array(0 => array('target_id' => $account->uid)),
+      LANGUAGE_NONE => array(0 => array('target_id' => $account->uid)),
     ),
   );
 
