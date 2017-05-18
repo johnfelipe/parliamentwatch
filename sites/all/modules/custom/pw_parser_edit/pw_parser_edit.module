@@ -40,6 +40,11 @@ function pw_parser_edit_menu() {
  * @see pw_parser_edit_sidejobs_replace()
  */
 function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
+  $http_origin = $_SERVER['HTTP_ORIGIN'];
+  if ($http_origin) {
+      drupal_add_http_header('Access-Control-Allow-Origin', $http_origin);
+  }
+
   global $user;
 
   $node = (object) array(
@@ -97,12 +102,15 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
 
   $form += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
   unset($form['field_politician']);
-
-  if (isset($form_state['input']['edit']['address-organisation_name'])) {
-    $form['field_sidejob_address']['und'][0]['#address']['organisation_name'] = $form_state['input']['edit']['address-organisation_name'];
-  }
   if (isset($form_state['input']['edit']['address-locality'])) {
     $form['field_sidejob_address']['und'][0]['#address']['locality'] = $form_state['input']['edit']['address-locality'];
+  }
+
+  if (isset($form_state['input']['edit']['job-address-organisation_name'])) {
+    $form['field_sidejob_job_address']['und'][0]['#address']['organisation_name'] = $form_state['input']['edit']['job-address-organisation_name'];
+  }
+  if (isset($form_state['input']['edit']['job-address-locality'])) {
+    $form['field_sidejob_job_address']['und'][0]['#address']['locality'] = $form_state['input']['edit']['job-address-locality'];
   }
 
   $form['submit'] = array(
