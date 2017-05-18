@@ -49,3 +49,40 @@
     }
   }
 }
+
+
+/* Messages */
+
+.messages {
+  @include box($brightGray);
+  @include padding($space $space $space ($space-large * 2));
+  margin-bottom: $space-large;
+  position: relative;
+  &:before {
+    content: '';
+    font-family: 'awfont';
+    font-size: 1em;
+    padding: 0;
+    position: absolute;
+    left: $space-large-mobile;
+    top: $space;
+  }
+}
+.messages--status {
+  background-color: $success;
+  &:before {
+    content: '\e849';
+  }
+}
+.messages--error {
+  background-color: $error;
+  &:before {
+    content: '\e823';
+  }
+}
+.messages--warning {
+  background-color: $warning;
+  &:before {
+    content: '\e829';
+  }
+}

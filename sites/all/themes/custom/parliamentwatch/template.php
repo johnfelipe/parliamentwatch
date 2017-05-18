@@ -349,7 +349,6 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
 /**
  * Overrides theme_menu_local_tasks() for local task tab-navigation.
  */
-
 function parliamentwatch_menu_local_tasks(&$variables) {
   $output = '';
 
@@ -365,6 +364,37 @@ function parliamentwatch_menu_local_tasks(&$variables) {
     $variables['secondary']['#prefix'] .= '<ul class="nav nav--tab secondary">';
     $variables['secondary']['#suffix'] = '</ul>';
     $output .= drupal_render($variables['secondary']);
+  }
+  return $output;
+}
+
+/**
+ * Overrides theme_disable_messages_status_messages() for local task tab-navigation.
+ */
+function parliamentwatch_disable_messages_status_messages($vars) {
+  $messages = $vars['messages'];
+  $output = '';
+  $status_heading = array(
+    'status' => t('Status message'),
+    'error' => t('Error message'),
+    'warning' => t('Warning message'),
+  );
+  foreach ($messages as $type => $arr_messages) {
+    $output .= "<div class='container'><div class=\"messages messages--$type\">\n";
+    if (!empty($status_heading[$type])) {
+      $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
+    }
+    if (count($arr_messages) > 1) {
+      $output .= " <ul>\n";
+      foreach ($arr_messages as $message) {
+        $output .= '  <li>' . $message . "</li>\n";
+      }
+      $output .= " </ul>\n";
+    }
+    else {
+      $output .= array_shift($arr_messages);
+    }
+    $output .= "</div></div>\n";
   }
   return $output;
 }
