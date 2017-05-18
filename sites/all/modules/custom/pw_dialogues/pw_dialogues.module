@@ -57,6 +57,18 @@ function pw_dialogues_theme() {
 }
 
 /**
+ * Implements hook_field_extra_fields().
+ */
+function pw_dialogues_field_extra_fields() {
+  $extra['user']['user']['display']['dialogues'] = [
+    'label' => t('Questions and answers'),
+    'description' => t(''),
+    'weight' => '100',
+  ];
+  return $extra;
+}
+
+/**
  * Implements hook_block_info().
  */
 function pw_dialogues_block_info() {
@@ -227,6 +239,29 @@ function pw_dialogues_cron() {
         // save last import date
         variable_set('pw_dialogues_importer_last_import', REQUEST_TIME);
       }
+    }
+  }
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function pw_dialogues_user_view($account, $view_mode, $langcode) {
+  $extra = field_extra_fields_get_display('user', 'user', $view_mode);
+
+  if (isset($extra['dialogues'])) {
+    $q = new EntityFieldQuery();
+    $q->entityCondition('entity_type', 'node');
+    $q->entityCondition('bundle', 'dialogue');
+    $q->propertyCondition('status', NODE_PUBLISHED);
+    $q->fieldCondition('field_dialogue_recipient', 'target_id', $account->uid);
+    $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
+    $q->fieldCondition('field_dialogue_before_election', 'value', _pw_user_has_role($account, 'Candidate'));
+    $q->range(0, 8);
+    $result = $q->execute();
+
+    if ($result['node']) {
+      $account->content['dialogues'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
     }
   }
 }
