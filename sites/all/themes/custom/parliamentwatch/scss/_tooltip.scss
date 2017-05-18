@@ -7,6 +7,9 @@
   &.icon {
     color: $gray;
   }
+  &:hover .tooltip {
+    opacity: 1;
+  }
 }
 .tooltip {
   position: absolute;
@@ -25,8 +28,4 @@
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
   @include transform(translate(-50%,0));
   @include transition(opacity 300ms ease 500ms);
-}
-
-:hover .tooltip {
-  opacity: 1;
 }

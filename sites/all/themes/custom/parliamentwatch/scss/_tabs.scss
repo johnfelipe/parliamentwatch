@@ -35,13 +35,14 @@
   h2 {
     font-family: $font-sans-serif;
     font-size: 1.6em;
+    margin: 0;
     @include breakpoint($breakpoint-m-min) {
       font-size: 2em;
     }
   }
 }
 .tabs__content__title.option-title {
-  * {
+  > * {
     display: none;
     @include breakpoint($breakpoint-m-min) {
       display: block;

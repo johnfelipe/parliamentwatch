@@ -219,14 +219,17 @@
   }
   .tabs__content {
     @include padding($space-small null);
-    @include breakpoint($breakpoint-m-min) {
+    @include breakpoint($breakpoint-s-min) {
       @include padding($space-large null);
+    }
+    @include breakpoint($breakpoint-l-min) {
+      @include padding(($space-large * 2) null);
     }
     /* Exceptions for first Q&A-Tab */
     &#fragen-und-antworten {
       background: $orangeBG;
       color: $white;
-      h2 { color: $white; }
+      h2, h2 a { color: $white; }
       .option-title {
         .select2-container--default .select2-selection--multiple { border-color: $orangeBG; }
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -247,14 +250,18 @@
     }
     .tab-qa-stats {
       clear: both;
-      padding: $space 0;
-      border-top: 1px solid $brightOrange;
+      padding-top: $space-large;
+      border-top: 1px solid rgba(255,255,255,.4);
       @include grid-container();
       .hstats__item {
         margin-bottom: $space;
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
       .hstats__item__display {
         width: 45px;
+        height: 45px;
       }
       .hstats__item__label {
         color: $white;
@@ -270,8 +277,9 @@
       }
     }
     .tab-qa-stats__col {
-      @include grid-column(12);
+      margin-bottom: $space;
       @include breakpoint($breakpoint-xs-min) {
+        margin-bottom: 0;
         @include grid-column(6);
       }
       @include breakpoint($breakpoint-m-min) {
@@ -282,14 +290,20 @@
       }
     }
     .tab-qa-stats__col--large {
-      @include grid-column(6);
+      margin-bottom: $space;
+      @include breakpoint($breakpoint-xs-min) {
+        margin-bottom: 0;
+        @include grid-column(6);
+      }
+      @include breakpoint($breakpoint-m-min) {
+        padding-left: 6%;
+      }
     }
-
     .swiper-container--tile {
       margin-bottom: $space;
       & + .btn {
         float: right;
-        margin-bottom: $space-large;
+        margin-bottom: $space-large * 2;
       }
     }
     &.tabs__content--active {

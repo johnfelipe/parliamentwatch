@@ -132,6 +132,7 @@ function tooltip() {
 
 function tabs() {
     $('a[data-tab-content]').on( "click", function(event) {
+
         event.preventDefault();
         event.stopPropagation();
 
@@ -152,13 +153,15 @@ function tabs() {
         $('#' + tabContent).addClass('tabs__content--active');
 
         swiperTile();
+
+        return false;
     });
 
     // Set initial tab by checking url for hash
     if(history.pushState) {
         var hashValue = window.location.hash;
         var hashValueClean = hashValue.substring(1);
-        $('a[data-tab-content=' + hashValueClean + ']').trigger("click");
+        $('.nav__item a[data-tab-content=' + hashValueClean + ']').trigger("click");
     }
     if (history && history.pushState) {
         $(window).on('popstate', function(event) {
@@ -171,7 +174,6 @@ function tabs() {
             // Set tab-content classes
             $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
             $('#' + hashValueClean).addClass('tabs__content--active');
-
         });
     }
 }
@@ -247,6 +249,66 @@ function viewDeputyDetail() {
 }
 
 
+/*
+ * D3: Bars vertical
+ * */
+
+function d3BarsVertical(element) {
+    var wrapper = element;
+    var width = 600;
+    var height = wrapper.dataset.height;
+    var data = JSON.parse(wrapper.getAttribute('data-data'));
+    var colours = {
+        fill: '#' + wrapper.dataset.fillColour,
+        stroke: '#' + wrapper.dataset.strokeColour
+    }
+    // set the ranges
+    var y = d3.scaleLinear().range([height, 0]);
+    var x = d3.scaleBand().rangeRound([0, width], .05);
+
+    // setup SVG wrapper
+
+    var svg = d3.select(wrapper)
+        .append("svg:svg")
+        .attr("class", "chart")
+        .attr('width', width)
+        .attr('height', height)
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    // load the data
+    data.forEach(function(d) {
+        d.name = d.name;
+        d.value = +d.value;
+    });
+
+    // scale the range of the data
+    x.domain(data.map(function(d) { return d.name; }));
+    y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+    // ADD Group container
+    var g = svg.append('g');
+
+    // ADD Bars
+    g.selectAll("bar")
+        .data(data)
+      .enter().append("rect")
+        .attr("class", "bar")
+        .attr('fill', colours.fill)
+        .attr("x", function(d) { return x(d.name); })
+        .attr("width", x.bandwidth() * .5)
+        .attr("y", function(d) { return y(d.value); })
+        .attr("height", function(d) { return height - y(d.value); })
+        .on("mouseover", function(d) {
+            var tooltip = $(this).parents('.d3').find('.d3__tooltip');
+            tooltip.css("opacity", 1);
+            tooltip.html(d.name).css("left", (d3.event.offsetX) + "px").css("bottom", height - y(d.value) + "px");
+        })
+        .on("mouseout", function(d) {
+            var tooltip = $(this).parents('.d3').find('.d3__tooltip');
+            tooltip.css("opacity", 0);
+        });
+}
 
 /*
  * D3: Radial Gauge
@@ -347,7 +409,6 @@ $(function () {
     tabs();
     select2init();
     swiperTile();
-
     viewDeputyDetail();
 
     // Init global matchHeight-plugin class
@@ -363,12 +424,17 @@ $(function () {
         d3RadialGauge(this);
         $(this)
     });
+    $('[data-d3-bars-vert]').each(function( index ) {
+        d3BarsVertical(this);
+        $(this)
+    });
 
     // Init functions on window resize
 
     var windowResize = debounce(function () {
         contentOffset();
-        resizeMainNavigation()
+        resizeMainNavigation();
+        viewDeputyDetail();
     }, 150);
 
     // Event-Listener
