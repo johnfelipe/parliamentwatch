@@ -146,6 +146,22 @@ function pw_profiles_user_presave(&$edit, $account, $category) {
 }
 
 /**
+ * Implements hook_user_load().
+ */
+function pw_profiles_user_load($users) {
+  $vids = array_map(function ($account) { return $account->vid; }, $users);
+  $q = db_select('user_archive_cache', 'uac')
+    ->fields('uac', ['uid', 'number_of_questions', 'number_of_answers'])
+    ->condition('vid', $vids, 'IN');
+
+  foreach ($q->execute()->fetchAll() as $row) {
+    $users[$row->uid]->number_of_questions = $row->number_of_questions;
+    $users[$row->uid]->number_of_answers = $row->number_of_answers;
+  }
+
+}
+
+/**
  *  Implements hook_user_update().
  */
 function pw_profiles_user_update(&$edit, $account, $category) {
