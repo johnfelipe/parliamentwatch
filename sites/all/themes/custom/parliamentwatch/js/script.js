@@ -241,7 +241,7 @@ function swiperTile() {
 function viewDeputyDetail() {
     windowWidth = window.innerWidth;
 
-    if (windowWidth >= breakpointMMin) {
+    if (windowWidth >= breakpointSMin) {
         $('.deputy__intro__sidebar header').prependTo('.deputy__intro__content')
     } else {
         $('.deputy__intro__content header').prependTo('.deputy__intro__sidebar')

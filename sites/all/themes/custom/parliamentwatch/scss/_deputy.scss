@@ -218,13 +218,7 @@
     margin-bottom: -1px;
   }
   .tabs__content {
-    @include padding($space-small null);
-    @include breakpoint($breakpoint-s-min) {
-      @include padding($space-large null);
-    }
-    @include breakpoint($breakpoint-l-min) {
-      @include padding(($space-large * 2) null);
-    }
+
     /* Exceptions for first Q&A-Tab */
     &#fragen-und-antworten {
       background: $orangeBG;
