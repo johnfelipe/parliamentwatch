@@ -26,6 +26,7 @@
  *   - $questions: The number of questions the user has received.
  *   - $answers: The number of questions the user has answered.
  *   - $answer_ratio: The percentage of answered questions.
+ *   - $questions_and_answers: The questions and answers section.
  *
  * @see user-profile-category.tpl.php
  *   Where the html is handled for the group.
@@ -64,7 +65,7 @@
             <div class="hstats__item__display mh-item-nr" data-mh="hstats">
               <span class="d3 d3--gauge"
                     data-d3-gauge
-                    data-percentage="30"
+                    data-percentage="<?php print $answer_ratio ?>"
                     data-track-width="10"
                     data-track-colour="ccc"
                     data-fill-colour="f46b3b"
@@ -76,9 +77,9 @@
             </div>
             <div class="hstats__item__label mh-item-nr" data-mh="hstats">
               <div class="hstats__item__label__value">
-                <?php print $user_profile['field_user_answers_give']['#items'][0]['value']; ?>&thinsp;/&thinsp;<?php print $user_profile['field_user_questions_get']['#items'][0]['value']; ?>
+                <?php print $answers; ?>&thinsp;/&thinsp;<?php print $questions; ?>
               </div>
-              <?php print format_plural($user_profile['field_user_questions_get']['#items'][0]['value'], t('Answered question'), t('Answered questions')) ?>
+              <?php print format_plural($questions, t('Answered question'), t('Answered questions')) ?>
               <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-answered-questions') ?>"></i>
             </div>
           </div>
