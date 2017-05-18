@@ -232,47 +232,6 @@ function pw_dialogues_cron() {
 }
 
 /**
- * starts feeds import
- */
-function pw_dialogues_do_import_questions($source) {
-
-  // Import dialogues (questions).
-  $dialogue_feed = feeds_source('dialogue_importer');
-  $dialogue_feed->addConfig(array(
-    'FeedsHTTPFetcher' => array(
-      'source' => $source,
-    ),
-  ));
-  while (FEEDS_BATCH_COMPLETE != $dialogue_feed->import()) {
-    ;
-  }
-
-  // add watchdog message
-  watchdog('dialogue_importer', 'questions imported from ' . $source);
-
-  return TRUE;
-}
-
-function pw_dialogues_do_import_answers($source) {
-
-  // Import messages (answers).
-  $message_feed = feeds_source('dialogue_message_importer');
-  $message_feed->addConfig(array(
-    'FeedsHTTPFetcher' => array(
-      'source' => $source,
-    ),
-  ));
-  while (FEEDS_BATCH_COMPLETE != $message_feed->import()) {
-    ;
-  }
-
-  // add watchdog message
-  watchdog('dialogue_message_importer', 'answers imported from ' . $source);
-
-  return TRUE;
-}
-
-/**
  * Implements hook_entity_presave().
  *
  * Modifies data on dialogue save (or import via api).
@@ -504,4 +463,43 @@ function pw_dialogues_facetapi_pretty_paths_base_path_provider() {
   // Allow other modules to alter the base path provider definitions.
   drupal_alter('facetapi_pretty_paths_base_path_provider', $base_path_providers);
   return $base_path_providers;
+}
+
+/**
+ * Starts feeds import.
+ */
+function pw_dialogues_do_import_questions($source) {
+
+  // Import dialogues (questions).
+  $dialogue_feed = feeds_source('dialogue_importer');
+  $dialogue_feed->addConfig(array(
+    'FeedsHTTPFetcher' => array(
+      'source' => $source,
+    ),
+  ));
+  while (FEEDS_BATCH_COMPLETE != $dialogue_feed->import()) {
+    ;
+  }
+
+  watchdog('dialogue_importer', 'questions imported from ' . $source);
+
+  return TRUE;
+}
+
+function pw_dialogues_do_import_answers($source) {
+
+  // Import messages (answers).
+  $message_feed = feeds_source('dialogue_message_importer');
+  $message_feed->addConfig(array(
+    'FeedsHTTPFetcher' => array(
+      'source' => $source,
+    ),
+  ));
+  while (FEEDS_BATCH_COMPLETE != $message_feed->import()) {
+    ;
+  }
+
+  watchdog('dialogue_message_importer', 'answers imported from ' . $source);
+
+  return TRUE;
 }
