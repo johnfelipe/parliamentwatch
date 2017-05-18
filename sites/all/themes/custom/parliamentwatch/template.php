@@ -100,15 +100,19 @@ function parliamentwatch_preprocess_menu_block_wrapper(&$variables) {
  * Implements hook_preprocess_node().
  */
 function parliamentwatch_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
+  $exclude_classes = [
+    'node',
+    drupal_html_class('node-' . $variables['type']),
+  ];
+  $variables['classes_array'] = array_diff($variables['classes_array'], $exclude_classes);
+  $variables['theme_hook_suggestions'][] = 'node__' . $variables['type'] . '__' . $variables['view_mode'];
+
   if ($variables['type'] == 'pw_petition') {
-    $node = $variables['node'];
-
-    // default theme suggestion
-    $variables['theme_hook_suggestions'][] = 'node__' . $node->type . '__' . $variables['view_mode'];
-
     $petition_status = field_get_items('node', $node, 'field_petition_status');
     if (!empty($petition_status) && $petition_status[0]['value'] != "open_for_signings") {
-      $variables['theme_hook_suggestions'][] = 'node__' . $node->type . '__' . $variables['view_mode'] . '__' . $petition_status[0]['value'];
+      $variables['theme_hook_suggestions'][] = 'node__' . $variables['type'] . '__' . $variables['view_mode'] . '__' . $petition_status[0]['value'];
 
       if ($petition_status[0]['value'] == "collecting_donations"){
         // Load donation form
@@ -200,13 +204,9 @@ function parliamentwatch_preprocess_node(&$variables) {
       $variables['has_image_copyright'] = TRUE;
     }
   }
-  elseif($variables['view_mode'] == 'teaser') {
-    $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->type.'__teaser';
-    $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->nid.'__teaser';
-  }
 
   // Testimonials in newsletter
-  if($variables['type'] == 'pw_testimonial' && $variables['view_mode'] == 'pw_newsletter') {
+  if ($variables['type'] == 'pw_testimonial' && $variables['view_mode'] == 'pw_newsletter') {
     $member_counter = pw_donation_membership_count();
     $member_counter = number_format($member_counter, 0, ',', '.');
     $variables['count_memberships'] = $member_counter;
