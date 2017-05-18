@@ -44,20 +44,21 @@
 
     <div class="deputy__intro">
       <div class="deputy__intro__sidebar">
-        <div class="deputy__image">
-          <?php print render($user_profile['field_user_picture']); ?>
-        </div>
-        <a href="#" class="btn btn--block">Frage stellen</a>
-        <?php print render($user_profile['field_user_picture_copyright']); ?>
-      </div>
-      <div class="deputy__intro__content">
         <header>
           <h1 class="deputy__title"><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h1>
           <div class="deputy__subtitle">
             <?php print render($user_profile['field_user_party']); ?> | Abgeordneter Bundestag
           </div>
         </header>
-
+        <figure class="deputy__image">
+          <?php print render($user_profile['field_user_picture']); ?>
+          <a href="#" class="btn btn--block">Frage stellen</a>
+          <figcaption>
+            <?php print render($user_profile['field_user_picture_copyright']); ?>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="deputy__intro__content">
         <div class="hstats">
           <div class="hstats__item hstats__item--donut-digit">
             <div class="hstats__item__display mh-item-nr" data-mh="hstats">

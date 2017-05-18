@@ -232,6 +232,21 @@ function swiperTile() {
 }
 
 
+/*
+ * View: deputy detail
+ * */
+
+function viewDeputyDetail() {
+    windowWidth = window.innerWidth;
+
+    if (windowWidth >= breakpointMMin) {
+        $('.deputy__intro__sidebar header').prependTo('.deputy__intro__content')
+    } else {
+        $('.deputy__intro__content header').prependTo('.deputy__intro__sidebar')
+    }
+}
+
+
 
 /*
  * D3: Radial Gauge
@@ -333,6 +348,7 @@ $(function () {
     select2init();
     swiperTile();
 
+    viewDeputyDetail();
 
     // Init global matchHeight-plugin class
 

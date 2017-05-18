@@ -126,9 +126,9 @@
     }
     .hstats__item--donut-digit {
       padding-bottom: $space-small;
+      width: 50%;
+      float: left;
       @include breakpoint($breakpoint-xs-min) {
-        width: 50%;
-        float: left;
       }
       @include breakpoint($breakpoint-l-min - 100) {
         padding-bottom: 0;
@@ -170,7 +170,9 @@
     }
   }
   .deputy__intro__sidebar {
+    margin-bottom: $space-large;
     @include breakpoint($breakpoint-s-min) {
+      margin-bottom: 0;
       @include grid-column(3, $neat-grid-rtl);
     }
     @include breakpoint($breakpoint-m-min) {
@@ -181,12 +183,17 @@
     }
   }
   .deputy__image {
-    padding-bottom: $space-small-mobile;
+    display: block;
     img {
       display: block;
+      margin-bottom: $space-small-mobile;
     }
     @media (max-width: $breakpoint-s-max) {
-      @include image-circle(130px, 130px);
+      img {
+        @include image-circle(130px, 130px);
+        margin: 0 auto $space auto;
+      }
+      text-align: center;
     }
   }
 
