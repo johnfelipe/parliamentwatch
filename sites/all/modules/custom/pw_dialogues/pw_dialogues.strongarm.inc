@@ -90,7 +90,7 @@ function pw_dialogues_strongarm() {
         'custom_settings' => FALSE,
       ),
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'colorbox' => array(
         'custom_settings' => FALSE,
@@ -118,6 +118,9 @@ function pw_dialogues_strongarm() {
       ),
       'pw_newsletter' => array(
         'custom_settings' => FALSE,
+      ),
+      'tile' => array(
+        'custom_settings' => TRUE,
       ),
     ),
     'extra_fields' => array(
@@ -157,6 +160,10 @@ function pw_dialogues_strongarm() {
             'weight' => '42',
             'visible' => FALSE,
           ),
+          'tile' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
         ),
         'sharethis' => array(
           'full' => array(
@@ -170,6 +177,10 @@ function pw_dialogues_strongarm() {
           'default' => array(
             'weight' => '-100',
             'visible' => TRUE,
+          ),
+          'tile' => array(
+            'weight' => '15',
+            'visible' => FALSE,
           ),
         ),
       ),
