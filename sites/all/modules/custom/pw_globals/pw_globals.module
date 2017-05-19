@@ -39,6 +39,10 @@ function pw_globals_entity_info_alter(&$entity_info) {
     'label' => t('Tile'),
     'custom settings' => FALSE,
   );
+  $entity_info['comment']['view modes']['tile'] = array(
+    'label' => t('Tile'),
+    'custom settings' => FALSE,
+  );
 }
 
 /**
