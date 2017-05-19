@@ -89,12 +89,9 @@
     <h3 class="question__question__title"><?php print render($content['body']); ?></h3>
     <p class="question__question__author">Von: <?php print render($content['field_dialogue_sender_name']); ?></p>
   </div>
-  <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-    <p class="question__answer__author">Antwort von <strong><?php print render($content['field_dialogue_recipient']); ?></strong></p>
-    <p><?php print render($content['comments']); ?></p>
-  </div>
+  <?php print render($content['answer']); ?>
   <ul class="question__links tile__links tile__links--2">
-    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen">12 <?php print t('Fragesteller') ?></a></li>
-    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+    <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('Fragesteller'); ?></a></li>
+    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('Details'); ?></a></li>
   </ul>
 </div>

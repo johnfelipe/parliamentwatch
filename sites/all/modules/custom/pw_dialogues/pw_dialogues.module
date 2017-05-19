@@ -105,19 +105,13 @@ function pw_dialogues_block_view($delta) {
  * Implements hook_node_view().
  */
 function pw_dialogues_node_view($node, $view_mode) {
-  if ($node->type != 'dialogue' || $view_mode != 'default' && $view_mode != 'full') {
+  if ($node->type != 'dialogue') {
     return;
   }
-  $node->content['comments'] = comment_node_page_additions($node);
-  if (empty($node->content['comments'])) {
-    $node->content['comments'] = array(
-      '#theme' => 'comment_wrapper__node_' . $node->type,
-      '#node' => $node,
-      'comments' => array(
-        '#theme' => 'comment_placeholder__node_' . $node->type,
-        '#node' => $node,
-      ),
-    );
+
+  if ($cids = comment_get_thread($node, COMMENT_MODE_FLAT, 1)) {
+    $comments = comment_load_multiple($cids);
+    $node->content['answer'] = comment_view_multiple($comments, $node, $view_mode);
   }
 }
 
@@ -257,7 +251,7 @@ function pw_dialogues_user_view($account, $view_mode, $langcode) {
     $q->fieldCondition('field_dialogue_recipient', 'target_id', $account->uid);
     $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
     $q->fieldCondition('field_dialogue_before_election', 'value', _pw_user_has_role($account, 'Candidate'));
-    $q->range(0, 8);
+    $q->range(0, 12);
     $result = $q->execute();
 
     if ($result['node']) {
