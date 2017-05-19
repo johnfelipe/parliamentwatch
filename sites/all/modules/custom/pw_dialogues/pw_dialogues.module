@@ -45,18 +45,6 @@ function pw_dialogues_menu() {
 }
 
 /**
- * Implements hook_theme().
- */
-function pw_dialogues_theme() {
-  return array(
-    'comment_placeholder' => array(
-      'template' => 'comment-placeholder',
-      'render element' => 'elements',
-    ),
-  );
-}
-
-/**
  * Implements hook_field_extra_fields().
  */
 function pw_dialogues_field_extra_fields() {
