@@ -178,21 +178,6 @@
       <div class="container">
         <div class="tabs__content__title option-title">
           <h2><a href="#" data-tab-content="fragen-und-antworten">Fragen & Antworten</a></h2>
-          <div class="form__item form__item--select">
-            <select name="#" id="#" class="form__item__control" multiple="multiple" data-placeholder="Tags auswählen" data-width="100%">
-              <option value="#">Tag 1</option>
-              <option value="#">Tag 2</option>
-              <option value="#">Tag 3</option>
-              <option value="#">Tag 4</option>
-              <option value="#">Tag 5</option>
-            </select>
-          </div>
-          <div class="form__item form__item--checkbox">
-            <label for="filter_show_only_answered" class="form__item__label">
-              <input name="filter_show_only_answered" id="filter_show_only_answered" class="form__item__control" type="checkbox">
-              <?php print t('Nur beantwortete anzeigen') ?>
-            </label>
-          </div>
         </div>
         <div class="tabs__content__content">
           <div class="swiper-container swiper-container--tile">
