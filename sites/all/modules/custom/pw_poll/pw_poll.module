@@ -6,10 +6,8 @@
 
 include_once 'pw_poll.features.inc';
 
-
 /**
  * Implements hook_preprocess_node().
- *
  */
 function pw_poll_preprocess_node(&$variables) {
   if ($variables['type'] == 'poll') {

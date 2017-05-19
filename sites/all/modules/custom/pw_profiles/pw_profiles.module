@@ -277,10 +277,10 @@ function pw_profiles_user_uri($user) {
 function pw_profiles_page($parliament_name, $role_name) {
 
   $filters = array(
-      'roles' => $role_name == 'candidates' ? 'candidate' : 'deputy',
-      'parliament' => $parliament_name,
-      'date' => date('Y-m-d'),
-    ) + drupal_get_query_parameters();
+    'roles' => $role_name == 'candidates' ? 'candidate' : 'deputy',
+    'parliament' => $parliament_name,
+    'date' => date('Y-m-d'),
+  ) + drupal_get_query_parameters();
 
   $users = pw_profiles_user_load_multiple($filters, 8);
 
