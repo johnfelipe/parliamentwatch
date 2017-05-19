@@ -195,7 +195,7 @@
                   <div class="hstats__item__display mh-item-nr" data-mh="qa_hstats">
                   <span class="d3 d3--gauge"
                         data-d3-gauge
-                        data-percentage="30"
+                        data-percentage="<?php print $answer_ratio ?>"
                         data-track-width="16"
                         data-track-colour="f6997a"
                         data-fill-colour="ffffff"
@@ -206,7 +206,7 @@
                   </span>
                   </div>
                   <div class="hstats__item__label mh-item-nr" data-mh="qa_hstats">
-                    84 <?php print t('of total') ?><br>89 <?php print t('questions answered') ?>
+                    <?php print t('@answers of total<br>@questions questions answered', ['@answers' => $answers, '@questions' => $questions]); ?>
                   </div>
                 </div>
 
@@ -231,7 +231,7 @@
               </div>
               <div class="tab-qa-stats__col">
                 <div class="hstats__item hstats__item--digit">
-                  <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats">16,5 h</span>
+                  <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats"><?php print $average_response_time; ?></span>
                   <span class="hstats__item__label mh-item-nr" data-mh="qa_hstats"><?php print t('average time to answer') ?></span>
                 </div>
               </div>
