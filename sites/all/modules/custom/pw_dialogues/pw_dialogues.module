@@ -460,3 +460,18 @@ function pw_dialogues_do_import_answers($source) {
 
   return TRUE;
 }
+
+/**
+ * Returns the average time in seconds it takes the given user to answer.
+ *
+ * @param objet $account
+ *   The user account.
+ */
+function pw_dialogues_average_response_time($account) {
+  $sql = ""
+    . "SELECT AVG(field_dialogue_response_time_value) "
+    . "FROM {field_data_field_dialogue_response_time} "
+    . "WHERE bundle = 'comment_node_dialogue' "
+    . "AND entity_id IN (SELECT cid FROM {comment} WHERE uid = :uid)";
+  return db_query($sql, [':uid' => $account->uid])->fetchField();
+}
