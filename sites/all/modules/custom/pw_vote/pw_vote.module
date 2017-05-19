@@ -3,13 +3,12 @@
  * @file
  * Code for the PW Vote feature.
  */
-include_once 'pw_vote.features.inc';
 
+include_once 'pw_vote.features.inc';
 
 /**
  * Implements hook_menu().
  */
-
 function pw_vote_menu() {
   $items = array();
   $items['admin/config/pw/vote'] = array(
@@ -20,6 +19,34 @@ function pw_vote_menu() {
     'file' => 'pw_vote.admin.inc',
   );
   return $items;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function pw_vote_field_extra_fields() {
+  $extra['user']['user']['display']['votes'] = [
+    'label' => t('Votes'),
+    'description' => t(''),
+    'weight' => '100',
+  ];
+  return $extra;
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function pw_vote_user_view($account, $view_mode, $langcode) {
+  $extra = field_extra_fields_get_display('user', 'user', $view_mode);
+
+  if (isset($extra['votes'])) {
+    $account->content['votes'] = node_view_multiple(pw_vote_node_load_multiple($account, 'votes'), 'list_item');
+    $account->content['votes']['pager'] = [
+      '#theme' => 'pager',
+      '#element' => 'votes',
+      '#weight' => 100,
+    ];
+  }
 }
 
 /**
