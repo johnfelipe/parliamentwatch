@@ -817,3 +817,40 @@ function pw_vote_mark_deviant_votes($nid) {
       node_save($vote_to_mark);
   }
 }
+
+/**
+ * Returns all votes for the given account in the current parliament.
+ *
+ * @param type $account
+ *   The user account (version).
+ * @param type $limit
+ *   The limit.
+ * @param type $offset
+ *   The offset
+ *
+ * @return array
+ *   Nodes of type vote.
+ */
+function pw_vote_node_load_multiple($account, $pager_element = NULL) {
+  $nodes = [];
+
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'vote');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  $q->fieldCondition('field_vote_user', 'target_id', $account->uid);
+  $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
+  $q->propertyOrderBy('created', 'DESC');
+
+  if (isset($pager_element)) {
+    $q->pager(6, $pager_element);
+  }
+
+  $result = $q->execute();
+
+  if ($result['node']) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+  }
+
+  return $nodes;
+}
