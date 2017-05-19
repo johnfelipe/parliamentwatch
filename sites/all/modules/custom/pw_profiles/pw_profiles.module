@@ -430,11 +430,6 @@ function pw_profiles_user_revision_query($filters = array()) {
   if (!empty($filters['age'])) {
     $query->join('field_revision_field_user_age', 'fua', 'fua.revision_id = ur.vid');
     $query->condition('fua.field_user_age_value', $filters['age'], '>=');
-    /*$or = db_or();
-    $or->condition('fua.field_user_age_value', $filters['age'], '>=');
-    $or->isNull('fua.field_user_age_value');
-    $or->condition('fua.field_user_age_value', '');
-    $query->condition($or);*/
   }
 
   if (!empty($filters['gender'])) {
