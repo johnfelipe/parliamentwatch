@@ -232,6 +232,13 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_comment().
+ */
+function parliamentwatch_preprocess_comment(&$variables) {
+  $variables['theme_hook_suggestions'][] = $variables['theme_hook_original'] . '__' . $variables['elements']['#view_mode'];
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function parliamentwatch_preprocess_field(&$variables) {
