@@ -700,51 +700,6 @@ function pw_vote_theme() {
   );
 }
 
-
-
-/**
- * Implements hook_preprocess_node().
- *
- * Retrieve data for teaser view.
- *
- */
-function pw_vote_preprocess_node(&$variables) {
-  if ($variables['type'] == 'vote' && $variables['view_mode'] = 'teaser') {
-
-    // wrap node
-    $w_vote = entity_metadata_wrapper('node', $variables['node']);
-
-    // set variables
-    $variables['fullname'] = trim($w_vote->field_vote_user->field_user_title->value().' '.$w_vote->field_vote_user->field_user_fname->value() . ' ' . $w_vote->field_vote_user->field_user_lname->value());
-    $variables['party'] = $w_vote->field_vote_user->field_user_party->label();
-    $variables['node_title'] = $w_vote->field_vote_node->label();
-    $variables['voting_behavior'] = $w_vote->field_vote->field_votes_label->value();
-    $variables['class_name'] = $w_vote->field_vote->label();
-    $variables['statement'] = check_markup($w_vote->body->value->value());
-    $variables['path_profile'] = drupal_get_path_alias('user/' . $w_vote->field_vote_user->uid->value());
-
-    // theme and set portrait
-    if ($w_vote->field_vote_user->field_user_picture->value()) {
-      $portrait_uri = $w_vote->field_vote_user->field_user_picture->file->value()->uri;
-    }
-    else {
-      $portrait_info = field_info_field('field_user_picture');
-      $file = file_load($portrait_info['settings']['default_image']);
-      $portrait_uri = $file->uri;
-    }
-
-    $variables['portrait'] = theme('image_style', array(
-        'path' => $portrait_uri,
-        'style_name' => 'pw_portrait_xs',
-      )
-    );
-
-    // set template name
-    $variables['theme_hook_suggestions'][] = 'node__' . $variables['node']->type . '__' . $variables['view_mode'];
-
-  }
-}
-
 /**
  * Temporary hook to alter behavior of the poll search blocks since the current Solr module
  * does not respect view filters correctly. Should be obsolete with the introduction of Search
