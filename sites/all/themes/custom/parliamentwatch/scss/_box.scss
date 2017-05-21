@@ -12,6 +12,13 @@
 }
 
 
+/* Title */
+
+.tile__title {
+  border-bottom: 1px solid $beige;
+  @include box-inset-padded();
+  padding-bottom: $space-small;
+}
 
 .tile__meta {
   margin-bottom: $space;

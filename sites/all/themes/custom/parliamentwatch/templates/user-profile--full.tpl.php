@@ -324,11 +324,22 @@
           <h2><a href="#" data-tab-content="ausschussmitgliedschaften">Ausschußmitgliedschaften</a></h2>
         </div>
         <div class="tabs__content__content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
-            incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
-          <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
-            nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
-            dignissimos, sit?</p>
+          <div class="ausschussmitgliedschaft">
+            <div class="ausschussmitgliedschaft__item tile">
+              <h3 class="tile__title">Stellvertretendes Mitglied</h3>
+              <ul class="ausschussmitgliedschaft__item__list icon-list">
+                <li class="ausschussmitgliedschaft__item__list__item"><a href="#">Auswärtiger Ausschuss</a></li>
+                <li class="ausschussmitgliedschaft__item__list__item"><a href="#">Auswärtiger Ausschuss</a></li>
+                <li class="ausschussmitgliedschaft__item__list__item"><a href="#">Auswärtiger Ausschuss</a></li>
+              </ul>
+            </div>
+            <div class="ausschussmitgliedschaft__item tile">
+              <h3 class="tile__title">Ordentliches Mitglied</h3>
+              <ul class="ausschussmitgliedschaft__item__list icon-list">
+                <li class="ausschussmitgliedschaft__item__list__item"><a href="#">Auswärtiger Ausschuss</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
