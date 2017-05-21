@@ -24,6 +24,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-minus:before {
+  content: "\f068";
+}
+.icon-circle-o:before {
+  content: "\f10c";
+}
 .icon-search:before {
   content: "\e901";
 }
@@ -204,9 +210,6 @@
 .icon-rss:before {
   content: "\e839";
 }
-.icon-search:before {
-  content: "\e83a";
-}
 .icon-share:before {
   content: "\e83b";
 }
@@ -250,7 +253,7 @@
   content: "\e848";
 }
 .icon-ok:before {
-  content: "\e849";
+  content: "\e87a";
 }
 .icon-group:before {
   content: "\e84a";
@@ -282,4 +285,3 @@
 .icon-icon-nl_registration:before {
   content: "\e853";
 }
-
