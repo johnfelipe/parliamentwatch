@@ -249,6 +249,7 @@ function viewDeputyDetail() {
 }
 
 
+
 /*
  * D3: Bars vertical
  * */
@@ -271,8 +272,6 @@ function d3BarsVertical(element) {
     var svg = d3.select(wrapper)
         .append("svg:svg")
         .attr("class", "chart")
-        .attr('width', width)
-        .attr('height', height)
         .attr('viewBox', '0 0 ' + width + ' ' + height)
         .attr('preserveAspectRatio', 'xMidYMid meet');
 
@@ -311,6 +310,59 @@ function d3BarsVertical(element) {
 }
 
 /*
+ * D3: Donut
+ * */
+function d3Donut(element) {
+    var wrapper = element;
+    var dataset = JSON.parse(wrapper.getAttribute('data-data'));
+
+    var width = 360;
+    var height = 360;
+    var radius = Math.min(width, height) / 2;
+    var donutWidth = 75;
+
+    var svg = d3.select(wrapper)
+        .append('svg')
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
+        .attr('preserveAspectRatio', 'xMidYMid meet')
+        .append('g')
+        .attr('transform', 'translate(' + (width / 2) +
+            ',' + (height / 2) + ')');
+
+
+    var arc = d3.arc()
+        .innerRadius(radius - donutWidth)
+        .outerRadius(radius);
+
+    var pie = d3.pie()
+        .value(function(d) { return d.count; })
+        .sort(null);
+
+    var path = svg.selectAll('path')
+        .data(pie(dataset))
+    .enter()
+        .append('path')
+        .attr('d', arc)
+        .attr("fill", function(d) { return d.data.color; });
+
+    // Define Labels
+
+    var labelWrapper = d3.select(wrapper)
+        .append("ul")
+        .attr('class', 'd3__label');
+
+
+    var labelItem = labelWrapper.selectAll('li')
+        .data(pie(dataset))
+        .enter()
+        .append('li')
+        .attr('class', 'd3__label__item')
+        .html(function(d) { return d.data.count + ' ' + d.data.name; })
+        .insert("span",":first-child")
+        .attr('class', 'd3__label__item__indicator')
+        .attr('style', function(d) { return 'background-color:' + d.data.color; });
+}
+/*
  * D3: Radial Gauge
  * */
 function d3RadialGauge(element) {
@@ -343,6 +395,7 @@ function d3RadialGauge(element) {
         .startAngle(0)
         .innerRadius(radius)
         .outerRadius(radius - border);
+
 
     //setup SVG wrapper
     var svg = d3.select(wrapper)
@@ -428,6 +481,11 @@ $(function () {
         d3BarsVertical(this);
         $(this)
     });
+    $('[data-d3-donut]').each(function( index ) {
+        d3Donut(this);
+        $(this)
+    });
+
 
     // Init functions on window resize
 

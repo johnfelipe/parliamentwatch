@@ -21,7 +21,6 @@
   }
 }
 .tabs__content {
-  background: $beige;
   @include breakpoint($breakpoint-m-min) {
     @include padding($space-large null);
     display: none;
@@ -53,6 +52,7 @@
       display: block;
       border-bottom: 1px solid $darkBeige;
       position: relative;
+      color: $darkGray;
       @include breakpoint($breakpoint-m-min) {
         border-bottom: 0;
         padding: 0;
@@ -83,10 +83,15 @@
   h2 {
     display: block;
   }
+  .btn {
+    @include breakpoint($breakpoint-m-min) {
+      float: right;
+    }
+  }
 }
 .tabs__content__content {
   display: none;
-  padding-bottom: $space-small;
+  padding-bottom: $space-large;
   @include breakpoint($breakpoint-m-min) {
     display: block;
     padding-bottom: 0;

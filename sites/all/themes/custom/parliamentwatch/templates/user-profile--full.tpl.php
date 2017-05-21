@@ -258,7 +258,50 @@
         </div>
         <div class="tabs__content__content">
           <?php print render($user_profile['votes']); ?>
-        </div>
+          <div class="abstimmverhalten-stats">
+            <div class="tile">
+              <div class="d3-label-wrapper">
+                <div class='d3 d3--donut'
+                     data-d3-donut
+                     data-data='[{"name":"Ja","count":63,"color":"#9fd773"},{"name":"Nein","count":24,"color":"#cc6c5b"},{"name":"Enthalten","count":8,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="abstimmverhalten-overview">
+            <div class="abstimmverhalten-overview__item tile">
+              <h3 class="abstimmverhalten-overview__item__title"><a href="#">Fortsetzung der Ausbildungsunterstützung im Irak</a></h3>
+              <span class="abstimmverhalten-overview__item__date">26.01.2017</span> <a href="#" class="tag">Verteidigung</a> <a href="#" class="tag">Auswärtiges</a>
+              <div class="abstimmverhalten-overview__item__indicator">
+                <i class="abstimmverhalten-overview__item__indicator__icon icon icon-ok"></i>
+                <span class="abstimmverhalten-overview__item__indicator__label">Mit Ja abgestimmt</span>
+              </div>
+            </div>
+            <div class="abstimmverhalten-overview__item tile">
+              <h3 class="abstimmverhalten-overview__item__title"><a href="#">Fortsetzung der Ausbildungsunterstützung im Irak</a></h3>
+              <span class="abstimmverhalten-overview__item__date">26.01.2017</span> <a href="#" class="tag">Verteidigung</a> <a href="#" class="tag">Auswärtiges</a>
+              <div class="abstimmverhalten-overview__item__indicator">
+                <i class="abstimmverhalten-overview__item__indicator__icon icon icon-close"></i>
+                <span class="abstimmverhalten-overview__item__indicator__label">Mit Nein abgestimmt</span>
+              </div>
+            </div>
+            <div class="abstimmverhalten-overview__item tile">
+              <h3 class="abstimmverhalten-overview__item__title"><a href="#">Fortsetzung der Ausbildungsunterstützung im Irak</a></h3>
+              <span class="abstimmverhalten-overview__item__date">26.01.2017</span> <a href="#" class="tag">Verteidigung</a> <a href="#" class="tag">Auswärtiges</a>
+              <div class="abstimmverhalten-overview__item__indicator">
+                <i class="abstimmverhalten-overview__item__indicator__icon icon icon-minus"></i>
+                <span class="abstimmverhalten-overview__item__indicator__label">Nicht abgestimmt</span>
+              </div>
+            </div>
+            <div class="abstimmverhalten-overview__item tile">
+              <h3 class="abstimmverhalten-overview__item__title"><a href="#">Fortsetzung der Ausbildungsunterstützung im Irak</a></h3>
+              <span class="abstimmverhalten-overview__item__date">26.01.2017</span> <a href="#" class="tag">Verteidigung</a> <a href="#" class="tag">Auswärtiges</a>
+              <div class="abstimmverhalten-overview__item__indicator">
+                <i class="abstimmverhalten-overview__item__indicator__icon icon icon-circle-o"></i>
+                <span class="abstimmverhalten-overview__item__indicator__label">Enthaltung</span>
+              </div>
+            </div>
+          </div>
       </div>
     </section>
     <section id="nebentaetigkeiten" class="tabs__content" data-tab-content="nebentaetigkeiten">

@@ -31,3 +31,37 @@
   border-bottom: 1px solid $white;
   padding-bottom: 2px;
 }
+
+
+/* D3 - Labels */
+
+.d3-label-wrapper {
+}
+.d3__label {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid $darkBeige;
+}
+.d3__label__item {
+  border-bottom: 1px solid $darkBeige;
+  margin: 0;
+  padding: $space-xsmall 0;
+  @include breakpoint($breakpoint-xs-min) {
+    padding: $space-small 0;
+  }
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+.d3__label__item__indicator {
+  width: $space-small-mobile;
+  height: $space-small-mobile;
+  display: inline-block;
+  background: $gray;
+  margin-right: $space-small-mobile;
+  margin-top: 6px;
+  position: relative;
+  top: -1px;
+  float: left;
+}

@@ -53,6 +53,12 @@
 
 .tag {
   @include tag($beige, $mediumGray);
+  padding: 3px 5px;
+  & + .tag {
+    @include breakpoint($breakpoint-s-min) {
+      margin-left: 5px;
+    }
+  }
 }
 
 

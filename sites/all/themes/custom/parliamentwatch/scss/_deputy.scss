@@ -200,7 +200,7 @@
   /* Tabs */
   .tabs {
     margin-top: $space-large;
-    border-top: 1px solid $gray;
+    border-top: 1px solid $darkBeige;
     .nav__item {
       @include breakpoint($breakpoint-l-min) {
         font-size: 1.2em;
@@ -213,13 +213,15 @@
     }
   }
   .tabs__navigation {
-    border-bottom: 1px solid $gray;
     background: $white;
     margin-bottom: -1px;
   }
   .tabs__content {
+    border-top: 1px solid $darkBeige;
+    background: $beige;
 
     /* Exceptions for first Q&A-Tab */
+
     &#fragen-und-antworten {
       background: $orangeBG;
       color: $white;
@@ -242,6 +244,7 @@
         }
       }
     }
+
     .tab-qa-stats {
       clear: both;
       padding-top: $space-large;
@@ -284,9 +287,8 @@
       }
     }
     .tab-qa-stats__col--large {
-      margin-bottom: $space;
+      margin-bottom: 0;
       @include breakpoint($breakpoint-xs-min) {
-        margin-bottom: 0;
         @include grid-column(6);
       }
       @include breakpoint($breakpoint-m-min) {
@@ -308,5 +310,192 @@
         }
       }
     }
+  }
+}
+
+
+
+/* Abstimmverhalten */
+
+$abstimmverhalten-indicator-width-mobile: 80px;
+$abstimmverhalten-indicator-width: 120px;
+$abstimmverhalten-node-width: 60px;
+$abstimmverhalten-node-item-width: 18px;
+
+.abstimmverhalten-overview {
+  @include breakpoint($breakpoint-s-min) {
+    padding-left: $abstimmverhalten-node-width;
+    position: relative;
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 1;
+      left: $abstimmverhalten-node-item-width + 1px;
+      top: $abstimmverhalten-node-item-width + 5px;
+      bottom: $abstimmverhalten-node-item-width * 4;
+      width: 4px;
+      background-color: $darkBeige;
+    }
+  }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(8, $neat-grid-rtl-no-gutter);
+  }
+}
+
+.abstimmverhalten-overview__item {
+  margin-bottom: $space;
+  padding-right: $abstimmverhalten-indicator-width-mobile + $space;
+  position: relative;
+  @include breakpoint($breakpoint-s-min) {
+    padding-right: $abstimmverhalten-indicator-width + $space;
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 1;
+      right: 100%;
+      top: $space;
+      margin-right: $abstimmverhalten-node-width - ($abstimmverhalten-node-item-width * 2);
+      width: $abstimmverhalten-node-item-width + 12px;
+      height: $abstimmverhalten-node-item-width + 12px;
+      border-radius: 50%;
+      background-color: $darkBeige;
+    }
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: $space + 4;
+      right: 100%;
+      margin-right: $abstimmverhalten-node-width - (($abstimmverhalten-node-item-width * 2) - 4px);
+      width: $abstimmverhalten-node-item-width;
+      height: $abstimmverhalten-node-item-width;
+      border-radius: 50%;
+      background-color: $gray;
+      border: 2px solid $white;
+    }
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .tag {
+    margin-top: $space-xsmall;
+    @include breakpoint($breakpoint-s-min) {
+      margin-top: 0;
+    }
+  }
+}
+.abstimmverhalten-overview__item__title {
+  @include dark-link();
+  @include text-overflow-multi();
+}
+.abstimmverhalten-overview__item__date {
+  font-family: $font-serif;
+  color: $gray;
+  display: block;
+  margin-right: $space-xsmall;
+  @include breakpoint($breakpoint-s-min) {
+    display: inline-block;
+  }
+}
+.abstimmverhalten-overview__item__indicator {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: $space 0;
+  width: $abstimmverhalten-indicator-width-mobile;
+  text-align: center;
+  border-left: 1px solid $darkBeige;
+  @include breakpoint($breakpoint-s-min) {
+    width: $abstimmverhalten-indicator-width;
+  }
+}
+.abstimmverhalten-overview__item__indicator__icon {
+  font-size: 1.2em;
+  margin-bottom: $space-xsmall;
+  display: inline-block;
+  &.icon-ok {
+    color: $success;
+  }
+  &.icon-close {
+    color: $error;
+  }
+  &.icon-minus {
+    color: $darkGray;
+
+  }
+  &.icon-circle-o {
+    color: $gray;
+  }
+}
+.abstimmverhalten-overview__item__indicator__label {
+  color: $mediumGray;
+  display: block;
+  font-size: .8em;
+}
+
+
+.abstimmverhalten-stats {
+  margin-bottom: $space-large;
+  @include grid-container();
+  @include breakpoint($breakpoint-m-min) {
+    margin-bottom: 0;
+    @include grid-column(4, $neat-grid-rtl-no-gutter);
+    padding-left: $space-large * 2;
+  }
+  .d3--donut {
+    @include grid-container();
+  }
+  .d3--donut svg {
+    width: 30%;
+    margin: 0 $space 0 0;
+    float: left;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 40%;
+      padding: $space;
+      margin: 0 $space-large 0 0;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      width: 70%;
+      float: none;
+      margin: 0 auto $space;
+      padding-bottom: $space-large;
+    }
+  }
+  .d3__label {
+    width: calc(70% - #{$space});
+    margin: 0;
+    float: left;
+    border-top: 0;
+    @include breakpoint($breakpoint-xs-min) {
+      width: calc(60% - #{$space-large});
+    }
+    @include breakpoint($breakpoint-m-min) {
+      width: auto;
+      border-top: 1px solid $darkBeige;
+      float: none;
+      padding-bottom: $space-large;
+      margin: 0 auto $space;
+    }
+  }
+  .d3__label__item {
+    &:first-child {
+    }
+  }
+}
+
+
+.ausschussmitgliedschaft {
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-collapse();
+  }
+}
+.ausschussmitgliedschaft__item {
+  margin-bottom: $space;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(6);
   }
 }
