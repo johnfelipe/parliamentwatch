@@ -178,6 +178,7 @@
       <div class="container">
         <div class="tabs__content__title option-title">
           <h2><a href="#" data-tab-content="fragen-und-antworten">Fragen & Antworten</a></h2>
+          <a href="#" class="btn btn--white btn--mobile-block">Alle Fragen in der Übersicht</a>
         </div>
         <div class="tabs__content__content">
           <div class="swiper-container swiper-container--tile">
@@ -187,7 +188,7 @@
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
           </div>
-          <a href="#" class="btn btn--white btn--mobile-block">Alle Fragen in der Übersicht</a>
+
           <div class="tab-qa-stats">
             <div class="row">
               <div class="tab-qa-stats__col">
