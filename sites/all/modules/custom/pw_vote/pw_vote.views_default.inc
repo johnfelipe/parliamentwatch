@@ -300,9 +300,6 @@ function pw_vote_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'zum Petitions-Check';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_rel'] = '';
   /* Feld: Inhalt: End Date */
   $handler->display->display_options['fields']['field_petition_end_date']['id'] = 'field_petition_end_date';
   $handler->display->display_options['fields']['field_petition_end_date']['table'] = 'field_data_field_petition_end_date';
@@ -327,9 +324,6 @@ function pw_vote_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_rel'] = '';
   /* Feld: Taxonomie-Begriff: Label */
   $handler->display->display_options['fields']['field_votes_label']['id'] = 'field_votes_label';
   $handler->display->display_options['fields']['field_votes_label']['table'] = 'field_data_field_votes_label';
@@ -572,9 +566,6 @@ return $term->tid;';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'zum Petitions-Check';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_rel'] = '';
   /* Feld: Excluded | Body Summary */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -613,9 +604,6 @@ return $term->tid;';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_rel'] = '';
   /* Feld: Taxonomie-Begriff: Label */
   $handler->display->display_options['fields']['field_votes_label']['id'] = 'field_votes_label';
   $handler->display->display_options['fields']['field_votes_label']['table'] = 'field_data_field_votes_label';

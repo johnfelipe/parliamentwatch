@@ -130,6 +130,12 @@ function pw_poll_strongarm() {
       'pw_newsletter' => array(
         'custom_settings' => FALSE,
       ),
+      'tile' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

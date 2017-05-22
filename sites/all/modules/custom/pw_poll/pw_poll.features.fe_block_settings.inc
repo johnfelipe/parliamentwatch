@@ -38,10 +38,10 @@ function pw_poll_default_fe_block_settings() {
         'theme' => 'parliamentwatch',
         'weight' => '28',
       ),
-      'pw_seven' => array(
+      'seven' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'pw_seven',
+        'theme' => 'seven',
         'weight' => '0',
       ),
     ),

@@ -365,10 +365,8 @@ function pw_poll_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
-            'taxonomy_term_link' => 1,
-            'taxonomy_term_separator' => ', ',
           ),
-          'type' => 'taxonomy_term_reference_link',
+          'type' => 'taxonomy_term_reference_plain',
           'weight' => '3',
         ),
         'search_result' => array(
@@ -469,22 +467,8 @@ function pw_poll_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'taxonomy',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-          ),
-          'type' => 'taxonomy_term_reference_link',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '2',
         ),
         'search_result' => array(
@@ -1092,23 +1076,9 @@ function pw_poll_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-          ),
-          'type' => 'list_default',
-          'weight' => 5,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
