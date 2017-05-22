@@ -410,13 +410,11 @@ function parliamentwatch_disable_messages_status_messages($vars) {
 
 /**
  * Overrides theme_container() for profiles page.
- *
- * @see pw_profiles_page()
  */
-function parliamentwatch_container__profiles($variables) {
+function parliamentwatch_container($variables) {
   $element = $variables['element'];
   // Ensure #attributes is set.
-  $element += array('#attributes' => ['class' => ['container', 'deputy-list']]);
+  $element += array('#attributes' => ['class' => ['container']]);
 
-  return '<div' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</div>';
+  return '<div class="tile-wrapper"><div' . drupal_attributes($element['#attributes']) . '><div class="row">' . $element['#children'] . '</div></div></div>';
 }

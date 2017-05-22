@@ -3,7 +3,15 @@
 */
 
 
+/* tile wrapper element */
 
+.tile-wrapper {
+  padding: $space-large 0;
+  background: $beige;
+  > .container {
+    @include grid-container();
+  }
+}
 
 /* tile */
 
