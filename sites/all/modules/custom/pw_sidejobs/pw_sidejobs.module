@@ -12,18 +12,15 @@ include_once 'pw_sidejobs.features.inc';
  */
 function pw_sidejobs_cron(){
 
-  // load all sidejobs
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
-  ->entityCondition('bundle', 'sidejob')
-  ->fieldCondition('field_sidejob_income_interval', 'value', '0', '>')
-  ->propertyCondition('status', NODE_PUBLISHED);
+    ->entityCondition('bundle', 'sidejob')
+    ->fieldCondition('field_sidejob_income_interval', 'value', '0', '>')
+    ->propertyCondition('status', NODE_PUBLISHED);
   $result = $query->execute();
-  if($result['node']){
-    $nodes = node_load_multiple(array_keys($result['node']));
-    foreach($nodes as $node){
 
-      // trigger node save
+  if($result['node']){
+    foreach(node_load_multiple(array_keys($result['node'])) as $node){
       node_save($node);
     }
   }
