@@ -166,3 +166,30 @@ function pw_sidejobs_compute_total_incomes(&$node){
   }
 }
 
+/**
+ * Returns all sideline jobs of the given account.
+ *
+ * @param object $account
+ *   The user entity
+ *
+ * @return array
+ *   The sideline jobs associated with the user entity
+ */
+function pw_sidejobs_load($account) {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'sidejob');
+  $q->fieldCondition('field_politician', 'target_id', $account->uid);
+  $q->propertyOrderBy('changed', 'DESC');
+
+  $result = $q->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+  }
+  else {
+    $nodes = array();
+  }
+
+  return $nodes;
+}

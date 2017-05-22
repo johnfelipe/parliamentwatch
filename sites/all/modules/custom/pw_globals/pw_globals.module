@@ -32,6 +32,16 @@ function pw_globals_menu() {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function pw_globals_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['tabular'] = array(
+    'label' => t('Tabular'),
+    'custom settings' => FALSE,
+  );
+}
+
+/**
  * Custom: Checks if User (Revision) is Premium User
  */
 function _pw_is_premium_user($user) {

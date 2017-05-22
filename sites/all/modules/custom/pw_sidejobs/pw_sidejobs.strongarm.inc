@@ -64,23 +64,27 @@ function pw_sidejobs_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__sidejob';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'tabular' => array(
+        'custom_settings' => TRUE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '18',
+          'weight' => '20',
         ),
         'redirect' => array(
-          'weight' => '16',
-        ),
-        'xmlsitemap' => array(
           'weight' => '19',
         ),
+        'xmlsitemap' => array(
+          'weight' => '21',
+        ),
         'metatags' => array(
-          'weight' => '20',
+          'weight' => '22',
         ),
         'rabbit_hole' => array(
           'weight' => '0',
