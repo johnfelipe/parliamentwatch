@@ -359,6 +359,24 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
         ),
+        'sidejobs' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => FALSE,
+          ),
+        ),
+        'votes' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => FALSE,
+          ),
+        ),
+        'dialogues' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => FALSE,
+          ),
+        ),
       ),
     ),
   );

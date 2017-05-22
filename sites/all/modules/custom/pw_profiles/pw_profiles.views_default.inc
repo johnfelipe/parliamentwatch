@@ -295,8 +295,6 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'h4';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Inhalt: Address */
   $handler->display->display_options['fields']['field_calendar_entry_address']['id'] = 'field_calendar_entry_address';
   $handler->display->display_options['fields']['field_calendar_entry_address']['table'] = 'field_data_field_calendar_entry_address';
@@ -403,7 +401,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['footer']['area']['format'] = 'managed_content';
   $handler->display->display_options['footer']['area']['tokenize'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Feld: Inhalt: ShareThis Link */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['sharethis']['id'] = 'sharethis';
   $handler->display->display_options['fields']['sharethis']['table'] = 'node';
   $handler->display->display_options['fields']['sharethis']['field'] = 'sharethis';
@@ -504,8 +502,6 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'h4';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Inhalt: Address */
   $handler->display->display_options['fields']['field_calendar_entry_address']['id'] = 'field_calendar_entry_address';
   $handler->display->display_options['fields']['field_calendar_entry_address']['table'] = 'field_data_field_calendar_entry_address';
@@ -789,8 +785,6 @@ print_r($link);
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_height'] = '600';
   /* Feld: Excluded | Pfad */
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
@@ -817,8 +811,6 @@ print_r($link);
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Excluded | Author UID */
   $handler->display->display_options['fields']['uid']['id'] = 'uid';
   $handler->display->display_options['fields']['uid']['table'] = 'node';
@@ -909,7 +901,7 @@ print_r($link);
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Feld: Inhalt: ShareThis Link */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['sharethis']['id'] = 'sharethis';
   $handler->display->display_options['fields']['sharethis']['table'] = 'node';
   $handler->display->display_options['fields']['sharethis']['field'] = 'sharethis';
@@ -1057,8 +1049,6 @@ print_r($link);
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'h4';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Inhalt: Address */
   $handler->display->display_options['fields']['field_calendar_entry_address']['id'] = 'field_calendar_entry_address';
   $handler->display->display_options['fields']['field_calendar_entry_address']['table'] = 'field_data_field_calendar_entry_address';
@@ -2873,8 +2863,6 @@ else
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['title']['element_wrapper_class'] = 'title';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Global: PHP */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
@@ -2914,8 +2902,6 @@ if($record->value == 0){
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_height'] = '600';
   /* Sortierkriterien: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['sorts']['field_pw_poll_date_value']['id'] = 'field_pw_poll_date_value';
   $handler->display->display_options['sorts']['field_pw_poll_date_value']['table'] = 'field_data_field_pw_poll_date';
@@ -2975,8 +2961,6 @@ if($record->value == 0){
   $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_1']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['title_1']['link_to_node'] = FALSE;
-  $handler->display->display_options['fields']['title_1']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title_1']['node_in_colorbox_height'] = '600';
   /* Feld: Benutzer: First Name */
   $handler->display->display_options['fields']['field_user_fname']['id'] = 'field_user_fname';
   $handler->display->display_options['fields']['field_user_fname']['table'] = 'field_data_field_user_fname';
@@ -3002,8 +2986,6 @@ if($record->value == 0){
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_height'] = '600';
   /* Feld: Global: Benutzerdefinierter Text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -3065,8 +3047,6 @@ print pw_blocks_get_chart($row->nid,\'total\', NULL, 105,128);
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'h4';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['field_pw_poll_date']['id'] = 'field_pw_poll_date';
   $handler->display->display_options['fields']['field_pw_poll_date']['table'] = 'field_data_field_pw_poll_date';
@@ -3138,8 +3118,6 @@ if($record->value == 0){
   $handler->display->display_options['fields']['view_node']['element_wrapper_class'] = 'link-poll';
   $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'Details to vote';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_height'] = '600';
   $handler->display->display_options['block_description'] = 'Poll profile: Last poll';
 
   /* Display: Archive */
@@ -3192,8 +3170,6 @@ if($record->value == 0){
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['title']['element_wrapper_class'] = 'title';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Global: PHP */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
@@ -3244,8 +3220,6 @@ if($record->value == 0){
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_height'] = '600';
   $handler->display->display_options['block_description'] = 'Poll profile: Archive';
 
   /* Display: Print Page */
@@ -3290,8 +3264,6 @@ if($record->value == 0){
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['title']['element_wrapper_class'] = 'title';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Global: PHP */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
@@ -3331,8 +3303,6 @@ if($record->value == 0){
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_height'] = '600';
   $handler->display->display_options['path'] = 'polls/archive/%';
   $translatables['polls_profile'] = array(
     t('Master'),
