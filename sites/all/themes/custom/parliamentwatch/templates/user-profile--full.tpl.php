@@ -310,11 +310,7 @@
           <h2><a href="#" data-tab-content="nebentaetigkeiten">Nebentätigkeiten</a></h2>
         </div>
         <div class="tabs__content__content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad atque ducimus error esse exercitationem fuga
-            incidunt laudantium magni nemo, nobis nostrum omnis quae quaerat quia quo repellendus velit voluptatem.</p>
-          <p>Amet natus, veritatis. Adipisci aperiam distinctio dolorum ea ex harum hic id incidunt inventore ipsa iusto,
-            nesciunt obcaecati odit, officiis, praesentium provident quaerat saepe tempora vel velit. Deleniti
-            dignissimos, sit?</p>
+          <?php print render($user_profile['sidejobs']); ?>
         </div>
       </div>
     </section>
