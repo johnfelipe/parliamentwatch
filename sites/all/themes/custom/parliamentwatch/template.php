@@ -418,3 +418,41 @@ function parliamentwatch_container($variables) {
 
   return '<div class="tile-wrapper"><div' . drupal_attributes($element['#attributes']) . '><div class="row">' . $element['#children'] . '</div></div></div>';
 }
+
+/**
+ * Overrides theme_pager().
+ */
+function parliamentwatch_pager($variables) {
+  $tags = $variables['tags'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  global $pager_total;
+
+  $li_previous = theme('pager_previous', [
+    'text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')),
+    'element' => $element,
+    'interval' => 1,
+    'parameters' => $parameters,
+  ]);
+  $li_next = theme('pager_next', [
+    'text' => (isset($tags[3]) ? $tags[3] : t('next ›')),
+    'element' => $element,
+    'interval' => 1,
+    'parameters' => $parameters,
+  ]);
+
+  if ($pager_total[$element] > 1) {
+    if ($li_previous) {
+      $items[] = ['class' => ['pager__previous'], 'data' => $li_previous];
+    }
+
+    if ($li_next) {
+      $items[] = ['class' => ['pager__next'], 'data' => $li_next];
+    }
+
+    return theme('item_list', [
+      'items' => $items,
+      'attributes' => ['class' => ['pager']],
+    ]);
+  }
+}
