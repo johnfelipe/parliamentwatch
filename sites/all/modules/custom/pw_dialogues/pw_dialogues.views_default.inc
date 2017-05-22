@@ -2013,10 +2013,6 @@ Mit Ihrer Auswahl wurden leider keine Ergebnisse gefunden.<br/>Bitte treffen Sie
   $handler->display->display_options['fields']['field_user_questions_get']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_user_questions_get']['alter']['text'] = '[field_user_questions_get],';
   $handler->display->display_options['fields']['field_user_questions_get']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get']['settings'] = array(
-    'thousand_separator' => '.',
-    'prefix_suffix' => 1,
-  );
   /* Feld: Benutzer: Answers Give */
   $handler->display->display_options['fields']['field_user_answers_give']['id'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
@@ -2025,10 +2021,6 @@ Mit Ihrer Auswahl wurden leider keine Ergebnisse gefunden.<br/>Bitte treffen Sie
   $handler->display->display_options['fields']['field_user_answers_give']['label'] = '';
   $handler->display->display_options['fields']['field_user_answers_give']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_user_answers_give']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_answers_give']['settings'] = array(
-    'thousand_separator' => '.',
-    'prefix_suffix' => 1,
-  );
   /* Feld: Benutzer: Link */
   $handler->display->display_options['fields']['view_user']['id'] = 'view_user';
   $handler->display->display_options['fields']['view_user']['table'] = 'users';
