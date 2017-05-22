@@ -271,6 +271,7 @@
       .hstats__item--digit .hstats__item__display {
         white-space: nowrap;
         font-size: 2em;
+        text-align: center;
       }
     }
     .tab-qa-stats__col {
@@ -296,7 +297,7 @@
       }
     }
     .swiper-container--tile {
-      margin-bottom: $space;
+      margin-bottom: $space-large;
       & + .btn {
         float: right;
         margin-bottom: $space-large * 2;

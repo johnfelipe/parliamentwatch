@@ -211,23 +211,9 @@
                   </div>
                 </div>
 
-                <div class="hstats__item hstats__item--donut-digit">
-                  <div class="hstats__item__display mh-item-nr" data-mh="qa_hstats">
-                  <span class="d3 d3--gauge"
-                        data-d3-gauge
-                        data-percentage="30"
-                        data-track-width="16"
-                        data-track-colour="f6997a"
-                        data-fill-colour="ffffff"
-                        data-text-colour="ffffff"
-                        data-stroke-colour="f68a66"
-                        data-stroke-spacing="2">
-                    <span>%</span>
-                  </span>
-                  </div>
-                  <div class="hstats__item__label mh-item-nr" data-mh="qa_hstats">
-                    34 <?php print t('of total') ?><br>89 <?php print t('questions commented') ?>
-                  </div>
+                <div class="hstats__item hstats__item--digit">
+                  <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats">5</span>
+                  <span class="hstats__item__label mh-item-nr" data-mh="qa_hstats"><?php print t('Questioner per question') ?></span>
                 </div>
               </div>
               <div class="tab-qa-stats__col">
@@ -237,14 +223,14 @@
                 </div>
               </div>
               <div class="tab-qa-stats__col--large">
-              <span class='d3 d3--bars-vertical'
-                    data-d3-bars-vert
-                    data-data='[{"name":"Katgeorie 1","url":"/location/bath","value":"18"},{"name":"Katgeorie 2","url":"/location/bath","value":"6"},{"name":"Katgeorie 3","url":"/location/bath","value":"12"},{"name":"Katgeorie 4","url":"/location/bath","value":"28"},{"name":"Katgeorie 5","url":"/location/bath","value":"18"},{"name":"Katgeorie 6","url":"/location/bath","value":"6"},{"name":"Katgeorie 7","url":"/location/bath","value":"12"},{"name":"Katgeorie 8","url":"/location/bath","value":"28"},{"name":"Katgeorie 9","url":"/location/bath","value":"18"},{"name":"Katgeorie 10","url":"/location/bath","value":"6"},{"name":"Katgeorie 11","url":"/location/bath","value":"12"},{"name":"Katgeorie 12","url":"/location/bath","value":"28"},{"name":"Katgeorie 13","url":"/location/bath","value":"18"},{"name":"Katgeorie 14","url":"/location/bath","value":"6"},{"name":"Katgeorie 15","url":"/location/bath","value":"12"},{"name":"Katgeorie 16","url":"/location/bath","value":"28"}]'
-                    data-height='100'
-                    data-fill-colour='ffffff'
-                    data-stroke-colour='f68a66'>
-                <span class="tooltip d3__tooltip"></span>
-              </span>
+                <span class='d3 d3--bars-vertical'
+                      data-d3-bars-vert
+                      data-data='[{"name":"Katgeorie 1","url":"/location/bath","value":"18"},{"name":"Katgeorie 2","url":"/location/bath","value":"6"},{"name":"Katgeorie 3","url":"/location/bath","value":"12"},{"name":"Katgeorie 4","url":"/location/bath","value":"28"},{"name":"Katgeorie 5","url":"/location/bath","value":"18"},{"name":"Katgeorie 6","url":"/location/bath","value":"6"},{"name":"Katgeorie 7","url":"/location/bath","value":"12"},{"name":"Katgeorie 8","url":"/location/bath","value":"28"},{"name":"Katgeorie 9","url":"/location/bath","value":"18"},{"name":"Katgeorie 10","url":"/location/bath","value":"6"},{"name":"Katgeorie 11","url":"/location/bath","value":"12"},{"name":"Katgeorie 12","url":"/location/bath","value":"28"},{"name":"Katgeorie 13","url":"/location/bath","value":"18"},{"name":"Katgeorie 14","url":"/location/bath","value":"6"},{"name":"Katgeorie 15","url":"/location/bath","value":"12"},{"name":"Katgeorie 16","url":"/location/bath","value":"28"}]'
+                      data-height='100'
+                      data-fill-colour='ffffff'
+                      data-stroke-colour='f68a66'>
+                  <span class="tooltip d3__tooltip"></span>
+                </span>
               </div>
             </div>
           </div>
