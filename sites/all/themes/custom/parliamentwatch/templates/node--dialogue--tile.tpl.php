@@ -89,9 +89,16 @@
     <h3 class="question__question__title"><?php print render($content['body']); ?></h3>
     <p class="question__question__author">Von: <?php print render($content['field_dialogue_sender_name']); ?></p>
   </div>
-  <?php print render($content['answer']); ?>
+
+  <?php if (empty($content['answer'])): ?>
+    <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+      <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
+    </div>
+  <?php else: ?>
+    <?php print render($content['answer']); ?>
+  <?php endif; ?>
   <ul class="question__links tile__links tile__links--2">
-    <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('Fragesteller'); ?></a></li>
-    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('Details'); ?></a></li>
+    <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
+    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('details'); ?></a></li>
   </ul>
 </div>
