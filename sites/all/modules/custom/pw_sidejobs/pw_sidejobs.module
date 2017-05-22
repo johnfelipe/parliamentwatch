@@ -36,6 +36,34 @@ function pw_sidejobs_node_presave($node){
 }
 
 /**
+ * Implements hook_field_extra_fields().
+ */
+function pw_sidejobs_field_extra_fields() {
+  $extra['user']['user']['display']['sidejobs'] = [
+    'label' => t('Sideline jobs'),
+    'description' => t(''),
+    'weight' => '100',
+  ];
+  return $extra;
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function pw_sidejobs_user_view($account, $view_mode, $langcode) {
+  $extra = field_extra_fields_get_display('user', 'user', $view_mode);
+
+  if (isset($extra['sidejobs'])) {
+    $account->content['sidejobs'] = node_view_multiple(pw_sidejobs_node_load_multiple($account, 2), 'list_item');
+    $account->content['sidejobs']['pager'] = [
+      '#theme' => 'pager',
+      '#element' => 2,
+      '#weight' => 100,
+    ];
+  }
+}
+
+/**
  * computes total incomes based on min and max income values and time spend in parliament
  * @param object $node
  *
