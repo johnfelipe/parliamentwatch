@@ -54,12 +54,7 @@ function pw_sidejobs_user_view($account, $view_mode, $langcode) {
   $extra = field_extra_fields_get_display('user', 'user', $view_mode);
 
   if (isset($extra['sidejobs'])) {
-    $account->content['sidejobs'] = node_view_multiple(pw_sidejobs_node_load_multiple($account, 2), 'list_item');
-    $account->content['sidejobs']['pager'] = [
-      '#theme' => 'pager',
-      '#element' => 2,
-      '#weight' => 100,
-    ];
+    $account->content['sidejobs'] = node_view_multiple(pw_sidejobs_node_load_multiple($account), 'list_item');
   }
 }
 
