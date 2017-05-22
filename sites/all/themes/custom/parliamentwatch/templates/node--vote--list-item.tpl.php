@@ -80,21 +80,21 @@
  * @ingroup themeable
  */
 ?>
-<div class="<?php print $classes; ?>"<?php print $attributes; ?>>
-
-  <?php print render($title_prefix); ?>
-  <?php if (!$page): ?>
-    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-  <?php endif; ?>
-  <?php print render($title_suffix); ?>
-
-  <div class="content"<?php print $content_attributes; ?>>
-    <?php
-      // We hide the comments and links now so that we can render them later.
-      hide($content['comments']);
-      hide($content['links']);
-      print render($content);
-    ?>
+<div class="abstimmverhalten-overview__item tile <?php print $classes; ?>"<?php print $attributes; ?>>
+  <?php print render($content['field_vote_node']); ?>
+  <div class="abstimmverhalten-overview__item__indicator">
+    <?php if ($field_vote[0]['taxonomy_term']->name == 'yes'): ?>
+    <i class="abstimmverhalten-overview__item__indicator__icon icon icon-ok"></i>
+    <span class="abstimmverhalten-overview__item__indicator__label"><?php print t('Voted yes'); ?></span>
+    <?php elseif ($field_vote[0]['taxonomy_term']->name == 'no'): ?>
+    <i class="abstimmverhalten-overview__item__indicator__icon icon icon-close"></i>
+    <span class="abstimmverhalten-overview__item__indicator__label"><?php print t('Voted no'); ?></span>
+    <?php elseif ($field_vote[0]['taxonomy_term']->name == 'no-show'): ?>
+    <i class="abstimmverhalten-overview__item__indicator__icon icon icon-minus"></i>
+    <span class="abstimmverhalten-overview__item__indicator__label"><?php print t('Did not vote'); ?></span>
+    <?php elseif ($field_vote[0]['taxonomy_term']->name == 'abstain'): ?>
+    <i class="abstimmverhalten-overview__item__indicator__icon icon icon-circle-o"></i>
+    <span class="abstimmverhalten-overview__item__indicator__label"><?php print t('Abstained'); ?></span>
+    <?php endif; ?>
   </div>
-
 </div>
