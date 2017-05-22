@@ -163,3 +163,35 @@ function pw_sidejobs_compute_total_incomes(&$node){
   }
 }
 
+/**
+ * Returns all sideline jobs of the given account in the current parliament.
+ *
+ * @param object $account
+ *   The user entity.
+ *
+ * @return array
+ *   The sideline jobs associated with the account.
+ */
+function pw_sidejobs_node_load_multiple($account, $pager_element = NULL) {
+  $nodes = [];
+
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'sidejob');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  $q->fieldCondition('field_politician', 'target_id', $account->uid);
+  $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
+  $q->fieldOrderBy('field_sidejob_classification', 'value', 'DESC');
+
+  if (isset($pager_element)) {
+    $q->pager(8, $pager_element);
+  }
+
+  $result = $q->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+  }
+
+  return $nodes;
+}
