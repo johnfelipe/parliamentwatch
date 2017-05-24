@@ -223,6 +223,7 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   $variables['user_url'] = url(entity_uri('user', $account)['path']);
   $variables['display_name'] = _pw_get_fullname($account);
   $variables['average_response_time'] = number_format(pw_dialogues_average_response_time($account) / 86400, 1, ',', '.');
+  $variables['question_form'] = node_view(node_load(10446), 'form')['webform'];
 
   if (isset($account->number_of_questions)) {
     $variables['questions'] = $account->number_of_questions;
