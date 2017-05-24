@@ -58,5 +58,4 @@ features[variable][] = rh_node_redirect_response_vote
 features[variable][] = rh_node_redirect_vote
 features[variable][] = xmlsitemap_settings_node_vote
 features[views_view][] = pw_vote_positions
-features[views_view][] = pw_vote_profile
-mtime = 1495179592
+mtime = 1495620918
