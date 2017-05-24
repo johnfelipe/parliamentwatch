@@ -16,10 +16,9 @@ function parliamentwatch_theme(&$existing, $type, $theme, $path) {
  * Implements hook_form_alter().
  */
 function parliamentwatch_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'webform_client_form_104846') {
-    $form['#attributes']['class'][] = 'row';
-    $form['actions']['#attributes']['class'][] = 'col-sm-4';
-    $form['actions']['submit']['#attributes']['class'][] = 'big';
+  if (isset($form['actions'])) {
+    $form['actions']['#type'] = 'container';
+    $form['actions']['#attributes'] = ['class' => ['form__item']];
   }
 }
 
@@ -454,5 +453,223 @@ function parliamentwatch_pager($variables) {
       'items' => $items,
       'attributes' => ['class' => ['pager']],
     ]);
+  }
+}
+
+/**
+ * Overrides theme_form().
+ */
+function parliamentwatch_form($variables) {
+  $element = $variables['element'];
+  if (isset($element['#action'])) {
+    $element['#attributes']['action'] = drupal_strip_dangerous_protocols($element['#action']);
+  }
+  element_set_attributes($element, ['method']);
+  if (empty($element['#attributes']['accept-charset'])) {
+    $element['#attributes']['accept-charset'] = "UTF-8";
+  }
+  $element['#attributes']['class'] = ['form', 'form--' . $element['#id']];
+  return '<form' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</form>';
+}
+
+/**
+ * Overrides theme_form_element().
+ */
+function parliamentwatch_webform_element($variables) {
+  $element = &$variables['element'];
+
+  // This function is invoked as theme wrapper, but the rendered form element
+  // may not necessarily have been processed by form_builder().
+  $element += ['#title_display' => 'before'];
+
+  // Add element #id for #type 'item'.
+  if (isset($element['#markup']) && !empty($element['#id'])) {
+    $attributes['id'] = $element['#id'];
+  }
+  // Add element's #type and #name as class to aid with JS/CSS selectors.
+  $attributes['class'] = ['form__item'];
+  if (!empty($element['#type'])) {
+    $attributes['class'][] = 'form__item--' . strtr($element['#type'], '_', '-');
+  }
+  if (!empty($element['#name'])) {
+    $attributes['class'][] = 'form__item--' . strtr($element['#name'], [' ' => '-', '_' => '-', '[' => '-', ']' => '']);
+  }
+  // Add a class for disabled elements to facilitate cross-browser styling.
+  if (!empty($element['#attributes']['disabled'])) {
+    $attributes['class'][] = 'form__item--disabled';
+  }
+  $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
+
+  // If #title is not set, we don't display any label or required marker.
+  if (!isset($element['#title'])) {
+    $element['#title_display'] = 'none';
+  }
+  $prefix = isset($element['#field_prefix']) ? '<span class="field-prefix">' . $element['#field_prefix'] . '</span> ' : '';
+  $suffix = isset($element['#field_suffix']) ? ' <span class="field-suffix">' . $element['#field_suffix'] . '</span>' : '';
+
+  switch ($element['#title_display']) {
+    case 'before':
+    case 'invisible':
+      $output .= ' ' . theme('form_element_label', $variables);
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+
+    case 'after':
+      $output .= ' ' . $prefix . $element['#children'] . $suffix;
+      $output .= ' ' . theme('form_element_label', $variables) . "\n";
+      break;
+
+    case 'none':
+    case 'attribute':
+      // Output no label and no required marker, only the children.
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+  }
+
+  if (!empty($element['#description'])) {
+    $output .= '<div class="description">' . $element['#description'] . "</div>\n";
+  }
+
+  $output .= "</div>\n";
+
+  return $output;
+}
+
+/**
+ * Overrides theme_form_element_label().
+ */
+function parliamentwatch_form_element_label($variables) {
+  $element = $variables['element'];
+  // This is also used in the installer, pre-database setup.
+  $t = get_t();
+
+  // If title and required marker are both empty, output no label.
+  if ((!isset($element['#title']) || $element['#title'] === '') && empty($element['#required'])) {
+    return '';
+  }
+
+  // If the element is required, a required marker is appended to the label.
+  $required = !empty($element['#required']) ? theme('form_required_marker', array('element' => $element)) : '';
+
+  $title = filter_xss_admin($element['#title']);
+
+  $attributes = ['class' => ['form__item__label']];
+  // Style the label as class option to display inline with the element.
+  if ($element['#title_display'] == 'after') {
+    $attributes['class'][] = 'option';
+  }
+  // Show label only to screen readers to avoid disruption in visual flows.
+  elseif ($element['#title_display'] == 'invisible') {
+    $attributes['class'][] = 'sr-only';
+  }
+
+  if (!empty($element['#id'])) {
+    $attributes['for'] = $element['#id'];
+  }
+
+  // The leading whitespace helps visually separate fields from inline labels.
+  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', ['!title' => $title, '!required' => $required]) . "</label>\n";
+}
+
+/**
+ * Overrides theme_textfield().
+ */
+function parliamentwatch_textfield($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'text';
+  element_set_attributes($element, ['id', 'name', 'value', 'size', 'maxlength']);
+  _parliamentwatch_form_set_class($element, ['form__item__control']);
+
+  if ($element['#autocomplete_path'] && !empty($element['#autocomplete_input'])) {
+    drupal_add_library('system', 'drupal.autocomplete');
+    $element['#attributes']['class'][] = 'form-autocomplete';
+
+    $attributes = [];
+    $attributes['type'] = 'hidden';
+    $attributes['id'] = $element['#autocomplete_input']['#id'];
+    $attributes['value'] = $element['#autocomplete_input']['#url_value'];
+    $attributes['disabled'] = 'disabled';
+    $attributes['class'][] = 'autocomplete';
+    $extra = '<input' . drupal_attributes($attributes) . ' />';
+  }
+
+  $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
+
+  return $output . $extra;
+}
+
+/**
+ * Overrides theme_textarea().
+ */
+function parliamentwatch_textarea($variables) {
+  $element = $variables['element'];
+  element_set_attributes($element, ['id', 'name', 'cols', 'rows']);
+  _parliamentwatch_form_set_class($element, ['form__item__control']);
+
+  return '<textarea' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#value']) . '</textarea>';
+}
+
+/**
+ * Overrides theme_select().
+ */
+function parliamentwatch_select($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['data-placeholder'] = $element['#title'];
+  element_set_attributes($element, ['id', 'name', 'size']);
+  _parliamentwatch_form_set_class($element, ['form__item__control']);
+
+  return '<select' . drupal_attributes($element['#attributes']) . '>' . form_select_options($element) . '</select>';
+}
+
+/**
+ * Overrides theme_checkbox().
+ */
+function parliamentwatch_checkbox($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'checkbox';
+  element_set_attributes($element, ['id', 'name', '#return_value' => 'value']);
+
+  // Unchecked checkbox has #value of integer 0.
+  if (!empty($element['#checked'])) {
+    $element['#attributes']['checked'] = 'checked';
+  }
+  _parliamentwatch_form_set_class($element, ['form__item__control']);
+
+  return '<input' . drupal_attributes($element['#attributes']) . ' />';
+}
+
+/**
+ * Overrides theme_button().
+ */
+function parliamentwatch_button($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'submit';
+  element_set_attributes($element, ['id', 'name']);
+
+  $element['#attributes']['class'] = ['btn'];
+  if (!empty($element['#attributes']['disabled'])) {
+    $element['#attributes']['class'][] = 'btn--disabled';
+  }
+
+  return '<button' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#value']) . '</button>';
+}
+
+/**
+ * Sets a form element's class attribute.
+ *
+ * Adds 'error' class as needed.
+ *
+ * @param array $element
+ *   The form element.
+ * @param array $name
+ *   The class names to be added.
+ */
+function _parliamentwatch_form_set_class(array &$element, array $name) {
+  $element['#attributes']['class'] = $name;
+  // This function is invoked from form element theme functions, but the
+  // rendered form element may not necessarily have been processed by
+  // form_builder().
+  if (isset($element['#parents']) && form_get_error($element) !== NULL && !empty($element['#validated'])) {
+    $element['#attributes']['class'][] = 'form__item__control--invalid';
   }
 }
