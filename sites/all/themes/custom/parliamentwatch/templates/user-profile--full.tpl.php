@@ -236,6 +236,55 @@
           </div>
         </div>
       </div>
+      <div>
+        <div class="container">
+
+          <form class="formular formular--horizontal">
+            <div class="form__item form__item--half">
+              <label class="form__item__label sr-only" for="form_question_name">Vorname</label>
+              <input class="form__item__control" type="text" placeholder="Vorname" id="form_question_name">
+            </div>
+            <div class="form__item form__item--half">
+              <label class="form__item__label sr-only" for="form_question_surname">Nachname</label>
+              <input class="form__item__control" type="text" placeholder="Nachname" id="form_question_surname">
+            </div>
+            <div class="form__item form__item--half">
+              <label class="form__item__label sr-only" for="form_question_surname">E-Mail Adresse</label>
+              <input class="form__item__control" type="text" placeholder="Nachname" id="form_question_surname">
+            </div>
+            <div class="form__item form__item--half form__item--checkbox">
+              <label class="form__item__label" for="form_question_mail_opt_out">
+                <input class="form__item__control" type="checkbox" checked id="form_question_mail_opt_out">
+                Newsletter abonnieren
+              </label>
+            </div>
+            <div class="form__item">
+              <label class="form__item__label sr-only" for="form_question_topic">E-Mail Adresse</label>
+              <select name="form_question_topic" id="form_question_topic" class="form__item__control" data-placeholder="Thema auswählen">
+                <option value=""></option>
+                <option value="1">Thema 1</option>
+                <option value="2">Thema 2</option>
+                <option value="3">Thema 3</option>
+              </select>
+            </div>
+            <div class="form__item">
+              <label class="form__item__label sr-only" for="form_question_text">E-Mail Adresse</label>
+              <textarea name="" id="" cols="30" rows="10" class="form__item__control" id="form_question_text" placeholder="Geben Sie hier Ihre Frage ein"></textarea>
+            </div>
+
+            <div class="form__item form__item--checkbox">
+              <label class="form__item__label" for="form_question_opt_in">
+                <input class="form__item__control" type="checkbox" id="form_question_opt_in">
+                Ich erkläre mich mit der Veröffentlichung meiner Frage auf abgeordnetenwatch.de einverstanden. Die <a href="">Datenschutzbestimmungen</a> zur Behandlung meiner Daten habe ich gelesen.
+              </label>
+            </div>
+            <div class="form__item">
+              <button href="" class="btn btn--white">Frage abschicken</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
     </section>
     <section id="abstimmverhalten" class="tabs__content" data-tab-content="abstimmverhalten">
       <div class="container">
