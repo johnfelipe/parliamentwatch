@@ -291,7 +291,7 @@ function pw_profiles_page($parliament_name, $role_name) {
   }
   else {
     $build = entity_view('user', $users, 'tile');
-    $build['user']['#theme_wrappers'] = array('container__profiles');
+    $build['user']['#theme_wrappers'] = array('container__tiles');
     $build['pager'] = array('#theme' => 'pager', '#weight' => 5);
   }
 

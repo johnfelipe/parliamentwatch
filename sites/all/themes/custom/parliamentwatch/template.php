@@ -409,9 +409,9 @@ function parliamentwatch_disable_messages_status_messages($vars) {
 }
 
 /**
- * Overrides theme_container() for profiles page.
+ * Overrides theme_container() for tiles.
  */
-function parliamentwatch_container($variables) {
+function parliamentwatch_container__tiles($variables) {
   $element = $variables['element'];
   // Ensure #attributes is set.
   $element += array('#attributes' => ['class' => ['container']]);
