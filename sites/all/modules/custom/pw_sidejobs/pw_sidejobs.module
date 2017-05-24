@@ -54,7 +54,13 @@ function pw_sidejobs_user_view($account, $view_mode, $langcode) {
   $extra = field_extra_fields_get_display('user', 'user', $view_mode);
 
   if (isset($extra['sidejobs'])) {
-    $account->content['sidejobs'] = node_view_multiple(pw_sidejobs_node_load_multiple($account), 'list_item');
+    $result = pw_sidejobs_by_user_revision_query($account)
+      ->fieldOrderBy('field_sidejob_classification', 'value', 'DESC')
+      ->execute();
+
+    if (!empty($result['node'])) {
+      $account->content['sidejobs'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'list_item');
+    }
   }
 }
 
@@ -187,34 +193,21 @@ function pw_sidejobs_compute_total_incomes(&$node){
 }
 
 /**
- * Returns all sideline jobs of the given account in the current parliament.
+ * Returns all sideline jobs of the given account version.
  *
  * @param object $account
  *   The user entity.
  *
- * @return array
- *   The sideline jobs associated with the account.
+ * @return EntityFieldQuery
+ *   The query object.
  */
-function pw_sidejobs_node_load_multiple($account, $pager_element = NULL) {
-  $nodes = [];
-
+function pw_sidejobs_by_user_revision_query($account) {
   $q = new EntityFieldQuery();
   $q->entityCondition('entity_type', 'node');
   $q->entityCondition('bundle', 'sidejob');
   $q->propertyCondition('status', NODE_PUBLISHED);
   $q->fieldCondition('field_politician', 'target_id', $account->uid);
   $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
-  $q->fieldOrderBy('field_sidejob_classification', 'value', 'DESC');
 
-  if (isset($pager_element)) {
-    $q->pager(8, $pager_element);
-  }
-
-  $result = $q->execute();
-
-  if (!empty($result['node'])) {
-    $nodes = node_load_multiple(array_keys($result['node']));
-  }
-
-  return $nodes;
+  return $q;
 }
