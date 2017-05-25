@@ -80,21 +80,25 @@
  * @ingroup themeable
  */
 ?>
-<div class="<?php print $classes; ?>"<?php print $attributes; ?>>
-
-  <?php print render($title_prefix); ?>
-  <?php if (!$page): ?>
-    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-  <?php endif; ?>
-  <?php print render($title_suffix); ?>
-
-  <div class="content"<?php print $content_attributes; ?>>
+<tr class="sidejob-overview__item <?php print $classes; ?>"<?php print $attributes; ?> data-sidejobid="<?php print $node->nid; ?>">
+  <td class="sidejob-overview__item__customer" data-sort-value="<?php print render($content['field_sidejob_organization']); ?>">
+    <?php print render($content['field_sidejob_organization']); ?>
     <?php
-      // We hide the comments and links now so that we can render them later.
-      hide($content['comments']);
-      hide($content['links']);
-      print render($content);
-    ?>
-  </div>
-
-</div>
+    // Contextual Links
+    print render($title_suffix); ?>
+  </td>
+  <td class="sidejob-overview__item__activity" data-sort-value="<?php print render($content['field_job']); ?>">
+    <?php print render($content['field_job']); ?>
+  </td>
+  <td class="sidejob-overview__item__date" data-sort-value="">
+    <?php print render($content['field_sidejob_date_start']); ?>
+    <?php print render($content['field_sidejob_date_end']); ?>
+  </td>
+  <td class="sidejob-overview__item__level" data-sort-value="<?php print render($content['field_sidejob_income_max_total']); ?>">
+    <?php print render($content['field_sidejob_income_min_total']); ?> &ndash; <?php print render($content['field_sidejob_income_max_total']); ?>
+    <span>
+      <?php print t('level'); ?> <?php print render($content['field_sidejob_classification']); ?>
+    </span>
+    <small><?php print render($content['field_sidejob_income_interval']); ?></small>
+  </td>
+</tr>

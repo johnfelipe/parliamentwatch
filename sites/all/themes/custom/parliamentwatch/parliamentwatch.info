@@ -16,4 +16,5 @@ scripts[] = js/contrib/d3.js
 scripts[] = js/contrib/jquery.matchHeight.js
 scripts[] = js/contrib/select2.js
 scripts[] = js/contrib/swiper.jquery.min.js
+scripts[] = js/contrib/stupidtable.min.js
 scripts[] = js/script.js

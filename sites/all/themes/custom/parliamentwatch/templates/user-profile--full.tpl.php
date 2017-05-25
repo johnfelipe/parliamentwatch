@@ -269,12 +269,26 @@
           <h2><a href="#" data-tab-content="nebentaetigkeiten">Nebentätigkeiten</a></h2>
         </div>
         <div class="tabs__content__content">
-          <?php print render($user_profile['sidejobs']); ?>
           <div class="sidejob-overview">
             <span class='d3 d3--bars-secondary-income'
               data-d3-secondary-income
               data-data='/sites/all/themes/custom/parliamentwatch/test.json'>
             </span>
+            <div class="table-wrapper">
+              <table cellpadding="0" cellspacing="0" class="table table--sortable table--secondary-income">
+                <thead>
+                  <tr>
+                    <th class="sidejob-overview__item__customer" data-sort="string"><?php print t('Customer') ?></th>
+                    <th class="sidejob-overview__item__activity" data-sort="string"><?php print t('Activity') ?></th>
+                    <th class="sidejob-overview__item__date" data-sort="int"><?php print t('Date') ?></th>
+                    <th class="sidejob-overview__item__level" data-sort="int"><?php print t('Income level') ?></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php print render($user_profile['sidejobs']); ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

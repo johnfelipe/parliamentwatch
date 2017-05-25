@@ -184,7 +184,7 @@ function tabs() {
  * */
 function select2init() {
     $('select').select2({
-        placeholder: 'This is my placeholder',
+        placeholder: 'Bitte wählen',
         allowClear: true,
         dropdownParent: $('.page-container')
     });
@@ -264,8 +264,8 @@ function d3BarsVertical(element) {
         stroke: '#' + wrapper.dataset.strokeColour
     }
     // set the ranges
-    var y = d3.scaleLinear().range([height, 0]);
     var x = d3.scaleBand().rangeRound([0, width], .05);
+    var y = d3.scaleLinear().range([height, 0]);
 
     // setup SVG wrapper
 
@@ -449,6 +449,74 @@ function d3RadialGauge(element) {
         }
     })();
 }
+/*
+ * D3: Bar-Chart Secondary Income
+ * */
+function d3SecondaryIncome(element) {
+    var wrapper = element;
+    var datasetURL = wrapper.getAttribute('data-data');
+    var barWrapper = d3.select(wrapper)
+        .append('div')
+        .attr('class', 'd3-bars');
+
+    d3.json(datasetURL, function(data) {
+        var totalVolumeMin = d3.sum(data, function(d) { return d.income.totalValueMin; });
+        var totalVolumeMinPrint = totalVolumeMin;
+        var totalVolumeMax = d3.sum(data, function(d) { return d.income.totalValueMax; });
+        var totalVolumeMaxPrint = totalVolumeMax;
+        var itemCount = data.length;
+
+        // ADD Bars
+        barWrapper.selectAll("div")
+            .data(data)
+        .enter().append("div")
+            .attr("class", "d3-bars__item")
+            .attr("style", function(d) {
+                var value = 100 / totalVolumeMax * d.income.totalValueMax;
+                return 'width:' + value + '%';
+            })
+            .attr("data-sidejobid", function(d) {
+                return d.id;
+            })
+            .on("mouseover", function(d) {
+                $(this).html('<span class="tooltip tooltip--side d3__tooltip"></span>');
+                var tooltip = $(this).find('.d3__tooltip');
+
+                tooltip.css("opacity", 1)
+                    .append('<div class="tooltip__content"><h5>' + d.customer + '</h5><p>' + d.activity + '</p></div>')
+                    .append('<div class="tooltip__side"><div class="tooltip__side__indicator"><small>Stufe</small> ' + d.income.level + '</div><div class="tooltip__side__info">' + d.income.valueMin + ' &ndash; ' + d.income.valueMax + ' €</div></div>');
+            })
+            .on("mouseout", function(d) {
+                var tooltip = $(this).find('.d3__tooltip');
+                tooltip.css("opacity", 0);
+            });
+
+        // Call table highlighting function
+        tableSecondaryHighlight();
+
+        // ADD Total
+        barWrapper.insert('div',':first-child').attr('class', 'd3-bars__total').html('Gesamteinnahmen: ' + totalVolumeMin + ' &ndash; ' + totalVolumeMax);
+    });
+
+}
+
+function tableSecondaryIncome() {
+    $(".table--secondary-income").stupidtable();
+}
+
+function tableSecondaryHighlight() {
+    $('[data-sidejobid]').click(function () {
+        var jobID = $(this).attr('data-sidejobid');
+
+        // Highlight chart element
+        $('.d3--bars-secondary-income .d3-bars__item').removeClass('d3-bars__item--active');
+        $('.d3--bars-secondary-income').find('[data-sidejobid="'+jobID+'"]').addClass('d3-bars__item--active');
+
+        // Highlight clicked element
+        $('.sidejob-overview__item').removeClass('sidejob-overview__item--active');
+        $('.sidejob-overview table').find('[data-sidejobid="'+jobID+'"]').addClass('sidejob-overview__item--active');
+    });
+}
 
 
 $(function () {
@@ -463,6 +531,8 @@ $(function () {
     select2init();
     swiperTile();
     viewDeputyDetail();
+    tableSecondaryIncome();
+
 
     // Init global matchHeight-plugin class
 
@@ -485,7 +555,10 @@ $(function () {
         d3Donut(this);
         $(this)
     });
-
+    $('[data-d3-secondary-income]').each(function( index ) {
+        d3SecondaryIncome(this);
+        $(this)
+    });
 
     // Init functions on window resize
 

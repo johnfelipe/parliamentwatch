@@ -1,0 +1,119 @@
+/**
+* Basic Table Definitions
+*/
+
+
+.table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  @media (max-width: $breakpoint-s-max) {
+    display: block;
+  }
+  tbody {
+    @media (max-width: $breakpoint-s-max) {
+      display: block;
+    }
+    tr {
+      @include breakpoint($breakpoint-s-min) {
+        &:last-child td {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+  tr {
+    @media (max-width: $breakpoint-s-max) {
+      border-bottom: 1px solid $gray;
+      display: block;
+      @include grid-container();
+      &:last-child {
+        border-bottom: 0;
+      }
+
+    }
+  }
+  td {
+    margin: 0;
+    padding: $space-xsmall-mobile 0;
+    @include breakpoint($breakpoint-s-min) {
+      padding: $space-small 0;
+      border-bottom: 1px solid $gray;
+    }
+    @media (max-width: $breakpoint-s-max) {
+      display: block;
+      &:last-child {
+      }
+    }
+  }
+  thead th {
+    font-weight: 800;
+    font-size: .8em;
+    text-align: left;
+    color: $mediumGray;
+    padding-top: $space-small;
+    padding-bottom: $space-xsmall;
+    border-bottom: 1px solid $gray;
+    @media (max-width: $breakpoint-s-max) {
+      display: none;
+    }
+  }
+}
+
+
+// Wrapper
+
+
+.table-wrapper {
+  @include box-inset-large();
+
+  td {
+    @media (max-width: $breakpoint-s-max) {
+      padding-left: $space-small;
+    }
+  }
+  th:first-child, td:first-child {
+    padding-left: $space;
+    @include breakpoint($breakpoint-m-min) {
+      padding-left: $space-large;
+    }
+    @media (max-width: $breakpoint-s-max) {
+      padding-left: $space-small;
+    }
+  }
+  th:last-child, td:last-child {
+    padding-right: $space;
+    @include breakpoint($breakpoint-m-min) {
+      padding-right: $space-large;
+    }
+    @media (max-width: $breakpoint-s-max) {
+      padding-right: $space-small;
+    }
+  }
+}
+
+// Sorting
+.table--sortable {
+  th {
+    cursor: pointer;
+    &:after {
+      content: '\e847 \e848';
+      font-family: 'awfont';
+      display: inline-block;
+      margin-left: $space-xsmall-mobile;
+    }
+  }
+  .sorting-desc {
+    &:after {
+      content: '\e847';
+      font-family: 'awfont';
+    }
+  }
+  .sorting-asc {
+    &:after {
+      content: '\e848';
+      font-family: 'awfont';
+    }
+  }
+}
