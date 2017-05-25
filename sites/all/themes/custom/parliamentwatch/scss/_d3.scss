@@ -1,3 +1,7 @@
+/**
+* D3-js specifix styles
+*/
+
 .d3 {
   display: block;
   position: relative;
@@ -64,4 +68,55 @@
   position: relative;
   top: -1px;
   float: left;
+}
+
+
+.d3--bars-secondary-income {
+  .d3-bars {
+    @include grid-container();
+  }
+  .d3-bars__total {
+    background: $orangeBG;
+    color: $white;
+    font-weight: 800;
+    padding: $space-xsmall-mobile $space-xsmall;
+    font-size: .8em;
+    border-bottom: 1px solid $white;
+  }
+  .d3-bars__item {
+    height: 60px;
+    float: left;
+    border-right: 1px solid $white;
+    position: relative;
+    cursor: pointer;
+    &:before {
+      content: '';
+      height: 60px;
+      width: 100%;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $gray + 40;
+      @include transition(all 300ms ease);
+      @include transform-origin(center top);
+    }
+    &:last-child {
+      border-right: 0;
+    }
+    &.d3-bars__item--active,
+    &:hover {
+      &:before {
+        background: $orangeBG;
+        @include transform(scale(1, 1.1));
+      }
+      .d3__tooltip {
+      }
+    }
+  }
+  .d3__tooltip {
+    bottom: 100%;
+  }
 }

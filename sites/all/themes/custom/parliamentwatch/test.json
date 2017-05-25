@@ -1,0 +1,66 @@
+[
+  {
+    "id": "177277",
+    "customer": "AfA Seminare GmbH",
+    "activity": "Vortrag und Diskussion",
+    "city": "Berlin",
+    "dateFrom": "2016",
+    "dateTo": "",
+    "income": {
+      "level": "2",
+      "repetition": "einmalig",
+      "valueMin": "3500",
+      "valueMax": "7000",
+      "totalValueMin": "3500",
+      "totalValueMax": "7000"
+    }
+  },
+  {
+    "id": "177285",
+    "customer": "CL Compliance und Datenschutz GmbH & Co. KG",
+    "activity": "Befragung",
+    "city": "Berlin",
+    "dateFrom": "2015",
+    "dateTo": "",
+    "income": {
+      "level": "2",
+      "repetition": "jährlich",
+      "valueMin": "3500",
+      "valueMax": "7000",
+      "totalValueMin": "7000",
+      "totalValueMax": "14000"
+    }
+  },
+  {
+    "id": "177278",
+    "customer": "DDIVservice GmbH",
+    "activity": "Vortrag",
+    "city": "Berlin",
+    "dateFrom": "2014",
+    "dateTo": "",
+    "income": {
+      "level": "5",
+      "repetition": "einmalig",
+      "valueMin": "30000",
+      "valueMax": "50000",
+      "totalValueMin": "30000",
+      "totalValueMax": "50000"
+    }
+  },
+  {
+    "id": "177286",
+    "customer": "Celebrity Speakers GmbH",
+    "activity": "Vortrag und Streitgespräch",
+    "city": "Berlin",
+    "dateFrom": "2015",
+    "dateTo": "",
+    "income": {
+      "level": "2",
+      "repetition": "jährlich",
+      "valueMin": "3500",
+      "valueMax": "7000",
+      "totalValueMin": "7000",
+      "totalValueMax": "14000"
+    }
+  }
+]

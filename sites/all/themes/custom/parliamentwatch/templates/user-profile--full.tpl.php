@@ -270,6 +270,12 @@
         </div>
         <div class="tabs__content__content">
           <?php print render($user_profile['sidejobs']); ?>
+          <div class="sidejob-overview">
+            <span class='d3 d3--bars-secondary-income'
+              data-d3-secondary-income
+              data-data='/sites/all/themes/custom/parliamentwatch/test.json'>
+            </span>
+          </div>
         </div>
       </div>
     </section>

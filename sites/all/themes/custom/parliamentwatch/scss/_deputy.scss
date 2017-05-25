@@ -478,8 +478,7 @@ $abstimmverhalten-node-item-width: 18px;
       width: auto;
       border-top: 1px solid $darkBeige;
       float: none;
-      padding-bottom: $space-large;
-      margin: 0 auto $space;
+      margin: 0 auto;
     }
   }
   .d3__label__item {
@@ -498,5 +497,61 @@ $abstimmverhalten-node-item-width: 18px;
   margin-bottom: $space;
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(6);
+  }
+}
+
+
+
+/* Nebentätigkeiten */
+
+.sidejob-overview {
+  @include box-padded-large($white);
+  .table {
+    margin-top: $space-large * 2;
+  }
+  tbody .sidejob-overview__item__customer { font-weight: 500; }
+  .sidejob-overview__item__level {
+    text-align: right;
+    padding-left: $space-large;
+    white-space: nowrap;
+    span {
+      font-weight: 500;
+      border-left: 2px solid $gray;
+      display: inline-block;
+      padding-left: 5px;
+      margin-left: 3px;
+    }
+    small {
+      color: $mediumGray;
+      display: block;
+    }
+    @media (max-width: $breakpoint-s-max) {
+      float: left;
+      width: 70%;
+    }
+  }
+  .sidejob-overview__item__date {
+    @media (max-width: $breakpoint-s-max) {
+      float: left;
+      width: 30%;
+    }
+  }
+  .sidejob-overview__item--active {
+    background: $orangeBG;
+    color: $white;
+    &:hover {
+      background: $orangeBG;
+    }
+    .sidejob-overview__item__level {
+      span { border-left: 2px solid $white; }
+      div { color: $white; }
+    }
+  }
+}
+.table--secondary-income {
+  tbody tr {
+    &:hover {
+      background: $brightGray;
+    }
   }
 }

@@ -84,6 +84,13 @@ $neat-grid-small-gutter: (
   color: rgba(#00d4ff, 0.25),
   direction: ltr
 );
+$neat-grid-large-gutter: (
+  columns: 12,
+  gutter: 30px,
+  media: 1200px,
+  color: rgba(#00d4ff, 0.25),
+  direction: ltr
+);
 $neat-grid-no-gutter: (
   columns: 12,
   gutter: 0px,
