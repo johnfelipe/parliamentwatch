@@ -13,12 +13,28 @@
     padding: $space;
   }
 }
+@mixin box-padded-large($background-color) {
+  background-color: $background-color;
+  padding: $space;
+  @include breakpoint($breakpoint-m-min) {
+    padding: $space-large;
+  }
+}
+
 @mixin box-inset() {
   @include grid-container($neat-grid-small-gutter);
   @include grid-collapse($neat-grid-small-gutter);
   @include breakpoint($breakpoint-m-min) {
     @include grid-container();
     @include grid-collapse();
+  }
+}
+@mixin box-inset-large() {
+  @include grid-container();
+  @include grid-collapse();
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-container($neat-grid-large-gutter);
+    @include grid-collapse($neat-grid-large-gutter);
   }
 }
 @mixin box-inset-padded() {
