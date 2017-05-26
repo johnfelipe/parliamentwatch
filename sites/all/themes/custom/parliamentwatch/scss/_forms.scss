@@ -7,10 +7,15 @@
 }
 .form__item {
   margin-bottom: $space-small;
+  .description {
+    padding: $space-xsmall-mobile 0;
+    font-size: .8em;
+  }
 }
 .form__item--inline {
   display: inline-block;
 }
+.form-email,
 .form__item__control {
   border: 1px solid $gray;
   display: block;
@@ -18,11 +23,11 @@
   padding: $space-xsmall;
 }
 .form__item__label {
-
 }
 
 /* Type: Checkbox */
 
+.form-type-checkbox,
 .form__item--checkbox {
   .form__item__label {
     padding: $space-xsmall 0;
@@ -39,7 +44,27 @@
     &:focus { outline: none; }
   }
 }
+.form-type-checkbox {
+  padding: $space-xsmall 0;
+  padding-left: $space;
+  position: relative;
+  .form__item__label {
+    padding: 0;
+  }
+  .form__item__control {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin: 0;
+    transform: translate(0,-50%);
+  }
+}
 
+/* Textareas */
+
+textarea.form__item__control {
+  min-height: 200px;
+}
 
 /* Select2 Elements */
 

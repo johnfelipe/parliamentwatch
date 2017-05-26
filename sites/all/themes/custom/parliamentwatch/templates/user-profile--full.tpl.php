@@ -42,7 +42,6 @@
 
 <article class="deputy detail"<?php print $attributes; ?>>
   <div class="container">
-
     <div class="deputy__intro">
       <div class="deputy__intro__sidebar">
         <header>
@@ -236,9 +235,30 @@
           </div>
         </div>
       </div>
-      <div>
+      <div class="tabs__content__content">
         <div class="container">
-          <?php print render($question_form); ?>
+          <div class="row">
+            <div class="question-form">
+              <h2><?php print t('Ask question') ?></h2>
+              <?php print render($question_form); ?>
+            </div>
+            <div class="question-side">
+              <div class="question-side__item">
+                <div class="info-element info-element--icon">
+                  <h3><?php print t('Moderation') ?></h3>
+                  <p>
+                    <?php print t('The unblocking of questions can vary depending on the user\'s volume. Some hours, as all incoming questions are checked by a moderator team. I have read the moderation code and ensured that my question does not violate this. <a href="">Call moderation code</a> If my question can not be released, I will be informed by a moderator. For reasons of legal certainty, your IP address is stored, but not published or passed on to third parties. Further information is available in our Privacy Policy.') ?>
+                  </p>
+                </div>
+                <div class="info-element info-element--icon">
+                  <h3><?php print t('Data protection') ?></h3>
+                  <p>
+                    <?php print t('Data protection - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.') ?>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -88,6 +88,33 @@ figcaption {
   }
 }
 
+/* Info-Elements */
+
+.info-element {
+  margin-bottom: $space-large;
+}
+.info-element--icon {
+  padding-left: $space-large;
+  position: relative;
+  @include breakpoint($breakpoint-m-min) {
+    padding-left: $space-large * 2;
+  }
+  &:before {
+    content: '\e829';
+    font-family: 'awfont';
+
+    position: absolute;
+    left: $space-xsmall-mobile;
+    top: 3px;
+    opacity: .6;
+    @include breakpoint($breakpoint-m-min) {
+      left: $space;
+      font-size: 1.2em;
+    }
+  }
+}
+
+
 /* Burger / Close Button */
 
 $button-size : 22px;

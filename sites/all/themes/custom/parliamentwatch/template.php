@@ -619,7 +619,7 @@ function parliamentwatch_select($variables) {
   element_set_attributes($element, ['id', 'name', 'size']);
   _parliamentwatch_form_set_class($element, ['form__item__control']);
 
-  return '<select' . drupal_attributes($element['#attributes']) . '>' . form_select_options($element) . '</select>';
+  return '<select data-width="100%" ' . drupal_attributes($element['#attributes']) . '>' . form_select_options($element) . '</select>';
 }
 
 /**
