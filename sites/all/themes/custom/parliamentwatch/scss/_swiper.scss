@@ -10,14 +10,17 @@
 .swiper-button-prev {
   background-color: $white;
   display: inline-block;
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   text-align: center;
   background-image: none;
   position: static;
   @include transform(translate(0,0));
   margin-top: $space;
-
+  @include breakpoint($breakpoint-xs-min) {
+    width: 55px;
+    height: 55px;
+  }
   @include breakpoint($breakpoint-xl-min) {
     position: absolute;
     top: 500px;
@@ -26,9 +29,13 @@
 
   &:before {
     font-family: "awfont";
-    font-size: 1.3em;
-    line-height: 55px;
+    font-size: 1.2em;
+    line-height: 45px;
     color: $orangeBG;
+    @include breakpoint($breakpoint-xs-min) {
+      line-height: 55px;
+      font-size: 1.3em;
+    }
   }
 }
 .swiper-button-next {
@@ -41,6 +48,7 @@
   &:before { content: '\e805' }
 }
 .swiper-button-prev {
+  float: left;
   left: 0;
   &:before { content: '\e804' }
 }

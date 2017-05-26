@@ -88,6 +88,38 @@ figcaption {
   }
 }
 
+/* Pager */
+
+.pager {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  a {
+    color: $darkGray;
+  }
+}
+.pager__next.first.last {
+  text-align: center;
+  position: relative;
+
+  &:after {
+    content: '\e847';
+    font-family: 'awfont';
+    font-size: .7em;
+
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    @include transform(translate(50%,0))
+  }
+}
+
+
+/* Pager: Single pager */
+
+
+
+
 /* Info-Elements */
 
 .info-element {

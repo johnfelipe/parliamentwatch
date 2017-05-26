@@ -146,21 +146,34 @@
         margin-right: 0;
         float: right;
       }
+      .hstats__item__label {
+        text-align: center;
+        @include breakpoint($breakpoint-s-min) {
+          text-align: left;
+        }
+      }
     }
     .hstats__item__display {
       width: 45px;
     }
     .hstats__item__label {
-      padding-left: $space-small;
+      padding-left: $space-xsmall;
+      padding-right: $space-xsmall;
       width:auto;
+      @include breakpoint($breakpoint-xs-min) {
+        padding-left: $space-small;
+      }
       @include breakpoint($breakpoint-m-min) {
         font-size: .8em;
       }
     }
     .hstats__item__label__value {
-      font-size: 2.6em;
-      line-height: 1em;
       padding-bottom: 4px;
+      font-size: 1.6em;
+      line-height: 1em;
+      @include breakpoint($breakpoint-xs-min) {
+        font-size: 2.6em;
+      }
     }
     .hstats__item--digit .hstats__item__label {
       padding: 0;
@@ -245,12 +258,14 @@
       }
       > .tabs__content__content {
         background: $brightOrange;
-        padding: ($space-large * 2) 0;
-        margin-top: $space-large * 2;
+        padding: $space-large 0;
+        margin-top: $space-large;
         border-top: 1px solid $white;
         color: $darkGray;
         @include breakpoint($breakpoint-s-min) {
           margin-bottom: -$space-large;
+          margin-top: $space-large * 2;
+          padding: ($space-large * 2) 0;
         }
         @include breakpoint($breakpoint-m-min) {
           margin-bottom: -$space-large * 2;
@@ -374,9 +389,13 @@
     }
     .swiper-container--tile {
       margin-bottom: $space-large;
+      text-align: center;
       & + .btn {
         float: right;
         margin-bottom: $space-large * 2;
+      }
+      .tile {
+        text-align: left;
       }
     }
     &.tabs__content--active {
@@ -386,6 +405,20 @@
           padding-bottom: 0;
         }
       }
+    }
+    .swiper-button-prev + .btn {
+      @media (max-width: $breakpoint-xs-max) {
+        background: none;
+        color: $white;
+        margin-top: $space-large + 6px;
+        padding: 0;
+        border: 0;
+      }
+      @include breakpoint($breakpoint-xs-min) {
+        margin-top: $space + 4px;
+        display: inline-block;
+      }
+      @include breakpoint($breakpoint-m-min) { display: none; }
     }
   }
 }
@@ -514,6 +547,7 @@ $abstimmverhalten-node-item-width: 18px;
   font-size: .8em;
 }
 
+/* voting behavior - Abstimmverhalten */
 
 .abstimmverhalten-stats {
   margin-bottom: $space-large;
@@ -557,12 +591,9 @@ $abstimmverhalten-node-item-width: 18px;
       margin: 0 auto;
     }
   }
-  .d3__label__item {
-    &:first-child {
-    }
-  }
 }
 
+/* Committee membership- Ausschussmitgliedschaft */
 
 .ausschussmitgliedschaft {
   @include breakpoint($breakpoint-s-min) {
@@ -576,9 +607,7 @@ $abstimmverhalten-node-item-width: 18px;
   }
 }
 
-
-
-/* Nebentätigkeiten */
+/* sidejobs - Nebentätigkeiten */
 
 .sidejob-overview {
   @include box-padded-large($white);

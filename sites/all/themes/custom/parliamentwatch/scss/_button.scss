@@ -5,23 +5,32 @@
 .btn {
   @include button($orange, $white, 15px, 12px);
 }
+
+.btn--white {
+  @include button($white, $orange, 15px, 12px);
+  &:hover {
+    @include button($white, transparent, 15px, 12px);
+  }
+}
+
 .btn--large {
   @include button($orange, $white, 20px, 15px);
   font-size: 1.2em;
 }
+.btn--large-white {
+  @include button($white, $orange, 20px, 15px);
+  &:hover {
+    @include button($white, transparent, 20px, 15px);
+  }
+}
+
 .btn--block {
   display: block;
   text-align: center;
 }
 .btn--mobile-block {
   @media (max-width: $breakpoint-xs-max) {
-    display: block !important;
-    float: none !important;
-  }
-}
-.btn--white {
-  @include button($white, $orange, 15px, 12px);
-  &:hover {
-    @include button($white, transparent, 15px, 12px);
+    display: block;
+    float: none;
   }
 }

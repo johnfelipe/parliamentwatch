@@ -185,6 +185,7 @@
               <?php print render($user_profile['dialogues']); ?>
             </div>
             <div class="swiper-button-prev"></div>
+            <a href="#" class="btn btn--large-white">Alle Fragen in der Übersicht</a>
             <div class="swiper-button-next"></div>
           </div>
 

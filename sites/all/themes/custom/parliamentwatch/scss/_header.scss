@@ -8,7 +8,7 @@
   background: $beige;
   border-bottom: 1px solid $darkBeige;
   width: 100%;
-  z-index: 9;
+  z-index: 99;
   @include breakpoint($breakpoint-m-min) {
     position: fixed;
   }
