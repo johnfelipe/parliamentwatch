@@ -6,3 +6,9 @@
     min-height: 400px;
     background: $white;
 }
+.page-user #content {
+    padding-top: $space;
+    @include breakpoint($breakpoint-m-min) {
+        padding-top: $space-large;
+    }
+}
