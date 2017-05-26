@@ -4,12 +4,13 @@
 
 [data-tooltip-content] {
   position: relative;
+  z-index: 999;
   &.icon {
     color: $gray;
   }
   &:hover .tooltip {
     opacity: 1;
-    @include transform(translate(-50%,0%));
+    @include transform(translate(-50%,-6%));
   }
 }
 .tooltip {
