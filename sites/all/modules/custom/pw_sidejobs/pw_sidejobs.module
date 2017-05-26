@@ -232,3 +232,32 @@ function pw_sidejobs_by_user_revision_query($account) {
 
   return $q;
 }
+
+/**
+ * Returns the accumulated total min and max income from sideline jobs.
+ *
+ * @param object account
+ *   The user entity.
+ *
+ * @return array
+ *   The accumulated min and max income
+ */
+function pw_sidejobs_accumulated_total_income_range($account) {
+  $initial = [0, 0];
+
+  $result = pw_sidejobs_by_user_revision_query($account)->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+  }
+  else {
+    $nodes = [];
+  }
+
+  $callback = function ($carry, $item) {
+    $range = pw_sidejobs_total_income_range($item);
+    return [$carry[0] + $range[0], $carry[1] + $range[1]];
+  };
+
+  return array_reduce($nodes, $callback, $initial);
+}
