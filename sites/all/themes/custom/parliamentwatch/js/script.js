@@ -86,6 +86,7 @@ function dropdown() {
     $('.dropdown__trigger').click(function () {
         $(this).toggleClass('dropdown__trigger--active');
         $(this).parent('.dropdown').find('.dropdown__list').toggleClass('dropdown__list--open');
+        return false;
     });
 }
 
