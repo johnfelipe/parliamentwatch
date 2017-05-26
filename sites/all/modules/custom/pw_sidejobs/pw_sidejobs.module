@@ -187,6 +187,33 @@ function pw_sidejobs_compute_total_incomes($node) {
 }
 
 /**
+ * Returns the total min and max income for the given sideline job.
+ *
+ * @param object $node
+ *   The sidejob node.
+ *
+ * @return array
+ *   The income range.
+ */
+function pw_sidejobs_total_income_range($node) {
+  $range = [0, 0];
+
+  $income_min_total = field_get_items('node', $node, 'field_sidejob_income_min_total');
+
+  if (!empty($income_min_total)) {
+    $range[0] = $income_min_total[0]['value'];
+  }
+
+  $income_max_total = field_get_items('node', $node, 'field_sidejob_income_max_total');
+
+  if (!empty($income_max_total)) {
+    $range[1] = $income_max_total[0]['value'];
+  }
+
+  return $range;
+}
+
+/**
  * Returns all sideline jobs of the given account version.
  *
  * @param object $account
