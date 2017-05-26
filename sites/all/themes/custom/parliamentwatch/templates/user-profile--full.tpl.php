@@ -108,7 +108,7 @@
           <div class="hstats__item hstats__item--digit">
             <div class="hstats__item__label mh-item-nr" data-mh="hstats">
               <div class="hstats__item__label__value">
-                <span class="hstats__item__label__value_min">160.000</span> € &ndash; <span class="hstats__item__label__value_max">220.000</span> €
+                <span class="hstats__item__label__value_min"><?php print number_format($user_profile['additional_income'][0], 0, ',', '.'); ?></span> € &ndash; <span class="hstats__item__label__value_max"><?php print number_format($user_profile['additional_income'][1], 0, ',', '.'); ?></span> €
               </div>
               <?php print t('Additional income min.') ?> <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-additional-income') ?>"></i> <?php print t('Additional income max.') ?>
             </div>

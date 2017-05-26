@@ -39,6 +39,11 @@ function pw_sidejobs_node_presave($node){
  * Implements hook_field_extra_fields().
  */
 function pw_sidejobs_field_extra_fields() {
+  $extra['user']['user']['display']['additional_income'] = [
+    'label' => t('Additional income'),
+    'description' => t(''),
+    'weight' => '100',
+  ];
   $extra['user']['user']['display']['sidejobs'] = [
     'label' => t('Sideline jobs'),
     'description' => t(''),
@@ -61,6 +66,10 @@ function pw_sidejobs_user_view($account, $view_mode, $langcode) {
     if (!empty($result['node'])) {
       $account->content['sidejobs'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'list_item');
     }
+  }
+
+  if (isset($extra['additional_income'])) {
+    $account->content['additional_income'] = pw_sidejobs_accumulated_total_income_range($account);
   }
 }
 
