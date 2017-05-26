@@ -90,6 +90,9 @@
   <td class="sidejob-overview__item__activity" data-sort-value="<?php print render($content['field_job']); ?>">
     <?php print render($content['field_job']); ?>
   </td>
+  <td class="sidejob-overview__item__city" data-sort-value="">
+    <?php print render($content['field_sidejob_address']); ?>
+  </td>
   <td class="sidejob-overview__item__date" data-sort-value="">
     <?php print render($content['field_sidejob_date_start']); ?>
     <?php print render($content['field_sidejob_date_end']); ?>

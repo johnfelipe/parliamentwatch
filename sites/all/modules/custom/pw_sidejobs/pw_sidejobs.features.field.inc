@@ -656,13 +656,13 @@ function pw_sidejobs_field_default_fields() {
           'weight' => '15',
         ),
         'list_item' => array(
-          'label' => 'above',
-          'module' => 'addressfield',
+          'label' => 'hidden',
+          'module' => 'addressfield_tokens',
           'settings' => array(
-            'field_delimiter' => '',
-            'format_handlers' => array(
-              0 => 'address',
+            'components' => array(
+              'locality' => 'locality',
             ),
+            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -674,9 +674,9 @@ function pw_sidejobs_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
-            'use_widget_handlers' => 1,
+            'separator' => ', ',
           ),
-          'type' => 'addressfield_default',
+          'type' => 'addressfield_components',
           'weight' => '15',
         ),
         'teaser' => array(
