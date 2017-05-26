@@ -65,128 +65,122 @@ function pw_sidejobs_user_view($account, $view_mode, $langcode) {
 }
 
 /**
- * computes total incomes based on min and max income values and time spend in parliament
- * @param object $node
+ * Computes total income for the given sideline job.
  *
+ * The algorithm takes into account the start and end date of the sideline
+ * job and the legislative period.
+ *
+ * @param object $node
+ *   The sidejob node
  */
-function pw_sidejobs_compute_total_incomes(&$node){
+function pw_sidejobs_compute_total_incomes($node) {
 
-  if($node->type != 'sidejob'){
+  if ($node->type != 'sidejob') {
     return FALSE;
   }
 
-  // clear income fields from zero values
-  if(empty($node->field_sidejob_income_min['und'][0]['value'])){
+  // Clear income fields from zero values
+  if (empty($node->field_sidejob_income_min['und'][0]['value'])) {
     unset($node->field_sidejob_income_min['und'][0]);
     unset($node->field_sidejob_income_min_total['und'][0]);
   }
-  if(empty($node->field_sidejob_income_max['und'][0]['value'])){
+  if (empty($node->field_sidejob_income_max['und'][0]['value'])) {
     unset($node->field_sidejob_income_max['und'][0]);
     unset($node->field_sidejob_income_max_total['und'][0]);
   }
 
-  // income field from sidejob
   $field_income_min = field_get_items('node', $node, 'field_sidejob_income_min');
   $field_income_max = field_get_items('node', $node, 'field_sidejob_income_max');
   $field_interval = field_get_items('node', $node, 'field_sidejob_income_interval');
 
-  // if interval is set to earned once, then only set total values to their related min and max values
-  if($field_interval[0]['value'] == 0){
+  // If interval is set to earned once, then only set total values to their
+  // related min and max values.
+  if ($field_interval[0]['value'] == 0) {
     $node->field_sidejob_income_min_total['und'][0]['value'] = $field_income_min[0]['value'];
     $node->field_sidejob_income_max_total['und'][0]['value'] = $field_income_max[0]['value'];
   }
+  // Otherwise try to find the beginning and ending of sidejob (or legislative
+  // period or user join/retire date).
+  elseif (!empty($field_income_min[0]['value']) || !empty($field_income_max[0]['value'])) {
 
-  // otherwise try to find the beginning and ending of sidejob (or legislative period or user join/retire date)
-  elseif(!empty($field_income_min[0]['value']) || !empty($field_income_max[0]['value'])){
-
-    // need this vars for creating timespan later
     $date_start_latest = 0;
     $dates_start = array();
     $date_end_earlist = date('Y-m-d 00:00:00');
     $dates_end = array();
 
-    // date fields from node sidejob
     $field_date_start = field_get_items('node', $node, 'field_sidejob_date_start');
     $field_date_end = field_get_items('node', $node, 'field_sidejob_date_end');
-    if($field_date_start !== FALSE){
+    if ($field_date_start !== FALSE) {
       array_push($dates_start, $field_date_start[0]['value']);
     }
-    if($field_date_end !== FALSE){
+    if ($field_date_end !== FALSE) {
       array_push($dates_end, $field_date_end[0]['value']);
     }
 
-    // check dates of related user
     $field_politician = field_get_items('node', $node, 'field_politician');
     $uid = $field_politician[0]['target_id'];
-    if($uid){
+    if ($uid){
       $user = user_load($uid);
 
-      // date fields from user
       $field_user_joined = field_get_items('user', $user, 'field_user_joined');
       $field_user_retired = field_get_items('user', $user, 'field_user_retired');
-      if($field_user_joined !== FALSE){
+      if ($field_user_joined !== FALSE) {
         array_push($dates_start, $field_user_joined[0]['value']);
       }
-      if($field_user_retired !== FALSE){
+      if ($field_user_retired !== FALSE) {
         array_push($dates_end, $field_user_retired[0]['value']);
       }
 
-      // check dates of related parliament
       $field_user_parliament = field_get_items('user', $user, 'field_user_parliament');
-      if($field_user_parliament){
+      if ($field_user_parliament) {
         $parliament = taxonomy_term_load($field_user_parliament[0]['tid']);
-
-        // date fields from parliament
         $field_parliament_valid = field_get_items('taxonomy_term', $parliament, 'field_parliament_valid');
         $found_valid = FALSE;
         $parliament_latest_end_date = FALSE;
         foreach($field_parliament_valid as $parliament_valid){
-          if(_pw_is_between_dates($parliament_valid)){
+          if (_pw_is_between_dates($parliament_valid)) {
             $found_valid = TRUE;
             array_push($dates_start, $parliament_valid['value']);
           }
-          else{  //
+          else {
             $parliament_latest_end_date = $parliament_valid;
           }
         }
-        if(!$found_valid && $parliament_latest_end_date){
+        if (!$found_valid && $parliament_latest_end_date) {
           array_push($dates_end, $parliament_latest_end_date['value2']);
         }
       }
     }
 
-    // get the latest start date of parliament / user / sidejob
-    foreach($dates_start as $date_start){
-      if($date_start > $date_start_latest){
+    foreach ($dates_start as $date_start) {
+      if ($date_start > $date_start_latest) {
         $date_start_latest = $date_start;
       }
     }
 
-    // get the earlist end date of parliament / user / sidejob
-    foreach($dates_end as $date_end){
-      if($date_end < $date_end_earlist){
+    foreach ($dates_end as $date_end){
+      if ($date_end < $date_end_earlist) {
         $date_end_earlist = $date_end;
       }
     }
 
-    // retrieve timespan
     $d1 = new DateTime($date_start_latest);
     $d2 = new DateTime($date_end_earlist);
     $datetime_diff = $d1->diff($d2);
-    $multiplicator = $field_interval[0]['value'] == 12?$datetime_diff->y:$datetime_diff->y * 12 + $datetime_diff->m;
+    $multiplicator = $field_interval[0]['value'] == 12 ? $datetime_diff->y : $datetime_diff->y * 12 + $datetime_diff->m;
 
-    // set total incomes based on min and max incomes and the multiplicator (by years or months)
-    // otherwise unset total values
-    if(!empty($field_income_min[0]['value'])){
+    // Set total incomes based on min and max incomes and the multiplicator
+    // (by years or months) otherwise unset total values.
+    if (!empty($field_income_min[0]['value'])) {
       $node->field_sidejob_income_min_total['und'][0]['value'] = $field_income_min[0]['value'] * $multiplicator;
     }
-    else{
+    else {
       unset($node->field_sidejob_income_min_total['und'][0]);
     }
-    if(empty($field_income_max[0]['value'])){
+    if (empty($field_income_max[0]['value'])) {
       $node->field_sidejob_income_max_total['und'][0]['value'] = $field_income_max[0]['value'] * $multiplicator;
     }
-    else{
+    else {
       unset($node->field_sidejob_income_max_total['und'][0]);
     }
   }
