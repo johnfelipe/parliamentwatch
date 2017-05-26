@@ -217,7 +217,7 @@
               </div>
               <div class="tab-qa-stats__col">
                 <div class="hstats__item hstats__item--digit">
-                  <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats"><?php print $average_response_time; ?></span>
+                  <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats"><?php print render($user_profile['average_response_time']); ?></span>
                   <span class="hstats__item__label mh-item-nr" data-mh="qa_hstats"><?php print t('average time to answer') ?></span>
                 </div>
               </div>
@@ -240,7 +240,7 @@
           <div class="row">
             <div class="question-form">
               <h2><?php print t('Ask question') ?></h2>
-              <?php print render($question_form); ?>
+              <?php print render($user_profile['question_form']); ?>
             </div>
             <div class="question-side">
               <div class="question-side__item">

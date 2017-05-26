@@ -48,8 +48,18 @@ function pw_dialogues_menu() {
  * Implements hook_field_extra_fields().
  */
 function pw_dialogues_field_extra_fields() {
+  $extra['user']['user']['display']['average_response_time'] = [
+    'label' => t('Average response time'),
+    'description' => t(''),
+    'weight' => '100',
+  ];
   $extra['user']['user']['display']['dialogues'] = [
     'label' => t('Questions and answers'),
+    'description' => t(''),
+    'weight' => '100',
+  ];
+  $extra['user']['user']['display']['question_form'] = [
+    'label' => t('Question form'),
     'description' => t(''),
     'weight' => '100',
   ];
@@ -245,6 +255,14 @@ function pw_dialogues_user_view($account, $view_mode, $langcode) {
     if ($result['node']) {
       $account->content['dialogues'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
     }
+  }
+
+  if (isset($extra['average_response_time'])) {
+    $account->content['average_response_time'] = number_format(pw_dialogues_average_response_time($account) / 86400, 1, ',', '.');
+  }
+
+  if (isset($extra['question_form'])) {
+    $account->content['question_form'] = node_view(node_load(10446), 'form')['webform'];
   }
 }
 
