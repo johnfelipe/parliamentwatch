@@ -5,6 +5,7 @@
 .question {
 }
 .question__question__title {
+  @include h4();
   font-weight: 300;
   font-style: italic;
   color: $black;

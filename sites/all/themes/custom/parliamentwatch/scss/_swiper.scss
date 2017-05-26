@@ -14,6 +14,15 @@
   height: 55px;
   text-align: center;
   background-image: none;
+  position: static;
+  @include transform(translate(0,0));
+  margin-top: $space;
+
+  @include breakpoint($breakpoint-xl-min) {
+    position: absolute;
+    top: 500px;
+    @include transform(translate(0,-50%));
+  }
 
   &:before {
     font-family: "awfont";
@@ -23,7 +32,12 @@
   }
 }
 .swiper-button-next {
-  right: 0;
+  float: right;
+  @include breakpoint($breakpoint-xl-min) {
+    right: 0;
+    float: none;
+    @include transform(translate(0,-50%));
+  }
   &:before { content: '\e805' }
 }
 .swiper-button-prev {
