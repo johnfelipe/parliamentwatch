@@ -377,6 +377,24 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
         ),
+        'additional_income' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => FALSE,
+          ),
+        ),
+        'average_response_time' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => FALSE,
+          ),
+        ),
+        'question_form' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => FALSE,
+          ),
+        ),
       ),
     ),
   );
