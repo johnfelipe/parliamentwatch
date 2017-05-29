@@ -88,11 +88,102 @@ figcaption {
   }
 }
 
+/* share */
+
+.share {
+  padding: $space-large 0;
+  border-top: 1px solid $darkBeige;
+  border-bottom: 1px solid $darkBeige;
+  @include grid-container();
+  h3 {
+    @include breakpoint($breakpoint-m-min) {
+      margin: 0;
+      float: left;
+      line-height: 34px;
+    }
+  }
+  .share__links {
+    @include breakpoint($breakpoint-m-min) {
+      float: right;
+    }
+  }
+  .share__links__item__link {
+
+  }
+}
+.share__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include grid-container();
+}
+.share__links__item {
+  float: left;
+  margin-right: $space-small;
+  margin-bottom: 0;
+}
+.share__links__item__link {
+  display: block;
+  background: $gray;
+  color: $white;
+  line-height: 34px;
+  @include grid-container();
+  @include transition(background 300ms ease);
+  @include breakpoint($breakpoint-m-min) {
+    padding-right: $space-small;
+  }
+  .icon {
+    text-align: center;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    display: block;
+    float: left;
+    background: $gray - 20;
+    @include breakpoint($breakpoint-m-min) {
+      margin-right: $space-xsmall;
+    }
+  }
+  span {
+    display: none;
+    @include breakpoint($breakpoint-m-min) {
+      display: inline;
+    }
+  }
+  &:hover {
+    color: $white;
+    background: $gray - 20;
+  }
+}
+.share__links__item--facebook .share__links__item__link {
+  background: #6074b7;
+  &:hover, .icon { background: #3953a1; }
+}
+.share__links__item--twitter .share__links__item__link {
+  background: #55c5fb;
+  &:hover, .icon { background: #25b7f9; }
+}
+.share__links__item--google .share__links__item__link {
+  background: #f96f56;
+  &:hover, .icon { background: #fa3f15; }
+}
+.share__links__item--whatsapp .share__links__item__link {
+  background: #71e9a3;
+  &:hover, .icon { background: #29d871; }
+}
+
+.share__links__item--whatsapp {
+  @include breakpoint($breakpoint-s-min) {
+    display: none;
+  }
+}
+
+
 /* Pager */
 
 .pager {
   list-style: none;
-  padding: 0;
+  padding: $space 0;
   margin: 0;
   a {
     color: $darkGray;
@@ -101,16 +192,19 @@ figcaption {
 .pager__next.first.last {
   text-align: center;
   position: relative;
+  a {
+    padding-bottom: $space;
+    display: inline-block;
+    &:after {
+      content: '\e847';
+      font-family: 'awfont';
+      font-size: .7em;
 
-  &:after {
-    content: '\e847';
-    font-family: 'awfont';
-    font-size: .7em;
-
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    @include transform(translate(50%,0))
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      @include transform(translate(-50%,0));
+    }
   }
 }
 

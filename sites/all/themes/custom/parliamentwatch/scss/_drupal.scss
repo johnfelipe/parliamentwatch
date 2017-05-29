@@ -16,6 +16,7 @@
   display: none;
   padding: 0;
   margin: 0;
+  padding-top: $space-large;
   margin-bottom: $space-large;
   border-bottom: 1px solid $gray + 40;
   @include grid-container();

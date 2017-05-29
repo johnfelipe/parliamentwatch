@@ -25,12 +25,60 @@
 .tile__title {
   border-bottom: 1px solid $beige;
   @include box-inset-padded();
-  padding-bottom: $space-small;
+  a {
+    color: $darkGray;
+  }
 }
+h3.tile__title { padding-bottom: $space; }
+
+
+/* Title with date */
+
+.tile__title--date {
+  position: relative;
+  .date {
+    display: block;
+    width: $space-large * 2;
+    position: absolute;
+    left: $space-small;
+    top: $space;
+
+    text-align: center;
+    font-size: 1.3em;
+    font-family: $font-serif;
+    color: $gray;
+  }
+  h3 {
+    padding-left: ($space-large * 2) + 10px;
+  }
+}
+
+
+/* meta */
 
 .tile__meta {
   margin-bottom: $space;
   @include grid-container();
+}
+
+/* tile: image */
+
+.tile__image {
+  @include box-inset();
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 50%;
+  a {
+    display: block;
+  }
+  img {
+    max-width: none;
+    width: 100%;
+    display: block;
+  }
+  &:first-child {
+    @include box-inset-top();
+  }
 }
 
 /* tile: tags */

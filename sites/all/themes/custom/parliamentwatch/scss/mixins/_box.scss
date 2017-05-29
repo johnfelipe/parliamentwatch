@@ -49,6 +49,16 @@
     padding-right: $space;
   }
 }
+@mixin box-inset-top() {
+  @include grid-container($neat-grid-small-gutter);
+  @include grid-collapse($neat-grid-small-gutter);
+  margin-top: -$space-mobile;
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-container();
+    @include grid-collapse();
+    margin-top: -$space;
+  }
+}
 @mixin box-inset-bottom() {
   @include grid-container($neat-grid-small-gutter);
   @include grid-collapse($neat-grid-small-gutter);

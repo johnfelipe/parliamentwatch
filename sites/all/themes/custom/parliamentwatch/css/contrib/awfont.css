@@ -24,11 +24,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 .icon-minus:before {
   content: "\f068";
 }
+.icon-twitter:before {
+  content: "\f099";
+}
+.icon-facebook:before {
+  content: "\f09a";
+}
+.icon-facebook-f:before {
+  content: "\f09a";
+}
+.icon-google-plus:before {
+  content: "\f0d5";
+}
 .icon-circle-o:before {
   content: "\f10c";
+}
+.icon-whatsapp:before {
+  content: "\f232";
 }
 .icon-search:before {
   content: "\e901";
