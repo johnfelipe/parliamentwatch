@@ -1378,29 +1378,6 @@ print_r($link);
   $handler->display->display_options['fields']['field_user_party']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_user_party']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_user_party']['delta_offset'] = '0';
-  /* Feld: Benutzer: Questions Get */
-  $handler->display->display_options['fields']['field_user_questions_get']['id'] = 'field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['table'] = 'field_data_field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['field'] = 'field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['label'] = '';
-  $handler->display->display_options['fields']['field_user_questions_get']['alter']['text'] = '[field_user_questions_get] Fragen';
-  $handler->display->display_options['fields']['field_user_questions_get']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Feld: Benutzer: Answers Give */
-  $handler->display->display_options['fields']['field_user_answers_give']['id'] = 'field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['label'] = '';
-  $handler->display->display_options['fields']['field_user_answers_give']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_user_answers_give']['alter']['text'] = '[field_user_answers_give] Answers';
-  $handler->display->display_options['fields']['field_user_answers_give']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_answers_give']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
   /* Feld: Benutzer: Profile picture */
   $handler->display->display_options['fields']['field_user_picture']['id'] = 'field_user_picture';
   $handler->display->display_options['fields']['field_user_picture']['table'] = 'field_data_field_user_picture';
@@ -1545,7 +1522,7 @@ print_r($link);
   );
   $handler->display->display_options['fields']['fieldset_2']['fieldset']['type'] = 'div';
   $handler->display->display_options['fields']['fieldset_2']['fieldset']['classes'] = 'medium';
-  /* Feld: Benutzer: Questions Get */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['field_user_questions_get']['id'] = 'field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['table'] = 'field_data_field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['field'] = 'field_user_questions_get';
@@ -1553,21 +1530,13 @@ print_r($link);
   $handler->display->display_options['fields']['field_user_questions_get']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_user_questions_get']['alter']['text'] = '[field_user_questions_get] / ';
   $handler->display->display_options['fields']['field_user_questions_get']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_questions_get']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Feld: Benutzer: Answers Give */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['field_user_answers_give']['id'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['label'] = '';
   $handler->display->display_options['fields']['field_user_answers_give']['alter']['text'] = '[field_user_answers_give] Answers';
   $handler->display->display_options['fields']['field_user_answers_give']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_answers_give']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
   /* Feld: Global: PHP */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
@@ -1585,12 +1554,12 @@ $user = menu_get_object(\'user\');
   $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
   $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sortierkriterien: Benutzer: Answers Give (field_user_answers_give) */
+  /* Sortierkriterien: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['sorts']['field_user_answers_give_value']['id'] = 'field_user_answers_give_value';
   $handler->display->display_options['sorts']['field_user_answers_give_value']['table'] = 'field_data_field_user_answers_give';
   $handler->display->display_options['sorts']['field_user_answers_give_value']['field'] = 'field_user_answers_give_value';
   $handler->display->display_options['sorts']['field_user_answers_give_value']['order'] = 'DESC';
-  /* Sortierkriterien: Benutzer: Questions Get (field_user_questions_get) */
+  /* Sortierkriterien: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['sorts']['field_user_questions_get_value']['id'] = 'field_user_questions_get_value';
   $handler->display->display_options['sorts']['field_user_questions_get_value']['table'] = 'field_data_field_user_questions_get';
   $handler->display->display_options['sorts']['field_user_questions_get_value']['field'] = 'field_user_questions_get_value';
@@ -1658,8 +1627,6 @@ else
     t('Absteigend'),
     t('Begriff aus field_user_constituency'),
     t('[field_user_fname] [field_user_lname],[field_user_party]'),
-    t('[field_user_questions_get] Fragen'),
-    t('[field_user_answers_give] Answers'),
     t('User Constituency Block'),
     t('Show all other candidates in the same constituency'),
     t('mehr'),
@@ -1669,6 +1636,7 @@ else
     t('[field_user_fname] [field_user_lname], [field_user_party]'),
     t('dialogue'),
     t('[field_user_questions_get] / '),
+    t('[field_user_answers_give] Answers'),
     t('Alle'),
   );
   $export['constituency_for_the_profile'] = $view;
@@ -1886,24 +1854,16 @@ else
   $handler->display->display_options['fields']['field_user_commitee']['table'] = 'field_data_field_user_commitee';
   $handler->display->display_options['fields']['field_user_commitee']['field'] = 'field_user_commitee';
   $handler->display->display_options['fields']['field_user_commitee']['delta_offset'] = '0';
-  /* Feld: Benutzer: Questions Get */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['field_user_questions_get']['id'] = 'field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['table'] = 'field_data_field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['field'] = 'field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['label'] = 'Fragen';
-  $handler->display->display_options['fields']['field_user_questions_get']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Feld: Benutzer: Answers Give */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['field_user_answers_give']['id'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['label'] = 'Antworten';
-  $handler->display->display_options['fields']['field_user_answers_give']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
   /* Feld: Benutzer: Address - Ort (z.B. Stadt) */
   $handler->display->display_options['fields']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['fields']['field_user_address_locality']['table'] = 'field_data_field_user_address';
@@ -2415,24 +2375,16 @@ else
   $handler->display->display_options['fields']['field_user_commitee']['field'] = 'field_user_commitee';
   $handler->display->display_options['fields']['field_user_commitee']['label'] = 'Ausschuss';
   $handler->display->display_options['fields']['field_user_commitee']['delta_offset'] = '0';
-  /* Feld: Benutzer: Questions Get */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['field_user_questions_get']['id'] = 'field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['table'] = 'field_data_field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['field'] = 'field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['label'] = 'Fragen';
-  $handler->display->display_options['fields']['field_user_questions_get']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Feld: Benutzer: Answers Give */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['field_user_answers_give']['id'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['label'] = 'Antworten';
-  $handler->display->display_options['fields']['field_user_answers_give']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
   /* Feld: Benutzer: Address - Ort (z.B. Stadt) */
   $handler->display->display_options['fields']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['fields']['field_user_address_locality']['table'] = 'field_data_field_user_address';

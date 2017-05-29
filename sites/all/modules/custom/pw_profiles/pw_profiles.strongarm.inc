@@ -150,40 +150,10 @@ function pw_profiles_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
-      'user_search' => array(
-        'custom_settings' => FALSE,
-      ),
-      'user_premium' => array(
-        'custom_settings' => FALSE,
-      ),
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
-      'user_deputy' => array(
-        'custom_settings' => FALSE,
-      ),
-      'premium_user' => array(
-        'custom_settings' => FALSE,
-      ),
-      'user_candidate' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
-        'custom_settings' => TRUE,
-      ),
-      'user_dialogue_search_snippet' => array(
-        'custom_settings' => TRUE,
-      ),
-      'teaser' => array(
-        'custom_settings' => FALSE,
-      ),
       'tile' => array(
-        'custom_settings' => FALSE,
-      ),
-      'list item' => array(
-        'custom_settings' => FALSE,
-      ),
-      'detail' => array(
         'custom_settings' => FALSE,
       ),
       'list_item' => array(
@@ -232,67 +202,15 @@ function pw_profiles_strongarm() {
             'weight' => '14',
             'visible' => FALSE,
           ),
-          'user_premium' => array(
-            'weight' => '69',
-            'visible' => FALSE,
-          ),
-          'user_deputy' => array(
-            'weight' => '67',
-            'visible' => FALSE,
-          ),
-          'user_candidate' => array(
-            'weight' => '69',
-            'visible' => FALSE,
-          ),
-          'user_search' => array(
-            'weight' => '0',
-            'visible' => TRUE,
-          ),
-          'search_result' => array(
-            'weight' => '33',
-            'visible' => FALSE,
-          ),
-          'user_dialogue_search_snippet' => array(
-            'weight' => '4',
-            'visible' => FALSE,
-          ),
-          'teaser' => array(
-            'weight' => '5',
-            'visible' => TRUE,
-          ),
           'full' => array(
             'weight' => '30',
             'visible' => FALSE,
           ),
         ),
         'mimemail' => array(
-          'user_premium' => array(
-            'weight' => '49',
-            'visible' => FALSE,
-          ),
-          'user_deputy' => array(
-            'weight' => '51',
-            'visible' => FALSE,
-          ),
-          'search_result' => array(
-            'weight' => '32',
-            'visible' => FALSE,
-          ),
           'default' => array(
             'weight' => '21',
             'visible' => FALSE,
-          ),
-          'user_dialogue_search_snippet' => array(
-            'weight' => '3',
-            'visible' => FALSE,
-          ),
-          'user_candidate' => array(
-            'weight' => '49',
-            'visible' => FALSE,
-          ),
-          'teaser' => array(
-            'weight' => '0',
-            'visible' => TRUE,
           ),
           'full' => array(
             'weight' => '36',
@@ -300,26 +218,6 @@ function pw_profiles_strongarm() {
           ),
         ),
         'masquerade' => array(
-          'user_deputy' => array(
-            'weight' => '8',
-            'visible' => TRUE,
-          ),
-          'user_candidate' => array(
-            'weight' => '6',
-            'visible' => TRUE,
-          ),
-          'user_premium' => array(
-            'weight' => '12',
-            'visible' => TRUE,
-          ),
-          'user_dialogue_search_snippet' => array(
-            'weight' => '50',
-            'visible' => FALSE,
-          ),
-          'teaser' => array(
-            'weight' => '50',
-            'visible' => TRUE,
-          ),
           'default' => array(
             'weight' => '13',
             'visible' => FALSE,
@@ -330,26 +228,6 @@ function pw_profiles_strongarm() {
           ),
         ),
         'twitter' => array(
-          'user_candidate' => array(
-            'weight' => '24',
-            'visible' => FALSE,
-          ),
-          'user_deputy' => array(
-            'weight' => '42',
-            'visible' => FALSE,
-          ),
-          'user_premium' => array(
-            'weight' => '28',
-            'visible' => FALSE,
-          ),
-          'user_dialogue_search_snippet' => array(
-            'weight' => '0',
-            'visible' => FALSE,
-          ),
-          'teaser' => array(
-            'weight' => '0',
-            'visible' => TRUE,
-          ),
           'default' => array(
             'weight' => '20',
             'visible' => FALSE,

@@ -63,16 +63,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: create field_user_answers_give.
-  $permissions['create field_user_answers_give'] = array(
-    'name' => 'create field_user_answers_give',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'anonymous user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: create field_user_birthday.
   $permissions['create field_user_birthday'] = array(
     'name' => 'create field_user_birthday',
@@ -368,29 +358,9 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: create field_user_qanda_ratio.
-  $permissions['create field_user_qanda_ratio'] = array(
-    'name' => 'create field_user_qanda_ratio',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'anonymous user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: create field_user_question_form_closed.
   $permissions['create field_user_question_form_closed'] = array(
     'name' => 'create field_user_question_form_closed',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'anonymous user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: create field_user_questions_get.
-  $permissions['create field_user_questions_get'] = array(
-    'name' => 'create field_user_questions_get',
     'roles' => array(
       0 => 'administrator',
       1 => 'anonymous user',
@@ -508,13 +478,6 @@ function pw_profiles_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
     ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit field_user_answers_give.
-  $permissions['edit field_user_answers_give'] = array(
-    'name' => 'edit field_user_answers_give',
-    'roles' => array(),
     'module' => 'field_permissions',
   );
 
@@ -811,15 +774,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit field_user_qanda_ratio.
-  $permissions['edit field_user_qanda_ratio'] = array(
-    'name' => 'edit field_user_qanda_ratio',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: edit field_user_question_form_closed.
   $permissions['edit field_user_question_form_closed'] = array(
     'name' => 'edit field_user_question_form_closed',
@@ -827,13 +781,6 @@ function pw_profiles_user_default_permissions() {
       0 => 'Content Manager',
       1 => 'administrator',
     ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit field_user_questions_get.
-  $permissions['edit field_user_questions_get'] = array(
-    'name' => 'edit field_user_questions_get',
-    'roles' => array(),
     'module' => 'field_permissions',
   );
 
@@ -928,13 +875,6 @@ function pw_profiles_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
     ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_user_answers_give.
-  $permissions['edit own field_user_answers_give'] = array(
-    'name' => 'edit own field_user_answers_give',
-    'roles' => array(),
     'module' => 'field_permissions',
   );
 
@@ -1255,15 +1195,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit own field_user_qanda_ratio.
-  $permissions['edit own field_user_qanda_ratio'] = array(
-    'name' => 'edit own field_user_qanda_ratio',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: edit own field_user_question_form_closed.
   $permissions['edit own field_user_question_form_closed'] = array(
     'name' => 'edit own field_user_question_form_closed',
@@ -1271,13 +1202,6 @@ function pw_profiles_user_default_permissions() {
       0 => 'Content Manager',
       1 => 'administrator',
     ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_user_questions_get.
-  $permissions['edit own field_user_questions_get'] = array(
-    'name' => 'edit own field_user_questions_get',
-    'roles' => array(),
     'module' => 'field_permissions',
   );
 
@@ -1406,22 +1330,6 @@ function pw_profiles_user_default_permissions() {
       0 => 'administrator',
       1 => 'anonymous user',
       2 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view field_user_answers_give.
-  $permissions['view field_user_answers_give'] = array(
-    'name' => 'view field_user_answers_give',
-    'roles' => array(
-      0 => 'Candidate',
-      1 => 'Content Manager',
-      2 => 'Deputy',
-      3 => 'Politician',
-      4 => 'Premium User',
-      5 => 'administrator',
-      6 => 'anonymous user',
-      7 => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1805,18 +1713,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view field_user_qanda_ratio.
-  $permissions['view field_user_qanda_ratio'] = array(
-    'name' => 'view field_user_qanda_ratio',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-      2 => 'anonymous user',
-      3 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: view field_user_question_form_closed.
   $permissions['view field_user_question_form_closed'] = array(
     'name' => 'view field_user_question_form_closed',
@@ -1825,21 +1721,6 @@ function pw_profiles_user_default_permissions() {
       1 => 'administrator',
       2 => 'anonymous user',
       3 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view field_user_questions_get.
-  $permissions['view field_user_questions_get'] = array(
-    'name' => 'view field_user_questions_get',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Deputy',
-      2 => 'Politician',
-      3 => 'Premium User',
-      4 => 'administrator',
-      5 => 'anonymous user',
-      6 => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1947,18 +1828,6 @@ function pw_profiles_user_default_permissions() {
       0 => 'administrator',
       1 => 'anonymous user',
       2 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_user_answers_give.
-  $permissions['view own field_user_answers_give'] = array(
-    'name' => 'view own field_user_answers_give',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-      2 => 'anonymous user',
-      3 => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -2306,16 +2175,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view own field_user_qanda_ratio.
-  $permissions['view own field_user_qanda_ratio'] = array(
-    'name' => 'view own field_user_qanda_ratio',
-    'roles' => array(
-      0 => 'anonymous user',
-      1 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: view own field_user_question_form_closed.
   $permissions['view own field_user_question_form_closed'] = array(
     'name' => 'view own field_user_question_form_closed',
@@ -2323,18 +2182,6 @@ function pw_profiles_user_default_permissions() {
       0 => 'administrator',
       1 => 'anonymous user',
       2 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_user_questions_get.
-  $permissions['view own field_user_questions_get'] = array(
-    'name' => 'view own field_user_questions_get',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-      2 => 'anonymous user',
-      3 => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
