@@ -62,6 +62,9 @@
 }
 
 
+
+
+
 /* Images */
 figure {
   margin: 0;
@@ -189,6 +192,9 @@ figcaption {
     color: $darkGray;
   }
 }
+
+/* Pager: Single pager */
+
 .pager__next.first.last {
   text-align: center;
   position: relative;
@@ -209,8 +215,31 @@ figcaption {
 }
 
 
-/* Pager: Single pager */
+/* Listen */
 
+/* Inline Links */
+
+.links {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  &.inline {
+    li {
+      display: inline-block;
+      margin-right: $space-small-mobile;
+      &:before {
+        content: '\e805';
+        font-family: 'awfont';
+        font-size: .7em;
+        line-height: 2.2em;
+        color: $darkGray;
+        display: block;
+        float: left;
+        margin-right: 5px;
+      }
+    }
+  }
+}
 
 
 

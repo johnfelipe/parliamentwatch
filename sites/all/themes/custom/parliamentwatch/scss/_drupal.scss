@@ -87,3 +87,17 @@
     content: '\e829';
   }
 }
+
+
+/* Form specific */
+
+.filter-wrapper {
+  margin: 0 0 $space;
+  padding: 0;
+  .tips {
+    font-size: .7em;
+  }
+}
+.form-item + .filter-wrapper {
+  margin-top: -1px;
+}

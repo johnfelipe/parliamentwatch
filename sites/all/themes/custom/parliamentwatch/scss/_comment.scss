@@ -1,0 +1,42 @@
+/**
+* Comment styling
+*/
+
+.comment-wrapper {
+  padding: ($space-large * 2) 0;
+}
+.comment {
+  padding-bottom: $space;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(8, $neat-grid-no-gutter);
+  }
+}
+
+.comment__submitted {
+  border-bottom: 1px solid $gray;
+  margin-bottom: $space-small;
+  @include grid-container();
+  h3 {
+    @include h4();
+    font-weight: 300;
+    margin: 0;
+    padding-bottom: $space-small-mobile;
+    @include grid-column(11, $neat-grid-no-gutter);
+  }
+}
+.comment__permalink {
+  color: $gray;
+  text-align: right;
+  padding-top: $space-xsmall-mobile;
+  padding-right: $space-xsmall-mobile;
+  @include grid-column(1, $neat-grid-no-gutter);
+}
+
+.indented {
+  @include breakpoint($breakpoint-s-min) {
+    margin-left: $space-large;
+  }
+}
+// Limit indent after 3rd-level
+
+.indented .indented .indented { margin-left: 0; }
