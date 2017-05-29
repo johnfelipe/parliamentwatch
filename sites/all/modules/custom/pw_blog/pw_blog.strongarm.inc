@@ -133,23 +133,32 @@ function pw_blog_strongarm() {
       'pw_newsletter' => array(
         'custom_settings' => TRUE,
       ),
+      'tile' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'redirect' => array(
-          'weight' => '7',
+          'weight' => '8',
         ),
         'xmlsitemap' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'rabbit_hole' => array(
           'weight' => '1',
@@ -166,7 +175,7 @@ function pw_blog_strongarm() {
             'visible' => FALSE,
           ),
           'default' => array(
-            'weight' => '10',
+            'weight' => '6',
             'visible' => FALSE,
           ),
           'search_result' => array(
