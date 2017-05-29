@@ -266,7 +266,7 @@ function _pw_globals_update_block($block, $module, $delta, $theme = NULL) {
  */
 function _pw_globals_menu_link_add($path, $title, $weight, $plid = 0) {
   $item = [
-    'link_path' => drupal_lookup_path('source', $path),
+    'link_path' => drupal_lookup_path('source', $path) ?: $path,
     'link_title' => $title,
     'menu_name' => 'main-menu',
     'weight' => $weight,
