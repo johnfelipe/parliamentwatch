@@ -39,7 +39,7 @@ function pw_vote_field_extra_fields() {
 function pw_vote_user_view($account, $view_mode, $langcode) {
   $extra = field_extra_fields_get_display('user', 'user', $view_mode);
 
-  if (isset($extra['votes'])) {
+  if (isset($extra['votes']) && $extra['votes']['visible']) {
     $account->content['votes'] = node_view_multiple(pw_vote_node_load_multiple($account, 1), 'list_item');
     $account->content['votes']['pager'] = [
       '#theme' => 'pager',

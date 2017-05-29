@@ -241,7 +241,7 @@ function pw_dialogues_cron() {
 function pw_dialogues_user_view($account, $view_mode, $langcode) {
   $extra = field_extra_fields_get_display('user', 'user', $view_mode);
 
-  if (isset($extra['dialogues'])) {
+  if (isset($extra['dialogues']) && $extra['dialogues']['visible']) {
     $q = new EntityFieldQuery();
     $q->entityCondition('entity_type', 'node');
     $q->entityCondition('bundle', 'dialogue');
@@ -257,11 +257,11 @@ function pw_dialogues_user_view($account, $view_mode, $langcode) {
     }
   }
 
-  if (isset($extra['average_response_time'])) {
+  if (isset($extra['average_response_time']) && $extra['question_form']['visible']) {
     $account->content['average_response_time'] = number_format(pw_dialogues_average_response_time($account) / 86400, 1, ',', '.');
   }
 
-  if (isset($extra['question_form'])) {
+  if (isset($extra['question_form']) && $extra['question_form']['visible']) {
     $account->content['question_form'] = node_view(node_load(10446), 'form')['webform'];
   }
 }

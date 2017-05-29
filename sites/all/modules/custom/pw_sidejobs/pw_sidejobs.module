@@ -68,7 +68,7 @@ function pw_sidejobs_user_view($account, $view_mode, $langcode) {
     }
   }
 
-  if (isset($extra['additional_income'])) {
+  if (isset($extra['additional_income']) && $extra['additional_income']['visible']) {
     $account->content['additional_income'] = pw_sidejobs_accumulated_total_income_range($account);
   }
 }
