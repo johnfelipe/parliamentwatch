@@ -2003,7 +2003,7 @@ Mit Ihrer Auswahl wurden leider keine Ergebnisse gefunden.<br/>Bitte treffen Sie
   );
   $handler->display->display_options['fields']['fieldset_1']['fieldset']['type'] = 'div';
   $handler->display->display_options['fields']['fieldset_1']['fieldset']['classes'] = 'small light push-bottom-m';
-  /* Feld: Beschädigte/fehlende Behandlungsroutine */
+  /* Feld: Benutzer: Questions Get */
   $handler->display->display_options['fields']['field_user_questions_get']['id'] = 'field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['table'] = 'field_data_field_user_questions_get';
   $handler->display->display_options['fields']['field_user_questions_get']['field'] = 'field_user_questions_get';
@@ -2013,7 +2013,7 @@ Mit Ihrer Auswahl wurden leider keine Ergebnisse gefunden.<br/>Bitte treffen Sie
   $handler->display->display_options['fields']['field_user_questions_get']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_user_questions_get']['alter']['text'] = '[field_user_questions_get],';
   $handler->display->display_options['fields']['field_user_questions_get']['element_label_colon'] = FALSE;
-  /* Feld: Beschädigte/fehlende Behandlungsroutine */
+  /* Feld: Benutzer: Answers Give */
   $handler->display->display_options['fields']['field_user_answers_give']['id'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';

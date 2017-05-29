@@ -99,7 +99,7 @@ function pw_dialogues_strongarm() {
         'custom_settings' => FALSE,
       ),
       'embedded' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
@@ -151,10 +151,10 @@ function pw_dialogues_strongarm() {
       'tile' => array(
         'custom_settings' => TRUE,
       ),
-      'embedded' => array(
-        'custom_settings' => TRUE,
-      ),
       'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -199,10 +199,6 @@ function pw_dialogues_strongarm() {
             'weight' => '10',
             'visible' => FALSE,
           ),
-          'embedded' => array(
-            'weight' => '10',
-            'visible' => FALSE,
-          ),
         ),
         'sharethis' => array(
           'full' => array(
@@ -220,10 +216,6 @@ function pw_dialogues_strongarm() {
           'tile' => array(
             'weight' => '15',
             'visible' => FALSE,
-          ),
-          'embedded' => array(
-            'weight' => '-100',
-            'visible' => TRUE,
           ),
         ),
       ),

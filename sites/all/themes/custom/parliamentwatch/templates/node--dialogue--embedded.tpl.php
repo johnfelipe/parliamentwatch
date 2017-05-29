@@ -87,7 +87,8 @@
   </div>
   <div class="question__question mh-item-tile" data-mh="questionTitle">
     <h3 class="question__question__title"><?php print render($content['body']); ?></h3>
-    <p class="question__question__author">Von: <?php print render($content['field_dialogue_sender_name']); ?></p>
+    <?php print render($title_suffix); ?>
+    <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
   </div>
 
   <?php if (empty($content['answer'])): ?>

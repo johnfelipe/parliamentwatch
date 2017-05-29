@@ -135,7 +135,7 @@ function pw_dialogues_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'text',
+          'module' => 'smart_trim',
           'settings' => array(
             'field_delimiter' => '',
             'linked_field' => array(
@@ -149,8 +149,19 @@ function pw_dialogues_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
+            'more_link' => '0',
+            'more_text' => 'Read more',
+            'summary_handler' => 'full',
+            'trim_length' => '300',
+            'trim_link' => '0',
+            'trim_options' => array(
+              'text' => 0,
+            ),
+            'trim_preserve_tags' => '',
+            'trim_suffix' => '...',
+            'trim_type' => 'chars',
           ),
-          'type' => 'text_default',
+          'type' => 'smart_trim_format',
           'weight' => '3',
         ),
         'embedded' => array(
@@ -1328,7 +1339,7 @@ $display_output = rtrim($display_output);',
         ),
         'default' => array(
           'label' => 'hidden',
-          'module' => 'text',
+          'module' => 'smart_trim',
           'settings' => array(
             'field_delimiter' => '',
             'linked_field' => array(
@@ -1342,8 +1353,19 @@ $display_output = rtrim($display_output);',
               'destination' => '',
               'linked' => 0,
             ),
+            'more_link' => '0',
+            'more_text' => 'Read more',
+            'summary_handler' => 'full',
+            'trim_length' => '200',
+            'trim_link' => '0',
+            'trim_options' => array(
+              'text' => 0,
+            ),
+            'trim_preserve_tags' => '',
+            'trim_suffix' => '...',
+            'trim_type' => 'chars',
           ),
-          'type' => 'text_default',
+          'type' => 'smart_trim_format',
           'weight' => '0',
         ),
         'embedded' => array(
@@ -2598,7 +2620,7 @@ $display_output = rtrim($display_output);',
           'weight' => '0',
         ),
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
             'field_delimiter' => '',
