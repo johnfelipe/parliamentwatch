@@ -113,6 +113,9 @@ function pw_vote_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

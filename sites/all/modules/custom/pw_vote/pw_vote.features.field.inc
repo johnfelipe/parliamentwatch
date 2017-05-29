@@ -492,7 +492,7 @@ function pw_vote_field_default_fields() {
               'linked' => 0,
             ),
             'links' => 0,
-            'view_mode' => 'list_item',
+            'view_mode' => 'embedded',
           ),
           'type' => 'entityreference_entity_view',
           'weight' => '1',

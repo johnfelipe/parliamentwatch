@@ -253,7 +253,7 @@ function pw_dialogues_user_view($account, $view_mode, $langcode) {
     $result = $q->execute();
 
     if ($result['node']) {
-      $account->content['dialogues'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
+      $account->content['dialogues'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'embedded');
     }
   }
 
