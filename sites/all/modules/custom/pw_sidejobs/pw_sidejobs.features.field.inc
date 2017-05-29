@@ -619,16 +619,14 @@ function pw_sidejobs_field_default_fields() {
         'active' => 1,
         'module' => 'addressfield',
         'settings' => array(
-          'available_countries' => array(
-            'DE' => 'DE',
-          ),
+          'available_countries' => array(),
           'default_country' => 'DE',
           'format_handlers' => array(
             'address' => 'address',
             'address-hide-postal-code' => 'address-hide-postal-code',
             'address-hide-street' => 'address-hide-street',
-            'address-hide-country' => 'address-hide-country',
             'address-optional' => 'address-optional',
+            'address-hide-country' => 0,
             'organisation' => 0,
             'name-oneline' => 0,
             'name-full' => 0,
