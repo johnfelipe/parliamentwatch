@@ -43,8 +43,16 @@ function pw_globals_entity_info_alter(&$entity_info) {
     'label' => t('List item'),
     'custom settings' => FALSE,
   );
+  $entity_info['node']['view modes']['embedded'] = array(
+    'label' => t('Embedded'),
+    'custom settings' => FALSE,
+  );
   $entity_info['comment']['view modes']['tile'] = array(
     'label' => t('Tile'),
+    'custom settings' => FALSE,
+  );
+  $entity_info['comment']['view modes']['embedded'] = array(
+    'label' => t('Embedded'),
     'custom settings' => FALSE,
   );
 }
