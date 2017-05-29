@@ -87,7 +87,7 @@
     <div class="blog__header__content">
       <?php print render($title_prefix); ?>
         <h1<?php print $title_attributes; ?>><?php print $title; ?></h1>
-        <?php print render($node->body[$node->language][0]['safe_summary']);  ?>
+        <?php print render($content['field_blogpost_intro']);  ?>
       <?php print render($title_suffix); ?>
     </div>
   </div>
