@@ -66,10 +66,10 @@ function pw_sidejobs_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'list_item' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'full' => array(
         'custom_settings' => FALSE,
@@ -96,6 +96,9 @@ function pw_sidejobs_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -127,6 +130,10 @@ function pw_sidejobs_strongarm() {
             'visible' => TRUE,
           ),
           'list_item' => array(
+            'weight' => '-100',
+            'visible' => TRUE,
+          ),
+          'embedded' => array(
             'weight' => '-100',
             'visible' => TRUE,
           ),

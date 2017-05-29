@@ -64,7 +64,7 @@ function pw_sidejobs_user_view($account, $view_mode, $langcode) {
       ->execute();
 
     if (!empty($result['node'])) {
-      $account->content['sidejobs'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'list_item');
+      $account->content['sidejobs'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'embedded');
     }
   }
 
