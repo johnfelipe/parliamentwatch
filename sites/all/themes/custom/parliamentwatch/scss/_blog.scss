@@ -2,6 +2,7 @@
 * Blog
 */
 
+/* Blog-Listenansicht */
 
 .view-blog {
   background: $beige;
@@ -10,11 +11,16 @@
   @include grid-container();
   @include container();
 }
-
+.blog-list {
+  @include grid-collapse();
+  @include grid-container();
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-collapse($neat-grid-large-gutter);
+  }
+}
 .views-exposed-widgets {
   @include grid-container();
 }
-
 .blog.tile {
   @include grid-column(12);
   margin-bottom: $space;
@@ -31,7 +37,6 @@
     padding-bottom: $space;
   }
 }
-
 
 
 /* Blog-Detailansicht */
@@ -126,9 +131,14 @@
     max-width: 900px;
   }
 }
+
+
 .blog__content {
-  font-size: 18px;
+  font-size: 16px;
   padding-bottom: $space-large;
+  @include breakpoint($breakpoint-s-min) {
+    font-size: 18px;
+  }
 
   /* Drupal-Specific */
   p + .floatbox { margin-top: 1.8em; }
@@ -137,14 +147,48 @@
   }
   .file-image {
     img {
-      padding: 3px;
-      border: 1px solid $brightGray;
+      padding: $space-xsmall-mobile;
+      border: 1px solid $darkBeige;
     }
     &.float-left {
-      float: left;
-      max-width: 300px;
+      margin-top: $space-large;
+      margin-bottom: $space;
+      @include breakpoint($breakpoint-s-min) {
+        float: left;
+        max-width: 300px;
+        @include margin($space $space $space null);
+      }
+      @include breakpoint($breakpoint-l-min) {
+        @include margin($space-large $space-large $space-large -100px);
+        max-width: 400px;
+      }
+    }
+    &.float-right {
+      margin-top: $space-large;
+      margin-bottom: $space;
+      @include breakpoint($breakpoint-s-min) {
+        float: right;
+        max-width: 300px;
+        @include margin($space null $space $space);
+      }
+      @include breakpoint($breakpoint-l-min) {
+        @include margin($space-large -100px $space-large $space-large);
+        max-width: 400px;
+      }
     }
   }
-
+}
+.blog__related {
+  .tabs__content {
+    background: $beige;
+  }
+  .tabs__content__content {
+    padding: $space 0;
+  }
+  /* Hide 3rd Blog-Item for Tablet devices */
+  .blog.tile:nth-child(3) {
+    @include breakpoint($breakpoint-xs-min) { display: none; }
+    @include breakpoint($breakpoint-m-min) { display: block; }
+  }
 }
 

@@ -5,6 +5,7 @@
 #content {
     min-height: 400px;
     background: $white;
+    @include transition(margin-top 300ms ease);
 }
 .page-user #content {
     padding-top: $space;

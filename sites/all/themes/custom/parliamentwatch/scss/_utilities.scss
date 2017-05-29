@@ -124,6 +124,7 @@ figcaption {
   float: left;
   margin-right: $space-small;
   margin-bottom: 0;
+  &:last-child { margin-right: 0; }
 }
 .share__links__item__link {
   display: block;

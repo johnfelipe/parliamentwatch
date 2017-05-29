@@ -40,3 +40,34 @@
 // Limit indent after 3rd-level
 
 .indented .indented .indented { margin-left: 0; }
+
+
+/* Comment Teaser */
+.comment-teaser {
+  border-top: 1px solid $darkBeige;
+  border-bottom: 1px solid $darkBeige;
+  padding: $space-large 0;
+  @include grid-container();
+  h3 {
+    margin: 0;
+    @include breakpoint($breakpoint-xs-min) {
+      float: left;
+    }
+    a {
+      display: block;
+      color: $darkGray;
+      padding-bottom: $space-small;
+      @include breakpoint($breakpoint-xs-min) {
+        padding: $space-small-mobile 0;
+      }
+    }
+  }
+  .btn {
+    @include breakpoint($breakpoint-xs-min) {
+      float: right;
+    }
+  }
+}
+.share + .comment-teaser {
+  border-top: 0;
+}

@@ -109,7 +109,7 @@
 
   <div class="share">
     <div class="container">
-      <h3>Teile diese Blog-Artikel mit deinen Freunden</h3>
+      <h3><?php print t('Share this blog article with your friends') ?></h3>
       <ul class="share__links">
         <li class="share__links__item share__links__item--facebook"><a class="share__links__item__link" href="#"><i class="icon icon-facebook"></i> <span>teilen</span></a></li>
         <li class="share__links__item share__links__item--twitter"><a class="share__links__item__link" href="#"><i class="icon icon-twitter"></i> <span>tweet</span></a></li>
@@ -117,6 +117,100 @@
         <li class="share__links__item share__links__item--whatsapp"><a class="share__links__item__link" href="#"><i class="icon icon-whatsapp"></i> <span>WhatsApp</span></a></li>
         <li class="share__links__item share__links__item--mail"><a class="share__links__item__link" href="#"><i class="icon icon-mail"></i> <span>e-mail</span></a></li>
       </ul>
+    </div>
+  </div>
+  <div class="comment-teaser">
+    <div class="container">
+      <h3><a href="#comments">(<?php print $comment_count ?>) <?php print t('Comments') ?></a></h3>
+      <a href="#comments" class="btn btn--mobile-block"><?php print t('Jump to comments') ?></a>
+    </div>
+  </div>
+
+  <div class="blog__related">
+    <div class="tabs">
+      <div class="tabs__navigation">
+        <div class="container">
+          <ul class="nav nav--tab">
+            <li class="nav__item nav__item--active"><a class="nav__item__link" href="#aehnliche-artikel" data-tab-content="aehnliche-artikel"><?php print t('Related articles') ?></a></li>
+            <li class="nav__item"><a class="nav__item__link" href="#erwaehnte-abgeordnete" data-tab-content="erwaehnte-abgeordnete"><?php print t('Related deputies') ?></a></li>
+            <li class="nav__item"><a class="nav__item__link" href="#erwaehnte-abstimmungen" data-tab-content="erwaehnte-abstimmungen"><?php print t('Related votes') ?></a></li>
+          </ul>
+        </div>
+      </div>
+      <section id="aehnliche-artikel" class="tabs__content tabs__content--active" data-tab-content="aehnliche-artikel">
+        <div class="container">
+          <div class="tabs__content__title option-title">
+            <h2><a href="#" data-tab-content="aehnliche-artikel"><?php print t('Related articles') ?></a></h2>
+          </div>
+          <div class="tabs__content__content">
+            <div class="blog-list">
+              <article id="node-" class="blog tile">
+                <div class="tile__image">
+                  <img typeof="foaf:Image" src="http://localhost:8080/sites/default/files/styles/pw_landscape_l/public/blog/hausausweisantrag_280.png?itok=hI93nIp8" width="280" height="187" alt="Ausschnitt Hausausweisantrag des Deutschen Bundestages" title="Ausschnitt Hausausweisantrag des Deutschen Bundestages">
+                </div>
+                <header class="tile__title tile__title--date mh-item">
+              <span class="date">
+                22 Jun 2017
+              </span>
+                  <h3><a href="#">lorem ipsum dolor sit amet</a></h3>
+                </header>
+                <ul class="tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="#">Weiterlesen</a></li>
+                </ul>
+              </article>
+              <article id="node-" class="blog tile">
+                <div class="tile__image">
+                  <img typeof="foaf:Image" src="http://localhost:8080/sites/default/files/styles/pw_landscape_l/public/blog/hausausweisantrag_280.png?itok=hI93nIp8" width="280" height="187" alt="Ausschnitt Hausausweisantrag des Deutschen Bundestages" title="Ausschnitt Hausausweisantrag des Deutschen Bundestages">
+                </div>
+                <header class="tile__title tile__title--date mh-item">
+              <span class="date">
+                22 Jun 2017
+              </span>
+                  <h3><a href="#">lorem ipsum dolor sit amet</a></h3>
+                </header>
+                <ul class="tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="#">Weiterlesen</a></li>
+                </ul>
+              </article>
+              <article id="node-" class="blog tile">
+                <div class="tile__image">
+                  <img typeof="foaf:Image" src="http://localhost:8080/sites/default/files/styles/pw_landscape_l/public/blog/hausausweisantrag_280.png?itok=hI93nIp8" width="280" height="187" alt="Ausschnitt Hausausweisantrag des Deutschen Bundestages" title="Ausschnitt Hausausweisantrag des Deutschen Bundestages">
+                </div>
+                <header class="tile__title tile__title--date mh-item">
+              <span class="date">
+                22 Jun 2017
+              </span>
+                  <h3><a href="#">lorem ipsum dolor sit amet</a></h3>
+                </header>
+                <ul class="tile__links tile__links--2">
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+                  <li class="tile__links__item"><a class="tile__links__item__link" href="#">Weiterlesen</a></li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="erwaehnte-abgeordnete" class="tabs__content" data-tab-content="erwaehnte-abgeordnete">
+        <div class="container">
+          <div class="tabs__content__title option-title">
+            <h2><a href="#" data-tab-content="erwaehnte-abgeordnete"><?php print t('Related deputies') ?></a></h2>
+          </div>
+          <div class="tabs__content__content">
+          </div>
+        </div>
+      </section>
+      <section id="erwaehnte-abstimmungen" class="tabs__content" data-tab-content="erwaehnte-abstimmungen">
+        <div class="container">
+          <div class="tabs__content__title option-title">
+            <h2><a href="#" data-tab-content="erwaehnte-abstimmungen"><?php print t('Related votes') ?></a></h2>
+          </div>
+          <div class="tabs__content__content">
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 

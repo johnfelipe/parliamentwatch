@@ -122,10 +122,8 @@
 .nav-mobile-trigger {
   display: block;
   font-size: 1.6em;
-
-  position: absolute;
-  right: 0;
-  bottom: 100%;
+  padding: $space $space-xsmall;
+  float: right;
   @include breakpoint($breakpoint-m-min) {
     display: none;
   }
