@@ -103,4 +103,4 @@ features[variable][] = xmlsitemap_settings_node_blogpost
 features[variable][] = xmlsitemap_settings_taxonomy_term_blogcategories
 features[variable][] = xmlsitemap_settings_taxonomy_term_blogtags
 features[views_view][] = blog
-mtime = 1495402122
+mtime = 1496149673

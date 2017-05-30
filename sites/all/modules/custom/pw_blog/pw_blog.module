@@ -7,6 +7,21 @@
 include_once 'pw_blog.features.inc';
 
 /**
+ * Implements hook_menu().
+ */
+function pw_blog_menu() {
+  $items = [];
+  $items['blog'] = [
+    'title' => 'Blog',
+    'page callback' => 'pw_blog_page',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+
+  return $items;
+}
+
+/**
  * Implements hook_form_alter().
  */
 function pw_blog_form_views_exposed_form_alter(&$form, &$form_state) {
@@ -27,4 +42,42 @@ function pw_blog_blockreference_blocks_pre_alter(&$blocks, $context) {
       }
     }
   }
+}
+
+/**
+ * Page callback: Displays a listing of blog posts.
+ */
+function pw_blog_page() {
+  $build = [];
+
+  $result = pw_blog_base_query()
+    ->propertyOrderBy('created', 'DESC')
+    ->pager()
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
+    $build['nodes']['#theme_wrappers'] = ['container__tiles'];
+    $build['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
+    ];
+  }
+
+  return $build;
+}
+
+/**
+ * Returns a query for fetching published nodes of type blogpost.
+ *
+ * @return EntityFieldQuery
+ *   The query object
+ */
+function pw_blog_base_query() {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'blogpost');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+
+  return $q;
 }
