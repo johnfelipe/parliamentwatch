@@ -223,10 +223,10 @@ function pw_sidejobs_total_income_range($node) {
 }
 
 /**
- * Returns all sideline jobs of the given account version.
+ * Returns query for all sideline jobs of the given account version.
  *
  * @param object $account
- *   The user entity.
+ *   The user account (version).
  *
  * @return EntityFieldQuery
  *   The query object.
