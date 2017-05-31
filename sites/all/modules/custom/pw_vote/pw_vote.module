@@ -826,3 +826,23 @@ function pw_vote_by_user_revision_query($account) {
 
   return $q;
 }
+
+/**
+ * Returns array representation of vote for serialization.
+ *
+ * @param object $node
+ *   The vote node.
+ * @return array
+ *   The array representation.
+ */
+function pw_vote_to_aray($node) {
+  $poll = node_load($node->field_vote_node[LANGUAGE_NONE][0]['target_id']);
+  $vote = taxonomy_term_load($node->field_vote[LANGUAGE_NONE][0]['tid']);
+  $data = [
+    'id' => $node->nid,
+    'title' => $poll->title,
+    'date' => $poll->field_poll_date[LANGUAGE_NONE][0]['value'],
+    'vote' => $vote->name,
+  ];
+  return $data;
+}
