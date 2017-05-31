@@ -99,6 +99,8 @@ figcaption {
   border-bottom: 1px solid $darkBeige;
   @include grid-container();
   h3 {
+    @include h4();
+    font-family: $font-sans-serif;
     @include breakpoint($breakpoint-m-min) {
       margin: 0;
       float: left;
@@ -196,7 +198,7 @@ figcaption {
 
 /* Pager: Single pager */
 
-.pager__next.first.last {
+.pager__next {
   text-align: center;
   position: relative;
   a {
@@ -224,6 +226,7 @@ figcaption {
   padding: 0;
   margin: 0;
   list-style: none;
+  font-weight: 500;
   &.inline {
     li {
       display: inline-block;

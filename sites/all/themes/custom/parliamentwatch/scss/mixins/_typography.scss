@@ -16,20 +16,20 @@
 }
 @mixin h4() {
   font-size: 1.2em;
-  font-weight: 700;
+  font-weight: 500;
 }
 @mixin h5() {
   font-size: 1.1em;
-  font-weight: 700;
+  font-weight: 500;
 }
 @mixin h6() {
   font-size: 1em;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 @mixin paragraph() {
   font-size: 1em;
-  line-height: 1.4em;
+  line-height: 1.5em;
   @include margin(0 null $space-small);
 }
 

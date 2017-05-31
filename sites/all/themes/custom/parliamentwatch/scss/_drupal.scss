@@ -101,3 +101,11 @@
 .form-item + .filter-wrapper {
   margin-top: -1px;
 }
+
+
+
+/* Temp */
+
+.view-content {
+  @include grid-container();
+}

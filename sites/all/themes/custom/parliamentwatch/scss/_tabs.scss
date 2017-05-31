@@ -10,6 +10,11 @@
   @include breakpoint($breakpoint-m-min) {
     display: block;
   }
+  .nav__item {
+    @include breakpoint($breakpoint-l-min) {
+      font-size: 1.2em;
+    }
+  }
   .nav__item__link {
     display: block;
     @include padding($space $space-large);

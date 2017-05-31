@@ -60,7 +60,7 @@
       </div>
       <div class="deputy__intro__content">
         <div class="hstats">
-          <div class="hstats__item hstats__item--donut-digit">
+          <a href="#fragen-und-antworten" class="hstats__item hstats__item--donut-digit" data-localScroll>
             <div class="hstats__item__display mh-item-nr" data-mh="hstats">
               <span class="d3 d3--gauge"
                     data-d3-gauge
@@ -81,8 +81,8 @@
               <?php print format_plural($questions, t('Answered question'), t('Answered questions')) ?>
               <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-answered-questions') ?>"></i>
             </div>
-          </div>
-          <div class="hstats__item hstats__item--donut-digit">
+          </a>
+          <a href="#abstimmverhalten" class="hstats__item hstats__item--donut-digit" data-localScroll>
             <div class="hstats__item__display mh-item-nr" data-mh="hstats">
               <span class="d3 d3--gauge"
                     data-d3-gauge
@@ -103,16 +103,16 @@
               <?php print format_plural($user_profile['field_user_questions_get']['#items'][0]['value'], t('Vote by name'), t('Votes by name')) ?>
               <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-votes-by-name') ?>"></i>
             </div>
-          </div>
+          </a>
 
-          <div class="hstats__item hstats__item--digit">
+          <a href="#nebentaetigkeiten" class="hstats__item hstats__item--digit" data-localScroll>
             <div class="hstats__item__label mh-item-nr" data-mh="hstats">
               <div class="hstats__item__label__value">
                 <span class="hstats__item__label__value_min"><?php print number_format($user_profile['additional_income'][0], 0, ',', '.'); ?></span> € &ndash; <span class="hstats__item__label__value_max"><?php print number_format($user_profile['additional_income'][1], 0, ',', '.'); ?></span> €
               </div>
               <?php print t('Additional income min.') ?> <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-additional-income') ?>"></i> <?php print t('Additional income max.') ?>
             </div>
-          </div>
+          </a>
 
         </div>
 

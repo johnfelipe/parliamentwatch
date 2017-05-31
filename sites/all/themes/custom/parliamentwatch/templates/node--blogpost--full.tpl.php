@@ -83,13 +83,14 @@
 <article id="node-<?php print $node->nid; ?>" class="blog detail <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <div class="blog__header">
-    <?php print render($content['field_teaser_image']); ?>
+    <?php print render($content['field_teaser_image'][und][0][uri]); ?>
     <div class="blog__header__content">
       <?php print render($title_prefix); ?>
         <h1<?php print $title_attributes; ?>><?php print $title; ?></h1>
         <?php print render($content['field_blogpost_intro']);  ?>
       <?php print render($title_suffix); ?>
     </div>
+    <div class="blog__header__bg" style="background-image: url('<?php print file_create_url($node->field_teaser_image[und][0]['uri']); ?>')"></div>
   </div>
   <div class="blog__submitted">
     <div class="container">
@@ -121,8 +122,8 @@
   </div>
   <div class="comment-teaser">
     <div class="container">
-      <h3><a href="#comments">(<?php print $comment_count ?>) <?php print t('Comments') ?></a></h3>
-      <a href="#comments" class="btn btn--mobile-block"><?php print t('Jump to comments') ?></a>
+      <h3><a href="#comments" data-localScroll>(<?php print $comment_count ?>) <?php print t('Comments') ?></a></h3>
+      <a href="#comments" data-localScroll class="btn btn--mobile-block"><?php print t('Jump to comments') ?></a>
     </div>
   </div>
 

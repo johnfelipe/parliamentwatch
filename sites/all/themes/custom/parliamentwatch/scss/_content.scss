@@ -3,13 +3,15 @@
 */
 
 #content {
-    min-height: 400px;
-    background: $white;
-    @include transition(margin-top 300ms ease);
+  min-height: 400px;
+  background: $white;
+}
+.docready #content {
+  @include transition(margin-top 300ms ease);
 }
 .page-user #content {
-    padding-top: $space;
-    @include breakpoint($breakpoint-m-min) {
-        padding-top: $space-large;
-    }
+  padding-top: $space;
+  @include breakpoint($breakpoint-m-min) {
+    padding-top: $space-large;
+  }
 }
