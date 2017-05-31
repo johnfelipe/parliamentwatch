@@ -270,3 +270,33 @@ function pw_sidejobs_accumulated_total_income_range($account) {
 
   return array_reduce($nodes, $callback, $initial);
 }
+
+/**
+ * Returns array representation of sideline job for serialization.
+ *
+ * @param object $node
+ *   The sidejob node.
+ *
+ * @return array
+ *   The array representation.
+ */
+function pw_sidejobs_to_array($node) {
+  $data = [
+    'id' => $node->nid,
+    'customer' => check_plain($node->field_sidejob_organization[LANGUAGE_NONE][0]['taxonomy_term']->name),
+    'activity' => check_plain($node->field_job[LANGUAGE_NONE][0]['taxonomy_term']->name),
+    'city' => check_plain($node->field_sidejob_address[LANGUAGE_NONE][0]['locality']),
+    'dateFrom' => isset($node->field_sidejob_date_start[LANGUAGE_NONE][0]['value']) ? $node->field_sidejob_date_start[LANGUAGE_NONE][0]['value'] : NULL,
+    'dateTo' => isset($node->field_sidejob_date_end[LANGUAGE_NONE][0]['value']) ? $node->field_sidejob_date_end[LANGUAGE_NONE][0]['value'] : NULL,
+    'income' => [
+      'level' => (int) $node->field_sidejob_classification[LANGUAGE_NONE][0]['value'],
+      'repetition' => (int) $node->field_sidejob_income_interval[LANGUAGE_NONE][0]['value'],
+      'valueMin' => isset($node->field_sidejob_income_min[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_min[LANGUAGE_NONE][0]['value'] : NULL,
+      'valueMax' => isset($node->field_sidejob_income_max[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_max[LANGUAGE_NONE][0]['value'] : NULL,
+      'totalValueMin' => isset($node->field_sidejob_income_min_total[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_min_total[LANGUAGE_NONE][0]['value'] : NULL,
+      'totalValueMax' => isset($node->field_sidejob_income_max_total[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_max_total[LANGUAGE_NONE][0]['value'] : NULL,
+    ]
+  ];
+
+  return $data;
+}
