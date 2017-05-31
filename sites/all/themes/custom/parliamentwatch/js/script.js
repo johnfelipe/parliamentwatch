@@ -492,12 +492,11 @@ function d3RadialGauge(element) {
  * */
 function d3SecondaryIncome(element) {
     var wrapper = element;
-    var datasetURL = wrapper.getAttribute('data-data');
     var barWrapper = d3.select(wrapper)
         .append('div')
         .attr('class', 'd3-bars');
 
-    d3.json(datasetURL, function(data) {
+    (function(data) {
         var totalVolumeMin = d3.sum(data, function(d) { return d.income.totalValueMin; });
         var totalVolumeMinPrint = totalVolumeMin;
         var totalVolumeMax = d3.sum(data, function(d) { return d.income.totalValueMax; });
@@ -534,7 +533,7 @@ function d3SecondaryIncome(element) {
 
         // ADD Total
         barWrapper.insert('div',':first-child').attr('class', 'd3-bars__total').html('Gesamteinnahmen: ' + totalVolumeMin + ' &ndash; ' + totalVolumeMax);
-    });
+    })(window.sidejobs);
 
 }
 
