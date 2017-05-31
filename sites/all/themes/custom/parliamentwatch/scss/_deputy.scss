@@ -71,8 +71,9 @@
       height: 40px;
     }
   }
-  .party-indicator {
+  .deputy__party-indicator {
     font-size: .9em;
+    text-align: center;
   }
 }
 
@@ -215,9 +216,6 @@
     margin-top: $space-large;
     border-top: 1px solid $darkBeige;
     .nav__item {
-      @include breakpoint($breakpoint-l-min) {
-        font-size: 1.2em;
-      }
       /* Exceptions for first Q&A-Tab */
       &.nav__item--active:first-child .nav__item__link {
         background: $orangeBG;
