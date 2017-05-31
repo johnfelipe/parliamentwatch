@@ -110,6 +110,21 @@ function contentOffset() {
         contentOffset = 0;
     }
     $('#content').css('margin-top', contentOffset);
+/*
+ * Local scroll Plugin
+ * */
+
+function initLocalScroll() {
+    $('[data-localScroll]').on( "click", function(event) {
+        var hrefValue = $(this).attr('href');
+        var scrollOffset = $('#header').height() * -1;
+        $(window).scrollTo($(hrefValue), 800, {
+            offset: {
+                top: scrollOffset
+            }
+        });
+        return false;
+    });
 }
 
 
@@ -155,18 +170,21 @@ function tabs() {
 
         swiperTile();
 
+
         return false;
     });
+
 
     // Set initial tab by checking url for hash
     if(history.pushState) {
         var hashValue = window.location.hash;
         var hashValueClean = hashValue.substring(1);
         $('.nav__item a[data-tab-content=' + hashValueClean + ']').trigger("click");
-    }
-    if (history && history.pushState) {
+
         $(window).on('popstate', function(event) {
             var hashValueClean = history.state.substring(1);
+
+            console.log(history);
 
             // Set nav-item classes
             $('.tabs').find('.nav__item').removeClass('nav__item--active');
@@ -533,7 +551,7 @@ $(function () {
     swiperTile();
     viewDeputyDetail();
     tableSecondaryIncome();
-
+    initLocalScroll();
 
     // Init global matchHeight-plugin class
 

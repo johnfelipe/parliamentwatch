@@ -12,6 +12,7 @@
         "normalize-css": "5.0.x",
         "matchHeight": "0.7.x",
         "select2": "4.0.x",
+        "jquery.scrollTo": "2.1.x",
         "jquery-stupid-table": "1.0.x",
         "swiper": "3.4.x",
         "d3": "4.8.x"

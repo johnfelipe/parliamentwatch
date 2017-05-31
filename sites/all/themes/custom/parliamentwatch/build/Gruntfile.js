@@ -48,6 +48,7 @@ module.exports = function (grunt) {
           '<%= paths.css %>/contrib/select2.css': 'select2/dist/css/select2.css',
           '<%= paths.css %>/contrib/swiper.css': 'swiper/dist/css/swiper.css',
           '<%= paths.js %>/contrib/d3.js': 'd3/d3.js',
+          '<%= paths.js %>/contrib/jquery.scrollTo.js': 'jquery.scrollTo/jquery.scrollTo.js',
           '<%= paths.js %>/contrib/stupidtable.min.js': 'jquery-stupid-table/stupidtable.min.js',
           '<%= paths.js %>/contrib/swiper.jquery.min.js': 'swiper/dist/js/swiper.jquery.min.js',
           '<%= paths.js %>/contrib/maps/swiper.jquery.min.js.map': 'swiper/dist/js/maps/swiper.jquery.min.js.map',
