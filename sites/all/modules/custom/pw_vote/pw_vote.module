@@ -53,6 +53,17 @@ function pw_vote_user_view($account, $view_mode, $langcode) {
         '#weight' => 100,
       ];
     }
+
+    $result_all = pw_vote_by_user_revision_query($account)->execute();
+
+    if (!empty($result_all['node'])) {
+      $nodes = node_load_multiple(array_keys($result_all['node']));
+      $inline_js = 'window.votes = ' . drupal_json_encode(array_map(pw_vote_to_aray, array_values($nodes))) . ';';
+      $account->content['#attached']['js'][$inline_js] = [
+        'scope' => 'footer',
+        'type' => 'inline',
+      ];
+    }
   }
 }
 
