@@ -42,17 +42,27 @@ function debounce(func, wait, immediate) {
 };
 
 
+
+/*
+ * docReadyClass
+ * Add class to html-tag for styling purpose
+ * */
+function docReadyClass() {
+    $('html').addClass('docready');
+}
+
 /*
  * Main-Navigation
  * Set mobile behaviour for the main-navigation as sidebar
  * */
 
 function mainNavigation() {
+    var activeMenuItem = $('.nav__item.nav__item--active').index();
+
     $('[data-sidebar-trigger]').click(function () {
         $(this).toggleClass('lines-button-close');
         $('[data-sidebar-container]').toggleClass('sidebar-open');
     });
-
     /* 2nd-Navigation level with optional swiper integration */
     var secondlevel = $('.header__bottom nav');
     secondlevel.append('<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>');
@@ -67,9 +77,14 @@ function mainNavigation() {
         onInit: function(swiper){
             var subnavOffset = $('.header__subnav__indicator').outerWidth();
             var subnavOffsetValue = subnavOffset;
+
+            // Set Styling
             secondlevel.css('padding-left', subnavOffsetValue + 'px');
             secondlevel.css('padding-right', '30px');
+
+            console.log(activeMenuItem);
             swiper.update();
+            swiper.slideTo(activeMenuItem);
         }
     });
 }
@@ -110,6 +125,10 @@ function contentOffset() {
         contentOffset = 0;
     }
     $('#content').css('margin-top', contentOffset);
+    setTimeout(docReadyClass, 200);
+}
+
+
 /*
  * Local scroll Plugin
  * */

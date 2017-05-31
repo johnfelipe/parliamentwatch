@@ -372,6 +372,7 @@
   }
   .swiper-button-prev,
   .swiper-button-next {
+    position: absolute;
     top: 0;
     bottom: 0;
     margin: 0;
@@ -459,7 +460,7 @@
   line-height: $space;
   font-size: 1.2em;
   font-family: $font-serif;
-  border-right: 1px solid $beige;
+  border-right: 1px solid $darkBeige;
   position: absolute;
   left: 0;
   top: 0;
