@@ -243,11 +243,17 @@ function pw_dialogues_user_view($account, $view_mode, $langcode) {
 
   if (isset($extra['dialogues']) && $extra['dialogues']['visible']) {
     $result = pw_dialogues_by_user_revision_query($account)
-      ->range(0, 12)
       ->execute();
 
     if ($result['node']) {
-      $account->content['dialogues'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'embedded');
+      $nodes = node_load_multiple(array_keys($result['node']));
+      $account->content['dialogues'] = node_view_multiple(array_slice($nodes, 0, 12, TRUE), 'embedded');
+      $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
+      $inline_js = 'window.sidejobs = ' . drupal_json_encode(array_map('pw_sidejobs_to_array', array_values($nodes))) . ';';
+      $account->content['#attached']['js'][$inline_js] = [
+        'scope' => 'footer',
+        'type' => 'inline',
+      ];
     }
   }
 
@@ -507,4 +513,24 @@ function pw_dialogues_average_response_time($account) {
     . "WHERE bundle = 'comment_node_dialogue' "
     . "AND entity_id IN (SELECT cid FROM {comment} WHERE uid = :uid)";
   return db_query($sql, [':uid' => $account->uid])->fetchField();
+}
+
+/**
+ * Returns array representation of dialogue for serialization.
+ *
+ * @param object $node
+ *   The dialogue node.
+ *
+ * @return array
+ *   The array representation.
+ */
+function pw_dialogues_to_array($node) {
+  if (!empty($node->field_dialogue_topic[LANGUAGE_NONE])) {
+    $topic = taxonomy_term_load($node->field_dialogue_topic[LANGUAGE_NONE][0]['tid']);
+  }
+  $data = [
+    'id' => $node->nid,
+    'topic' => isset($topic) ? $topic->name : NULL,
+  ];
+  return $data;
 }
