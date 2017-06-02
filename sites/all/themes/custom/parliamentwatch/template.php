@@ -427,12 +427,6 @@ function parliamentwatch_pager($variables) {
   $parameters = $variables['parameters'];
   global $pager_total;
 
-  $li_previous = theme('pager_previous', [
-    'text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')),
-    'element' => $element,
-    'interval' => 1,
-    'parameters' => $parameters,
-  ]);
   $li_next = theme('pager_next', [
     'text' => (isset($tags[3]) ? $tags[3] : t('next ›')),
     'element' => $element,
@@ -441,10 +435,6 @@ function parliamentwatch_pager($variables) {
   ]);
 
   if ($pager_total[$element] > 1) {
-    if ($li_previous) {
-      $items[] = ['class' => ['pager__previous'], 'data' => $li_previous];
-    }
-
     if ($li_next) {
       $items[] = ['class' => ['pager__next'], 'data' => $li_next];
     }
