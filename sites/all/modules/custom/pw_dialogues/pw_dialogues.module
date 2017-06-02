@@ -257,8 +257,8 @@ function pw_dialogues_user_view($account, $view_mode, $langcode) {
     }
   }
 
-  if (isset($extra['average_response_time']) && $extra['question_form']['visible']) {
-    $account->content['average_response_time'] = number_format(pw_dialogues_average_response_time($account) / 86400, 1, ',', '.');
+  if (isset($extra['average_response_time']) && $extra['average_response_time']['visible']) {
+    $account->content['average_response_time']['#markup'] = number_format(pw_dialogues_average_response_time($account) / 86400, 1, ',', '.');
   }
 
   if (isset($extra['question_form']) && $extra['question_form']['visible']) {

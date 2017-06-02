@@ -67,7 +67,7 @@ function pw_sidejobs_user_view($account, $view_mode, $langcode) {
       $nodes = node_load_multiple(array_keys($result['node']));
       $account->content['sidejobs_paid'] = node_view_multiple($nodes, 'embedded');
       $account->content['sidejobs_unpaid'] = node_view_multiple($nodes, 'embedded');
-      $inline_js = 'window.sidejobs = ' . drupal_json_encode(array_map(pw_sidejobs_to_array, array_values($nodes))) . ';';
+      $inline_js = 'window.sidejobs = ' . drupal_json_encode(array_map('pw_sidejobs_to_array', array_values($nodes))) . ';';
       $account->content['#attached']['js'][$inline_js] = [
         'scope' => 'footer',
         'type' => 'inline',
@@ -290,14 +290,14 @@ function pw_sidejobs_accumulated_total_income_range($account) {
 function pw_sidejobs_to_array($node) {
   $data = [
     'id' => $node->nid,
-    'customer' => check_plain($node->field_sidejob_organization[LANGUAGE_NONE][0]['taxonomy_term']->name),
-    'activity' => check_plain($node->field_job[LANGUAGE_NONE][0]['taxonomy_term']->name),
-    'city' => check_plain($node->field_sidejob_address[LANGUAGE_NONE][0]['locality']),
+    'customer' => isset($node->field_sidejob_organization[LANGUAGE_NONE][0]['taxonomy_term']) ? check_plain($node->field_sidejob_organization[LANGUAGE_NONE][0]['taxonomy_term']->name) : NULL,
+    'activity' => isset($node->field_job[LANGUAGE_NONE][0]['taxonomy_term']) ? check_plain($node->field_job[LANGUAGE_NONE][0]['taxonomy_term']->name) : NULL,
+    'city' => isset($node->field_sidejob_address[LANGUAGE_NONE][0]['locality']) ? check_plain($node->field_sidejob_address[LANGUAGE_NONE][0]['locality']) : NULL,
     'dateFrom' => isset($node->field_sidejob_date_start[LANGUAGE_NONE][0]['value']) ? $node->field_sidejob_date_start[LANGUAGE_NONE][0]['value'] : NULL,
     'dateTo' => isset($node->field_sidejob_date_end[LANGUAGE_NONE][0]['value']) ? $node->field_sidejob_date_end[LANGUAGE_NONE][0]['value'] : NULL,
     'income' => [
-      'level' => (int) $node->field_sidejob_classification[LANGUAGE_NONE][0]['value'],
-      'repetition' => (int) $node->field_sidejob_income_interval[LANGUAGE_NONE][0]['value'],
+      'level' => isset($node->field_sidejob_classification[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_classification[LANGUAGE_NONE][0]['value'] : NULL,
+      'repetition' => isset($node->field_sidejob_income_interval[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_interval[LANGUAGE_NONE][0]['value'] : NULL,
       'valueMin' => isset($node->field_sidejob_income_min[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_min[LANGUAGE_NONE][0]['value'] : NULL,
       'valueMax' => isset($node->field_sidejob_income_max[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_max[LANGUAGE_NONE][0]['value'] : NULL,
       'totalValueMin' => isset($node->field_sidejob_income_min_total[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_min_total[LANGUAGE_NONE][0]['value'] : NULL,

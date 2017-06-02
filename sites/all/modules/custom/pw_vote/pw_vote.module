@@ -58,7 +58,7 @@ function pw_vote_user_view($account, $view_mode, $langcode) {
 
     if (!empty($result_all['node'])) {
       $nodes = node_load_multiple(array_keys($result_all['node']));
-      $inline_js = 'window.votes = ' . drupal_json_encode(array_map(pw_vote_to_aray, array_values($nodes))) . ';';
+      $inline_js = 'window.votes = ' . drupal_json_encode(array_map('pw_vote_to_aray', array_values($nodes))) . ';';
       $account->content['#attached']['js'][$inline_js] = [
         'scope' => 'footer',
         'type' => 'inline',
@@ -854,12 +854,17 @@ function pw_vote_by_user_revision_query($account) {
  *   The array representation.
  */
 function pw_vote_to_aray($node) {
-  $poll = node_load($node->field_vote_node[LANGUAGE_NONE][0]['target_id']);
+  if (!empty($node->field_vote_node[LANGUAGE_NONE])) {
+    $poll = node_load($node->field_vote_node[LANGUAGE_NONE][0]['target_id']);
+  }
+  else {
+    $poll = NULL;
+  }
   $vote = taxonomy_term_load($node->field_vote[LANGUAGE_NONE][0]['tid']);
   $data = [
     'id' => $node->nid,
-    'title' => $poll->title,
-    'date' => $poll->field_poll_date[LANGUAGE_NONE][0]['value'],
+    'title' => isset($poll) ? $poll->title : NULL,
+    'date' => isset($poll->field_poll_date[LANGUAGE_NONE][0]['value']) ? $poll->field_poll_date[LANGUAGE_NONE][0]['value'] : NULL,
     'vote' => $vote->name,
   ];
   return $data;

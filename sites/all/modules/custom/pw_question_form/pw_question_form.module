@@ -144,7 +144,7 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
     if(!empty($topic_tids)){
 
       // add subjects to form element
-      $subject_terms = taxonomy_term_load_multiple($topic_tids, 'dialogue_topics');
+      $subject_terms = taxonomy_term_load_multiple($topic_tids);
       foreach($subject_terms as $subject_key => $subject_term){
         $a_options[$subject_term->name] = $subject_term->name;
       }

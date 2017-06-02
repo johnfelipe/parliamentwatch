@@ -117,43 +117,39 @@
         </div>
 
         <dl class="dl">
-          <?php if ($user_profile['field_user_birthday']): ?>
+          <?php if (isset($user_profile['field_user_birthday'])): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_birthday']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_birthday'][0]['#markup']; ?> (<?php print $user_profile['field_user_age'][0]['#markup']; ?> Jahre)</dd>
           <?php endif; ?>
-          <?php if ($user_profile['field_user_childs']): ?>
+          <?php if (isset($user_profile['field_user_childs'])): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_childs']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_childs'][0]['#markup']; ?></dd>
           <?php endif; ?>
-          <?php if ($user_profile['field_user_marriage_status']): ?>
+          <?php if (isset($user_profile['field_user_marriage_status'])): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_marriage_status']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_marriage_status'][0]['#markup']; ?></dd>
           <?php endif; ?>
-          <?php if ($user_profile['field_user_address']['#items'][0]['locality']): ?>
+          <?php if (isset($user_profile['field_user_address']['#items'][0]['locality'])): ?>
             <dt class="dl__dt"><?php print t('Wohnort') ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_address']['#items'][0]['locality']; ?></dd>
           <?php endif; ?>
-          <?php if ($user_profile['field_user_education']): ?>
+          <?php if (isset($user_profile['field_user_education'])): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_education']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_education'][0]['#markup']; ?></dd>
           <?php endif; ?>
-          <?php if ($user_profile['field_user_children']): ?>
-            <dt class="dl__dt"><?php print $user_profile['field_user_children']['#title']; ?></dt>
-            <dd class="dl__dd"><?php print $user_profile['field_user_children'][0]['#markup']; ?></dd>
-          <?php endif; ?>
-          <?php if ($user_profile['field_user_list']): ?>
+          <?php if (isset($user_profile['field_user_list'])): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_list']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_list'][0]['#markup']; ?><?php if ($user_profile['field_user_list_position']): ?>, Platz <?php print $user_profile['field_user_list_position'][0]['#markup']; ?><?php endif; ?></dd>
           <?php endif; ?>
-          <?php if ($user_profile['field_user_parliament']): ?>
+          <?php if (isset($user_profile['field_user_parliament'])): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_parliament']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_parliament'][0]['#markup']; ?></dd>
           <?php endif; ?>
-          <?php if ($user_profile['field_user_election_result']): ?>
+          <?php if (isset($user_profile['field_user_election_result'])): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_election_result']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_election_result'][0]['#markup']; ?></dd>
           <?php endif; ?>
-          <?php if ($user_profile['field_user_constituency']): ?>
+          <?php if (isset($user_profile['field_user_constituency'])): ?>
             <dt class="dl__dt"><?php print $user_profile['field_user_constituency']['#title']; ?></dt>
             <dd class="dl__dd"><?php print $user_profile['field_user_constituency'][0]['#markup']; ?></dd>
           <?php endif; ?>

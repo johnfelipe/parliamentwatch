@@ -574,6 +574,7 @@ function parliamentwatch_textfield($variables) {
   element_set_attributes($element, ['id', 'name', 'value', 'size', 'maxlength']);
   _parliamentwatch_form_set_class($element, ['form__item__control']);
 
+  $extra = '';
   if ($element['#autocomplete_path'] && !empty($element['#autocomplete_input'])) {
     drupal_add_library('system', 'drupal.autocomplete');
     $element['#attributes']['class'][] = 'form-autocomplete';
@@ -669,8 +670,7 @@ function _parliamentwatch_form_set_class(array &$element, array $name) {
 }
 
 /**
- *
- * @return type
+ * Overrides theme_item_list().
  */
 function parliamentwatch_item_list(&$variables) {
   $items = $variables['items'];
@@ -678,7 +678,7 @@ function parliamentwatch_item_list(&$variables) {
   $attributes = $variables['attributes'];
 
   if (!empty($items)) {
-    $output .= "<$type" . drupal_attributes($attributes) . '>';
+    $output = "<$type" . drupal_attributes($attributes) . '>';
     $num_items = count($items);
     $i = 0;
     foreach ($items as $item) {
