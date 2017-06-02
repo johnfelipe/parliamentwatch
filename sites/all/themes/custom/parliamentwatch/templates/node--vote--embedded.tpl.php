@@ -81,6 +81,7 @@
  */
 ?>
 <div class="abstimmverhalten-overview__item tile <?php print $classes; ?>"<?php print $attributes; ?>>
+  <?php print render($title_suffix); ?>
   <?php print render($content['field_vote_node']); ?>
   <div class="abstimmverhalten-overview__item__indicator">
     <?php if ($field_vote[0]['taxonomy_term']->name == 'yes'): ?>
