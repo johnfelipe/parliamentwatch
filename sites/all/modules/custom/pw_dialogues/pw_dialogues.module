@@ -242,15 +242,9 @@ function pw_dialogues_user_view($account, $view_mode, $langcode) {
   $extra = field_extra_fields_get_display('user', 'user', $view_mode);
 
   if (isset($extra['dialogues']) && $extra['dialogues']['visible']) {
-    $q = new EntityFieldQuery();
-    $q->entityCondition('entity_type', 'node');
-    $q->entityCondition('bundle', 'dialogue');
-    $q->propertyCondition('status', NODE_PUBLISHED);
-    $q->fieldCondition('field_dialogue_recipient', 'target_id', $account->uid);
-    $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
-    $q->fieldCondition('field_dialogue_before_election', 'value', _pw_user_has_role($account, 'Candidate'));
-    $q->range(0, 12);
-    $result = $q->execute();
+    $result = pw_dialogues_by_user_revision_query($account)
+      ->range(0, 12)
+      ->execute();
 
     if ($result['node']) {
       $account->content['dialogues'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'embedded');
@@ -477,6 +471,27 @@ function pw_dialogues_do_import_answers($source) {
   watchdog('dialogue_message_importer', 'answers imported from ' . $source);
 
   return TRUE;
+}
+
+/**
+ * Returns query for all questions received by the given account version.
+ *
+ * @param object $account
+ *   The user account (version).
+ *
+ * @return EntityFieldQuery
+ *   The query object.
+ */
+function pw_dialogues_by_user_revision_query($account) {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'dialogue');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  $q->fieldCondition('field_dialogue_recipient', 'target_id', $account->uid);
+  $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
+  $q->fieldCondition('field_dialogue_before_election', 'value', _pw_user_has_role($account, 'Candidate'));
+
+  return $q;
 }
 
 /**
