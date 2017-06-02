@@ -86,21 +86,21 @@
             <div class="hstats__item__display mh-item-nr" data-mh="hstats">
               <span class="d3 d3--gauge"
                     data-d3-gauge
-                    data-percentage="68"
+                    data-percentage="<?php print $voting_ratio; ?>"
                     data-track-width="10"
                     data-track-colour="ccc"
                     data-fill-colour="f46b3b"
                     data-text-colour="444"
                     data-stroke-colour="FFFFFF"
                     data-stroke-spacing="2">
-                <span><?php print $answer_ratio; ?>%</span>
+                <span><?php print $voting_ratio; ?>%</span>
               </span>
             </div>
             <div class="hstats__item__label mh-item-nr" data-mh="hstats">
               <div class="hstats__item__label__value">
-                xx&thinsp;/&thinsp;XX
+                <?php print $user_profile['votes_attended']; ?>&thinsp;/&thinsp;<?php print $user_profile['votes_total']; ?>
               </div>
-              <?php print format_plural($user_profile['field_user_questions_get']['#items'][0]['value'], t('Vote by name'), t('Votes by name')) ?>
+              <?php print format_plural($user_profile['votes_attended'], t('Vote by name'), t('Votes by name')) ?>
               <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-votes-by-name') ?>"></i>
             </div>
           </a>

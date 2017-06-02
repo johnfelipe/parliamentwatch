@@ -63,7 +63,14 @@ function pw_vote_user_view($account, $view_mode, $langcode) {
         'scope' => 'footer',
         'type' => 'inline',
       ];
+
+      $account->content['votes_total'] = count($nodes);
+      $filter_attended = function ($item) {
+        return ($item->field_vote[LANGUAGE_NONE][0]['tid'] == 19670) ? FALSE : TRUE;
+      };
+      $account->content['votes_attended'] = count(array_filter($nodes, $filter_attended));
     }
+
   }
 }
 

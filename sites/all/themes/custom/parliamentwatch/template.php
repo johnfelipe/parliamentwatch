@@ -229,6 +229,10 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     $variables['answers'] = $account->number_of_answers;
     $variables['answer_ratio'] = round(100 * $account->number_of_answers / $account->number_of_questions, 0);
   }
+
+  if (isset($variables['user_profile']['votes_total'])) {
+    $variables['voting_ratio'] = round(100 * $variables['user_profile']['votes_attended'] / $variables['user_profile']['votes_total'], 0);
+  }
 }
 
 /**
