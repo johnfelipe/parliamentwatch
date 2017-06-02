@@ -22,15 +22,6 @@ function pw_blog_menu() {
 }
 
 /**
- * Implements hook_form_alter().
- */
-function pw_blog_form_views_exposed_form_alter(&$form, &$form_state) {
-  if($form['#id'] == 'views-exposed-form-blog-page-1'){
-    krsort($form['sort_bef_combine']['#options']);
-  }
-}
-
-/**
  * Implements hook_blockreference_blocks_pre_alter().
  */
 function pw_blog_blockreference_blocks_pre_alter(&$blocks, $context) {
