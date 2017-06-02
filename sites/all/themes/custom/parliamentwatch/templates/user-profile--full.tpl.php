@@ -316,7 +316,7 @@
                     <th class="sidejob-overview__item__customer" data-sort="string"><?php print t('Customer') ?></th>
                     <th class="sidejob-overview__item__activity" data-sort="string"><?php print t('Activity') ?></th>
                     <th class="sidejob-overview__item__city" data-sort="string"><?php print t('City') ?></th>
-                    <th class="sidejob-overview__item__date" data-sort="int"><?php print t('Date') ?></th>
+                    <th class="sidejob-overview__item__date" data-sort="string"><?php print t('Date') ?></th>
                     <th class="sidejob-overview__item__level" data-sort="int"><?php print t('Income level') ?></th>
                   </tr>
                 </thead>

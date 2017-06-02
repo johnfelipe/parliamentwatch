@@ -81,23 +81,23 @@
  */
 ?>
 <tr class="sidejob-overview__item <?php print $classes; ?>"<?php print $attributes; ?> data-sidejobid="<?php print $node->nid; ?>">
-  <td class="sidejob-overview__item__customer" data-sort-value="">
+  <td class="sidejob-overview__item__customer" data-sort-value="<?php print trim(render($content['field_sidejob_organization'])); ?>">
     <?php print render($content['field_sidejob_organization']); ?>
     <?php
     // Contextual Links
     print render($title_suffix); ?>
   </td>
-  <td class="sidejob-overview__item__activity" data-sort-value="">
+  <td class="sidejob-overview__item__activity" data-sort-value="<?php print trim(render($content['field_job'])); ?>">
     <?php print render($content['field_job']); ?>
   </td>
-  <td class="sidejob-overview__item__city" data-sort-value="">
+  <td class="sidejob-overview__item__city" data-sort-value="<?php print trim(render($content['field_sidejob_address'])); ?>">
     <?php print render($content['field_sidejob_address']); ?>
   </td>
-  <td class="sidejob-overview__item__date" data-sort-value="">
+  <td class="sidejob-overview__item__date" data-sort-value="<?php print $field_sidejob_date_start[0]['value']; ?>">
     <?php print render($content['field_sidejob_date_start']); ?>
     <?php print render($content['field_sidejob_date_end']); ?>
   </td>
-  <td class="sidejob-overview__item__level" data-sort-value="">
+  <td class="sidejob-overview__item__level" data-sort-value="<?php print $field_sidejob_income_max_total[0]['value'] ?: 0; ?>">
     <?php print render($content['field_sidejob_income_min_total']); ?> &ndash; <?php print render($content['field_sidejob_income_max_total']); ?>
     <span>
       <?php print t('level'); ?> <?php print render($content['field_sidejob_classification']); ?>
