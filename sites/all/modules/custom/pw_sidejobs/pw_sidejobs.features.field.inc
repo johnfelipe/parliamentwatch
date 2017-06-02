@@ -154,7 +154,7 @@ function pw_sidejobs_field_default_fields() {
               'linked' => 0,
             ),
           ),
-          'type' => 'taxonomy_term_reference_link',
+          'type' => 'taxonomy_term_reference_plain',
           'weight' => '13',
         ),
       ),
@@ -475,12 +475,12 @@ function pw_sidejobs_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'addressfield',
+          'module' => 'addressfield_tokens',
           'settings' => array(
-            'field_delimiter' => '',
-            'format_handlers' => array(
-              0 => 'address',
+            'components' => array(
+              'locality' => 'locality',
             ),
+            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -492,9 +492,9 @@ function pw_sidejobs_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
-            'use_widget_handlers' => 1,
+            'separator' => ', ',
           ),
-          'type' => 'addressfield_default',
+          'type' => 'addressfield_components',
           'weight' => '15',
         ),
       ),
@@ -584,7 +584,7 @@ function pw_sidejobs_field_default_fields() {
               'linked' => 0,
             ),
           ),
-          'type' => 'text_default',
+          'type' => 'text_plain',
           'weight' => '5',
         ),
       ),
@@ -1489,7 +1489,7 @@ function pw_sidejobs_field_default_fields() {
               'linked' => 0,
             ),
           ),
-          'type' => 'taxonomy_term_reference_link',
+          'type' => 'taxonomy_term_reference_plain',
           'weight' => '2',
         ),
       ),
