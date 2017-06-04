@@ -4,23 +4,7 @@
 
 /* Blog-Listenansicht */
 
-.view-blog {
-  background: $beige;
-}
-.view-blog .view-content {
-  @include grid-container();
-  @include container();
-}
-.blog-list {
-  @include grid-collapse();
-  @include grid-container();
-  @include breakpoint($breakpoint-s-min) {
-    @include grid-collapse($neat-grid-large-gutter);
-  }
-}
-.views-exposed-widgets {
-  @include grid-container();
-}
+
 .blog.tile {
   @include grid-column(12);
   margin-bottom: $space;

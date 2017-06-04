@@ -11,9 +11,14 @@
   > .container {
     @include grid-container();
   }
+  .row {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-collapse($neat-grid-large-gutter);
+    }
+  }
 }
 
-/* tile */
+/* Base Tile */
 
 .tile {
   @include box-padded($white);
@@ -31,7 +36,6 @@
 }
 h3.tile__title { padding-bottom: $space; }
 
-
 /* Title with date */
 
 .tile__title--date {
@@ -40,7 +44,7 @@ h3.tile__title { padding-bottom: $space; }
     display: block;
     width: $space-large * 2;
     position: absolute;
-    left: $space-small;
+    left: $space;
     top: $space;
 
     text-align: center;
@@ -52,6 +56,7 @@ h3.tile__title { padding-bottom: $space; }
     padding-left: ($space-large * 2) + 10px;
   }
 }
+
 
 
 /* meta */
@@ -142,3 +147,5 @@ h3.tile__title { padding-bottom: $space; }
 .tile__links--2 .tile__links__item {
   @include grid-column(6, $neat-grid-no-gutter);
 }
+
+
