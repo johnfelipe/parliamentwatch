@@ -185,6 +185,18 @@ figcaption {
 }
 
 
+/* Intro */
+.intro {
+  @include padding($space-large null);
+  @include breakpoint($breakpoint-m-min) {
+    @include padding(($space-large * 2) null);
+  }
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+
 /* Pager */
 
 .pager {
