@@ -65,8 +65,7 @@ function pw_sidejobs_user_view($account, $view_mode, $langcode) {
 
     if (!empty($result['node'])) {
       $nodes = node_load_multiple(array_keys($result['node']));
-      $account->content['sidejobs_paid'] = node_view_multiple($nodes, 'embedded');
-      $account->content['sidejobs_unpaid'] = node_view_multiple($nodes, 'embedded');
+      $account->content['sidejobs'] = node_view_multiple($nodes, 'embedded');
       $inline_js = 'window.sidejobs = ' . drupal_json_encode(array_map('pw_sidejobs_to_array', array_values($nodes))) . ';';
       $account->content['#attached']['js'][$inline_js] = [
         'scope' => 'footer',
