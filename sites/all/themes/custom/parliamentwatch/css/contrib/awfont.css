@@ -28,6 +28,12 @@
 .icon-minus:before {
   content: "\f068";
 }
+.icon-th:before {
+  content: "\f00a";
+}
+.icon-th-list:before {
+  content: "\f00b";
+}
 .icon-twitter:before {
   content: "\f099";
 }
