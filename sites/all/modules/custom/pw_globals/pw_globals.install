@@ -12,6 +12,7 @@ function pw_globals_update_7001() {
   $uninstall = [
     'colorbox',
     'content_menu',
+    'drulenium',
     'ds',
     'feedback_simple',
     'menu_attributes',
@@ -153,6 +154,17 @@ function pw_globals_update_7008() {
   field_delete_field('field_user_questions_get');
   field_delete_field('field_user_answers_give');
   field_delete_field('field_share_sum');
+  field_delete_field('drulenium_num_command_errors');
+  field_delete_field('drulenium_num_command_failures');
+  field_delete_field('drulenium_num_command_passes');
+  field_delete_field('drulenium_num_test_failures');
+  field_delete_field('drulenium_num_test_passes');
+  field_delete_field('drulenium_num_test_total');
+  field_delete_field('drulenium_result');
+  field_delete_field('drulenium_revision');
+  field_delete_field('drulenium_suite');
+  field_delete_field('drulenium_total_time');
+  field_delete_field('drulenium_version');
 }
 
 /**
