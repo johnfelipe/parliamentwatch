@@ -44,12 +44,12 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
     $uname = $fname . '-' . $lname;
 
     $title = $source->current_item['xpathparser:7'];
-    if (!empty($title)) {
+    //if (!empty($title)) {
 
       // add title to umame if exists
-      $uname = $title . '-' . $uname;
+      //$uname = $title . '-' . $uname;
 
-    }
+    //}
 
     $uname =  strtr(utf8_decode($uname),
       utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
