@@ -157,6 +157,9 @@ function pw_dialogues_strongarm() {
       'embedded' => array(
         'custom_settings' => FALSE,
       ),
+      'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
