@@ -17,6 +17,7 @@ function pw_globals_update_7001() {
     'feedback_simple',
     'menu_attributes',
     'omega_tools',
+    'quicktabs',
     'scroll_to_top',
     'sharethis',
     'tb_megamenu',
