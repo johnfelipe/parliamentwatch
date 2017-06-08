@@ -269,7 +269,7 @@
             <div class="tile">
               <div class="d3-label-wrapper">
                 <div class='d3 d3--donut'
-                     data-d3-donut
+                     data-d3-donut-labels
                      data-data='[{"name":"Ja","count":63,"color":"#9fd773"},{"name":"Nein","count":24,"color":"#cc6c5b"},{"name":"Enthalten","count":8,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
                 </div>
               </div>

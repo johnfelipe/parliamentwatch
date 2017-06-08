@@ -1,0 +1,84 @@
+/**
+* Poll styling
+* Polls made by the parliament
+*/
+
+
+
+.tile.poll {
+  margin-bottom: $space;
+  position: relative;
+  @include breakpoint($breakpoint-xs-min) {
+    @include grid-column(12);
+  }
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(6, $neat-grid-large-gutter);
+    margin-bottom: $space-large;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4, $neat-grid-large-gutter);
+  }
+  .tile__pollchart {
+    padding-top: $space;
+    padding-bottom: $space;
+    position: relative;
+    margin-bottom: $space;
+    border-bottom: 1px solid $gray;
+    @include grid-container();
+    @include breakpoint($breakpoint-l-min) {
+      padding-bottom: $space-large;
+    }
+  }
+  .tile__pollchart__value_left,
+  .tile__pollchart__value_right {
+    @include grid-column(6, $neat-grid-no-gutter);
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: $gray;
+    font-family: $font-serif;
+    &.won {
+      color: $darkGray;
+    }
+  }
+  .tile__pollchart__value_left { padding-right: $space-large; }
+  .tile__pollchart__value_right { padding-left: $space-large; }
+
+  .tile__pollchart__statistic {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: $white;
+    text-align: center;
+    padding: 8px;
+    @include transform(translate(-50%,-50%));
+    @include breakpoint($breakpoint-l-min) {
+      width: 120px;
+      height: 120px;
+    }
+    .icon {
+      line-height: 84px;
+      @include breakpoint($breakpoint-l-min) {
+        line-height: 104px;
+      }
+    }
+  }
+  .tile__title {
+    text-align: center;
+    border-bottom: 0;
+    margin-top: $space-large;
+    @include h3();
+    a {
+      color: $darkGray;
+    }
+  }
+  .tile__summary {
+    text-align: center;
+    margin-bottom: $space-large;
+    font-size: .9em;
+  }
+}
+

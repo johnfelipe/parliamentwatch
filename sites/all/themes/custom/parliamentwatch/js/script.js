@@ -347,6 +347,7 @@ function d3BarsVertical(element) {
         });
 }
 
+
 /*
  * D3: Donut
  * */
@@ -367,6 +368,41 @@ function d3Donut(element) {
         .attr('transform', 'translate(' + (width / 2) +
             ',' + (height / 2) + ')');
 
+    var arc = d3.arc()
+        .innerRadius(radius - donutWidth)
+        .outerRadius(radius);
+
+    var pie = d3.pie()
+        .value(function(d) { return d.count; })
+        .sort(null);
+
+    var path = svg.selectAll('path')
+        .data(pie(dataset))
+        .enter()
+        .append('path')
+        .attr('d', arc)
+        .attr("fill", function(d) { return d.data.color; });
+}
+
+/*
+ * D3: Donut with labels
+ * */
+function d3DonutLabels(element) {
+    var wrapper = element;
+    var dataset = JSON.parse(wrapper.getAttribute('data-data'));
+
+    var width = 360;
+    var height = 360;
+    var radius = Math.min(width, height) / 2;
+    var donutWidth = 75;
+
+    var svg = d3.select(wrapper)
+        .append('svg')
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
+        .attr('preserveAspectRatio', 'xMidYMid meet')
+        .append('g')
+        .attr('transform', 'translate(' + (width / 2) +
+            ',' + (height / 2) + ')');
 
     var arc = d3.arc()
         .innerRadius(radius - donutWidth)
@@ -389,7 +425,6 @@ function d3Donut(element) {
         .append("ul")
         .attr('class', 'd3__label');
 
-
     var labelItem = labelWrapper.selectAll('li')
         .data(pie(dataset))
         .enter()
@@ -399,6 +434,75 @@ function d3Donut(element) {
         .insert("span",":first-child")
         .attr('class', 'd3__label__item__indicator')
         .attr('style', function(d) { return 'background-color:' + d.data.color; });
+}
+
+/*
+ * D3: Donut with icon
+ * */
+function d3DonutIcon(element) {
+    var wrapper = element;
+    var dataset = JSON.parse(wrapper.getAttribute('data-data'));
+    var voteResult = d3.max(dataset, function(d) { return d.count; })
+
+    var width = 360;
+    var height = 360;
+    var radius = Math.min(width, height) / 2;
+    var donutWidth = 75;
+
+    var svg = d3.select(wrapper)
+        .append('svg')
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
+        .attr('preserveAspectRatio', 'xMidYMid meet')
+        .append('g')
+        .attr('transform', 'translate(' + (width / 2) +
+            ',' + (height / 2) + ')');
+
+    var arc = d3.arc()
+        .innerRadius(radius - donutWidth)
+        .outerRadius(radius);
+
+    var pie = d3.pie()
+        .value(function(d) { return d.count; })
+        .sort(null);
+
+    var path = svg.selectAll('path')
+        .data(pie(dataset))
+        .enter()
+        .append('path')
+        .attr('d', arc)
+        .attr("fill", function(d) { return d.data.color; });
+
+    // Define Icon
+
+    var iconWrapper = d3.select(wrapper)
+        .append("i")
+        .attr("class", "icon");
+
+    dataset.forEach(function(d) {
+        if (d.count == voteResult) {
+            if (d.name == 'Ja') {
+                iconWrapper
+                    .attr("class", "icon icon-ok")
+                    .attr("style", "color:" + d.color + ";" );
+            }
+            if (d.name == 'Nein') {
+                iconWrapper
+                    .attr("class", "icon icon-close")
+                    .attr("style", "color:" + d.color + ";" );
+            }
+            if (d.name == 'Nicht abgestimmt') {
+                iconWrapper
+                    .attr("class", "icon icon-minus")
+                    .attr("style", "color:" + d.color + ";" );
+            }
+            if (d.name == 'Enthalten') {
+                iconWrapper
+                    .attr("class", "icon icon-circle-o")
+                    .attr("style", "color:" + d.color + ";" );
+            }
+        }
+    });
+
 }
 /*
  * D3: Radial Gauge
@@ -556,10 +660,60 @@ function tableSecondaryHighlight() {
 }
 
 
+/*
+ * Filter Bar
+ * */
+
+function filterBar() {
+    var filterBarSwiper = $(".filterbar__swiper");
+
+    $(".filterbar__item").matchHeight();
+
+    var mySwiper = new Swiper('.filterbar__swiper', {
+        slideClass: 'filterbar__item',
+        wrapperClass: 'filterbar__swiper__inner',
+        speed: 400,
+        slidesPerView: 'auto',
+        nextButton: filterBarSwiper.find('.swiper-button-next'),
+        prevButton: filterBarSwiper.find('.swiper-button-prev'),
+        onInit: function(swiper){
+            $(window).load(function() {
+                var filterBarOffset = $('.filterbar__view_options').outerWidth();
+                var containerPadding = parseInt($('.filterbar .container').css('padding-right'));
+                var filterBarOffsetValue = filterBarOffset - containerPadding;
+
+                // Set Styling
+                filterBarSwiper.css('padding-right', filterBarOffsetValue  + $('.filterbar .swiper-button-prev').outerWidth() + 'px');
+                filterBarSwiper.children('[class*="swiper-button"]').css('right', filterBarOffsetValue + 'px');
+                swiper.update();
+            });
+        },
+        onAfterResize: function(swiper){
+            var filterBarOffset = $('.filterbar__view_options').outerWidth();
+            var containerPadding = parseInt($('.filterbar .container').css('padding-right'));
+            var filterBarOffsetValue = filterBarOffset - containerPadding;
+
+            // Set Styling
+            filterBarSwiper.css('padding-right', filterBarOffsetValue  + $('.filterbar .swiper-button-prev').outerWidth() + 'px');
+            filterBarSwiper.children('[class*="swiper-button"]').css('right', filterBarOffsetValue + 'px');
+            swiper.update();
+        }
+    });
+
+    // Init stickyKit
+
+    $(".filterbar").stick_in_parent({
+        offset_top: $('#header').outerHeight() - 2
+    });
+}
+
+
+
 $(function () {
 
     // Init functions when document is ready loaded
 
+    filterBar();
     mainNavigation();
     dropdown();
     contentOffset();
@@ -590,6 +744,14 @@ $(function () {
     });
     $('[data-d3-donut]').each(function( index ) {
         d3Donut(this);
+        $(this)
+    });
+    $('[data-d3-donut-labels]').each(function( index ) {
+        d3DonutLabels(this);
+        $(this)
+    });
+    $('[data-d3-donut-icon]').each(function( index ) {
+        d3DonutIcon(this);
         $(this)
     });
     $('[data-d3-secondary-income]').each(function( index ) {
