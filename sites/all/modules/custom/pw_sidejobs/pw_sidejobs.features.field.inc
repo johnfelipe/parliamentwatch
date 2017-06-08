@@ -70,6 +70,12 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'text_default',
           'weight' => 0,
         ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '16',
+        ),
         'tabular' => array(
           'label' => 'above',
           'settings' => array(),
@@ -183,6 +189,26 @@ function pw_sidejobs_field_default_fields() {
           ),
           'type' => 'taxonomy_term_reference_link',
           'weight' => 13,
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '1',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -299,6 +325,12 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'taxonomy_term_reference_link',
           'weight' => 1,
         ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '14',
+        ),
         'tabular' => array(
           'label' => 'above',
           'settings' => array(),
@@ -408,6 +440,12 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'entityreference_label',
           'weight' => 11,
         ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '15',
+        ),
         'tabular' => array(
           'label' => 'above',
           'settings' => array(),
@@ -509,6 +547,12 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'taxonomy_term_reference_link',
           'weight' => 16,
         ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '13',
+        ),
         'tabular' => array(
           'label' => 'above',
           'settings' => array(),
@@ -592,6 +636,30 @@ function pw_sidejobs_field_default_fields() {
           ),
           'type' => 'addressfield_default',
           'weight' => 15,
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'addressfield_tokens',
+          'settings' => array(
+            'components' => array(
+              'locality' => 'locality',
+            ),
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'separator' => ', ',
+          ),
+          'type' => 'addressfield_components',
+          'weight' => '2',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -695,6 +763,26 @@ function pw_sidejobs_field_default_fields() {
           ),
           'type' => 'text_default',
           'weight' => 5,
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_plain',
+          'weight' => '8',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -850,6 +938,32 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'date_default',
           'weight' => 24,
         ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'date',
+          'settings' => array(
+            'field_delimiter' => '',
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_remaining_days' => FALSE,
+          ),
+          'type' => 'date_default',
+          'weight' => '4',
+        ),
         'tabular' => array(
           'label' => 'above',
           'module' => 'date',
@@ -978,6 +1092,32 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'date_default',
           'weight' => 23,
         ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'date',
+          'settings' => array(
+            'field_delimiter' => '',
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_remaining_days' => FALSE,
+          ),
+          'type' => 'date_default',
+          'weight' => '3',
+        ),
         'tabular' => array(
           'label' => 'above',
           'module' => 'date',
@@ -1102,6 +1242,26 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'list_default',
           'weight' => 22,
         ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => '7',
+        ),
         'tabular' => array(
           'label' => 'above',
           'module' => 'text',
@@ -1199,6 +1359,12 @@ function pw_sidejobs_field_default_fields() {
           ),
           'type' => 'number_decimal',
           'weight' => 18,
+        ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '12',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1299,6 +1465,30 @@ function pw_sidejobs_field_default_fields() {
           ),
           'type' => 'number_decimal',
           'weight' => 19,
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'prefix_suffix' => TRUE,
+            'scale' => 2,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_decimal',
+          'weight' => '5',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1402,6 +1592,12 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'number_decimal',
           'weight' => 21,
         ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '9',
+        ),
         'tabular' => array(
           'label' => 'above',
           'module' => 'text',
@@ -1502,6 +1698,30 @@ function pw_sidejobs_field_default_fields() {
           'type' => 'number_decimal',
           'weight' => 20,
         ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'prefix_suffix' => TRUE,
+            'scale' => 2,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_decimal',
+          'weight' => '6',
+        ),
         'tabular' => array(
           'label' => 'above',
           'module' => 'text',
@@ -1601,6 +1821,12 @@ function pw_sidejobs_field_default_fields() {
           ),
           'type' => 'addressfield_default',
           'weight' => 27,
+        ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '10',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1703,6 +1929,12 @@ function pw_sidejobs_field_default_fields() {
           ),
           'type' => 'text_default',
           'weight' => 26,
+        ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '11',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1850,6 +2082,26 @@ function pw_sidejobs_field_default_fields() {
           ),
           'type' => 'taxonomy_term_reference_link',
           'weight' => 2,
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '0',
         ),
         'tabular' => array(
           'label' => 'above',
