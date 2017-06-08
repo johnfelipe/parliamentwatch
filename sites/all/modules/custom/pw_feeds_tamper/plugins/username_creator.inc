@@ -67,6 +67,7 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
       // if user does not exist by uuid, but the name exists, add a number to name
       $cname = $uname . '-' . $count;
       $luser = user_load_by_name($cname);
+      $count++;
     }
 
     // create a new user with constructed uname
