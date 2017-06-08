@@ -60,10 +60,13 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
     $uname = trim($uname, '-');
     $cname = $uname;
 
+    $count = 2;
+
     $luser = user_load_by_name($uname);
-    if ($luser && $luser->name === $uname) {
+    while ($luser && $luser->name === $cname) {
       // if user does not exist by uuid, but the name exists, add a number to name
-      $cname = $uname . '-2';
+      $cname = $uname . '-' . $count;
+      $luser = user_load_by_name($cname);
     }
 
     // create a new user with constructed uname
