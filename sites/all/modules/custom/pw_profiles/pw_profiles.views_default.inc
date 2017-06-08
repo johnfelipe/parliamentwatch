@@ -303,8 +303,8 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['field_calendar_entry_address']['alter']['text'] = '<div class="vcard">
     <div class="adr">
         <span class="street-address">[field_calendar_entry_address-thoroughfare]</span>
-        <span class="locality">[field_calendar_entry_address-dependent_locality]</span>, 
-        <span class="postal-code">[field_calendar_entry_address-postal_code]</span>, 
+        <span class="locality">[field_calendar_entry_address-dependent_locality]</span>,
+        <span class="postal-code">[field_calendar_entry_address-postal_code]</span>,
         <span class="country-name">[field_calendar_entry_address]</span>
      </div>
 </div>
@@ -1245,8 +1245,8 @@ print_r($link);
     t('<div class="vcard">
     <div class="adr">
         <span class="street-address">[field_calendar_entry_address-thoroughfare]</span>
-        <span class="locality">[field_calendar_entry_address-dependent_locality]</span>, 
-        <span class="postal-code">[field_calendar_entry_address-postal_code]</span>, 
+        <span class="locality">[field_calendar_entry_address-dependent_locality]</span>,
+        <span class="postal-code">[field_calendar_entry_address-postal_code]</span>,
         <span class="country-name">[field_calendar_entry_address]</span>
      </div>
 </div>

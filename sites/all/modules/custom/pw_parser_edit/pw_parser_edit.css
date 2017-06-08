@@ -1,0 +1,14 @@
+.sidejobs-new {
+  background-color: #f8f8f8;
+  box-sizing: border-box;
+  padding: 0 10px;
+  float: left;
+  width: 50%;
+}
+
+.sidejobs-list {
+  box-sizing: border-box;
+  float: left;
+  padding-left: 10px;
+  width: 50%;
+}

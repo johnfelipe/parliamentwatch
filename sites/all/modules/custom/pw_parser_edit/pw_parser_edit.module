@@ -1,0 +1,313 @@
+<?php
+
+/**
+ * @file
+ * Provides form for editing individual user account fields.
+ */
+
+/**
+ * Implements hook_menu()
+ */
+function pw_parser_edit_menu() {
+
+  $items = array();
+  $items['user/%user/edit/sidejobs'] = array(
+    'title callback' => 'user_page_title',
+    'title arguments' => array(1),
+    'access callback' => array('user_edit_access'),
+    'access arguments' => array(1),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('pw_parser_edit_sidejobs_form', 1),
+  );
+  $items['user/%user/edit/%'] = array(
+    'title callback' => 'user_page_title',
+    'title arguments' => array(1),
+    'access callback' => array('user_edit_access'),
+    'access arguments' => array(1),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('pw_parser_edit_field_form', 1, 3),
+  );
+
+  return $items;
+}
+
+
+/**
+ * Form constructor for the user sidejobs edit form.
+ *
+ * @see pw_parser_edit_sidejobs_add()
+ * @see pw_parser_edit_sidejobs_delete()
+ * @see pw_parser_edit_sidejobs_replace()
+ */
+function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
+  $http_origin = $_SERVER['HTTP_ORIGIN'];
+  if ($http_origin) {
+      drupal_add_http_header('Access-Control-Allow-Origin', $http_origin);
+  }
+
+  global $user;
+
+  $node = (object) array(
+    'uid' => $user->uid,
+    'name' => (isset($user->name) ? $user->name : ''),
+    'type' => 'sidejob',
+    'language' => LANGUAGE_NONE,
+    'field_politician' => array(
+      LANGUAGE_NONE => array(0 => array('target_id' => $account->uid)),
+    ),
+  );
+
+  if (!isset($form_state['node'])) {
+    if (!isset($node->title)) {
+      $node->title = NULL;
+    }
+    node_object_prepare($node);
+    $form_state['node'] = $node;
+  }
+  else {
+    $node = $form_state['node'];
+  }
+
+  $form['#attached'] = array(
+    'css' => array(drupal_get_path('module', 'pw_parser_edit') . '/pw_parser_edit.css'),
+  );
+  $form['#parents'] = array();
+
+  // Basic node information.
+  // These elements are just values so they are not even sent to the client.
+  foreach (array('nid', 'vid', 'uid', 'created', 'type', 'language') as $key) {
+    $form[$key] = array(
+      '#type' => 'value',
+      '#value' => isset($node->$key) ? $node->$key : NULL,
+    );
+  }
+
+  // Changed must be sent to the client, for later overwrite error checking.
+  $form['changed'] = array(
+    '#type' => 'hidden',
+    '#default_value' => isset($node->changed) ? $node->changed : NULL,
+  );
+
+  // @todo D8: Remove. Modules should access the node using $form_state['node'].
+  $form['#node'] = $node;
+
+  // If no language is provided use the default site language.
+  $options['language'] = field_valid_language(entity_language('node', $node));
+
+  if (isset($_REQUEST['raw'])) {
+    $form['raw'] = array(
+      '#markup' => '<pre>' . $_REQUEST['raw'] . '</pre>',
+    );
+  }
+
+  $form += (array) _field_invoke_default('form', 'node', $node, $form, $form_state, $options);
+  unset($form['field_politician']);
+  if (isset($form_state['input']['edit']['address-locality'])) {
+    $form['field_sidejob_address']['und'][0]['#address']['locality'] = $form_state['input']['edit']['address-locality'];
+  }
+
+  if (isset($form_state['input']['edit']['job-address-organisation_name'])) {
+    $form['field_sidejob_job_address']['und'][0]['#address']['organisation_name'] = $form_state['input']['edit']['job-address-organisation_name'];
+  }
+  if (isset($form_state['input']['edit']['job-address-locality'])) {
+    $form['field_sidejob_job_address']['und'][0]['#address']['locality'] = $form_state['input']['edit']['job-address-locality'];
+  }
+
+  $form['submit'] = array(
+    '#submit' => array('pw_parser_edit_sidejobs_add_submit'),
+    '#type' => 'submit',
+    '#validate' => array('pw_parser_edit_sidejobs_add_validate'),
+    '#value' => t('Save'),
+    '#weight' => 100,
+  );
+
+  $children = element_children($form, TRUE);
+  $form[reset($children)]['#prefix'] = '<div class="sidejobs-new">';
+  $form[end($children)]['#suffix'] = '</div>';
+
+  $form['list'] = array(
+    '#prefix' => '<div class="sidejobs-list">',
+    '#suffix' => '</div>'
+  );
+
+  foreach (pw_sidejobs_load($account) as $sidejob) {
+    $elements = node_view($sidejob, 'tabular');
+    $form['list']['#weight'] = 100;
+    $form['list'][$sidejob->nid] = array(
+      '#type' => 'container',
+      '#weight' => isset($_REQUEST['edit']) ? _pw_parser_edit_sidejob_matching_score($sidejob, $_REQUEST['edit']) : 0,
+    );
+    $form['list'][$sidejob->nid]['node'] = array(
+      '#markup' => drupal_render($elements),
+    );
+    $form['list'][$sidejob->nid]['actions'] = array('#type' => 'actions');
+    $form['list'][$sidejob->nid]['actions']['delete'] = array(
+      '#type' => 'submit',
+      '#name' => 'delete-' .  $sidejob->nid,
+      '#submit' => array('pw_parser_edit_sidejobs_delete'),
+      '#value' => t('Delete'),
+    );
+    $form['list'][$sidejob->nid]['actions']['replace'] = array(
+      '#type' => 'submit',
+      '#name' => 'replace-' . $sidejob->nid,
+      '#submit' => array('pw_parser_edit_sidejobs_replace'),
+      '#value' => t('Replace'),
+    );
+  }
+
+  return $form;
+}
+
+/**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ *
+ * @see pw_parser_edit_sidejobs_add_submit()
+ */
+function pw_parser_edit_sidejobs_add_validate($form, &$form_state) {
+  module_load_include('inc', 'node', 'node.pages');
+  node_form_validate($form, $form_state);
+}
+
+/**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ *
+ * @see pw_parser_edit_sidejobs_add_validate()
+ */
+function pw_parser_edit_sidejobs_add_submit($form, &$form_state) {
+  module_load_include('inc', 'node', 'node.pages');
+  node_form_submit($form, $form_state);
+  $form_state['redirect'] = url(current_path(), ['query' => drupal_get_query_parameters()]);
+}
+
+/**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ */
+function pw_parser_edit_sidejobs_delete($form, &$form_state) {
+  $destination = array('destination' => current_path());
+  $nid = substr(strrchr($form_state['triggering_element']['#name'], '-'), 1);
+  $form_state['redirect'] = array("node/$nid/delete", array('query' => $destination));
+}
+
+/**
+ * Form submission handler for pw_parser_edit_sidejobs_form().
+ */
+function pw_parser_edit_sidejobs_replace($form, &$form_state) {
+  module_load_include('inc', 'node', 'node.pages');
+
+  $nid = substr(strrchr($form_state['triggering_element']['#name'], '-'), 1);
+  $form_state['node'] = node_load($nid);
+
+  $node = node_form_submit_build_node($form, $form_state);
+  node_save($node);
+
+  $node_link = l(t('view'), 'node/' . $node->nid);
+  $watchdog_args = array('@type' => $node->type, '%title' => $node->title);
+  $t_args = array('@type' => node_type_get_name($node), '%title' => $node->title);
+
+  watchdog('content', '@type: updated %title.', $watchdog_args, WATCHDOG_NOTICE, $node_link);
+  drupal_set_message(t('@type %title has been updated.', $t_args));
+
+  if ($node->nid) {
+    $form_state['values']['nid'] = $node->nid;
+    $form_state['nid'] = $node->nid;
+    $form_state['redirect'] = array(current_path());
+  }
+  else {
+    // In the unlikely case something went wrong on save, the node will be
+    // rebuilt and node form redisplayed the same way as in preview.
+    drupal_set_message(t('The post could not be saved.'), 'error');
+    $form_state['rebuild'] = TRUE;
+  }
+  // Clear the page and block caches.
+  cache_clear_all();
+}
+
+/**
+ * Form constructor for the user field edit form.
+ *
+ * @see pw_parser_edit_field_form_submit().
+ */
+function pw_parser_edit_field_form($form, &$form_state, $account, $field_name) {
+  // Include user.pages.inc for user profile form handlers.
+  module_load_include('inc', 'user', 'user.pages');
+
+  // Ensure access to update this particular field is granted.
+  $field = field_info_field($field_name);
+  if (!field_access('edit', $field, 'user', $account)) {
+    return MENU_ACCESS_DENIED;
+  }
+
+  if (!isset($form_state['user'])) {
+    $form_state['user'] = $account;
+  }
+  else {
+    $account = $form_state['user'];
+  }
+
+  $form['#parents'] = array();
+  // @todo Legacy support. Modules are encouraged to access the entity using
+  //   $form_state. Remove in Drupal 8.
+  $form['#user'] = $account;
+  $form['#user_category'] = 'account';
+  $form['#validate'][] = 'user_profile_form_validate';
+  $form['#submit'][] = 'user_profile_form_submit';
+  $form['#submit'][] = 'pw_parser_edit_field_form_submit';
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+
+  $options = array(
+    'language' => field_valid_language(entity_language('user', $account)),
+    'field_name' => $field_name,
+  );
+  $form += (array) _field_invoke_default('form', 'user', $account, $form, $form_state, $options);
+
+  $language = $form[$field_name]['#language'];
+
+  foreach (element_children($form[$field_name][$language]) as $child) {
+    if ($form[$field_name][$language][$child]['#type'] == 'text_format') {
+      $widget = &$form[$field_name][$language][$child];
+    }
+    elseif (isset($form[$field_name][$language][$child]['value'])) {
+      $widget = &$form[$field_name][$language][$child]['value'];
+    }
+
+    $widget['#description'] = $account->{$field_name}[$language][$child]['value'];
+  }
+
+  return $form;
+}
+
+/**
+ * Form submission handler for pw_parser_edit_field_form().
+ */
+function pw_parser_edit_field_form_submit($form, &$form_state) {
+  $form_state['redirect'] = entity_uri('user', $form_state['user']);
+}
+
+/**
+ * Returns a score based on matching field values.
+ *
+ * @param object $node
+ *   The sidejob node.
+ * @param array $values
+ *   The values for comparison.
+ *
+ * @return int
+ *   The matching score
+ */
+function _pw_parser_edit_sidejob_matching_score($node, array $values = array()) {
+  $values += array(
+    'field_job' => array(LANGUAGE_NONE => ''),
+    'field_sidejob_organization' => array(LANGUAGE_NONE => ''),
+  );
+
+  $scores = array(
+    levenshtein($node->field_job[LANGUAGE_NONE][0]['taxonomy_term']->name, $values['field_job'][LANGUAGE_NONE]) * 10,
+    levenshtein($node->field_sidejob_organization[LANGUAGE_NONE][0]['taxonomy_term']->name, $values['field_sidejob_organization'][LANGUAGE_NONE]),
+  );
+
+  return array_sum($scores);
+}

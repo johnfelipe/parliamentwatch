@@ -65,41 +65,8 @@ function pw_sidejobs_strongarm() {
   $strongarm->name = 'field_bundle_settings_node__sidejob';
   $strongarm->value = array(
     'view_modes' => array(
-      'teaser' => array(
-        'custom_settings' => FALSE,
-      ),
-      'list_item' => array(
-        'custom_settings' => FALSE,
-      ),
-      'full' => array(
-        'custom_settings' => FALSE,
-      ),
-      'rss' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_index' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
-        'custom_settings' => FALSE,
-      ),
-      'colorbox' => array(
-        'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
-        'custom_settings' => FALSE,
-      ),
-      'tile' => array(
-        'custom_settings' => FALSE,
-      ),
-      'token' => array(
-        'custom_settings' => FALSE,
-      ),
-      'revision' => array(
-        'custom_settings' => FALSE,
-      ),
-      'embedded' => array(
-        'custom_settings' => FALSE,
+      'tabular' => array(
+        'custom_settings' => TRUE,
       ),
     ),
     'extra_fields' => array(
@@ -108,37 +75,22 @@ function pw_sidejobs_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '18',
+          'weight' => '20',
         ),
         'redirect' => array(
-          'weight' => '16',
-        ),
-        'xmlsitemap' => array(
           'weight' => '19',
         ),
+        'xmlsitemap' => array(
+          'weight' => '21',
+        ),
         'metatags' => array(
-          'weight' => '20',
+          'weight' => '22',
         ),
         'rabbit_hole' => array(
           'weight' => '0',
         ),
       ),
-      'display' => array(
-        'sharethis' => array(
-          'default' => array(
-            'weight' => '-100',
-            'visible' => TRUE,
-          ),
-          'list_item' => array(
-            'weight' => '-100',
-            'visible' => TRUE,
-          ),
-          'embedded' => array(
-            'weight' => '-100',
-            'visible' => TRUE,
-          ),
-        ),
-      ),
+      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__sidejob'] = $strongarm;

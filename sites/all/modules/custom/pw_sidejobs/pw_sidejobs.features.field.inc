@@ -68,7 +68,34 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => 0,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => 0,
         ),
       ),
       'entity_type' => 'node',
@@ -88,7 +115,7 @@ function pw_sidejobs_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '2',
+        'weight' => '18',
       ),
     ),
   );
@@ -138,7 +165,27 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 13,
+        ),
+        'tabular' => array(
+          'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
@@ -155,9 +202,16 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_plain',
-          'weight' => '13',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_job',
       'label' => 'Job',
@@ -226,7 +280,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
@@ -243,9 +297,22 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '1',
+          'weight' => 1,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_parliament',
       'label' => 'Parliament',
@@ -261,7 +328,7 @@ function pw_sidejobs_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'options_select',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -317,9 +384,13 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
+            'colorbox_node_classes' => '',
+            'colorbox_node_height' => '600',
+            'colorbox_node_link' => FALSE,
+            'colorbox_node_width' => '600',
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
@@ -335,9 +406,22 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'entityreference_label',
-          'weight' => '11',
+          'weight' => 11,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_politician',
       'label' => 'Politician',
@@ -356,7 +440,7 @@ function pw_sidejobs_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '6',
+        'weight' => '5',
       ),
     ),
   );
@@ -370,7 +454,7 @@ function pw_sidejobs_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_sectors',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(
         'tid' => array(
@@ -406,7 +490,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
@@ -423,9 +507,22 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '16',
+          'weight' => 16,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sectors',
       'label' => 'Sectors',
@@ -439,7 +536,6 @@ function pw_sidejobs_field_default_fields() {
         'module' => 'taxonomy',
         'settings' => array(
           'autocomplete_path' => 'taxonomy/autocomplete',
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
@@ -474,13 +570,13 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
-          'module' => 'addressfield_tokens',
+          'label' => 'above',
+          'module' => 'addressfield',
           'settings' => array(
-            'components' => array(
-              'locality' => 'locality',
-            ),
             'field_delimiter' => '',
+            'format_handlers' => array(
+              0 => 'address',
+            ),
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -492,15 +588,28 @@ function pw_sidejobs_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
-            'separator' => ', ',
+            'use_widget_handlers' => 1,
           ),
-          'type' => 'addressfield_components',
-          'weight' => '15',
+          'type' => 'addressfield_default',
+          'weight' => 15,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_address',
-      'label' => 'Address',
+      'label' => 'Organization Address',
       'required' => 0,
       'settings' => array(
         'exclude_cv' => FALSE,
@@ -510,21 +619,21 @@ function pw_sidejobs_field_default_fields() {
         'active' => 1,
         'module' => 'addressfield',
         'settings' => array(
-          'available_countries' => array(
-            'DE' => 'DE',
-          ),
-          'default_country' => '',
+          'available_countries' => array(),
+          'default_country' => 'DE',
           'format_handlers' => array(
             'address' => 'address',
-            'address-hide-country' => 'address-hide-country',
+            'address-hide-postal-code' => 'address-hide-postal-code',
+            'address-hide-street' => 'address-hide-street',
+            'address-optional' => 'address-optional',
+            'address-hide-country' => 0,
             'organisation' => 0,
-            'name-full' => 0,
             'name-oneline' => 0,
+            'name-full' => 0,
           ),
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'addressfield_standard',
-        'weight' => '17',
+        'weight' => '7',
       ),
     ),
   );
@@ -568,7 +677,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'text',
           'settings' => array(
             'field_delimiter' => '',
@@ -584,10 +693,37 @@ function pw_sidejobs_field_default_fields() {
               'linked' => 0,
             ),
           ),
-          'type' => 'text_plain',
-          'weight' => '5',
+          'type' => 'text_default',
+          'weight' => 5,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => 4,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_classification',
       'label' => 'Classification',
@@ -645,7 +781,7 @@ function pw_sidejobs_field_default_fields() {
           'size' => '3',
         ),
         'type' => 'text_textfield',
-        'weight' => '15',
+        'weight' => '12',
       ),
     ),
   );
@@ -689,7 +825,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'date',
           'settings' => array(
             'field_delimiter' => '',
@@ -712,9 +848,42 @@ function pw_sidejobs_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => '24',
+          'weight' => 24,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'field_delimiter' => '',
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_remaining_days' => FALSE,
+          ),
+          'type' => 'date_default',
+          'weight' => 3,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_date_end',
       'label' => 'Date End',
@@ -740,7 +909,7 @@ function pw_sidejobs_field_default_fields() {
           'year_range' => '-100:+100',
         ),
         'type' => 'date_popup',
-        'weight' => '5',
+        'weight' => '4',
       ),
     ),
   );
@@ -784,7 +953,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'date',
           'settings' => array(
             'field_delimiter' => '',
@@ -807,9 +976,42 @@ function pw_sidejobs_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => '23',
+          'weight' => 23,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'field_delimiter' => '',
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_remaining_days' => FALSE,
+          ),
+          'type' => 'date_default',
+          'weight' => 2,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_date_start',
       'label' => 'Date Start',
@@ -830,12 +1032,12 @@ function pw_sidejobs_field_default_fields() {
           'input_format' => 'd.m.Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'no_fieldset' => 0,
           'text_parts' => array(),
           'year_range' => '-100:+100',
         ),
-        'type' => 'date_popup',
-        'weight' => '4',
+        'type' => 'date_select',
+        'weight' => '3',
       ),
     ),
   );
@@ -881,7 +1083,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'list',
           'settings' => array(
             'field_delimiter' => '',
@@ -898,9 +1100,36 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'list_default',
-          'weight' => '22',
+          'weight' => 22,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => 9,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_income_interval',
       'label' => 'Income Interval',
@@ -915,7 +1144,7 @@ function pw_sidejobs_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'options_select',
-        'weight' => '14',
+        'weight' => '13',
       ),
     ),
   );
@@ -929,7 +1158,7 @@ function pw_sidejobs_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_sidejob_income_max',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
@@ -948,7 +1177,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'number',
           'settings' => array(
             'decimal_separator' => '.',
@@ -969,9 +1198,36 @@ function pw_sidejobs_field_default_fields() {
             'thousand_separator' => '',
           ),
           'type' => 'number_decimal',
-          'weight' => '18',
+          'weight' => 18,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => 7,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_income_max',
       'label' => 'Income Max',
@@ -986,11 +1242,9 @@ function pw_sidejobs_field_default_fields() {
       'widget' => array(
         'active' => 0,
         'module' => 'number',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'number',
-        'weight' => '12',
+        'weight' => '16',
       ),
     ),
   );
@@ -1023,7 +1277,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'number',
           'settings' => array(
             'decimal_separator' => '.',
@@ -1044,9 +1298,36 @@ function pw_sidejobs_field_default_fields() {
             'thousand_separator' => '',
           ),
           'type' => 'number_decimal',
-          'weight' => '19',
+          'weight' => 19,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => 8,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_income_max_total',
       'label' => 'Income Max Total',
@@ -1065,7 +1346,7 @@ function pw_sidejobs_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'number',
-        'weight' => '13',
+        'weight' => '17',
       ),
     ),
   );
@@ -1079,7 +1360,7 @@ function pw_sidejobs_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_sidejob_income_min',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
@@ -1098,7 +1379,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'number',
           'settings' => array(
             'decimal_separator' => '.',
@@ -1119,9 +1400,36 @@ function pw_sidejobs_field_default_fields() {
             'thousand_separator' => '',
           ),
           'type' => 'number_decimal',
-          'weight' => '21',
+          'weight' => 21,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_income_min',
       'label' => 'Income Min',
@@ -1136,11 +1444,9 @@ function pw_sidejobs_field_default_fields() {
       'widget' => array(
         'active' => 0,
         'module' => 'number',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'number',
-        'weight' => '10',
+        'weight' => '14',
       ),
     ),
   );
@@ -1173,7 +1479,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'number',
           'settings' => array(
             'decimal_separator' => '.',
@@ -1194,9 +1500,36 @@ function pw_sidejobs_field_default_fields() {
             'thousand_separator' => '',
           ),
           'type' => 'number_decimal',
-          'weight' => '20',
+          'weight' => 20,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => 5,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_income_min_total',
       'label' => 'Income Min Total',
@@ -1215,7 +1548,7 @@ function pw_sidejobs_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'number',
-        'weight' => '11',
+        'weight' => '15',
       ),
     ),
   );
@@ -1246,7 +1579,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'addressfield',
           'settings' => array(
             'field_delimiter' => '',
@@ -1267,9 +1600,22 @@ function pw_sidejobs_field_default_fields() {
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => '27',
+          'weight' => 27,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_job_address',
       'label' => 'Job Address',
@@ -1339,7 +1685,7 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'text',
           'settings' => array(
             'field_delimiter' => '',
@@ -1356,9 +1702,22 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'text_default',
-          'weight' => '26',
+          'weight' => 26,
+        ),
+        'tabular' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_job_event',
       'label' => 'Job Event',
@@ -1473,7 +1832,27 @@ function pw_sidejobs_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 2,
+        ),
+        'tabular' => array(
+          'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
@@ -1490,9 +1869,16 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_plain',
-          'weight' => '2',
+          'weight' => 1,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_sidejob_organization',
       'label' => 'Organization',
@@ -1510,14 +1896,13 @@ function pw_sidejobs_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Address');
   t('Body');
   t('Classification');
   t('Date End');
@@ -1531,6 +1916,7 @@ function pw_sidejobs_field_default_fields() {
   t('Job Address');
   t('Job Event');
   t('Organization');
+  t('Organization Address');
   t('Parliament');
   t('Politician');
   t('Sectors');
