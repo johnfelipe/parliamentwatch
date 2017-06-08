@@ -99,33 +99,53 @@
         <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
         <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
       </div>
-      <?php print render($page['content']); ?>
-      <?php print $feed_icons; ?>
+      <?php if ( !empty($node) && $node->type == 'page'): ?><div class="container"><?php endif; ?>
+        <?php print render($page['content']); ?>
+        <?php print $feed_icons; ?>
+      <?php if ( !empty($node) && $node->type == 'page'): ?></div><?php endif; ?>
     </main>
 
     <footer id="footer">
       <div class="container">
         <div class="footer__maincol">
           <div class="footer__maincol__col">
-              <strong><i class="icon icon-bundestag"></i> Bundestag</strong>
-              <ul class="footer__maincol__col__nav">
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abstimmungen</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abgeordnete</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Petitionen</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Ausschüsse</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Wahlrecht</a></li>
-              </ul>
-            </div>
+            <strong><i class="icon icon-bundestag"></i> Bundestag</strong>
+            <ul class="footer__maincol__col__nav">
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abstimmungen</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abgeordnete</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Petitionen</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Ausschüsse</a></li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Suffrage'), 'node/7752', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
+            </ul>
+          </div>
           <div class="footer__maincol__col">
-              <strong><i class="icon icon-de"></i> Landtag</strong>
-              <ul class="footer__maincol__col__nav">
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abstimmungen</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abgeordnete</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Petitionen</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Ausschüsse</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Wahlrecht</a></li>
-              </ul>
-            </div>
+            <strong><i class="icon icon-de"></i> Landtag</strong>
+            <ul class="footer__maincol__col__nav">
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Baden-Württemberg</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Bayern</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Berlin</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Brandenburg</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Bremen</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Hamburg</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Hessen</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Mecklenburg-Vorpommern</a></li>
+            </ul>
+          </div>
+          <div class="footer__maincol__col">
+            <strong>&nbsp;</strong>
+            <ul class="footer__maincol__col__nav">
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Niedersachsen</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Nordrhein-Westfalen</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Rheinland-Pfalz</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Saarland</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Sachsen</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Sachsen-Anhalt</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Schleswig-Holstein</a></li>
+              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Thüringen</a></li>
+            </ul>
+          </div>
           <div class="footer__maincol__col">
             <strong><i class="icon icon-de"></i> EU-Parlament</strong>
             <ul class="footer__maincol__col__nav">
@@ -133,28 +153,45 @@
               <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abgeordnete</a></li>
               <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Petitionen</a></li>
               <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Ausschüsse</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Wahlrecht</a></li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Suffrage'), 'node/7754', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
             </ul>
           </div>
-        </div>
-        <div class="footer__maincol">
-          <strong><i class="icon icon-logo-aw"></i> Über das Projekt</strong>
           <div class="footer__maincol__col">
+            <strong><i class="icon icon-logo-aw"></i> Über das Projekt</strong>
             <ul class="footer__maincol__col__nav">
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Wir über uns</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Kuratorium</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Moderationscodex</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Finanzierung</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Impressum</a></li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('About us'), 'node/7760', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Board of Trustees'), 'node/7735', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Moderation Codex'), 'node/7734', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Financing'), 'node/7757', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Imprint'), 'node/7732', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
             </ul>
           </div>
           <div class="footer__maincol__col">
-              <ul class="footer__maincol__col__nav">
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Projekt unterstützen</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Infopaket bestellen</a></li>
-                <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Datenschutzerklärung</a></li>
-              </ul>
-            </div>
+            <strong>&nbsp;</strong>
+            <ul class="footer__maincol__col__nav">
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Support the project'), 'node/10508', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Get info material'), 'node/7747', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
+              <li class="footer__maincol__col__nav__item">
+                <?php print l( t('Privacy'), 'node/10006', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="footer__mediapartner">
