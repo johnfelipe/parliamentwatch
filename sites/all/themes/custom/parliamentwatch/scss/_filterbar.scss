@@ -1,0 +1,205 @@
+/**
+* Filterbar
+*/
+
+.filterbar {
+  border-top: 1px solid $darkBeige;
+  border-bottom: 1px solid $darkBeige;
+  background: $white;
+  @include grid-container();
+  .container {
+    margin-bottom: -1px;
+    position: relative;
+  }
+  &.is_stuck {
+    z-index: 999;
+    @media (max-width: $breakpoint-m-max) {
+      top: 0 !important;
+    }
+  }
+}
+.filterbar__swiper {
+  @include grid-container();
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  .filterbar__item {
+    float: none;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: absolute;
+    top: 0;
+    bottom: 1px;
+    margin: 0;
+    right: 0;
+    height: auto;
+    width: auto;
+    padding: 0 $space-xsmall;
+    font-size: .6em;
+    left: auto;
+    z-index: 9;
+    opacity: 1;
+    display: block;
+    margin-right: 0;
+    border-left: 1px solid $darkBeige;
+    @include breakpoint($breakpoint-s-min) {
+      margin-right: $space-small;
+    }
+    &:before {
+      color: $gray;
+      line-height: 57px;
+      @include breakpoint($breakpoint-xs-min) {
+        line-height: 60px;
+      }
+    }
+  }
+  .swiper-button-disabled {
+    display: none;
+  }
+  &.swiper-container-horizontal .filterbar__item--dropdown:last-child {
+    border-right: 0;
+  }
+}
+.filterbar__swiper__inner {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+
+  @include display(flex);
+  @include transition-property(transform);
+  @include box-sizing(content-box);
+}
+.filterbar__item {
+  float: left;
+  color: $darkGray;
+}
+.filterbar__item--label {
+  font-weight: 600;
+  float: left;
+  padding-top: $space;
+  padding-right: $space-small;
+  display: none;
+  @include breakpoint($breakpoint-s-min) {
+    display: block;
+  }
+}
+
+.filterbar__item--input {
+  padding: $space-xsmall $space-xsmall $space-xsmall 0;
+  position: relative;
+  border-right: 1px solid $darkBeige;
+  @include grid-container();
+  @include breakpoint($breakpoint-s-min) {
+    padding-right: $space-large + $space + $space-xsmall;
+  }
+  .form__item__control {
+    display: none;
+    float: left;
+    border-color: $darkBeige;
+    border-right: 0;
+    @include breakpoint($breakpoint-s-min) {
+      display: block;
+    }
+  }
+  .btn {
+    right: $space-xsmall;
+    top: $space-xsmall;
+    bottom: $space-xsmall;
+    padding: 0;
+    width: $space-large;
+    background: $white;
+    border-color: transparent;
+    padding: $space-xsmall $space-xsmall-mobile;
+    color: $mediumGray;
+    @include breakpoint($breakpoint-s-min) {
+      display: block;
+      position: absolute;
+      border-color: $darkBeige;
+      width: $space-large + $space;
+    }
+    &:hover {
+      background: $beige;
+    }
+  }
+}
+.filterbar__item--dropdown {
+  border-right: 1px solid $darkBeige;
+  white-space: nowrap;
+  a {
+    padding: $space $space;
+    display: block;
+    color: $darkGray;
+    .icon {
+      font-size: .7em;
+      position: relative;
+      top: -1px;
+      margin-left: 3px;
+      color: $mediumGray;
+    }
+  }
+}
+
+.filterbar__item--checkbox {
+  border-right: 1px solid $darkBeige;
+  padding: $space $space;
+  white-space: nowrap;
+  @include grid-container();
+  .form__item--checkbox {
+    float: left;
+    white-space: nowrap;
+    label {
+      margin-right: $space;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.filterbar__view_options {
+  position: absolute;
+  right: 0;
+  top: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid $darkBeige;
+  background: $white;
+  @include grid-container();
+  @include breakpoint($breakpoint-s-min) {
+    right: $space-small;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    right: $space;
+  }
+}
+.filterbar__view_options__item {
+  float: left;
+  margin: 0;
+  border-right: 1px solid $darkBeige;
+  border-bottom: 1px solid $darkBeige;
+  &:last-child {
+    border-right: 0;
+    @include breakpoint($breakpoint-s-min) {
+      border-right: 1px solid $darkBeige;
+    }
+  }
+}
+.filterbar__view_options__item__link {
+  display: block;
+  padding: $space-small $space-xsmall;
+  color: $mediumGray;
+  @include breakpoint($breakpoint-s-min) {
+    padding: $space-small;
+  }
+}
+.filterbar__view_options__item--active {
+  background: $beige;
+  position: relative;
+  z-index: 9;
+  border-bottom: 1px solid $beige;
+  .filterbar__view_options__item__link {
+    color: $darkGray;
+  }
+}
