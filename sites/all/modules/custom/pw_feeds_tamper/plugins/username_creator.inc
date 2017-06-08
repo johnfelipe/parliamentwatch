@@ -60,18 +60,10 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
     $uname = trim($uname, '-');
     $cname = $uname;
 
-    $users = entity_load('user');
-    $count = 2;
-
-    foreach($users as $user) {
-      
-      if ($user->name === $uname) {
-
-        // if user does not exist by uuid, but the name exists, add a number to name
-        $cname = $uname . '-' . $count;
-        $count++;
-
-      }
+    $luser = user_load_by_name($uname);
+    if ($luser && $luser->name === $uname) {
+      // if user does not exist by uuid, but the name exists, add a number to name
+      $cname = $uname . '-2';
     }
 
     // create a new user with constructed uname
@@ -80,12 +72,12 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
 
   } else {
 
-    // skip the user and dont do anything
+    // skip the user and don't do anything
     return;
 
   }
 
-  // unreachable code, dont do anything
+  // unreachable code, don't do anything
   return;
 
 }
