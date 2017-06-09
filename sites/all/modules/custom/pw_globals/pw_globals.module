@@ -29,6 +29,12 @@ function pw_globals_menu() {
     'access arguments' => array('administer site configuration'),
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['test'] = array(
+    'title' => 'Test',
+    'page callback' => 'pw_globals_test_page',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
   return $items;
 }
 
@@ -60,6 +66,13 @@ function pw_globals_entity_info_alter(&$entity_info) {
     'label' => t('Embedded'),
     'custom settings' => FALSE,
   );
+}
+
+/**
+ * Page callback: Renders a page that demonstrates visual elements.
+ */
+function pw_globals_test_page() {
+  return 'Lorem ipsum dolor sit...';
 }
 
 /**
