@@ -221,7 +221,7 @@
               <div class="tab-qa-stats__col--large">
                 <span class='d3 d3--bars-vertical'
                       data-d3-bars-vert
-                      data-data='[{"name":"Katgeorie 1","url":"/location/bath","value":"18"},{"name":"Katgeorie 2","url":"/location/bath","value":"6"},{"name":"Katgeorie 3","url":"/location/bath","value":"12"},{"name":"Katgeorie 4","url":"/location/bath","value":"28"},{"name":"Katgeorie 5","url":"/location/bath","value":"18"},{"name":"Katgeorie 6","url":"/location/bath","value":"6"},{"name":"Katgeorie 7","url":"/location/bath","value":"12"},{"name":"Katgeorie 8","url":"/location/bath","value":"28"},{"name":"Katgeorie 9","url":"/location/bath","value":"18"},{"name":"Katgeorie 10","url":"/location/bath","value":"6"},{"name":"Katgeorie 11","url":"/location/bath","value":"12"},{"name":"Katgeorie 12","url":"/location/bath","value":"28"},{"name":"Katgeorie 13","url":"/location/bath","value":"18"},{"name":"Katgeorie 14","url":"/location/bath","value":"6"},{"name":"Katgeorie 15","url":"/location/bath","value":"12"},{"name":"Katgeorie 16","url":"/location/bath","value":"28"}]'
+                      data-data='parseDialogues'
                       data-height='100'
                       data-fill-colour='ffffff'
                       data-stroke-colour='f68a66'>
@@ -268,9 +268,9 @@
           <div class="abstimmverhalten-stats">
             <div class="tile">
               <div class="d3-label-wrapper">
-                <div class='d3 d3--donut'
+                <div class="d3 d3--donut"
                      data-d3-donut-labels
-                     data-data='[{"name":"Ja","count":63,"color":"#9fd773"},{"name":"Nein","count":24,"color":"#cc6c5b"},{"name":"Enthalten","count":8,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+                     data-data="parseVotes">
                 </div>
               </div>
             </div>

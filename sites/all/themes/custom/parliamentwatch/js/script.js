@@ -296,7 +296,8 @@ function d3BarsVertical(element) {
     var wrapper = element;
     var width = 600;
     var height = wrapper.dataset.height;
-    var data = JSON.parse(wrapper.getAttribute('data-data'));
+    var data = window[wrapper.getAttribute('data-data')]();
+
     var colours = {
         fill: '#' + wrapper.dataset.fillColour,
         stroke: '#' + wrapper.dataset.strokeColour
@@ -389,7 +390,7 @@ function d3Donut(element) {
  * */
 function d3DonutLabels(element) {
     var wrapper = element;
-    var dataset = JSON.parse(wrapper.getAttribute('data-data'));
+    var dataset = window[wrapper.getAttribute('data-data')]();
 
     var width = 360;
     var height = 360;
@@ -772,3 +773,48 @@ $(function () {
     window.addEventListener('resize', windowResize);
 
 });
+
+function parseDialogues() {
+    var topics = [];
+    var data = [];
+
+    window.dialogues.forEach(function (d) {
+        if (topics.indexOf(d.topic) === -1) {
+            topics.push(d.topic);
+        }
+    });
+
+    topics.forEach(function (t) {
+        var count = 0;
+        window.dialogues.forEach(function (d) {
+            if (d.topic === t) {
+                count++;
+            }
+        });
+        data.push({name: t, value: count});
+    });
+
+    return data;
+}
+
+function parseVotes() {
+    var vote = {
+        'yes': {label: 'Ja', color: '#9fd773'},
+        'no': {label: 'Nein', color: '#cc6c5b'},
+        'abstain': {label: 'Enthalten', color: '#e2e2e2'},
+        'no-show': {label: 'Nicht abgestimmt', color: '#a6a6a6'}
+    };
+    var data = [];
+
+    Object.keys(vote).forEach(function (k) {
+        var count = 0;
+        window.votes.forEach(function (v) {
+            if (v.vote === k) {
+                count++;
+            }
+        });
+        data.push({name: vote[k].label, color: vote[k].color, count: count});
+    });
+
+    return data;
+}
