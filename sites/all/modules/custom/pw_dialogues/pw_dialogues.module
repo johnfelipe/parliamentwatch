@@ -249,7 +249,6 @@ function pw_dialogues_user_view($account, $view_mode, $langcode) {
       $nodes = node_load_multiple(array_keys($result['node']));
       $account->content['dialogues'] = node_view_multiple(array_slice($nodes, 0, 12, TRUE), 'embedded');
       $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
-      $inline_js = 'window.sidejobs = ' . drupal_json_encode(array_map('pw_sidejobs_to_array', array_values($nodes))) . ';';
       $account->content['#attached']['js'][$inline_js] = [
         'scope' => 'footer',
         'type' => 'inline',
