@@ -638,7 +638,7 @@ function d3SecondaryIncome(element) {
 
         // ADD Total
         barWrapper.insert('div',':first-child').attr('class', 'd3-bars__total').html('Gesamteinnahmen: ' + totalVolumeMin + ' &ndash; ' + totalVolumeMax);
-    })(window.sidejobs);
+    })(window.sidejobs || []);
 
 }
 
