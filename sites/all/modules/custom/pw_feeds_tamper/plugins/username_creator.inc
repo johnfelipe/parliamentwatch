@@ -44,12 +44,12 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
     $uname = $fname . '-' . $lname;
 
     $title = $source->current_item['xpathparser:7'];
-    if (!empty($title)) {
+    //if (!empty($title)) {
 
       // add title to umame if exists
-      $uname = $title . '-' . $uname;
+      //$uname = $title . '-' . $uname;
 
-    }
+    //}
 
     $uname =  strtr(utf8_decode($uname),
       utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
@@ -60,18 +60,14 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
     $uname = trim($uname, '-');
     $cname = $uname;
 
-    $users = entity_load('user');
     $count = 2;
 
-    foreach($users as $user) {
-      
-      if ($user->name === $uname) {
-
-        // if user does not exist by uuid, but the name exists, add a number to name
-        $cname = $uname . '-' . $count;
-        $count++;
-
-      }
+    $luser = user_load_by_name($uname);
+    while ($luser && $luser->name === $cname) {
+      // if user does not exist by uuid, but the name exists, add a number to name
+      $cname = $uname . '-' . $count;
+      $luser = user_load_by_name($cname);
+      $count++;
     }
 
     // create a new user with constructed uname
@@ -80,12 +76,12 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
 
   } else {
 
-    // skip the user and dont do anything
+    // skip the user and don't do anything
     return;
 
   }
 
-  // unreachable code, dont do anything
+  // unreachable code, don't do anything
   return;
 
 }
