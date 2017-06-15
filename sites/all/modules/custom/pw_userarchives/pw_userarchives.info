@@ -5,3 +5,4 @@ package = Parliamentwatch
 php = 5.2.4
 version = 7.x-1.0-20170330
 project = pw_userarchives
+files[] = UserArchiveController.inc

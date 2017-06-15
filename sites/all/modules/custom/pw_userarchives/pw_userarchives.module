@@ -6,6 +6,13 @@
  */
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function pw_userarchives_entity_info_alter(&$entity_info) {
+  $entity_info['user']['controller class'] = 'UserArchiveController';
+}
+
+/**
  * Implements hook_cron().
  *
  * Updates stats for users.

@@ -155,3 +155,17 @@ function pw_userarchives_update_7105() {
   db_add_index('user_archive_cache', 'question_form_open', array('question_form_open'));
 }
 
+/**
+ * Increase weight.
+ */
+function pw_userarchives_update_7106() {
+  $weight = 1 + db_select('system', 's')
+    ->condition('name', 'user_revision')
+    ->fields('s', ['weight'])
+    ->execute()
+    ->fetchField();
+  db_update('system')
+    ->condition('name', 'pw_userarchives')
+    ->fields(['weight' => $weight])
+    ->execute();
+}
