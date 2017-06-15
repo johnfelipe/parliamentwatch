@@ -8,6 +8,13 @@
 include_once 'pw_globals.features.inc';
 include_once 'pw_globals.feedback_form.inc';
 
+define('PW_GLOBALS_API_USER_RID', 29859578);
+define('PW_GLOBALS_ADMINISTRATOR_RID', 30037204);
+define('PW_GLOBALS_BLOCK_MANAGER_RID', 127500594);
+define('PW_GLOBALS_CONTENT_MANAGER_RID', 51622513);
+define('PW_GLOBALS_CANDIDATE_RID', 185431326);
+define('PW_GLOBALS_DEPUTY_RID', 140336230);
+
 /**
  * Implements hook_menu().
  *
