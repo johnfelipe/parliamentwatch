@@ -241,7 +241,7 @@
         .select2-container--default .select2-selection--multiple { border-color: $orangeBG; }
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
           margin: $space-xsmall - 3;
-          @include tag($orangeBG, $white);
+          @include tag($orangeBG, $orange, $white);
         }
         .form__item--checkbox {
           @include breakpoint($breakpoint-m-min) {

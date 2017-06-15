@@ -13,7 +13,7 @@
 }
 
 /* Screen-reader only */
-
+.visually-hidden,
 .element-invisible,
 .sr-only {
     position: absolute;
@@ -26,6 +26,19 @@
     border: 0;
 }
 
+/* Links with icons */
+
+.link-icon {
+  color: $darkGray;
+  font-weight: 600;
+  .icon {
+    color: $orange;
+    font-size: .7em;
+    display: inline-block;
+    position: relative;
+    top: -.2em;
+  }
+}
 
 /* Title with options */
 
@@ -52,7 +65,7 @@
 /* Tag-Styling */
 
 .tag {
-  @include tag($beige, $mediumGray);
+  @include tag($beige, $darkBeige, $mediumGray);
   padding: 3px 5px;
   & + .tag {
     @include breakpoint($breakpoint-s-min) {
@@ -60,8 +73,6 @@
     }
   }
 }
-
-
 
 
 
@@ -187,6 +198,7 @@ figcaption {
 
 /* Intro */
 .intro {
+  position: relative;
   @include padding($space-large null);
   @include breakpoint($breakpoint-m-min) {
     @include padding(($space-large * 2) null);
@@ -194,8 +206,51 @@ figcaption {
   h1 {
     margin-bottom: 0;
   }
-}
+  .intro__date {
+    color: $gray;
+    font-family: $font-serif;
+    margin-top: $space-xsmall;
 
+    @include breakpoint($breakpoint-xl-min) {
+      position: absolute;
+      right: 100%;
+      top: 0;
+      margin-right: $space;
+      margin-top: 0;
+      width: 60px;
+      text-align: center;
+      font-size: 1.4em;
+    }
+    & + p {
+      margin-top: $space;
+    }
+  }
+  .intro__left {
+    position: relative;
+    @include grid-column(12);
+    padding-bottom: $space-large;
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(7);
+      padding-bottom: 0;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(7);
+      padding-bottom: 0;
+    }
+  }
+  .intro__right {
+    @include grid-column(12);
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(5);
+      padding-left: $space-large;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(4);
+      @include grid-push(1);
+      padding-left:0;
+    }
+  }
+}
 
 /* Pager */
 
@@ -284,6 +339,7 @@ figcaption {
     }
   }
 }
+
 
 
 /* Burger / Close Button */

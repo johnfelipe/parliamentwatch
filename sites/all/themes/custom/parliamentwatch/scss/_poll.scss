@@ -8,9 +8,7 @@
 .tile.poll {
   margin-bottom: $space;
   position: relative;
-  @include breakpoint($breakpoint-xs-min) {
-    @include grid-column(12);
-  }
+  @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(6, $neat-grid-large-gutter);
     margin-bottom: $space-large;
@@ -82,3 +80,267 @@
   }
 }
 
+
+
+
+
+.poll_overview {
+  border: 2px solid $beige;
+}
+.poll_overview__primary {
+  padding: $space-small $space;
+  padding-right: 120px;
+  position: relative;
+  max-width: 290px;
+  margin: 0 auto;
+  @include breakpoint($breakpoint-s-min) {
+    padding-right: 100px;
+    max-width: 320px;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    padding-right: 150px;
+  }
+  .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90px;
+    font-size: 1.6em;
+    text-align: center;
+    top: 50%;
+    @include transform(translate(0,-50%));
+    @include breakpoint($breakpoint-m-min) {
+      width: 120px;
+    }
+  }
+  .icon-ok {
+    color: $success;
+  }
+  &:after {
+    content: '}';
+    font-size: 3.6em;
+    line-height: 1em;
+    position: absolute;
+    top: 50%;
+    right: 90px;
+    margin-top: -5px;
+    @include transform(translate(0,-50%));
+    color: $darkBeige;
+    @include breakpoint($breakpoint-s-min) {
+      right: 70px;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      right: 100px;
+    }
+  }
+}
+.poll_overview__primary__item {
+  @include grid-container();
+  padding-top: $space-xsmall;
+  padding-bottom: $space-xsmall;
+  color: $mediumGray;
+  font-size: .9em;
+  @include breakpoint($breakpoint-m-min) {
+    font-size: 1em;
+  }
+}
+.poll_overview__primary__label {
+  float: left;
+  width: 80%;
+  text-align: right;
+  padding-right: $space;
+  @include text-overflow();
+}
+.poll_overview__primary__value {
+  float: right;
+  width: 20%;
+  font-weight: 600;
+}
+
+.poll_overview__secondary {
+  background: $beige;
+  padding: $space-small $space;
+}
+.poll_overview__secondary__item {
+  @include grid-container();
+  padding-top: $space-xsmall-mobile;
+  padding-bottom: $space-xsmall-mobile;
+  color: $mediumGray;
+  font-size: .9em;
+  @include grid-column(6);
+}
+.poll_overview__secondary__label {
+  float: left;
+  width: 75%;
+  @include text-overflow();
+}
+.poll_overview__secondary__value {
+  float: right;
+  width: 25%;
+  font-weight: 600;
+  text-align: right;
+}
+
+
+.poll_detail {
+  background: $beige;
+  padding-bottom: $space-large;
+  .filterbar {
+    margin-bottom: $space-large;
+  }
+  /* Poll-Detail: Table View */
+  .poll_detail__table__item__voting_behavior {
+    @include breakpoint($breakpoint-s-min) {
+      text-align: right;
+      margin-left: 0;
+      padding-right: $space;
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: $space-small solid $beige;
+      @include breakpoint($breakpoint-s-min) {
+        border-bottom: 0;
+      }
+    }
+    .poll_detail__table__item__picture {
+      padding: $space-small;
+      float: left;
+      @include breakpoint($breakpoint-s-min) {
+        float: none;
+        padding: $space-xsmall;
+        padding-left: $space;
+      }
+    }
+    .poll_detail__table__item__picture span {
+      @include image-circle(40px, 40px);
+      border-width: 3px;
+      @include breakpoint($breakpoint-s-min) {
+        @include image-circle(50px, 50px);
+        border-width: 3px;
+      }
+    }
+    .poll_detail__table__item__name {
+      margin-left: 70px;
+      padding-top: $space-small;
+      padding-bottom: 0;
+      font-weight: 600;
+      @include breakpoint($breakpoint-s-min) {
+        margin-left: 0;
+        font-weight: 300;
+        padding-top: $space-xsmall;
+        padding-bottom: $space-xsmall;
+      }
+    }
+    .poll_detail__table__item__fraction {
+      margin-left: 70px;
+      font-size: .8em;
+      @include breakpoint($breakpoint-s-min) {
+        margin-left: 0;
+        font-size: 1em;
+      }
+    }
+    .poll_detail__table__item__constituency {
+      font-size: .8em;
+      margin-left: 70px;
+      @include breakpoint($breakpoint-s-min) {
+        margin-left: 0;
+        font-size: 1em;
+      }
+      .icon {
+        font-size: .6em;
+        position: relative;
+        top: -2px;
+      }
+    }
+    .poll_detail__table__item__voting_behavior {
+      margin-top: $space-xsmall;
+      padding-left: 70px;
+      padding-top: $space-xsmall;
+      padding-bottom: $space-xsmall;
+      border-top: 1px solid $beige;
+      @include breakpoint($breakpoint-s-min) {
+        margin-left: 0;
+        padding-right: $space;
+      }
+      .icon {
+        font-size: .8em;
+        margin-left: $space-xsmall;
+      }
+      @include poll-icon-colors();
+    }
+  }
+}
+.poll_detail__table {
+  background: $white;
+.poll__content {
+  @include grid-container();
+  @include padding(($space * 2) null);
+}
+.poll__content__left {
+  @include grid-column(12);
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(7);
+  }
+  ul { @include icon-list() }
+  a { font-weight: 600; color: $orange; }
+}
+.poll__content__right {
+  @include grid-column(12);
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(4);
+    @include grid-push(1);
+  }
+  .sidebar-box:nth-child(1) {
+    .tag {
+      @include tag($orangeBG, $orange, $white);
+    }
+  }
+}
+
+
+.poll__related {
+  padding-top: $space-large;
+}
+
+
+.poll__question_teaser {
+  border-top: 1px solid $darkBeige;
+  border-bottom: 1px solid $darkBeige;
+  padding: $space-large 0;
+  .btn {
+    margin-top: $space-large;
+    @include breakpoint($breakpoint-s-min) {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-top: 0;
+    }
+  }
+}
+.poll__question_teaser__content {
+  position: relative;
+  p {
+    font-family: $font-serif;
+    font-size: 1.3em;
+    color: $gray;
+    margin-bottom: 0;
+  }
+}
+
+
+.poll__questions {
+  background: $orangeBG;
+  padding: ($space-large * 2) 0;
+  .tile {
+    @include grid-column(12);
+    margin-bottom: $space;
+    @include breakpoint($breakpoint-s-min) {
+      margin-bottom: 0;
+      @include grid-column(6, $neat-grid-large-gutter);
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

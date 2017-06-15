@@ -6,23 +6,41 @@
   border-top: 1px solid $darkBeige;
   border-bottom: 1px solid $darkBeige;
   background: $white;
-  @include grid-container();
+  position: relative;
+  z-index: 9;
   .container {
     margin-bottom: -1px;
     position: relative;
+
   }
+
   &.is_stuck {
-    z-index: 999;
     @media (max-width: $breakpoint-m-max) {
+      z-index: 999;
       top: 0 !important;
     }
   }
 }
-.filterbar__swiper {
-  @include grid-container();
+.filterbar__pre_swiper {
   position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
+  z-index: 9;
+  float: left;
+  @include grid-container();
+  &:before {
+    content: '';
+    background: #fff;
+    position: absolute;
+    right: 100%;
+    top: 0;
+    bottom: 1px;
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+}
+.filterbar__swiper {
+  position: absolute;
+  @include grid-container();
   .filterbar__item {
     float: none;
   }
@@ -43,9 +61,6 @@
     display: block;
     margin-right: 0;
     border-left: 1px solid $darkBeige;
-    @include breakpoint($breakpoint-s-min) {
-      margin-right: $space-small;
-    }
     &:before {
       color: $gray;
       line-height: 57px;
@@ -60,11 +75,13 @@
   &.swiper-container-horizontal .filterbar__item--dropdown:last-child {
     border-right: 0;
   }
+  .filterbar__item:last-child {
+    margin-right: $space-large;
+  }
 }
 .filterbar__swiper__inner {
   width: 100%;
   height: 100%;
-  overflow: visible;
 
   @include display(flex);
   @include transition-property(transform);
@@ -73,6 +90,8 @@
 .filterbar__item {
   float: left;
   color: $darkGray;
+  background: $white;
+  margin-bottom: 1px;
 }
 .filterbar__item--label {
   font-weight: 600;
@@ -80,15 +99,20 @@
   padding-top: $space;
   padding-right: $space-small;
   display: none;
+  position: relative;
+  z-index: 9;
   @include breakpoint($breakpoint-s-min) {
     display: block;
   }
+
 }
 
 .filterbar__item--input {
   padding: $space-xsmall $space-xsmall $space-xsmall 0;
   position: relative;
   border-right: 1px solid $darkBeige;
+  position: relative;
+  z-index: 9;
   @include grid-container();
   @include breakpoint($breakpoint-s-min) {
     padding-right: $space-large + $space + $space-xsmall;
@@ -138,6 +162,19 @@
       color: $mediumGray;
     }
   }
+  .dropdown__list {
+    top: 100%;
+    position: absolute;
+    left: 50%;
+    margin-top: 1px;
+
+    background: $white;
+    padding: $space;
+    box-shadow: 0 6px 10px rgba(0,0,0,.1);
+    min-width: 200px;
+
+    @include transform(translate(-50%, 0));
+  }
 }
 
 .filterbar__item--checkbox {
@@ -156,11 +193,11 @@
     }
   }
 }
-
 .filterbar__view_options {
   position: absolute;
   right: 0;
   top: 0;
+  bottom: 0;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -173,10 +210,23 @@
   @include breakpoint($breakpoint-m-min) {
     right: $space;
   }
+  &:after {
+    content: '';
+    background: #fff;
+    position: absolute;
+    left: 100%;
+    right: 0;
+    top: 0;
+    bottom: 1px;
+    display: block;
+    width: 100%;
+    clear: both;
+  }
 }
 .filterbar__view_options__item {
   float: left;
   margin: 0;
+  height: 100%;
   border-right: 1px solid $darkBeige;
   border-bottom: 1px solid $darkBeige;
   &:last-child {
@@ -192,6 +242,11 @@
   color: $mediumGray;
   @include breakpoint($breakpoint-s-min) {
     padding: $space-small;
+  }
+  .icon {
+    width: 32px;
+    display: inline-block;
+    text-align: center;
   }
 }
 .filterbar__view_options__item--active {

@@ -99,7 +99,7 @@ textarea.form__item__control {
 }
 .select2-container .select2-selection--multiple .select2-selection__choice {
   margin: $space-xsmall - 3;
-  @include tag($beige, $mediumGray);
+  @include tag($beige, $darkBeige, $mediumGray);
 }
 .select2-container--default .select2-selection--multiple .select2-selection__clear {
   margin-top: $space-xsmall;

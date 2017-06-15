@@ -4,9 +4,8 @@
 
 
 /* tile wrapper element */
-
 .tile-wrapper {
-  padding: $space-large 0;
+  padding-bottom: $space-large;
   background: $beige;
   > .container {
     @include grid-container();
@@ -15,6 +14,9 @@
     @include breakpoint($breakpoint-s-min) {
       @include grid-collapse($neat-grid-large-gutter);
     }
+  }
+  .filterbar {
+    margin-bottom: $space-large;
   }
 }
 
@@ -108,6 +110,7 @@ h3.tile__title { padding-bottom: $space; }
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 60%;
+  max-width: 220px;
   display: inline-block;
   overflow: hidden;
   margin-left: -$space-small;
@@ -161,4 +164,49 @@ h3.tile__title { padding-bottom: $space; }
   @include grid-column(6, $neat-grid-no-gutter);
 }
 
-
+/* Sidebar-Boxes*/
+.sidebar-box {
+  padding-bottom: $space-large;
+  @include breakpoint($breakpoint-l-min) {
+    padding-bottom: $space-large + $space;
+  }
+}
+.sidebar-box__headline {
+  position: relative;
+  .icon-info {
+    position: absolute;
+    right: $space-xsmall-mobile;
+    top: $space-xsmall-mobile;
+    font-size: .7em;
+    color: $mediumGray;
+  }
+}
+.sidebar-box__tag_list {
+  @include inline-list();
+}
+.sidebar-box__link_list {
+  border-top: 1px solid $gray;
+  padding: $space-small;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-box__link_list__title {
+  padding: $space-xsmall 0 $space-xsmall-mobile 0;
+  margin: 0;
+  display: block;
+  position: relative;
+  .icon {
+    position: absolute;
+    right: $space-xsmall-mobile;
+    top: $space-small;
+    font-size: .7em;
+    color: $mediumGray;
+  }
+}
+.sidebar-box__link_list__description {
+  padding: 0 0 $space-xsmall 0;
+  margin: 0;
+  display: block;
+  border-bottom: 1px solid $gray;
+  font-size: .9em;
+}

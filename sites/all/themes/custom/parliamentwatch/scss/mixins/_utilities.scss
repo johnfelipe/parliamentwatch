@@ -5,16 +5,23 @@
 */
 
 
-@mixin tag($background, $color) {
+@mixin tag($background, $borderColor, $color) {
   background-color: $background;
   border-radius: 2px;
-  border: 1px solid $background - 30;
+  border: 1px solid $borderColor;
   color: $color;
   display: inline-block;
+  @include transition(background 300ms ease);
   .select2-selection__choice__remove {
     color: $color;
   }
+  &:hover {
+    background: $borderColor;
+    color: $color;
+  }
 }
+
+/* Text-Overflow */
 
 @mixin text-overflow() {
   white-space: nowrap;
@@ -28,6 +35,8 @@
   overflow: hidden;
 }
 
+/* Container */
+
 @mixin container() {
   max-width: 1400px;
   @include margin(null auto);
@@ -37,3 +46,56 @@
     @include padding(null $space);
   }
 }
+
+
+/* Icon-List */
+@mixin icon-list() {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 $space;
+  &:last-child {
+    padding: 0;
+  }
+  li {
+    margin: 0 0 $space-xsmall-mobile;
+    padding: 0 0 0 $space;
+    position: relative;
+    &:before {
+      content: '\e805';
+      font-family: 'awfont';
+      font-size: .7em;
+      position: absolute;
+      left: 4px;
+      top: 0;
+      color: $gray;
+    }
+  }
+}
+
+/* Icon-List */
+@mixin inline-list() {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  @include grid-container();
+  li {
+    padding: 0;
+    margin: 0 $space-small $space-small 0;
+    float: left;
+    &:last-child {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+/* Poll icon colors */
+@mixin poll-icon-colors() {
+  .icon-ok { color: $color-accepted; }
+  .icon-close { color: $color-denied; }
+  .icon-ok { color: $color-accepted; }
+  .icon-ok { color: $color-accepted; }
+}
+
+
+

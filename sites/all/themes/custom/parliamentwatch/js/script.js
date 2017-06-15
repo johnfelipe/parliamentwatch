@@ -665,12 +665,35 @@ function tableSecondaryHighlight() {
  * Filter Bar
  * */
 
+
 function filterBar() {
+    function filterBarSwiperSize() {
+        var filterBarOffsetRight = $('.filterbar__view_options').outerWidth();
+        var filterBarOffsetLeft = $('.filterbar__pre_swiper').outerWidth();
+        var containerPadding = parseInt($('.filterbar .container').css('padding-right'));
+        var filterBarOffsetRightValue = filterBarOffsetRight;
+        var filterBarOffsetLeftValue = filterBarOffsetLeft + containerPadding;
+        windowWidth = window.innerWidth;
+
+        if (windowWidth >= breakpointSMin) {
+            filterBarOffsetRightValue = filterBarOffsetRight + containerPadding;
+        }
+
+        // Set Styling
+        filterBarSwiper
+            .css('right', filterBarOffsetRightValue + 'px')
+            .css('left', filterBarOffsetLeftValue + 'px');
+    }
+
     var filterBarSwiper = $(".filterbar__swiper");
+
 
     $(".filterbar__item").matchHeight();
 
     var mySwiper = new Swiper('.filterbar__swiper', {
+        freeMode: true,
+        resistance: true,
+        resistanceRatio: 0.5,
         slideClass: 'filterbar__item',
         wrapperClass: 'filterbar__swiper__inner',
         speed: 400,
@@ -679,32 +702,31 @@ function filterBar() {
         prevButton: filterBarSwiper.find('.swiper-button-prev'),
         onInit: function(swiper){
             $(window).load(function() {
-                var filterBarOffset = $('.filterbar__view_options').outerWidth();
-                var containerPadding = parseInt($('.filterbar .container').css('padding-right'));
-                var filterBarOffsetValue = filterBarOffset - containerPadding;
-
-                // Set Styling
-                filterBarSwiper.css('padding-right', filterBarOffsetValue  + $('.filterbar .swiper-button-prev').outerWidth() + 'px');
-                filterBarSwiper.children('[class*="swiper-button"]').css('right', filterBarOffsetValue + 'px');
+                filterBarSwiperSize();
                 swiper.update();
             });
         },
         onAfterResize: function(swiper){
-            var filterBarOffset = $('.filterbar__view_options').outerWidth();
-            var containerPadding = parseInt($('.filterbar .container').css('padding-right'));
-            var filterBarOffsetValue = filterBarOffset - containerPadding;
-
-            // Set Styling
-            filterBarSwiper.css('padding-right', filterBarOffsetValue  + $('.filterbar .swiper-button-prev').outerWidth() + 'px');
-            filterBarSwiper.children('[class*="swiper-button"]').css('right', filterBarOffsetValue + 'px');
+            filterBarSwiperSize();
             swiper.update();
         }
     });
 
-    // Init stickyKit
 
-    $(".filterbar").stick_in_parent({
-        offset_top: $('#header').outerHeight() - 2
+    $(window).load(function() {
+        var filterBarOffset = $('#header').outerHeight() - 2;
+        var filterBarOffsetAdmin = $('#header').outerHeight() + $('#admin-menu').outerHeight() - 2;
+
+        // Init stickyKit
+        if ($("body").hasClass("admin-menu")) {
+            $(".filterbar").stick_in_parent({
+                offset_top: filterBarOffsetAdmin
+            });
+        } else {
+            $(".filterbar").stick_in_parent({
+                offset_top: filterBarOffset
+            });
+        }
     });
 }
 

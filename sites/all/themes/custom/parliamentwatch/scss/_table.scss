@@ -25,13 +25,12 @@
   }
   tr {
     @media (max-width: $breakpoint-s-max) {
-      border-bottom: 1px solid $gray;
+      border-bottom: 1px solid $gray + 20;
       display: block;
       @include grid-container();
       &:last-child {
         border-bottom: 0;
       }
-
     }
   }
   td {
@@ -39,7 +38,7 @@
     padding: $space-xsmall-mobile 0;
     @include breakpoint($breakpoint-s-min) {
       padding: $space-small 0;
-      border-bottom: 1px solid $gray;
+      border-bottom: 1px solid $gray + 20;
     }
     @media (max-width: $breakpoint-s-max) {
       display: block;
@@ -47,16 +46,18 @@
       }
     }
   }
-  thead th {
-    font-weight: 800;
-    font-size: .8em;
-    text-align: left;
-    color: $mediumGray;
-    padding-top: $space-small;
-    padding-bottom: $space-xsmall;
-    border-bottom: 1px solid $gray;
+  thead {
     @media (max-width: $breakpoint-s-max) {
       display: none;
+    }
+    th {
+      font-weight: 600;
+      font-size: .8em;
+      text-align: left;
+      color: $mediumGray;
+      padding-top: $space-small;
+      padding-bottom: $space-xsmall;
+      border-bottom: 1px solid $gray + 20;
     }
   }
 }
@@ -67,7 +68,6 @@
 
 .table-wrapper {
   @include box-inset-large();
-
   td {
     @media (max-width: $breakpoint-s-max) {
       padding-left: $space-small;
@@ -95,7 +95,7 @@
 
 // Sorting
 .table--sortable {
-  th {
+  th[data-sort] {
     cursor: pointer;
     &:after {
       content: '\e847 \e848';

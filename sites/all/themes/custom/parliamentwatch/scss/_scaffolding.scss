@@ -35,8 +35,6 @@ img {
 
 .row {
   @include grid-container;
-  @include breakpoint($breakpoint-xs-min) {
-    @include grid-collapse;
-  }
+  @include grid-collapse;
 }
 

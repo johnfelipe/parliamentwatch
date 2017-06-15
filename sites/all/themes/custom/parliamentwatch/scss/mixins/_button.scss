@@ -12,6 +12,6 @@
   @include transition(color 300ms ease, background-color 300ms ease);
   &:hover {
     color: $background-color;
-    background-color: $color;
+    background-color: transparent;
   }
 }

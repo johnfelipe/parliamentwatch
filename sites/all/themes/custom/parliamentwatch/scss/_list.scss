@@ -56,24 +56,5 @@ li {
 /* Icon-List */
 
 .icon-list {
-  list-style: none;
-  margin: 0;
-  padding: 0 0 $space;
-  &:last-child {
-    padding: 0;
-  }
-  li {
-    margin: 0 0 $space-xsmall-mobile;
-    padding: 0 0 0 $space;
-    position: relative;
-    &:before {
-      content: '\e805';
-      font-family: 'awfont';
-      font-size: .7em;
-      position: absolute;
-      left: 4px;
-      top: 0;
-      color: $gray;
-    }
-  }
+  @include icon-list();
 }
