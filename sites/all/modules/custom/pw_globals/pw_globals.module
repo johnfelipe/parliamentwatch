@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the PW Globals feature.
@@ -6,15 +7,6 @@
 
 include_once 'pw_globals.features.inc';
 include_once 'pw_globals.feedback_form.inc';
-
-/**
- * Implements hook_query_alter().
- */
-// function pw_globals_query_alter($query) {
-//   if ($query->hasTag('node_export_features')) {
-//     $query->condition('type', array('announcement', 'page', 'trustee', 'webform', 'pw_slider'), 'IN');
-//   }
-// }
 
 /**
  * Implements hook_menu().
