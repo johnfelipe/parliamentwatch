@@ -1,0 +1,31 @@
+/**
+* Petitions
+*/
+
+// Temp-Styles
+
+.view-pw-petitions {
+  background: $beige;
+  .view-content {
+    @include container();
+    padding: $space-large 0;
+    > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+}
+
+// Tiles
+
+
+.petition.tile {
+  @include grid-column(4);
+  margin-bottom: $space;
+  .tile__title {
+    border: 0;
+    padding-top: $space;
+    padding-bottom: $space;
+  }
+}
