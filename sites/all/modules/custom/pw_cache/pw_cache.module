@@ -74,16 +74,6 @@ function pw_cache_cron() {
   if(date("H:i") == '00:00'){
     pw_cache_clear_permanent();
   }
-  else{
-    // set cached mega menu to permanent
-    db_update('cache_block')
-    ->fields(array(
-      'expire' => 0,
-    ))
-    ->condition('cid', 'tb_megamenu:menu-main-menu-de:parliamentwatch:%', 'LIKE')
-    ->condition('expire', 0, '<>')
-    ->execute();
-  }
 }
 
 

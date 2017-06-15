@@ -169,6 +169,13 @@ function pw_globals_update_7008() {
 }
 
 /**
+ * Delete obsolete custom blocks.
+ */
+function pw_globals_update_7009() {
+  _pw_globals_delete_block(73);
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
@@ -259,6 +266,26 @@ function _pw_globals_update_block($block, $module, $delta, $theme = NULL) {
   }
 
   $query->execute();
+}
+
+/**
+ * Deletes a block.
+ *
+ * @param int $bid
+ *   The block ID.
+ */
+function _pw_globals_delete_block($bid) {
+  db_delete('block_custom')
+    ->condition('bid', $bid)
+    ->execute();
+  db_delete('block')
+    ->condition('module', 'block')
+    ->condition('delta', $bid)
+    ->execute();
+  db_delete('block_role')
+    ->condition('module', 'block')
+    ->condition('delta', $bid)
+    ->execute();
 }
 
 /**
