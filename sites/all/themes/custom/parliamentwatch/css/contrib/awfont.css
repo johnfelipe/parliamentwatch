@@ -34,6 +34,12 @@
 .icon-th-list:before {
   content: "\f00b";
 }
+.icon-bar-chart:before {
+  content: "\f080";
+}
+.icon-bar-chart-o:before {
+  content: "\f080";
+}
 .icon-twitter:before {
   content: "\f099";
 }
@@ -57,6 +63,9 @@
 }
 .icon-blog:before {
   content: "\e900";
+}
+.icon-plenum:before {
+  content: "\e902";
 }
 .icon-clock:before {
   content: "\e800";
