@@ -37,7 +37,6 @@
  * @ingroup themeable
  */
 ?>
-
 <script type="application/ld+json">
     {
         "@context": "http://schema.org",
@@ -57,11 +56,6 @@
         }
     }
 </script>
-
-
-<?php // echo '<pre>'; print_r($field_user_party); echo '</pre>'; ?>
-
-
 <article class="deputy detail"<?php print $attributes; ?>>
   <div class="container">
     <div class="deputy__intro">
@@ -71,6 +65,7 @@
           <div class="deputy__subtitle">
             <?php print render($user_profile['field_user_party']); ?> | Abgeordneter Bundestag
           </div>
+          <?php if (!empty($user_profile['revisions'])) { print render($user_profile['revisions']); } ?>
         </header>
         <figure class="deputy__image">
           <?php print render($user_profile['field_user_picture']); ?>

@@ -198,6 +198,35 @@ function pw_profiles_user_update(&$edit, $account, $category) {
 }
 
 /**
+ * Implements hook_user_view().
+ */
+function pw_profiles_user_view($account, $view_mode, $langcode) {
+  if ($view_mode == 'full') {
+    $options = [];
+
+    foreach (pw_profiles_archived_revisions($account, 'DESC') as $revision) {
+      if (entity_uri('user', $revision)['path'] == current_path()) {
+        continue;
+      }
+      if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($revision->roles))) {
+        $text = taxonomy_term_load($revision->field_user_parliament[LANGUAGE_NONE][0]['tid'])->name;
+      }
+      else {
+        $text = preg_replace('/\-\d+\s*$/', '', taxonomy_term_load($revision->field_user_parliament[LANGUAGE_NONE][0]['tid'])->name) . ' (Wahlen)';
+      }
+      $options[url(entity_uri('user', $revision)['path'])] = $text;
+    }
+
+    if (!empty($options)) {
+      $account->content['revisions'] = [
+        '#theme' => 'select',
+        '#options' => $options,
+      ];
+    }
+  }
+}
+
+/**
  * Implements hook_block_info().
  */
 function pw_profiles_block_info() {
@@ -334,6 +363,34 @@ function pw_profiles_page_title($parliament_name, $role_name) {
   }
 
   return format_string($text, array('@role' => $role, '@parliament' => $parliament->name));
+}
+
+/**
+ * Load all archived revisions of the given account.
+ *
+ * @param object $account
+ *   The account object.
+ *
+ * @param string $direction
+ *   The order direction (ascending by default).
+ *
+ * @return array
+ *   An array of user (revision) objects.
+ */
+function pw_profiles_archived_revisions($account, $direction = 'ASC') {
+  $revisions = [];
+
+  $result = db_select('user_archive_cache', 'uac')
+    ->fields('uac', ['vid'])
+    ->condition('uid', $account->uid)
+    ->orderBy('vid', $direction)
+    ->execute();
+
+  foreach ($result->fetchCol() as $vid) {
+    $revisions[] = user_revision_load($account->uid, $vid);
+  }
+
+  return $revisions;
 }
 
 /**
