@@ -46,7 +46,12 @@ function pw_vote_user_view($account, $view_mode, $langcode) {
       ->execute();
 
     if (!empty($result['node'])) {
-      $account->content['votes'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'embedded');
+      $callback = function ($item) {
+        $vote = node_load($item->field_vote_node[LANGUAGE_NONE][0]['target_id']);
+        return $vote->type == 'poll';
+      };
+      $nodes = array_filter(node_load_multiple(array_keys($result['node'])), $callback);
+      $account->content['votes'] = node_view_multiple($nodes, 'embedded');
       $account->content['votes']['pager'] = [
         '#theme' => 'pager',
         '#element' => 1,
