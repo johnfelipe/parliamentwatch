@@ -1,29 +1,29 @@
 <?php
+
 /**
  * @file
  * Includes main hooks.
  */
 
-
 /**
+ * Implements hook_cron().
+ *
  * Updates stats for users.
  *
  * 1. Fetch highest and actual vid of every grouped item.
  * 2. Modify query object and re-fetch data using the vids.
  * 3. Do the delete and update queries
  * 4. Update fields, index, etc.
- *
  */
-
 function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
 
   // check if election date or parliaments end date is reached, then delete profiles from meta table for triggering refresh
-  if($uid == NULL){
+  if ($uid == NULL) {
     $vocabulary = taxonomy_vocabulary_machine_name_load('parliaments');
     $parliaments = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
-    foreach($parliaments as $parliament){
+    foreach ($parliaments as $parliament) {
 
-      if(pw_userarchives_check_refresh_profiles($parliament)){
+      if (pw_userarchives_check_refresh_profiles($parliament)) {
         db_delete('user_archive_cache')
           ->condition('parliament_name', $parliament->name)
           ->execute();
@@ -58,8 +58,7 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   // fetch all relevant vids as flat array
   $vids = $query->execute()->fetchCol();
 
-  // exit if no revisions were found
-  if(empty($vids)){
+  if (empty($vids)) {
     return;
   }
 
@@ -92,12 +91,11 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   $query->leftJoin('field_revision_field_parliament_valid', 'pv', "pv.entity_type='taxonomy_term' AND pv.entity_id = u_parl.field_user_parliament_tid AND pv.field_parliament_valid_value < NOW() AND (pv.field_parliament_valid_value2 IS NULL OR pv.field_parliament_valid_value2 > NOW())");
   $query->leftJoin('field_revision_field_user_question_form_closed', 'qf_closed', "qf_closed.entity_type='user' AND qf_closed.revision_id = ur.vid");
   $query->addExpression("
-      COUNT(pv.field_parliament_valid_value) > 0 AND 
+      COUNT(pv.field_parliament_valid_value) > 0 AND
       (user_joined.field_user_joined_value IS NULL OR user_joined.field_user_joined_value < NOW()) AND
-      (user_retired.field_user_retired_value IS NULL OR user_retired.field_user_retired_value > NOW()) AND 
+      (user_retired.field_user_retired_value IS NULL OR user_retired.field_user_retired_value > NOW()) AND
       (role.name = 'deputy' AND pe.field_parliament_election_value < NOW() OR role.name = 'candidate' AND pe.field_parliament_election_value > NOW()) AND
-      qf_closed.field_user_question_form_closed_value IS NULL",
-    'question_form_open');
+      qf_closed.field_user_question_form_closed_value IS NULL", 'question_form_open');
 
   // join joined to get valid from
   $query->leftJoin('field_revision_field_user_joined', 'user_joined', "user_joined.entity_type = 'user' AND user_joined.revision_id = ur.vid");
@@ -135,7 +133,6 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   $query->addField("uac", "number_of_questions", "uac_number_of_questions");
   $query->addField("uac", "number_of_answers", "uac_number_of_answers");
 
-  # $result = $query->execute()->fetchAllAssoc('vid', PDO::FETCH_ASSOC);
   $query->having('(ISNULL(uac.number_of_questions)
           OR uac_number_of_questions != number_of_questions
           OR uac_number_of_answers != number_of_answers)');
@@ -155,7 +152,7 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   unset($fields[array_search('uac_number_of_answers', $fields)]);
   sort($fields);
 
-  foreach($result as $row){
+  foreach ($result as $row) {
     db_delete('user_archive_cache')
       ->condition('parliament_name', $row['parliament_name'])
       ->condition('user_role', $row['user_role'])
@@ -176,7 +173,6 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   // set actual / newest profile
   if ($reset_actual_profile) {
     foreach ($uids as $uid) {
-
       // restore to newest profile, especially after importing older profiles
       pw_reset_actuale_profile($uid);
     }
@@ -224,7 +220,7 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
     search_api_index_specific_items($politician_index, $uids);
   }
 
-  return "Done";
+  return 'Done';
 }
 
 /**
@@ -237,20 +233,20 @@ function pw_userarchives_check_refresh_profiles($parliament) {
 
   // first check if election date was reached
   $field_parliament_election = field_get_items('taxonomy_term', $parliament, 'field_parliament_election');
-  if($field_parliament_election) {
+  if ($field_parliament_election) {
     $time_diff = time() - (strtotime($field_parliament_election[0]['value']) - $timespan_close_before_election);
     $do_refresh_profiles = $time_diff <= 6000 && $time_diff > 0;
   }
-  if(!$do_refresh_profiles){
+  if (!$do_refresh_profiles) {
 
     // secondly check if valid end dates were reached
     $field_parliament_valid = field_get_items('taxonomy_term', $parliament, 'field_parliament_valid');
-    if($field_parliament_valid){
-      foreach($field_parliament_valid as $valid_date) {
-        if(!empty($valid_date['value2'])){
+    if ($field_parliament_valid) {
+      foreach ($field_parliament_valid as $valid_date) {
+        if (!empty($valid_date['value2'])) {
           $time_diff = time() - strtotime($valid_date['value2']);
           $do_refresh_profiles = $time_diff <= 6000 && $time_diff > 0;
-          if($do_refresh_profiles){
+          if ($do_refresh_profiles) {
             break;
           }
         }
@@ -276,7 +272,7 @@ function pw_delete_old_user_revisions($uid = NULL) {
   $query->join('taxonomy_term_data', 'rn', 'rn.tid=ro.field_user_roles_for_view_mode_s_tid');
   $query->leftJoin('user_archive_cache', 'uac', 'ur.uid = uac.uid AND ur.vid = uac.vid');
   $query->join('users', 'u', 'ur.uid = u.uid AND ur.vid != u.vid');
-  if($uid !== NULL) {
+  if ($uid !== NULL) {
     $query->condition('ur.uid', $uid);
   }
   $query->condition('ur.timestamp', $time_buffer, '<');
@@ -310,7 +306,7 @@ function pw_reset_actuale_profile($uid) {
   // load current profile
   $user = user_load($uid, TRUE);
 
-  if(!$user){
+  if (!$user) {
     return;
   }
 
@@ -326,7 +322,7 @@ function pw_reset_actuale_profile($uid) {
   $newest_vid = $result['vid'];
 
   // check if current vid is newest
-  if($user->vid != $newest_vid){
+  if ($user->vid != $newest_vid) {
 
     // load full revision
     $user_revision = user_revision_load($uid, $newest_vid);
@@ -335,8 +331,8 @@ function pw_reset_actuale_profile($uid) {
     $role_tids = _pw_array_flatten($user_revision->field_user_roles_for_view_mode_s, FALSE);
     $roles_terms = taxonomy_term_load_multiple($role_tids);
     $user_revision->roles = [];
-    foreach($roles_terms as $role_term){
-      $role =  user_role_load_by_name($role_term->name);
+    foreach ($roles_terms as $role_term) {
+      $role = user_role_load_by_name($role_term->name);
       $user_revision->roles[$role->rid] = $role->name;
     }
     $user_revision->revision = 1;
