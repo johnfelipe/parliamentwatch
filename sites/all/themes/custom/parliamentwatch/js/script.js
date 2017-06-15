@@ -642,6 +642,21 @@ function d3SecondaryIncome(element) {
 
 }
 
+
+
+function d3BarsPollTotal(element){
+    var wrapper = element;
+    var barWrapper = d3.select(wrapper)
+        .append('div')
+        .attr('class', 'd3-bars');
+
+    d3.json("/sites/all/themes/custom/parliamentwatch/poll.json", function(data) {
+        var fractions = [];
+        console.log(data);
+    });
+}
+
+
 function tableSecondaryIncome() {
     $(".table--secondary-income").stupidtable();
 }
@@ -659,6 +674,42 @@ function tableSecondaryHighlight() {
         $('.sidejob-overview table').find('[data-sidejobid="'+jobID+'"]').addClass('sidejob-overview__item--active');
     });
 }
+
+
+
+/*
+ * Poll-Timeline
+ * */
+function pollTimeline() {
+    var pollTimeline = $(".poll__timeline");
+
+    var pollID = $(".poll_detail").attr('data-poll-id');
+    var pollTimelineSlideItem = pollTimeline.find('.poll__timeline__item__poll[data-poll-id=' + pollID+ ']');
+    var pollTimelineSlide = pollTimelineSlideItem.parents('.poll__timeline__item');
+
+    // Add Active class to timeline-item
+    pollTimelineSlideItem.addClass('poll__timeline__item__poll--active');
+
+    // Add Click-Behavior to timeline-items
+    $('.poll__timeline__item__poll').click(function () {
+        $('.poll__timeline__item__poll').removeClass('poll__timeline__item__poll--active');
+        $(this).addClass('poll__timeline__item__poll--active');
+
+        pollTimelineSwiper.update();
+    });
+
+    var pollTimelineSwiper = new Swiper(pollTimeline, {
+        slideClass: 'poll__timeline__item',
+        wrapperClass: 'poll__timeline__inner',
+        speed: 400,
+        initialSlide: pollTimelineSlide.index(),
+        slidesPerView: 'auto',
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoHeight: true
+    });
+}
+
 
 
 /*
@@ -747,6 +798,7 @@ $(function () {
     viewDeputyDetail();
     tableSecondaryIncome();
     initLocalScroll();
+    pollTimeline();
 
     // Init global matchHeight-plugin class
 
@@ -781,6 +833,12 @@ $(function () {
         d3SecondaryIncome(this);
         $(this)
     });
+    $('[data-d3-poll-total]').each(function( index ) {
+        d3BarsPollTotal(this);
+        $(this)
+    });
+
+
 
     // Init functions on window resize
 
