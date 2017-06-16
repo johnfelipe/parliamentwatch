@@ -53,32 +53,6 @@ function pw_poll_page($parliament) {
 }
 
 /**
- * Implements hook_preprocess_node().
- */
-function pw_poll_preprocess_node(&$variables) {
-  if ($variables['type'] == 'poll') {
-
-    // temporary redirect to legacy platform
-    if($variables['view_mode'] == 'full') {
-      global $user;
-      if($user->uid == 0 && !empty($variables['node']->field_poll_external_url['und'][0]['value'])){
-        $redirect_url = $variables['node']->field_poll_external_url['und'][0]['value'];
-        drupal_goto($redirect_url, array(), 307);
-      }
-    }
-
-    // add themed image if any
-    $variables['theme_hook_suggestions'][] = 'node__' . $variables['type'] . '__' . $variables['view_mode'];
-    if (!empty($variables['field_teaser_image'][0]['uri'])){
-      $variables['themed_image'] = theme('image_style', array(
-        'style_name' => 'pw_landscape_l',
-        'path' => $variables['field_teaser_image'][0]['uri'],
-        ));
-    }
-  }
-}
-
-/**
  * Returns a query for fetching published nodes of type poll.
  *
  * @return EntityFieldQuery
