@@ -24,7 +24,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 .icon-minus:before {
   content: "\f068";
 }
@@ -49,11 +48,20 @@
 .icon-facebook-f:before {
   content: "\f09a";
 }
+.icon-github:before {
+  content: "\f09b";
+}
 .icon-google-plus:before {
   content: "\f0d5";
 }
 .icon-circle-o:before {
   content: "\f10c";
+}
+.icon-youtube-play:before {
+  content: "\f16a";
+}
+.icon-drupal:before {
+  content: "\f1a9";
 }
 .icon-whatsapp:before {
   content: "\f232";
