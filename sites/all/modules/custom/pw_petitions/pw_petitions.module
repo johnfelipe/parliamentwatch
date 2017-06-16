@@ -1,87 +1,80 @@
 <?php
+
 /**
  * @file
  * Code for the PW Petitions feature.
  */
-
 include_once 'pw_petitions.features.inc';
 
 /**
  * Implements hook_menu().
  */
 function pw_petitions_menu() {
-  $items = array();
-
-  $items['petitions/thanks-for-signing'] = array(
+  $items['petitions/thanks-for-signing'] = [
     'title' => 'Thanks for your signing!',
-    'access arguments' => array('access content'),
     'page callback' => 'redirect_to_petition',
+    'access arguments' => ['access content'],
     'type' => MENU_SUGGESTED_ITEM,
-    );
+  ];
+
   return $items;
 }
 
+/**
+ * Page callback: Redirects to petitions overview page.
+ */
 function redirect_to_petition() {
-  drupal_set_message("Vielen Dank, dass Sie die Petition unterzeichnet haben! Bitte teilen Sie die Petition in Ihren Netzwerken und unter Ihren Freunden!");
+  drupal_set_message('Vielen Dank, dass Sie die Petition unterzeichnet haben! Bitte teilen Sie die Petition in Ihren Netzwerken und unter Ihren Freunden!');
   drupal_goto('petitions');
 }
 
 /**
- * add additional handlers for petition webform
- *
+ * Implements hook_form_alter().
  */
 function pw_petitions_form_alter(&$form, &$form_state, $form_id) {
-
   switch ($form_id) {
     case 'webform_client_form_10369':
-    $form['#validate'][] = 'pw_petitions_form_validate';
-    $form['#submit'][] = 'pw_petitions_form_submit';
+      $form['#validate'][] = 'pw_petitions_form_validate';
+      $form['#submit'][] = 'pw_petitions_form_submit';
   }
 }
 
 /**
- * Validation for petition form
+ * Form validation handler for petition form,
  *
- * validates if user has never submitted this form under
- * this node path for this petition.
- *
+ * Checks if user has never submitted this form under this node path for this
+ * petition.
  */
-
 function pw_petitions_form_validate($form_id, $form_values) {
-
-  // check if email was already used to sign this petition
+  // Checks if email was already used to sign this petition.
   $webform_nid = $form_values['values']['details']['nid'];
   $e_mail_value = $form_values['values']['submitted']['e_mail'];
   $node_path_value = $form_values['values']['submitted']['node_path'];
   $sql = "SELECT wf.sid
-  FROM webform_submissions wf
-  INNER JOIN webform_submitted_data wf_data_email ON wf.sid = wf_data_email.sid
-  INNER JOIN webform_submitted_data wf_data_nodepath ON wf.sid = wf_data_nodepath.sid
-  WHERE wf.nid = :nid AND wf_data_email.data = :email AND wf_data_nodepath.data = :nodepath";
+    FROM webform_submissions wf
+    INNER JOIN webform_submitted_data wf_data_email ON wf.sid = wf_data_email.sid
+    INNER JOIN webform_submitted_data wf_data_nodepath ON wf.sid = wf_data_nodepath.sid
+    WHERE wf.nid = :nid AND wf_data_email.data = :email AND wf_data_nodepath.data = :nodepath";
   $submissions = db_query($sql, array(
     ':nid' => $webform_nid,
     ':email' => $e_mail_value,
     ':nodepath' => $node_path_value
     ))->fetchCol();
   if (sizeof($submissions) > 0) {
-    form_set_error("e_mail", t('You already have signed this petition.'));
+    form_set_error('e_mail', t('You have already signed this petition.'));
   }
 }
 
 /**
- * Count signings
+ * Form submission handler for petition form.
  *
- * Set signings to +1 of form is submitted
- *
+ * Increments signings when form is submitted.
  */
 function pw_petitions_form_submit(&$form, &$form_state) {
-
-  if($form['#form_id'] == 'webform_client_form_10369'){
-    $node_path_value = $form['submitted']['node_path']['#value'];
-    if ($node = menu_get_object('node', 1, $node_path_value)) {
-
-      // count +1 to signings
-      $node->field_petition_signings[$node->language][0]['value']++;
+  if ($form['#form_id'] == 'webform_client_form_10369') {
+    $node = $node = menu_get_object('node', 1, $form['submitted']['node_path']['#value']);
+    if ($node) {
+      $node->field_petition_signings[$node->language][0]['value'] ++;
       node_save($node);
     }
   }
