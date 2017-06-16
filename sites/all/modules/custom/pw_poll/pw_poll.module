@@ -1,10 +1,56 @@
 <?php
+
 /**
  * @file
  * Code for the PW Poll feature.
  */
 
 include_once 'pw_poll.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function pw_poll_menu() {
+  $items['polls/%'] = [
+    'title' => 'Polls',
+    'page callback' => 'pw_poll_page',
+    'page arguments' => [1],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  return $items;
+}
+
+/**
+ * Page callback: Displays a listing of polls.
+ */
+function pw_poll_page($parliament) {
+  $build = [];
+
+  $q = pw_poll_base_query()
+    ->fieldOrderBy('field_poll_date', 'value', 'DESC');
+
+  if (isset($parliament)) {
+    $terms = taxonomy_get_term_by_name($parliament, 'parliaments');
+
+    if (!empty($terms)) {
+      $q->fieldCondition('field_parliament', 'tid', reset($terms)->tid);
+    }
+  }
+
+  $result = $q->pager(9)->execute();
+
+  if (!empty($result['node'])) {
+    $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
+    $build['nodes']['#theme_wrappers'] = ['container__tiles'];
+    $build['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
+    ];
+  }
+
+  return $build;
+}
 
 /**
  * Implements hook_preprocess_node().
@@ -30,4 +76,19 @@ function pw_poll_preprocess_node(&$variables) {
         ));
     }
   }
+}
+
+/**
+ * Returns a query for fetching published nodes of type poll.
+ *
+ * @return EntityFieldQuery
+ *   The query object.
+ */
+function pw_poll_base_query() {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'poll');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+
+  return $q;
 }
