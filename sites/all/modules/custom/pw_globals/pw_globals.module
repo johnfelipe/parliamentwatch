@@ -28,11 +28,17 @@ function pw_globals_menu() {
     'access arguments' => array('administer site configuration'),
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['info'] = array(
+    'title' => 'Info',
+    'page callback' => 'pw_globals_info_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
   $items['test'] = array(
     'title' => 'Test',
     'page callback' => 'pw_globals_test_page',
     'access arguments' => array('administer site configuration'),
-    'type' => MENU_NORMAL_ITEM,
+    'type' => MENU_CALLBACK,
   );
   return $items;
 }
@@ -72,6 +78,28 @@ function pw_globals_entity_info_alter(&$entity_info) {
  */
 function pw_globals_test_page() {
   return 'Lorem ipsum dolor sit...';
+}
+
+/**
+ * Page callback: Displays listing of nodes in info menu.
+ */
+function pw_globals_info_page() {
+  $build = [];
+
+  foreach (menu_tree_page_data('info-menu') as $link) {
+    $node = node_load(substr($link['link']['link_path'], 5));
+    $build[$node->nid][] = [
+      '#theme' => 'html_tag',
+      '#tag' => 'h2',
+      '#value' => check_plain($node->title)
+    ];
+
+    foreach ($link['below'] as $child) {
+      $build[$node->nid][] = node_view(node_load(substr($child['link']['link_path'], 5)), 'tile');
+    }
+  }
+
+  return $build;
 }
 
 /**
