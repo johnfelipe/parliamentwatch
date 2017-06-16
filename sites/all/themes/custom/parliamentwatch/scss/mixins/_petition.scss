@@ -1,0 +1,21 @@
+/**
+* Petitionen
+*/
+
+@mixin icon-ok() {
+  &:after {
+    content: '\e87a';
+    font-family: 'awfont';
+    color: $white;
+    position: absolute;
+    right: -$space-xsmall-mobile;
+    bottom: -$space-xsmall-mobile;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    font-size: 6px;
+    line-height: 12px;
+    background: $color-accepted;
+    border: 2px solid $white;
+  }
+}

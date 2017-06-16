@@ -84,15 +84,34 @@
   <div class="tile__image">
     <?php print render($content['field_teaser_image']); ?>
   </div>
-  <header class="tile__title tile__title--date mh-item">
-    <span class="date">
-      <?php print render($date); ?>
-    </span>
-    <h3<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
+  <div class="petition__state_indicator
+    <?php if (trim($field_petition_status[0]['value']) == 'open_for_signings'): ?> petition__state_indicator--state-1 <?php endif; ?>
+    <?php if (trim($field_petition_status[0]['value']) == 'collecting_donations'): ?> petition__state_indicator--state-1 <?php endif; ?>
+    <?php if (trim($field_petition_status[0]['value']) == 'survey_in_progress'): ?> petition__state_indicator--state-2 <?php endif; ?>
+    <?php if (trim($field_petition_status[0]['value']) == 'asking_parliament'): ?> petition__state_indicator--state-2 <?php endif; ?>
+    <?php if (trim($field_petition_status[0]['value']) == 'passed_parliament'): ?> petition__state_indicator--state-3 <?php endif; ?>
+  ">
+    <div class="petition__state_indicator__item"><i class="icon icon-signing"></i></div>
+    <div class="petition__state_indicator__item"><i class="icon icon-microphone"></i></div>
+    <div class="petition__state_indicator__item"><i class="icon icon-politician"></i></div>
+  </div>
+  <div class="tile__content mh-item">
+    <h3 class="tile__title" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
     <?php print render($title_suffix); ?>
-  </header>
+
+    <!-- Ouput for State 5 -->
+
+    <?php if (trim($field_petition_status[0]['value']) == 'passed_parliament'): ?>
+      <p class="petition__result_asked">
+    <span class="petition__result_asked__inner">
+      <i class="icon icon-ok"></i>
+      <strong>Petition wurde im Parlament abgefragt</strong><br>
+      40 Politiker haben Stellung genommen
+    </span>
+      </p>
+    <?php endif; ?>
+  </div>
   <ul class="tile__links tile__links--2">
-    <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 <?php print t('comments'); ?></a></li>
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('read more'); ?></a></li>
   </ul>
 </article>

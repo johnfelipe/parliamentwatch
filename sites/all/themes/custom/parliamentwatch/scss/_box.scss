@@ -36,7 +36,7 @@
     color: $darkGray;
   }
 }
-h3.tile__title { padding-bottom: $space; }
+h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 
 /* Title with date */
 
@@ -56,6 +56,7 @@ h3.tile__title { padding-bottom: $space; }
   }
   h3 {
     padding-left: ($space-large * 2) + 10px;
+    @include text-overflow-multi();
   }
 }
 
@@ -149,6 +150,11 @@ h3.tile__title { padding-bottom: $space; }
         color: $darkOrange;
       }
     }
+  }
+
+  &:last-child:first-child {
+    float: right;
+    border-left: 1px solid $gray;
   }
 }
 .tile__links__item__link {
