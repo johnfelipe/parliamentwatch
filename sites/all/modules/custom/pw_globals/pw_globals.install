@@ -116,9 +116,9 @@ function pw_globals_update_7004() {
   foreach ($state_parliament_terms as $term) {
     _pw_globals_menu_parliament_tree_add(drupal_lookup_path('alias', "taxonomy/term/$term->tid"), $term->name, $weight++);
   }
-  _pw_globals_menu_parliament_tree_add('eu', 'EU', $weight++);
-  _pw_globals_menu_link_add('blog', 'Blog', $weight++);
-  _pw_globals_menu_link_add('ueber-uns', 'Info', $weight++);
+  _pw_globals_menu_parliament_tree_add('eu', 'EU', $weight++, 'main-menu');
+  _pw_globals_menu_link_add('blog', 'Blog', $weight++, 'main-menu');
+  _pw_globals_menu_link_add('ueber-uns', 'Info', $weight++, 'main-menu');
 }
 
 /**
@@ -184,6 +184,33 @@ function pw_globals_update_7010() {
   $path = path_load(['alias' => 'petitionen']);
   $path['source'] = 'petitions';
   path_save($path);
+}
+
+/**
+ * Add new menu 'info'.
+ */
+function pw_globals_update_7011() {
+  menu_save(['menu_name' => 'info-menu', 'title' => 'Info-Menü', 'description' => 'Das <em>Info-Menü</em> stellt die Navigationspunkte für den "Über Uns"-Bereich']);
+
+  $weight = 0;
+
+  $link_1 = _pw_globals_menu_link_add('node/7760', 'Zweck', $weight++, 'info-menu');
+  _pw_globals_menu_link_add('node/7760', 'Zweck', $weight++, 'info-menu', $link_1);
+  _pw_globals_menu_link_add('node/37990', 'Das Ziel', $weight++, 'info-menu', $link_1);
+  _pw_globals_menu_link_add('node/37991', 'Der Weg', $weight++, 'info-menu', $link_1);
+  _pw_globals_menu_link_add('node/40266', 'Erfolge', $weight++, 'info-menu', $link_1);
+
+  $link_2 = _pw_globals_menu_link_add('node/7757', 'Finanzierung', $weight++, 'info-menu');
+  _pw_globals_menu_link_add('node/7757', 'Finanzierung', $weight++, 'info-menu', $link_2);
+  _pw_globals_menu_link_add('node/7759', 'Jahresbericht', $weight++, 'info-menu', $link_2);
+  _pw_globals_menu_link_add('node/10508', 'Spenden', $weight++, 'info-menu', $link_2);
+  _pw_globals_menu_link_add('node/39917', 'Förderer werden', $weight++, 'info-menu', $link_2);
+
+  $link_3 = _pw_globals_menu_link_add('node/7751', 'Menschen', $weight++, 'info-menu');
+  _pw_globals_menu_link_add('node/7751', 'Menschen', $weight++, 'info-menu', $link_3);
+  _pw_globals_menu_link_add('node/7735', 'Kuratorium', $weight++, 'info-menu', $link_3);
+  _pw_globals_menu_link_add('node/7748', 'Jobs', $weight++, 'info-menu', $link_3);
+  _pw_globals_menu_link_add('node/6578', 'Kontakt', $weight++, 'info-menu', $link_3);
 }
 
 /**
@@ -315,11 +342,11 @@ function _pw_globals_delete_block($bid) {
  *   The mlid of the saved menu link, or FALSE if the menu link could not be
  *   saved.
  */
-function _pw_globals_menu_link_add($path, $title, $weight, $plid = 0) {
+function _pw_globals_menu_link_add($path, $title, $weight, $menu_name, $plid = 0) {
   $item = [
     'link_path' => drupal_lookup_path('source', $path) ?: $path,
     'link_title' => $title,
-    'menu_name' => 'main-menu',
+    'menu_name' => $menu_name,
     'weight' => $weight,
     'expanded' => TRUE,
     'plid' => $plid,
@@ -353,7 +380,7 @@ function _pw_globals_menu_parliament_tree_add($path, $title, $weight) {
   $plid = _pw_globals_menu_link_add($path, $title, $weight);
 
   foreach ($sub_items as $key => $value) {
-    _pw_globals_menu_link_add("$path/$value", $key, $weight++, $plid);
+    _pw_globals_menu_link_add("$path/$value", $key, $weight++, 'main-menu', $plid);
   }
 
   return $plid;
