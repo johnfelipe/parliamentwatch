@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the PW Calender Items Importer feature.
- */
-
-include_once 'pw_calender_items_importer.features.inc';
