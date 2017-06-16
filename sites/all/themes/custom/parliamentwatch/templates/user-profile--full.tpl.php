@@ -38,6 +38,28 @@
  */
 ?>
 
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": "<?php print $display_name ?>",
+        "image": "<?php print file_create_url($field_user_picture[0]['uri']); ?>",
+        "url": "<?php print url($user_url, ['absolute' => TRUE]); ?>",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "<?php print $field_user_party[0]['taxonomy_term']->name ?>"
+        },
+        "birthDate": "<?php print date_iso8601($user_profile['field_user_birthday']['#items'][0][value]);?>",
+        "gender": "<?php print $user_profile['field_user_gender'][0]['#markup']; ?>",
+        "homeLocation": {
+          "@type": "Place",
+          "name": "<?php print $user_profile['field_user_address']['#items'][0]['locality']; ?>"
+        }
+    }
+</script>
+
+
+<?php // echo '<pre>'; print_r($field_user_party); echo '</pre>'; ?>
 
 
 <article class="deputy detail"<?php print $attributes; ?>>
@@ -45,7 +67,7 @@
     <div class="deputy__intro">
       <div class="deputy__intro__sidebar">
         <header>
-          <h1 class="deputy__title"><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h1>
+          <h1 class="deputy__title"><?php print $display_name ?></h1>
           <div class="deputy__subtitle">
             <?php print render($user_profile['field_user_party']); ?> | Abgeordneter Bundestag
           </div>
