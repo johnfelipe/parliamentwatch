@@ -12,7 +12,7 @@ include_once 'pw_petitions.features.inc';
 function pw_petitions_menu() {
   $items['petitions/thanks-for-signing'] = [
     'title' => 'Thanks for your signing!',
-    'page callback' => 'redirect_to_petition',
+    'page callback' => 'pw_petitions_redirect',
     'access arguments' => ['access content'],
     'type' => MENU_SUGGESTED_ITEM,
   ];
@@ -23,7 +23,7 @@ function pw_petitions_menu() {
 /**
  * Page callback: Redirects to petitions overview page.
  */
-function redirect_to_petition() {
+function pw_petitions_redirect() {
   drupal_set_message('Vielen Dank, dass Sie die Petition unterzeichnet haben! Bitte teilen Sie die Petition in Ihren Netzwerken und unter Ihren Freunden!');
   drupal_goto('petitions');
 }
