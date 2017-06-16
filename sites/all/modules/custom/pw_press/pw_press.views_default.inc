@@ -97,9 +97,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['title']['element_wrapper_class'] = 'grid-4';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_rel'] = '';
   /* Feld: Datei: Pfad */
   $handler->display->display_options['fields']['uri']['id'] = 'uri';
   $handler->display->display_options['fields']['uri']['table'] = 'file_managed';
@@ -310,9 +307,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_rel'] = '';
   /* Feld: Datei: Pfad */
   $handler->display->display_options['fields']['uri']['id'] = 'uri';
   $handler->display->display_options['fields']['uri']['table'] = 'file_managed';
@@ -510,8 +504,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_height'] = '600';
   /* Feld: Inhalt: Date */
   $handler->display->display_options['fields']['field_press_release_date']['id'] = 'field_press_release_date';
   $handler->display->display_options['fields']['field_press_release_date']['table'] = 'field_data_field_press_release_date';
@@ -541,8 +533,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['title']['element_class'] = 'pushfloat-2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
   /* Feld: Global: Feldgruppe */
   $handler->display->display_options['fields']['fieldset']['id'] = 'fieldset';
   $handler->display->display_options['fields']['fieldset']['table'] = 'views';
@@ -582,8 +572,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_wrapper_class'] = 'read-more';
   $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'weiterlesen';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_height'] = '600';
   /* Feld: Inhalt: ‚Bearbeiten‘-Link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -699,9 +687,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['title']['element_class'] = 'normal-weight medium';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_rel'] = '';
 
   /* Display: Teaser */
   $handler = $view->new_display('block', 'Teaser', 'teaser');
@@ -736,8 +721,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['nid']['node_in_colorbox_height'] = '600';
   /* Feld: Inhalt: Date */
   $handler->display->display_options['fields']['field_press_release_date']['id'] = 'field_press_release_date';
   $handler->display->display_options['fields']['field_press_release_date']['table'] = 'field_data_field_press_release_date';
@@ -763,9 +746,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['title']['element_type'] = 'h4';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_rel'] = '';
   /* Feld: Inhalt: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
@@ -776,9 +756,6 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_wrapper_class'] = 'text-right read-more';
   $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'weiterlesen';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_rel'] = '';
   /* Feld: Inhalt: ‚Bearbeiten‘-Link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
