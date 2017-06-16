@@ -62,7 +62,7 @@ function pw_blog_page() {
  * Returns a query for fetching published nodes of type blogpost.
  *
  * @return EntityFieldQuery
- *   The query object
+ *   The query object.
  */
 function pw_blog_base_query() {
   $q = new EntityFieldQuery();
