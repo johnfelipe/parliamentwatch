@@ -17,8 +17,134 @@
   }
 }
 
-// Tiles
+// Intro
+.intro--petition {
+  h1 {
+    margin-bottom: $space;
+  }
+  h3 {
+    display: none;
+    @include breakpoint($breakpoint-m-min) {
+      clear: both;
+      margin-top: $space-large * 2;
+      margin-bottom: $space-large + $space;
+      display: block;
+    }
+  }
+  .intro__right {
+    position: relative;
+    img {
+      @include breakpoint($breakpoint-m-min) {
+        max-width: 300px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%,-80%));
+      }
+    }
+  }
+}
+.petition__steps {
+  display: none;
+  @include breakpoint($breakpoint-m-min) {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @include grid-container();
+  }
+}
+.petition__steps__item {
+  margin: 0;
+  padding: 0 $space-large;
+  position: relative;
+  text-align: center;
+  @include grid-column(3, $neat-grid-no-gutter);
+  &:after {
+    content: '\e805';
+    font-family: "awfont";
+    font-size: 2em;
 
+    position: absolute;
+    right: -$space-xsmall;
+    top: 50%;
+    color: $gray;
+    @include transform(translate(0,-50%));
+  }
+  .icon {
+    color: $orange;
+    font-size: 2em;
+  }
+  span {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -40px;
+    font-weight: 600;
+    color: $orange;
+  }
+  p {
+    clear: both;
+    margin: 0;
+    padding: $space-xsmall 0;
+    font-size: .9em;
+  }
+
+  &:nth-child(3) {
+    position: relative;
+    &:after {
+      content: '';
+      width: 1px;
+      height: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      border-right: 1px solid $gray;
+
+      @include transform(translate(0,0));
+    }
+  }
+
+  &:last-child {
+    a {
+      display: inline-block;
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        left:  $space-xsmall-mobile;
+        right:  $space-xsmall-mobile;
+        top:  $space-xsmall-mobile;
+        bottom:  $space-xsmall-mobile;
+
+        background: rgba(0,0,0,.2);
+      }
+    }
+    img {
+      padding: $space-xsmall-mobile;
+      box-shadow: 0 3px 5px rgba(0,0,0,.1);
+      max-height: 85px;
+      display: block;
+    }
+    .icon {
+      box-shadow: 0 3px 5px rgba(0,0,0,.1);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      color: rgb(197, 0, 0);
+      background: $white;
+      font-size: 1.4em;
+      border-radius: 50%;
+      padding: $space-xsmall;
+      @include transform(translate(-50%,-50%));
+    }
+    span { display: none; }
+    &:after { content: none; }
+  }
+}
+
+
+// Tiles
 
 .petition.tile {
   @include grid-column(12);

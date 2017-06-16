@@ -197,6 +197,7 @@ figcaption {
 
 
 /* Intro */
+
 .intro {
   position: relative;
   @include padding($space-large null);
@@ -251,6 +252,41 @@ figcaption {
     }
   }
 }
+
+/* Intro - Right to left */
+
+.intro--rtl {
+  .row {
+    @include grid-collapse($neat-grid-rtl);
+  }
+  .intro__left {
+    margin-left: 0;
+    @include grid-column(12, $neat-grid-rtl);
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(7, $neat-grid-rtl);
+    }
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(7, $neat-grid-rtl);
+    }
+  }
+  .intro__right {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: $space;
+    @include grid-column(12, $neat-grid-rtl);
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(5, $neat-grid-rtl);
+      margin-bottom: 0;
+
+    }
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(4, $neat-grid-rtl);
+      @include grid-push(1, $neat-grid-rtl);
+    }
+  }
+}
+
+
 
 /* Pager */
 
