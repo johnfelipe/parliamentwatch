@@ -178,6 +178,15 @@ function pw_globals_update_7009() {
 }
 
 /**
+ * Update aliases.
+ */
+function pw_globals_update_7010() {
+  $path = path_load(['alias' => 'petitionen']);
+  $path['source'] = 'petitions';
+  path_save($path);
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {

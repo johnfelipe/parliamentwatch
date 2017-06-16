@@ -428,6 +428,7 @@ if ($result > 100){
   $result = 100;
 }
 $entity_field[0][\'value\'] = $result;',
+        'recalculate' => FALSE,
         'store' => 1,
       ),
       'translatable' => '0',
@@ -1383,6 +1384,7 @@ $entity_field[0][\'value\'] = $result;',
           'data_type' => 'numeric',
         ),
         'display_format' => '$display_output = $entity_field_item[\'value\'];',
+        'recalculate' => FALSE,
         'store' => 0,
       ),
       'translatable' => '0',

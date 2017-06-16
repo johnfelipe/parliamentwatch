@@ -16,7 +16,17 @@ function pw_petitions_menu() {
     'access arguments' => ['access content'],
     'type' => MENU_SUGGESTED_ITEM,
   ];
-
+  $items['petitions'] = [
+    'title' => 'PetitionPlus',
+    'page callback' => 'pw_petitions_page',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  $items['petitions/%'] = [
+    'title' => 'PetitionPlus',
+    'page arguments' => [1],
+    'access arguments' => ['access content'],
+  ];
   return $items;
 }
 
@@ -26,6 +36,39 @@ function pw_petitions_menu() {
 function pw_petitions_redirect() {
   drupal_set_message('Vielen Dank, dass Sie die Petition unterzeichnet haben! Bitte teilen Sie die Petition in Ihren Netzwerken und unter Ihren Freunden!');
   drupal_goto('petitions');
+}
+
+/**
+ * Page callback: Displays
+ */
+function pw_petitions_page($parliament = NULL) {
+  $build = [];
+
+  $q = pw_petitions_base_query()
+    ->propertyOrderBy('changed', 'DESC')
+    ->fieldOrderBy('field_petition_signings', 'value', 'DESC')
+    ->fieldOrderBy('field_donation_amount', 'value', 'DESC');
+
+  if (isset($parliament)) {
+    $terms = taxonomy_get_term_by_name($parliament, 'parliaments');
+
+    if (!empty($terms)) {
+      $q->fieldCondition('field_parliament', 'tid', reset($terms)->tid);
+    }
+  }
+
+  $result = $q->pager(9)->execute();
+
+  if (!empty($result['node'])) {
+    $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
+    $build['nodes']['#theme_wrappers'] = ['container__tiles'];
+    $build['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
+    ];
+  }
+
+  return $build;
 }
 
 /**
@@ -78,4 +121,19 @@ function pw_petitions_form_submit(&$form, &$form_state) {
       node_save($node);
     }
   }
+}
+
+/**
+ * Returns a query for fetching published nodes of type blogpost.
+ *
+ * @return EntityFieldQuery
+ *   The query object.
+ */
+function pw_petitions_base_query() {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'pw_petition');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+
+  return $q;
 }
