@@ -120,9 +120,6 @@
   @include breakpoint($breakpoint-s-min) {
     font-size: 18px;
   }
-  a {
-    font-weight: 500;
-  }
   /* Drupal-Specific */
   p + .floatbox { margin-top: 1.8em; }
   .container {

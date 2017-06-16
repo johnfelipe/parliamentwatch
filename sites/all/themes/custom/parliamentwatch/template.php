@@ -511,7 +511,7 @@ function parliamentwatch_form($variables) {
 }
 
 /**
- * Overrides theme_form_element().
+ * Overrides theme_webform_element().
  */
 function parliamentwatch_webform_element($variables) {
   $element = &$variables['element'];
@@ -571,6 +571,13 @@ function parliamentwatch_webform_element($variables) {
   $output .= "</div>\n";
 
   return $output;
+}
+
+/**
+ * Overrides theme_form_element().
+ */
+function parliamentwatch_form_element($variables) {
+  return parliamentwatch_webform_element($variables);
 }
 
 /**
@@ -635,6 +642,18 @@ function parliamentwatch_textfield($variables) {
   $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
 
   return $output . $extra;
+}
+
+/**
+ * Overrides theme_password().
+ */
+function parliamentwatch_password($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'password';
+  element_set_attributes($element, ['id', 'name', 'size', 'maxlength']);
+  _form_set_class($element, ['form__item__control']);
+
+  return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
 
 /**

@@ -42,6 +42,12 @@ p {
   @include paragraph();
 }
 
+/* Links in paragraphes */
+
+p > a {
+  font-weight: 600;
+}
+
 /* Headlines + Paragraphes */
 
 p + h2, p + h3, p + h4 { margin-top: 1.8em }
