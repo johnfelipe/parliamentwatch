@@ -39,7 +39,7 @@ function pw_petitions_redirect() {
 }
 
 /**
- * Page callback: Displays
+ * Page callback: Displays a listing of petitions.
  */
 function pw_petitions_page($parliament = NULL) {
   $build = [];
@@ -124,7 +124,7 @@ function pw_petitions_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Returns a query for fetching published nodes of type blogpost.
+ * Returns a query for fetching published nodes of type pw_petition.
  *
  * @return EntityFieldQuery
  *   The query object.
