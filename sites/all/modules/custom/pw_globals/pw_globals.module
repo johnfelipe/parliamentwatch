@@ -85,6 +85,7 @@ function pw_globals_test_page() {
  */
 function pw_globals_info_page() {
   $build = [];
+  $build['#theme_wrappers'] = ['container__tiles'];
 
   foreach (menu_tree_page_data('info-menu') as $link) {
     $node = node_load(substr($link['link']['link_path'], 5));

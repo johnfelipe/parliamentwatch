@@ -401,6 +401,18 @@ node/*/edit';
       'pw_newsletter' => array(
         'custom_settings' => FALSE,
       ),
+      'tile' => array(
+        'custom_settings' => TRUE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -422,6 +434,10 @@ node/*/edit';
             'weight' => '30',
             'visible' => FALSE,
           ),
+          'tile' => array(
+            'weight' => '3',
+            'visible' => FALSE,
+          ),
         ),
         'sharethis' => array(
           'default' => array(
@@ -429,6 +445,10 @@ node/*/edit';
             'visible' => FALSE,
           ),
           'teaser' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'tile' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
@@ -548,6 +568,18 @@ node/*/edit';
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'tile' => array(
+        'custom_settings' => TRUE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -560,12 +592,25 @@ node/*/edit';
         'redirect' => array(
           'weight' => '30',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'rabbit_hole' => array(
+          'weight' => '0',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(
         'webform' => array(
           'default' => array(
             'weight' => '1',
             'visible' => TRUE,
+          ),
+          'tile' => array(
+            'weight' => '3',
+            'visible' => FALSE,
           ),
         ),
       ),
