@@ -379,7 +379,7 @@ function _pw_globals_menu_parliament_tree_add($path, $title, $weight) {
     'Wahlrecht' => 'wahlrecht',
   ];
 
-  $plid = _pw_globals_menu_link_add($path, $title, $weight);
+  $plid = _pw_globals_menu_link_add($path, $title, $weight, 'main-menu');
 
   foreach ($sub_items as $key => $value) {
     _pw_globals_menu_link_add("$path/$value", $key, $weight++, 'main-menu', $plid);
