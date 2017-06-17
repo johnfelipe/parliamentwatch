@@ -56,9 +56,6 @@ function parliamentwatch_css_alter(&$css) {
  * Implements hook_preprocess_page().
  */
 function parliamentwatch_preprocess_page(&$variables) {
-  if (isset($variables['node']) && $variables['node']->type == 'dialogue') {
-    drupal_set_title('');
-  }
 }
 
 /**
