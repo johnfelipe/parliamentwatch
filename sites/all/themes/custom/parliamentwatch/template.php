@@ -106,7 +106,11 @@ function parliamentwatch_preprocess_node(&$variables) {
   ];
   $variables['classes_array'] = array_diff($variables['classes_array'], $exclude_classes);
   $variables['theme_hook_suggestions'][] = 'node__' . $variables['type'] . '__' . $variables['view_mode'];
-  $variables['date'] = format_date($node->created, 'custom', 'j.&\t\h\i\n\s\p;M.&\t\h\i\n\s\p;Y');
+
+  $day = sprintf('<span class="date__day">%s</span>', format_date($node->created, 'custom', 'j'));
+  $month = sprintf('<span class="date__month">%s</span>', format_date($node->created, 'custom', 'M'));
+  $year = sprintf('<span class="date__year">%s</span>', format_date($node->created, 'custom', 'Y'));
+  $variables['date'] = sprintf('<span class="date">%s%s%s</span>', $day, $month, $year);
 
   if ($variables['type'] == 'pw_petition') {
     $petition_status = field_get_items('node', $node, 'field_petition_status');

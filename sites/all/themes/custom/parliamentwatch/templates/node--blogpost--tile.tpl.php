@@ -85,9 +85,7 @@
     <?php print render($content['field_teaser_image']); ?>
   </div>
   <header class="tile__title tile__title--date mh-item">
-    <span class="date">
-      <?php print render($date); ?>
-    </span>
+    <?php print $date; ?>
     <h3<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
     <?php print render($title_suffix); ?>
   </header>
