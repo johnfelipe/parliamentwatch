@@ -1,0 +1,23 @@
+/**
+* Webforms
+*/
+
+// Tiles
+
+.webform.tile {
+  @include grid-column(12);
+  margin-bottom: $space;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(6, $neat-grid-large-gutter);
+    margin-bottom: $space-large;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(3, $neat-grid-large-gutter);
+  }
+  .tile__title {
+    border: 0;
+    padding-top: $space;
+    padding-bottom: $space;
+    text-align: center;
+  }
+}
