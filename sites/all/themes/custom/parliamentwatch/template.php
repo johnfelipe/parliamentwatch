@@ -102,6 +102,8 @@ function parliamentwatch_preprocess_node(&$variables) {
 
   $exclude_classes = [
     'node',
+    'node-sticky',
+    'node-promoted',
     drupal_html_class('node-' . $variables['type']),
   ];
   $variables['classes_array'] = array_diff($variables['classes_array'], $exclude_classes);
