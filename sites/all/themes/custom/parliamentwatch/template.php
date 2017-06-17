@@ -744,5 +744,16 @@ function _parliamentwatch_should_render_content_container($variables) {
     return FALSE;
   }
 
+  $pages_without_container = [
+    'pw_blog_page',
+    'pw_petitions_page',
+    'pw_profiles_page',
+    'user_view_page',
+  ];
+
+  if (in_array(menu_get_item()['page_callback'], $pages_without_container)) {
+    return FALSE;
+  }
+
   return TRUE;
 }
