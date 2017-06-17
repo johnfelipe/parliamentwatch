@@ -94,11 +94,15 @@
   </div>
   <div class="blog__submitted">
     <div class="container">
-      <?php if ($display_submitted): ?>
-        <?php print $submitted; ?>
-      <?php endif; ?>
-      <?php print render($content['field_blogpost_blogtags']); ?>
-      <?php print render($content['field_blogpost_categories']); ?>
+      <div class="blog__submitted__date">
+        <?php if ($display_submitted): ?>
+          <?php print $submitted; ?>
+        <?php endif; ?>
+      </div>
+      <div class="blog__submitted__tags">
+        <?php print render($content['field_blogpost_blogtags']); ?>
+        <?php print render($content['field_blogpost_categories']); ?>
+      </div>
     </div>
   </div>
 

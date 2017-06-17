@@ -102,17 +102,40 @@
 }
 .blog__submitted {
   background: $beige;
-  padding: $space 0;
+  padding: $space 0 $space-small;
   margin-bottom: $space-large;
   border-bottom: 1px solid $darkBeige;
+  font-size: .8em;
   @include breakpoint($breakpoint-m-min) {
-    padding: $space-large 0;
+    padding: $space-large 0 $space;
   }
   .container {
     max-width: 900px;
   }
 }
-
+.blog__submitted__date {
+  padding-bottom: $space-small;
+  @include breakpoint($breakpoint-m-min) {
+    padding-bottom: 0;
+    @include grid-column(5, $neat-grid-no-gutter);
+  }
+}
+.blog__submitted__tags {
+  @include grid-container();
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(7, $neat-grid-no-gutter);
+  }
+  .tag-list {
+    @include breakpoint($breakpoint-m-min) {
+      float: right;
+      display: inline-block;
+      margin-top: -3px;
+    }
+    > li {
+      margin-bottom: $space-xsmall-mobile;
+    }
+  }
+}
 
 .blog__content {
   font-size: 16px;

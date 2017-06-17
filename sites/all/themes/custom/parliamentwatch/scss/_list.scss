@@ -52,9 +52,30 @@ li {
   }
 }
 
-
 /* Icon-List */
 
 .icon-list {
   @include icon-list();
+}
+
+/* Tag-list */
+
+.tag-list {
+  margin: 0;
+  padding: 0;
+  > li {
+    margin: 0 $space-xsmall-mobile 0 0;
+    list-style: none;
+    float: left;
+    a {
+      padding: 0 $space-xsmall-mobile;
+      @include tag($white, $darkBeige, $mediumGray);
+      &:before {
+        content: '\e840';
+        font-family: 'awfont';
+        font-size: .8em;
+        margin-right: $space-xsmall-mobile;
+      }
+    }
+  }
 }
