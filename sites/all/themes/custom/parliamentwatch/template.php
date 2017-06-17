@@ -56,6 +56,7 @@ function parliamentwatch_css_alter(&$css) {
  * Implements hook_preprocess_page().
  */
 function parliamentwatch_preprocess_page(&$variables) {
+  $variables['render_content_container'] = _parliamentwatch_should_render_content_container($variables);
 }
 
 /**
@@ -727,4 +728,21 @@ function _parliamentwatch_form_set_class(array &$element, array $name) {
   if (isset($element['#parents']) && form_get_error($element) !== NULL && !empty($element['#validated'])) {
     $element['#attributes']['class'][] = 'form__item__control--invalid';
   }
+}
+
+/**
+ * Determines whether the content regions should be wrapped in a container.
+ *
+ * @param array $variables
+ *   The template variables.
+ *
+ * @return bool
+ *   TRUE if the content container should be rendered, FALSE otherwise.
+ */
+function _parliamentwatch_should_render_content_container($variables) {
+  if (isset($variables['node']) && $variables['node']->type == 'page') {
+    return TRUE;
+  }
+
+  return FALSE;
 }
