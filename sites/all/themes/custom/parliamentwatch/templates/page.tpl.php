@@ -99,7 +99,7 @@
         <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
         <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
       </div>
-      <?php if ($render_content_container): ?><div class="container"><?php endif; ?>
+      <?php if ($render_content_container): ?><div class="container"><h1><?php print $title ?></h1><?php endif; ?>
         <?php print render($page['content']); ?>
         <?php print $feed_icons; ?>
       <?php if ($render_content_container): ?></div><?php endif; ?>
