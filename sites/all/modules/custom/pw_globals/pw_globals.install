@@ -20,6 +20,8 @@ function pw_globals_update_7001() {
     'pw_menu',
     'pw_subsite_configuration',
     'quicktabs',
+    'rdf',
+    'schemaorg',
     'scroll_to_top',
     'sharethis',
     'tb_megamenu',
