@@ -53,6 +53,13 @@ function parliamentwatch_css_alter(&$css) {
 }
 
 /**
+ * Implements hook_media_wysiwyg_token_to_markup().
+ */
+function parliamentwatch_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
+  unset($element['content']['#type']);
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function parliamentwatch_preprocess_page(&$variables) {
