@@ -503,7 +503,6 @@ function pw_blog_field_default_fields() {
           'apachesolr_search' => 0,
           'block' => 'block',
           'comment' => 0,
-          'context_ui' => 0,
           'custom_search_blocks' => 0,
           'delta_blocks' => 0,
           'devel' => 0,

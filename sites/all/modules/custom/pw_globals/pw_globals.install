@@ -12,6 +12,7 @@ function pw_globals_update_7001() {
   $uninstall = [
     'colorbox',
     'content_menu',
+    'context',
     'drulenium',
     'ds',
     'feedback_simple',

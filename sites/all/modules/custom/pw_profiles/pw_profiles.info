@@ -36,7 +36,6 @@ dependencies[] = viewfield
 dependencies[] = views
 dependencies[] = views_load_more
 dependencies[] = webform_rules
-features[ctools][] = context:context:3
 features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
