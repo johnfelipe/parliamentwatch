@@ -90,7 +90,7 @@
     <?php print render($title_suffix); ?>
   </header>
   <ul class="tile__links tile__links--2">
-    <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 <?php print t('comments'); ?></a></li>
+    <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare"><?php print t('@count comments', ['@count' => $node->comment_count]); ?></a></li>
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('read more'); ?></a></li>
   </ul>
 </article>
