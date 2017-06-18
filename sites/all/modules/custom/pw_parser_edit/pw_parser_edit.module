@@ -145,6 +145,7 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
       '#type' => 'submit',
       '#name' => 'delete-' .  $sidejob->nid,
       '#submit' => array('pw_parser_edit_sidejobs_delete'),
+      '#limit_validation_errors' => array(),
       '#value' => t('Delete'),
     );
     $form['list'][$sidejob->nid]['actions']['replace'] = array(
