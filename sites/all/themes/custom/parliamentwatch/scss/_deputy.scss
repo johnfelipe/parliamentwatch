@@ -365,6 +365,7 @@
     }
     .tab-qa-stats__col {
       margin-bottom: $space;
+      @include grid-column(12);
       @include breakpoint($breakpoint-xs-min) {
         margin-bottom: 0;
         @include grid-column(6);

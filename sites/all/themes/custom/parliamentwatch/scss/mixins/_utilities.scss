@@ -70,6 +70,14 @@
       color: $gray;
     }
   }
+  ul {
+    padding-top: $space-xsmall;
+    padding-bottom: $space-xsmall-mobile;
+    &:last-child {
+      padding-top: $space-xsmall;
+      padding-bottom: $space-xsmall-mobile;
+    }
+  }
 }
 
 /* Icon-List */
@@ -97,5 +105,23 @@
   .icon-ok { color: $color-accepted; }
 }
 
-
-
+/* Date stacked */
+@mixin date-stacked() {
+  text-align: center;
+  font-family: $font-serif;
+  font-weight: 900;
+  color: $gray;
+  .date__day {
+    font-size: .7em;
+    display: block;
+    padding-bottom: $space-xsmall-mobile;
+  }
+  .date__month {
+    font-size: .5em;
+    display: block;
+  }
+  .date__year {
+    font-size: .4em;
+    display: block;
+  }
+}

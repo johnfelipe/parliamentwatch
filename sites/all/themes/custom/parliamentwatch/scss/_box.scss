@@ -55,13 +55,12 @@
 
 .tile__title {
   border-bottom: 1px solid $beige;
-  @include h3();
   @include box-inset-padded();
   a {
     color: $darkGray;
   }
 }
-h1.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
+h1.tile__title,
 h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 
 /* Title with date */
@@ -74,14 +73,12 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     position: absolute;
     left: $space;
     top: $space;
-
-    text-align: center;
-    font-size: 1.3em;
-    font-family: $font-serif;
-    color: $gray;
+    @include date-stacked();
+    font-size: 2em;
   }
   h3 {
     padding-left: ($space-large * 2) + 10px;
+    @include h4();
     @include text-overflow-multi();
   }
 }

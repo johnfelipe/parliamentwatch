@@ -137,6 +137,8 @@
   }
 }
 
+
+
 .blog__content {
   font-size: 16px;
   padding-bottom: $space-large;
@@ -147,6 +149,9 @@
   p + .floatbox { margin-top: 1.8em; }
   .container {
     max-width: 900px;
+  }
+  ul {
+    @include icon-list();
   }
   .file-image {
     img {
