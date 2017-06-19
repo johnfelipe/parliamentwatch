@@ -45,11 +45,13 @@
  */
 ?>
 <section id="<?php print $block_html_id ?>" class="<?php print $classes; ?>" data-tab-content="<?php print $block_html_id ?>">
+  <?php print render($title_suffix) ?>
   <div class="container">
     <div class="tabs__content__title option-title">
       <h2><a href="#" data-tab-content="<?php print $block_html_id ?>"><?php print $block->subject; ?></a></h2>
     </div>
-  <div class="tabs__content__content">
-    <?php print $content; ?>
+    <div class="tabs__content__content">
+      <?php print $content; ?>
+    </div>
   </div>
 </section>
