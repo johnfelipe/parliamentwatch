@@ -103,6 +103,8 @@
         <?php print render($page['content']); ?>
         <?php print $feed_icons; ?>
       <?php if ($render_content_container): ?></div><?php endif; ?>
+      <?php print render($page['content_tabs']); ?>
+      <?php print render($page['content_extra']); ?>
     </main>
 
     <footer id="footer">

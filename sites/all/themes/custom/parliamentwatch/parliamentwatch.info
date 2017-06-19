@@ -8,6 +8,8 @@ version = '7.x-4.0'
 regions[header_top] = Header top
 regions[header_bottom] = Header bottom
 regions[content] = Content
+regions[content_tabs] = Content tabs
+regions[content_extra] = Content extra
 regions[footer] = Footer
 
 stylesheets[screen][] = css/theme.css
