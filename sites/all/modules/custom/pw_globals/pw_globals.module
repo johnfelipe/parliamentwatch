@@ -74,6 +74,29 @@ function pw_globals_entity_info_alter(&$entity_info) {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function pw_globals_block_info() {
+  $blocks['comments'] = [
+    'info' => t('Comments'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function pw_globals_block_view($delta = '') {
+  switch ($delta) {
+    case 'comments':
+      return pw_globals_comments_block();
+    default:
+      return [];
+  }
+}
+
+/**
  * Page callback: Renders a page that demonstrates visual elements.
  */
 function pw_globals_test_page() {
@@ -101,6 +124,26 @@ function pw_globals_info_page() {
   }
 
   return $build;
+}
+
+/**
+ * Displays comments section of a node.
+ *
+ * @return
+ *   The block render array.
+ */
+function pw_globals_comments_block() {
+  $block = [];
+  $node = menu_get_object();
+
+  if (!$node) {
+    return $block;
+  }
+
+  $block['subject'] = t('Comments');
+  $block['content'] = comment_node_page_additions($node);
+
+  return $block;
 }
 
 /**
