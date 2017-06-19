@@ -41,7 +41,7 @@
     {
         "@context": "http://schema.org",
         "@type": "Person",
-        "name": "<?php print $display_name ?>",
+        "name": "<?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?>",
         "image": "<?php print file_create_url($field_user_picture[0]['uri']); ?>",
         "url": "<?php print url($user_url, ['absolute' => TRUE]); ?>",
         "affiliation": {
@@ -61,7 +61,7 @@
     <div class="deputy__intro">
       <div class="deputy__intro__sidebar">
         <header>
-          <h1 class="deputy__title"><?php print $display_name ?></h1>
+          <h1 class="deputy__title"><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h1>
           <div class="deputy__subtitle">
             <?php print render($user_profile['field_user_party']); ?> | Abgeordneter Bundestag
           </div>

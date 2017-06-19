@@ -82,6 +82,35 @@
 .deputy.detail {
   .deputy__title {
     margin-bottom: $space-xsmall-mobile;
+    @include breakpoint($breakpoint-s-min) {
+      padding-right: 200px;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      padding-right: 250px;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      padding-right: 320px;
+    }
+  }
+  header {
+    position: relative;
+    .select2 {
+      margin-bottom: $space-large;
+      @include breakpoint($breakpoint-s-min) {
+        position: absolute;
+        right: 0;
+        top: 0;
+        max-width: 200px;
+        display: block;
+        margin-bottom: 0;
+      }
+      @include breakpoint($breakpoint-m-min) {
+        max-width: 250px;
+      }
+      @include breakpoint($breakpoint-l-min) {
+        max-width: 320px;
+      }
+    }
   }
   .deputy__subtitle {
     padding-bottom: $space-large;
@@ -223,8 +252,14 @@
       }
     }
   }
+  .tabs__navigation {
+    background: $white;
+    margin-bottom: -1px;
+  }
   .tabs__content {
+
     /* Exceptions for first Q&A-Tab */
+
     &#fragen-und-antworten {
       background: $orangeBG;
       color: $white;
