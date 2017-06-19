@@ -34,7 +34,6 @@
   }
 }
 .tabs__content {
-  border-top: 1px solid $darkBeige;
   @include breakpoint($breakpoint-m-min) {
     @include padding($space-large null);
     display: none;
@@ -46,7 +45,6 @@
 }
 .tabs__content__title {
   @include grid-collapse();
-  padding-bottom: $space;
   @include breakpoint($breakpoint-m-min) {
     padding-bottom: 0;
     margin: 0 0 $space-large;
@@ -125,9 +123,12 @@
   .tabs__content__content {
     display: block;
   }
-  .tabs__content__title h2 a {
-    &:after {
-      content: '\e847';
+  .tabs__content__title {
+    padding-bottom: $space;
+    h2 a {
+      &:after {
+        content: '\e847';
+      }
     }
   }
 }
