@@ -92,10 +92,10 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   display: inline-block;
   padding: 3px $space-xsmall-mobile 3px $space-xsmall;
   font-weight: 600;
-
   position: absolute;
   left: 0;
   top: $space-small;
+  @include date-inline();
 }
 
 /* meta */

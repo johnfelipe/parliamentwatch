@@ -105,6 +105,17 @@
   .icon-ok { color: $color-accepted; }
 }
 
+
+/* Date inline */
+@mixin date-inline() {
+  .date__day:after {
+    content: '. ';
+  }
+  .date__month:after {
+    content: '. ';
+  }
+}
+
 /* Date stacked */
 @mixin date-stacked() {
   text-align: center;
