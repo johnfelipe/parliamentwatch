@@ -287,7 +287,7 @@ EOD;
     'cache' => DRUPAL_CACHE_GLOBAL,
     'title' => '<none>',
   ];
-  _pw_globals_add_block($config);
+  _pw_globals_configure_block($config);
 }
 
 /**
@@ -301,16 +301,16 @@ function _pw_globals_add_menu_block($block, $config) {
   $block['delta'] = $config['delta'] = $delta;
   $block['module'] = 'menu_block';
   menu_block_block_save($delta, $config);
-  _pw_globals_add_block($block);
+  _pw_globals_configure_block($block);
 }
 
 /**
- * Adds a block.
+ * Configures a block.
  *
  * @param array $block
  *   The block configuration.
  */
-function _pw_globals_add_block($block) {
+function _pw_globals_configure_block($block) {
   $fields = array_diff(array_keys($block), ['module', 'delta', 'theme', 'node_types', 'roles']);
   $values = array_values(array_diff_key($block, ['module' => NULL, 'delta' => NULL, 'theme' => NULL, 'node_types' => NULL, 'roles' => NULL]));
 
