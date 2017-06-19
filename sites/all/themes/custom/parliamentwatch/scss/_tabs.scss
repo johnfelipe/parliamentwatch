@@ -46,7 +46,9 @@
 }
 .tabs__content__title {
   @include grid-collapse();
+  padding-bottom: $space;
   @include breakpoint($breakpoint-m-min) {
+    padding-bottom: 0;
     margin: 0 0 $space-large;
     width: auto;
   }
@@ -106,12 +108,12 @@
 .tabs__content__content {
   display: none;
   padding-bottom: $space-large;
+  @include grid-container();
   @include breakpoint($breakpoint-m-min) {
     display: block;
     padding-bottom: 0;
   }
 }
-
 
 /* Tab-Status: active */
 

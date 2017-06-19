@@ -76,7 +76,7 @@ function parliamentwatch_preprocess_region(&$variables) {
       $options = [
         'attributes' => ['class' => ['nav__item__link']],
         'external' => TRUE,
-        'fragment' => drupal_html_class("block-$key"),
+        'fragment' => drupal_html_class(transliteration_get($text)),
       ];
       $class = ['nav__item'];
       if ($key == reset(element_children($variables['elements']))) {
@@ -116,6 +116,7 @@ function parliamentwatch_preprocess_block(&$variables) {
 
   if ($variables['block']->region == 'content_tabs') {
     $variables['classes_array'][] = 'tabs__content';
+    $variables['block_html_id'] = drupal_html_class(transliteration_get($variables['block']->subject));
     if ($variables['block_id'] == 1) {
       $variables['classes_array'][] = 'tabs__content--active';
     }

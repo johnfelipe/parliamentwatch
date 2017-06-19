@@ -165,13 +165,12 @@ function tooltip() {
  * */
 
 function tabs() {
-    $('a[data-tab-content]').on( "click", function(event) {
+    $('.tabs__navigation a').on( "click", function(event) {
 
         event.preventDefault();
         event.stopPropagation();
 
         var link = $(this);
-        var tabContent = link.attr('data-tab-content');
         var id = link[0].hash;
 
         // add hash-value of the clicked link-element to url
@@ -184,34 +183,32 @@ function tabs() {
 
         // Set tab-content classes
         link.parents('.tabs').find('.tabs__content').removeClass('tabs__content--active');
-        $('#' + tabContent).addClass('tabs__content--active');
+        $(id).addClass('tabs__content--active');
 
         swiperTile();
-
 
         return false;
     });
 
+    // Set initial tab by checking url for hash
+    if (window.location.hash) {
+        $('.tabs__navigation a[href=' + window.location.hash + ']').trigger("click");
+    }
 
     // Set initial tab by checking url for hash
     if(history.pushState) {
-        var hashValue = window.location.hash;
-        var hashValueClean = hashValue.substring(1);
-        $('.nav__item a[data-tab-content=' + hashValueClean + ']').trigger("click");
-
         $(window).on('popstate', function(event) {
-            var hashValueClean = history.state.substring(1);
-
-            console.log(history);
+            var hashValue = window.location.hash;
 
             // Set nav-item classes
             $('.tabs').find('.nav__item').removeClass('nav__item--active');
-            $('.nav__item__link[data-tab-content="'+ hashValueClean +'"]').parents('.nav__item').addClass('nav__item--active');
+            $('.nav__item__link[href="'+ hashValue +'"]').parents('.nav__item').addClass('nav__item--active');
 
             // Set tab-content classes
             $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
-            $('#' + hashValueClean).addClass('tabs__content--active');
+            $(hashValue).addClass('tabs__content--active');
         });
+
     }
 }
 
