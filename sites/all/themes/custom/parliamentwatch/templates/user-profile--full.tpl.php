@@ -67,8 +67,8 @@
           </div>
           <?php if (!empty($user_profile['revisions'])) { print render($user_profile['revisions']); } ?>
         </header>
-        <figure class="deputy__image">
-          <?php print render($user_profile['field_user_picture']); ?>
+        <figure>
+          <div class="deputy__image"><?php print render($user_profile['field_user_picture']); ?></div>
           <a href="#" class="btn btn--block">Frage stellen</a>
           <figcaption>
             <?php print render($user_profile['field_user_picture_copyright']); ?>

@@ -224,19 +224,22 @@
     @include breakpoint($breakpoint-l-min) {
       padding-left: $space-large;
     }
+    @media (max-width: $breakpoint-s-max) {
+      figcaption {
+        text-align: center;
+      }
+    }
   }
   .deputy__image {
     display: block;
     img {
       display: block;
       margin-bottom: $space-small-mobile;
+      width: 100%;
     }
     @media (max-width: $breakpoint-s-max) {
-      img {
-        @include image-circle(130px, 130px);
-        margin: 0 auto $space auto;
-      }
-      text-align: center;
+      @include image-circle(130px, 130px);
+      margin: 0 auto $space auto;
     }
   }
 
@@ -288,7 +291,6 @@
         border-top: 1px solid $white;
         color: $darkGray;
         @include breakpoint($breakpoint-s-min) {
-          margin-bottom: -$space-large;
           margin-top: $space-large * 2;
           padding: ($space-large * 2) 0;
         }
