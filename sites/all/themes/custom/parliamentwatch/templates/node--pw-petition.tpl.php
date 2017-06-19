@@ -95,6 +95,11 @@
     <div class="petition__state_indicator__item"><i class="icon icon-microphone"></i></div>
     <div class="petition__state_indicator__item"><i class="icon icon-politician"></i></div>
   </div>
+
+  <?php if ($field_petition_partner): ?>
+  <div class="tile__flag"><?php print render($field_petition_partner[0]['value']); ?></div>
+  <?php endif; ?>
+
   <div class="tile__content mh-item">
     <h3 class="tile__title" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
     <?php print render($title_suffix); ?>

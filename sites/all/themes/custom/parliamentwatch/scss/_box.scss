@@ -153,6 +153,16 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   padding: $space-xsmall-mobile 0;
 }
 
+/* tile: flag */
+
+.tile__flag {
+  background: $white;
+  padding: 3px $space-xsmall 3px $space-xsmall-mobile;
+  position: absolute;
+  right: 0;
+  top: $space-small;
+}
+
 /* tile: Links */
 
 .tile__links {
