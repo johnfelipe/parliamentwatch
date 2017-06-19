@@ -82,7 +82,6 @@ function mainNavigation() {
             secondlevel.css('padding-left', subnavOffsetValue + 'px');
             secondlevel.css('padding-right', '30px');
 
-            console.log(activeMenuItem);
             swiper.update();
             swiper.slideTo(activeMenuItem);
         }
