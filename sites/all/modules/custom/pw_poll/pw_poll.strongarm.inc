@@ -131,9 +131,15 @@ function pw_poll_strongarm() {
         'custom_settings' => FALSE,
       ),
       'tile' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tabular' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -169,6 +175,10 @@ function pw_poll_strongarm() {
             'visible' => FALSE,
           ),
           'search_result' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'tile' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
