@@ -276,6 +276,9 @@ function pw_globals_update_7013() {
 EOD;
   block_block_save(27, $edit);
   $config = [
+    'module' => 'block',
+    'delta' => '27',
+    'theme' => 'parliamentwatch',
     'status' => BLOCK_CUSTOM_ENABLED,
     'weight' => 0,
     'region' => 'content',
@@ -284,7 +287,7 @@ EOD;
     'cache' => DRUPAL_CACHE_GLOBAL,
     'title' => '<none>',
   ];
-  _pw_globals_update_block($config, 'block', 27);
+  _pw_globals_add_block($config);
 }
 
 /**
@@ -305,24 +308,28 @@ function _pw_globals_add_menu_block($block, $config) {
  * Adds a block.
  *
  * @param array $block
- *   The block configuration
+ *   The block configuration.
  */
 function _pw_globals_add_block($block) {
-  db_insert('block')
-    ->fields(array(
+  $fields = array_diff(array_keys($block), ['module', 'delta', 'theme', 'node_types', 'roles']);
+  $values = array_values(array_diff_key($block, ['module' => NULL, 'delta' => NULL, 'theme' => NULL, 'node_types' => NULL, 'roles' => NULL]));
+
+  db_merge('block')
+    ->insertFields([
       'module',
       'delta',
       'theme',
-      'status',
-      'weight',
-      'region',
-      'visibility',
-      'pages',
-      'cache',
-      'title',
-    ))
-    ->values($block)
+    ], [
+      $block['module'],
+      $block['delta'],
+      $block['theme'],
+    ])
+    ->fields($fields, $values)
+    ->condition('module', $block['module'])
+    ->condition('delta', $block['delta'])
+    ->condition('theme', $block['theme'])
     ->execute();
+
   if (array_key_exists('roles', $block)) {
     db_delete('block_role')
       ->condition('module', $block['module'])
@@ -338,6 +345,7 @@ function _pw_globals_add_block($block) {
       $query->execute();
     }
   }
+
   if (array_key_exists('node_types', $block)) {
     db_delete('block_node_type')
       ->condition('module', $block['module'])
@@ -353,31 +361,6 @@ function _pw_globals_add_block($block) {
       $query->execute();
     }
   }
-}
-
-/**
- * Updates a block.
- *
- * @param array $block
- *   An array representing a block record
- * @param string $module
- *   A module
- * @param string $delta
- *   A block delta
- * @param string $theme
- *   A theme
- */
-function _pw_globals_update_block($block, $module, $delta, $theme = NULL) {
-  $query = db_update('block')
-    ->fields($block)
-    ->condition('module', $module)
-    ->condition('delta', $delta);
-
-  if (isset($theme)) {
-    $query->condition('theme', $theme);
-  }
-
-  $query->execute();
 }
 
 /**
