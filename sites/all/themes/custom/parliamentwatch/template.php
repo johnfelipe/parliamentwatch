@@ -795,6 +795,7 @@ function _parliamentwatch_should_render_content_container($variables) {
     'pw_petitions_page',
     'pw_poll_page',
     'pw_profiles_page',
+    'pw_globals_info_page',
     'user_view_page',
   ];
 
