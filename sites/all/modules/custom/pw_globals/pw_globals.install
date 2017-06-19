@@ -291,6 +291,44 @@ EOD;
 }
 
 /**
+ * Configure related blog posts block.
+ */
+function pw_globals_update_7014() {
+  $block = [
+    'module' => 'pw_blog',
+    'delta' => 'related_blogposts',
+    'theme' => 'parliamentwatch',
+    'status' => BLOCK_CUSTOM_ENABLED,
+    'weight' => 0,
+    'region' => 'content_tabs',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'node_types' => ['blogpost']
+  ];
+  _pw_globals_configure_block($block);
+}
+
+/**
+ * Configure comments block.
+ */
+function pw_globals_update_7015() {
+  $block = [
+    'module' => 'pw_globals',
+    'delta' => 'comments',
+    'theme' => 'parliamentwatch',
+    'status' => BLOCK_CUSTOM_ENABLED,
+    'weight' => 0,
+    'region' => 'content_extra',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'node_types' => ['blogpost']
+  ];
+  _pw_globals_configure_block($block, 'pw_globals', 'comments', 'parliamentwatch');
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
