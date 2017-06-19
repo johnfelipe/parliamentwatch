@@ -36,6 +36,29 @@ function pw_blog_blockreference_blocks_pre_alter(&$blocks, $context) {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function pw_blog_block_info() {
+  $blocks['related_blogposts'] = [
+    'info' => t('Related blog posts'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function pw_blog_block_view($delta = '') {
+  switch ($delta) {
+    case 'related_blogposts':
+      return pw_blog_related_blogposts_block();
+    default:
+      return [];
+  }
+}
+
+/**
  * Page callback: Displays a listing of blog posts.
  */
 function pw_blog_page() {
@@ -56,6 +79,43 @@ function pw_blog_page() {
   }
 
   return $build;
+}
+
+/**
+ * Displays related bog posts.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_blog_related_blogposts_block() {
+  $node = menu_get_object();
+
+  if (!isset($node)) {
+    return;
+  }
+
+  $block = [
+    'subject' => t('Related blog posts'),
+  ];
+
+  $items = field_get_items('node', $node, 'field_blogpost_categories');
+
+  if (empty($items)) {
+    return;
+  }
+
+  $result = pw_blog_base_query()
+    ->fieldCondition('field_blogpost_categories', 'tid', array_column($items, 'tid'), 'IN')
+    ->propertyCondition('nid', $node->nid, '<>')
+    ->propertyOrderBy('created', 'DESC')
+    ->range(0, 3)
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $block['content'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
+  }
+
+  return $block;
 }
 
 /**
