@@ -67,6 +67,31 @@ function parliamentwatch_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_region().
+ */
+function parliamentwatch_preprocess_region(&$variables) {
+  if ($variables['region'] == 'content_tabs') {
+    foreach (element_children($variables['elements']) as $key) {
+      $text = $variables['elements'][$key]['#block']->subject;
+      $options = [
+        'attributes' => ['class' => ['nav__item__link']],
+        'external' => TRUE,
+        'fragment' => drupal_html_class("block-$key"),
+      ];
+      $class = ['nav__item'];
+      if ($key == reset(element_children($variables['elements']))) {
+        $class[] = 'nav__item--active';
+      }
+      $variables['tabs'][] = [
+        'data' => l($text, '', $options),
+        'class' => $class,
+      ];
+
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_block().
  */
 function parliamentwatch_preprocess_block(&$variables) {
@@ -86,6 +111,13 @@ function parliamentwatch_preprocess_block(&$variables) {
       $variables['title_suffix']['indicator'] = [
         '#markup' => l($trail[1]['link_title'], $trail[1]['link_path'], ['attributes' => ['class' => ['header__subnav__indicator']]])
       ];
+    }
+  }
+
+  if ($variables['block']->region == 'content_tabs') {
+    $variables['classes_array'][] = 'tabs__content';
+    if ($variables['block_id'] == 1) {
+      $variables['classes_array'][] = 'tabs__content--active';
     }
   }
 }
