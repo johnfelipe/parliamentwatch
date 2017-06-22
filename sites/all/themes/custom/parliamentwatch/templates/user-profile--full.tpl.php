@@ -63,7 +63,7 @@
         <header>
           <h1 class="deputy__title"><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h1>
           <div class="deputy__subtitle">
-            <?php print render($user_profile['field_user_party']); ?> | Abgeordneter Bundestag
+            <?php print render($user_profile['field_user_party']); ?> | <?php print $role; ?> <?php print render($user_profile['field_user_parliament']); ?>
           </div>
           <?php if (!empty($user_profile['revisions'])) { print render($user_profile['revisions']); } ?>
         </header>

@@ -277,6 +277,15 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   if (isset($variables['user_profile']['votes_total'])) {
     $variables['voting_ratio'] = round(100 * $variables['user_profile']['votes_attended'] / $variables['user_profile']['votes_total'], 0);
   }
+
+  $gender = $account->field_user_gender[LANGUAGE_NONE][0]['value'];
+
+  if (in_array(PW_GLOBALS_CANDIDATE_RID, array_keys($account->roles))) {
+    $variables['role'] = t('Candidate', [], ['options' => ['context' => $gender]]);
+  }
+  elseif (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($account->roles))) {
+    $variables['role'] = t('Deputy', [], ['options' => ['context' => $gender]]);
+  }
 }
 
 /**
