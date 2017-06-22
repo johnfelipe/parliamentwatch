@@ -41,18 +41,18 @@
     {
         "@context": "http://schema.org",
         "@type": "Person",
-        "name": "<?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?>",
+        "name": "<?php print $field_user_fname[0]['value']; ?> <?php print $field_user_lname[0]['value']; ?>",
         "image": "<?php print file_create_url($field_user_picture[0]['uri']); ?>",
         "url": "<?php print url($user_url, ['absolute' => TRUE]); ?>",
         "affiliation": {
           "@type": "Organization",
           "name": "<?php print $field_user_party[0]['taxonomy_term']->name ?>"
         },
-        "birthDate": "<?php print date_iso8601($user_profile['field_user_birthday']['#items'][0][value]);?>",
-        "gender": "<?php print $user_profile['field_user_gender'][0]['#markup']; ?>",
+        "birthDate": "<?php print date_iso8601($field_user_birthday[0]['value']);?>",
+        "gender": "<?php print $field_user_gender[0]['value']; ?>",
         "homeLocation": {
           "@type": "Place",
-          "name": "<?php print $user_profile['field_user_address']['#items'][0]['locality']; ?>"
+          "name": "<?php print $field_user_address[0]['locality']; ?>"
         }
     }
 </script>
