@@ -44,11 +44,11 @@
  * @ingroup themeable
  */
 ?>
-<section id="<?php print $block_html_id ?>" class="<?php print $classes; ?>">
-  <?php print render($title_suffix) ?>
+<section id="<?php print $block_html_id; ?>" class="<?php print $classes; ?>">
   <div class="container">
     <div class="tabs__content__title option-title">
-      <h2><a href="#<?php print $block_html_id ?>"><?php print $block->subject; ?></a></h2>
+      <h2><a href="#<?php print $block_html_id; ?>"><?php print $block->subject; ?></a></h2>
+      <?php print render($title_suffix) ?>
     </div>
     <div class="tabs__content__content tile-wrapper">
       <div class="row">
