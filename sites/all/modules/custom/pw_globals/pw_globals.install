@@ -280,7 +280,7 @@ EOD;
     'delta' => '27',
     'theme' => 'parliamentwatch',
     'status' => BLOCK_CUSTOM_ENABLED,
-    'weight' => 0,
+    'weight' => -20,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "petitions\npetitions/*",
