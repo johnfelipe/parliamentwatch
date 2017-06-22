@@ -325,7 +325,38 @@ function pw_globals_update_7015() {
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
     'node_types' => ['blogpost']
   ];
-  _pw_globals_configure_block($block, 'pw_globals', 'comments', 'parliamentwatch');
+  _pw_globals_configure_block($block);
+}
+
+/**
+ * Configure profile tabs.
+ */
+function pw_globals_update_7016() {
+  $weight = -1;
+  $pw_dialogues = [
+    'module' => 'pw_dialogues',
+    'delta' => 'profile',
+    'theme' => 'parliamentwatch',
+    'status' => BLOCK_CUSTOM_ENABLED,
+    'weight' => ++$weight,
+    'region' => 'content_tabs',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => "profile/*\nprofile/*/archive/*",
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+  _pw_globals_configure_block($pw_dialogues);
+  $pw_vote = [
+    'module' => 'pw_vote',
+    'delta' => 'profile',
+    'theme' => 'parliamentwatch',
+    'status' => BLOCK_CUSTOM_ENABLED,
+    'weight' => ++$weight,
+    'region' => 'content_tabs',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => "profile/*\nprofile/*/archive/*",
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+  _pw_globals_configure_block($pw_vote);
 }
 
 /**

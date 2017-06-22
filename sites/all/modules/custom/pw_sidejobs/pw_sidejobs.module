@@ -36,47 +36,55 @@ function pw_sidejobs_node_presave($node){
 }
 
 /**
- * Implements hook_field_extra_fields().
+ * Implements hook_block_info().
  */
-function pw_sidejobs_field_extra_fields() {
-  $extra['user']['user']['display']['additional_income'] = [
-    'label' => t('Additional income'),
-    'description' => t(''),
-    'weight' => '100',
+function pw_sidejobs_block_info() {
+  $blocks['profile'] = [
+    'info' => t('Sideline jobs'),
+    'cache' => DRUPAL_NO_CACHE,
   ];
-  $extra['user']['user']['display']['sidejobs'] = [
-    'label' => t('Sideline jobs'),
-    'description' => t(''),
-    'weight' => '100',
-  ];
-  return $extra;
+  return $blocks;
 }
 
 /**
- * Implements hook_user_view().
+ * Implements hook_block_view().
  */
-function pw_sidejobs_user_view($account, $view_mode, $langcode) {
-  $extra = field_extra_fields_get_display('user', 'user', $view_mode);
+function pw_sidejobs_block_view($delta = '') {
+  switch ($delta) {
+    case 'profile':
+      return pw_sidejobs_profile_block();
+    default:
+      return [];
+  }
+}
 
-  if (isset($extra['sidejobs'])) {
-    $result = pw_sidejobs_by_user_revision_query($account)
-      ->fieldOrderBy('field_sidejob_classification', 'value', 'DESC')
-      ->execute();
+/**
+ * Displays sideline jobs section of a profile.
+ */
+function pw_sidejobs_profile_block() {
+  $block = [];
+  $account = menu_get_object('user');
 
-    if (!empty($result['node'])) {
-      $nodes = node_load_multiple(array_keys($result['node']));
-      $account->content['sidejobs'] = node_view_multiple($nodes, 'embedded');
-      $inline_js = 'window.sidejobs = ' . drupal_json_encode(array_map('pw_sidejobs_to_array', array_values($nodes))) . ';';
-      $account->content['#attached']['js'][$inline_js] = [
-        'scope' => 'footer',
-        'type' => 'inline',
-      ];
-    }
+  if (!$account) {
+    return $block;
   }
 
-  if (isset($extra['additional_income']) && $extra['additional_income']['visible']) {
-    $account->content['additional_income'] = pw_sidejobs_accumulated_total_income_range($account);
+  $result = pw_sidejobs_by_user_revision_query($account)
+    ->fieldOrderBy('field_sidejob_classification', 'value', 'DESC')
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    $inline_js = 'window.sidejobs = ' . drupal_json_encode(array_map('pw_sidejobs_to_array', array_values($nodes))) . ';';
+    $block['subject'] = t('Sideline jobs');
+    $block['content'] = node_view_multiple($nodes, 'embedded');
+    $block['content']['#attached']['js'][$inline_js] = [
+      'scope' => 'footer',
+      'type' => 'inline',
+    ];
   }
+
+  return $block;
 }
 
 /**

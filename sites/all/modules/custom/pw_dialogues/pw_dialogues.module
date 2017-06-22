@@ -45,32 +45,10 @@ function pw_dialogues_menu() {
 }
 
 /**
- * Implements hook_field_extra_fields().
- */
-function pw_dialogues_field_extra_fields() {
-  $extra['user']['user']['display']['average_response_time'] = [
-    'label' => t('Average response time'),
-    'description' => t(''),
-    'weight' => '100',
-  ];
-  $extra['user']['user']['display']['dialogues'] = [
-    'label' => t('Questions and answers'),
-    'description' => t(''),
-    'weight' => '100',
-  ];
-  $extra['user']['user']['display']['question_form'] = [
-    'label' => t('Question form'),
-    'description' => t(''),
-    'weight' => '100',
-  ];
-  return $extra;
-}
-
-/**
  * Implements hook_block_info().
  */
 function pw_dialogues_block_info() {
-  $blocks['qa'] = array(
+  $blocks['profile'] = array(
     'info' => t('Questions and answers'),
     'cache' => DRUPAL_NO_CACHE,
   );
@@ -90,8 +68,8 @@ function pw_dialogues_block_info() {
  */
 function pw_dialogues_block_view($delta) {
   switch ($delta) {
-    case 'qa':
-      return pw_dialogues_questions_and_answers_block();
+    case 'profile':
+      return pw_dialogues_profile_block();
     case 'qa-filters-header':
       return pw_dialogues_questions_and_answers_filters_header_block();
     case 'qa-filters-search':
@@ -236,36 +214,6 @@ function pw_dialogues_cron() {
 }
 
 /**
- * Implements hook_user_view().
- */
-function pw_dialogues_user_view($account, $view_mode, $langcode) {
-  $extra = field_extra_fields_get_display('user', 'user', $view_mode);
-
-  if (isset($extra['dialogues']) && $extra['dialogues']['visible']) {
-    $result = pw_dialogues_by_user_revision_query($account)
-      ->execute();
-
-    if ($result['node']) {
-      $nodes = node_load_multiple(array_keys($result['node']));
-      $account->content['dialogues'] = node_view_multiple(array_slice($nodes, 0, 12, TRUE), 'embedded');
-      $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
-      $account->content['#attached']['js'][$inline_js] = [
-        'scope' => 'footer',
-        'type' => 'inline',
-      ];
-    }
-  }
-
-  if (isset($extra['average_response_time']) && $extra['average_response_time']['visible']) {
-    $account->content['average_response_time']['#markup'] = number_format(pw_dialogues_average_response_time($account) / 86400, 1, ',', '.');
-  }
-
-  if (isset($extra['question_form']) && $extra['question_form']['visible']) {
-    $account->content['question_form'] = node_view(node_load(10446), 'form')['webform'];
-  }
-}
-
-/**
  * Implements hook_entity_presave().
  *
  * Modifies data on dialogue save (or import via api).
@@ -324,46 +272,42 @@ function pw_dialogues_feeds_presave(FeedsSource $source, $entity, $item) {
 
 /**
  * Displays the questions and answers section of a profile.
+ *
+ * @return array
+ *   The block render array.
  */
-function pw_dialogues_questions_and_answers_block() {
-  $block = array();
-  $account = _pw_get_current_user();
-  $is_candidate = _pw_user_has_role($account, 'Candidate');
-  $parliament = _pw_get_current_parliament_term();
-  $limit = 10;
+function pw_dialogues_profile_block() {
+  $block = [];
+  $account = menu_get_object('user');
 
-  if (!$account || !$parliament) {
-    return;
+  if (!$account) {
+    return $block;
   }
 
-  $q = search_api_query('node_index');
-  $q->condition('type', 'dialogue');
-  $q->condition('field_dialogue_recipient', $account->uid);
-  $q->condition('field_parliament:name', $parliament->name);
-  $q->condition('field_dialogue_before_election', $is_candidate);
+  $block['subject'] = t('Questions and Answers');
+  $result = pw_dialogues_by_user_revision_query($account)->execute();
 
-  if (drupal_get_query_parameters()['keywords']) {
-    $f = $q->createFilter('OR');
-    $f->condition('body:value', drupal_get_query_parameters()['keywords']);
-    $f->condition('comments:field_dialogue_comment_body:value', drupal_get_query_parameters()['keywords']);
-    $q->filter($f);
+  if ($result['node']) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
+    $block['content'] = node_view_multiple(array_slice($nodes, 0, 12, TRUE), 'embedded');
+    $block['content']['#attached']['js'][$inline_js] = [
+      'scope' => 'footer',
+      'type' => 'inline',
+    ];
+  }
+  else {
+    $block['content'] = '';
   }
 
-  $q->sort('created', 'DESC');
-  $q->range(pager_find_page(10) * 10, $limit);
-  $response = $q->execute();
-
-  pager_default_initialize($response['result count'], $limit, 10);
-
-  if (!empty($response['results'])) {
-    $block['subject'] = t('Questions to @name', array('@name' => _pw_get_fullname($account)));
-    $block['content'] = node_view_multiple(node_load_multiple(array_keys($response['results'])), 'full');
-    $block['content']['pager'] = array(
-      '#theme' => 'pager',
-      '#element' => 10,
-    );
-    $block['content']['#attached']['js'][] = drupal_get_path('module', 'pw_dialogues') . '/pw_dialogues.js';
+  if ($account->number_of_questions > 0) {
+    $block['answers'] = $account->number_of_answers;
+    $block['questions'] = $account->number_of_questions;
+    $block['answer_ratio'] = round(100 * $account->number_of_answers / $account->number_of_questions, 0);
+    $block['average_response_time'] = round(pw_dialogues_average_response_time($account) / 86400);
   }
+
+  $block['question_form'] = node_view(node_load(10446), 'form')['webform'];
 
   return $block;
 }

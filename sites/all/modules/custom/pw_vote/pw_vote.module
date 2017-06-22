@@ -22,60 +22,25 @@ function pw_vote_menu() {
 }
 
 /**
- * Implements hook_field_extra_fields().
- */
-function pw_vote_field_extra_fields() {
-  $extra['user']['user']['display']['votes'] = [
-    'label' => t('Votes'),
-    'description' => t(''),
-    'weight' => '100',
-  ];
-  return $extra;
-}
-
-/**
  * Implements hook_user_view().
  */
 function pw_vote_user_view($account, $view_mode, $langcode) {
-  $extra = field_extra_fields_get_display('user', 'user', $view_mode);
-
-  if (isset($extra['votes']) && $extra['votes']['visible']) {
-    $result = pw_vote_by_user_revision_query($account)
-      ->propertyOrderBy('created', 'DESC')
-      ->pager(6, 1)
-      ->execute();
+  if ($view_mode == 'full') {
+    $result = pw_vote_by_user_revision_query($account)->execute();
 
     if (!empty($result['node'])) {
-      $callback = function ($item) {
-        $vote = node_load($item->field_vote_node[LANGUAGE_NONE][0]['target_id']);
-        return $vote->type == 'poll';
-      };
-      $nodes = array_filter(node_load_multiple(array_keys($result['node'])), $callback);
-      $account->content['votes'] = node_view_multiple($nodes, 'embedded');
-      $account->content['votes']['pager'] = [
-        '#theme' => 'pager',
-        '#element' => 1,
-        '#weight' => 100,
-      ];
-    }
-
-    $result_all = pw_vote_by_user_revision_query($account)->execute();
-
-    if (!empty($result_all['node'])) {
-      $nodes = node_load_multiple(array_keys($result_all['node']));
+      $nodes = node_load_multiple(array_keys($result['node']));
       $inline_js = 'window.votes = ' . drupal_json_encode(array_map('pw_vote_to_aray', array_values($nodes))) . ';';
+      $filter_attended = function ($item) {
+        return ($item->field_vote[LANGUAGE_NONE][0]['tid'] == 19670) ? FALSE : TRUE;
+      };
+      $account->content['votes_total'] = count($nodes);
+      $account->content['votes_attended'] = count(array_filter($nodes, $filter_attended));
       $account->content['#attached']['js'][$inline_js] = [
         'scope' => 'footer',
         'type' => 'inline',
       ];
-
-      $account->content['votes_total'] = count($nodes);
-      $filter_attended = function ($item) {
-        return ($item->field_vote[LANGUAGE_NONE][0]['tid'] == 19670) ? FALSE : TRUE;
-      };
-      $account->content['votes_attended'] = count(array_filter($nodes, $filter_attended));
     }
-
   }
 }
 
@@ -111,7 +76,6 @@ function pw_vote_check_user_allowed() {
 /**
  * Implements hook_form_alter().
  */
-
 function pw_vote_form_alter(&$form, &$form_state, $form_id) {
   // modify vote search filters
   if ($form_id == 'views_exposed_form' && $form['#id'] == "views-exposed-form-vote-search-block") {
@@ -237,7 +201,6 @@ function pw_vote_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Implements hook_form_validate().
  */
-
 function pw_vote_form_validate(&$form, &$form_state, $form_id) {
 
   // petition end date reached
@@ -255,7 +218,6 @@ function pw_vote_form_validate(&$form, &$form_state, $form_id) {
  *
  *  save vote on webform submission.
  */
-
 function pw_vote_webform_submission_insert($node, $submission) {
 
   // node id of webform "Ihr Standpunkt"
@@ -370,33 +332,27 @@ function pw_vote_mail($key, &$message, $params) {
   );
 }
 
-
 /**
  *  Implements hook_block_info().
- *
- *  create a block that displays voting behaviors.
  */
-
 function pw_vote_block_info() {
-
   $blocks['voting_behavior'] = array(
     'info' => t('Displays Voting Behavior'),
   );
   $blocks['final_result'] = array(
     'info' => t('Displays Final Result'),
   );
-
+  $blocks['profile'] = [
+    'info' => t('Voting behaviour'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
 /**
  *  Implements hook_block_view().
- *
  */
-
 function pw_vote_block_view($delta, $arguments = array()) {
-
-  // the $delta parameter tells us which block is being requested.
   switch ($delta) {
     case 'voting_behavior':
       $node = menu_get_object();
@@ -411,12 +367,53 @@ function pw_vote_block_view($delta, $arguments = array()) {
     case 'final_result_full':
       $block['content'] = pw_vote_final_result($arguments['nid']);
       break;
+    case 'profile':
+      $block = pw_vote_profile_block();
+      break;
   }
   return $block;
 }
 
 /**
+ * Displays votes section of a profile.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_vote_profile_block() {
+  $block = [];
+  $account = menu_get_object('user');
+
+  if (!$account) {
+    return $block;
+  }
+
+  $result = pw_vote_by_user_revision_query($account)
+    ->propertyOrderBy('created', 'DESC')
+    ->pager(6, 1)
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $callback = function ($item) {
+      $vote = node_load($item->field_vote_node[LANGUAGE_NONE][0]['target_id']);
+      return $vote->type == 'poll';
+    };
+    $nodes = array_filter(node_load_multiple(array_keys($result['node'])), $callback);
+    $block['subject'] = t('Voting behavior');
+    $block['content'] = node_view_multiple($nodes, 'embedded');
+    $block['content']['pager'] = [
+      '#theme' => 'pager',
+      '#element' => 1,
+      '#weight' => 100,
+    ];
+  }
+
+  return $block;
+}
+
+/**
  * pw_vote_final_result().
+ *
  * @param $nid int
  *   related nid to show result for.
  * @param $result_short boolean
