@@ -281,10 +281,10 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   $gender = $account->field_user_gender[LANGUAGE_NONE][0]['value'];
 
   if (in_array(PW_GLOBALS_CANDIDATE_RID, array_keys($account->roles))) {
-    $variables['role'] = t('Candidate', [], ['options' => ['context' => $gender]]);
+    $variables['role'] = t('Candidate', [], ['context' => $gender]);
   }
   elseif (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($account->roles))) {
-    $variables['role'] = t('Deputy', [], ['options' => ['context' => $gender]]);
+    $variables['role'] = t('Deputy', [], ['context' => $gender]);
   }
 }
 
