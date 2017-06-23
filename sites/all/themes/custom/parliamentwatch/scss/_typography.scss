@@ -40,6 +40,9 @@ h6, .h6 { @include h6(); }
 
 p {
   @include paragraph();
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 /* Links in paragraphes */

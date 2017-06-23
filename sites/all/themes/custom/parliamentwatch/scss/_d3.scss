@@ -34,6 +34,15 @@
 .d3--bars-vertical {
   border-bottom: 1px solid $white;
   padding-bottom: 2px;
+  position: relative;
+  z-index: 9;
+  .tooltip {
+    margin-bottom: $space-small;
+    span {
+      color: $gray;
+      white-space: nowrap;
+    }
+  }
 }
 
 

@@ -105,7 +105,10 @@
   margin-top: -1px;
 }
 
-
+/* Contextual Links */
+.contextual-links-region {
+  @include grid-container();
+}
 
 /* Temp */
 
