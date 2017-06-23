@@ -279,6 +279,13 @@ function viewDeputyDetail() {
     } else {
         $('.deputy__intro__content header').prependTo('.deputy__intro__sidebar')
     }
+
+    /*
+    * Implement select mechanism for changing the viewed profile (election period)
+     */
+    $('.deputy__intro__content select').on('select2:select', function (evt) {
+        window.location.href = evt.currentTarget.value;
+    });
 }
 
 
