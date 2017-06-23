@@ -52,8 +52,7 @@ function pw_profile_extender_theme($existing, $type, $theme, $path) {
  *  Changes standard revision url
 */
 function pw_profile_extender_menu_alter(&$items) {
-  $items['profile/%/archive/%'] = $items['user/%/revisions/%/view']; // arrays are copied here
-  $items['profile/%/archive/%']['access callback'] = TRUE; // grant anonymous access
-  unset($items['profile/%/archive/%']['access arguments']); // remove conflicting access
-
+  $items['profile/%user/archive/%'] = $items['user/%user/revisions/%/view']; // arrays are copied here
+  $items['profile/%user/archive/%']['access callback'] = TRUE; // grant anonymous access
+  unset($items['profile/%user/archive/%']['access arguments']); // remove conflicting access
 }
