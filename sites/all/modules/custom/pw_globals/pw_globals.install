@@ -360,6 +360,37 @@ function pw_globals_update_7016() {
 }
 
 /**
+ * Add intro block for blog.
+ */
+function pw_globals_update_7017() {
+  module_load_include('inc', 'block', 'block.admin');
+
+  $body = <<<EOD
+<div class="">
+</div>
+EOD;
+
+  $form = [];
+  $form_state = [
+    'values' => [
+      'body' => [
+        'format' => 'full_html',
+        'value' => $body
+      ],
+      'info' => t('Blog intro'),
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => 'blog',
+      'custom' => BLOCK_CUSTOM_FIXED,
+      'title' => '',
+      'module' => 'block',
+      'roles' => [],
+      'regions' => [
+        'parliamentwatch' => 'content',
+      ],
+    ],
+  ];
+  block_add_block_form_submit($form, $form_state);
+}
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
