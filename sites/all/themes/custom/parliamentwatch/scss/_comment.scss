@@ -2,13 +2,18 @@
 * Comment styling
 */
 
-.comment-wrapper {
-  padding: ($space-large * 2) 0;
-}
 .comment {
-  padding-bottom: $space;
+  margin-bottom: $space;
+  background: $white;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.05);
+  @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
-    @include grid-column(8, $neat-grid-no-gutter);
+    @include grid-column(8, $neat-grid-large-gutter);
+  }
+  .links {
+    border-top: 1px solid $darkBeige;
+    margin-top: $space;
+    padding:  $space-xsmall $space-small 0;
   }
 }
 
@@ -20,25 +25,28 @@
     @include h4();
     font-weight: 300;
     margin: 0;
-    padding-bottom: $space-small-mobile;
+    padding: $space-small-mobile $space-small;
     @include grid-column(11, $neat-grid-no-gutter);
   }
 }
 .comment__permalink {
   color: $gray;
   text-align: right;
-  padding-top: $space-xsmall-mobile;
-  padding-right: $space-xsmall-mobile;
+  @include padding($space-xsmall $space-xsmall $space-xsmall null)
   @include grid-column(1, $neat-grid-no-gutter);
 }
-
+.comment__content {
+  padding: 0 $space-small;
+}
 .indented {
   @include breakpoint($breakpoint-s-min) {
     margin-left: $space-large;
   }
+  .comment {
+    box-shadow: none;
+  }
 }
 // Limit indent after 3rd-level
-
 .indented .indented .indented { margin-left: 0; }
 
 
@@ -73,3 +81,23 @@
 .share + .comment-teaser {
   border-top: 0;
 }
+
+
+
+/* Comment form */
+
+.comment-form {
+  clear: both;
+  @include grid-column(12);
+  margin-top: $space-large;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(12, $neat-grid-large-gutter);
+  }
+}
+  .comment-wrapper .form {
+    @include grid-column(12);
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(12, $neat-grid-large-gutter);
+    }
+  }
+

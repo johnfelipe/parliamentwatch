@@ -64,7 +64,6 @@
     <h3><?php print $author; ?> <span class="comment__submitted__date"><?php print t('posted on') ?> <?php print format_date($comment->created, 'date_and_time'); ?></span></h3>
     <a href="#comment-<?php print render($comment->cid); ?>" class="comment__permalink"><i class="icon icon-link"></i></a>
   </div>
-
   <div class="comment__content"<?php print $content_attributes; ?>>
     <?php
     // We hide the comments and links now so that we can render them later.
@@ -77,6 +76,5 @@
       </div>
     <?php endif; ?>
   </div>
-
   <?php print render($content['links']) ?>
 </div>
