@@ -25,12 +25,8 @@
 }
 
 .btn--block {
-  display: block;
-  text-align: center;
+  @include button--block();
 }
 .btn--mobile-block {
-  @media (max-width: $breakpoint-xs-max) {
-    display: block;
-    float: none;
-  }
+  @include button--mobile-block();
 }

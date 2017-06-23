@@ -9,9 +9,22 @@
   padding: $padding-v $padding-h;
   border: 1px solid $background-color;
   display: inline-block;
+  font-family: $font-sans-serif;
   @include transition(color 300ms ease, background-color 300ms ease);
   &:hover {
     color: $background-color;
     background-color: transparent;
   }
 }
+@mixin button--block() {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+@mixin button--mobile-block() {
+  @media (max-width: $breakpoint-xs-max) {
+    @include button--block();
+    float: none;
+  }
+}
+
