@@ -32,7 +32,7 @@
 .comment__permalink {
   color: $gray;
   text-align: right;
-  @include padding($space-xsmall $space-xsmall $space-xsmall null)
+  @include padding($space-xsmall $space-xsmall $space-xsmall null);
   @include grid-column(1, $neat-grid-no-gutter);
 }
 .comment__content {
