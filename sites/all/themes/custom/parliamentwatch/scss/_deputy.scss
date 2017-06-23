@@ -243,16 +243,18 @@
     }
   }
 
-  /* Tabs */
-  .tabs {
-    margin-top: $space-large;
-    border-top: 1px solid $darkBeige;
-    .nav__item {
-      /* Exceptions for first Q&A-Tab */
-      &.nav__item--active:first-child .nav__item__link {
-        background: $orangeBG;
-        color: $white;
-      }
+}
+
+
+/* Tabs */
+.deputy.detail + .tabs {
+  margin-top: $space-large;
+  border-top: 1px solid $darkBeige;
+  .nav__item {
+    /* Exceptions for first Q&A-Tab */
+    &.nav__item--active:first-child .nav__item__link {
+      background: $orangeBG;
+      color: $white;
     }
   }
   .tabs__navigation {
@@ -260,94 +262,6 @@
     margin-bottom: -1px;
   }
   .tabs__content {
-
-    /* Exceptions for first Q&A-Tab */
-
-    &#fragen-und-antworten {
-      background: $orangeBG;
-      color: $white;
-      h2, h2 a { color: $white; }
-      .option-title {
-        .select2-container--default .select2-selection--multiple { border-color: $orangeBG; }
-        .select2-container--default .select2-selection--multiple .select2-selection__choice {
-          margin: $space-xsmall - 3;
-          @include tag($orangeBG, $orange, $white);
-        }
-        .form__item--checkbox {
-          @include breakpoint($breakpoint-m-min) {
-            text-align: right;
-            margin-right: $space-small;
-          }
-          .form__item__control {
-            border-color: $white;
-            &:checked { background-color: $white; }
-          }
-        }
-      }
-      > .tabs__content__content {
-        background: $brightOrange;
-        padding: $space-large 0;
-        margin-top: $space-large;
-        border-top: 1px solid $white;
-        color: $darkGray;
-        @include breakpoint($breakpoint-s-min) {
-          margin-top: $space-large * 2;
-          padding: ($space-large * 2) 0;
-        }
-        @include breakpoint($breakpoint-m-min) {
-          margin-bottom: -$space-large * 2;
-        }
-        h2, h2 a { color: $darkGray; font-family: $font-sans-serif; }
-      }
-
-      .question-form {
-        @include breakpoint($breakpoint-xs-min) {
-          @include grid-column(12);
-        }
-        @include breakpoint($breakpoint-s-min) {
-          @include grid-column(8);
-        }
-      }
-      .question-side {
-        @include breakpoint($breakpoint-xs-min) {
-          @include grid-column(12);
-        }
-        @include breakpoint($breakpoint-s-min) {
-          @include grid-column(4);
-        }
-      }
-      .form {
-        @include grid-container();
-        @include grid-collapse();
-        position: relative;
-        #edit-submitted-pflichtfelder {
-          @include breakpoint($breakpoint-m-min) {
-            position: absolute;
-            right: $space;
-            font-size: .8em;
-            bottom: 100%;
-            width: auto;
-          }
-          p {
-            margin: 0;
-          }
-        }
-      }
-      .form__item {
-        @include grid-column(12);
-      }
-      .form__item--submitted-firstname,
-      .form__item--submitted-lastname,
-      .form__item--webform-email,
-      .form__item--submitted-option-newsletter,
-      .form__item--submitted-residence,
-      .form__item--submitted-subject {
-        @include breakpoint($breakpoint-s-min) {
-          @include grid-column(6);
-        }
-      }
-    }
-
     .question-side__item {
       border-top: 1px solid $darkGray;
       padding-top: $space;
@@ -358,11 +272,11 @@
         margin-top: 0;
       }
     }
-
     #edit-submitted-summary {
       min-height: 110px;
       margin-top: $space-large;
     }
+
     .tab-qa-stats {
       clear: both;
       padding-top: $space-large;
@@ -420,6 +334,7 @@
         padding-bottom: $space-small;
       }
     }
+
     .swiper-container--tile {
       margin-bottom: $space-large;
       text-align: center;
@@ -456,6 +371,92 @@
   }
 }
 
+
+/* Exceptions for first Q&A-Tab */
+.tabs__content--qa {
+  background: $orangeBG;
+  color: $white;
+  h2, h2 a { color: $white; }
+  .option-title {
+    .select2-container--default .select2-selection--multiple { border-color: $orangeBG; }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+      margin: $space-xsmall - 3;
+      @include tag($orangeBG, $orange, $white);
+    }
+    .form__item--checkbox {
+      @include breakpoint($breakpoint-m-min) {
+        text-align: right;
+        margin-right: $space-small;
+      }
+      .form__item__control {
+        border-color: $white;
+        &:checked { background-color: $white; }
+      }
+    }
+  }
+  > .tabs__content__content {
+    background: $brightOrange;
+    padding: $space-large 0;
+    margin-top: $space-large;
+    border-top: 1px solid $white;
+    color: $darkGray;
+    @include breakpoint($breakpoint-s-min) {
+      margin-top: $space-large * 2;
+      padding: ($space-large * 2) 0;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      margin-bottom: -$space-large * 2;
+    }
+    h2, h2 a { color: $darkGray; font-family: $font-sans-serif; }
+  }
+
+  .question-form {
+    @include breakpoint($breakpoint-xs-min) {
+      @include grid-column(12);
+    }
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(8);
+    }
+  }
+  .question-side {
+    @include breakpoint($breakpoint-xs-min) {
+      @include grid-column(12);
+    }
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(4);
+    }
+  }
+  .form {
+    @include grid-container();
+    @include grid-collapse();
+    position: relative;
+    #edit-submitted-pflichtfelder {
+      @include breakpoint($breakpoint-m-min) {
+        position: absolute;
+        right: $space;
+        font-size: .8em;
+        bottom: 100%;
+        width: auto;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+  .form__item {
+    @include grid-column(12);
+  }
+  .form__item--submitted-firstname,
+  .form__item--submitted-lastname,
+  .form__item--webform-email,
+  .form__item--submitted-option-newsletter,
+  .form__item--submitted-residence,
+  .form__item--submitted-subject {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(6);
+    }
+  }
+}
 
 
 /* Abstimmverhalten */
