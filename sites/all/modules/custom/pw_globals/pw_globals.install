@@ -391,6 +391,25 @@ EOD;
   ];
   block_add_block_form_submit($form, $form_state);
 }
+
+/**
+ * Change node content for "Die Arbeit von abgeordnetenwatch.de unterstützen!".
+ */
+function pw_globals_update_7018() {
+  $node = node_load(104846);
+
+  $node->body[LANGUAGE_NONE][0]['value'] = <<<EOD
+<div class="well__left">
+<h3>Die Arbeit von abgeordnetenwatch.de unterstützen!</h3>
+<p>
+	Sie finden unsere Arbeit wichtig und möchten weitere Recherchen ermöglichen? Dann unterstützen Sie uns doch.
+</p>
+</div>
+EOD;
+  node_save($node);
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
