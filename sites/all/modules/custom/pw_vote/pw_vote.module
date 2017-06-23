@@ -339,9 +339,6 @@ function pw_vote_block_info() {
   $blocks['voting_behavior'] = array(
     'info' => t('Displays Voting Behavior'),
   );
-  $blocks['final_result'] = array(
-    'info' => t('Displays Final Result'),
-  );
   $blocks['profile'] = [
     'info' => t('Voting behaviour'),
     'cache' => DRUPAL_NO_CACHE,
@@ -360,12 +357,6 @@ function pw_vote_block_view($delta, $arguments = array()) {
       if (!empty($node) && !empty($field_parliament)) {
         $block['content'] = pw_vote_voting_behavior($node);
       }
-      break;
-    case 'final_result_short':
-      $block['content'] = pw_vote_final_result($arguments['nid'], TRUE);
-      break;
-    case 'final_result_full':
-      $block['content'] = pw_vote_final_result($arguments['nid']);
       break;
     case 'profile':
       $block = pw_vote_profile_block();
@@ -409,75 +400,6 @@ function pw_vote_profile_block() {
   }
 
   return $block;
-}
-
-/**
- * pw_vote_final_result().
- *
- * @param $nid int
- *   related nid to show result for.
- * @param $result_short boolean
- *   either show only yes/no or a full result.
- * @return string
- *   returns themed final result for the related node.
- */
-function pw_vote_final_result($nid, $result_short=FALSE){
-
-  // return value
-  $content = '';
-
-  // retrieve vocabulary id
-  $voc = taxonomy_vocabulary_machine_name_load('votes');
-
-  // load vote terms (yes/no/...) from vocabulary
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'taxonomy_term')
-    ->propertyCondition('vid', $voc->vid, '=');
-  if($result_short){
-    $query->propertyCondition('name', array('yes', 'no'));
-  }
-  $result = $query->execute();
-
-  if($result['taxonomy_term']){
-    $terms = taxonomy_term_load_multiple(array_keys($result['taxonomy_term']));
-
-    // iterate through votes
-    $sum_votes = array();
-    foreach($terms as $term){
-      $query = new EntityFieldQuery();
-      $query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', 'vote')
-        ->fieldCondition('field_vote_node', 'target_id', $nid)
-        ->fieldCondition('field_vote', 'tid', array($term->tid))
-        ->propertyCondition('status', NODE_PUBLISHED);
-
-      // store summarized votes
-      $sum_votes[$term->tid] = $query->count()->execute();
-    }
-
-    // no result
-    if(array_sum($sum_votes) == 0) {
-      return '';
-    }
-
-    if($result_short){
-
-      // filter for votes have won
-      $max_vote = max($sum_votes);
-      $sum_votes = array_fill_keys(array_keys($sum_votes, $max_vote), '');
-    }
-    else{
-
-      // sort votes descending
-      arsort($sum_votes);
-    }
-
-    // call subroutine for theming
-    $content = pw_vote_voting_behavior_sum_votes($sum_votes, 'voting_behavior_sum_overview', '', FALSE);
-  }
-
-  // return
-  return $content;
 }
 
 /**
