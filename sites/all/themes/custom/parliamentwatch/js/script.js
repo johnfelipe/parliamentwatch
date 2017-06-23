@@ -342,7 +342,11 @@ function d3BarsVertical(element) {
         .on("mouseover", function(d) {
             var tooltip = $(this).parents('.d3').find('.d3__tooltip');
             tooltip.css("opacity", 1);
-            tooltip.html(d.name).css("left", (d3.event.offsetX) + "px").css("bottom", height - y(d.value) + "px");
+            if (d.value == 1) {
+                tooltip.html(d.name + ' <span>(' + d.value + ' Frage)</span>').css("left", (d3.event.offsetX) + "px").css("bottom", height - y(d.value) + "px");
+            } else {
+                tooltip.html(d.name + ' <span>(' + d.value + ' Fragen)</span>').css("left", (d3.event.offsetX) + "px").css("bottom", height - y(d.value) + "px");
+            }
         })
         .on("mouseout", function(d) {
             var tooltip = $(this).parents('.d3').find('.d3__tooltip');
@@ -782,7 +786,6 @@ function filterBar() {
         }
     });
 }
-
 
 
 $(function () {
