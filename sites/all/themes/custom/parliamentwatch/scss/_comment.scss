@@ -2,6 +2,10 @@
 * Comment styling
 */
 
+.comment-wrapper {
+  @include grid-container();
+  background: $beige;
+}
 .comment {
   margin-bottom: $space;
   background: $white;
