@@ -12,6 +12,9 @@
     margin-bottom: $space-large;
   }
   @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4, $neat-grid-large-gutter);
+  }
+  @include breakpoint($breakpoint-l-min) {
     @include grid-column(3, $neat-grid-large-gutter);
   }
   .tile__title {
@@ -19,5 +22,6 @@
     padding-top: $space;
     padding-bottom: $space;
     text-align: center;
+    @include h3();
   }
 }

@@ -23,5 +23,6 @@
     padding-top: $space;
     padding-bottom: $space;
     text-align: center;
+    @include h3();
   }
 }
