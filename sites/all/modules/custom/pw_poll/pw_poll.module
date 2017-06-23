@@ -41,7 +41,13 @@ function pw_poll_page($parliament) {
   $result = $q->pager(9)->execute();
 
   if (!empty($result['node'])) {
-    $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
+    $nodes = node_load_multiple(array_keys($result['node']));
+
+    foreach (pw_poll_results($nodes) as $nid => $result) {
+      $nodes[$nid]->result = $result;
+    }
+
+    $build = node_view_multiple($nodes, 'tile');
     $build['nodes']['#theme_wrappers'] = ['container__tiles'];
     $build['pager'] = [
       '#theme' => 'pager',
@@ -65,4 +71,41 @@ function pw_poll_base_query() {
   $q->propertyCondition('status', NODE_PUBLISHED);
 
   return $q;
+}
+
+/**
+ * Returns the results for the given nodes.
+ *
+ * @param array
+ *   The poll nodes.
+ */
+function pw_poll_results($nodes) {
+  $results = [];
+
+  $q = db_select('field_data_field_vote', 'v');
+  $q->join('field_data_field_vote_node', 'p', 'v.entity_id = p.entity_id');
+  $q->addField('p', 'field_vote_node_target_id', 'nid');
+  $q->addField('v', 'field_vote_tid');
+  $q->addExpression('COUNT(v.field_vote_tid)', 'vote_count');
+  $q->condition('p.field_vote_node_target_id', array_map(function ($item) { return $item->nid; }, $nodes));
+  $q->groupBy('p.field_vote_node_target_id')->groupBy('v.field_vote_tid');
+
+  foreach ($q->execute() as $row) {
+    switch ($row->field_vote_tid) {
+      case 19667:
+        $results[$row->nid]['yes'] = $row->vote_count;
+        break;
+      case 19668:
+        $results[$row->nid]['no'] = $row->vote_count;
+        break;
+      case 19669:
+        $results[$row->nid]['abstain'] = $row->vote_count;
+        break;
+      case 19670:
+        $results[$row->nid]['no-show'] = $row->vote_count;
+        break;
+    }
+  }
+
+  return $results;
 }

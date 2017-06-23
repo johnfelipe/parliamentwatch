@@ -86,14 +86,14 @@
   </div>
   <div class="tile__date"><?php print $date; ?></div>
   <div class="tile__pollchart">
-    <div class="tile__pollchart__value_left won">351</div>
+    <div class="tile__pollchart__value_left <?php print ($yays > $nays) ? 'won' : ''; ?>"><?php print $yays; ?></div>
     <div class="tile__pollchart__statistic">
       <div class='d3 d3--donut'
            data-d3-donut-icon
-           data-data='[{"name":"Ja","count":63,"color":"#9fd773"},{"name":"Nein","count":24,"color":"#cc6c5b"},{"name":"Enthalten","count":8,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+           data-data='<?php print drupal_json_encode($result); ?>'>
       </div>
     </div>
-    <div class="tile__pollchart__value_right">231</div>
+    <div class="tile__pollchart__value_right"><?php print $nays; ?></div>
   </div>
   <h2 class="tile__title mh-item"<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
   <?php print render($title_suffix); ?>
