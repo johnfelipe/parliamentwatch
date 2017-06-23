@@ -377,6 +377,9 @@
   background: $orangeBG;
   color: $white;
   h2, h2 a { color: $white; }
+  h2 a {
+    border-color: $white;
+  }
   .option-title {
     .select2-container--default .select2-selection--multiple { border-color: $orangeBG; }
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
