@@ -93,6 +93,7 @@
             </div>
           </div>
           <div class="tab-qa-stats__col--large">
+            <strong><?php print t('Questions by category') ?></strong>
             <span class='d3 d3--bars-vertical'
                 data-d3-bars-vert
                 data-data='parseDialogues'
