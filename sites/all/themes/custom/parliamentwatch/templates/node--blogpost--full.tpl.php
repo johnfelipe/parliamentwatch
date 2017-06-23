@@ -110,6 +110,23 @@
   <div class="blog__content" <?php print $content_attributes; ?>>
     <div class="container">
       <?php print render($content['body']); ?>
+      <div class="well well--tabs">
+        <div class="tabs">
+          <div class="tabs__navigation">
+            <ul class="nav nav--tab">
+              <li class="nav__item"><a href="#unterstuetzen" class="nav__item__link">Unterstützen</a></li>
+              <li class="nav__item nav__item--active"><a href="#informiert-bleiben" class="nav__item__link">Informiert bleiben</a></li>
+            </ul>
+          </div>
+          <div id="unterstuetzen" class="tabs__content tabs__content--active">
+            <?php print render($content['field_blockreference']); ?>
+          </div>
+          <div id="informiert-bleiben" class="tabs__content">
+            alkjdlaksnd askjdbn
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
