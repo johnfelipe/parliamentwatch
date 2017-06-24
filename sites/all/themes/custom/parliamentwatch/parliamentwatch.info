@@ -7,6 +7,8 @@ version = '7.x-4.0'
 
 regions[header_top] = Header top
 regions[header_bottom] = Header bottom
+regions[intro_primary] = Intro primary
+regions[intro_secondary] = Intro secondary
 regions[content] = Content
 regions[content_tabs] = Content tabs
 regions[content_extra] = Content extra
