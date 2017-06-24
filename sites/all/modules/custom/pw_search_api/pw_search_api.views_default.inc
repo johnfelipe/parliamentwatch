@@ -64,6 +64,7 @@ function pw_search_api_views_default_views() {
   $handler->display->display_options['fields']['field_user_constituency']['id'] = 'field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['table'] = 'search_api_index_politician_index';
   $handler->display->display_options['fields']['field_user_constituency']['field'] = 'field_user_constituency';
+  $handler->display->display_options['fields']['field_user_constituency']['label'] = 'Wahlkreis';
   $handler->display->display_options['fields']['field_user_constituency']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['field_user_constituency']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_user_constituency']['bypass_access'] = 0;
@@ -150,12 +151,12 @@ function pw_search_api_views_default_views() {
   $handler->display->display_options['fields']['field_user_roles_for_view_mode_s']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['field_user_roles_for_view_mode_s']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_user_roles_for_view_mode_s']['bypass_access'] = 0;
-  /* Sortierkriterien: Indexed Benutzer: Answers Give */
+  /* Sortierkriterien: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['sorts']['field_user_answers_give']['id'] = 'field_user_answers_give';
   $handler->display->display_options['sorts']['field_user_answers_give']['table'] = 'search_api_index_politician_index';
   $handler->display->display_options['sorts']['field_user_answers_give']['field'] = 'field_user_answers_give';
   $handler->display->display_options['sorts']['field_user_answers_give']['order'] = 'DESC';
-  /* Sortierkriterien: Indexed Benutzer: Questions Get */
+  /* Sortierkriterien: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['sorts']['field_user_questions_get']['id'] = 'field_user_questions_get';
   $handler->display->display_options['sorts']['field_user_questions_get']['table'] = 'search_api_index_politician_index';
   $handler->display->display_options['sorts']['field_user_questions_get']['field'] = 'field_user_questions_get';
@@ -244,7 +245,7 @@ function pw_search_api_views_default_views() {
     t('.'),
     t(','),
     t('Address » Vollständiger Name'),
-    t('Constituency'),
+    t('Wahlkreis'),
     t('First Name'),
     t('Nachname'),
     t('Parliament'),
@@ -400,8 +401,6 @@ Alle|Ganze Plattform durchsuchen
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Elemente pro Seite';
@@ -547,7 +546,6 @@ Alle|Ganze Plattform durchsuchen
     t('All|Ganze Plattform durchsuchen
 Alle|Ganze Plattform durchsuchen
 0|Ganze Plattform durchsuchen 0'),
-    t('Wählen Sie eine beliebige Filter und klicken Sie auf Anwenden, um Ergebnisse zu sehen'),
     t('Elemente pro Seite'),
     t('- Alle -'),
     t('Offset'),
@@ -760,8 +758,6 @@ no-show|nicht beteiligt',
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'managed_content';
   $handler->display->display_options['pager']['type'] = 'load_more';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -1007,7 +1003,6 @@ no-show|nicht beteiligt',
 no|dagegen gestimmt
 abstain|enthalten
 no-show|nicht beteiligt'),
-    t('Wählen Sie eine beliebige Filter und klicken Sie auf Anwenden, um Ergebnisse zu sehen'),
     t('Elemente pro Seite'),
     t('- Alle -'),
     t('Offset'),

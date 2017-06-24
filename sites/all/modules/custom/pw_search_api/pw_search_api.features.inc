@@ -255,8 +255,7 @@ function pw_search_api_default_search_api_index() {
       }
     },
     "enabled" : "1",
-    "read_only" : "0",
-    "rdf_mapping" : []
+    "read_only" : "0"
   }');
   $items['node_index'] = entity_import('search_api_index', '{
     "name" : "Node Index",
@@ -326,7 +325,6 @@ function pw_search_api_default_search_api_index() {
         "field_politician" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "user" },
         "field_politician:created" : { "type" : "list\\u003Cdate\\u003E" },
         "field_politician:field_user_age" : { "type" : "list\\u003Cinteger\\u003E" },
-        "field_politician:field_user_answers_give" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_politician:field_user_birthday" : { "type" : "list\\u003Cdate\\u003E" },
         "field_politician:field_user_childs" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_politician:field_user_commitee" : {
@@ -478,7 +476,6 @@ function pw_search_api_default_search_api_index() {
         "field_politician:field_user_pseudonym" : { "type" : "list\\u003Ctext\\u003E" },
         "field_politician:field_user_public_mail" : { "type" : "list\\u003Ctext\\u003E" },
         "field_politician:field_user_qanda_ratio" : { "type" : "list\\u003Cinteger\\u003E" },
-        "field_politician:field_user_questions_get" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_politician:field_user_roles_for_view_mode_s" : {
           "type" : "list\\u003Clist\\u003Cinteger\\u003E\\u003E",
           "entity_type" : "taxonomy_term"
@@ -530,7 +527,6 @@ function pw_search_api_default_search_api_index() {
         "field_vote_user:edit_url" : { "type" : "uri" },
         "field_vote_user:feed_nid" : { "type" : "integer" },
         "field_vote_user:field_user_age" : { "type" : "integer" },
-        "field_vote_user:field_user_answers_give" : { "type" : "integer" },
         "field_vote_user:field_user_birthday" : { "type" : "date" },
         "field_vote_user:field_user_childs" : { "type" : "integer" },
         "field_vote_user:field_user_commitee" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
@@ -560,7 +556,6 @@ function pw_search_api_default_search_api_index() {
         "field_vote_user:field_user_public_mail" : { "type" : "text" },
         "field_vote_user:field_user_qanda_ratio" : { "type" : "integer" },
         "field_vote_user:field_user_question_form_closed" : { "type" : "text" },
-        "field_vote_user:field_user_questions_get" : { "type" : "integer" },
         "field_vote_user:field_user_roles_for_view_mode_s" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_vote_user:field_user_title" : { "type" : "text" },
         "field_vote_user:field_user_twitter_account" : { "type" : "text" },
@@ -976,8 +971,7 @@ function pw_search_api_default_search_api_index() {
       }
     },
     "enabled" : "1",
-    "read_only" : "0",
-    "rdf_mapping" : []
+    "read_only" : "0"
   }');
   $items['politician_index'] = entity_import('search_api_index', '{
     "name" : "Politician Index",
@@ -991,7 +985,6 @@ function pw_search_api_default_search_api_index() {
       "fields" : {
         "field_has_picture" : { "type" : "string" },
         "field_user_age" : { "type" : "integer" },
-        "field_user_answers_give" : { "type" : "integer" },
         "field_user_commitee" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_constituency" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_constituency:field_constituency_area_codes:field_constituency_ac_descriptor" : { "type" : "list\\u003Clist\\u003Ctext\\u003E\\u003E" },
@@ -1020,7 +1013,6 @@ function pw_search_api_default_search_api_index() {
         "field_user_parliament:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_user_party" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_qanda_ratio" : { "type" : "integer" },
-        "field_user_questions_get" : { "type" : "integer" },
         "field_user_retired" : { "type" : "date" },
         "field_user_roles_for_view_mode_s" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_title" : { "type" : "text" },
@@ -1154,8 +1146,7 @@ function pw_search_api_default_search_api_index() {
       }
     },
     "enabled" : "1",
-    "read_only" : "0",
-    "rdf_mapping" : []
+    "read_only" : "0"
   }');
   $items['vote_index'] = entity_import('search_api_index', '{
     "name" : "Vote Index",
@@ -1213,7 +1204,6 @@ function pw_search_api_default_search_api_index() {
         "field_politician" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "user" },
         "field_politician:created" : { "type" : "list\\u003Cdate\\u003E" },
         "field_politician:field_user_age" : { "type" : "list\\u003Cinteger\\u003E" },
-        "field_politician:field_user_answers_give" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_politician:field_user_birthday" : { "type" : "list\\u003Cdate\\u003E" },
         "field_politician:field_user_childs" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_politician:field_user_commitee" : {
@@ -1365,7 +1355,6 @@ function pw_search_api_default_search_api_index() {
         "field_politician:field_user_pseudonym" : { "type" : "list\\u003Ctext\\u003E" },
         "field_politician:field_user_public_mail" : { "type" : "list\\u003Ctext\\u003E" },
         "field_politician:field_user_qanda_ratio" : { "type" : "list\\u003Cinteger\\u003E" },
-        "field_politician:field_user_questions_get" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_politician:field_user_roles_for_view_mode_s" : {
           "type" : "list\\u003Clist\\u003Cinteger\\u003E\\u003E",
           "entity_type" : "taxonomy_term"
@@ -1418,7 +1407,6 @@ function pw_search_api_default_search_api_index() {
         "field_vote_user:edit_url" : { "type" : "uri" },
         "field_vote_user:feed_nid" : { "type" : "integer" },
         "field_vote_user:field_user_age" : { "type" : "integer" },
-        "field_vote_user:field_user_answers_give" : { "type" : "integer" },
         "field_vote_user:field_user_birthday" : { "type" : "date" },
         "field_vote_user:field_user_childs" : { "type" : "integer" },
         "field_vote_user:field_user_commitee" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
@@ -1448,7 +1436,6 @@ function pw_search_api_default_search_api_index() {
         "field_vote_user:field_user_public_mail" : { "type" : "text" },
         "field_vote_user:field_user_qanda_ratio" : { "type" : "integer" },
         "field_vote_user:field_user_question_form_closed" : { "type" : "text" },
-        "field_vote_user:field_user_questions_get" : { "type" : "integer" },
         "field_vote_user:field_user_roles_for_view_mode_s" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_vote_user:field_user_title" : { "type" : "text" },
         "field_vote_user:field_user_twitter_account" : { "type" : "text" },
@@ -1925,8 +1912,7 @@ function pw_search_api_default_search_api_index() {
       }
     },
     "enabled" : "1",
-    "read_only" : "0",
-    "rdf_mapping" : []
+    "read_only" : "0"
   }');
   return $items;
 }
