@@ -4,7 +4,12 @@
 
 .comment-wrapper {
   @include grid-container();
-  background: $beige;
+  padding-top: $space-large * 2;
+  .row {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-collapse($neat-grid-large-gutter);
+    }
+  }
 }
 .comment {
   margin-bottom: $space;
