@@ -81,6 +81,10 @@ function pw_globals_block_info() {
     'info' => t('Comments'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['title'] = [
+    'info' => t('Title'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -91,6 +95,8 @@ function pw_globals_block_view($delta = '') {
   switch ($delta) {
     case 'comments':
       return pw_globals_comments_block();
+    case 'title':
+      return pw_globals_title_block();
     default:
       return [];
   }
@@ -142,6 +148,21 @@ function pw_globals_comments_block() {
 
   $block['subject'] = t('Comments');
   $block['content'] = comment_node_page_additions($node);
+
+  return $block;
+}
+
+/**
+ * Displays comments section of a node.
+ *
+ * @return
+ *   The block render array.
+ */
+function pw_globals_title_block() {
+  $block = [
+    'subject' => t('Title'),
+    'content' => drupal_get_title(),
+  ];
 
   return $block;
 }
