@@ -13,7 +13,6 @@ dependencies[] = features
 dependencies[] = field_group
 dependencies[] = media
 dependencies[] = pw_search_api
-dependencies[] = pw_subsite
 dependencies[] = smart_trim
 dependencies[] = strongarm
 dependencies[] = tagadelic

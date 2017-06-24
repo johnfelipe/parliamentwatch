@@ -13,7 +13,6 @@ dependencies[] = list
 dependencies[] = media
 dependencies[] = number
 dependencies[] = pw_search_api
-dependencies[] = pw_subsite
 dependencies[] = rabbit_hole
 dependencies[] = role_export
 dependencies[] = strongarm
