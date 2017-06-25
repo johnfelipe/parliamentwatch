@@ -159,6 +159,50 @@ function tooltip() {
     });
 }
 
+/*
+ * Newsletter Widget
+ * */
+
+function newsletterWidget() {
+    $( "#newsletter-widget" ).submit(function( event ) {
+        var inputValue = $('#newsletter-widget-mail').val();
+        //var data = new FormData(document.getElementById('newsletter_form'));
+        var xhr = new XMLHttpRequest();
+        document.getElementById('newsletter-widget').setAttribute('class', 'form loading');
+        document.getElementById('newsletter-widget-button').disabled = true;
+
+        xhr.open('GET', '//www.abgeordnetenwatch.de/newsletter/subscribe?email=' + inputValue, true);
+        xhr.onload = function () {
+            // do something to response
+            console.log(this.responseText);
+            var newsletter_message = document.getElementById('newsletter-widget-message');
+            newsletter_message.setAttribute('class', 'form__item form__item--alert');
+
+            if (this.responseText == "success"){
+                newsletter_message.innerHTML = "Anmeldung erfolgreich, sie erhalten eine Email mit Bestätigungslink.";
+                newsletter_message.setAttribute('class', 'form__item show form__item--alert form__item--alert-success');
+            }
+            else if (this.responseText == "email_error"){
+                newsletter_message.innerHTML = "Ihre Email-Adresse konnte nicht angemeldet werden.";
+                newsletter_message.setAttribute('class', 'form__item show form__item--alert form__item--alert-danger');
+            }
+            else if (this.responseText == "please_confirm"){
+                newsletter_message.innerHTML = "Bitte bestätigen Sie Ihre Anmeldung.";
+                newsletter_message.setAttribute('class', 'form__item show form__item--alert form__item--alert-info');
+            }
+            else if (this.responseText == "already_in_list"){
+                newsletter_message.innerHTML = "Sie erhalten bereits unseren Newsletter.";
+                newsletter_message.setAttribute('class', 'form__item show form__item--alert form__item--alert-info');
+            }
+            document.getElementById('newsletter-widget').setAttribute('class', 'form');
+            document.getElementById('newsletter-widget-button').disabled = false;
+        };
+        xhr.send();
+        event.preventDefault();
+    });
+}
+
+
 
 /*
  * Tabs
@@ -804,6 +848,7 @@ $(function () {
     tableSecondaryIncome();
     initLocalScroll();
     pollTimeline();
+    newsletterWidget();
 
     // Init global matchHeight-plugin class
 

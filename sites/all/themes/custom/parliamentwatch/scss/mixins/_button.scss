@@ -15,6 +15,9 @@
     color: $background-color;
     background-color: transparent;
   }
+  &:disabled {
+    opacity: .4;
+  }
 }
 @mixin button--block() {
   display: block;

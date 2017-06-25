@@ -7,6 +7,7 @@
 }
 .form__item {
   margin-bottom: $space-small;
+  position: relative;
   .description {
     padding: $space-xsmall-mobile 0;
     font-size: .8em;
@@ -58,6 +59,65 @@
     margin: 0;
     transform: translate(0,-50%);
   }
+}
+
+.form__item--alert {
+  display: none;
+  position: relative;
+  &.show {
+    text-align: center;
+    font-size: .9em;
+    padding: $space-xsmall;
+    display: block;
+    margin-bottom: $space-small;
+    border: 2px solid $gray;
+  }
+  &:before {
+    content: '';
+    @include triangle(12px 5px, $gray, down);
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    margin-top: 2px;
+    margin-left: -4px;
+  }
+}
+.form__item--alert-danger.show { border-color: $error; &:before { @include triangle(12px 5px, $error, down); } }
+.form__item--alert-info.show { border-color: $warning; &:before { @include triangle(12px 5px, $warning, down); } }
+.form__item--alert-success.show { border-color: $success; &:before { @include triangle(12px 5px, $success, down); } }
+
+/* Loader */
+
+@-webkit-keyframes spinnerRotate
+{
+  from{-webkit-transform:rotate(0deg);}
+  to{-webkit-transform:rotate(360deg);}
+}
+@-moz-keyframes spinnerRotate
+{
+  from{-moz-transform:rotate(0deg);}
+  to{-moz-transform:rotate(360deg);}
+}
+@-ms-keyframes spinnerRotate
+{
+  from{-ms-transform:rotate(0deg);}
+  to{-ms-transform:rotate(360deg);}
+}
+
+.form__item__loader {
+  display: none;
+  position: absolute;
+  right: $space-xsmall;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  margin-top: -8px;
+  color: $gray;
+  @include animation(spinnerRotate 1.0s linear infinite);
+}
+.loading .form__item__loader {
+  display: block;
 }
 
 /* Textareas */

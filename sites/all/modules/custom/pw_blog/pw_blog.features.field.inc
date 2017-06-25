@@ -460,9 +460,24 @@ function pw_blog_field_default_fields() {
       'description' => 'Der gewählte Block wird automatisch zwischen dem Text und den Kommentaren ausgegeben.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
+          'label' => 'hidden',
+          'module' => 'blockreference',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'show_empty_blocks' => 1,
+          ),
+          'type' => 'blockreference_default',
           'weight' => '5',
         ),
         'full' => array(
@@ -1088,7 +1103,7 @@ function pw_blog_field_default_fields() {
             ),
           ),
           'type' => 'text_default',
-          'weight' => '6',
+          'weight' => '4',
         ),
         'search_result' => array(
           'label' => 'above',

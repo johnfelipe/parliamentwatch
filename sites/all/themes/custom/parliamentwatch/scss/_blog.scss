@@ -187,6 +187,7 @@
   }
   .well--tabs {
     font-size: .9em;
+    margin-top: $space-large * 2;
     .node {
       @include grid-container();
     }

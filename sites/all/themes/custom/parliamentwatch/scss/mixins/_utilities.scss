@@ -38,7 +38,7 @@
 /* Container */
 
 @mixin container() {
-  max-width: 1400px;
+  max-width: 1300px;
   @include margin(null auto);
   @include padding(null $space-mobile);
   @include grid-container;
