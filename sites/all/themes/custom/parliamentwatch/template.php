@@ -590,14 +590,18 @@ function parliamentwatch_menu_breadcrumb_alter(&$active_trail, $item){
     }
 
     // remove icon class menu attibutes for rendering as breadcrumb
-    foreach($value['options']['attributes']['class'] as $index_class => $class){
-      if(strpos($class, 'icon') > -1){
-        unset($value['options']['attributes']['class'][$index_class]);
+    if(isset($value['options']['attributes']['class'])){
+      foreach($value['options']['attributes']['class'] as $index_class => $class){
+        if(strpos($class, 'icon') > -1){
+          unset($value['options']['attributes']['class'][$index_class]);
+        }
       }
     }
-    foreach($value['localized_options']['attributes']['class'] as $index_class => $class){
-      if(strpos($class, 'icon') > -1){
-        unset($value['localized_options']['attributes']['class'][$index_class]);
+    if(isset($value['localized_options']['attributes']['class'])){
+      foreach($value['localized_options']['attributes']['class'] as $index_class => $class){
+        if(strpos($class, 'icon') > -1){
+          unset($value['localized_options']['attributes']['class'][$index_class]);
+        }
       }
     }
   }
