@@ -427,7 +427,7 @@ function pw_globals_update_7019() {
     'weight' => -1,
     'region' => 'intro_primary',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => "",
+    'pages' => "blog/*\nprofile/*\nprofile/*/archive/*",
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
   ];
   _pw_globals_configure_block($block);
