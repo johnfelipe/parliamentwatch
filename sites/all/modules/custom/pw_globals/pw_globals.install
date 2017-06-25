@@ -596,6 +596,7 @@ function _pw_globals_menu_parliament_tree_add($path, $title, $weight) {
     'Ausschüsse' => 'ausschuesse',
     'Petitionen' => 'petitionen',
     'Wahlrecht' => 'wahlrecht',
+    'Wahlprogramme' => 'wahlprogramme',
   ];
 
   $plid = _pw_globals_menu_link_add($path, $title, $weight, 'main-menu');
