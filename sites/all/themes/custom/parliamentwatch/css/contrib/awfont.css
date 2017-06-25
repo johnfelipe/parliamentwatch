@@ -24,6 +24,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 .icon-minus:before {
   content: "\f068";
 }
@@ -56,6 +57,9 @@
 }
 .icon-circle-o:before {
   content: "\f10c";
+}
+.icon-spinner:before {
+  content: "\f110";
 }
 .icon-youtube-play:before {
   content: "\f16a";
