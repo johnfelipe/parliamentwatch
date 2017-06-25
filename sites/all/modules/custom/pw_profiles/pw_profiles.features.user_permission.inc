@@ -140,16 +140,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: create field_user_first_letter_lname.
-  $permissions['create field_user_first_letter_lname'] = array(
-    'name' => 'create field_user_first_letter_lname',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'anonymous user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: create field_user_fname.
   $permissions['create field_user_fname'] = array(
     'name' => 'create field_user_fname',
@@ -561,15 +551,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit field_user_first_letter_lname.
-  $permissions['edit field_user_first_letter_lname'] = array(
-    'name' => 'edit field_user_first_letter_lname',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: edit field_user_fname.
   $permissions['edit field_user_fname'] = array(
     'name' => 'edit field_user_fname',
@@ -962,15 +943,6 @@ function pw_profiles_user_default_permissions() {
     'roles' => array(
       0 => 'Content Manager',
       1 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_user_first_letter_lname.
-  $permissions['edit own field_user_first_letter_lname'] = array(
-    'name' => 'edit own field_user_first_letter_lname',
-    'roles' => array(
-      0 => 'administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -1424,18 +1396,6 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: view field_user_external_url.
   $permissions['view field_user_external_url'] = array(
     'name' => 'view field_user_external_url',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-      2 => 'anonymous user',
-      3 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view field_user_first_letter_lname.
-  $permissions['view field_user_first_letter_lname'] = array(
-    'name' => 'view field_user_first_letter_lname',
     'roles' => array(
       0 => 'Content Manager',
       1 => 'administrator',
@@ -1916,18 +1876,6 @@ function pw_profiles_user_default_permissions() {
     'roles' => array(
       0 => 'Content Manager',
       1 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_user_first_letter_lname.
-  $permissions['view own field_user_first_letter_lname'] = array(
-    'name' => 'view own field_user_first_letter_lname',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-      2 => 'anonymous user',
-      3 => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
