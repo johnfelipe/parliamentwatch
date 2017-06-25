@@ -40,9 +40,8 @@ function pw_parser_edit_menu() {
  * @see pw_parser_edit_sidejobs_replace()
  */
 function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
-  $http_origin = $_SERVER['HTTP_ORIGIN'];
-  if ($http_origin) {
-      drupal_add_http_header('Access-Control-Allow-Origin', $http_origin);
+  if (isset($_SERVER['HTTP_ORIGIN'])) {
+    drupal_add_http_header('Access-Control-Allow-Origin', $_SERVER['HTTP_ORIGIN']);
   }
 
   global $user;
@@ -145,6 +144,7 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
       '#type' => 'submit',
       '#name' => 'delete-' .  $sidejob->nid,
       '#submit' => array('pw_parser_edit_sidejobs_delete'),
+      '#limit_validation_errors' => array(),
       '#value' => t('Delete'),
     );
     $form['list'][$sidejob->nid]['actions']['replace'] = array(
