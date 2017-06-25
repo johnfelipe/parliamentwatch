@@ -438,6 +438,12 @@ EOD;
 
 /**
  * Adds a new menu block.
+ *
+ * @param array $block
+ *   The basic block configuration.
+ *
+ * @param array $config
+ *   The menu block configuration.
  */
 function _pw_globals_add_menu_block($block, $config) {
   $block_ids = variable_get('menu_block_ids', array());
