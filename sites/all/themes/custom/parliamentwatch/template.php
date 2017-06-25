@@ -71,22 +71,22 @@ function parliamentwatch_preprocess_page(&$variables) {
  */
 function parliamentwatch_preprocess_region(&$variables) {
   if ($variables['region'] == 'content_tabs') {
-    foreach (element_children($variables['elements']) as $key) {
-      $text = $variables['elements'][$key]['#block']->subject;
+    $elements = element_children($variables['elements']);
+    foreach ($elements as $key) {
+      $text = $elements[$key]['#block']->subject;
       $options = [
         'attributes' => ['class' => ['nav__item__link']],
         'external' => TRUE,
         'fragment' => drupal_html_class(transliteration_get($text)),
       ];
       $class = ['nav__item'];
-      if ($key == reset(element_children($variables['elements']))) {
+      if ($key == reset($elements)) {
         $class[] = 'nav__item--active';
       }
       $variables['tabs'][] = [
         'data' => l($text, '', $options),
         'class' => $class,
       ];
-
     }
   }
 }
