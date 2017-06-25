@@ -993,7 +993,8 @@ function antispam_comment_presave($comment) {
   $query = db_select('antispam_spam_marks', 's');
   $query->fields('s', array('content_id'));
   if ($antispambot_rules['body']) {
-    $query->join('comment', 'c', 's.content_id = c.cid');
+    #$query->join('comment', 'c', 's.content_id = c.cid');
+    $query->join('field_data_comment_body', 'c', 's.content_id = c.entity_id');
   }
   $query->condition('s.content_type', 'comment');
   $query->range(0, 1);
@@ -1009,7 +1010,7 @@ function antispam_comment_presave($comment) {
     $num_condition++;
   }
   if ($antispambot_rules['body'] && !empty($comment->comment_body)) {
-    $query->condition('c.comment', render($comment->comment_body[$comment->language][0]['value']));
+    $query->condition('c.comment_body_value', render($comment->comment_body[$comment->language][0]['value']));
     $debug_info['Content'] = $comment->mail[$comment->language][0]['value'];
     $num_condition++;
   }
