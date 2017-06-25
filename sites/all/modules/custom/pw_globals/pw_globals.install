@@ -42,14 +42,13 @@ function pw_globals_update_7001() {
  */
 function pw_globals_update_7002() {
   $block_1 = [
-    'theme' => 'parliamentwatch',
     'status' => 1,
     'weight' => 0,
-    'region' => 'header_top',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_NO_CACHE,
     'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'header_top'],
   ];
   $config_1 = [
     'admin_title' => '',
@@ -64,14 +63,13 @@ function pw_globals_update_7002() {
   ];
   _pw_globals_add_menu_block($block_1, $config_1);
   $block_2 = [
-    'theme' => 'parliamentwatch',
     'status' => 1,
     'weight' => 1,
-    'region' => 'header_bottom',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_NO_CACHE,
     'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'header_bottom'],
   ];
   $config_2 = [
     'admin_title' => '',
@@ -238,7 +236,7 @@ function pw_globals_update_7012() {
 }
 
 /**
- * Update petition intro block.
+ * Configure petition intro block.
  */
 function pw_globals_update_7013() {
   $block = block_custom_block_get(27);
@@ -287,14 +285,13 @@ EOD;
   $config = [
     'module' => 'block',
     'delta' => '27',
-    'theme' => 'parliamentwatch',
     'status' => 1,
     'weight' => -20,
-    'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "petitions\npetitions/*",
     'cache' => DRUPAL_CACHE_GLOBAL,
     'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content'],
   ];
   _pw_globals_configure_block($config);
 }
@@ -306,13 +303,13 @@ function pw_globals_update_7014() {
   $block = [
     'module' => 'pw_blog',
     'delta' => 'related_blogposts',
-    'theme' => 'parliamentwatch',
     'status' => 1,
     'weight' => 0,
     'region' => 'content_tabs',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'regions' => ['parliamentwatch' => 'content_tabs'],
     'node_types' => ['blogpost']
   ];
   _pw_globals_configure_block($block);
@@ -325,13 +322,12 @@ function pw_globals_update_7015() {
   $block = [
     'module' => 'pw_globals',
     'delta' => 'comments',
-    'theme' => 'parliamentwatch',
     'status' => 1,
     'weight' => 0,
-    'region' => 'content_extra',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'regions' => ['parliamentwatch' => 'content_extra'],
     'node_types' => ['blogpost']
   ];
   _pw_globals_configure_block($block);
@@ -345,25 +341,23 @@ function pw_globals_update_7016() {
   $pw_dialogues = [
     'module' => 'pw_dialogues',
     'delta' => 'profile',
-    'theme' => 'parliamentwatch',
     'status' => 1,
     'weight' => ++$weight,
-    'region' => 'content_tabs',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "profile/*\nprofile/*/archive/*",
     'cache' => DRUPAL_NO_CACHE,
+    'regions' => ['parliamentwatch' => 'content_tabs'],
   ];
   _pw_globals_configure_block($pw_dialogues);
   $pw_vote = [
     'module' => 'pw_vote',
     'delta' => 'profile',
-    'theme' => 'parliamentwatch',
     'status' => 1,
     'weight' => ++$weight,
-    'region' => 'content_tabs',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "profile/*\nprofile/*/archive/*",
     'cache' => DRUPAL_NO_CACHE,
+    'regions' => ['parliamentwatch' => 'content_tabs'],
   ];
   _pw_globals_configure_block($pw_vote);
 }
@@ -393,9 +387,7 @@ EOD;
       'title' => '',
       'module' => 'block',
       'roles' => [],
-      'regions' => [
-        'parliamentwatch' => 'intro_primary',
-      ],
+      'regions' => ['parliamentwatch' => 'intro_primary'],
     ],
   ];
   block_add_block_form_submit($form, $form_state);
@@ -425,13 +417,12 @@ function pw_globals_update_7019() {
   $block = [
     'module' => 'pw_globals',
     'delta' => 'title',
-    'theme' => 'parliamentwatch',
     'status' => 1,
     'weight' => -1,
-    'region' => 'intro_primary',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => "blog/*\nprofile/*\nprofile/*/archive/*",
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'regions' => ['parliamentwatch' => 'intro_primary'],
   ];
   _pw_globals_configure_block($block);
 }
@@ -465,55 +456,66 @@ function _pw_globals_add_menu_block($block, $config) {
  *   The block configuration.
  */
 function _pw_globals_configure_block($block) {
-  $fields = array_diff(array_keys($block), ['module', 'delta', 'theme', 'node_types', 'roles']);
-  $values = array_values(array_diff_key($block, ['module' => NULL, 'delta' => NULL, 'theme' => NULL, 'node_types' => NULL, 'roles' => NULL]));
-
-  db_merge('block')
-    ->insertFields([
-      'module',
-      'delta',
-      'theme',
-    ], [
-      $block['module'],
-      $block['delta'],
-      $block['theme'],
-    ])
-    ->fields($fields, $values)
-    ->condition('module', $block['module'])
-    ->condition('delta', $block['delta'])
-    ->condition('theme', $block['theme'])
-    ->execute();
-
-  if (array_key_exists('roles', $block)) {
-    db_delete('block_role')
+  $transaction = db_transaction();
+  try {
+    db_update('block')
+      ->fields(array(
+        'visibility' => (int) $block['visibility'],
+        'pages' => trim($block['pages']),
+        'custom' => (int) $block['custom'],
+        'title' => $block['title'],
+      ))
       ->condition('module', $block['module'])
       ->condition('delta', $block['delta'])
       ->execute();
-    $query = db_insert('block_role')->fields(array('module', 'delta', 'rid'));
-    foreach ($block['roles'] as $rid) {
-      $query->values(array(
-        $block['module'],
-        $block['delta'],
-        $rid,
-      ));
+
+    if (array_key_exists('roles', $block)) {
+      db_delete('block_role')
+        ->condition('module', $block['module'])
+        ->condition('delta', $block['delta'])
+        ->execute();
+      $query = db_insert('block_role')->fields(['rid', 'module', 'delta']);
+      foreach (array_filter($block['roles']) as $rid) {
+        $query->values([
+          $rid,
+          $block['module'],
+          $block['delta'],
+        ]);
+      }
       $query->execute();
+    }
+
+    if (array_key_exists('node_types', $block)) {
+      db_delete('block_node_type')
+        ->condition('module', $block['module'])
+        ->condition('delta', $block['delta'])
+        ->execute();
+      $query = db_insert('block_node_type')->fields(['module', 'delta', 'type']);
+      foreach ($block['node_types'] as $type) {
+        $query->values([
+          $block['module'],
+          $block['delta'],
+          $type,
+        ]);
+        $query->execute();
+      }
+    }
+
+    foreach ($block['regions'] as $theme => $region) {
+      db_merge('block')
+        ->key(['theme' => $theme, 'delta' => $block['delta'], 'module' => $block['module']])
+        ->fields([
+          'region' => ($region == BLOCK_REGION_NONE ? '' : $region),
+          'pages' => trim($block['pages']),
+          'status' => (int) ($region != BLOCK_REGION_NONE),
+        ])
+        ->execute();
     }
   }
 
-  if (array_key_exists('node_types', $block)) {
-    db_delete('block_node_type')
-      ->condition('module', $block['module'])
-      ->condition('delta', $block['delta'])
-      ->execute();
-    $query = db_insert('block_node_type')->fields(array('module', 'delta', 'type'));
-    foreach ($block['node_types'] as $type) {
-      $query->values(array(
-        $block['module'],
-        $block['delta'],
-        $type,
-      ));
-      $query->execute();
-    }
+  catch (Exception $e) {
+    $transaction->rollback();
+    throw $e;
   }
 }
 
