@@ -472,6 +472,7 @@ function _pw_globals_configure_block($block) {
         'pages' => trim($block['pages']),
         'custom' => (int) $block['custom'],
         'title' => $block['title'],
+        'weight' => $block['weight'],
       ))
       ->condition('module', $block['module'])
       ->condition('delta', $block['delta'])
