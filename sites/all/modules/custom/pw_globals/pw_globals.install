@@ -14,7 +14,7 @@ function pw_globals_update_7001() {
     'content_menu',
     'context',
     'delta',
-    'delta_block',
+    'delta_blocks',
     'drulenium',
     'ds',
     'feedback_simple',
