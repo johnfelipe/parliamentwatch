@@ -13,6 +13,8 @@ function pw_globals_update_7001() {
     'colorbox',
     'content_menu',
     'context',
+    'delta',
+    'delta_block',
     'drulenium',
     'ds',
     'feedback_simple',
