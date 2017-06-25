@@ -276,6 +276,7 @@ function pw_globals_update_7010() {
   $q = db_select('block', 'b')
     ->fields('b', ['delta'])
     ->condition('module', 'block')
+    ->condition('theme', 'parliamentwatch')
     ->condition('region', BLOCK_REGION_NONE);
   _pw_globals_delete_blocks($q->execute()->fetchCol());
 }
