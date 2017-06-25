@@ -211,8 +211,11 @@ figcaption {
     color: $gray;
     font-family: $font-serif;
     margin-top: $space-xsmall;
-
+    @media(max-width: $breakpoint-xl-max) {
+      @include date-inline();
+    }
     @include breakpoint($breakpoint-xl-min) {
+      @include date-stacked();
       position: absolute;
       right: 100%;
       top: 0;
@@ -220,7 +223,7 @@ figcaption {
       margin-top: 0;
       width: 60px;
       text-align: center;
-      font-size: 1.4em;
+      font-size: 2.4em;
     }
     & + p {
       margin-top: $space;

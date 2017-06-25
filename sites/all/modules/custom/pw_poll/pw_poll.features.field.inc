@@ -371,7 +371,7 @@ function pw_poll_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'taxonomy',
+          'module' => 'textformatter',
           'settings' => array(
             'field_delimiter' => '',
             'linked_field' => array(
@@ -385,8 +385,19 @@ function pw_poll_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
+            'textformatter_class' => 'tag-list',
+            'textformatter_comma_and' => 0,
+            'textformatter_comma_full_stop' => 0,
+            'textformatter_comma_override' => 0,
+            'textformatter_comma_tag' => 'div',
+            'textformatter_contrib' => array(),
+            'textformatter_separator_custom' => '',
+            'textformatter_separator_custom_class' => 'textformatter-separator',
+            'textformatter_separator_custom_tag' => 'span',
+            'textformatter_term_plain' => 0,
+            'textformatter_type' => 'ul',
           ),
-          'type' => 'taxonomy_term_reference_plain',
+          'type' => 'textformatter_list',
           'weight' => '1',
         ),
         'search_result' => array(
@@ -654,7 +665,7 @@ function pw_poll_field_default_fields() {
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_remaining_days' => FALSE,
+            'show_remaining_days' => 0,
           ),
           'type' => 'date_default',
           'weight' => '2',

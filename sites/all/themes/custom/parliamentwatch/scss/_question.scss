@@ -43,4 +43,10 @@
     background: $brightGray;
   }
   .tile__links__item:first-child .tile__links__item__link { color: $darkGray; }
+  .question__answer__author__image {
+    @include image-circle(35px, 35px);
+    border-width: 2px;
+    display: inline-block;
+    margin: -$space-xsmall $space-small -$space-xsmall;
+  }
 }
