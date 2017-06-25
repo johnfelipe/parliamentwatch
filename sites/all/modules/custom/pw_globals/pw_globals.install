@@ -24,7 +24,7 @@ function pw_globals_update_7001() {
     'pw_dialogues_view',
     'pw_menu',
     'pw_profileswitch',
-    'pw_subsite_configuration',
+    'pw_subsite',
     'quicktabs',
     'rdf',
     'schemaorg',
