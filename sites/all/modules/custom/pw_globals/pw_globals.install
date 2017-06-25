@@ -385,7 +385,7 @@ EOD;
       'module' => 'block',
       'roles' => [],
       'regions' => [
-        'parliamentwatch' => 'content',
+        'parliamentwatch' => 'intro_primary',
       ],
     ],
   ];
