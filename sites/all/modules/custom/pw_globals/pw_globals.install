@@ -410,6 +410,24 @@ EOD;
 }
 
 /**
+ * Configure title block.
+ */
+function pw_globals_update_7019() {
+  $block = [
+    'module' => 'pw_globals',
+    'delta' => 'title',
+    'theme' => 'parliamentwatch',
+    'status' => 1,
+    'weight' => -1,
+    'region' => 'intro_primary',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => "",
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+  ];
+  _pw_globals_configure_block($block);
+}
+
+/**
  * Adds a new menu block.
  */
 function _pw_globals_add_menu_block($block, $config) {
