@@ -420,7 +420,7 @@ function pw_globals_update_7019() {
     'status' => 1,
     'weight' => -1,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => "blog/*\nprofile/*\nprofile/*/archive/*",
+    'pages' => "blog/*\nuser/*\nuser/*/revisions/*/view",
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
     'regions' => ['parliamentwatch' => 'intro_primary'],
   ];
