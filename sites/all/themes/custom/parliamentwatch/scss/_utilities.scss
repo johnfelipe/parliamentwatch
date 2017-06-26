@@ -195,14 +195,15 @@ figcaption {
   }
 }
 
-
 /* Intro */
 
 .intro {
-  position: relative;
   @include padding($space-large null);
   @include breakpoint($breakpoint-m-min) {
     @include padding(($space-large * 2) null);
+  }
+  > .container {
+    position: relative;
   }
   h1 {
     margin-bottom: 0;
@@ -219,7 +220,7 @@ figcaption {
       position: absolute;
       right: 100%;
       top: 0;
-      margin-right: $space;
+      margin-right: $space-small;
       margin-top: 0;
       width: 60px;
       text-align: center;

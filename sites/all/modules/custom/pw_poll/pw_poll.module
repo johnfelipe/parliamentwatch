@@ -25,6 +25,10 @@ function pw_poll_menu() {
  * Implements hook_block_info().
  */
 function pw_poll_block_info() {
+  $blocks['intro'] = [
+    'info' => t('Poll intro'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   $blocks['timeline'] = [
     'info' => t('Poll timeline'),
     'cache' => DRUPAL_NO_CACHE,
@@ -41,6 +45,8 @@ function pw_poll_block_info() {
  */
 function pw_poll_block_view($delta = '') {
   switch ($delta) {
+    case 'intro':
+      return pw_poll_intro_block();
     case 'timeline':
       return pw_poll_timeline_block();
     case 'related':
@@ -50,6 +56,7 @@ function pw_poll_block_view($delta = '') {
   }
 }
 
+/**
  * Page callback: Displays a listing of polls.
  */
 function pw_poll_page($parliament) {
@@ -87,6 +94,19 @@ function pw_poll_page($parliament) {
 }
 
 /**
+ * Displays poll intro.
+ */
+function pw_poll_intro_block() {
+  $block = [];
+
+  $node = menu_get_object();
+
+  $block['subject'] = t('Poll Intro');
+  $block['content'] = node_view($node, 'teaser');
+
+  return $block;
+}
+
 /**
  * Displays poll timeline.
  */
