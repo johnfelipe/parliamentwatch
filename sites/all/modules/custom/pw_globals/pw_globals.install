@@ -51,7 +51,6 @@ function pw_globals_update_7002() {
  */
 function pw_globals_update_7003() {
   $block_1 = [
-    'status' => 1,
     'weight' => 0,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
@@ -72,7 +71,6 @@ function pw_globals_update_7003() {
   ];
   _pw_globals_add_menu_block($block_1, $config_1);
   $block_2 = [
-    'status' => 1,
     'weight' => 1,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
@@ -105,24 +103,28 @@ function pw_globals_update_7004() {
 </div>
 EOD;
 
-  $form = [];
-  $form_state = [
-    'values' => [
-      'body' => [
-        'format' => 'full_html',
-        'value' => $body
-      ],
-      'info' => t('Blog intro'),
-      'visibility' => BLOCK_VISIBILITY_LISTED,
-      'pages' => 'blog',
-      'custom' => BLOCK_CUSTOM_FIXED,
-      'title' => '',
-      'module' => 'block',
-      'roles' => [],
-      'regions' => ['parliamentwatch' => 'intro_primary'],
+  $block = [
+    'info' => t('Blog intro'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body
     ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'blog',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'intro_primary'],
   ];
-  block_add_block_form_submit($form, $form_state);
+  $block['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block['info'],
+      'body' => $block['body']['value'],
+      'format' => $block['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block);
 }
 
 /**
@@ -175,11 +177,10 @@ EOD;
   $config = [
     'module' => 'block',
     'delta' => '27',
-    'status' => 1,
     'weight' => -20,
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "petitions\npetitions/*",
-    'cache' => DRUPAL_CACHE_GLOBAL,
+    'cache' => DRUPAL_CACHE_PER_ROLE,
     'title' => '<none>',
     'regions' => ['parliamentwatch' => 'content'],
   ];
@@ -193,9 +194,7 @@ function pw_globals_update_7006() {
   $block = [
     'module' => 'pw_blog',
     'delta' => 'related_blogposts',
-    'status' => 1,
     'weight' => 0,
-    'region' => 'content_tabs',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
@@ -213,7 +212,6 @@ function pw_globals_update_7007() {
   $block = [
     'module' => 'pw_globals',
     'delta' => 'comments',
-    'status' => 1,
     'weight' => 0,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
@@ -233,7 +231,6 @@ function pw_globals_update_7008() {
   $pw_dialogues = [
     'module' => 'pw_dialogues',
     'delta' => 'profile',
-    'status' => 1,
     'weight' => ++$weight,
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "profile/*\nprofile/*/archive/*",
@@ -245,7 +242,6 @@ function pw_globals_update_7008() {
   $pw_vote = [
     'module' => 'pw_vote',
     'delta' => 'profile',
-    'status' => 1,
     'weight' => ++$weight,
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "profile/*\nprofile/*/archive/*",
@@ -263,7 +259,6 @@ function pw_globals_update_7009() {
   $block = [
     'module' => 'pw_globals',
     'delta' => 'title',
-    'status' => 1,
     'weight' => -1,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => "blog/*\nuser/*\nuser/*/revisions/*/view",
@@ -471,17 +466,25 @@ function _pw_globals_add_menu_block($block, $config) {
 function _pw_globals_configure_block($block) {
   $transaction = db_transaction();
   try {
-    db_update('block')
-      ->fields(array(
-        'visibility' => (int) $block['visibility'],
-        'pages' => trim($block['pages']),
-        'custom' => (int) $block['custom'],
-        'title' => $block['title'],
-        'weight' => $block['weight'],
-      ))
-      ->condition('module', $block['module'])
-      ->condition('delta', $block['delta'])
-      ->execute();
+    foreach (system_list('theme') as $theme) {
+      if ($theme->status) {
+        $block['regions'] += [$theme->name => BLOCK_REGION_NONE];
+      }
+    }
+
+    foreach ($block['regions'] as $theme => $region) {
+      db_merge('block')
+        ->key(['theme' => $theme, 'delta' => $block['delta'], 'module' => $block['module']])
+        ->fields([
+          'region' => ($region == BLOCK_REGION_NONE ? '' : $region),
+          'visibility' => (int) $block['visibility'],
+          'pages' => trim($block['pages']),
+          'status' => (int) ($region != BLOCK_REGION_NONE),
+          'weight' => $block['weight'],
+          'cache' => $block['cache'],
+        ])
+        ->execute();
+    }
 
     if (array_key_exists('roles', $block)) {
       db_delete('block_role')
@@ -514,19 +517,7 @@ function _pw_globals_configure_block($block) {
         $query->execute();
       }
     }
-
-    foreach ($block['regions'] as $theme => $region) {
-      db_merge('block')
-        ->key(['theme' => $theme, 'delta' => $block['delta'], 'module' => $block['module']])
-        ->fields([
-          'region' => ($region == BLOCK_REGION_NONE ? '' : $region),
-          'pages' => trim($block['pages']),
-          'status' => (int) ($region != BLOCK_REGION_NONE),
-        ])
-        ->execute();
-    }
   }
-
   catch (Exception $e) {
     $transaction->rollback();
     throw $e;
