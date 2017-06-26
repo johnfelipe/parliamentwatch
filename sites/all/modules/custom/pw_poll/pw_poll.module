@@ -29,6 +29,10 @@ function pw_poll_block_info() {
     'info' => t('Poll timeline'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['related'] = [
+    'info' => t('Related polls'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -39,6 +43,8 @@ function pw_poll_block_view($delta = '') {
   switch ($delta) {
     case 'timeline':
       return pw_poll_timeline_block();
+    case 'related':
+      return pw_poll_related_block();
     default:
       return [];
   }
@@ -125,6 +131,42 @@ function pw_poll_timeline_block() {
 
   return $block;
 }
+/**
+ * Displays related polls.
+ */
+function pw_poll_related_block() {
+  $block = [];
+
+  $node = menu_get_object();
+  $category_items = field_get_items('node', $node, 'field_blogpost_categories');
+
+  $q = new EntityFieldQuery();
+
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'poll');
+  $q->fieldOrderBy('field_poll_date', 'value');
+  $q->fieldCondition('field_parliament', 'tid', $node->field_parliament[LANGUAGE_NONE][0]['tid']);
+  $q->range(0, 3);
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  if ($category_items) {
+    $q->fieldCondition('field_blogpost_categories', 'tid', array_column($category_items, 'tid'));
+  }
+
+  $result = $q->execute();
+
+  if (empty($result['node'])) {
+    return block;
+  }
+
+  $nodes = node_load_multiple(array_keys($result['node']));
+
+  $block['subject'] = t('Related polls');
+  $block['content'] = node_view_multiple($nodes, 'tile');
+
+  return $block;
+}
+
+/**
  * Returns a query for fetching published nodes of type poll.
  *
  * @return EntityFieldQuery
