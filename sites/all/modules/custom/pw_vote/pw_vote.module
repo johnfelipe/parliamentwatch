@@ -340,7 +340,7 @@ function pw_vote_block_info() {
     'info' => t('Displays Voting Behavior'),
   );
   $blocks['profile'] = [
-    'info' => t('Voting behaviour'),
+    'info' => t('Voting behavior'),
     'cache' => DRUPAL_NO_CACHE,
   ];
   return $blocks;
