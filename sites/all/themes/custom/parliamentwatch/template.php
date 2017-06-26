@@ -73,7 +73,7 @@ function parliamentwatch_preprocess_region(&$variables) {
   if ($variables['region'] == 'content_tabs') {
     $elements = element_children($variables['elements']);
     foreach ($elements as $key) {
-      $text = $elements[$key]['#block']->subject;
+      $text = $variables['elements'][$key]['#block']->subject;
       $options = [
         'attributes' => ['class' => ['nav__item__link']],
         'external' => TRUE,
