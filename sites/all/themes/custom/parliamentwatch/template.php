@@ -5,10 +5,10 @@
  */
 function parliamentwatch_theme(&$existing, $type, $theme, $path) {
   return array(
-    'user_login' => array(
-      'template' => 'templates/user-login',
+    'filterbar' => [
       'render element' => 'form',
-    ),
+      'template' => 'templates/filterbar',
+    ],
   );
 }
 
