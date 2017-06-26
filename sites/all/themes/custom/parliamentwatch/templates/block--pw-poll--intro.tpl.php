@@ -44,13 +44,8 @@
  * @ingroup themeable
  */
 ?>
-<div class="poll__timeline__container">
-  <div class="poll__timeline">
-    <h2><?php print $block->subject; ?></h2>
-    <?php print render($title_suffix) ?>
-    <div class="poll__timeline__inner">
-      <?php print $content ?>
-    </div>
-  </div>
+<div class="intro__left">
+  <?php print render($title_suffix) ?>
+  <?php print $content ?>
 </div>
 

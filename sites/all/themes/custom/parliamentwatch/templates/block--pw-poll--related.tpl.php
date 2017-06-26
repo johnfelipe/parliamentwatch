@@ -47,6 +47,7 @@
 <div class="poll__related tile-wrapper">
   <div class="container">
     <h2><?php print t('Related polls') ?></h2>
+    <?php print render($title_suffix) ?>
     <div class="row">
       <?php print $content ?>
     </div>
