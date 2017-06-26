@@ -6,7 +6,6 @@
  */
 
 include_once 'pw_globals.features.inc';
-include_once 'pw_globals.feedback_form.inc';
 
 define('PW_GLOBALS_API_USER_RID', 29859578);
 define('PW_GLOBALS_ADMINISTRATOR_RID', 30037204);
@@ -71,6 +70,16 @@ function pw_globals_entity_info_alter(&$entity_info) {
     'label' => t('Embedded'),
     'custom settings' => FALSE,
   );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function pw_globals_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'webform_client_form_6313') {
+    $form['submitted']['user_agent']['#value'] = $_SERVER['HTTP_USER_AGENT'];
+    $form['submitted']['referrer']['#value'] = $_SERVER['HTTP_REFERER'];
+  }
 }
 
 /**
