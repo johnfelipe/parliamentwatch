@@ -162,7 +162,7 @@ function pw_globals_comments_block() {
 }
 
 /**
- * Displays comments section of a node.
+ * Displays page title.
  *
  * @return
  *   The block render array.
