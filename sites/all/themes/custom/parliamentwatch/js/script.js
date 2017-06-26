@@ -725,15 +725,13 @@ function tableSecondaryHighlight() {
     });
 }
 
-
-
 /*
  * Poll-Timeline
  * */
 function pollTimeline() {
     var pollTimeline = $(".poll__timeline");
 
-    var pollID = $(".poll_detail").attr('data-poll-id');
+    var pollID = $(".poll.detail").attr('data-poll-id');
     var pollTimelineSlideItem = pollTimeline.find('.poll__timeline__item__poll[data-poll-id=' + pollID+ ']');
     var pollTimelineSlide = pollTimelineSlideItem.parents('.poll__timeline__item');
 
@@ -755,18 +753,13 @@ function pollTimeline() {
         initialSlide: pollTimelineSlide.index(),
         slidesPerView: 'auto',
         spaceBetween: 30,
-        centeredSlides: true,
-        autoHeight: true
+        centeredSlides: true
     });
 }
-
-
 
 /*
  * Filter Bar
  * */
-
-
 function filterBar() {
     function filterBarSwiperSize() {
         var filterBarOffsetRight = $('.filterbar__view_options').outerWidth();
@@ -812,7 +805,6 @@ function filterBar() {
             swiper.update();
         }
     });
-
 
     $(window).load(function() {
         var filterBarOffset = $('#header').outerHeight() - 2;

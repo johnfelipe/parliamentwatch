@@ -62,6 +62,10 @@ function pw_globals_entity_info_alter(&$entity_info) {
     'label' => t('Tabular'),
     'custom settings' => FALSE,
   );
+  $entity_info['node']['view modes']['timeline'] = array(
+    'label' => t('Timeline'),
+    'custom settings' => FALSE,
+  );
   $entity_info['comment']['view modes']['tile'] = array(
     'label' => t('Tile'),
     'custom settings' => FALSE,

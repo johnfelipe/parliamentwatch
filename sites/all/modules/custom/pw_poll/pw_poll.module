@@ -22,6 +22,28 @@ function pw_poll_menu() {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function pw_poll_block_info() {
+  $blocks['timeline'] = [
+    'info' => t('Poll timeline'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function pw_poll_block_view($delta = '') {
+  switch ($delta) {
+    case 'timeline':
+      return pw_poll_timeline_block();
+    default:
+      return [];
+  }
+}
+
  * Page callback: Displays a listing of polls.
  */
 function pw_poll_page($parliament) {
@@ -59,6 +81,50 @@ function pw_poll_page($parliament) {
 }
 
 /**
+/**
+ * Displays poll timeline.
+ */
+function pw_poll_timeline_block() {
+  $block = [];
+  $node = menu_get_object();
+
+  $q = new EntityFieldQuery();
+
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'poll');
+  $q->fieldOrderBy('field_poll_date', 'value');
+  $q->fieldCondition('field_parliament', 'tid', $node->field_parliament[LANGUAGE_NONE][0]['tid']);
+  $q->propertyCondition('status', NODE_PUBLISHED);
+
+  $result = $q->execute();
+  
+  if (empty($result['node'])) {
+    return block;
+  }
+
+  $nodes = node_load_multiple(array_keys($result['node']));
+
+  foreach (pw_poll_results($nodes) as $nid => $result) {
+    $nodes[$nid]->result = $result;
+  }
+
+  $nodes_by_day = [];
+
+  foreach ($nodes as $node) {
+    $day = format_date(strtotime($node->field_poll_date[LANGUAGE_NONE][0]['value']), 'custom', 'd.m.Y');
+    $nodes_by_day[$day][] = node_view($node, 'timeline');
+  }
+
+  foreach (array_keys($nodes_by_day) as $key) {
+    $nodes_by_day[$key]['#theme_wrappers'] = ['container__timeline'];
+    $nodes_by_day[$key]['#date'] = $key;
+  }
+
+  $block['subject'] = t('Poll on a timeline');
+  $block['content'] = $nodes_by_day;
+
+  return $block;
+}
  * Returns a query for fetching published nodes of type poll.
  *
  * @return EntityFieldQuery
@@ -93,19 +159,18 @@ function pw_poll_results($nodes) {
   foreach ($q->execute() as $row) {
     switch ($row->field_vote_tid) {
       case 19667:
-        $results[$row->nid]['yes'] = $row->vote_count;
+        $results[$row->nid]['yes'] = (int) $row->vote_count;
         break;
       case 19668:
-        $results[$row->nid]['no'] = $row->vote_count;
+        $results[$row->nid]['no'] = (int) $row->vote_count;
         break;
       case 19669:
-        $results[$row->nid]['abstain'] = $row->vote_count;
+        $results[$row->nid]['abstain'] = (int) $row->vote_count;
         break;
       case 19670:
-        $results[$row->nid]['no-show'] = $row->vote_count;
+        $results[$row->nid]['no-show'] = (int) $row->vote_count;
         break;
     }
   }
-
   return $results;
 }

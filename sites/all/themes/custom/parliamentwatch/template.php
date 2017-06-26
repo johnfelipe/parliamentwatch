@@ -259,13 +259,13 @@ function parliamentwatch_preprocess_node(&$variables) {
 
   if ($variables['type'] == 'poll' && isset($node->result)) {
     $variables['result'] = [
-      ['name' => 'Ja', 'color' => '#9fd773', 'count' => $node->result['yes']],
-      ['name' => 'Nein', 'color' => '#cc6c5b', 'count' => $node->result['no']],
-      ['name' => 'Enthalten', 'color' => '#e2e2e2', 'count' => $node->result['abstain']],
-      ['name' => 'Nicht abgestimmt', 'color' => '#a6a6a6', 'count' => $node->result['no-show']],
+      ['name' => 'Ja', 'color' => '#9fd773', 'count' => (int) $node->result['yes']],
+      ['name' => 'Nein', 'color' => '#cc6c5b', 'count' => (int) $node->result['no']],
+      ['name' => 'Enthalten', 'color' => '#e2e2e2', 'count' => (int) $node->result['abstain']],
+      ['name' => 'Nicht abgestimmt', 'color' => '#a6a6a6', 'count' => (int) $node->result['no-show']],
     ];
-    $variables['yays'] = $node->result['yes'];
-    $variables['nays'] = $node->result['no'];
+    $variables['yays'] = (int) $node->result['yes'];
+    $variables['nays'] = (int) $node->result['no'];
   }
 }
 
@@ -499,6 +499,18 @@ function parliamentwatch_container__tiles($variables) {
   $element['#attributes']['class'] = ['container'];
 
   return '<div class="tile-wrapper"><div' . drupal_attributes($element['#attributes']) . '><div class="row">' . $element['#children'] . '</div></div></div>';
+}
+
+/**
+ * Overrides theme_container() for timelines.
+ */
+function parliamentwatch_container__timeline($variables) {
+  $element = $variables['element'];
+  // Ensure #attributes is set.
+  $element += ['#attributes' => []];
+  $element['#attributes']['class'] = ['poll__timeline__item'];
+
+  return '<div' . drupal_attributes($element['#attributes']) . '><div class="poll__timeline__item__date">' . $element['#date'] . '</div>' . $element['#children'] . '</div>';
 }
 
 /**
