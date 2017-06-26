@@ -112,7 +112,10 @@
       <div class="row">
         <div class="question-form">
           <h2><?php print t('Ask question') ?></h2>
-          <?php print render($block->question_form); ?>
+          <?php
+            print render($block->question_form['body']);
+            print render($block->question_form['webform']);
+          ?>
         </div>
         <div class="question-side">
           <div class="question-side__item">

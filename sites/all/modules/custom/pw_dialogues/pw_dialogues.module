@@ -307,7 +307,7 @@ function pw_dialogues_profile_block() {
     $block['average_response_time'] = round(pw_dialogues_average_response_time($account) / 86400);
   }
 
-  $block['question_form'] = node_view(node_load(10446), 'form')['webform'];
+  $block['question_form'] = node_view(node_load(10446), 'form');
 
   return $block;
 }
