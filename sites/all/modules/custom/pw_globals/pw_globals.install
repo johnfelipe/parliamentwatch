@@ -199,6 +199,7 @@ function pw_globals_update_7006() {
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
     'regions' => ['parliamentwatch' => 'content_tabs'],
     'node_types' => ['blogpost']
   ];
@@ -217,6 +218,7 @@ function pw_globals_update_7007() {
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
     'regions' => ['parliamentwatch' => 'content_extra'],
     'node_types' => ['blogpost']
   ];
@@ -236,6 +238,7 @@ function pw_globals_update_7008() {
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "profile/*\nprofile/*/archive/*",
     'cache' => DRUPAL_NO_CACHE,
+    'title' => '',
     'regions' => ['parliamentwatch' => 'content_tabs'],
   ];
   _pw_globals_configure_block($pw_dialogues);
@@ -247,6 +250,7 @@ function pw_globals_update_7008() {
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "profile/*\nprofile/*/archive/*",
     'cache' => DRUPAL_NO_CACHE,
+    'title' => '',
     'regions' => ['parliamentwatch' => 'content_tabs'],
   ];
   _pw_globals_configure_block($pw_vote);
@@ -264,6 +268,7 @@ function pw_globals_update_7009() {
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => "blog/*\nuser/*\nuser/*/revisions/*/view",
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
     'regions' => ['parliamentwatch' => 'intro_primary'],
   ];
   _pw_globals_configure_block($block);
