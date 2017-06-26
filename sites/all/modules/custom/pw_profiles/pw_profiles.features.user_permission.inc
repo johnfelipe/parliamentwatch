@@ -829,9 +829,12 @@ function pw_profiles_user_default_permissions() {
   $permissions['edit own field_user_about'] = array(
     'name' => 'edit own field_user_about',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'Deputy',
+      3 => 'Politician',
+      4 => 'Premium User',
+      5 => 'administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -982,9 +985,12 @@ function pw_profiles_user_default_permissions() {
   $permissions['edit own field_user_image_gallery'] = array(
     'name' => 'edit own field_user_image_gallery',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'Deputy',
+      3 => 'Politician',
+      4 => 'Premium User',
+      5 => 'administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -1017,9 +1023,12 @@ function pw_profiles_user_default_permissions() {
   $permissions['edit own field_user_links_more'] = array(
     'name' => 'edit own field_user_links_more',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'Deputy',
+      3 => 'Politician',
+      4 => 'Premium User',
+      5 => 'administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -1133,9 +1142,12 @@ function pw_profiles_user_default_permissions() {
   $permissions['edit own field_user_political_goals'] = array(
     'name' => 'edit own field_user_political_goals',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'Deputy',
+      3 => 'Politician',
+      4 => 'Premium User',
+      5 => 'administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -1209,9 +1221,12 @@ function pw_profiles_user_default_permissions() {
   $permissions['edit own field_user_twitter_account'] = array(
     'name' => 'edit own field_user_twitter_account',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'Deputy',
+      3 => 'Politician',
+      4 => 'Premium User',
+      5 => 'administrator',
     ),
     'module' => 'field_permissions',
   );
