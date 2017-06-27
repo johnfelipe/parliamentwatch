@@ -88,12 +88,14 @@
         <?php print render($content['body']); ?>
       </div>
       <div class="poll__content__right">
+        <?php if ($content['field_blogpost_categories']): ?>
         <div class="sidebar-box">
           <h3 class="sidebar-box__headline"><?php print t('Tags'); ?> <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-tags') ?>"></i></h3>
           <div class="sidebar-box__tag_list">
             <?php print render($content['field_blogpost_categories']); ?>
           </div>
         </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>
