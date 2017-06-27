@@ -58,7 +58,11 @@
  * Regions:
  * - $page['header_top']: Items for the header-top region.
  * - $page['header_bottom']: Items for the header-bottom region.
+ * - $page['intro_primary']: Items for the intro-primary region.
+ * - $page['intro_secondary']: Items for the intro-secondary region.
  * - $page['content']: The main content of the current page.
+ * - $page['content_tabs']: Items for the content-tabs region.
+ * - $page['content_extra']: Items for the content-extra region.
  * - $page['footer']: Items for the footer region.
  *
  * @see template_preprocess()
