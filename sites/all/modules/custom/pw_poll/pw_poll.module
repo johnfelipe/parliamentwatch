@@ -107,7 +107,7 @@ function pw_poll_intro_block() {
 
   $node = menu_get_object();
 
-  $block['subject'] = t('Poll Intro');
+  $block['subject'] = t('Poll intro');
   $block['content'] = node_view($node, 'teaser');
 
   return $block;
@@ -120,16 +120,12 @@ function pw_poll_timeline_block() {
   $block = [];
   $node = menu_get_object();
 
-  $q = new EntityFieldQuery();
-
-  $q->entityCondition('entity_type', 'node');
-  $q->entityCondition('bundle', 'poll');
+  $q = pw_poll_base_query();
   $q->fieldOrderBy('field_poll_date', 'value');
   $q->fieldCondition('field_parliament', 'tid', $node->field_parliament[LANGUAGE_NONE][0]['tid']);
-  $q->propertyCondition('status', NODE_PUBLISHED);
 
   $result = $q->execute();
-  
+
   if (empty($result['node'])) {
     return block;
   }
@@ -167,14 +163,10 @@ function pw_poll_related_block() {
   $node = menu_get_object();
   $category_items = field_get_items('node', $node, 'field_blogpost_categories');
 
-  $q = new EntityFieldQuery();
-
-  $q->entityCondition('entity_type', 'node');
-  $q->entityCondition('bundle', 'poll');
+  $q = pw_poll_base_query();
   $q->fieldOrderBy('field_poll_date', 'value');
   $q->fieldCondition('field_parliament', 'tid', $node->field_parliament[LANGUAGE_NONE][0]['tid']);
   $q->range(0, 3);
-  $q->propertyCondition('status', NODE_PUBLISHED);
   if ($category_items) {
     $q->fieldCondition('field_blogpost_categories', 'tid', array_column($category_items, 'tid'));
   }
