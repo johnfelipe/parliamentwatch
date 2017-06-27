@@ -44,8 +44,6 @@
  * @ingroup themeable
  */
 ?>
-<div class="intro__left">
-  <?php print render($title_suffix) ?>
-  <?php print $content ?>
-</div>
 
+<?php print render($title_suffix) ?>
+<?php print $content ?>
