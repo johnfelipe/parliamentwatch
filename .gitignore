@@ -61,3 +61,6 @@ googleb9537432b2dce52c.html
 # Ignore folders containing Javascript libraries
 bower_components/
 node_modules/
+
+# Ignore misc files
+blocks-shown-count.txt
