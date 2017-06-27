@@ -254,6 +254,9 @@ figcaption {
       padding-left:0;
     }
   }
+  .intro__full {
+    @include grid-column(12);
+  }
 }
 
 /* Intro - Right to left */
