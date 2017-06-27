@@ -127,50 +127,41 @@
           <div class="footer__maincol__col">
             <strong><i class="icon icon-bundestag"></i> Bundestag</strong>
             <ul class="footer__maincol__col__nav">
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abstimmungen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abgeordnete</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Petitionen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Ausschüsse</a></li>
-              <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Suffrage'), 'node/7752', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
-              </li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Abstimmungen', 'bundestag/abstimmungen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Abgeordnete', 'bundestag/abgeordnete', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Petitionen', 'bundestag/petitionen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l(t('Electoral law'), 'node/7752', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
             </ul>
           </div>
           <div class="footer__maincol__col">
             <strong><i class="icon icon-de"></i> Landtag</strong>
             <ul class="footer__maincol__col__nav">
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Baden-Württemberg</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Bayern</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Berlin</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Brandenburg</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Bremen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Hamburg</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Hessen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Mecklenburg-Vorpommern</a></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Baden-Württemberg', 'baden-wuerttemberg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Berlin', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Brandenburg', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Bremen', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Hamburg', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Mecklenburg-Vorpommern', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
             </ul>
           </div>
           <div class="footer__maincol__col">
             <strong>&nbsp;</strong>
             <ul class="footer__maincol__col__nav">
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Niedersachsen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Nordrhein-Westfalen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Rheinland-Pfalz</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Saarland</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Sachsen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Sachsen-Anhalt</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Schleswig-Holstein</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Thüringen</a></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Nordrhein-Westfalen', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Rheinland-Pfalz', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Sachsen', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Schleswig-Holstein', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Thüringen', '', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
             </ul>
           </div>
           <div class="footer__maincol__col">
             <strong><i class="icon icon-de"></i> EU-Parlament</strong>
             <ul class="footer__maincol__col__nav">
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abstimmungen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Abgeordnete</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Petitionen</a></li>
-              <li class="footer__maincol__col__nav__item"><a href="#" class="footer__maincol__col__nav__item__link">Ausschüsse</a></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Abstimmungen', 'eu/abstimmungen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Abgeordnete', 'eu/profile', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+              <li class="footer__maincol__col__nav__item"><?php print l('Petitionen', 'eu/petitionen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Suffrage'), 'node/7754', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l(t('Electoral law'), 'node/7754', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
             </ul>
           </div>
@@ -178,19 +169,19 @@
             <strong><i class="icon icon-logo-aw"></i> Über das Projekt</strong>
             <ul class="footer__maincol__col__nav">
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('About us'), 'node/7760', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l( t('About us'), 'node/7760', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Board of Trustees'), 'node/7735', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l( t('Board of Trustees'), 'node/7735', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Moderation Codex'), 'node/7734', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l(t('Moderation Codex'), 'node/7734', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Financing'), 'node/7757', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l(t('Financing'), 'node/7757', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Imprint'), 'node/7732', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l(t('Imprint'), 'node/7732', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
             </ul>
           </div>
@@ -198,13 +189,13 @@
             <strong>&nbsp;</strong>
             <ul class="footer__maincol__col__nav">
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Support the project'), 'node/10508', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l(t('Support the project'), 'node/10508', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Get info material'), 'node/7747', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l(t('Get info material'), 'node/7747', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
               <li class="footer__maincol__col__nav__item">
-                <?php print l( t('Privacy'), 'node/10006', array('attributes' => array('class' => array('footer__maincol__col__nav__item__link'))) ); ?>
+                <?php print l(t('Privacy'), 'node/10006', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
               </li>
             </ul>
           </div>
@@ -213,10 +204,10 @@
       <div class="footer__mediapartner">
         <div class="container">
           <h3 class="footer__mediapartner__title">Medienpartner</h3>
-          <a href="#" class="footer__mediapartner__link" title="Go to website of Spiegel Online"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_spon.png" alt="<?php print t('Logo of Spiegel Online'); ?>"></a>
-          <a href="#" class="footer__mediapartner__link" title="Go to website of Süddeutsche"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_sueddeutsche.png" alt="<?php print t('Logo of Süddeutsche'); ?>"></a>
-          <a href="#" class="footer__mediapartner__link" title="Go to website of WELT-Online"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_welt.png" alt="<?php print t('Logo of Welt-Online'); ?>"></a>
-          <a href="#" class="footer__mediapartner__link" title="Go to website of Süddeutsche"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_t_online.png" alt="<?php print t('Logo of T-Online'); ?>"></a>
+          <a href="http://www.spiegel.de" class="footer__mediapartner__link" title="Go to website of Spiegel Online"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_spon.png" alt="<?php print t('Logo of Spiegel Online'); ?>"></a>
+          <a href="http://www.sueddeutsche.de" class="footer__mediapartner__link" title="Go to website of Süddeutsche"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_sueddeutsche.png" alt="<?php print t('Logo of Süddeutsche'); ?>"></a>
+          <a href="https://www.welt.de" class="footer__mediapartner__link" title="Go to website of WELT-Online"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_welt.png" alt="<?php print t('Logo of Welt-Online'); ?>"></a>
+          <a href="http://www.t-online.de" class="footer__mediapartner__link" title="Go to website of Süddeutsche"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_t_online.png" alt="<?php print t('Logo of T-Online'); ?>"></a>
         </div>
       </div>
       <div class="container">
