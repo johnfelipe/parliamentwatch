@@ -218,7 +218,7 @@ function pw_poll_field_default_fields() {
         ),
         'teaser' => array(
           'label' => 'hidden',
-          'module' => 'text',
+          'module' => 'smart_trim',
           'settings' => array(
             'field_delimiter' => '',
             'linked_field' => array(
@@ -232,9 +232,19 @@ function pw_poll_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
-            'trim_length' => 600,
+            'more_link' => '0',
+            'more_text' => 'Read more',
+            'summary_handler' => 'full',
+            'trim_length' => '250',
+            'trim_link' => '0',
+            'trim_options' => array(
+              'text' => 0,
+            ),
+            'trim_preserve_tags' => '',
+            'trim_suffix' => '...',
+            'trim_type' => 'chars',
           ),
-          'type' => 'text_summary_or_trimmed',
+          'type' => 'smart_trim_format',
           'weight' => '0',
         ),
         'tile' => array(
@@ -422,8 +432,6 @@ function pw_poll_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
-            'taxonomy_term_link' => 1,
-            'taxonomy_term_separator' => ', ',
           ),
           'type' => 'taxonomy_term_reference_link',
           'weight' => '3',

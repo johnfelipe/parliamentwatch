@@ -37,6 +37,10 @@ function pw_poll_block_info() {
     'info' => t('Related polls'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['charts'] = [
+    'info' => t('Poll charts'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -51,6 +55,8 @@ function pw_poll_block_view($delta = '') {
       return pw_poll_timeline_block();
     case 'related':
       return pw_poll_related_block();
+    case 'charts':
+      return pw_poll_charts_block();
     default:
       return [];
   }
@@ -151,6 +157,7 @@ function pw_poll_timeline_block() {
 
   return $block;
 }
+
 /**
  * Displays related polls.
  */
@@ -182,6 +189,20 @@ function pw_poll_related_block() {
 
   $block['subject'] = t('Related polls');
   $block['content'] = node_view_multiple($nodes, 'tile');
+
+  return $block;
+}
+
+/**
+ * Displays charts for polls.
+ */
+function pw_poll_charts_block() {
+  $block = [];
+
+  $node = menu_get_object();
+
+  $block['subject'] = t('Poll charts');
+  $block['content'] = 'lorem ipsum';
 
   return $block;
 }
