@@ -218,7 +218,7 @@ function pw_globals_update_7007() {
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
     'title' => '',
     'regions' => ['parliamentwatch' => 'content_extra'],
-    'node_types' => ['blogpost']
+    'node_types' => ['blogpost', 'poll'],
   ];
   _pw_globals_configure_block($block);
 }
@@ -261,7 +261,7 @@ function pw_globals_update_7009() {
     'delta' => 'title',
     'weight' => -1,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => "blog/*\nuser/*\nuser/*/revisions/*/view",
+    'pages' => "blog/*\n*/abstimmungen/*\nuser/*\nuser/*/revisions/*/view",
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
     'title' => '',
     'regions' => ['parliamentwatch' => 'intro_primary'],
@@ -435,6 +435,65 @@ function pw_globals_update_7020() {
 </div>
 EOD;
   node_save($node);
+}
+
+/**
+ * Configure poll blocks.
+ */
+function pw_globals_update_7021() {
+  $weight = -1;
+
+  $pw_poll_intro = [
+    'module' => 'pw_poll',
+    'delta' => 'intro',
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'intro_primary'],
+    'node_types' => ['poll'],
+  ];
+  _pw_globals_configure_block($pw_poll_intro);
+
+  $pw_poll_charts = [
+    'module' => 'pw_poll',
+    'delta' => 'charts',
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+    'node_types' => ['poll'],
+  ];
+  _pw_globals_configure_block($pw_poll_charts);
+
+  $pw_poll_timeline = [
+    'module' => 'pw_poll',
+    'delta' => 'timeline',
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+    'node_types' => ['poll'],
+  ];
+  _pw_globals_configure_block($pw_poll_timeline);
+
+  $pw_poll_related = [
+    'module' => 'pw_poll',
+    'delta' => 'related',
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+    'node_types' => ['poll'],
+  ];
+  _pw_globals_configure_block($pw_poll_related);
 }
 
 /**
