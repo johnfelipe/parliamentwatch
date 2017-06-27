@@ -102,14 +102,14 @@
       <?php if ($page['intro_primary']): ?>
       <div class="intro">
         <div class="container">
+          <?php if ($page['intro_secondary']): ?>
           <div class="row">
-            <?php if ($page['intro_secondary']): ?>
-              <div class="intro__left"><?php print render($page['intro_primary']); ?></div>
-              <div class="intro__right"><?php print render($page['intro_secondary']); ?></div>
-            <?php else: ?>
-            <?php print render($page['intro_primary']); ?>
-            <?php endif; ?>
+            <div class="intro__left"><?php print render($page['intro_primary']); ?></div>
+            <div class="intro__right"><?php print render($page['intro_secondary']); ?></div>
           </div>
+          <?php else: ?>
+          <?php print render($page['intro_primary']); ?>
+          <?php endif; ?>
         </div>
       </div>
       <?php endif; ?>
