@@ -99,6 +99,7 @@
               <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-answered-questions') ?>"></i>
             </div>
           </a>
+          <?php if (isset($user_profile['votes_total'])): ?>
           <a href="#abstimmverhalten" class="hstats__item hstats__item--donut-digit" data-localScroll>
             <div class="hstats__item__display mh-item-nr" data-mh="hstats">
               <span class="d3 d3--gauge"
@@ -121,6 +122,7 @@
               <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-votes-by-name') ?>"></i>
             </div>
           </a>
+          <?php endif; ?>
         </div>
         <dl class="dl">
           <?php if (isset($user_profile['field_user_birthday'])): ?>
