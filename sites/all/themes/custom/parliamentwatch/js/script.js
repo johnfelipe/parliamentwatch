@@ -290,7 +290,7 @@ function swiperTile() {
             breakpoints: {
                 550: {
                     slidesPerView: 1,
-                    spaceBetween: 10,
+                    spaceBetween: 20,
                     slidesPerGroup: 1
                 },
                 768: {

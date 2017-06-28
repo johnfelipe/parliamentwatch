@@ -38,13 +38,16 @@
 /* Container */
 
 @mixin container() {
-  max-width: 1300px;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-left: calc(50% - 680px);
+  padding-right: calc(50% - 680px);
+  @include grid-container();
+}
+@mixin container-regular() {
+  max-width: 1360px;
   @include margin(null auto);
-  @include padding(null $space-mobile);
-  @include grid-container;
-  @include breakpoint($breakpoint-m-min) {
-    @include padding(null $space);
-  }
+  @include padding(null $space);
 }
 
 

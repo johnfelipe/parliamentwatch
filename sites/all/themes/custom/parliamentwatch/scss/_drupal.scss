@@ -14,6 +14,7 @@
 /* Tabs */
 .tabs--admin {
   background: transparent;
+  @include grid-column(12);
 }
 .nav--tab.primary {
   display: none;

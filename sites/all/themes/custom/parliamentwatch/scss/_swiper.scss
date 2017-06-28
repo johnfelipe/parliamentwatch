@@ -26,7 +26,6 @@
     top: 500px;
     @include transform(translate(0,-50%));
   }
-
   &:before {
     font-family: "awfont";
     font-size: 1.2em;
@@ -53,9 +52,6 @@
   &:before { content: '\e804' }
 }
 .swiper-container--tile {
-  .swiper-wrapper{
-
-  }
   .tile {
     color: $darkGray;
     width: 100%;
