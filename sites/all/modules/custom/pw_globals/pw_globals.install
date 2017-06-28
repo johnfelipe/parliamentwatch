@@ -441,7 +441,7 @@ EOD;
  * Configure poll blocks.
  */
 function pw_globals_update_7021() {
-  $weight = -1;
+  $weight = -20;
 
   $pw_poll_intro = [
     'module' => 'pw_poll',
