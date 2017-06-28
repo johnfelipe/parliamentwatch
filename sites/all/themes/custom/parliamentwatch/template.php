@@ -513,6 +513,21 @@ function parliamentwatch_container__timeline($variables) {
 }
 
 /**
+ * Overrides theme_container() for swiper.
+ */
+function parliamentwatch_container__swiper($variables) {
+  $element = $variables['element'];
+
+  $output = '<div class="swiper-container swiper-container--tile">';
+  $output .= '<div class="swiper-wrapper">' . $element['#children'] . '</div>';
+  $output .= '<div class="swiper-button-prev"></div>';
+  $output .= '<div class="swiper-button-next"></div>';
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
  * Overrides theme_pager().
  */
 function parliamentwatch_pager($variables) {
