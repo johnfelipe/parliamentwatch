@@ -271,6 +271,23 @@ function pw_dialogues_feeds_presave(FeedsSource $source, $entity, $item) {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function pw_dialogues_theme() {
+  return [
+    'dialogues_stats' => [
+      'variables' => [
+        'questions' => NULL,
+        'answers' => NULL,
+        'answer_ratio' => NULL,
+        'average_response_time' => NULL,
+      ],
+      'template' => 'dialogues-stats',
+    ],
+  ];
+}
+
+/**
  * Displays the questions and answers section of a profile.
  *
  * @return array
