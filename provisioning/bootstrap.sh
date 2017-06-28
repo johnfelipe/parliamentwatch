@@ -17,7 +17,6 @@ apt-get -y install \
 	php5-mysql \
 	php5-xdebug \
 	ruby-sass \
-	solr-jetty \
 	vim-nox
 apt-get -y autoremove
 
@@ -29,7 +28,6 @@ adduser vagrant adm
 
 chmod -R u+w /vagrant/sites/default
 cp /vagrant/provisioning/settings.php /vagrant/sites/default/
-cp /vagrant/sites/all/modules/contrib/search_api_solr/solr-conf/3.x/* /usr/share/solr/conf/
 
 php5enmod vagrant
 
@@ -72,4 +70,3 @@ if [ ! -L /etc/apache2/sites-enabled/drupal.conf ]; then
 fi
 
 service apache2 restart
-service jetty restart
