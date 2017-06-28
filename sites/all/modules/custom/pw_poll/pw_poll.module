@@ -201,11 +201,20 @@ function pw_poll_related_block() {
  */
 function pw_poll_charts_block() {
   $block = [];
-
   $node = menu_get_object();
 
+  if (!$node) {
+    return $block;
+  }
+
+  $results_by_party = pw_poll_results_by_party([$node]);
+  $inline_js = 'window.results_by_party = ' . drupal_json_encode($results_by_party[$node->nid]);
+
   $block['subject'] = t('Poll charts');
-  $block['content'] = 'lorem ipsum';
+  $block['content']['#attached']['js'][$inline_js] = [
+    'scope' => 'footer',
+    'type' => 'inline',
+  ];
 
   return $block;
 }
