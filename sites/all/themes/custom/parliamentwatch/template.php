@@ -484,7 +484,6 @@ function parliamentwatch_container($variables) {
   $element = $variables['element'];
   // Ensure #attributes is set.
   $element += ['#attributes' => []];
-  $element['#attributes']['class'] = ['container'];
 
   return '<div' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</div>';
 }
@@ -502,7 +501,7 @@ function parliamentwatch_container__tiles($variables) {
 }
 
 /**
- * Overrides theme_container() for timelines.
+ * Overrides theme_container() for timeline.
  */
 function parliamentwatch_container__timeline($variables) {
   $element = $variables['element'];
