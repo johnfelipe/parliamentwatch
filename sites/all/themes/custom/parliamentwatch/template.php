@@ -864,6 +864,7 @@ function _parliamentwatch_should_render_content_container($variables) {
     'pw_profiles_page',
     'pw_globals_info_page',
     'user_view_page',
+    'user_revision_show',
   ];
 
   if (in_array(menu_get_item()['page_callback'], $pages_without_container)) {
