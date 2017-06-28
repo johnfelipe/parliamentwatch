@@ -261,7 +261,7 @@ function pw_globals_update_7009() {
     'delta' => 'title',
     'weight' => -1,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => "blog/*\n*/abstimmungen/*\nuser/*\nuser/*/revisions/*/view",
+    'pages' => "blog/*\n*/abstimmungen/*\nprofile/*\narchive/*",
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
     'title' => '',
     'regions' => ['parliamentwatch' => 'intro_primary'],
