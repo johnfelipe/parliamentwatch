@@ -81,6 +81,10 @@
 /* View-Mode: Detail (user_candidate) */
 
 .deputy.detail {
+  padding-top: $space;
+  @include breakpoint($breakpoint-m-min) {
+    padding-top: $space-large;
+  }
   .deputy__title {
     margin-bottom: $space-xsmall-mobile;
     @include breakpoint($breakpoint-s-min) {

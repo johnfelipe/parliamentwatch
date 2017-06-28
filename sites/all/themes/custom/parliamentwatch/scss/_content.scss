@@ -9,9 +9,3 @@
 .docready #content {
   @include transition(margin-top 300ms ease);
 }
-.page-user #content {
-  padding-top: $space;
-  @include breakpoint($breakpoint-m-min) {
-    padding-top: $space-large;
-  }
-}
