@@ -299,6 +299,12 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
       $variables['role'] = t('Deputy', [], ['context' => $gender]);
     }
   }
+
+  if (isset($variables['field_user_birthday'])) {
+    $timezone = new DateTimeZone($variables['field_user_birthday'][0]['timezone']);
+    $date = new DateTime($variables['field_user_birthday'][0]['value'], $timezone);
+    $variables['field_user_birthday'][0]['iso_8601'] = $date->format(DateTime::ISO8601);
+  }
 }
 
 /**

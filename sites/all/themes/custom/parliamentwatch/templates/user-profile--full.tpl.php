@@ -48,7 +48,7 @@
           "@type": "Organization",
           "name": "<?php print $field_user_party[0]['taxonomy_term']->name ?>"
         },
-        "birthDate": "<?php print date_create($field_user_birthday[0]['value'], timezone_open($field_user_birthday[0]['timezone']))->format('c'); ?>",
+        <?php if (isset($field_user_birthday[0]['iso_8601'])) { print '"birthDate": "' . $field_user_birthday[0]['iso_8601'] . "\",\n"; } ?>
         "gender": "<?php print $field_user_gender[0]['value']; ?>",
         "homeLocation": {
           "@type": "Place",
