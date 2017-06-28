@@ -1101,7 +1101,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'module' => 'date',
           'settings' => array(
             'field_delimiter' => '',
-            'format_type' => 'long',
+            'format_type' => 'short',
             'fromto' => 'both',
             'linked_field' => array(
               'advanced' => array(
@@ -1117,7 +1117,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_remaining_days' => FALSE,
+            'show_remaining_days' => 0,
           ),
           'type' => 'date_default',
           'weight' => '17',
@@ -1578,7 +1578,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'user_candidate' => array(
           'label' => 'above',
