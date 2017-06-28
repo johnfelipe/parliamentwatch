@@ -920,23 +920,29 @@ function parseDialogues() {
 }
 
 function parseVotes() {
-    var vote = {
-        'yes': {label: 'Ja', color: '#9fd773'},
-        'no': {label: 'Nein', color: '#cc6c5b'},
-        'abstain': {label: 'Enthalten', color: '#e2e2e2'},
-        'no-show': {label: 'Nicht abgestimmt', color: '#a6a6a6'}
+    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
+
+    window.votes.forEach(function (v) {
+        data[v.vote]++;
+    });
+
+    return mapVotes(data);
+}
+
+function mapVotes(votes) {
+    var map = {
+        'yes': {name: 'Ja', 'color': '#9fd773'},
+        'no': {name: 'Nein', color: '#cc6c5b'},
+        'abstain': {name: 'Enthalten', color: '#e2e2e2'},
+        'no-show': {name: 'Nicht abgestimmt', color: '#a6a6a6'}
     };
+
     var data = [];
 
-    Object.keys(vote).forEach(function (k) {
-        var count = 0;
-        window.votes.forEach(function (v) {
-            if (v.vote === k) {
-                count++;
-            }
-        });
-        data.push({name: vote[k].label, color: vote[k].color, count: count});
-    });
+    for (key in votes) {
+        map[key].count = votes[key];
+        data.push(map[key]);
+    }
 
     return data;
 }
