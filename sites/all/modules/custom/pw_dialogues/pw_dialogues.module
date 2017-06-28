@@ -308,23 +308,21 @@ function pw_dialogues_profile_block() {
     $nodes = node_load_multiple(array_keys($result['node']));
     $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
     $block['content'] = node_view_multiple(array_slice($nodes, 0, 12, TRUE), 'embedded');
-    $block['content']['#attached']['js'][$inline_js] = [
+    $block['content']['nodes']['#theme_wrappers'] = ['container__swiper'];
+    $block['content']['stats'] = [
+      '#theme' => 'dialogues_stats',
+      '#questions' => $account->number_of_questions,
+      '#answers' => $account->number_of_answers,
+      '#answer_ratio' => round(100 * $account->number_of_answers / $account->number_of_questions, 0),
+      '#average_response_time' => round(pw_dialogues_average_response_time($account) / 86400),
+    ];
+    $block['content']['stats']['#attributes']['class'] = ['tabs__content__content', 'container'];
+    $block['content']['stats']['#attached']['js'][$inline_js] = [
       'scope' => 'footer',
       'type' => 'inline',
     ];
   }
-  else {
-    $block['content'] = '';
-  }
-
-  if ($account->number_of_questions > 0) {
-    $block['answers'] = $account->number_of_answers;
-    $block['questions'] = $account->number_of_questions;
-    $block['answer_ratio'] = round(100 * $account->number_of_answers / $account->number_of_questions, 0);
-    $block['average_response_time'] = round(pw_dialogues_average_response_time($account) / 86400);
-  }
-
-  $block['question_form'] = node_view(node_load(10446), 'form');
+  $block['content']['question_form'] = node_view(node_load(10446), 'form');
 
   return $block;
 }
