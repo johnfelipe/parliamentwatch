@@ -72,14 +72,30 @@ function pw_api_profiles($parliament) {
 
   // query for users
   $pathinfo = pathinfo(current_path());
-  $user_role =  $pathinfo['filename'] == 'deputies'?'deputy':'candidate';
   $query = db_select('user_archive_cache', 'uac');
   $query->fields('uac', array('uid', 'vid'));
-  _pw_uac_add_conditions($query, array(
-      'parliament' => $parliament,
-      'roles' => $user_role,
-    )
-  );
+
+  if($pathinfo['filename'] == 'deputies') {
+    _pw_uac_add_conditions($query, array(
+        'parliament' => $parliament,
+        'roles' => 'deputy',
+      )
+    );
+  }
+  elseif($pathinfo['filename'] == 'candidates') {
+    _pw_uac_add_conditions($query, array(
+        'parliament' => $parliament,
+        'roles' => 'candidate',
+      )
+    );
+  }
+  else {
+    _pw_uac_add_conditions($query, array(
+        'parliament' => $parliament,
+      )
+    );
+    $result = $query->groupBy('uac.uid');
+  }
   $result = $query->execute()->fetchAll();
 
   // query parameters
