@@ -104,8 +104,11 @@ function pw_poll_page($parliament) {
  */
 function pw_poll_intro_block() {
   $block = [];
-
   $node = menu_get_object();
+
+  if (!$node) {
+    return $block;
+  }
 
   $block['subject'] = t('Poll intro');
   $block['content'] = node_view($node, 'teaser');
@@ -119,6 +122,10 @@ function pw_poll_intro_block() {
 function pw_poll_timeline_block() {
   $block = [];
   $node = menu_get_object();
+
+  if (!$node) {
+    return $block;
+  }
 
   $q = pw_poll_base_query();
   $q->fieldOrderBy('field_poll_date', 'value');
@@ -159,8 +166,12 @@ function pw_poll_timeline_block() {
  */
 function pw_poll_related_block() {
   $block = [];
-
   $node = menu_get_object();
+
+  if (!$node) {
+    return $block;
+  }
+
   $category_items = field_get_items('node', $node, 'field_blogpost_categories');
 
   $q = pw_poll_base_query();
