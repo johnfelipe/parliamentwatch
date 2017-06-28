@@ -267,3 +267,61 @@ function pw_poll_results($nodes) {
 
   return $results;
 }
+
+/**
+ * Returns the results for the given nodes grouped by party.
+ *
+ * @param array
+ *   The poll nodes.
+ */
+function pw_poll_results_by_party($nodes) {
+  $results_by_party = [];
+  $party_terms = taxonomy_term_load_multiple(FALSE, ['vid' => 19]);
+
+  $q = db_select('field_data_field_vote', 'v');
+  $q->join('field_data_field_vote_node', 'n', 'v.entity_id = n.entity_id');
+  $q->join('field_data_field_vote_user', 'u', 'v.entity_id = u.entity_id');
+  $q->join('field_data_field_user_party', 'p', 'u.field_vote_user_target_id = p.entity_id');
+  $q->addField('n', 'field_vote_node_target_id', 'nid');
+  $q->addField('v', 'field_vote_tid');
+  $q->addField('p', 'field_user_party_tid');
+  $q->addExpression('COUNT(v.field_vote_tid)', 'vote_count');
+  $q->condition('n.field_vote_node_target_id', array_map(function ($item) { return $item->nid; }, $nodes))
+    ->groupBy('n.field_vote_node_target_id')
+    ->groupBy('p.field_user_party_tid')
+    ->groupBy('v.field_vote_tid');
+
+  foreach ($q->execute() as $row) {
+    if (isset($party_terms[$row->field_user_party_tid])) {
+      $party = $party_terms[$row->field_user_party_tid]->name;
+    }
+    else {
+      $party = '';
+    }
+
+    switch ($row->field_vote_tid) {
+      case 19667:
+        $results_by_party[$row->nid][$party]['yes'] = (int) $row->vote_count;
+        break;
+      case 19668:
+        $results_by_party[$row->nid][$party]['no'] = (int) $row->vote_count;
+        break;
+      case 19669:
+        $results_by_party[$row->nid][$party]['abstain'] = (int) $row->vote_count;
+        break;
+      case 19670:
+        $results_by_party[$row->nid][$party]['no-show'] = (int) $row->vote_count;
+        break;
+    }
+  }
+
+  $defaults = ['yes' => 0, 'no' => 0, 'abstain' => 0, 'no-show' => 0];
+
+  foreach ($results_by_party as $nid => $results) {
+    foreach (array_keys($results) as $party) {
+      $results_by_party[$nid][$party] += $defaults;
+    }
+  }
+
+  return $results_by_party;
+}
