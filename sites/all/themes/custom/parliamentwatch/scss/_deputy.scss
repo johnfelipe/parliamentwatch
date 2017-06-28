@@ -403,23 +403,24 @@
       }
     }
   }
-  .tab-qa-stats + .question {
-    background: $brightOrange;
+  .question-form {
     padding: $space-large 0;
     margin-top: $space-large;
     border-top: 1px solid $white;
     color: $darkGray;
+    @include container-extended($brightOrange);
     @include grid-container();
     @include breakpoint($breakpoint-s-min) {
       margin-top: $space-large * 2;
-      padding: ($space-large * 2) 0;
+      padding-top: ($space-large * 2);
+      padding-bottom: ($space-large * 2);
     }
     @include breakpoint($breakpoint-m-min) {
       margin-bottom: -$space-large * 2;
     }
     h2, h2 a { color: $darkGray; font-family: $font-sans-serif; }
   }
-  .question-form {
+  .question-content {
     @include grid-column(12);
     @include breakpoint($breakpoint-s-min) {
       @include grid-column(8);

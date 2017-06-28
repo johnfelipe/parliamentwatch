@@ -44,6 +44,11 @@
   padding-right: calc(50% - 680px);
   @include grid-container();
 }
+@mixin container-extended($background-color) {
+  @include container();
+  background-clip: padding-box;
+  background-color: $background-color;
+}
 @mixin container-regular() {
   max-width: 1360px;
   @include margin(null auto);

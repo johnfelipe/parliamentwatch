@@ -80,8 +80,8 @@
  * @ingroup themeable
  */
 ?>
-<div class="question">
-  <div class="question-form">
+<div class="question-form">
+  <div class="question-content">
     <h2><?php print t('Ask question') ?></h2>
     <?php
       print render($content['body']);
