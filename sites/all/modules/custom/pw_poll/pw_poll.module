@@ -247,5 +247,12 @@ function pw_poll_results($nodes) {
         break;
     }
   }
+
+  $defaults = ['yes' => 0, 'no' => 0, 'abstain' => 0, 'no-show' => 0];
+
+  foreach (array_keys($results) as $nid) {
+    $results[$nid] += $defaults;
+  }
+
   return $results;
 }
