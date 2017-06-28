@@ -280,7 +280,7 @@ function pw_profiles_entity_info_alter(&$entity_info) {
  */
 function pw_profiles_user_uri($user) {
   if (isset($user->actual_profile) && $user->actual_profile == 0) {
-    $path = 'profile/' . $user->name . '/archive/' . $user->vid;
+    $path = 'profile/' . $user->uid . '/archive/' . $user->vid;
   }
   else {
     $path = 'user/' . $user->uid;
