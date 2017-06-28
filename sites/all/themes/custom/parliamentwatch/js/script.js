@@ -929,6 +929,16 @@ function parseVotes() {
     return mapVotes(data);
 }
 
+function parseResultsByParty() {
+    var data = {};
+
+    for (var party in window.results_by_party) {
+        data[party] = mapVotes(window.results_by_party[party]);
+    }
+
+    return data;
+}
+
 function mapVotes(votes) {
     var map = {
         'yes': {name: 'Ja', 'color': '#9fd773'},
