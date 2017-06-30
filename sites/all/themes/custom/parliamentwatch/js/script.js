@@ -261,12 +261,104 @@ function tabs() {
  * Select2 Implementation
  * */
 function select2init() {
-    $('select').select2({
+    $('select.form__item__control').select2({
+        minimumResultsForSearch: 20,
         placeholder: 'Bitte wählen',
-        allowClear: true,
         dropdownParent: $('.page-container')
     });
 }
+
+/*
+ * Autosuggest
+ * */
+
+function autosuggest() {
+
+    var names = [];
+
+    $.get('/sites/all/themes/custom/parliamentwatch/deputies.json', {}, function (data) {
+        $.each(data, function (i, str) {
+            names.push(str.name);
+        });
+    });
+
+    var substringMatcher = function (strs) {
+        return function findMatches(q, cb) {
+            var matches, substringRegex;
+
+            // an array that will be populated with substring matches
+            matches = [];
+
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function (i, str) {
+                if (substrRegex.test(str)) {
+                    matches.push(str);
+                }
+            });
+            cb(matches);
+        };
+    };
+
+    $('.autosuggest').typeahead({
+        minLength: 2,
+        display: "names",
+        highlight: true
+    },
+    {
+        name: 'names',
+        source: substringMatcher(names),
+        templates: {
+            header: function (query) {
+                return '<div class="autosuggest__header">Abgeordnete</div>';
+            },
+            notFound: function (query) {
+                return '<div class="autosuggest__item autosuggest__item--empty">Kein Ergebnisse unter "' + query.query + '" Gefunden</div>';
+            },
+            suggestion: function (query) {
+                return '' +
+                    '<div class="autosuggest__item">' +
+                        '<div class="autosuggest__item__image">' +
+                            '<img src="http://via.placeholder.com/150x150" alt="">' +
+                        '</div>' +
+                        '<div class="autosuggest__item__info">' +
+                            '<div class="autosuggest__item__name">' + query + '</div>' +
+                            '<div class="autosuggest__item__subtitle">Bundestag <i class="icon icon-arrow-right"></i> <span class="party-indicator">SPD</span></div>' +
+                            '<div class="autosuggest__item__constituency">Wahlkreis</div>' +
+                        '</div>' +
+                        '<a href="#" class="btn--small">Jetzt befragen</a>' +
+                    '</div>';
+            }
+        }
+    });
+}
+
+/*
+ * Sponsor-Counter
+ * */
+
+function sponsorCounter() {
+    $("#mscount").load("http://abgeordnetenwatch.de/images/membership-count.txt");
+    setInterval(function() {
+        $.get("http://abgeordnetenwatch.de/images/membership-count.txt",
+            function(count){
+                var old_count = document.getElementById('mscount').innerHTML;
+                if (old_count < count){
+                    $("#mscount").fadeOut('slow', function(){
+                            $('#mscount').html(count);
+                            $("#mscount").fadeIn('slow');
+                        }
+                    );
+                }
+            }
+        );
+    }, 300);
+}
+
+
 
 
 /*
@@ -841,6 +933,8 @@ $(function () {
     initLocalScroll();
     pollTimeline();
     newsletterWidget();
+    autosuggest();
+    // sponsorCounter();
 
     // Init global matchHeight-plugin class
 

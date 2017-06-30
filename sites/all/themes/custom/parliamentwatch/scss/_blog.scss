@@ -9,11 +9,11 @@
   @include grid-column(12);
   margin-bottom: $space;
   @include breakpoint($breakpoint-s-min) {
-    @include grid-column(6, $neat-grid-large-gutter);
+    @include grid-column(6);
     margin-bottom: $space-large;
   }
   @include breakpoint($breakpoint-m-min) {
-    @include grid-column(4, $neat-grid-large-gutter);
+    @include grid-column(4);
   }
   .tile__title {
     border: 0;
@@ -22,6 +22,24 @@
   }
 }
 
+.blog.tile.mh-item {
+  padding-bottom: $space-large * 2;
+  position: relative;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(12);
+  }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4);
+  }
+  .tile__links {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: auto;
+  }
+}
 
 /* Blog-Detailansicht */
 

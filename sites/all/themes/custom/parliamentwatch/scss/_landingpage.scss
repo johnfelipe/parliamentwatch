@@ -6,8 +6,6 @@
   position: relative;
   background: $beige;
   border-bottom: 1px solid $darkBeige;
-  margin-bottom: $space-large;
-  overflow: hidden;
   padding-top: $space;
   padding-bottom: $space;
   @include container();
@@ -16,9 +14,11 @@
 .lp-header__left {
   position: relative;
   z-index: 1;
+  display: none;
   @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(6);
+    display: block;
   }
   svg {
     max-width: 250px;
@@ -37,6 +37,56 @@
   @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(6);
+    padding-top: $space-large;
+  }
+  h2 {
+    color: $darkGray;
+    font-weight: 900;
+    position: relative;
+    padding-left: 65px;
+    font-size: 1.7em;
+    @include breakpoint($breakpoint-xs-min) {
+      padding-left: 70px;
+      font-size: 1.9em;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      padding-left: 75px;
+      font-size: 2.1em;
+    }
+    span {
+      display: block;
+      margin-left: $space-xsmall;
+      font-size: 1.3em;
+      @include breakpoint($breakpoint-xs-min) {
+        font-size: 1.4em;
+      }
+    }
+    &:before {
+      content: '\e901';
+      display: block;
+      position: absolute;
+      font-family: 'awfont';
+      font-size: 1.8em;
+      left: $space-xsmall-mobile;
+      top: -$space-xsmall-mobile;
+      @include breakpoint($breakpoint-xs-min) {
+        font-size: 2em;
+      }
+    }
+  }
+  .form__item--combine {
+    font-size: 1.2em;
+  }
+  .link-icon {
+    font-weight: 300;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    @include breakpoint($breakpoint-s-min) {
+      margin-left: $space-xsmall;
+      text-align: left;
+    }
   }
 }
 .lp-header__bg {
@@ -45,6 +95,8 @@
   left: 0;
   right: 0;
   top: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 .lp-header__bg__item {
   width: 10%;
@@ -57,7 +109,7 @@
   display: block;
   float: left;
   background: $darkGray;
-  @include breakpoint($breakpoint-s-min) {
+  @include breakpoint($breakpoint-xl-min) {
     width: 5%;
     padding-bottom: 5%;
   }
@@ -121,4 +173,51 @@
   &:nth-child(7n):after { opacity: 0.9; }
   &:nth-child(8n):after { opacity: 0.6; }
   &:nth-child(9n):after { opacity: 0.7; }
+}
+
+
+.donate-teaser {
+  @include grid-container();
+  border-bottom: 1px solid $darkBeige;
+  padding-top: $space-large;
+  padding-bottom: $space-large;
+  @include container();
+  @include breakpoint($breakpoint-s-min) {
+    padding-top: $space-large + $space-small;
+    padding-bottom: $space-large + $space-small;
+  }
+  p {
+    @include grid-column(12);
+    text-align: center;
+    margin-bottom: 0;
+    @include breakpoint($breakpoint-s-min) {
+      text-align: left;
+      font-size: 1.05em;
+      line-height: 1.6em;
+      @include grid-column(8);
+    }
+    @include breakpoint($breakpoint-m-min) {
+      font-size: 1.2em;
+      line-height: 1.8em;
+    }
+  }
+  span {
+    font-weight: 600;
+    color: $orange;
+    font-size: 1.2em;
+    opacity: 0;
+  }
+  .btn {
+    @include grid-column(12);
+    margin-top: $space;
+    @include breakpoint($breakpoint-s-min) {
+      float: right;
+      width: auto;
+      margin-right: $space;
+      margin-top: $space-xsmall;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      margin-top: $space-small;
+    }
+  }
 }

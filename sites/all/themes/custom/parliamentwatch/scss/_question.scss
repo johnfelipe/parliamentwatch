@@ -15,7 +15,7 @@
 
 .question.tile {
   .question__question {
-    padding-bottom: $space-xsmall;
+    padding-bottom: $space-large;
   }
   .question__answer {
     background: $brightGray;
@@ -48,5 +48,45 @@
     border-width: 2px;
     display: inline-block;
     margin: -$space-xsmall $space-small -$space-xsmall;
+  }
+}
+
+
+.question-teaser-pre {
+  border-top: 1px solid $darkBeige;
+  @include container();
+  .intro__right {
+    text-align: right;
+  }
+}
+
+.question-teaser {
+  background: $orangeBG;
+  padding-top: ($space-large + $space);
+  padding-bottom: ($space-large + $space);
+  .tile {
+    @include grid-column(12);
+    margin-bottom: $space;
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(6);
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .qa-stats {
+    padding-top: 0;
+    padding-bottom: $space-large;
+    margin: 0 0 $space-large;
+    position: relative;
+    &:before {
+      position: absolute;
+      bottom: 0;
+      margin: 0;
+    }
+  }
+  .pager { clear: both; }
+  .pager__next a {
+    color: $white;
   }
 }

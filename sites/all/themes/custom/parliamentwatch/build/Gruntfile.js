@@ -47,6 +47,7 @@ module.exports = function (grunt) {
           '<%= paths.css %>/contrib/normalize.css': 'normalize-css/normalize.css',
           '<%= paths.css %>/contrib/select2.css': 'select2/dist/css/select2.css',
           '<%= paths.css %>/contrib/swiper.css': 'swiper/dist/css/swiper.min.css',
+          '<%= paths.js %>/contrib/typeahead.bundle.min.js': 'typeahead.js/dist/typeahead.bundle.min.js',
           '<%= paths.js %>/contrib/d3.min.js': 'd3/d3.min.js',
           '<%= paths.js %>/contrib/jquery.scrollTo.min.js': 'jquery.scrollTo/jquery.scrollTo.min.js',
           '<%= paths.js %>/contrib/jquery.sticky-kit.min.js': 'sticky-kit/jquery.sticky-kit.min.js',

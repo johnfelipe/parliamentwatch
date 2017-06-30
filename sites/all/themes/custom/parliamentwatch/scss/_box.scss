@@ -5,39 +5,46 @@
 
 /* tile wrapper element */
 .tile-wrapper {
+  padding-top: $space-large;
   padding-bottom: $space-large;
   background: $beige;
-  > .container {
-    @include grid-container();
+  @include container();
+  > h2,
+  .option-title {
+    margin-bottom: $space;
+  }
+  .small-tiles + .option-title,
+  .tile + .option-title {
+    margin-top: $space-large;
   }
   .row {
     @include breakpoint($breakpoint-s-min) {
       @include grid-collapse($neat-grid-large-gutter);
     }
-    > h2 {
-      position: relative;
-      text-align: center;
-      padding: $space-large 0 $space;
-      margin-bottom: $space-large * 2;
-      clear: both;
-      border-bottom: 1px solid $gray;
-      @include grid-column(12, $neat-grid-large-gutter);
-      &:after,
-      &:before {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 100%;
-        @include transform(translate(-50%,0));
-      }
-      &:after {
-        @include triangle(36px 12px, $beige, down);
-      }
-      &:before {
-        @include triangle(38px 13px, $gray, down);
-
-      }
-    }
+    //> h2 {
+    //  position: relative;
+    //  text-align: center;
+    //  padding: $space-large 0 $space;
+    //  margin-bottom: $space-large * 2;
+    //  clear: both;
+    //  border-bottom: 1px solid $gray;
+    //  @include grid-column(12, $neat-grid-large-gutter);
+    //  &:after,
+    //  &:before {
+    //    content: '';
+    //    position: absolute;
+    //    left: 50%;
+    //    top: 100%;
+    //    @include transform(translate(-50%,0));
+    //  }
+    //  &:after {
+    //    @include triangle(36px 12px, $beige, down);
+    //  }
+    //  &:before {
+    //    @include triangle(38px 13px, $gray, down);
+    //
+    //  }
+    //}
   }
   .filterbar {
     margin-bottom: $space-large;
@@ -171,6 +178,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   text-align: center;
   @include box-inset-bottom();
 }
+
 .tile__links__item {
   margin: 0;
   border-right: 1px solid $gray;
@@ -203,7 +211,83 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   @include grid-column(6, $neat-grid-no-gutter);
 }
 
-/* Sidebar-Boxes*/
+
+/* Small tiles */
+
+.small-tiles {
+  background: $white;
+  @include grid-column(12);
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(8);
+  }
+  @include breakpoint($breakpoint-l-min) {
+    @include grid-column(8);
+    border-left: $space-large solid $beige;
+  }
+  .blog.tile {
+    @include grid-column(12, $neat-grid-no-gutter);
+
+    margin-bottom: 0;
+    border-bottom: 1px solid $darkBeige;
+    @include breakpoint($breakpoint-s-min) {
+      border-bottom: 0;
+      padding: $space-large;
+    }
+    .tile__image {
+      display: none;
+      @include breakpoint($breakpoint-s-min) {
+        display: block;
+        margin: 0;
+        padding: 0;
+        height: auto;
+        width: 25%;
+        float: left;
+      }
+      img {
+        position: static;
+      }
+    }
+    .tile__title--date .date {
+      top: 0;
+    }
+    .tile__title {
+      float: left;
+      width: auto;
+      padding-top: 0;
+      @include breakpoint($breakpoint-s-min) {
+        width: 75%;
+        margin: 0;
+      }
+    }
+    .tile__links {
+      padding: 0;
+      margin-top: 0;
+      clear: both;
+      @include breakpoint($breakpoint-s-min) {
+        margin: 0;
+        clear: none;
+        float: left;
+        width: 75%;
+        padding-left: 85px;
+      }
+    }
+    .tile__links__item {
+      @include breakpoint($breakpoint-s-min) {
+        width: auto;
+      }
+    }
+    .tile__links__item__link {
+      padding-top: $space-xsmall;
+      padding-bottom: $space-xsmall;
+    }
+    &:last-child {
+      border: 0;
+    }
+  }
+}
+
+
+/* Sidebar-Boxes */
 
 .sidebar-box {
   padding-bottom: $space-large;
@@ -251,6 +335,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   font-size: .9em;
 }
 
+/* Wells */
 
 .well {
   background: $beige;

@@ -23,8 +23,6 @@
   width: 100%;
   padding: $space-xsmall;
 }
-.form__item__label {
-}
 
 /* Type: Checkbox */
 
@@ -128,7 +126,6 @@ textarea.form__item__control {
 
 /* Select2 Elements */
 
-
 .select2-container .select2-selection {
   min-height: 0;
   height: auto;
@@ -140,7 +137,7 @@ textarea.form__item__control {
   padding: 0;
 }
 .select2-container .select2-selection--single .select2-selection__rendered {
-  padding: $space-xsmall ($space-large + $space) $space-xsmall $space-xsmall;
+  padding: $space-xsmall $space-large $space-xsmall $space-xsmall;
   line-height: 1.15;
 }
 .select2-container .select2-selection--single .select2-selection__arrow {
@@ -148,6 +145,18 @@ textarea.form__item__control {
   width: $space-large;
   bottom: 1px;
   border-left: 1px solid $gray;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border: 0;
+  margin-top: -4px;
+  &:after {
+    content: '\e847';
+    font-family: 'awfont';
+    font-size: 0.5em;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 .select2-container .select2-search--inline {
   margin: 0;
@@ -164,6 +173,162 @@ textarea.form__item__control {
 .select2-container--default .select2-selection--multiple .select2-selection__clear {
   margin-top: $space-xsmall;
 }
+.select2-container--open .select2-dropdown--below {
+  min-width: 200px;
+}
 
 
-/* Select2 Elements */
+/* Form-Item Combiner */
+
+.form__item--combine {
+  background: $white;
+  padding: $space-xsmall;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
+  @include grid-container();
+  .select2-container {
+    float: left;
+    width: 25% !important;
+    padding-right: $space-xsmall-mobile;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 15% !important;
+    }
+    .select2-selection {
+      position: relative;
+    }
+  }
+  .select2-container--default .select2-selection--single {
+    border: 0;
+    border-right: 1px solid $darkBeige;
+  }
+  .select2-container .select2-selection--single .select2-selection__arrow {
+    border-left: 0;
+  }
+  .twitter-typeahead,
+  > .form__item__control {
+    float: left;
+    width: 65%;
+    border: 0;
+    display: block;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 75%;
+    }
+  }
+  .tt-hint {
+    color: $gray;
+    top: auto !important;
+    left: auto !important;
+    width: calc(100% - 40%);
+    @include breakpoint($breakpoint-xs-min) {
+      width: calc(100% - 28%);
+    }
+  }
+  .twitter-typeahead {
+    position: static !important;
+  }
+  .form__item__control {
+    border: 0;
+  }
+  button {
+    float: left;
+    width: 10%;
+    padding: $space-xsmall;
+    border: 0;
+    background: none;
+    border-left: 1px solid $darkBeige;
+  }
+}
+
+/* Autosuggest - Typeahead */
+
+.tt-menu {
+  background: $white;
+  right: 0;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
+
+  border-top: 1px solid $darkBeige;
+
+  /* Header */
+
+  .autosuggest__header {
+    padding: $space-xsmall $space-xsmall;
+    border-bottom: 1px solid $darkBeige;
+    font-weight: 600;
+    color: $orange;
+    font-size: .8em;
+  }
+
+  /* Ergebnis */
+
+  .autosuggest__item {
+    padding: $space-small $space-xsmall;
+    border-bottom: 1px solid $darkBeige;
+    position: relative;
+    @include grid-container();
+    &:last-child {
+      border-bottom: 0;
+    }
+    .btn--small {
+      display: none;
+      @include breakpoint($breakpoint-s-min) {
+        display: block;
+        position: absolute;
+        right: $space-xsmall;
+        top: $space-small;
+      }
+    }
+    &:hover,
+    &.tt-cursor {
+      background-color: $brightGray;
+    }
+  }
+  .autosuggest__item__image {
+    float: left;
+    @include image-circle(40px, 40px);
+    border-width: 3px;
+    margin-right: $space-small;
+  }
+  .autosuggest__item__info {
+    color: $gray;
+    padding-top: 2px;
+    position: relative;
+    @include breakpoint($breakpoint-s-min) {
+      margin-right: 120px;
+    }
+    .tt-highlight {
+      color: $darkGray;
+    }
+  }
+  .autosuggest__item__name {
+    font-family: $font-serif;
+    padding-bottom: 3px;
+    padding-right: 100px;
+    @include text-overflow();
+  }
+  .autosuggest__item__subtitle {
+    color: $gray;
+    font-size: .7em;
+    .icon {
+      font-size: .8em;
+      margin: 0 5px;
+      display: inline-block;
+    }
+    .party-indicator {
+      color: $gray;
+    }
+  }
+  .autosuggest__item__constituency {
+    position: absolute;
+    right: $space-xsmall-mobile;
+    top: $space-xsmall-mobile;
+    font-size: .7em;
+    max-width: 100px;
+    text-align: right;
+    @include text-overflow();
+  }
+
+  /* Kein Ergebnis */
+
+  .autosuggest__item--empty {
+    text-align: center;
+  }
+}

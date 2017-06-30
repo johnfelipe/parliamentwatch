@@ -19,8 +19,21 @@
 }
 .btn--large-white {
   @include button($white, $orange, 20px, 15px);
+  font-size: 1.2em;
   &:hover {
     @include button($white, transparent, 20px, 15px);
+  }
+}
+
+.btn--small {
+  @include button($orange, $white, 10px, 8px);
+  font-size: 0.8em;
+}
+.btn--small-white {
+  @include button($white, $orange, 10px, 8px);
+  font-size: 0.8em
+  &:hover {
+    @include button($white, transparent, 10px, 8px);
   }
 }
 

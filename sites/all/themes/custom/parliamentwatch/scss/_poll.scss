@@ -10,11 +10,11 @@
   position: relative;
   @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
-    @include grid-column(6, $neat-grid-large-gutter);
+    @include grid-column(6);
     margin-bottom: $space-large;
   }
   @include breakpoint($breakpoint-m-min) {
-    @include grid-column(4, $neat-grid-large-gutter);
+    @include grid-column(4);
   }
   .tile__pollchart {
     padding-top: $space;
@@ -529,19 +529,3 @@
   }
 }
 
-
-.poll__questions {
-  background: $orangeBG;
-  padding: ($space-large * 2) 0;
-  .tile {
-    @include grid-column(12);
-    margin-bottom: $space;
-    @include breakpoint($breakpoint-s-min) {
-      margin-bottom: 0;
-      @include grid-column(6, $neat-grid-large-gutter);
-    }
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}

@@ -98,13 +98,421 @@
   <main id="content">
     <a id="main-content"></a>
 
+    <!-- Landingpage: Bundestag -->
+
+    <div class="lp-header">
+      <div class="lp-header__left">
+        <svg version="1.1" x="0px" y="0px" viewBox="0 0 521.9 728.6">
+          <path d="M163,1c-0.4,0.1-0.7,0.9-1.5,0.8c-0.4-0.1-1.6,4.1-1.8,4.6c-0.5,1.4-1.5,2.8-2.1,3.9c-0.9,1.7-1.7,2-2.8,3.2 c-0.7,0.8-1.6,1.4-2.5,2.1c-0.1,0.1,0,0-0.7,1.4c-0.7,1.5-1.6,3.4-2.1,4.6c-0.7,1.6-0.9,3.1-1.4,5c-0.4,1.5-0.5,3.6-0.7,4.9 c-0.2,1.4-0.7,2.9-1.1,4.6c-0.7,3,2.1,0.9,2.5,1.1c0.3,0.1,2.1-4.6,2.1-4.6c0.5-1,0.5-3.4,0.7-4.6c0.2-1.1,0.5-3.2,0.7-4.2 c0.3-1.7,1.7-2.7,2.5-3.9c2-3.1,0.9,0.3,2.1,0.7c0.4,0.1,2.8,1.2,3.5,1.4c1.9,0.7,0.5-2.5,0.7-3.2c0.4-1.9-1-3.4-1.4-5 c0,0,0,0,0-0.1c0-0.6,0-1.1,0-2c1.1-0.9,1.6-2.4,2.5-3.6c0.7-1,2.8-1.9,3.6-2.5c1.1-0.8-1.2-2.4-1.8-3.5C163.5,1.2,163.2,1,163,1z M168.1,25.9c-2.7-0.1-0.4,5.1-0.4,5.1c-0.4,2.2,3.4,5,4,6c1.4,2,0.6,4.4,1,7c0.4,2.7,0,5,0,7c0,2.4,2.6,2.3,4.5,4 c1.7,1.6,3.8,2.4,5.5,3.5c1.8,1.1,0.7,5.1,1,7c0.5,3.5-1.8,3.6-3,6c-0.8,1.7-4.6,1.5-6,2c-2.2,0.7-4.5,2.1-6.5,3 c-2.3,1.1-2.8,3.1-4,4.5c-1.4,1.6,1.3,4,2,6c0.5,1.5,5.3-1.8,6-2c2-0.7,4.1-2.6,5.5-3.5c0.9-0.5,2,0.3,3,0.5c2,0.3-2.3,3.3-3.5,5 c-1.6,2.4-2.2,3.5-3.5,5.5c-1.4,2.2,2.4,3.2,3,4c0.7,0.9,4.5,0.4,5.5,0.5c1.5,0.1,3.3,3.3,4,4c2.4,2.4,0.3,3.8,0.5,6 c0.2,1.8-3.7-0.3-5.5-0.5c-5.6-0.5,0.8-0.4-3,1.5c-2.1,1,1.7,4.3,2.5,6.5c1.4,3.7,2.2,1.9,4.5,4c0.6,0.5,6.2,1.9,6.5,2 c2.6,0.8,3.9,1.5,6.5,2.5c2.6,1,4.2,2.8,6,4c1.9,1.3,3,3.7,4,5c1.3,1.7,1.6,3.6,2.5,5.5l2.5,5.5c0.9,2,2.2,3.5,3.5,5.5 c0.4,0.6,0.9,1.2,1.3,1.7c-0.6-0.3-1.3-0.6-1.8-0.9c-1.2-0.7-1.8-1.8-2.5-2.5c-0.6-0.6-1.1-1.4-1.9-2.5c-1.1-1.5-1.8-2.5-2.5-3.5 c-0.8-1.1-2.3-2.1-3.2-2.8c-1-0.9-2.1-1.5-3.2-2.2c-0.7-0.5-1.6-2.6-2.2-3.5l-2.2-3.5c-0.7-1.2-1.3-1.1-2.2-1.9 c-1.1-0.9-2.5-1-3.2-1.3c-1.9-0.8-2-0.2-3.8-0.3c-1.5-0.1-2.2,0.4-3.8,0.7c-1.3,0.2-2.7,0.8-4.1,1.2c-1.9,0.6-2.7-0.2-4.7-0.3 c-1.8-0.1-2.2-0.7-4.1-1.3c-1.1-0.3-2-2.3-2.5-2.8c-1.4-1.6-0.7-0.8-1.9-2.2c-1.3-1.6-1.9-0.6-3.8-1.2c-1-0.3-2.8,1.4-3.8,1.9 c-2.2,1.1-0.9,1.7-1.9,3.5c-0.4,0.7-1.1,4.2-1.2,4.7c-0.1,0.3-2.1,2.6-2.5,3.2c-1,1.2-0.4,2.8-0.6,4.4c-0.2,1.1-0.5,3,0,4.7 c1.6,5.9-0.9,6.6-1,7.9c-1.9-0.7-4.7-2.7-5-3.2c-0.7-0.9-1.4-2.1-2.2-3.1c-1-1.4-3.5,1.4-4.1,1.6c-1.2,0.5-0.5,3.4-0.6,4.4 c-0.2,1.1,1.5,3.1,1.9,3.8c0.6,1.2,0.2,3.3,0.3,5c0.1,1.9-1,2.9-1.6,4.4c-0.5,1.5-2.2,1.6-3.2,2.2c-1.3,0.9-1.4-0.6-2.8-1.3 c-0.3-0.1-1.7-2.8-1.9-3.1l-1.9-3.2c-0.5-0.8-2-2.2-2.5-2.8c-1.1-1.3,1.5-3.3,1.6-3.5c0.6-1.3,2.3-1.7,3.5-2.5 c1-0.7-1.5-1.9-2.2-2.8c-1.1-1.4-1.5-2.3-2.2-3.5c-0.6-1-0.2-2.3-0.3-3.5c-0.2-1.8-2.2-2.2-2.8-2.8c-0.6-0.6-2.8-0.2-4.1-0.3 c-1.1-0.1-2.6,0-4.1,0c-1.6,0-2.2,0.3-4.1,0.6c-0.9,0.1-3.3-1.4-4.4-1.9c-1.2,0.1-3,1.5-4.4,2.2c-1,0.5-2.4,1.3-3.4,1.9 c-1.9,1.1-2-0.2-3.2-0.3c-1-0.1-2.3-1.6-3.2-2.2c-1.4-1-2.1,0-3.2,0c-1.3,0-3.3,0.8-3.8,0.9c-1.9,0.5-2.5,1.2-3.4,1.6 c-1.2,0.5-1.3,2.3-1.9,3.5c-0.1,0.2-3.4,0.6-3.8,0.6c-1.4,0.2-0.7,1.1-1.6,2.5c-0.2,0.3,1.8,2.7,1.9,2.8c1.4,2.2-0.2,1.6-0.3,3.1 c-0.1,1.1-2.3,0.7-3.1,1c-1.3,0.4-2,0.8-3.2,1.2c-1.4,0.5-0.6,2.4-0.9,3.8c-0.3,1-0.3,2.9-0.3,3.8c-0.1,1.6,2.3,0.6,3.5,0.9 c1.7,0.5,2.1,0.2,4.1,0.3c1.4,0.1,3.6,0.6,4.1,0.6c1.9,0.3,2.3,0.7,4.1,1.2c2,0.6,2.1,1.2,3.8,2.2c1.5,0.9,1.2,1.7,2.2,3.2 c0.7,1.1,0.8,2.7,0.9,3.1c0.5,1.7-1.9,0.7-2.5,1c-1.5,0.5-3.1-1.4-4.1-1.9c-1.2-0.6-1.1-2.1-1.6-3.1c-1.2-2.5-1.2,0-1.6,0 c-0.6,0-0.3,3.9-0.3,4.4c-0.1,1.4-0.4,2.6-0.6,4.1c-0.2,1.3-0.6,2.6-0.9,4.1c-0.4,1.6-0.6,2.3-0.9,3.8c-0.4,1.4-0.4,2.8-0.6,4.4 c-0.2,1.2,0.7,2.8,0.9,3.8c0.5,1.9,0.6,2.1,0.9,3.2c0.5,1.6-0.1,1.4-0.3,3.2c-0.1,1-2.4,2.1-2.5,2.2c-1.1,1-2.1,2.1-2.8,2.8 c-0.9,0.9-1.8,3.3-1.9,3.5c-0.9,1.6-0.9,3.2-0.9,3.5c-0.4,1.3-0.6,2.7-0.9,4.1c-0.3,1.3-0.5,3.4-0.6,4.4c-0.2,1.6-1.1,2.4-1.6,3.4 c-1,2.2-0.1,0.7-0.6,2.8c-0.4,2,0,1.3,0,3.2c0,1.5-0.8,0.4-2.2,1.2c-0.6,0.3-2.3-0.4-3.5-0.6c-0.8-0.1-2.6-0.8-3.8-1.2 c-1.6-0.5-2.3-0.2-3.8-0.3c-2.1-0.2-2.5,0-3.8,0c-2.8,0,0.2,1.6,0.3,2.5c0.1,1,1.5,1.5,2.2,2.2c1.2,1.2-0.9,2.4-1.2,3.5 c-0.5,1.4-1.4,2.3-2.2,3.8c-0.7,1.2,0,1.8,0,3.4c0,1.2,2.1,1.6,2.8,2.2c1.5,1.1,3.1-0.2,4.1-0.3c0.8-0.1,2.7-1.5,3.4-1.9 c1.6-0.9,2.4,2.4,2.5,2.5c0.3,0.3-0.2,0.8-0.3,1.2c0,0.2,0-0.1-0.3,0.6c-0.4,0.9,0.5,1.6,0.9,3.2c0.4,1.4,1.2,2.4,1.6,3.2 c0.6,1.1,2.4,1.3,3.4,1.9c0,0,0,0,0.1,0v1.2c-0.1,0.7-0.4,2.8-0.5,3.8c-0.2,1.2-0.4,2.5-0.5,3.5c-0.2,1.4-0.7,1.9-1.2,3.2 c-0.4,1-2,1.3-2.8,1.8c-0.8,0.5-1.7,0.2-2.8,0.2c-1.1,0.1-2.1,1.2-3,1.8c-1,0.6-1.5,1.6-2.2,2.5c-0.8,0.9-1.3,2-1.8,2.8 c-0.7,1.2-1.5,1.8-2.2,2.8c-0.6,0.7-2.5,0.8-3.2,1c-1.4,0.4-1,0.6-2.2,1.2c-0.6,0.3,2.1,2.3,2.2,2.5c0.7,0.8,1.2,1.6,1.8,2.2 c0.7,0.9-0.2,2.1-0.2,3c-0.1,1-0.7,2.2-1,3c-0.4,1.2-1.3,1.9-2,3c-0.5,0.8-1.1,1.8-1.2,2c-0.6,1-2.7,0.4-3.2,0.5c-0.2,0-2-1.6-2.5-2 c-1.4-1.1-2.2,0.5-3.2,0.8c-0.7,0.2-2,2.2-2.2,2.5c-1.2,1.3-1.9,0.5-3,0.8c-0.9,0.2-1.8-0.5-2.8-0.8c-1.5-0.4-1.2,2.6-1.2,2.8 c-0.7,1.6-1.3,1.8-1.8,2.5c-0.6,0.8-2.8-1.1-3.2-1.2c-1-0.4-1.6-2.2-2-2.8c-0.8-1.1-1.4-1-2.5-1.8c-0.9-0.6-2.6-1-3.2-1.2 c-1.6-0.6-1.3,1.6-1.8,2.2c-0.3,0.4-1,1.2-1.8,2c-0.9,1-2.7,0.2-3.8,0.2c-0.7,0-1.4,0-2.8,0c-1.4,0-1.7,0.6-3,1 c-1,0.3,0.2,3,0.2,3.2c0.1,0.7,1.7,2.1,2,2.5c0.7,0.9,1.3,1.8,1.8,2.5c0.6,0.8,1.3,1.3,2,2c0.9,0.9,0.7,2.3,1,3.2 c0.6,1.8-0.5,2-0.8,3.2c-0.3,1.3-0.5,2.6-0.8,4c-0.2,1.1,0.7,2,1,2.8c0.6,1.5,1.4,1.6,2.2,2.5c0.8,0.9,2,0.7,3,1 c1.8,0.6,0.9,1,2,2.2c0.8,0.9-0.9,2.8-1,3c-0.3,1-0.9,2.2-1.5,3.5c-0.5,1.2,0,1,0,2.5v3c0,1.6-0.9,1.4-1.5,2.2c-0.5,0.8-1,1.1-1.8,2 c-0.8,0.9-1.6,1.6-2.2,2.2c-0.6,0.6-1.2,1.6-1.8,2.2l-1.8,2.2c-1.4,1.8,0.8,2.1,1,2.5c0.3,0.8,1.7,0.3,2.5,0.5 c1.2,0.2,1,1.9,1.5,2.8c0.6,1.1,0.1,1.4,0.2,2.8c0.1,0.8-1.3,2.5-1.5,3c-0.6,1.1-1.3,1.6-2,2.5c-0.8,1-2.1,0.2-3.2,0.2 c-0.7,0.1-2.1,0-3.2,0c-1.7,0-1.1,1.8-1.8,2.8c-0.7,1.1,1,2.6,1.2,3.2c0.4,1.1,1.6,2.2,2.2,3.2c0.7,1.1,0.5,2.5,0.8,3.5l0.8,3.5 c0.4,1.9-0.6,1.3-1.2,2.5c-0.2,0.5-1.2,1-1.8,1.5c-0.6,0.5,0.2,2.7,0.2,3.5c0.1,1.5,0.7,2.1,1,3.2c0.3,1,1.4,0.9,2,1.2 c0.8,0.5,0.9,2,1.2,2.8c0.3,0.6,0.4,2.6,0.5,3.2c0.2,1.5,0.5,2.1,0.8,3.5c0.3,1.6,1.5,0.8,2.2,1.2c1,0.6,1.9,1.1,2.5,1.5 c0.5,0.3-0.2,3.4-0.2,3.8c0,0.6-1.7,1.5-2,1.8c-1.2,1.1-0.5,1.9-0.8,3c-0.1,0.5,0.6,2.4,0.8,3c0.6,2.2,1.2,1,1.8,1.5 c0.9,0.7,2.9-0.7,3.2-0.8c1.5-0.3,2,0.9,2.8,1.2c0.9,0.4,0.4,2.3,0.5,3.2c0.1,0.8-0.7,2.7-0.8,3c-0.2,0.6,0.2,2.3,0.2,2.8 c0.1,1,0.9,1.8,1.2,2.5c0.5,1,1.2,1.8,1.8,2.5c0.3,0.4,0.5,0.9,1,1.2c-0.1-0.1-0.3-0.1-0.5-0.2c-1.8-0.4-0.4,0.2-2,0.8 c-1,0.4-1.2,1.8-1.8,2.8c-0.5,0.8-1.8-0.3-2.8-0.5c-1.1-0.2-0.2,0.1-1.2,0.5c-1.1,0.4-0.7,1-1.5,2.2c-0.3,0.5-0.9,1.6-1.2,2.2 c-0.5,1-1.5,1.2-2.2,1.8c-1.2,1-0.8,1.8-1.5,3.2c-0.6,1.3-1.1,1.4-2,2.5c-0.2,0.2-2,1.4-2.2,1.5c-0.7,0.5,0.9,2.8,1,3 c0.3,1-0.8,2.2-1,2.8c-0.4,1.1-0.6,2.2-1,3.5c-0.4,1.5,0.2,2.3,0.2,3c0.1,1.4,0.7,2.2,1,3c0.2,0.7,1.3,0.8,2,1.2 c1.3,0.8,0.8,0.7,2,1.8c0.6,0.6,0.2,1.7,0.2,2.5c0.1,0.8,2.1,1.9,2.5,2.2c1,0.9,0.9,1.5,1.5,2.5c0.5,0.9,1,1.5,1.5,2.2 c0.7,1,2.1,1.1,3,1.5c0.9,0.4,2.8,0.4,3.8,0.5c0.4,0.1,1.3,2.4,1.5,2.8c0.5,0.9,0.2,2.6,0.2,3.8c0.1,1.3,0,2.6,0,3.5 c0,0.7-1.2,2-1.5,2.5c-0.6,0.9-1.6,1.7-2.2,2.5c-0.9,1-1.1,1.9-1.5,2.5c-0.5,0.8,0.3,2.1,0.5,3c0.2,1.5,0.3,1,0.8,2.2 c0.2,0.5,2.3,0.9,3,1.2l0.9,0.4c-1.3-0.3-2.7-0.5-4.2-0.8c-1.9-0.4-1.8,0.7-3.9,1.4c-2.3,0.8-1,2.1-2.1,4.6 c-0.6,1.3,2.7,2.4,3.2,2.8c0.8,0.7,4.8,0.3,5.3,0.3c2.4,0.2,2.5,1.6,3.9,2.5c1.1,0.7,0,4.4,0,4.9c0,2.1,0.3,3.3,0.4,4.6 c0.1,1.3,1.9,2.2,2.8,3.2c1.2,1.4,2.1,2.8,3.2,4.2c1.1,1.4,1.5,3.6,2.1,4.9c0.6,1.4,1.2,2.8,1.8,3.9c1.1,2.5,3.1-0.3,3.9-0.3 c1.3-0.1,2.4-3.6,2.8-4.2c1.6-2.3,1.8-0.2,3.6-0.3c0.3,0,1.8,4,2.1,4.6c0.6,1.3,1.2,3.8,1.4,4.6c0.7,2.3,2.2-0.3,2.8-0.4 c1.3-0.2,1.4-2.1,2.1-3.2c0.8-1.2,2.1,2.1,3.2,3.2c1.4,1.4,2.2,1,3.9,1.8c1.9,0.9,4.4,0.7,5.5,0.3c1.7-0.6,1.6-2.2,2.2-3.1 c0.6-0.9-1.5-4.2-1.8-5.3c-0.1-0.4,0-0.1,0.3-1.1l0.1,0.2c0-0.1,0-0.2-0.1-0.3h0.3c0,0,0,0.1,0,0.1c0,0.1-0.1,0.3-0.1,0.4l-0.2-0.3 c0,0.1,0.1,0.3,0.2,0.4c0,1,0.6,2.1,1.3,3.1c0.2,0.2,0.3,0.3,0.4,0.5c0.4,0.6,0.8,1,1.2,1.1l-0.1-0.1c0.2,0.1,0.4,0.3,0.7,0.6 c0.7,0.6,2.4,0.8,3,1c1.2,0.4,0.9,1.5,1.5,2.5c0.4,0.7,0.7,1.9,1,2.8c0.4,1.1,1.2,2,1.8,2.8c0.5,0.8,1.6,1.1,2.5,1.8 c1.2,0.8,2.2,0.9,3,1.2c0.8,0.3,2.3,0.7,2.5,0.8c0.9,0.3,3.1,0,3.5,0c1.1,0,2.6,0.3,3.8,0.5c0.4,0,2.4-1.7,2.8-2 c1.3-1,2.5-0.7,3.5-1c1.5-0.4,1.8,0.7,2.8,1c0.8,0.3,1.8,1.3,2.5,1.8c0.7,0.5,1.9,1.1,2.8,1.5c1.1,0.6,1.6,1,2.5,1.5 c1.3,0.8,1.4,0.3,2.8,0.5c1.3,0.2,1.9,1.1,2.8,1.5c1,0.5,1.2,1.5,2,2.5c0.7,0.9,1.7,1.3,2.6,1.6v0.8h1.2c-0.4,0.6-0.9,1.3-1.3,1.8 c-1.2,1.6-1.4,2.2-2.5,3.9c-0.8,1.3-0.7,3-1.1,4.6c-0.2,0.8-0.5,2.8-0.7,4.2c-0.4,2.4-1.6,2.7-2.5,4.2c-0.6,1-3.1,0.7-4.6,1.1 c-1.8,0.4-2.3,1.6-3.5,2.5c-1.3,0.9-2.5,3-3.2,3.9c-0.7,0.9-2.9,2.4-3.9,3.2c-1.1,0.9-1.4,2.2-2.1,3.5c-0.8,1.3-1.3,2.6-2.1,4.2 c-0.8,1.6-0.7,3-1.1,4.9c-0.4,2-1.2,2.4-2.1,4.2l-2.1,4.2c-0.9,1.8-1,2.5-1.8,4.2c-0.1,0.1-0.3,4.3-0.4,4.9c-0.1,1.2-2.1,4-2.5,4.6 c-0.9,1.6-0.9,2.3-1.4,3.5c-0.3,0.7-1.4,2.5-1.8,3.2c-0.9,1.7-1.1,2.4-1.8,3.9c-0.8,1.7-0.8,3.7-1.1,4.9c-0.4,1.9-0.2,2.9-0.4,4.6 c-0.1,1.8,0,2.7,0,4.2c0,2.3-0.7,3.1-1,4.2c-0.4,1.7-1,2.1-1.4,3.2c-0.4,0.8-2.7,1-2.8,1.1c-1.5,0.6-0.7,0.8-1.8,2.1 c-1,1.2,0,4.5,0,5.7c0,1.9,0.7,3.6,1.1,5.3c0.3,1.6,0.9,4.1,1.1,4.9c0.5,2.2,2.1,1.7,2.1,1.8c0.6,0.5,3.7-1,3.9-1.1 c0.5-0.1,1,0,1.4,0h0.3c1.8,0,1.5,2.8,2.1,3.9c0.7,1.4,0.8,3.3,1.1,4.6c0.7,3.1,1.2,0.5,2.5,1.1c1,0.4,3.4-3.2,3.9-3.6 c1.5-1.4,3.8,0.7,3.9,0.7c1.3,0.2,3.3,0.5,4.9,0.7c1,0.1,3,0,4.6,0c2,0,2.4-2.4,3.5-3.5c1.5-1.5,2.3-2.1,3.6-3.2 c0.2-0.2,3.3,1.7,3.5,1.8c1.5,0.8,1.8,2.1,2.8,3.2c1.3,1.4,2,1.5,3.2,2.5c0.9,0.7,4.7,0,4.9,0h5c1.3,0-0.7-2.6-1.1-3.9 c-0.4-1.5-3.1-0.2-4.6-0.3c-0.8-0.1-1.8-2.7-2.1-3.2c-0.5-0.7,1-2.5,1.4-3.5c0.4-1,2.6-2.3,3.2-2.8c1.2-1,1.7-2.4,2.5-3.5 c0.9-1.3,1.9-2.1,2.8-3.2c1.5-1.7,1.8,0.5,3.5,1.1c0.7,0.2,3,1.7,3.2,1.8c1.5,0.9,3.8,0.2,5.3,0.3c1.5,0.1,2.5,2.2,2.8,2.5 c0.6,0.5-1.9,3.4-2.1,3.9c-1,1.9-1.4,1.6-2.5,2.8c-1.4,1.6,0.9,1.8,1.1,2.1c0.6,1.3,2.6-1.2,3.9-1.8c2.1-1,1-1.7,1.8-3.2 c1.7-3,1.4-0.4,2.8-0.7c1.7-0.4,3.3,0.9,5,1.4c0.8,0.2,3.9-1.8,4.6-2.1c2-0.9,2.6,0,4.2,0c1.4,0,2.6,2.9,3.2,3.5 c1.1,1.2,2.3,2.3,3.2,3.2c2.3,2.3,1-1,1.4-1.4c0.4-0.4-2-2.6-2.5-3.2c-1.1-1.5-2.2-1.6-3.5-2.5c-1.4-1-2.5-1.6-3.9-2.5 c-1.5-1-1.8-1.6-2.5-2.1c-2.7-2.3,1.4-2.2,1.8-2.8c0.5-0.8,4,2.5,4.6,2.8c1.6,1,2.4,2.6,3.5,3.9c0.9,1,2.6,1.8,3.5,2.5 c1.2,0.9,2.6,1.9,3.9,2.8c0.8,0.6,1.9-0.5,2.8-0.7c1.8-0.4,3.2,1.7,3.9,2.1c1,0.5,1.6,1.4,2.5,2.1c0.1,0,3.8-0.6,4.6-0.7 c1-0.2,3,1.8,3.5,2.1c1.1,0.7,2.1,2.8,2.8,3.9c1.3,1.7,3,1.8,4.6,2.8c0.9,0.5,3.7-0.3,4.9-0.3c2-0.1,2.6-1.8,3.5-2.5 c0.7-0.5,1.1-1.1,1.5-1.8c0,0,0,0,0,0h1c-0.5,1.4-0.9,2.9-1.1,3.1c-1.3,1.8-0.1-0.4,1,4c0.5,2,4,1,6,1.5c2.5,0.6,2.5,2.5,4,4 c1.3,1.3,2.9,2.2,4,3c1,0.8,0,3.1,0,5.5c1,0,5.4,0.1,7.5,1c2.8,0.5-0.4,4.2-0.5,5c-0.2,2.2,0,3.8,0,5.5c0,1.3,2.7,0,4,0 c0.2,0,2.9-4.2,3.5-5c1.5-2.2,3.4-3.4,5-5l1-1c0.3-0.3-0.2-0.2-2-2c-2.8-2.8-0.9-3-2-6.5c-0.4-1.4,1.9-4.6,2.5-6 c0.9-2.2,2.4-4.1,3.5-6c0.8-1.4,2,2.7,3,4c1.1,1.4,1.3,3.3,2,5c0.7,1.8,3.7-1.3,5.5-2c0.8-0.3,1.7,0.3,2.5,0.5 c0.5,0.1,5.4-0.4,6-0.5c1.9-0.2,3.3,2,5,3c0.4,0.2,3.2,1.4,4.5,2c1.9,0.8,0.7,4,1,6c0.3,1.6,3.3,3.3,4.5,4.5c1.7,1.7,3.3-1.2,5.5-2 c4.6-1.7,1.6,0.2,5,0.5c2.3,0.2,3.1-1.2,5-2c2.6-1,3.3-2.1,5.5-3.5c2.7-1.7,3.3-1.3,6.5-2.5c2.5-0.9,6.2-0.5,7.9-0.4 c1.7-1.2,4.9-3.1,6.6-4.6c0.2-0.2,2.8-3.6,4.5-4c2.2-0.5,5.2-1.3,7-1.5c1.9-0.2,1.4-1,5-0.5c2.1,0.3,6.1,1.3,8,1 c2.1-0.3,5.4,0.8,6.5-1c0.6-1,1.5-4,3-5c0.5-0.3,4.5-7,6.5-4.5c1.5,1.9,0.5,3.4,3.5,4.5c2.8,1,3.3,0.8,5.5,2c0.7,0.4,2.8,5.2,5.5,3 c1.8-1.5,3.3-5.2,5.5-4.5c1.5,0.5,3,1.9,4.5,1.5c1.8-0.5,5-3.3,5.5-1.5c0.4,1.7,1.8,0.2,1,4c-0.3,1.7-2.6,4.4-1,5 c0.2,0.1,4.2,0.6,5,2c0.8,1.3,1.3,3.9,3,5c1,0.7,2.1,5.4,4.5,3c1.7-1.7,3.3-1.3,3.5-3.5c0.2-2.6,0.4-5,0.5-6.5 c0.1-1.4,1.2-6.6,0.5-7c-0.2-0.1-4.6-2.4-5-3c-0.4-0.5-5.5-2.1-3.5-5c0.6-0.8,3.3-4.2,3.5-5c0.4-1.7,3.9-5.7,2-8 c-1.8-2.2-0.6-4.8-4.5-5.5c-1-0.2-5.8-0.6-6-1c-0.7-1.8-0.9-3.9-2-5.5c-1.2-1.7-4.3-3.1-3.5-5c1.3-3.2,0.5-3.5,2.5-6 c0.3-0.3,3.2-4.3,3.5-4.5c2-1,1.7-2.3,4-2c2.3,0.3,3.5,1.5,4,0.5c1-2.1,0.7-4,2.5-5.5c1.6-1.3,3-3.7,5-4c2.3-0.4,4.8,0.1,6.5-1 c2.8-1.8,3.8-1.1,5.5-3.5c1.6-2.2,2.3-2.9,3.5-5c1.2-2,2.4-1.4,3-5c0.4-2.4,0.2-5.2,1-6.5c0.6-1.1,1.3-5,3-5c0.3,0,4.4,0.1,5,0 c1.5-0.3,6,0,6.5-1.5c0.6-1.9,2.5-2.9,2-6c-0.4-2.7-0.5-4.3-1-6.5c-0.4-1.7-0.9-4.2-1.5-6.5c-1-3.7,2.2-4.1-1.5-5.5 c-2.5-1-4.6-1.5-6.5-2.5c-1.6-0.8-4.3-2-6-3c-1.4-0.8-5.4-1.5-6-3.5c-0.7-2.4-0.3-4.9-2-7c-1.7-2.2-1-4.1-4-5c-2.2-0.6-5.4-0.4-7-2 c-1.6-1.6-3.5-2.3-4.5-4.5c-0.7-1.6-1.1-3.8-2.5-5.5c-1.5-1.8-2.5-3.3-4.5-5.5c-0.9-1-2.9-5.7-5-5.5c-0.4,0-5.3,1-6,0.5 c-1.5-1-4.9-1.9-6-4c-1-1.8-1.3-2.7-3-5.5c-1.1-1.9-2.2-4-3.5-6c-1-1.6-2.8-3.5-3.5-5.5c-0.6-1.7-0.8-4-2-6c-1.2-2-3-4.1-4-6.5 c-0.5-1.3-3.5-5.7-3-7c0.6-1.6,1-3.4,2-5.5c0.3-0.5,3.4-5.8,3-6.5c-0.5-1-1.4-2.8-2.5-4.5c-1.5-2.3-1.4-3.4-3.5-5.5 c-2.2-2.2-3.2-3-5-5c-1.3-1.4-3.7-3.8-5-5.5c-0.9-1.2-3.5-2.9-3.5-4.5c0-0.4,0.8-4.3,0-5.5c-1-1.6-1.4-3.7-3.5-5.5 c-0.1-0.1-0.2-0.3-0.4-0.4v-1.5c2.1,1.7,3.3,2.7,3.9,3.9c1.5,2.9,3.5,0.6,5.5,1l5.5,1c1.9,0.3,4.1-3.7,5.5-5c1.5-1.3,2.7-2.7,4-4 c1.9-1.9,3.6-2.9,5.5-4.5c2.2-1.8,3.4-2.2,5.5-3.5c3-1.9,4-0.6,7-1c2.1-0.3,4.9,0.8,6,1c3.5,0.6,3.7-2,5.5-3 c0.9-0.5,3.3-2.5,4.5-3.5c2.2-1.7,3-2.7,5-4.5c2.3-2.1,2.8-2.8,4-4c1.9-1.9,3.2-1.6,5-2.5c1.9-1,3.4-1.5,5.5-2.5 c0.2-0.1,4.6-1.4,5-1.5c1.8-0.5,1.7-3.3,2.5-5c0.6-1.2,5.7-1.2,7-1.5c2.6-0.6,4.4-1.7,6.5-2.5c1.3-0.5,4.7-1.2,6-1.5 c3.1-0.8,2.1-1.6,4.5-3.5c2.2-1.7,2.7-1.8,4.5-3c0.8-0.5,6.9,0,7.5,0c1.5,0,4.4-4,5-4.5c0.8-0.8,4.5-2.8,5.5-3.5c2.3-1.5,0-3.4,0-5 c0-2.1-2-3.7-3-5.5c-1.1-2,4.3-1.3,6.5-2c1.6-0.5,4.5,1.1,6,1.5c3.4,0.9,2.1,1.2,4.5,2.5c1.9,1.1,0.3,4.3,0.5,6.5 c0.1,1,4.3,1.1,6,1.5c0.9,0.2-1.5,4.3-2,5.5c-0.8,2.2,4.3,3.5,5.5,4.5c2.6,2.1,4-1.2,5-1.5c1.7-0.5,2.4-4.8,3-6c1.2-2.4,1.3-4.7,2-7 c0.5-1.8,1.1-4.3,1.5-6c0.6-2.3,0-3.4,0-6.5V367c0-1.8,1.3-4,2-6c0.8-2.5-1.1-5.3-1.5-7.5c-0.3-1.3-2.3-4.2-3-5.5 c-1.1-2,1.7-3.3,2.5-5c0.1-3-2.6-4.8-4.5-8c-0.7-0.8-5.9-0.9-6.5-1c-1.7-0.3-3.2-0.7-4.7-1v-2.3c1.9,0.1,1-0.7,2.2-1.1 c0.3-0.1,0.9-5.5,1-6c0.3-2.1-3.4-3.1-4.5-4c-2-1.8-0.6-1.7-1.5-4c-1.2-3.2-2.4-3.1-4-5c-2.1-2.6-0.4-3.1-0.5-4 c-0.1-0.6,2.6-4.4,3-5c1.2-2,0.7-4.9,1-7c0.2-1.4,1.5-4.4,2-6c0.4-1.2-0.7-5.2-1-7c-0.1-0.9,0.3-4.8,0.5-7c0.3-3.6-0.3-3.3-0.5-6 c-0.1-0.6-5.3-2.9-5.5-3c-1.1-0.6-2-4.3-2.5-5.5c-1.2-2.7-1-4.5-1.5-7c-0.3-1.5,2.5-3.7,3-4.5c1.3-2,0.7-4.7,1-7 c0.2-1.6-3.2-4.4-4-5.5c-1.5-2.1-3.4-3-5-4.5c-2.1-1.9-2.6-3.5-4-5.5c-1.3-1.8-4.5-2.4-6.5-3.5c-2.3-1.2-4-3.3-6-5 c-2.1-1.7-2.9-1.6-4.5-2.5c-3.2-1.8,0-3,0-6c0-1.6,4.2-4.2,5-5c2.3-2.3,2.2-4.4,3.5-7c1-2,2.4-3.7,3.5-5.5c1.4-2.1,1.6-4.3,2.5-6.5 c1.5-3.9,3.2-5.5,3.5-6c0.1-0.6-1.9-5.3-2.5-7c-1.3-3.7-1.7-1.9-3.2-2.2c0.1-0.1,0.1-0.2,0.2-0.3c0.3-0.6,0.8-2.3,1.5-4.5 c0.4-1.2-2.1-4.9-2.5-6c-1-2.3-0.3-5-0.5-7.5c-0.1-1.3-1.7-4.7-2-5.5c-0.8-2.1-0.8-4.8-1-6c0-0.2,0-0.2-0.1-0.4 c-0.2-0.3-0.5-1-0.9-2.1c1.7-4.3-3-3.3-4.5-5c-0.7-0.8-5.2,1.7-6,2c-1.2,0.4-3.2-4.1-3.5-4.5c-1.6-2-3.9-0.9-6.5-1.5 c-2.4-0.6-1.8-3.4-3-5.5c-1.3-2.3-1.7-3.5-2.5-5c-0.7-1.5-0.3-3.3-0.5-5c0-0.2-3.6-5.4-4-6c-0.5-0.8,2-6,2.4-6.9 c1.1-2.5-2.3-2.9-3.4-4.1c-1-1.1-5.2-0.4-6.5-0.5c-1.7-0.1-3.3-0.7-5-1c-1.9-0.4-2.3,3-3.5,4.5c-1.3,1.7-2.7-3.3-4-5 c-1.3-1.6-4-1-6-1.5c-0.7-0.2-4.3-2.3-5.5-3c-1.8-1-3.9-1.8-5.5-2.5c-2.8-1.3-0.4-2.9-0.5-3.5c-0.2-1.2,0.2-1.8,0.5-4.5 c0.2-1.4-1.8-5.3-2-6c-0.6-1.7-2.3,1.7-3.5,2.5c-1,0.7-2.3-0.7-3.5-1c-1.8-0.5-3,2.3-4.5,3.5c-0.6,0.4-5.4-2.2-6-2.5 c-1.6-0.7-3.3,0.6-5.5,1c-2,0.4-1.7,2.3-3,4c-1.4,1.8-1.5,4.3-2,5.5c-0.8,2.1-2.4,3.8-2.5,4c-0.9,1.5-1.7-3-2.5-4.5 c-0.4-0.8,2.6-5.3,3-6c0.8-1.6,3.7-3.3,5-4.5c1.7-1.5,4.3-1.3,6.5-2c2.4-0.7,4.9-1,7-1.5c2.5-0.5,4.7-1.8,6.5-2.5c0.9-0.4-5,0-6,0 c-2,0-4.6,0.7-7,1c-2.9,0.4-4-1.7-6-2.5c-3.5-1.4-2.3,0.2-5,0.5c-2.3,0.2-3.3,2.9-4.5,4c-1.5,1.3-1.1,5-1.5,7 c-0.1,0.7-4.2,4.2-4.5,4.5l-4,4c-2.3,2.3-2.9,3.6-4.5,5.5c-1.4,1.7,0,4.3,0,6.5c0,1.7-3.3,0-5,0c-0.1,0-2.4-5.2-2.5-5.5 c-0.9-1.9-2.7,3.3-4,5c-2,2.5-3.3,0.7-5,1c-2,0.4-4-0.3-6-0.5c-1.5-0.1-3,0.7-4.5,1c-3,0.7-3.2,2.1-5.5,3.5c-1.1,0.7,1.7,2,2.5,3 c2.4,2.8-0.4,2.4-1,6c-0.2,1.2-1.3,3.6-2,5.5c-1.2,3.4-2.1,2.6-3.5,4.5c-0.8,1-2-1.7-3-2.5c-1.3-1.1-3.1-3.1-3.5-3.5 c-0.5-0.5-4.6,2.1-5.5,2.5c-2.2,1-0.7,0-1.5,0c-3,0-1.1-0.5-3.5-1.5c-1.8-0.8,0-4,0-6c0-4.2-4.6,0.4-5.5,0.5c-0.2,0-3.7,5-4,5.5 c-1,1.4-4.3,3.5-5.5,4.5c-2.1,1.7-3.2,3.2-5,5c-3.2,3.2-0.8,2.1-1.5,4.3c-0.8-1.3-1.6-2.6-2-3.3c-0.8-1.4-0.8-1.1-1.5-2 c-0.8-1,1-2.3,1.5-3.5c1.3-3.1,1.6-2.1,3.5-4.5c1.3-1.7,2.3-2.6,3.5-4c0.7-0.8-1.4-3.6-2-5c-0.4-1.1-2.8-1.6-3.5-2 c-1.9-1.1,0.7-4.3,1-6.5c0.7-4.9,2.3,0.8,3,1c4.6,1.5,1.1-0.1,4.5-0.5c2.1-0.2,2.6-4.1,3.5-5.5c1.3-2,2.7-3.3,4-5 c1.1-1.4,1.4-2.9,2.5-5c0.5-0.9-0.9-5.2-1-6c-0.6-3.4-1.5-3-2.5-5c-0.8-1.6-5.5,0-6,0c-2.6,0-2.5,3.6-3.5,5c-1.6,2.2-4.8,2-6,2.5 c-1.6,0.7-2.2-0.8-4-1.5c-1.5-0.6-3.7-2-5.5-3c-2.9-1.6-2.1-2.1-4.5-4.5c-1.7-1.7-4-1.7-6-2.5c-3.6-1.5-1.8,2.8-3,4.5 c-1.3,1.9-3.3,3.3-4,4c-0.6,0.6-1.7,0.3-2.5,0.5c-2.1,0.4,0.7-4.3,1-6.5c0.3-1.9-3.2-3.2-4-4c-1.7-1.7-4.1,0-6,0 c-2.3,0-5.1,0.7-7.5,1c-2,0.3,3-2.7,4.5-4c2.4-2.2,0-2.8,0-4.5v-6c0-3.1-2.2-1.3-2.5-1.5c-1.6-1-1.7,3.3-2.5,5c-0.8,1.6-3.3,1-5,1.5 c-1.3,0.4-2.7-0.3-4-0.5c-0.2,0-0.3,0-0.5,0c-1.8,0,0.4-0.1,2.5-1c2.5-1,3.5-3.5,5-5c1.8-1.8,2.8-2.2,4.5-3.5 c1.1-0.9,2.3-1.7,3.5-2.5c1.3-1.9,0.3-4.7,0.5-7c0.2-3.1-0.9-2.8-1.5-5c-0.6-2.1-4.5-1.9-6-2.5c-2-0.8-6.4,0-7,0c-2.6,0-3.1-2.5-5-4 c-2.8-2.3-2.2,0-5,0c-1.9,0-2.7,3.9-3.5,5c-2.4,3.5-1.4,0.8-3.5,2c-0.5,0.3-5.2-3.1-6-3.5c-1.9-1.1-5.4-2.3-7-3 c-2.1-0.9-3.7-1.9-6-3c-3.3-1.6-3.7,0-5,0c-1.4,0-1.7,2.3-2.5,3.5c-0.2,0.2-5.2-3.3-5.5-3.5c-1.4-0.9-5.3-1.2-6.5-1.5 C168.5,25.9,168.2,25.9,168.1,25.9z M473.1,139.6C474.3,141.5,472.2,133.8,473.1,139.6z M160.4,40.8c-0.1,0-0.2,0-0.2,0 c-1.2,0.3-4,2.9-5.5,3.6c-1.9,0.9,3.7,2,5.5,3c1.8,1,0.3-4,0.5-6C160.8,41.1,160.7,40.9,160.4,40.8z M149.9,43.1 c-0.6-0.1-1.1,4.3-1.7,5.9c-0.9,2.4,0.6,3,1,5c0.3,1.5,3,0,4.5,0c1.3,0,2.3-1.3,3.5-2c2.1,1.1-3.7-3-5.5-4.5c-1.1-0.9-1-2.7-1.5-4 C150.1,43.3,150,43.1,149.9,43.1z M422.4,45c-1.5,0.1-3.2,0.6-3.7,0.5c-3.5-0.5-3.2,2.5-4.5,3.5c-1,0.8-1.7,2-2.5,3 c-3.1,3.7,0.8,1.9,1,2.5c0.6,1.6,3.3,1,5,1.5c1.2,0.3,2,1.2,2.9,2.1c-1,0-2.7,2.6-3.9,3.4c-1.2,0.8-2.7-1-4-1.5 c-1.7-0.6-3.2,2.8-4,3.5c-1.3,1.1,2.2,4.5,2.5,5l2.5,5c1.1,2.1-2.8,2.8-3.5,3.5c-1.5,1.5,1,4,1.5,6c1.1,4.2,1.2,1.4,3.5,4 c0.3,0.3,5.8,1.8,6.5,2c4.9,1.5,2.3-1.8,4.5-3.5c1.5-1.2,1.3-3.7,2-5.5c4.9-3.3,5.6-3,8.5-0.5c1.7,0.7-0.7,3.7-1,5.5 c-0.3,1.8,5,1.1,5.8-0.6c0.4-0.7,3-3.2,3.2-3.4c0.4-0.5-1.7-4.8-2-5.5c-0.4-1.2-3.8-3.4-4.5-4c-2.1-1.8-2.2-3.2-3.5-5 c-2-2.9,2.4-4.7,3-6c1.7-3.4-2.6-3.7-3.5-5c-0.2-0.3-4.4-0.8-5.5-1c-3.7-0.7-2.2-1.7-4-3c-1.3-1,0.3-3.3,0.5-5 C425.3,45.1,423.9,44.8,422.4,45z M166.5,57.1c-0.1,0-0.2,0-0.2,0c-1.4,0.4-2.7,4.1-3.1,4.4c-1.8,1.8,0.9,1.6,2,3.5 c1.1,1.9,3.7-2.3,5.5-3.5c1.8,0-2.3-2.7-3.5-4C167,57.2,166.7,57.1,166.5,57.1z M421.2,58.6c0.2,0.1,0.3,0.3,0.5,0.4 c2.3,1.7,1.5,1.7,3.5,4c1.3,1.5,0.8,4.3,1,5.5c0.3,1.9-2-3.3-3-5C421.9,61.4,421.3,58.9,421.2,58.6z M176.4,62.5 c-1.1,0.2,1.7,3.4,2.3,5c0.6,1.5,1.7-2.1,2.7-4c-0.5,0-1.5-0.2-2.5-0.5h2.8c0.6-0.8-1.7-0.2-3-0.1c-0.8-0.2-1.5-0.4-2-0.4 C176.6,62.5,176.5,62.5,176.4,62.5z M181.7,63c-0.1,0.1-0.2,0.3-0.3,0.5C181.7,63.5,181.9,63.4,181.7,63z M298.9,62.7 c-1.2,0.1-2.9,1.9-3.8,2.2c-1.9,0.8-1,4-1.5,6c-0.1,0.5,4.3,2.4,4.5,2.5c1,0.6,2.7,5,3,5.5c0.9,1.6,0.7-3.7,1-5.5 c0.1-0.5,3.2-0.4,5.1-0.5c3.5-2.6-2.2-4.1-3.1-6c-1.1-2.1-2.9-2.6-4.5-4C299.5,62.8,299.2,62.7,298.9,62.7z M450.5,97.2 c-1.2,0.1-2,2-2.7,2.2c-2.1,1.1-2,9.8,0.5,7.1c1.1,1.4,1.3,3.3,2,5c0.8,2,1.9-3,3.4-4.5c2.2-2.2,1.7,1.5,3.5,3c2,1.7-1.4,5-1.5,5.5 c-0.5,1.8-3.7-1-5.5-1.5c-0.8-0.2,0.9,5.7,1,6c0.4,2.3,3.7,2.6,5,3.5c1.1,0.8,5.7-0.8,7-1c4.7-0.7,1.7-1.3,4-3 c0.1-0.1,1.4-6.2,1.5-6.5c2-0.4-5-5.5-5.5-6c-1-1-2.7-1-4-1.5c-1.1-0.4-1.9-2.2-3.5-4c-1.6-1.8-2.5-2.3-3.9-3.7 C451.3,97.3,450.9,97.2,450.5,97.2z M284.7,142.8c0.8,2.4,0.9,4.3-1,6.2c-0.1,0.1-0.1,0.1-0.2,0.2c0.2-0.8,0.4-1.7,1.2-2.7 C285.3,145.7,285.1,144.2,284.7,142.8z M24.5,438.9c0,0,0.1,0,0.1,0v0C24.6,438.9,24.5,438.9,24.5,438.9z M24.5,510.4l0.2,0.1
+            c0.6,0.3,1,0.4,1.3,0.4v0.5C25.4,511.2,25,510.8,24.5,510.4z"/>
+        </svg>
+      </div>
+      <div class="lp-header__right">
+        <h2>Finde deine <span>Abgeordnete</span></h2>
+        <form action="" class="form">
+          <div class="form__item form__item--combine">
+            <label for="" class="form__item__label sr-only"></label>
+            <select name="" id="" class="form__item__control">
+              <option value="all">Alle</option>
+              <option value="bundestag">Bundestag</option>
+              <option value="bw">Baden-Würtenberg</option>
+              <option value="be">Berlin</option>
+              <option value="br">Bremen</option>
+            </select>
+            <input class="form__item__control autosuggest" type="text" placeholder="PLZ, Ort oder Namen eingeben">
+            <button type="button"><i class="icon icon-search"></i></button>
+          </div>
+          <a href="#" class="link-icon"><i class="icon icon-map-marker"></i> <?php print t('Use actual location.') ?></a>
+        </form>
+      </div>
+      <div class="lp-header__bg">
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/26.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/16.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/36.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/1.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/2.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/3.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/4.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/5.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/6.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/7.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/8.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/9.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/20.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/21.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/22.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/23.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/24.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/25.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/26.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/27.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/28.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/29.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/30.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/31.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/32.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/33.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/34.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/35.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/36.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/89.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/18.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/19.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/30.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/31.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/32.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/13.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/14.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/15.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/16.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/17.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/18.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/39.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/30.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/31.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/32.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/33.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/34.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/85.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/86.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/88.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/38.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/39.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/70.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/71.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/72.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/73.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/74.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/75.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/76.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/77.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/71.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/72.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/73.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/34.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/35.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/36.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/37.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/38.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/39.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/30.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/31.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/32.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/33.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/34.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/35.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/36.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/37.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/38.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/39.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/40.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/41.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/42.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/43.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/44.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/45.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/46.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/47.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/48.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/49.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/50.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/51.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/52.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/53.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/54.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/55.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/56.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/57.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/58.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/59.jpg"></div>
+        <div class="lp-header__bg__item"><img src="https://randomuser.me/api/portraits/men/30.jpg"></div>
+      </div>
+    </div>
+
+    <div class="donate-teaser">
+      <p>Unseren <span id="mscount">4000</span> Förderern stehen 6.000 Lobbyisten in Berlin gegenüber. <br> Mit Ihrer Hilfe wollen wir geheimen Lobbyismus stoppen – sind Sie dabei?</p>
+      <a href="#" class="btn"><?php print t('Support us') ?></a>
+    </div>
+
+    <div class="tile-wrapper">
+      <header class="option-title">
+        <h2><?php print t('New blog entries') ?></h2>
+        <?php print l(t('Blog Overview'), 'bundestag/abstimmungen', ['attributes' => ['class' => ['btn']]]); ?>
+      </header>
+
+      <article id="#" class="blog tile mh-item">
+        <div class="tile__image">
+          <img src="http://localhost:8080/sites/default/files/styles/large/public/bundestag-280px.jpg?itok=6JaX5vum" width="480" height="300">
+        </div>
+        <header class="tile__title tile__title--date">
+          <span class="date"><span class="date__day">22</span><span class="date__month">Jun</span><span class="date__year">2017</span></span>
+          <h3><a href="/blog/2017-06-19/der-traum-vom-bundestag">Der Traum vom Bundestag: Was Einzelbewerber antreibt</a></h3>
+        </header>
+        <ul class="tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">0 Kommentare</a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+        </ul>
+      </article>
+
+      <div class="small-tiles mh-item">
+        <article id="#" class="blog tile">
+          <div class="tile__image">
+            <img src="http://localhost:8080/sites/default/files/styles/large/public/bundestag-280px.jpg?itok=6JaX5vum" width="480" height="300">
+          </div>
+          <header class="tile__title tile__title--date mh-item">
+            <span class="date"><span class="date__day">22</span><span class="date__month">Jun</span><span class="date__year">2017</span></span>
+            <h3><a href="/blog/2017-06-19/der-traum-vom-bundestag">Der Traum vom Bundestag: Was Einzelbewerber antreibt</a></h3>
+          </header>
+          <ul class="tile__links tile__links--2">
+            <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">0 Kommentare</a></li>
+            <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+          </ul>
+        </article>
+        <article id="#" class="blog tile">
+          <div class="tile__image">
+            <img src="http://localhost:8080/sites/default/files/styles/large/public/bundestag-280px.jpg?itok=6JaX5vum" width="480" height="300">
+          </div>
+          <header class="tile__title tile__title--date mh-item">
+            <span class="date"><span class="date__day">22</span><span class="date__month">Jun</span><span class="date__year">2017</span></span>
+            <h3><a href="/blog/2017-06-19/der-traum-vom-bundestag">Der Traum vom Bundestag: Was Einzelbewerber antreibt</a></h3>
+          </header>
+          <ul class="tile__links tile__links--2">
+            <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">0 Kommentare</a></li>
+            <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+          </ul>
+        </article>
+      </div>
+
+      <header class="option-title">
+        <h2><?php print t('New polls') ?></h2>
+        <?php print l(t('Poll Overview'), 'bundestag/abstimmungen', ['attributes' => ['class' => ['btn']]]); ?>
+      </header>
+      <div class="tile poll">
+        <div class="tile__image">
+          <img typeof="foaf:Image" src="/sites/default/files/styles/large/public/bankenviertel_frankfurt.jpg" width="280" height="187" alt="#" title="#">
+        </div>
+        <div class="tile__date">10.11.2016</div>
+        <div class="tile__pollchart">
+          <div class="tile__pollchart__value_left won">351</div>
+          <div class="tile__pollchart__statistic">
+            <div class='d3 d3--donut'
+                 data-d3-donut-icon
+                 data-data='[{"name":"Ja","count":63,"color":"#9fd773"},{"name":"Nein","count":24,"color":"#cc6c5b"},{"name":"Enthalten","count":8,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+            </div>
+          </div>
+          <div class="tile__pollchart__value_right">231</div>
+        </div>
+        <h2 class="tile__title"><a href="#">Bundeswehreinsatzin Afghanistan</a></h2>
+        <p class="tile__summary">Mit den Stimmen der Regierungskoalition hat der Bundestag ein Fortsetzung des Bundeswehreinsatzes gegen die Terrormiliz IS beschlossen.</p>
+        <ul class="tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+        </ul>
+      </div>
+      <div class="tile poll">
+        <div class="tile__image">
+          <img typeof="foaf:Image" src="/sites/default/files/styles/large/public/bankenviertel_frankfurt.jpg" width="280" height="187" alt="#" title="#">
+        </div>
+        <div class="tile__date">10.11.2016</div>
+        <div class="tile__pollchart">
+          <div class="tile__pollchart__value_left won">351</div>
+          <div class="tile__pollchart__statistic">
+            <div class='d3 d3--donut'
+                 data-d3-donut-icon
+                 data-data='[{"name":"Ja","count":24,"color":"#9fd773"},{"name":"Nein","count":63,"color":"#cc6c5b"},{"name":"Enthalten","count":8,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+            </div>
+          </div>
+          <div class="tile__pollchart__value_right">231</div>
+        </div>
+        <h2 class="tile__title"><a href="#">Bundeswehreinsatzin Afghanistan</a></h2>
+        <p class="tile__summary">Mit den Stimmen der Regierungskoalition hat der Bundestag ein Fortsetzung des Bundeswehreinsatzes gegen die Terrormiliz IS beschlossen.</p>
+        <ul class="tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+        </ul>
+      </div>
+      <div class="tile poll">
+        <div class="tile__image">
+          <img typeof="foaf:Image" src="/sites/default/files/styles/large/public/bankenviertel_frankfurt.jpg" width="280" height="187" alt="#" title="#">
+        </div>
+        <div class="tile__date">10.11.2016</div>
+        <div class="tile__pollchart">
+          <div class="tile__pollchart__value_left won">351</div>
+          <div class="tile__pollchart__statistic">
+            <div class='d3 d3--donut'
+                 data-d3-donut-icon
+                 data-data='[{"name":"Ja","count":8,"color":"#9fd773"},{"name":"Nein","count":24,"color":"#cc6c5b"},{"name":"Enthalten","count":63,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+            </div>
+          </div>
+          <div class="tile__pollchart__value_right">231</div>
+        </div>
+        <h2 class="tile__title"><a href="#">Bundeswehreinsatzin Afghanistan</a></h2>
+        <p class="tile__summary">Mit den Stimmen der Regierungskoalition hat der Bundestag ein Fortsetzung des Bundeswehreinsatzes gegen die Terrormiliz IS beschlossen.</p>
+        <ul class="tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+    <div class="question-teaser-pre intro">
+      <div class="intro__left">
+        <h2><?php print t('Questions & answer') ?></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto beatae consectetur
+          exercitationem facilis labore, molestiae nostrum placeat possimus quo reiciendis sequi sint velit veritatis,
+          voluptatum. In praesentium provident sed?</p>
+      </div>
+      <div class="intro__right">
+        <a href="#" class="btn btn--mobile-block"><?php print t('Questions overview') ?></a>
+      </div>
+    </div>
+    <div class="tile-wrapper question-teaser">
+
+      <div class="qa-stats">
+        <div class="qa-stats__col">
+          <div class="hstats__item hstats__item--donut-digit">
+            <div class="hstats__item__display mh-item-nr" data-mh="qa_hstats">
+        <span class="d3 d3--gauge"
+              data-d3-gauge
+              data-percentage="<?php print $answer_ratio ?>"
+              data-track-width="16"
+              data-track-colour="f6997a"
+              data-fill-colour="ffffff"
+              data-text-colour="ffffff"
+              data-stroke-colour="f68a66"
+              data-stroke-spacing="2">
+          <span>%</span>
+        </span>
+            </div>
+            <div class="hstats__item__label mh-item-nr" data-mh="qa_hstats">
+              <?php print t('@answers of total<br>@questions questions answered', ['@answers' => $answers, '@questions' => $questions]); ?>
+            </div>
+          </div>
+          <div class="hstats__item hstats__item--digit">
+            <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats">5</span>
+            <span class="hstats__item__label mh-item-nr" data-mh="qa_hstats"><?php print t('Questioner per question') ?></span>
+          </div>
+        </div>
+        <div class="qa-stats__col">
+          <div class="hstats__item hstats__item--digit">
+            <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats"><?php print $average_response_time; ?></span>
+            <span class="hstats__item__label mh-item-nr" data-mh="qa_hstats"><?php print t('average time to answer') ?></span>
+          </div>
+        </div>
+        <div class="qa-stats__col--large">
+          <strong><?php print t('Questions by category') ?></strong>
+          <!-- <span class='d3 d3--bars-vertical'
+                data-d3-bars-vert
+                data-data='parseDialogues'
+                data-height='100'
+                data-fill-colour='ffffff'
+                data-stroke-colour='f68a66'>
+            <span class="tooltip d3__tooltip"></span>
+          </span> -->
+        </div>
+      </div>
+
+      <div class="question tile">
+        <div class="question__meta tile__meta">
+          <a href="#" class="quesion__meta__tag tile__meta__tag">#lorem</a>
+          <span class="question__meta__date tile__meta__date">01.01.2017</span>
+        </div>
+        <div class="question__question mh-item-tile" data-mh="questionTitle">
+          <h3 class="question__question__title">Sind Sie [...] der Überzeugung, daß die "laufende Kamera" seinerzeit [...] die Wahrheitsfindung irgendwie beeinflußt haben könnte?</h3>
+          <p class="question__question__author"><?php print t('By'); ?>: Wilfried Meißner</p>
+        </div>
+        <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+          <p class="question__answer__author"><img src="http://via.placeholder.com/100x100" alt="" class="question__answer__author__image"> Antwort von <strong>Max Mustermann</strong></p>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+        </div>
+        <ul class="question__links tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#"><?php print t('details'); ?></a></li>
+        </ul>
+      </div>
+      <div class="question tile">
+        <div class="question__meta tile__meta">
+          <a href="#" class="quesion__meta__tag tile__meta__tag">#lorem</a>
+          <span class="question__meta__date tile__meta__date">01.01.2017</span>
+        </div>
+        <div class="question__question mh-item-tile" data-mh="questionTitle">
+          <h3 class="question__question__title">Sind Sie [...] der Überzeugung, daß die "laufende Kamera" seinerzeit [...] die Wahrheitsfindung irgendwie beeinflußt haben könnte?</h3>
+          <p class="question__question__author"><?php print t('By'); ?>: Wilfried Meißner</p>
+        </div>
+        <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+          <p class="question__answer__author"><img src="http://via.placeholder.com/100x100" alt="" class="question__answer__author__image"> Antwort von <strong>Max Mustermann</strong></p>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+        </div>
+        <ul class="question__links tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#"><?php print t('details'); ?></a></li>
+        </ul>
+      </div>
+      <div class="question tile">
+        <div class="question__meta tile__meta">
+          <a href="#" class="quesion__meta__tag tile__meta__tag">#lorem</a>
+          <span class="question__meta__date tile__meta__date">01.01.2017</span>
+        </div>
+        <div class="question__question mh-item-tile" data-mh="questionTitle">
+          <h3 class="question__question__title">Sind Sie [...] der Überzeugung, daß die "laufende Kamera" seinerzeit [...] die Wahrheitsfindung irgendwie beeinflußt haben könnte?</h3>
+          <p class="question__question__author"><?php print t('By'); ?>: Wilfried Meißner</p>
+        </div>
+        <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+          <p class="question__answer__author"><img src="http://via.placeholder.com/100x100" alt="" class="question__answer__author__image"> Antwort von <strong>Max Mustermann</strong></p>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+        </div>
+        <ul class="question__links tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#"><?php print t('details'); ?></a></li>
+        </ul>
+      </div>
+      <div class="question tile">
+        <div class="question__meta tile__meta">
+          <a href="#" class="quesion__meta__tag tile__meta__tag">#lorem</a>
+          <span class="question__meta__date tile__meta__date">01.01.2017</span>
+        </div>
+        <div class="question__question mh-item-tile" data-mh="questionTitle">
+          <h3 class="question__question__title">Sind Sie [...] der Überzeugung, daß die "laufende Kamera" seinerzeit [...] die Wahrheitsfindung irgendwie beeinflußt haben könnte?</h3>
+          <p class="question__question__author"><?php print t('By'); ?>: Wilfried Meißner</p>
+        </div>
+        <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+          <p class="question__answer__author"><img src="http://via.placeholder.com/100x100" alt="" class="question__answer__author__image"> Antwort von <strong>Max Mustermann</strong></p>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+        </div>
+        <ul class="question__links tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#"><?php print t('details'); ?></a></li>
+        </ul>
+      </div>
+      <ul class="pager">
+        <li class="pager__next">
+          <a title="Zur nächsten Seite" href="/eu/abstimmungen?page=1">weiter</a></li>
+      </ul>
+    </div>
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
     <!-- Abstimmung: Detail-Ansicht -->
     <div class="intro">
       <div class="container">
         <div class="row">
           <div class="intro__left">
             <h1>Bundeswehreinsatz in Afghanistan</h1>
-            <div class="intro__date">15 Dez 2016</div>
+            <div class="intro__date">
+              <span class="date__day">15</span>
+              <span class="date__month">Dez</span>
+              <span class="date__year">2016</span>
+            </div>
             <p>Der Bundestag hat einem Antrag der Bundesregierung zur Fortsetzung des Bundeswehreinsatzes in Afghanistan zugestimmt. Das Mandat läuft bis zum 31. Dezember 2017.</p>
             <a href="#poll-content" class="link-icon" data-localScroll><i class="icon icon-arrow-right"></i> Weiterlesen</a>
           </div>
@@ -142,7 +550,7 @@
         </div>
       </div>
     </div>
-    <div class="poll_detail" data-poll-id="123456">
+    <div class="poll_detail poll detail" data-poll-id="123456">
       <div class="filterbar">
         <div class="container">
           <div class="filterbar__pre_swiper">
@@ -523,7 +931,7 @@
       </div>
     </div>
 
-    <div class="poll__related tile-wrapper">
+    <div class="tile-wrapper poll__related">
       <div class="container">
         <h2><?php print t('Related polls') ?></h2>
         <div class="row">
@@ -606,49 +1014,44 @@
         </div>
       </div>
     </div>
-    <div class="poll__questions tile-wrapper">
-      <div class="container">
-        <div class="row">
-          <div class="question tile">
-            <div class="question__meta tile__meta">
-              <a href="#" class="quesion__meta__tag tile__meta__tag">#lorem</a>
-              <span class="question__meta__date tile__meta__date">01.01.2017</span>
-            </div>
-            <div class="question__question mh-item-tile" data-mh="questionTitle">
-              <h3 class="question__question__title">Sind Sie [...] der Überzeugung, daß die "laufende Kamera" seinerzeit [...] die Wahrheitsfindung irgendwie beeinflußt haben könnte?</h3>
-              <p class="question__question__author"><?php print t('By'); ?>: Wilfried Meißner</p>
-            </div>
-            <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-              <p class="question__answer__author">Antwort von <strong>Max Mustermann</strong></p>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-            </div>
-            <ul class="question__links tile__links tile__links--2">
-              <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
-              <li class="tile__links__item"><a class="tile__links__item__link" href="#"><?php print t('details'); ?></a></li>
-            </ul>
-          </div>
-          <div class="question tile">
-            <div class="question__meta tile__meta">
-              <a href="#" class="quesion__meta__tag tile__meta__tag">#lorem</a>
-              <span class="question__meta__date tile__meta__date">01.01.2017</span>
-            </div>
-            <div class="question__question mh-item-tile" data-mh="questionTitle">
-              <h3 class="question__question__title">Sind Sie [...] der Überzeugung, daß die "laufende Kamera" seinerzeit [...] die Wahrheitsfindung irgendwie beeinflußt haben könnte?</h3>
-              <p class="question__question__author"><?php print t('By'); ?>: Wilfried Meißner</p>
-            </div>
-            <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-              <p class="question__answer__author">Antwort von <strong>Max Mustermann</strong></p>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
-            </div>
-            <ul class="question__links tile__links tile__links--2">
-              <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
-              <li class="tile__links__item"><a class="tile__links__item__link" href="#"><?php print t('details'); ?></a></li>
-            </ul>
-          </div>
+    <div class="tile-wrapper question-teaser">
+      <div class="question tile">
+        <div class="question__meta tile__meta">
+          <a href="#" class="quesion__meta__tag tile__meta__tag">#lorem</a>
+          <span class="question__meta__date tile__meta__date">01.01.2017</span>
         </div>
+        <div class="question__question mh-item-tile" data-mh="questionTitle">
+          <h3 class="question__question__title">Sind Sie [...] der Überzeugung, daß die "laufende Kamera" seinerzeit [...] die Wahrheitsfindung irgendwie beeinflußt haben könnte?</h3>
+          <p class="question__question__author"><?php print t('By'); ?>: Wilfried Meißner</p>
+        </div>
+        <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+          <p class="question__answer__author">Antwort von <strong>Max Mustermann</strong></p>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+        </div>
+        <ul class="question__links tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#"><?php print t('details'); ?></a></li>
+        </ul>
+      </div>
+      <div class="question tile">
+        <div class="question__meta tile__meta">
+          <a href="#" class="quesion__meta__tag tile__meta__tag">#lorem</a>
+          <span class="question__meta__date tile__meta__date">01.01.2017</span>
+        </div>
+        <div class="question__question mh-item-tile" data-mh="questionTitle">
+          <h3 class="question__question__title">Sind Sie [...] der Überzeugung, daß die "laufende Kamera" seinerzeit [...] die Wahrheitsfindung irgendwie beeinflußt haben könnte?</h3>
+          <p class="question__question__author"><?php print t('By'); ?>: Wilfried Meißner</p>
+        </div>
+        <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+          <p class="question__answer__author">Antwort von <strong>Max Mustermann</strong></p>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ... rebum.</p>
+        </div>
+        <ul class="question__links tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#"><?php print t('details'); ?></a></li>
+        </ul>
       </div>
     </div>
-
 
 
 
