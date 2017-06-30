@@ -102,6 +102,9 @@ function pw_poll_page($parliament_term = NULL) {
 
 /**
  * Displays poll intro.
+ *
+ * @return array
+ *   The block render array.
  */
 function pw_poll_intro_block() {
   $block = [];
@@ -119,6 +122,9 @@ function pw_poll_intro_block() {
 
 /**
  * Displays poll timeline.
+ *
+ * @return array
+ *   The block render array.
  */
 function pw_poll_timeline_block() {
   $block = [];
@@ -164,6 +170,9 @@ function pw_poll_timeline_block() {
 
 /**
  * Displays related polls.
+ *
+ * @return array
+ *   The block render array.
  */
 function pw_poll_related_block() {
   $block = [];
@@ -199,6 +208,9 @@ function pw_poll_related_block() {
 
 /**
  * Displays charts for polls.
+ *
+ * @return array
+ *   The block render array.
  */
 function pw_poll_charts_block() {
   $block = [];
