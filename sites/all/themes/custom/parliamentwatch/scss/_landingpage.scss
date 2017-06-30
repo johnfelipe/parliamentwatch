@@ -1,0 +1,124 @@
+/**
+* Landingpages
+*/
+
+.lp-header {
+  position: relative;
+  background: $beige;
+  border-bottom: 1px solid $darkBeige;
+  margin-bottom: $space-large;
+  overflow: hidden;
+  padding-top: $space;
+  padding-bottom: $space;
+  @include container();
+  @include grid-container();
+}
+.lp-header__left {
+  position: relative;
+  z-index: 1;
+  @include grid-column(12);
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(6);
+  }
+  svg {
+    max-width: 250px;
+    margin: 0 auto;
+    display: block;
+    path {
+      fill: $orangeBG;
+      stroke: $white;
+      stroke-width: 6px;
+    }
+  }
+}
+.lp-header__right {
+  position: relative;
+  z-index: 1;
+  @include grid-column(12);
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(6);
+  }
+}
+.lp-header__bg {
+  @include grid-container();
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.lp-header__bg__item {
+  width: 10%;
+  height: 0;
+  padding-bottom: 10%;
+  opacity: .2;
+  position: relative;
+  overflow: hidden;
+
+  display: block;
+  float: left;
+  background: $darkGray;
+  @include breakpoint($breakpoint-s-min) {
+    width: 5%;
+    padding-bottom: 5%;
+  }
+  img {
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    top: -5px;
+    bottom: -5px;
+    width: calc(100% + 10px);
+    max-width: none;
+    @include filter(blur(1px));
+  }
+  &:after,
+  &:before {
+    position: absolute;
+    content: '';
+    z-index: 8;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: $beige;
+  }
+  &:before {
+    opacity: 1;
+    mix-blend-mode: screen;
+  }
+  &:after {
+    opacity: 1;
+    mix-blend-mode: color;
+    z-index: 9;
+  }
+
+  &:nth-child(1n) img { @include filter(blur(1px)); }
+  &:nth-child(2n) img { @include filter(blur(1.5px)); }
+  &:nth-child(3n) img { @include filter(blur(2px)); }
+  &:nth-child(4n) img { @include filter(blur(1px)); }
+  &:nth-child(5n) img { @include filter(blur(1.5px)); }
+  &:nth-child(6n) img { @include filter(blur(1px)); }
+  &:nth-child(7n) img { @include filter(blur(2px)); }
+  &:nth-child(8n) img { @include filter(blur(1px)); }
+  &:nth-child(9n) img { @include filter(blur(1.5px)); }
+
+  &:nth-child(1n):before { opacity: 0.5; }
+  &:nth-child(2n):before { opacity: 0.4; }
+  &:nth-child(3n):before { opacity: 0.7; }
+  &:nth-child(4n):before { opacity: 0.2; }
+  &:nth-child(5n):before { opacity: 0.8; }
+  &:nth-child(6n):before { opacity: 0.3; }
+  &:nth-child(7n):before { opacity: 0.5; }
+  &:nth-child(8n):before { opacity: 0.6; }
+  &:nth-child(9n):before { opacity: 0.7; }
+  &:nth-child(1n):after { opacity: 0.5; }
+  &:nth-child(2n):after { opacity: 0.6; }
+  &:nth-child(3n):after { opacity: 0.7; }
+  &:nth-child(4n):after { opacity: 0.9; }
+  &:nth-child(5n):after { opacity: 0.8; }
+  &:nth-child(6n):after { opacity: 0.6; }
+  &:nth-child(7n):after { opacity: 0.9; }
+  &:nth-child(8n):after { opacity: 0.6; }
+  &:nth-child(9n):after { opacity: 0.7; }
+}

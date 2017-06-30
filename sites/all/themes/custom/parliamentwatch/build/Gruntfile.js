@@ -46,15 +46,15 @@ module.exports = function (grunt) {
           '<%= paths.sass %>/breakpoint': 'breakpoint-sass/stylesheets',
           '<%= paths.css %>/contrib/normalize.css': 'normalize-css/normalize.css',
           '<%= paths.css %>/contrib/select2.css': 'select2/dist/css/select2.css',
-          '<%= paths.css %>/contrib/swiper.css': 'swiper/dist/css/swiper.css',
-          '<%= paths.js %>/contrib/d3.js': 'd3/d3.js',
-          '<%= paths.js %>/contrib/jquery.scrollTo.js': 'jquery.scrollTo/jquery.scrollTo.js',
+          '<%= paths.css %>/contrib/swiper.css': 'swiper/dist/css/swiper.min.css',
+          '<%= paths.js %>/contrib/d3.min.js': 'd3/d3.min.js',
+          '<%= paths.js %>/contrib/jquery.scrollTo.min.js': 'jquery.scrollTo/jquery.scrollTo.min.js',
           '<%= paths.js %>/contrib/jquery.sticky-kit.min.js': 'sticky-kit/jquery.sticky-kit.min.js',
           '<%= paths.js %>/contrib/stupidtable.min.js': 'jquery-stupid-table/stupidtable.min.js',
           '<%= paths.js %>/contrib/swiper.jquery.min.js': 'swiper/dist/js/swiper.jquery.min.js',
           '<%= paths.js %>/contrib/maps/swiper.jquery.min.js.map': 'swiper/dist/js/maps/swiper.jquery.min.js.map',
-          '<%= paths.js %>/contrib/select2.js': 'select2/dist/js/select2.js',
-          '<%= paths.js %>/contrib/jquery.matchHeight.js': 'matchHeight/dist/jquery.matchHeight.js'
+          '<%= paths.js %>/contrib/select2.min.js': 'select2/dist/js/select2.min.js',
+          '<%= paths.js %>/contrib/jquery.matchHeight-min.js': 'matchHeight/dist/jquery.matchHeight-min.js'
         }
       }
     },
