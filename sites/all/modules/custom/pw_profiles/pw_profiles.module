@@ -206,9 +206,6 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
     $options = [];
 
     foreach (pw_profiles_archived_revisions($account, 'DESC') as $revision) {
-      if (entity_uri('user', $revision)['path'] == current_path()) {
-        continue;
-      }
       if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($revision->roles))) {
         $text = taxonomy_term_load($revision->field_user_parliament[LANGUAGE_NONE][0]['tid'])->name;
       }
