@@ -280,9 +280,18 @@ function pw_globals_update_7010() {
 }
 
 /**
- * Set variable parliamentwatch_state_parliament_tids.
+ * Update aliases.
  */
 function pw_globals_update_7011() {
+  $path = path_load(['alias' => 'petitionen']);
+  $path['source'] = 'petitions';
+  path_save($path);
+}
+
+/**
+ * Set variable parliamentwatch_state_parliament_tids.
+ */
+function pw_globals_update_7012() {
   variable_set('parliamentwatch_state_parliament_tids', [
     21316,
     16285,
@@ -306,7 +315,7 @@ function pw_globals_update_7011() {
 /**
  * Add links to main menu.
  */
-function pw_globals_update_7012() {
+function pw_globals_update_7013() {
   menu_delete_links('main-menu');
 
   $state_parliament_terms = taxonomy_term_load_multiple(variable_get('parliamentwatch_state_parliament_tids', []));
@@ -324,7 +333,7 @@ function pw_globals_update_7012() {
 /**
  * Add info menu.
  */
-function pw_globals_update_7013() {
+function pw_globals_update_7014() {
   menu_save(['menu_name' => 'info-menu', 'title' => 'Info-Menü', 'description' => 'Das <em>Info-Menü</em> stellt die Navigationspunkte für den "Über Uns"-Bereich']);
 
   $weight = 0;
@@ -351,7 +360,7 @@ function pw_globals_update_7013() {
 /**
  * Delete obsolete menus.
  */
-function pw_globals_update_7014() {
+function pw_globals_update_7015() {
   menu_delete(menu_load('devel'));
   menu_delete(menu_load('features'));
   menu_delete(menu_load('menu-main-menu-de'));
@@ -364,14 +373,14 @@ function pw_globals_update_7014() {
 /**
  * Delete obsolete redirects.
  */
-function pw_globals_update_7015() {
+function pw_globals_update_7016() {
   redirect_delete(32872);
 }
 
 /**
  * Delete obsolete fields.
  */
-function pw_globals_update_7016() {
+function pw_globals_update_7017() {
   field_delete_field('field_user_questions_get');
   field_delete_field('field_user_answers_give');
   field_delete_field('field_share_sum');
@@ -392,18 +401,9 @@ function pw_globals_update_7016() {
 /**
  * Delete obsolete field groups.
  */
-function pw_globals_update_7017() {
+function pw_globals_update_7018() {
   field_group_group_export_delete(field_group_load_field_group('group_user_roles_current', 'user', 'user', 'user_deputy'));
   field_group_group_export_delete(field_group_load_field_group('group_user_basics_data', 'user', 'user', 'user_deputy'));
-}
-
-/**
- * Update aliases.
- */
-function pw_globals_update_7018() {
-  $path = path_load(['alias' => 'petitionen']);
-  $path['source'] = 'petitions';
-  path_save($path);
 }
 
 /**
