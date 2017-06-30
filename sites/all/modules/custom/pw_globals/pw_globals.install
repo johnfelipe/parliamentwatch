@@ -16,6 +16,7 @@ function pw_globals_update_7001() {
     'delta',
     'delta_blocks',
     'drulenium',
+    'drulenium_visual_regression',
     'ds',
     'feedback_simple',
     'menu_attributes',
