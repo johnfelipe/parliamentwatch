@@ -32,6 +32,7 @@ function pw_globals_update_7001() {
     'scroll_to_top',
     'sharethis',
     'tb_megamenu',
+    'text_resize',
   ];
 
   module_disable($uninstall);
@@ -283,9 +284,40 @@ function pw_globals_update_7010() {
  * Update aliases.
  */
 function pw_globals_update_7011() {
-  $path = path_load(['alias' => 'petitionen']);
-  $path['source'] = 'petitions';
-  path_save($path);
+  $updates = [
+    'petitionen' => 'petitions',
+    'eu/profile/kandidierende' => 'profiles/16117/candidates',
+    'eu/profile' => 'profiles/16117/deputies',
+    'eu/abstimmungen' => 'polls/16117',
+    'eu/petitionen' => 'petitions/16117',
+    'bundestag/profile' => 'profiles/26909/candidates',
+    'bundestag/petitionen' => 'petitions/26909',
+    'baden-wuerttemberg/profile' => 'profiles/21316/candidates',
+    'berlin/profile' => 'profiles/23273/candidates',
+    'brandenburg/profile' => 'profiles/17180/deputies',
+    'brandenburg/abstimmungen' => 'polls/17180',
+    'bremen/profile' => 'profiles/18064/candidates',
+    'hamburg/profile' => 'profiles/18030/deputies',
+    'mansfeld-sudharz/profile' => 'profiles/16986/candidates',
+    'mecklenburg-vorpommern/profile' => 'profiles/23275/candidates',
+    'nordrhein-westfalen/profile' => 'profiles/23615/candidates',
+    'oberbürgermeisterwahl%20nrw/profile' => 'profiles/16255/candidates',
+    'rheinland-pfalz/profile' => 'profiles/21393/candidates',
+    'sachsen/profile' => 'profiles/17178/deputies',
+    'schleswig-holstein/profile' => 'profiles/23616/candidates',
+    'thueringen/profile' => 'profiles/17179/deputies',
+    'thueringen/abstimmungen' => 'polls/17179',
+    'wuppertal/profile' => 'profiles/16985/candidates',
+  ];
+
+  foreach ($updates as $alias => $source) {
+    $path = path_load(['alias' => $alias]);
+
+    if ($path) {
+      $path['source'] = $source;
+      path_save($path);
+    }
+  }
 }
 
 /**
