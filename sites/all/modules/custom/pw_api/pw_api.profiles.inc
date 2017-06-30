@@ -72,14 +72,30 @@ function pw_api_profiles($parliament) {
 
   // query for users
   $pathinfo = pathinfo(current_path());
-  $user_role =  $pathinfo['filename'] == 'deputies'?'deputy':'candidate';
   $query = db_select('user_archive_cache', 'uac');
   $query->fields('uac', array('uid', 'vid'));
-  _pw_uac_add_conditions($query, array(
-      'parliament' => $parliament,
-      'roles' => $user_role,
-    )
-  );
+
+  if($pathinfo['filename'] == 'deputies') {
+    _pw_uac_add_conditions($query, array(
+        'parliament' => $parliament,
+        'roles' => 'deputy',
+      )
+    );
+  }
+  elseif($pathinfo['filename'] == 'candidates') {
+    _pw_uac_add_conditions($query, array(
+        'parliament' => $parliament,
+        'roles' => 'candidate',
+      )
+    );
+  }
+  else {
+    _pw_uac_add_conditions($query, array(
+        'parliament' => $parliament,
+      )
+    );
+    $result = $query->groupBy('uac.uid');
+  }
   $result = $query->execute()->fetchAll();
 
   // query parameters
@@ -157,7 +173,7 @@ function pw_api_user_to_array($user, $activities = array()) {
     $profile['personal']['first_name'] = $w_user->field_user_fname->value();
     $profile['personal']['last_name'] = $w_user->field_user_lname->value();
     $profile['personal']['gender'] = $w_user->field_user_gender->value();
-    $profile['personal']['birthyear'] = date('Y', $w_user->field_user_birthday->value());
+    $profile['personal']['birthyear'] = !empty($w_user->field_user_birthday->value())?date('Y', $w_user->field_user_birthday->value()):'';
     $profile['personal']['education'] = $w_user->field_user_education->value();
     $profile['personal']['profession'] = $w_user->field_user_job_skills->value();
 
