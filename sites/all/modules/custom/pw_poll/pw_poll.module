@@ -11,9 +11,14 @@ include_once 'pw_poll.features.inc';
  * Implements hook_menu().
  */
 function pw_poll_menu() {
-  $items['polls/%'] = [
+  $items['polls'] = [
     'title' => 'Polls',
     'page callback' => 'pw_poll_page',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  $items['polls/%taxonomy_term'] = [
+    'title' => 'Polls',
     'page arguments' => [1],
     'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
@@ -65,18 +70,14 @@ function pw_poll_block_view($delta = '') {
 /**
  * Page callback: Displays a listing of polls.
  */
-function pw_poll_page($parliament) {
+function pw_poll_page($parliament_term = NULL) {
   $build = [];
 
   $q = pw_poll_base_query()
     ->fieldOrderBy('field_poll_date', 'value', 'DESC');
 
-  if (isset($parliament)) {
-    $terms = taxonomy_get_term_by_name($parliament, 'parliaments');
-
-    if (!empty($terms)) {
-      $q->fieldCondition('field_parliament', 'tid', reset($terms)->tid);
-    }
+  if (isset($parliament_term)) {
+    $q->fieldCondition('field_parliament', 'tid', $parliament_term->tid);
   }
 
   $result = $q->pager(9)->execute();

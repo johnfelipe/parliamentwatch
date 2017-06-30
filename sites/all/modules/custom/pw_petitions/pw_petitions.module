@@ -22,7 +22,7 @@ function pw_petitions_menu() {
     'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
   ];
-  $items['petitions/%'] = [
+  $items['petitions/%taxonomy_term'] = [
     'title' => 'PetitionPlus',
     'page arguments' => [1],
     'access arguments' => ['access content'],
@@ -41,7 +41,7 @@ function pw_petitions_redirect() {
 /**
  * Page callback: Displays a listing of petitions.
  */
-function pw_petitions_page($parliament = NULL) {
+function pw_petitions_page($parliament_term = NULL) {
   $build = [];
 
   $q = pw_petitions_base_query()
@@ -49,12 +49,8 @@ function pw_petitions_page($parliament = NULL) {
     ->fieldOrderBy('field_petition_signings', 'value', 'DESC')
     ->fieldOrderBy('field_donation_amount', 'value', 'DESC');
 
-  if (isset($parliament)) {
-    $terms = taxonomy_get_term_by_name($parliament, 'parliaments');
-
-    if (!empty($terms)) {
-      $q->fieldCondition('field_parliament', 'tid', reset($terms)->tid);
-    }
+  if (isset($parliament_term)) {
+    $q->fieldCondition('field_parliament', 'tid', $parliament_term->tid);
   }
 
   $result = $q->pager(9)->execute();

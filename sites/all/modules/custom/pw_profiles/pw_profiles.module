@@ -13,7 +13,7 @@ include_once 'pw_profiles.features.inc';
 function pw_profiles_menu() {
   $items = array();
 
-  $items['profile/%/%'] = array(
+  $items['profiles/%taxonomy_term/%'] = array(
     'title callback' => 'pw_profiles_page_title',
     'title arguments' => array(1, 2),
     'page callback' => 'pw_profiles_page',
@@ -301,11 +301,11 @@ function pw_profiles_user_uri($user) {
  * @return array
  *   The render array
  */
-function pw_profiles_page($parliament_name, $role_name) {
+function pw_profiles_page($parliament_term, $role_name) {
 
   $filters = array(
     'roles' => $role_name == 'candidates' ? 'candidate' : 'deputy',
-    'parliament' => $parliament_name,
+    'parliament' => $parliament_term->name,
     'date' => date('Y-m-d'),
   ) + drupal_get_query_parameters();
 
