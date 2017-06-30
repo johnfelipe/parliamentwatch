@@ -11,10 +11,12 @@
   margin-bottom: -1px;
   position: relative;
   z-index: 1;
+  @include container();
 }
 .nav--tab {
   display: none;
   @include breakpoint($breakpoint-m-min) {
+  @include grid-column(12);
     @include grid-container();
     display: block;
   }
@@ -45,6 +47,10 @@
   }
 }
 .tabs__content__title {
+  width: auto;
+  margin: 0;
+  float: none;
+
   @include breakpoint($breakpoint-m-min) {
     @include container-regular();
     padding-bottom: 0;

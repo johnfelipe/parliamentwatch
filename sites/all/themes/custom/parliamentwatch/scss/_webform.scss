@@ -8,14 +8,14 @@
   @include grid-column(12);
   margin-bottom: $space;
   @include breakpoint($breakpoint-s-min) {
-    @include grid-column(6, $neat-grid-large-gutter);
+    @include grid-column(6);
     margin-bottom: $space-large;
   }
   @include breakpoint($breakpoint-m-min) {
-    @include grid-column(4, $neat-grid-large-gutter);
+    @include grid-column(4);
   }
   @include breakpoint($breakpoint-l-min) {
-    @include grid-column(3, $neat-grid-large-gutter);
+    @include grid-column(3);
   }
   .tile__title {
     border: 0;

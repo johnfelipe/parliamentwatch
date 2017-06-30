@@ -44,11 +44,10 @@
  * @ingroup themeable
  */
 ?>
-<div class="container">
+<div class="header__bottom__inner">
   <?php print render($title_prefix); ?>
   <?php print render($title_suffix); ?>
   <nav class="<?php print $classes; ?>">
     <?php print $content; ?>
   </nav>
 </div>
-

@@ -14,12 +14,11 @@
 /* Tabs */
 .tabs--admin {
   background: transparent;
-  @include grid-column(12);
+  @include container();
 }
 .nav--tab.primary {
   display: none;
   padding: 0;
-  margin: 0;
   padding-top: $space-large;
   margin-bottom: $space-large;
   border-bottom: 1px solid $gray + 40;

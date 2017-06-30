@@ -503,7 +503,7 @@ function parliamentwatch_container__tiles($variables) {
   $element += ['#attributes' => []];
   $element['#attributes']['class'] = ['container'];
 
-  return '<div class="tile-wrapper"><div' . drupal_attributes($element['#attributes']) . '><div class="row">' . $element['#children'] . '</div></div></div>';
+  return '<div class="tile-wrapper">' . $element['#children'] . '</div>';
 }
 
 /**

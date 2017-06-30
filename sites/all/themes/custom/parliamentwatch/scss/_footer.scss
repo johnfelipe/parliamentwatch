@@ -14,8 +14,9 @@
 }
 .footer__maincol {
     @include grid-container();
-    @include grid-collapse();
-    .row > strong {
+    @include container();
+
+    > strong {
         @include grid-column(12);
     }
     strong {
@@ -103,6 +104,7 @@
     border-bottom: 1px solid $mediumGray;
     padding: $space 0;
     @include grid-container();
+    @include container();
 }
 .footer__mediapartner__title {
     float: left;
@@ -110,7 +112,7 @@
     font-weight: 300;
     font-size: 1em;
     color: $brightGray;
-
+    margin-left: $space;
     line-height: $space;
     @include margin($space 30px $space null);
 }

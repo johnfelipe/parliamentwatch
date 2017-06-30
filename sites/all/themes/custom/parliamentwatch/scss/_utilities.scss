@@ -49,6 +49,8 @@
   @include grid-container();
   h1, h2, h3 {
     margin-top: 2px;
+    margin-left: 0 !important;
+    width: auto !important;
     margin-bottom: $space-xsmall;
     @include breakpoint($breakpoint-m-min) {
       float: left;
@@ -67,7 +69,9 @@
   }
   .btn {
     @include button--mobile-block();
-    @include breakpoint($breakpoint-s-min) {
+    clear: both;
+    @include breakpoint($breakpoint-xs-min) {
+      clear: none;
       float: right;
     }
   }
@@ -117,10 +121,12 @@ figcaption {
   padding: $space-large 0;
   border-top: 1px solid $darkBeige;
   border-bottom: 1px solid $darkBeige;
+  @include container();
   @include grid-container();
   h3 {
     @include h4();
     font-family: $font-sans-serif;
+    padding-left: $space;
     @include breakpoint($breakpoint-m-min) {
       margin: 0;
       float: left;
@@ -128,12 +134,12 @@ figcaption {
     }
   }
   .share__links {
+    padding-left: $space;
     @include breakpoint($breakpoint-m-min) {
+      padding-right: $space;
+      padding-left: 0;
       float: right;
     }
-  }
-  .share__links__item__link {
-
   }
 }
 .share__links {
@@ -208,14 +214,16 @@ figcaption {
 
 .intro {
   @include padding($space-large null);
+  @include container();
   @include breakpoint($breakpoint-m-min) {
     @include padding(($space-large * 2) null);
   }
   > .container {
     position: relative;
   }
-  h1 {
+  > h1 {
     margin-bottom: 0;
+    @include grid-column(12)
   }
   .intro__date {
     color: $gray;

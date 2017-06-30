@@ -37,16 +37,10 @@
  */
 ?>
 <div id="comments" class="<?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="container">
-    <div class="row">
-      <?php print render($title_suffix); ?>
-      <?php print render($content['comments']); ?>
-    </div>
-    <div class="row">
-      <?php if ($content['comment_form']): ?>
-        <h2 class="title comment-form"><?php print t('Add new comment'); ?></h2>
-        <?php print render($content['comment_form']); ?>
-      <?php endif; ?>
-    </div>
-  </div>
+  <?php print render($title_suffix); ?>
+  <?php print render($content['comments']); ?>
+  <?php if ($content['comment_form']): ?>
+    <h2 class="title comment-form"><?php print t('Add new comment'); ?></h2>
+    <?php print render($content['comment_form']); ?>
+  <?php endif; ?>
 </div>

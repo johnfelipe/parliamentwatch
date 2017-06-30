@@ -38,8 +38,8 @@
 /* Container */
 
 @mixin container() {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: $space;
+  padding-right: $space;
   padding-left: calc(50% - 680px);
   padding-right: calc(50% - 680px);
   @include grid-container();
@@ -53,6 +53,11 @@
   max-width: 1360px;
   @include margin(null auto);
   @include padding(null $space);
+}
+@mixin container-small() {
+  @include container();
+  padding-left: calc(50% - 530px);
+  padding-right: calc(50% - 530px);
 }
 
 

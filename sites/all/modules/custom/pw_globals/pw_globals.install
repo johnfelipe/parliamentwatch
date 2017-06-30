@@ -137,15 +137,12 @@ function pw_globals_update_7005() {
   $edit['body']['format'] = $block['format'];
   $edit['body']['value'] = <<<EOD
 <div class="intro intro--rtl intro--petition">
-    <div class="container">
         <h1>PetitionPlus</h1>
-        <div class="row">
-            <div class="intro__right mh-item">
-                <img src="/sites/all/themes/custom/parliamentwatch/images/logo-petition-plus.svg" alt="PetitionPlus">
-            </div>
-            <div class="intro__left mh-item">
-                <p>Hier finden Sie durch unsere Redaktion ausgewählte Petitionen von offenen Petitionsplattformen wie Change.org. Sobald eine dieser Petitionen 100.000 Unterschriften erreicht (Schritt 1), werden wir durch eine repräsentative Meinungsumfrage ermitteln, ob das Anliegen eine Mehrheit in der Bevölkerung genießt (Schritt 2). Sollte dies der Fall sein, werden wir sämtliche Abgeordnete des jeweiligen Parlaments dazu Stellung nehmen lassen (Schritt 3). Die Positionierung der Abgeordneten wird im jeweiligen Abgeordnetenprofil archiviert und könnte damit zum Wieder- oder Abwahlkritierium werden. Außerdem finden Sie hier auch eigene Petitionen zu unseren Kernthemen, zu denen es allerdings keine Umfragen und Abfragen im Parlament gibt. Sollten Sie Fragen oder Feedback zu PetitionPlus haben, nutzen Sie bitte unser <a href="/feedback" target="_blank">Feedback-Formular</a>.</p>
-            </div>
+        <div class="intro__right mh-item">
+            <img src="/sites/all/themes/custom/parliamentwatch/images/logo-petition-plus.svg" alt="PetitionPlus">
+        </div>
+        <div class="intro__left mh-item">
+            <p>Hier finden Sie durch unsere Redaktion ausgewählte Petitionen von offenen Petitionsplattformen wie Change.org. Sobald eine dieser Petitionen 100.000 Unterschriften erreicht (Schritt 1), werden wir durch eine repräsentative Meinungsumfrage ermitteln, ob das Anliegen eine Mehrheit in der Bevölkerung genießt (Schritt 2). Sollte dies der Fall sein, werden wir sämtliche Abgeordnete des jeweiligen Parlaments dazu Stellung nehmen lassen (Schritt 3). Die Positionierung der Abgeordneten wird im jeweiligen Abgeordnetenprofil archiviert und könnte damit zum Wieder- oder Abwahlkritierium werden. Außerdem finden Sie hier auch eigene Petitionen zu unseren Kernthemen, zu denen es allerdings keine Umfragen und Abfragen im Parlament gibt. Sollten Sie Fragen oder Feedback zu PetitionPlus haben, nutzen Sie bitte unser <a href="/feedback" target="_blank">Feedback-Formular</a>.</p>
         </div>
 
         <h3>So erreicht eine Petition das Parlament</h3>

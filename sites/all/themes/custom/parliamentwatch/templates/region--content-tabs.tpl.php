@@ -30,9 +30,7 @@
 ?>
 <div class="tabs">
   <div class="tabs__navigation">
-    <div class="container">
-      <?php print theme('item_list', ['items' => $tabs, 'attributes' => ['class' => ['nav', 'nav--tab']]]); ?>
-    </div>
+    <?php print theme('item_list', ['items' => $tabs, 'attributes' => ['class' => ['nav', 'nav--tab']]]); ?>
   </div>
   <?php print $content; ?>
 </div>
