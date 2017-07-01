@@ -107,9 +107,21 @@ function parliamentwatch_preprocess_block(&$variables) {
     $variables['theme_hook_suggestions'][] = strtr('block__' . $config['menu_name'] . '__level-' . $config['level'], '-', '_');
 
     if ($config['menu_name'] == 'main-menu' && $config['level'] == 2) {
-      $trail = menu_get_active_trail();
+      $active_path = menu_tree_get_path('main-menu');
+
+      if ($active_path) {
+        $parliament_term = menu_get_item($active_path)['map'][1];
+        $text = $parliament_term->name;
+        $path = entity_uri('taxonomy_term', $parliament_term)['path'];
+      }
+      else {
+        $trail = menu_get_active_trail();
+        $text = $trail[1]['link_title'];
+        $path = $trail[1]['link_path'];
+      }
+
       $variables['title_suffix']['indicator'] = [
-        '#markup' => l($trail[1]['link_title'], $trail[1]['link_path'], ['attributes' => ['class' => ['header__subnav__indicator']]])
+        '#markup' => l($text, $path, ['attributes' => ['class' => ['header__subnav__indicator']]])
       ];
     }
   }
