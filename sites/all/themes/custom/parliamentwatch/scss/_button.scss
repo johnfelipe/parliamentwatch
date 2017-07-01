@@ -31,7 +31,7 @@
 }
 .btn--small-white {
   @include button($white, $orange, 10px, 8px);
-  font-size: 0.8em
+  font-size: 0.8em;
   &:hover {
     @include button($white, transparent, 10px, 8px);
   }
