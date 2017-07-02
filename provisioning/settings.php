@@ -528,4 +528,12 @@ $conf['file_private_path'] = '/srv/drupal/private';
 $conf['file_public_path'] = 'sites/default/files';
 $conf['preprocess_css'] = FALSE;
 $conf['preprocess_js'] = FALSE;
+$conf['pw_search_api_solr_options'] = [
+  'scheme' => 'http',
+  'host' => '192.168.93.217',
+  'port' => 8080,
+  'path' => '/solr',
+  'http_user' => '',
+  'http_pass' => '',
+];
 $conf['schema_suppress_type_warnings'] = TRUE;
