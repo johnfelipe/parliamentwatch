@@ -89,10 +89,12 @@ function pw_petitions_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Form validation handler for petition form,
+ * Form validation handler for petition form.
  *
  * Checks if user has never submitted this form under this node path for this
  * petition.
+ *
+ * @see pw_petitions_form_submit()
  */
 function pw_petitions_form_validate($form_id, $form_values) {
   // Checks if email was already used to sign this petition.
@@ -118,6 +120,8 @@ function pw_petitions_form_validate($form_id, $form_values) {
  * Form submission handler for petition form.
  *
  * Increments signings when form is submitted.
+ *
+ * @see pw_petitions_form_validate()
  */
 function pw_petitions_form_submit(&$form, &$form_state) {
   if ($form['#form_id'] == 'webform_client_form_10369') {
