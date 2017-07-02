@@ -27,6 +27,16 @@ function pw_poll_menu() {
 }
 
 /**
+ * Implements hook_node_view().
+ */
+function pw_poll_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'poll' && node_is_page($node)) {
+    $parliament_tid = $node->field_parliament[LANGUAGE_NONE][0]['tid'];
+    menu_tree_set_path('main-menu', "polls/$parliament_tid");
+  }
+}
+
+/**
  * Implements hook_block_info().
  */
 function pw_poll_block_info() {
