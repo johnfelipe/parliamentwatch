@@ -11,7 +11,7 @@ include_once 'pw_profiles.features.inc';
  * Implements hook_menu().
  */
 function pw_profiles_menu() {
-  $items = array();
+  $items = [];
 
   $items['profiles/%taxonomy_term/%'] = array(
     'title callback' => 'pw_profiles_page_title',
@@ -115,7 +115,7 @@ function pw_profiles_form_validate($form, &$form_state) {
  */
 function pw_profiles_user_presave(&$edit, $account, $category) {
   // fetch the chosen roles from $edit['roles']:
-  $roleIdArray = array();
+  $roleIdArray = [];
 
   // $edit['roles'] is unset if user_save() is called programmatically with
   // modifications that do not include the roles. In order to reset the roles
@@ -131,7 +131,7 @@ function pw_profiles_user_presave(&$edit, $account, $category) {
     }
   }
   // reset the $edit['field_user_roles_for_view_mode_s']['und'] array:
-  $edit['field_user_roles_for_view_mode_s']['und'] = array();
+  $edit['field_user_roles_for_view_mode_s']['und'] = [];
 
   foreach ($roleIdArray as $roleId) {
     $role = user_role_load($roleId);
@@ -182,7 +182,7 @@ function pw_profiles_user_update(&$edit, $account, $category) {
     $user_revisions = user_revision_list($account);
     foreach ($user_revisions as $user_revision) {
       if ($user_revision->name != $account->name) {
-        $revision_edit = array();
+        $revision_edit = [];
         $revision_edit['name'] = $account->name;
         _user_revision_edit_save($user_revision, $revision_edit);
       }
@@ -235,29 +235,6 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
 }
 
 /**
- * Implements hook_block_info().
- */
-function pw_profiles_block_info() {
-  $blocks = array();
-
-  $blocks['filters'] = array(
-    'info' => t('Profile filters'),
-    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
-  );
-
-  return $blocks;
-}
-
-/**
- * Implements hook_block_view().
- */
-function pw_profiles_block_view($delta) {
-  if ($delta == 'filters' && menu_get_item()['page_callback'] == 'pw_profiles_page') {
-    return pw_profiles_filters_block();
-  }
-}
-
-/**
  * Implements hook_entity_info_alter().
  */
 function pw_profiles_entity_info_alter(&$entity_info) {
@@ -298,39 +275,42 @@ function pw_profiles_user_uri($user) {
 }
 
 /**
- * Page callback; displays a list of profiles.
+ * Page callback: Displays a list of profiles.
  *
  * Selects user revisions based on parliament and role.
  *
- * @param string $parliament_name
- *   The parliament name
+ * @param string $parliament_term
+ *   The parliament term.
  *
  * @param string $role_name
- *   The role
+ *   The role.
  *
  * @return array
- *   The render array
+ *   The render array.
  */
 function pw_profiles_page($parliament_term, $role_name) {
 
-  $filters = array(
+  $filters = [
     'roles' => $role_name == 'candidates' ? 'candidate' : 'deputy',
     'parliament' => $parliament_term->name,
     'date' => date('Y-m-d'),
-  ) + drupal_get_query_parameters();
+  ] + drupal_get_query_parameters();
 
   $users = pw_profiles_user_load_multiple($filters, 8);
 
   if (empty($users)) {
-    $build =  array(
-      '#markup' => t('No results matching your criteria were found.'),
-    );
+    $build = [
+      'user' => ['#markup' => t('No results matching your criteria were found.')],
+    ];
   }
   else {
     $build = entity_view('user', $users, 'tile');
-    $build['user']['#theme_wrappers'] = array('container__tiles');
-    $build['pager'] = array('#theme' => 'pager', '#weight' => 5);
+    $build['pager'] = ['#theme' => 'pager', '#weight' => 5];
   }
+
+  $build['user']['#theme_wrappers'] = ['container__tiles'];
+  $build['filters'] = drupal_get_form('pw_profiles_filters_form', $parliament_term, $role_name);
+  $build['filters']['#weight'] = -5;
 
   return $build;
 }
@@ -413,8 +393,8 @@ function pw_profiles_archived_revisions($account, $direction = 'ASC') {
  * @return array
  *   The selected users
  */
-function pw_profiles_user_load_multiple($filters = array(), $limit = NULL) {
-  $users = array();
+function pw_profiles_user_load_multiple($filters = [], $limit = NULL) {
+  $users = [];
 
   $query = pw_profiles_user_revision_query($filters)->extend('PagerDefault')->limit($limit);
   if (empty($filters['last_name'])) {
@@ -446,7 +426,7 @@ function pw_profiles_user_load_multiple($filters = array(), $limit = NULL) {
  * @return SelectQueryInterface
  *   The query object
  */
-function pw_profiles_user_revision_query($filters = array()) {
+function pw_profiles_user_revision_query($filters = []) {
   $query = db_select('user_revision', 'ur');
   $query->join('user_archive_cache', 'uac', 'uac.vid = ur.vid');
   $query->fields('ur')->fields('uac');
@@ -505,38 +485,15 @@ function pw_profiles_user_revision_query($filters = array()) {
 }
 
 /**
- * Renders a block displaying filters for refining the search.
- *
- * @return array
- *   The render array
- */
-function pw_profiles_filters_block() {
-  $block = array();
-
-  $block['subject'] = t('Filter list');
-  $block['content']['form'] = drupal_get_form('pw_profiles_filters_form', menu_get_item()['map'][1], menu_get_item()['map'][2]);
-
-  return $block;
-}
-
-/**
  * Form constructor for the profile filters form.
  */
-function pw_profiles_filters_form($form, &$form_state, $parliament_name, $role_name) {
+function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) {
 
-  $parliament = taxonomy_get_term_by_name($parliament_name, 'parliaments');
-  if(!$parliament){
-    return '';
-  }
-  $parliament = array_pop($parliament);
-
-  $role_name = $role_name == 'candidates' ? 'candidate' : 'deputy';
-
-  $filters = array(
-    'roles' => $role_name,
-    'parliament' => $parliament_name,
+  $filters = [
+    'roles' => $role_name == 'candidates' ? 'candidate' : 'deputy',
+    'parliament' => $parliament->name,
     'date' => date('Y-m-d'),
-  );
+  ];
 
   $query = pw_profiles_user_revision_query($filters);
   $query->leftJoin('field_revision_field_user_constituency', 'fuc', 'fuc.revision_id = ur.vid');
@@ -557,12 +514,12 @@ function pw_profiles_filters_form($form, &$form_state, $parliament_name, $role_n
   $last_name_options = array('' => t('All'));
   $alphabet = range(ord('A'), ord('Z'));
 
-  $region_values = array();
-  $constituency_values = array();
-  $party_values = array();
-  $list_values = array();
-  $list_position_values = array();
-  $gender_options = array();
+  $region_values = [];
+  $constituency_values = [];
+  $party_values = [];
+  $list_values = [];
+  $list_position_values = [];
+  $gender_options = [];
 
   foreach ($query->execute()->fetchAll() as $row) {
     if ($row->field_electoral_region_tid) {
@@ -592,19 +549,21 @@ function pw_profiles_filters_form($form, &$form_state, $parliament_name, $role_n
   ksort($last_name_options);
 
   $form['#method'] = 'get';
-  $form['#attributes']['class'] = array('profile-filters');
-  $form['last_name'] = array(
-    '#type' => 'radios',
+  $form['#theme'] = 'filterbar';
+  $form['last_name'] = [
+    '#type' => 'select',
     '#title' => t('Filter by name'),
+    '#title_display' => 'invisible',
     '#options' => $last_name_options,
     '#multiple' => FALSE,
     '#default_value' => isset($parameters['last_name']) ? $parameters['last_name'] : '',
-  );
+  ];
   if (!empty($region_values) && !pw_profiles_filter_disabled('field_electoral_region_tid', $parliament)) {
     $form['region'] = array(
       '#type' => 'select',
       '#title' => t('Filter by region'),
-      '#options' => array('' => t('All')) + _pw_profiles_options($region_values),
+      '#title_display' => 'invisible',
+      '#options' => ['' => t('All')] + _pw_profiles_options($region_values),
       '#multiple' => FALSE,
       '#default_value' => isset($parameters['region']) ? $parameters['region'] : '',
     );
@@ -613,7 +572,8 @@ function pw_profiles_filters_form($form, &$form_state, $parliament_name, $role_n
     $form['constituency'] = array(
       '#type' => 'select',
       '#title' => isset($parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value'] : t('Constituency'),
-      '#options' => array('' => t('All')) + _pw_profiles_options($constituency_values),
+      '#title_display' => 'invisible',
+      '#options' => ['' => t('All')] + _pw_profiles_options($constituency_values),
       '#default_value' => empty($parameters['constituency']) ? '' : $parameters['constituency'],
     );
   }
@@ -621,7 +581,8 @@ function pw_profiles_filters_form($form, &$form_state, $parliament_name, $role_n
     $form['list'] = array(
       '#type' => 'select',
       '#title' => isset($parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value'] : t('List'),
-      '#options' => array('' => t('All')) + _pw_profiles_options($list_values),
+      '#title_display' => 'invisible',
+      '#options' => ['' => t('All')] + _pw_profiles_options($list_values),
       '#default_value' => empty($parameters['list']) ? '' : $parameters['list'],
     );
   }
@@ -629,27 +590,31 @@ function pw_profiles_filters_form($form, &$form_state, $parliament_name, $role_n
     $form['list_position'] = array(
       '#type' => 'select',
       '#title' => t('List position'),
-      '#options' => array('' => t('All')) + _pw_profiles_options($list_position_values),
+      '#title_display' => 'invisible',
+      '#options' => ['' => t('All')] + _pw_profiles_options($list_position_values),
       '#default_value' => empty($parameters['list_position']) ? '' : $parameters['list_position'],
     );
   }
   $form['party'] = array(
-    '#type' => 'checkboxes',
+    '#type' => 'select',
     '#title' => t('Filter by party'),
-    '#options' => _pw_profiles_options($party_values),
-    '#default_value' => empty($parameters['party']) ? array() : $parameters['party'],
+    '#title_display' => 'invisible',
+    '#options' => ['' => t('All')] + _pw_profiles_options($party_values),
+    '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
   );
   $form['age'] = array(
     '#type' => 'select',
     '#title' => t('Age'),
-    '#options' => array('-' => '')+array_combine(range(18, 90), range(18, 90)),
-    '#default_value' => empty($parameters['age']) ? array() : $parameters['age'],
+    '#title_display' => 'invisible',
+    '#options' => ['' => t('All')] + array_combine(range(18, 90), range(18, 90)),
+    '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
   );
   $form['gender'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Gender'),
+    '#title_display' => 'invisible',
     '#options' => $gender_options,
-    '#default_value' => empty($parameters['gender']) ? array() : $parameters['gender'],
+    '#default_value' => empty($parameters['gender']) ? [] : $parameters['gender'],
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -692,7 +657,7 @@ function pw_profiles_filter_disabled($filter, $parliament) {
  *   An array of taxonomy term names keyed by term ID.
  */
 function _pw_profiles_options(array $values) {
-  static $terms = array();
+  static $terms = [];
 
   if (empty($terms)) {
     $terms = db_select('taxonomy_term_data', 't')
