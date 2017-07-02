@@ -1,5 +1,0 @@
-name = PW Form Booking
-description = booking form for extended profiles
-core = 7.x
-version = 7.x-1.0-20150724
-project = pw_form_booking
