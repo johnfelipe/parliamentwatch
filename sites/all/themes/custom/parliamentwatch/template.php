@@ -803,6 +803,13 @@ function parliamentwatch_select($variables) {
 }
 
 /**
+ * Overrides theme_checkboxes().
+ */
+function parliamentwatch_checkboxes($variables) {
+  return $variables['element']['#children'];
+}
+
+/**
  * Overrides theme_checkbox().
  */
 function parliamentwatch_checkbox($variables) {
