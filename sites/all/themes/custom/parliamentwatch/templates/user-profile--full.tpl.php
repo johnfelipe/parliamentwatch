@@ -101,7 +101,7 @@
           </div>
         </a>
         <?php if (isset($user_profile['votes_total'])): ?>
-        <a href="#abstimmverhalten" class="hstats__item hstats__item--donut-digit" data-localScroll>
+        <a href="#block-pw-vote-profile" class="hstats__item hstats__item--donut-digit" data-localScroll>
           <div class="hstats__item__display mh-item-nr" data-mh="hstats">
             <span class="d3 d3--gauge"
                   data-d3-gauge
