@@ -223,8 +223,8 @@ figcaption {
     position: relative;
   }
   > h1 {
-    margin-bottom: 0;
     @include grid-column(12)
+    margin-bottom: 0;
   }
   .intro__date {
     color: $gray;
@@ -252,6 +252,7 @@ figcaption {
     position: relative;
     @include grid-column(12);
     padding-bottom: $space-large;
+    padding-top: $space;
     @include breakpoint($breakpoint-s-min) {
       @include grid-column(7);
       padding-bottom: 0;
@@ -263,6 +264,7 @@ figcaption {
   }
   .intro__right {
     @include grid-column(12);
+    padding-top: $space;
     @include breakpoint($breakpoint-s-min) {
       @include grid-column(5);
       padding-left: $space-large;
