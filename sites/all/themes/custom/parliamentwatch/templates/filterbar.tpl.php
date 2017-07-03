@@ -7,7 +7,7 @@
  * Available variables:
  * - $form: The form.
  *
- * * Helper variables:
+ * Helper variables:
  * - $classes_array: Array of html class attribute values. It is flattened
  *   into a string within the variable $classes.
  * - $is_front: Flags true when presented in the front page.
