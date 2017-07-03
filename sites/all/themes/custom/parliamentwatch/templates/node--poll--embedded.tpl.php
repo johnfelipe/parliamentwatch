@@ -80,5 +80,5 @@
  * @ingroup themeable
  */
 ?>
-<h3 class="abstimmverhalten-overview__item__title"><a href="#"><?php print $title; ?></a></h3>
+<h3 class="abstimmverhalten-overview__item__title"><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
 <span class="abstimmverhalten-overview__item__date"><?php print render($content['field_poll_date']); ?></span> <?php print render($content['field_blogpost_categories']); ?>
