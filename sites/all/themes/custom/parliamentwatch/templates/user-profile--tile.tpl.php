@@ -38,37 +38,39 @@
 ?>
 
 <div class="deputy tile"<?php print $attributes; ?>>
-  <div class="deputy__image">
-    <?php print render($user_profile['field_user_picture']); ?>
-    <?php print render($user_profile['field_user_picture_copyright']); ?>
-  </div>
+  <a href="<?php print $user_url; ?>">
+    <div class="deputy__image">
+      <?php print render($user_profile['field_user_picture']); ?>
+      <?php print render($user_profile['field_user_picture_copyright']); ?>
+    </div>
 
-  <h2 class="deputy__title mh-item"><?php print $display_name; ?></h2>
-  <div class="deputy__party-indicator"><?php print render($user_profile['field_user_party']); ?></div>
-  <div class="deputy__stats hstats hstats--2">
-    <div class="hstats__item hstats__item--digit">
-      <span class="hstats__item__display mh-item-nr" data-mh="hstats"><?php print $questions; ?></span>
-      <span class="hstats__item__label mh-item-nr" data-mh="hstats">
-        <?php print format_plural($questions, t('Question'), t('Questions')) ?>
-      </span>
-    </div>
-    <div class="hstats__item hstats__item--donut">
-      <span class="hstats__item__display mh-item-nr" data-mh="hstats">
-        <span class="d3 d3--gauge"
-              data-d3-gauge
-              data-percentage="<?php print $answer_ratio; ?>"
-              data-track-width="10"
-              data-track-colour="ccc"
-              data-fill-colour="f46b3b"
-              data-text-colour="444"
-              data-stroke-colour="FFFFFF"
-              data-stroke-spacing="2">
-          <span><?php print $answer_ratio; ?>%</span>
+    <h2 class="deputy__title mh-item"><?php print $display_name; ?></h2>
+    <div class="deputy__party-indicator"><?php print render($user_profile['field_user_party']); ?></div>
+    <div class="deputy__stats hstats hstats--2">
+      <div class="hstats__item hstats__item--digit">
+        <span class="hstats__item__display mh-item-nr" data-mh="hstats"><?php print $questions; ?></span>
+        <span class="hstats__item__label mh-item-nr" data-mh="hstats">
+          <?php print format_plural($questions, t('Question'), t('Questions')) ?>
         </span>
-      </span>
-      <span class="hstats__item__label mh-item-nr" data-mh="hstats"><?php print t('answered') ?></span>
+      </div>
+      <div class="hstats__item hstats__item--donut">
+        <span class="hstats__item__display mh-item-nr" data-mh="hstats">
+          <span class="d3 d3--gauge"
+                data-d3-gauge
+                data-percentage="<?php print $answer_ratio; ?>"
+                data-track-width="10"
+                data-track-colour="ccc"
+                data-fill-colour="f46b3b"
+                data-text-colour="444"
+                data-stroke-colour="FFFFFF"
+                data-stroke-spacing="2">
+            <span><?php print $answer_ratio; ?>%</span>
+          </span>
+        </span>
+        <span class="hstats__item__label mh-item-nr" data-mh="hstats"><?php print t('answered') ?></span>
+      </div>
     </div>
-  </div>
+  </a>
   <ul class="deputy__links tile__links tile__links--2">
     <?php if ($is_consultable): ?>
     <li class="tile__links__item">

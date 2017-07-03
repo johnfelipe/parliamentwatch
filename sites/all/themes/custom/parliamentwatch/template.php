@@ -312,7 +312,7 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     $variables['voting_ratio'] = round(100 * $variables['user_profile']['votes_attended'] / $variables['user_profile']['votes_total'], 0);
   }
 
-  if (isset($variables['user_profile']['field_user_party'][0]['#markup'])) {
+  if (isset($variables['user_profile']['field_user_party'][0]['#markup']) && $variables['view_mode'] == 'full') {
     $text = $variables['field_user_party'][0]['taxonomy_term']->name;
     if (in_array(PW_GLOBALS_CANDIDATE_RID, array_keys($account->roles))) {
       $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/candidates';
