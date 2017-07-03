@@ -87,13 +87,13 @@
   @include transition-property(transform);
   @include box-sizing(content-box);
 }
-.filterbar .form__item {
+.filterbar__item {
   float: left;
   color: $darkGray;
   background: $white;
   margin-bottom: 1px;
 }
-.filterbar .form__item--label {
+.filterbar__item--label {
   font-weight: 600;
   float: left;
   padding-top: $space;
@@ -107,7 +107,7 @@
 
 }
 
-.filterbar .form__item--input {
+.filterbar__item--input {
   padding: $space-xsmall $space-xsmall $space-xsmall 0;
   position: relative;
   border-right: 1px solid $darkBeige;
@@ -147,7 +147,7 @@
     }
   }
 }
-.filterbar .form__item--dropdown {
+.filterbar__item--dropdown {
   border-right: 1px solid $darkBeige;
   white-space: nowrap;
   a {
@@ -177,7 +177,7 @@
   }
 }
 
-.filterbar .form__item--checkbox {
+.filterbar__item--checkbox {
   border-right: 1px solid $darkBeige;
   padding: $space $space;
   white-space: nowrap;
