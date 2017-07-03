@@ -43,6 +43,10 @@ function pw_blog_block_info() {
     'info' => t('Related blog posts'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['recent_blogposts'] = [
+    'info' => t('Recent blog posts'),
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  ];
   return $blocks;
 }
 
@@ -53,6 +57,8 @@ function pw_blog_block_view($delta = '') {
   switch ($delta) {
     case 'related_blogposts':
       return pw_blog_related_blogposts_block();
+    case 'recent_blogposts':
+      return pw_blog_recent_blogposts_block();
     default:
       return [];
   }
@@ -113,6 +119,32 @@ function pw_blog_related_blogposts_block() {
 
   if (!empty($result['node'])) {
     $block['content'] = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
+  }
+
+  return $block;
+}
+
+/**
+ * Displays related bog posts.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_blog_recent_blogposts_block() {
+  $block = [
+    'subject' => t('New blog entries'),
+  ];
+
+  $result = pw_blog_base_query()
+    ->propertyOrderBy('created', 'DESC')
+    ->range(0, 3)
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    $block['content']['head'] = node_view(array_shift($nodes), 'tile');
+    $block['content']['tail'] = node_view_multiple($nodes, 'tile');
+    $block['content']['tail']['#theme_wrappers'] = ['container__small_tiles'];
   }
 
   return $block;

@@ -532,6 +532,18 @@ function parliamentwatch_container__tiles($variables) {
 }
 
 /**
+ * Overrides theme_container() for tiles.
+ */
+function parliamentwatch_container__small_tiles($variables) {
+  $element = $variables['element'];
+  // Ensure #attributes is set.
+  $element += ['#attributes' => []];
+  $element['#attributes']['class'] = ['container'];
+
+  return '<div class="small-tiles">' . $element['#children'] . '</div>';
+}
+
+/**
  * Overrides theme_container() for timeline.
  */
 function parliamentwatch_container__timeline($variables) {
