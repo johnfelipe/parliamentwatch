@@ -35,13 +35,30 @@
     </div>
     <div class="filterbar__swiper">
       <div class="filterbar__swiper__inner">
+        <?php for ($i = 1; $i < count($children); $i++): ?>
+        <?php if (!in_array($children[$i], ['submit', 'form_id', 'form_build_id', 'form_token'])): ?>
         <?php
-          for ($i = 1; $i < count($children); $i++) {
-            if ($children[$i] != 'submit') {
-              print render($form[$children[$i]]);
-            }
+          if (!isset($form[$children[$i]]['#options']) || count($form[$children[$i]]['#options']) > 2) {
+            $modifier = 'dropdown';
+          }
+          else {
+            $modifier = 'checkboxes';
           }
         ?>
+        <div class="filterbar__item <?php print ($modifier == 'dropdown') ? 'filterbar__item--dropdown dropdown' : 'filterbar__item--checkbox'; ?>">
+          <?php if ($modifier == 'dropdown'): ?>
+          <a class="dropdown__trigger" href="#">
+            <i class="icon icon-arrow-down"> <?php print $form[$children[$i]]['#title'] ?></i>
+          </a>
+          <div class="dropdown__list">
+            <?php print render($form[$children[$i]]); ?>
+          </div>
+          <?php else: ?>
+          <?php print render($form[$children[$i]]); ?>
+          <?php endif; ?>
+        </div>
+        <?php endif; ?>
+        <?php endfor; ?>
       </div>
     </div>
   </div>
