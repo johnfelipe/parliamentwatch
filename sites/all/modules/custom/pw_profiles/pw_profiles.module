@@ -560,7 +560,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   ];
   if (!empty($region_values) && !pw_profiles_filter_disabled('field_electoral_region_tid', $parliament)) {
     $form['region'] = array(
-      '#type' => 'select',
+      '#type' => 'radios',
       '#title' => t('Filter by region'),
       '#title_display' => 'invisible',
       '#options' => ['' => t('All')] + _pw_profiles_options($region_values),
@@ -570,7 +570,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   }
   if (!empty($constituency_values)) {
     $form['constituency'] = array(
-      '#type' => 'select',
+      '#type' => 'radios',
       '#title' => isset($parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value'] : t('Constituency'),
       '#title_display' => 'invisible',
       '#options' => ['' => t('All')] + _pw_profiles_options($constituency_values),
@@ -579,7 +579,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   }
   if (!empty($list_values) && !pw_profiles_filter_disabled('field_user_list_tid', $parliament)) {
     $form['list'] = array(
-      '#type' => 'select',
+      '#type' => 'radios',
       '#title' => isset($parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value'] : t('List'),
       '#title_display' => 'invisible',
       '#options' => ['' => t('All')] + _pw_profiles_options($list_values),
@@ -588,7 +588,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   }
   if (!empty($list_position_values) && !pw_profiles_filter_disabled('field_user_list_position_tid', $parliament)) {
     $form['list_position'] = array(
-      '#type' => 'select',
+      '#type' => 'radios',
       '#title' => t('List position'),
       '#title_display' => 'invisible',
       '#options' => ['' => t('All')] + _pw_profiles_options($list_position_values),
@@ -596,17 +596,18 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
     );
   }
   $form['party'] = array(
-    '#type' => 'select',
+    '#type' => 'checkboxes',
     '#title' => t('Filter by party'),
     '#title_display' => 'invisible',
     '#options' => ['' => t('All')] + _pw_profiles_options($party_values),
+    '#multiple' => TRUE,
     '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
   );
   $form['age'] = array(
-    '#type' => 'select',
+    '#type' => 'textfield',
+    '#attributes' => ['type' => 'number'],
     '#title' => t('Age'),
     '#title_display' => 'invisible',
-    '#options' => ['' => t('All')] + array_combine(range(18, 90), range(18, 90)),
     '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
   );
   $form['gender'] = array(
