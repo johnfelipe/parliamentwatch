@@ -156,7 +156,7 @@
         <?php endif; ?>
         <?php if (isset($user_profile['field_user_election_result'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_election_result']['#title']; ?></dt>
-          <dd class="dl__dd"><?php print $user_profile['field_user_election_result'][0]['#markup']; ?></dd>
+          <dd class="dl__dd"><?php print $user_profile['field_user_election_result'][0]['#markup']; ?> %</dd>
         <?php endif; ?>
         <?php if (isset($user_profile['field_user_constituency'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_constituency']['#title']; ?></dt>
