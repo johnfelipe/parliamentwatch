@@ -849,6 +849,7 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:41' => 'dateretired',
           'xpathparser:42' => 'constituencywon',
           'xpathparser:43' => 'listwon',
+          'xpathparser:44' => 'phone',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
@@ -890,6 +891,7 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:41' => 0,
           'xpathparser:42' => 0,
           'xpathparser:43' => 0,
+          'xpathparser:44' => 0,
         ),
         'context' => '//row',
         'exp' => array(
@@ -937,6 +939,7 @@ function pw_gdata_importer_feeds_importer_default() {
             'xpathparser:41' => 0,
             'xpathparser:42' => 0,
             'xpathparser:43' => 0,
+            'xpathparser:44' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -1082,6 +1085,7 @@ function pw_gdata_importer_feeds_importer_default() {
             'target' => 'field_user_political_roles',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
           ),
           21 => array(
             'source' => 'xpathparser:23',
@@ -1207,6 +1211,11 @@ function pw_gdata_importer_feeds_importer_default() {
             'target' => 'field_user_list_won',
             'unique' => FALSE,
             'language' => 'und',
+          ),
+          41 => array(
+            'source' => 'xpathparser:44',
+            'target' => 'field_user_phone',
+            'unique' => FALSE,
           ),
         ),
         'update_existing' => '2',

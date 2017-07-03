@@ -1578,7 +1578,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => 0,
         ),
         'user_candidate' => array(
           'label' => 'above',
@@ -3431,6 +3431,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             'full_html' => 'full_html',
             'html_mail' => 0,
             'managed_content' => 'managed_content',
+            'newsletter' => 0,
             'php_code' => 'php_code',
             'plain_text' => 'plain_text',
           ),
@@ -3453,6 +3454,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -3462,7 +3466,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,

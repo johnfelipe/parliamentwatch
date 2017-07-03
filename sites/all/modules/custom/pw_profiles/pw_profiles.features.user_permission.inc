@@ -694,7 +694,10 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: edit field_user_phone.
   $permissions['edit field_user_phone'] = array(
     'name' => 'edit field_user_phone',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'Content Manager',
+      1 => 'administrator',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -1112,7 +1115,10 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: edit own field_user_phone.
   $permissions['edit own field_user_phone'] = array(
     'name' => 'edit own field_user_phone',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'Content Manager',
+      1 => 'administrator',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -1610,7 +1616,11 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: view field_user_phone.
   $permissions['view field_user_phone'] = array(
     'name' => 'view field_user_phone',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'API User',
+      1 => 'Content Manager',
+      2 => 'administrator',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -2066,7 +2076,11 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: view own field_user_phone.
   $permissions['view own field_user_phone'] = array(
     'name' => 'view own field_user_phone',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'API User',
+      1 => 'Content Manager',
+      2 => 'administrator',
+    ),
     'module' => 'field_permissions',
   );
 
