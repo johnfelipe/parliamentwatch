@@ -161,6 +161,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   font-size: .8em;
   float: right;
   padding: $space-xsmall-mobile 0;
+  @include date-inline;
 }
 
 /* tile: flag */
