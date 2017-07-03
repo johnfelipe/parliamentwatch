@@ -76,7 +76,7 @@
     </div>
     <div class="deputy__intro__content">
       <div class="hstats">
-        <a href="#fragen-und-antworten" class="hstats__item hstats__item--donut-digit" data-localScroll>
+        <a href="#block-pw-dialogues-profile" class="hstats__item hstats__item--donut-digit" data-localScroll>
           <div class="hstats__item__display mh-item-nr" data-mh="hstats">
             <span class="d3 d3--gauge"
                   data-d3-gauge
