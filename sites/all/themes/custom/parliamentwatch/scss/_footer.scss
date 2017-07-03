@@ -7,127 +7,127 @@
 
 
 #footer {
-    background-color: $darkGray;
-    color: $brightGray;
-    @include padding($space-large null);
-    @include grid-container();
+  background-color: $darkGray;
+  color: $brightGray;
+  @include padding($space-large null);
+  @include grid-container();
 }
 .footer__maincol {
-    @include grid-container();
-    @include container();
+  @include grid-container();
+  @include container();
 
-    > strong {
-        @include grid-column(12);
-    }
-    strong {
-        font-family: $font-serif;
-        display: block;
-        padding-bottom: $space;
-    }
-    @include breakpoint($breakpoint-s-min) {
-        padding-bottom: $space-large;
-    }
+  > strong {
+    @include grid-column(12);
+  }
+  strong {
+    font-family: $font-serif;
+    display: block;
+    padding-bottom: $space;
+  }
+  @include breakpoint($breakpoint-s-min) {
+    padding-bottom: $space-large;
+  }
 }
 .footer__maincol__col {
-    padding-bottom: $space-large;
-    @include grid-column(12);
-    @include breakpoint($breakpoint-s-min) {
-        @include grid-column(4);
-        padding-bottom: $space;
-    }
-    @include breakpoint($breakpoint-m-min) {
-        @include grid-column(4);
-        padding-bottom: $space;
-    }
-    @include breakpoint($breakpoint-l-min) {
-        @include grid-column(2);
-        padding: 0;
-    }
+  padding-bottom: $space-large;
+  @include grid-column(12);
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(4);
+    padding-bottom: $space;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4);
+    padding-bottom: $space;
+  }
+  @include breakpoint($breakpoint-l-min) {
+    @include grid-column(2);
+    padding: 0;
+  }
 
-    @media (max-width: $breakpoint-s-max) {
-        &:nth-child(2) {
-            padding-bottom: 0;
-        }
-        &:nth-child(6),
-        &:nth-child(3) {
-            strong {
-                display: none;
-            }
-        }
-        &:nth-child(5) {
-            padding-bottom: 0;
-        }
+  @media (max-width: $breakpoint-s-max) {
+    &:nth-child(2) {
+      padding-bottom: 0;
     }
+    &:nth-child(6),
+      &:nth-child(3) {
+      strong {
+        display: none;
+      }
+    }
+    &:nth-child(5) {
+      padding-bottom: 0;
+    }
+  }
 }
 .footer__maincol__col__nav {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .footer__maincol__col__nav__item {
-    padding-left: $space;
-    position: relative;
-    border-bottom: 1px solid $gray;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    margin-bottom: 0;
-    @include breakpoint($breakpoint-s-min) {
-        margin-bottom: $space-xsmall;
-        border-bottom: 0;
-        padding-bottom: 0;
-        padding-top: 0;
-    }
-    &:before {
-        content: '\e805';
-        font-family: "awfont";
-        color: $brightGray - 80;
-        font-size: .6em;
-        position: absolute;
-        left: 5px;
-        top: 50%;
-        @include transform(translate(0, -50%));
-    }
+  padding-left: $space;
+  position: relative;
+  border-bottom: 1px solid $gray;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 0;
+  @include breakpoint($breakpoint-s-min) {
+    margin-bottom: $space-xsmall;
+    border-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+  &:before {
+    content: '\e805';
+    font-family: "awfont";
+    color: $brightGray - 80;
+    font-size: .6em;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    @include transform(translate(0, -50%));
+  }
 }
 .footer__maincol__col__nav__item__link {
-    color: $brightGray - 80;
-    display: block;
-    text-decoration: none;
-    @include transition(color 300ms ease);
-    &.active,
-    &:hover {
-        color: $brightGray;
-    }
+  color: $brightGray - 80;
+  display: block;
+  text-decoration: none;
+  @include transition(color 300ms ease);
+  &.active,
+  &:hover {
+    color: $brightGray;
+  }
 }
 
 .footer__mediapartner {
-    border-top: 1px solid $mediumGray;
-    border-bottom: 1px solid $mediumGray;
-    padding: $space 0;
-    @include grid-container();
-    @include container();
+  border-top: 1px solid $mediumGray;
+  border-bottom: 1px solid $mediumGray;
+  padding: $space 0;
+  @include grid-container();
+  @include container();
 }
 .footer__mediapartner__title {
-    float: left;
-    font-family: $font-serif;
-    font-weight: 300;
-    font-size: 1em;
-    color: $brightGray;
-    margin-left: $space;
-    line-height: $space;
-    @include margin($space 30px $space null);
+  float: left;
+  font-family: $font-serif;
+  font-weight: 300;
+  font-size: 1em;
+  color: $brightGray;
+  margin-left: $space;
+  line-height: $space;
+  @include margin($space 30px $space null);
 }
 .footer__mediapartner__link {
-    float: left;
-    display: block;
-    height: $space;
-    margin: $space;
-    opacity: .6;
-    @include transition(opacity 300ms);
-    img {
-        width: auto;
-        height: 100%;
-    }
-    &:hover {
-        opacity: 1;
-    }
+  float: left;
+  display: block;
+  height: $space;
+  margin: $space;
+  opacity: .6;
+  @include transition(opacity 300ms);
+  img {
+    width: auto;
+    height: 100%;
+  }
+  &:hover {
+    opacity: 1;
+  }
 }
