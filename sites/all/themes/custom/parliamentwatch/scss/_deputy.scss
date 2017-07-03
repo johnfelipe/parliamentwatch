@@ -130,6 +130,7 @@
 
   .deputy__intro {
     padding-bottom: $space;
+    @include container();
     @include breakpoint($breakpoint-s-min) {
       @include grid-container();
       padding-bottom: $space-large;
