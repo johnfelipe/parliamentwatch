@@ -99,7 +99,6 @@
     <?php print render($content['answer']); ?>
   <?php endif; ?>
   <ul class="question__links tile__links tile__links--2">
-    <li class="tile__links__item"><a class="tile__links__item__link" href="#fragen">12 <?php print t('questioner'); ?></a></li>
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('details'); ?></a></li>
   </ul>
 </div>
