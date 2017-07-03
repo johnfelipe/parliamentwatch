@@ -70,7 +70,13 @@
     </div>
   </div>
   <ul class="deputy__links tile__links tile__links--2">
-    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>#fragen"><?php print t('Jetzt befragen') ?></a></li>
-    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a></li>
+    <?php if ($is_consultable): ?>
+    <li class="tile__links__item">
+      <a class="tile__links__item__link" href="<?php print $user_url ?>#block-pw-dialogues-profile"><?php print t('Ask now') ?></a>
+    </li>
+    <?php endif; ?>
+    <li class="tile__links__item">
+      <a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a>
+    </li>
   </ul>
 </div>

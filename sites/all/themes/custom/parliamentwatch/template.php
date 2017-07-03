@@ -289,6 +289,7 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   $variables['theme_hook_suggestions'][] = 'user_profile__' . $variables['elements']['#view_mode'];
   $variables['user_url'] = url(entity_uri('user', $account)['path']);
   $variables['display_name'] = _pw_get_fullname($account);
+  $variables['is_consultable'] = _pw_is_profile_consultable($account);
 
   if (isset($account->number_of_questions)) {
     $variables['questions'] = $account->number_of_questions;
