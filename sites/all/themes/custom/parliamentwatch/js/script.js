@@ -1139,6 +1139,19 @@ function parseResultsByParty() {
     return data;
 }
 
+function parseResultsTotal() {
+    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
+
+    for (var party in window.resultsByParty) {
+        data['yes'] += window.resultsByParty[party]['yes'];
+        data['no'] += window.resultsByParty[party]['no'];
+        data['abstain'] += window.resultsByParty[party]['abstain'];
+        data['no-show'] += window.resultsByParty[party]['no-show'];
+    }
+
+    return mapVotes(data);
+}
+
 function mapVotes(votes) {
     var map = {
         'yes': {name: 'Ja', 'color': '#9fd773'},
