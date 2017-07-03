@@ -279,208 +279,9 @@ function pw_globals_update_7009() {
 }
 
 /**
- * Delete obsolete custom blocks.
- */
-function pw_globals_update_7010() {
-  $q = db_select('block', 'b')
-    ->fields('b', ['delta'])
-    ->condition('module', 'block')
-    ->condition('theme', 'parliamentwatch')
-    ->condition('region', BLOCK_REGION_NONE);
-  _pw_globals_delete_blocks($q->execute()->fetchCol());
-}
-
-/**
- * Update aliases.
- */
-function pw_globals_update_7011() {
-  $updates = [
-    'petitionen' => 'petitions',
-    'eu/profile/kandidierende' => 'profiles/16117/candidates',
-    'eu/profile' => 'profiles/16117/deputies',
-    'eu/abstimmungen' => 'polls/16117',
-    'eu/petitionen' => 'petitions/16117',
-    'bundestag/profile' => 'profiles/26909/candidates',
-    'bundestag/petitionen' => 'petitions/26909',
-    'baden-wuerttemberg/profile' => 'profiles/21316/candidates',
-    'berlin/profile' => 'profiles/23273/candidates',
-    'brandenburg/profile' => 'profiles/17180/deputies',
-    'brandenburg/abstimmungen' => 'polls/17180',
-    'bremen/profile' => 'profiles/18064/candidates',
-    'hamburg/profile' => 'profiles/18030/deputies',
-    'mansfeld-sudharz/profile' => 'profiles/16986/candidates',
-    'mecklenburg-vorpommern/profile' => 'profiles/23275/candidates',
-    'nordrhein-westfalen/profile' => 'profiles/23615/candidates',
-    'oberbürgermeisterwahl%20nrw/profile' => 'profiles/16255/candidates',
-    'rheinland-pfalz/profile' => 'profiles/21393/candidates',
-    'sachsen/profile' => 'profiles/17178/deputies',
-    'schleswig-holstein/profile' => 'profiles/23616/candidates',
-    'thueringen/profile' => 'profiles/17179/deputies',
-    'thueringen/abstimmungen' => 'polls/17179',
-    'wuppertal/profile' => 'profiles/16985/candidates',
-  ];
-
-  foreach ($updates as $alias => $source) {
-    $path = path_load(['alias' => $alias]);
-
-    if ($path) {
-      $path['source'] = $source;
-      path_save($path);
-    }
-  }
-}
-
-/**
- * Set variable parliamentwatch_state_parliament_tids.
- */
-function pw_globals_update_7012() {
-  variable_set('parliamentwatch_state_parliament_tids', [
-    21316,
-    16285,
-    23273,
-    17180,
-    18064,
-    18030,
-    16284,
-    23275,
-    16282,
-    23615,
-    21393,
-    16278,
-    17178,
-    16266,
-    23616,
-    17179,
-  ]);
-}
-
-/**
- * Add links to main menu.
- */
-function pw_globals_update_7013() {
-  menu_delete_links('main-menu');
-
-  $state_parliament_terms = taxonomy_term_load_multiple(variable_get('parliamentwatch_state_parliament_tids', []));
-  $weight = 0;
-
-  _pw_globals_menu_parliament_tree_add('bundestag', 'Bundestag', $weight++);
-  foreach ($state_parliament_terms as $term) {
-    _pw_globals_menu_parliament_tree_add(drupal_lookup_path('alias', "taxonomy/term/$term->tid"), $term->name, $weight++);
-  }
-  _pw_globals_menu_parliament_tree_add('eu', 'EU', $weight++, 'main-menu');
-  _pw_globals_menu_link_add('blog', 'Blog', $weight++, 'main-menu');
-  _pw_globals_menu_link_add('ueber-uns', 'Info', $weight++, 'main-menu');
-}
-
-/**
- * Add info menu.
- */
-function pw_globals_update_7014() {
-  menu_save(['menu_name' => 'info-menu', 'title' => 'Info-Menü', 'description' => 'Das <em>Info-Menü</em> stellt die Navigationspunkte für den "Über Uns"-Bereich']);
-
-  $weight = 0;
-
-  $link_1 = _pw_globals_menu_link_add('node/7760', 'Zweck', $weight++, 'info-menu');
-  _pw_globals_menu_link_add('node/7760', 'Zweck', $weight++, 'info-menu', $link_1);
-  _pw_globals_menu_link_add('node/37990', 'Das Ziel', $weight++, 'info-menu', $link_1);
-  _pw_globals_menu_link_add('node/37991', 'Der Weg', $weight++, 'info-menu', $link_1);
-  _pw_globals_menu_link_add('node/40266', 'Erfolge', $weight++, 'info-menu', $link_1);
-
-  $link_2 = _pw_globals_menu_link_add('node/7757', 'Finanzierung', $weight++, 'info-menu');
-  _pw_globals_menu_link_add('node/7757', 'Finanzierung', $weight++, 'info-menu', $link_2);
-  _pw_globals_menu_link_add('node/7759', 'Jahresbericht', $weight++, 'info-menu', $link_2);
-  _pw_globals_menu_link_add('node/10508', 'Spenden', $weight++, 'info-menu', $link_2);
-  _pw_globals_menu_link_add('node/39917', 'Förderer werden', $weight++, 'info-menu', $link_2);
-
-  $link_3 = _pw_globals_menu_link_add('node/7751', 'Menschen', $weight++, 'info-menu');
-  _pw_globals_menu_link_add('node/7751', 'Menschen', $weight++, 'info-menu', $link_3);
-  _pw_globals_menu_link_add('node/7735', 'Kuratorium', $weight++, 'info-menu', $link_3);
-  _pw_globals_menu_link_add('node/7748', 'Jobs', $weight++, 'info-menu', $link_3);
-  _pw_globals_menu_link_add('node/6578', 'Kontakt', $weight++, 'info-menu', $link_3);
-}
-
-/**
- * Delete obsolete menus.
- */
-function pw_globals_update_7015() {
-  menu_delete(menu_load('devel'));
-  menu_delete(menu_load('features'));
-  menu_delete(menu_load('menu-main-menu-de'));
-  menu_delete(menu_load('menu-meta-de'));
-  menu_delete(menu_load('menu-support-us-de'));
-  menu_delete(menu_load('menu-about-us-de'));
-  menu_delete(menu_load('menu-elections-de'));
-}
-
-/**
- * Delete obsolete redirects.
- */
-function pw_globals_update_7016() {
-  redirect_delete(32872);
-}
-
-/**
- * Delete obsolete fields.
- */
-function pw_globals_update_7017() {
-  field_delete_field('field_user_questions_get');
-  field_delete_field('field_user_answers_give');
-  field_delete_field('field_share_sum');
-  field_delete_field('field_user_first_letter_lname');
-  field_delete_field('drulenium_num_command_errors');
-  field_delete_field('drulenium_num_command_failures');
-  field_delete_field('drulenium_num_command_passes');
-  field_delete_field('drulenium_num_test_failures');
-  field_delete_field('drulenium_num_test_passes');
-  field_delete_field('drulenium_num_test_total');
-  field_delete_field('drulenium_result');
-  field_delete_field('drulenium_revision');
-  field_delete_field('drulenium_suite');
-  field_delete_field('drulenium_total_time');
-  field_delete_field('drulenium_version');
-}
-
-/**
- * Delete obsolete field groups.
- */
-function pw_globals_update_7018() {
-  field_group_group_export_delete(field_group_load_field_group('group_user_roles_current', 'user', 'user', 'user_deputy'));
-  field_group_group_export_delete(field_group_load_field_group('group_user_basics_data', 'user', 'user', 'user_deputy'));
-}
-
-/**
- * Fix order of filters in text format "Managed Content".
- */
-function pw_globals_update_7019() {
-  $format = filter_format_load('managed_content');
-  foreach (filter_list_format('managed_content') as $key => $filter) {
-    $format->filters[$key] = (array) $filter;
-  }
-  $format->filters['media_filter']['weight'] = $format->filters['filter_autop']['weight'] + 1;
-  filter_format_save($format);
-}
-
-/**
- * Change node content for "Die Arbeit von abgeordnetenwatch.de unterstützen!".
- */
-function pw_globals_update_7020() {
-  $node = node_load(104846);
-
-  $node->body[LANGUAGE_NONE][0]['value'] = <<<EOD
-<div class="well__left">
-<h3>Die Arbeit von abgeordnetenwatch.de unterstützen!</h3>
-<p>
-	Sie finden unsere Arbeit wichtig und möchten weitere Recherchen ermöglichen? Dann unterstützen Sie uns doch.
-</p>
-</div>
-EOD;
-  node_save($node);
-}
-
-/**
  * Configure poll blocks.
  */
-function pw_globals_update_7021() {
+function pw_globals_update_7010() {
   $weight = -20;
 
   $pw_poll_intro = [
@@ -539,7 +340,7 @@ function pw_globals_update_7021() {
 /**
  * Configure block for switching legislative terms.
  */
-function pw_globals_update_7022() {
+function pw_globals_update_7011() {
   $block = [
     'module' => 'pw_globals',
     'delta' => 'term_switcher',
@@ -552,6 +353,205 @@ function pw_globals_update_7022() {
     'node_types' => [],
   ];
   _pw_globals_configure_block($block);
+}
+
+/**
+ * Delete obsolete custom blocks.
+ */
+function pw_globals_update_7012() {
+  $q = db_select('block', 'b')
+    ->fields('b', ['delta'])
+    ->condition('module', 'block')
+    ->condition('theme', 'parliamentwatch')
+    ->condition('region', BLOCK_REGION_NONE);
+  _pw_globals_delete_blocks($q->execute()->fetchCol());
+}
+
+/**
+ * Update aliases.
+ */
+function pw_globals_update_7013() {
+  $updates = [
+    'petitionen' => 'petitions',
+    'eu/profile/kandidierende' => 'profiles/16117/candidates',
+    'eu/profile' => 'profiles/16117/deputies',
+    'eu/abstimmungen' => 'polls/16117',
+    'eu/petitionen' => 'petitions/16117',
+    'bundestag/profile' => 'profiles/26909/candidates',
+    'bundestag/petitionen' => 'petitions/26909',
+    'baden-wuerttemberg/profile' => 'profiles/21316/candidates',
+    'berlin/profile' => 'profiles/23273/candidates',
+    'brandenburg/profile' => 'profiles/17180/deputies',
+    'brandenburg/abstimmungen' => 'polls/17180',
+    'bremen/profile' => 'profiles/18064/candidates',
+    'hamburg/profile' => 'profiles/18030/deputies',
+    'mansfeld-sudharz/profile' => 'profiles/16986/candidates',
+    'mecklenburg-vorpommern/profile' => 'profiles/23275/candidates',
+    'nordrhein-westfalen/profile' => 'profiles/23615/candidates',
+    'oberbürgermeisterwahl%20nrw/profile' => 'profiles/16255/candidates',
+    'rheinland-pfalz/profile' => 'profiles/21393/candidates',
+    'sachsen/profile' => 'profiles/17178/deputies',
+    'schleswig-holstein/profile' => 'profiles/23616/candidates',
+    'thueringen/profile' => 'profiles/17179/deputies',
+    'thueringen/abstimmungen' => 'polls/17179',
+    'wuppertal/profile' => 'profiles/16985/candidates',
+  ];
+
+  foreach ($updates as $alias => $source) {
+    $path = path_load(['alias' => $alias]);
+
+    if ($path) {
+      $path['source'] = $source;
+      path_save($path);
+    }
+  }
+}
+
+/**
+ * Set variable parliamentwatch_state_parliament_tids.
+ */
+function pw_globals_update_7014() {
+  variable_set('parliamentwatch_state_parliament_tids', [
+    21316,
+    16285,
+    23273,
+    17180,
+    18064,
+    18030,
+    16284,
+    23275,
+    16282,
+    23615,
+    21393,
+    16278,
+    17178,
+    16266,
+    23616,
+    17179,
+  ]);
+}
+
+/**
+ * Add links to main menu.
+ */
+function pw_globals_update_7015() {
+  menu_delete_links('main-menu');
+
+  $state_parliament_terms = taxonomy_term_load_multiple(variable_get('parliamentwatch_state_parliament_tids', []));
+  $weight = 0;
+
+  _pw_globals_menu_parliament_tree_add('bundestag', 'Bundestag', $weight++);
+  foreach ($state_parliament_terms as $term) {
+    _pw_globals_menu_parliament_tree_add(drupal_lookup_path('alias', "taxonomy/term/$term->tid"), $term->name, $weight++);
+  }
+  _pw_globals_menu_parliament_tree_add('eu', 'EU', $weight++, 'main-menu');
+  _pw_globals_menu_link_add('blog', 'Blog', $weight++, 'main-menu');
+  _pw_globals_menu_link_add('ueber-uns', 'Info', $weight++, 'main-menu');
+}
+
+/**
+ * Add info menu.
+ */
+function pw_globals_update_7016() {
+  menu_save(['menu_name' => 'info-menu', 'title' => 'Info-Menü', 'description' => 'Das <em>Info-Menü</em> stellt die Navigationspunkte für den "Über Uns"-Bereich']);
+
+  $weight = 0;
+
+  $link_1 = _pw_globals_menu_link_add('node/7760', 'Zweck', $weight++, 'info-menu');
+  _pw_globals_menu_link_add('node/7760', 'Zweck', $weight++, 'info-menu', $link_1);
+  _pw_globals_menu_link_add('node/37990', 'Das Ziel', $weight++, 'info-menu', $link_1);
+  _pw_globals_menu_link_add('node/37991', 'Der Weg', $weight++, 'info-menu', $link_1);
+  _pw_globals_menu_link_add('node/40266', 'Erfolge', $weight++, 'info-menu', $link_1);
+
+  $link_2 = _pw_globals_menu_link_add('node/7757', 'Finanzierung', $weight++, 'info-menu');
+  _pw_globals_menu_link_add('node/7757', 'Finanzierung', $weight++, 'info-menu', $link_2);
+  _pw_globals_menu_link_add('node/7759', 'Jahresbericht', $weight++, 'info-menu', $link_2);
+  _pw_globals_menu_link_add('node/10508', 'Spenden', $weight++, 'info-menu', $link_2);
+  _pw_globals_menu_link_add('node/39917', 'Förderer werden', $weight++, 'info-menu', $link_2);
+
+  $link_3 = _pw_globals_menu_link_add('node/7751', 'Menschen', $weight++, 'info-menu');
+  _pw_globals_menu_link_add('node/7751', 'Menschen', $weight++, 'info-menu', $link_3);
+  _pw_globals_menu_link_add('node/7735', 'Kuratorium', $weight++, 'info-menu', $link_3);
+  _pw_globals_menu_link_add('node/7748', 'Jobs', $weight++, 'info-menu', $link_3);
+  _pw_globals_menu_link_add('node/6578', 'Kontakt', $weight++, 'info-menu', $link_3);
+}
+
+/**
+ * Delete obsolete menus.
+ */
+function pw_globals_update_7017() {
+  menu_delete(menu_load('devel'));
+  menu_delete(menu_load('features'));
+  menu_delete(menu_load('menu-main-menu-de'));
+  menu_delete(menu_load('menu-meta-de'));
+  menu_delete(menu_load('menu-support-us-de'));
+  menu_delete(menu_load('menu-about-us-de'));
+  menu_delete(menu_load('menu-elections-de'));
+}
+
+/**
+ * Delete obsolete redirects.
+ */
+function pw_globals_update_7018() {
+  redirect_delete(32872);
+}
+
+/**
+ * Delete obsolete fields.
+ */
+function pw_globals_update_7019() {
+  field_delete_field('field_user_questions_get');
+  field_delete_field('field_user_answers_give');
+  field_delete_field('field_share_sum');
+  field_delete_field('field_user_first_letter_lname');
+  field_delete_field('drulenium_num_command_errors');
+  field_delete_field('drulenium_num_command_failures');
+  field_delete_field('drulenium_num_command_passes');
+  field_delete_field('drulenium_num_test_failures');
+  field_delete_field('drulenium_num_test_passes');
+  field_delete_field('drulenium_num_test_total');
+  field_delete_field('drulenium_result');
+  field_delete_field('drulenium_revision');
+  field_delete_field('drulenium_suite');
+  field_delete_field('drulenium_total_time');
+  field_delete_field('drulenium_version');
+}
+
+/**
+ * Delete obsolete field groups.
+ */
+function pw_globals_update_7020() {
+  field_group_group_export_delete(field_group_load_field_group('group_user_roles_current', 'user', 'user', 'user_deputy'));
+  field_group_group_export_delete(field_group_load_field_group('group_user_basics_data', 'user', 'user', 'user_deputy'));
+}
+
+/**
+ * Fix order of filters in text format "Managed Content".
+ */
+function pw_globals_update_7021() {
+  $format = filter_format_load('managed_content');
+  foreach (filter_list_format('managed_content') as $key => $filter) {
+    $format->filters[$key] = (array) $filter;
+  }
+  $format->filters['media_filter']['weight'] = $format->filters['filter_autop']['weight'] + 1;
+  filter_format_save($format);
+}
+
+/**
+ * Change node content for "Die Arbeit von abgeordnetenwatch.de unterstützen!".
+ */
+function pw_globals_update_7022() {
+  $node = node_load(104846);
+
+  $node->body[LANGUAGE_NONE][0]['value'] = <<<EOD
+<div class="well__left">
+<h3>Die Arbeit von abgeordnetenwatch.de unterstützen!</h3>
+<p>
+	Sie finden unsere Arbeit wichtig und möchten weitere Recherchen ermöglichen? Dann unterstützen Sie uns doch.
+</p>
+</div>
+EOD;
+  node_save($node);
 }
 
 /**
