@@ -131,3 +131,15 @@
     opacity: 1;
   }
 }
+.footer__logo {
+  display: block;
+  @include container;
+  .svg-container {
+    float: right;
+    margin-top: $space;
+    max-width: 250px;
+  }
+  path {
+    fill: $gray;
+  }
+}
