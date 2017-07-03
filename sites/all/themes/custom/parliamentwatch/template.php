@@ -296,6 +296,17 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     $variables['answer_ratio'] = round(100 * $account->number_of_answers / $account->number_of_questions, 0);
   }
 
+  $gender = $account->field_user_gender[LANGUAGE_NONE][0]['value'];
+
+  if (is_array($account->roles)) {
+    if (in_array(PW_GLOBALS_CANDIDATE_RID, array_keys($account->roles))) {
+      $variables['role'] = t('Candidate', [], ['context' => $gender]);
+    }
+    elseif (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($account->roles))) {
+      $variables['role'] = t('Deputy', [], ['context' => $gender]);
+    }
+  }
+
   if (isset($variables['user_profile']['votes_total'])) {
     $variables['voting_ratio'] = round(100 * $variables['user_profile']['votes_attended'] / $variables['user_profile']['votes_total'], 0);
   }
@@ -312,22 +323,12 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     $variables['user_profile']['field_user_party'][0]['#markup'] = l($text, $path, $options);
   }
 
-  $gender = $account->field_user_gender[LANGUAGE_NONE][0]['value'];
-
-  if (is_array($account->roles)) {
-    if (in_array(PW_GLOBALS_CANDIDATE_RID, array_keys($account->roles))) {
-      $variables['role'] = t('Candidate', [], ['context' => $gender]);
-    }
-    elseif (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($account->roles))) {
-      $variables['role'] = t('Deputy', [], ['context' => $gender]);
-    }
-  }
-
   if (isset($variables['field_user_birthday'])) {
     $timezone = new DateTimeZone($variables['field_user_birthday'][0]['timezone']);
     $date = new DateTime($variables['field_user_birthday'][0]['value'], $timezone);
     $variables['field_user_birthday'][0]['iso_8601'] = $date->format(DateTime::ISO8601);
   }
+
 }
 
 /**
