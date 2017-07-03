@@ -443,10 +443,6 @@ function pw_parliaments_views_default_views() {
     ),
   );
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'taxonomy/term/%';
-
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed');
   $handler->display->display_options['pager']['type'] = 'full';
@@ -475,7 +471,6 @@ function pw_parliaments_views_default_views() {
     t('Begriff aus field_parliament'),
     t('Alle'),
     t('%1'),
-    t('Page'),
     t('Feed'),
     t('Elemente pro Seite'),
     t('- Alle -'),
