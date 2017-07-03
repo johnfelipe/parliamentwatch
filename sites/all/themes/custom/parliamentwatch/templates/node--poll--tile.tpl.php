@@ -98,7 +98,7 @@
   <h2 class="tile__title mh-item"<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
   <?php print render($title_suffix); ?>
   <ul class="tile__links tile__links--2">
-    <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare"><?php print t('@count comments', ['@count' => $node->comment_count]); ?></a></li>
-    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('read more'); ?></a></li>
+    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url; ?>#comments"><?php print t('@count comments', ['@count' => $node->comment_count]); ?></a></li>
+    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url; ?>"><?php print t('read more'); ?></a></li>
   </ul>
 </article>
