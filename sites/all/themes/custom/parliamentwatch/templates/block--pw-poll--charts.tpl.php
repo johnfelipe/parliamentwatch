@@ -51,11 +51,11 @@
     data-bar-horizontal-stacked
     data-label-total-before="<?php print t('Poll result by') ?>"
     data-label-total-after="<?php print t('Members') ?>"
-    data-data='[{ "name": "Ja", "count": 480, "color": "#92d982"}, {"name": "Nein", "count": 120, "color": "#d99582"}, {"name": "Enthaltungen", "count": 14, "color": "#e4e4e4"}, {"name": "Nicht abgestimmt", "count": 6, "color": "#a6a6a6" }]'>
+    data-data='parseResultsTotal'>
   </span>
 
   <span class='d3 d3--bar-vertical-stacked-poll'
         data-bar-vertical-stacked-poll
-        data-data='{"CDU": [{"name": "ja", "count": 36, "color": "#92d982"}, {"name": "nein", "count": 12, "color": "#d99582"}, {"name": "enthalten", "count": 8, "color": "#e4e4e4"}, {"name": "nicht abgestimmt", "count": 4, "color": "#a6a6a6"} ], "SPD": [{"name": "ja", "count": 20, "color": "#92d982"}, {"name": "nein", "count": 20, "color": "#d99582"}, {"name": "enthalten", "count": 20, "color": "#e4e4e4"}, {"name": "nicht abgestimmt", "count": 20, "color": "#a6a6a6"} ] }'>
+        data-data='parseResultsByParty'>
   </span>
 </div>

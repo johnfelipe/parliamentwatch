@@ -811,7 +811,7 @@ function tableSecondaryHighlight() {
 
 function d3BarHorizontalStacked(element){
     var wrapper = element;
-    var dataset = JSON.parse(wrapper.getAttribute('data-data'));
+    var dataset = window[wrapper.getAttribute('data-data')]();
     var barWrapper = d3.select(wrapper)
         .append('div')
         .attr('class', 'd3-bars');
@@ -856,7 +856,7 @@ function d3BarHorizontalStacked(element){
 }
 function d3BarVerticalStackedPoll(element){
     var wrapper = element;
-    var dataset = JSON.parse(wrapper.getAttribute('data-data'));
+    var dataset = window[wrapper.getAttribute('data-data')]();
 
     (function(data) {
         //console.log(data);
