@@ -16,7 +16,6 @@ dependencies[] = feeds_xpathparser
 dependencies[] = field_permissions
 dependencies[] = number
 dependencies[] = options
-dependencies[] = pw_calendar_entries
 dependencies[] = pw_globals
 dependencies[] = strongarm
 dependencies[] = taxonomy
