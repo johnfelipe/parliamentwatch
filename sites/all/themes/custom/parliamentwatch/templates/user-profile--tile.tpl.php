@@ -66,7 +66,7 @@
           <span><?php print $answer_ratio; ?>%</span>
         </span>
       </span>
-      <span class="hstats__item__label mh-item-nr" data-mh="hstats"><?php print t('beantwortet') ?></span>
+      <span class="hstats__item__label mh-item-nr" data-mh="hstats"><?php print t('answered') ?></span>
     </div>
   </div>
   <ul class="deputy__links tile__links tile__links--2">
