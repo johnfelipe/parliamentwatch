@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Markus Ferber",
+    "fraction": "CDU/CSU",
+    "id": "1"
+  },
+  {
+    "name": "Dr. Andreas Schwab",
+    "fraction": "CDU/CSU",
+    "id": "2"
+  },
+  {
+    "name": "Jan Philipp Albrecht",
+    "fraction": "DIE GRÜNEN",
+    "id": "3"
+  },
+  {
+    "name": "Beatrix von Storch",
+    "fraction": "AfD",
+    "id": "4"
+  },
+  {
+    "name": "Fabio De Masi",
+    "fraction": "DIE LINKE",
+    "id": "5"
+  },
+  {
+    "name": "Dr. Joachim Schuster",
+    "fraction": "SPD",
+    "id": "6"
+  },
+  {
+    "name": "Bernd Lange",
+    "fraction": "SPD",
+    "id": "7"
+  },
+  {
+    "name": "Terry Reintke",
+    "fraction": "DIE GRÜNEN",
+    "id": "8"
+  },
+  {
+    "name": "Max Mustermann",
+    "fraction": "CDU/CSU",
+    "id": "9"
+  }
+]
+
+
+
