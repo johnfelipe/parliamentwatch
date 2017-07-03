@@ -37,6 +37,7 @@ function pw_globals_update_7001() {
     'sharethis',
     'tb_megamenu',
     'text_resize',
+    'tvi',
     'views_slideshow',
   ];
 
