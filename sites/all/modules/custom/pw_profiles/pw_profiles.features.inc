@@ -24,20 +24,3 @@ function pw_profiles_ctools_plugin_api() {
 function pw_profiles_views_api() {
   return array("version" => "3.0");
 }
-
-/**
- * Implements hook_node_info().
- */
-function pw_profiles_node_info() {
-  $items = array(
-    'calendar_entry' => array(
-      'name' => t('Calendar Entry'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Titel'),
-      'help' => '',
-    ),
-  );
-  return $items;
-}
