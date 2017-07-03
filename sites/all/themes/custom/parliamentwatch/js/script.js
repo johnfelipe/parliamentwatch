@@ -734,6 +734,7 @@ function d3RadialGauge(element) {
         }
     })();
 }
+
 /*
  * D3: Bar-Chart Secondary Income
  * */
@@ -781,23 +782,7 @@ function d3SecondaryIncome(element) {
         // ADD Total
         barWrapper.insert('div',':first-child').attr('class', 'd3-bars__total').html('Gesamteinnahmen: ' + totalVolumeMin + ' &ndash; ' + totalVolumeMax);
     })(window.sidejobs || []);
-
 }
-
-
-
-function d3BarsPollTotal(element){
-    var wrapper = element;
-    var barWrapper = d3.select(wrapper)
-        .append('div')
-        .attr('class', 'd3-bars');
-
-    d3.json("/sites/all/themes/custom/parliamentwatch/poll.json", function(data) {
-        var fractions = [];
-        console.log(data);
-    });
-}
-
 
 function tableSecondaryIncome() {
     $(".table--secondary-income").stupidtable();
@@ -815,6 +800,120 @@ function tableSecondaryHighlight() {
         $('.sidejob-overview__item').removeClass('sidejob-overview__item--active');
         $('.sidejob-overview table').find('[data-sidejobid="'+jobID+'"]').addClass('sidejob-overview__item--active');
     });
+}
+
+
+/*
+ * Bars horizontal stacked
+ * */
+
+function d3BarHorizontalStacked(element){
+    var wrapper = element;
+    var dataset = JSON.parse(wrapper.getAttribute('data-data'));
+    var barWrapper = d3.select(wrapper)
+        .append('div')
+        .attr('class', 'd3-bars');
+
+    (function(data) {
+        var totalPollCount = d3.sum(data, function(d) { return d.count; });
+        var totalLabelBefore = wrapper.getAttribute('data-label-total-before');
+        var totalLabelAfter = wrapper.getAttribute('data-label-total-after');
+
+        barWrapper.selectAll("div")
+            .data(data)
+        .enter().append("div")
+            .attr("class", "d3-bars__item")
+            .attr("style", function(d) {
+                var value = 100 / totalPollCount * d.count;
+                return 'width:' + value + '%; background-color:' + d.color + ';';
+            });
+
+        // Define Total-Label
+        var totalLabelWrapper = d3.select(wrapper)
+            .append("p")
+            .attr('class', 'd3__total-label')
+            .html(function(d) { return totalLabelBefore + ' ' + totalPollCount + ' ' + totalLabelAfter; });
+
+        // Define Labels
+
+        var labelWrapper = d3.select(wrapper)
+            .append("ul")
+            .attr('class', 'd3__label d3__label--inline');
+
+        var labelItem = labelWrapper.selectAll('li')
+            .data(data)
+        .enter()
+            .append('li')
+            .attr('class', 'd3__label__item')
+            .html(function(d) { return d.count + ' ' + d.name; })
+            .insert("span",":first-child")
+            .attr('class', 'd3__label__item__indicator')
+            .attr('style', function(d) { return 'background-color:' + d.color; });
+
+    })(dataset || []);
+}
+function d3BarVerticalStackedPoll(element){
+    var wrapper = element;
+    var dataset = JSON.parse(wrapper.getAttribute('data-data'));
+
+    (function(data) {
+        //console.log(data);
+
+        for (var key in data) {
+
+            //console.log(key);
+
+            var obj = data[key];
+            var totalPollCount = d3.sum(obj, function(o) {
+                return o.count;
+            });
+            console.log(totalPollCount);
+            // console.log(obj);
+
+//
+            //console.log(obj.count);
+            //console.log('total: ' + totalPollCount);
+
+            var chartwrapper = d3.select(wrapper)
+                .append('div')
+                .attr('class', 'd3-chart');
+//
+            var barWrapper = chartwrapper
+                .append('div')
+                .attr('class', 'd3-bars')
+                .selectAll("div")
+                .data(obj)
+            .enter()
+                .append("div")
+                .attr("class", "d3-bars__item")
+                .attr("style", function(d) {
+                    var value = 100 / totalPollCount * d.count;
+                    return 'height:' + value + '%; background-color:' + d.color + ';';
+                });
+
+            // Define Labels
+
+            var labelWrapper = chartwrapper
+                .append('div')
+                .attr('class', 'd3__label_outer')
+                .html('<h3>'+ key +' <span>'+ totalPollCount +' Mitglieder</span></h3>')
+                .append("ul")
+                .attr('class', 'd3__label');
+
+            var labelItem = labelWrapper.selectAll('li')
+                .data(obj)
+            .enter()
+                .append('li')
+                .attr('class', 'd3__label__item')
+                .html(function(o) { return o.count + ' ' + o.name; })
+                .insert("span",":first-child")
+                .attr('class', 'd3__label__item__indicator')
+                .attr('style', function(o) { return 'background-color:' + o.color; });
+        }
+
+
+
+    })(dataset || []);
 }
 
 /*
@@ -969,10 +1068,15 @@ $(function () {
         d3SecondaryIncome(this);
         $(this)
     });
-    $('[data-d3-poll-total]').each(function( index ) {
-        d3BarsPollTotal(this);
+    $('[data-bar-horizontal-stacked]').each(function( index ) {
+        d3BarHorizontalStacked(this);
         $(this)
     });
+    $('[data-bar-vertical-stacked-poll]').each(function( index ) {
+        d3BarVerticalStackedPoll(this);
+        $(this)
+    });
+
 
 
 

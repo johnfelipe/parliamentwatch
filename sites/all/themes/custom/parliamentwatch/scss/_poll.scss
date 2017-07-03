@@ -275,6 +275,32 @@
   background: $white;
 }
 
+/* Poll Charts */
+
+.poll__charts {
+  padding-top: $space-large;
+  padding-bottom: $space-large;
+  @include container-extended($beige);
+  .d3--bar-vertical-stacked-poll .d3-chart,
+  .d3--bar-horizontal-stacked {
+    @include grid-column(12);
+    padding: $space;
+    background: $white;
+    margin-bottom: $space;
+    @include breakpoint($breakpoint-l-min) {
+      padding: $space-large;
+    }
+  }
+  .d3--bar-vertical-stacked-poll .d3-chart {
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(6);
+    }
+  }
+
+}
+
+/* Poll Timeline */
+
 .poll__timeline__container {
   padding-bottom: 9px;
   position: relative;

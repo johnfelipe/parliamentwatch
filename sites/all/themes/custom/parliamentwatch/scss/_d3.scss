@@ -79,11 +79,35 @@
   float: left;
 }
 
+/* D3 - Labels inline */
+
+.d3__label--inline {
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-container();
+    border-top: 0;
+    .d3__label__item {
+      border-bottom: 0;
+      padding: 0;
+      float: left;
+      margin-right: $space;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+
+
+/* D3 - Bars */
+
+.d3-bars {
+  @include grid-container();
+}
+
+/* D3 - Secondary income */
 
 .d3--bars-secondary-income {
-  .d3-bars {
-    @include grid-container();
-  }
   .d3-bars__total {
     background: $orangeBG;
     color: $white;
@@ -102,7 +126,6 @@
       content: '';
       height: 60px;
       width: 100%;
-
       position: absolute;
       top: 0;
       left: 0;
@@ -130,7 +153,76 @@
   }
 }
 
+/* D3 - Bars horizontal Stacked */
 
+.d3--bar-horizontal-stacked {
+  .d3-bars__item {
+    height: 60px;
+    background: $gray;
+    float: left;
+  }
+  .d3__label--inline {
+    @include breakpoint($breakpoint-s-min) {
+      padding-top: $space-xsmall-mobile;
+      float: right;
+    }
+  }
+  .d3__total-label {
+    padding-top: $space-xsmall;
+    @include breakpoint($breakpoint-s-min) {
+      padding-top: $space-xsmall-mobile;
+      float: left;
+    }
+  }
+}
+
+.d3--bar-vertical-stacked-poll {
+  .d3-chart {
+    @include grid-container();
+  }
+  .d3-bars {
+    height: 300px;
+    float: left;
+  }
+  .d3-bars__item {
+    width: 60px;
+    @include breakpoint($breakpoint-l-min) {
+      width: 80px;
+    }
+  }
+  .d3__label_outer {
+    float: left;
+    width: calc(100% - 60px);
+    padding-left: $space-large;
+    height: 300px;
+    position: relative;
+    @include breakpoint($breakpoint-l-min) {
+      width: calc(100% - 80px);
+      padding-left: $space-large + $space-small;
+    }
+    h3 {
+      border-bottom: 1px solid $darkBeige;
+      padding-bottom: $space-xsmall-mobile;
+      span {
+        font-size: .7em;
+        color: $gray;
+        float: right;
+      }
+    }
+    .d3__label {
+      position: absolute;
+      bottom: 0;
+      left: $space-large;
+      right: 0;
+      @include breakpoint($breakpoint-l-min) {
+        left: $space-large + $space-small;
+      }
+    }
+    .d3__label__item {
+      padding: $space-xsmall 0;
+    }
+  }
+}
 
 /* D3 - Donut */
 .d3--donut {
