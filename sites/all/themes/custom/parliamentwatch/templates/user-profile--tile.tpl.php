@@ -78,7 +78,7 @@
     </li>
     <?php endif; ?>
     <li class="tile__links__item">
-      <a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Details') ?></a>
+      <a class="tile__links__item__link" href="<?php print $user_url ?>"><?php print t('Open profile') ?></a>
     </li>
   </ul>
 </div>
