@@ -24,14 +24,16 @@
 <div class="filterbar">
   <div class="container">
     <div class="filterbar__pre_swiper">
-      <div class="form__item form__item--label">
+      <div class="filterbar__item filterbar__item--label">
         <i class="icon icon-investigation"></i> Filter
       </div>
-      <?php
-        $children = element_children($form);
-        print render($form[$children[0]]);
-        print render($form['submit']);
-      ?>
+      <div class="filterbar__item filterbar__item--input">
+        <?php
+          $children = element_children($form);
+          print render($form[$children[0]]);
+          print render($form['submit']);
+        ?>
+      </div>
     </div>
     <div class="filterbar__swiper">
       <div class="filterbar__swiper__inner">
@@ -48,7 +50,7 @@
         <div class="filterbar__item <?php print ($modifier == 'dropdown') ? 'filterbar__item--dropdown dropdown' : 'filterbar__item--checkbox'; ?>">
           <?php if ($modifier == 'dropdown'): ?>
           <a class="dropdown__trigger" href="#">
-            <i class="icon icon-arrow-down"> <?php print $form[$children[$i]]['#title'] ?></i>
+            <?php print $form[$children[$i]]['#title'] ?> <i class="icon icon-arrow-down"></i>
           </a>
           <div class="dropdown__list">
             <?php print render($form[$children[$i]]); ?>

@@ -28,8 +28,8 @@
 
 .form-type-checkbox,
 .form__item--checkbox {
+  margin-bottom: 0;
   .form__item__label {
-    padding: $space-xsmall 0;
     display: inline-block;
   }
   .form__item__control {

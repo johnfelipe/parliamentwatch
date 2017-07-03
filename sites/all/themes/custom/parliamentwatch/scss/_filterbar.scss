@@ -13,7 +13,6 @@
     position: relative;
 
   }
-
   &.is_stuck {
     @media (max-width: $breakpoint-m-max) {
       z-index: 999;
@@ -92,6 +91,9 @@
   color: $darkGray;
   background: $white;
   margin-bottom: 1px;
+  .form__item {
+    margin-bottom: 0;
+  }
 }
 .filterbar__item--label {
   font-weight: 600;
@@ -117,6 +119,9 @@
   @include breakpoint($breakpoint-s-min) {
     padding-right: $space-large + $space + $space-xsmall;
   }
+  .select2 {
+    min-width: 210px;
+  }
   .form__item__control {
     display: none;
     float: left;
@@ -136,8 +141,8 @@
     border-color: transparent;
     padding: $space-xsmall $space-xsmall-mobile;
     color: $mediumGray;
+    @include text-overflow();
     @include breakpoint($breakpoint-s-min) {
-      display: block;
       position: absolute;
       border-color: $darkBeige;
       width: $space-large + $space;
@@ -190,6 +195,13 @@
       &:last-child {
         margin-right: 0;
       }
+    }
+  }
+  .form__item {
+    margin-right: $space-small;
+    @include grid-container();
+    &:last-child {
+      margin-right: 0;
     }
   }
 }
