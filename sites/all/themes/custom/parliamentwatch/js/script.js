@@ -244,13 +244,15 @@ function tabs() {
         $(window).on('popstate', function(event) {
             var hashValue = window.location.hash;
 
-            // Set nav-item classes
-            $('.tabs').find('.nav__item').removeClass('nav__item--active');
-            $('.nav__item__link[href="'+ hashValue +'"]').parents('.nav__item').addClass('nav__item--active');
+            if ($('.nav__item__link[href="'+ hashValue +'"]').length > 0) {
+                // Set nav-item classes
+                $('.tabs').find('.nav__item').removeClass('nav__item--active');
+                $('.nav__item__link[href="'+ hashValue +'"]').parents('.nav__item').addClass('nav__item--active');
 
-            // Set tab-content classes
-            $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
-            $(hashValue).addClass('tabs__content--active');
+                // Set tab-content classes
+                $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
+                $(hashValue).addClass('tabs__content--active');
+            }
         });
 
     }
