@@ -44,3 +44,24 @@ function pw_parliaments_taxonomy_term_update($term) {
     }
   }
 }
+
+/**
+ * Implements hook_taxonomy_term_view_alter().
+ */
+function pw_parliaments_menu_alter(&$items) {
+  $items['taxonomy/term/%taxonomy_term']['page callback'] = 'pw_parliaments_taxonomy_term_page';
+  unset($items['taxonomy/term/%taxonomy_term_load']['file']);
+}
+
+/**
+ * Displays parliament pages, leaving other term pages to the default callback.
+ */
+function pw_parliaments_taxonomy_term_page($term) {
+  if ($term->vid == 18) {
+    return '';
+  }
+  else {
+    module_load_include('inc', 'taxonomy', 'taxonomy.pages');
+    return taxonomy_term_page($term);
+  }
+}

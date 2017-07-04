@@ -907,7 +907,7 @@ function _parliamentwatch_should_render_content_container($variables) {
     'pw_petitions_page',
     'pw_poll_page',
     'pw_profiles_page',
-    'taxonomy_term_page',
+    'pw_parliaments_taxonomy_term_page',
     'user_view_page',
     'user_revision_show',
   ];
