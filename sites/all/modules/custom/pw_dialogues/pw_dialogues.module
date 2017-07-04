@@ -314,7 +314,7 @@ function pw_dialogues_profile_block() {
       '#questions' => $account->number_of_questions,
       '#answers' => $account->number_of_answers,
       '#answer_ratio' => round(100 * $account->number_of_answers / $account->number_of_questions, 0),
-      '#average_response_time' => round(pw_dialogues_average_response_time($account) / 86400),
+      '#average_response_time' => round(pw_dialogues_average_response_time_by_account($account) / 86400),
     ];
     $block['content']['stats']['#attached']['js'][$inline_js] = [
       'scope' => 'footer',
@@ -458,12 +458,15 @@ function pw_dialogues_by_user_revision_query($account) {
 }
 
 /**
- * Returns the average time in seconds it takes the given user to answer.
+ * Returns the average response time in seconds for the given user.
  *
- * @param objet $account
+ * @param object $account
  *   The user account.
+ *
+ * @return int
+ *   The average response time in seconds.
  */
-function pw_dialogues_average_response_time($account) {
+function pw_dialogues_average_response_time_by_account($account) {
   $sql = ""
     . "SELECT AVG(field_dialogue_response_time_value) "
     . "FROM {field_data_field_dialogue_response_time} "
