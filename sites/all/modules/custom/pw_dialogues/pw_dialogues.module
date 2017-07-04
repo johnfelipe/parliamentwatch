@@ -48,18 +48,22 @@ function pw_dialogues_menu() {
  * Implements hook_block_info().
  */
 function pw_dialogues_block_info() {
-  $blocks['profile'] = array(
+  $blocks['profile'] = [
     'info' => t('Questions and answers'),
     'cache' => DRUPAL_NO_CACHE,
-  );
-  $blocks['qa-filters-header'] = array(
+  ];
+  $blocks['recent'] = [
+    'info' => t('Recent questions and answers (in parliament)'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+  $blocks['qa-filters-header'] = [
     'info' => t('Questions and answers filters header'),
     'cache' => DRUPAL_CACHE_PER_ROLE,
-  );
-  $blocks['qa-filters-search'] = array(
+  ];
+  $blocks['qa-filters-search'] = [
     'info' => t('Questions and answers keyword search'),
     'cache' => DRUPAL_NO_CACHE,
-  );
+  ];
   return $blocks;
 }
 
@@ -70,6 +74,8 @@ function pw_dialogues_block_view($delta) {
   switch ($delta) {
     case 'profile':
       return pw_dialogues_profile_block();
+    case 'recent':
+      return pw_dialogues_recent_block();
     case 'qa-filters-header':
       return pw_dialogues_questions_and_answers_filters_header_block();
     case 'qa-filters-search':
@@ -327,6 +333,52 @@ function pw_dialogues_profile_block() {
 }
 
 /**
+ * Displays the questions and answers section of a profile.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_dialogues_recent_block() {
+  $block = [
+    'subject' => t('Questions and answers'),
+  ];
+  $term = menu_get_object('taxonomy_term', 2);
+
+  if (!$term) {
+    return $block;
+  }
+
+  $result = pw_dialogues_by_parliament_query($term)
+    ->propertyOrderBy('created', 'DESC')
+    ->execute();
+
+  if ($result['node']) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
+    $callback = function ($item) {
+      return $item->comment_count > 0;
+    };
+    $questions = count($nodes);
+    $answers = count(array_filter($nodes, $callback));
+    $block['content'] = node_view_multiple(array_slice($nodes, 0, 4, TRUE), 'embedded');
+    $block['content']['stats'] = [
+      '#theme' => 'dialogues_stats',
+      '#questions' => $questions,
+      '#answers' => $answers,
+      '#answer_ratio' => round(100 * $answers / $questions, 0),
+      '#average_response_time' => round(pw_dialogues_average_response_time_by_parliament($term) / 86400),
+      '#weight' => -5,
+    ];
+    $block['content']['stats']['#attached']['js'][$inline_js] = [
+      'scope' => 'footer',
+      'type' => 'inline',
+    ];
+  }
+
+  return $block;
+}
+
+/**
  * Displays heading for questions and answers filter section.
  */
 function pw_dialogues_questions_and_answers_filters_header_block() {
@@ -458,6 +510,25 @@ function pw_dialogues_by_user_revision_query($account) {
 }
 
 /**
+ * Returns query for all questions to politicians in the given parliament.
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return EntityFieldQuery
+ *   The query object.
+ */
+function pw_dialogues_by_parliament_query($term) {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'dialogue');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  $q->fieldCondition('field_parliament', 'tid', $term->tid);
+
+  return $q;
+}
+
+/**
  * Returns the average response time in seconds for the given user.
  *
  * @param object $account
@@ -473,6 +544,26 @@ function pw_dialogues_average_response_time_by_account($account) {
     . "WHERE bundle = 'comment_node_dialogue' "
     . "AND entity_id IN (SELECT cid FROM {comment} WHERE uid = :uid)";
   return db_query($sql, [':uid' => $account->uid])->fetchField();
+}
+
+/**
+ * Returns the average response time in seconds for the given parliament.
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return int
+ *   The average response time in seconds.
+ */
+function pw_dialogues_average_response_time_by_parliament($term) {
+  $sql = ""
+    . "SELECT AVG(field_dialogue_response_time_value) "
+    . "FROM {field_data_field_dialogue_response_time} rt "
+    . "JOIN {comment} c ON rt.entity_id = c.cid "
+    . "JOIN {field_data_field_parliament} p ON c.nid = p.entity_id "
+    . "WHERE rt.bundle = 'comment_node_dialogue' "
+    . "AND p.field_parliament_tid = :tid";
+  return db_query($sql, [':tid' => $term->tid])->fetchField();
 }
 
 /**
