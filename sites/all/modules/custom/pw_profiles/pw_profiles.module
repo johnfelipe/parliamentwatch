@@ -31,12 +31,6 @@ function pw_profiles_menu() {
 function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == "user_profile_form") {
     unset($form["locale"]);
-    $view = views_get_view('calendar');
-    $view->set_display('block_2');
-    $form['views_embedder'] = array(
-      '#value' => views_embed_view('calendar', 'block_2'),
-      '#weight' => 0,
-    );
     $form['#validate'][] = 'pw_profiles_form_validate';
     $form['account']['name']['#description'] = t('Only lowercase letters (a-z), numbers and dash are allowed.');
 
