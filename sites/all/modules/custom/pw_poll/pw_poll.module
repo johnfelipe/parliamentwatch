@@ -52,6 +52,10 @@ function pw_poll_block_info() {
     'info' => t('Related polls'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['recent'] = [
+    'info' => t('Recent polls (in parliament)'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   $blocks['charts'] = [
     'info' => t('Poll charts'),
     'cache' => DRUPAL_NO_CACHE,
@@ -70,6 +74,8 @@ function pw_poll_block_view($delta = '') {
       return pw_poll_timeline_block();
     case 'related':
       return pw_poll_related_block();
+    case 'recent':
+      return pw_poll_recent_block();
     case 'charts':
       return pw_poll_charts_block();
     default:
@@ -215,6 +221,45 @@ function pw_poll_related_block() {
   }
 
   $block['subject'] = t('Related polls');
+  $block['content'] = node_view_multiple($nodes, 'tile');
+
+  return $block;
+}
+
+/**
+ * Displays recent polls in parliament.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_poll_recent_block() {
+  $block = [
+    'subject' => t('Recent polls'),
+  ];
+  $parliament_term = menu_get_object('taxonomy_term', 2);
+
+  if (!$parliament_term) {
+    return $block;
+  }
+
+  $q = pw_poll_base_query();
+  $q->fieldOrderBy('field_poll_date', 'value');
+  $q->fieldCondition('field_parliament', 'tid', $parliament_term->tid);
+  $q->range(0, 3);
+
+  $result = $q->execute();
+
+  if (empty($result['node'])) {
+    return $block;
+  }
+
+  $nodes = node_load_multiple(array_keys($result['node']));
+
+  foreach (pw_poll_results($nodes) as $nid => $result) {
+    $nodes[$nid]->result = $result;
+  }
+
+  $block['subject'] = t('Recent polls');
   $block['content'] = node_view_multiple($nodes, 'tile');
 
   return $block;
