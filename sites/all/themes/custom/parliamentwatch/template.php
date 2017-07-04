@@ -897,7 +897,7 @@ function _parliamentwatch_form_set_class(array &$element, array $name) {
  *   TRUE if the content container should be rendered, FALSE otherwise.
  */
 function _parliamentwatch_should_render_content_container($variables) {
-  if (isset($variables['node']) && $variables['node']->type != 'page') {
+  if (isset($variables['node']) && !in_array($variables['node']->type, ['page', 'webform'])) {
     return FALSE;
   }
 
