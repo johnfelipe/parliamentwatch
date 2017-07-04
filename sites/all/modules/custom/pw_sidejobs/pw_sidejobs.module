@@ -281,7 +281,7 @@ function pw_sidejobs_by_user_revision_query($account) {
   $q->entityCondition('bundle', 'sidejob');
   $q->propertyCondition('status', NODE_PUBLISHED);
   $q->fieldCondition('field_politician', 'target_id', $account->uid);
-  $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
+  $q->fieldCondition('field_parliament', 'tid', pw_profiles_parliament($account)->tid);
 
   return $q;
 }

@@ -452,7 +452,7 @@ function pw_dialogues_by_user_revision_query($account) {
   $q->entityCondition('bundle', 'dialogue');
   $q->propertyCondition('status', NODE_PUBLISHED);
   $q->fieldCondition('field_dialogue_recipient', 'target_id', $account->uid);
-  $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
+  $q->fieldCondition('field_parliament', 'tid', pw_profiles_parliament($account)->tid);
   $q->fieldCondition('field_dialogue_before_election', 'value', _pw_user_has_role($account, 'Candidate'));
 
   return $q;
