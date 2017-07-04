@@ -15,27 +15,27 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
     $form['#validate'][] = 'pw_question_form_form_validate';
 
     if (empty($form['submitted']['recipient']['#value'])) {
-      $user = _pw_get_current_user();
+      $account = _pw_get_current_user();
     }
     else {
       $user_name = $form['submitted']['recipient']['#value'];
-      $user = user_load_by_name($user_name);
+      $account = user_load_by_name($user_name);
     }
 
-    if (empty($user) || $user === FALSE) {
+    if (empty($account) || $account === FALSE) {
       return;
     }
 
     // need username for redirection after submit
-    $form['submitted']['recipient']['#value'] = $user->name;
+    $form['submitted']['recipient']['#value'] = $account->name;
 
     // load full parliament term
-    $parliament = taxonomy_term_load($user->field_user_parliament[LANGUAGE_NONE][0]['tid']);
+    $parliament = taxonomy_term_load($account->field_user_parliament[LANGUAGE_NONE][0]['tid']);
 
     $body_markup = '';
 
     // question form closed by reason
-    $field_closed_by_reason = field_get_items('user', $user, 'field_user_question_form_closed');
+    $field_closed_by_reason = field_get_items('user', $account, 'field_user_question_form_closed');
     if (!empty($field_closed_by_reason)) {
       $body_markup = '<div class="pw-messages warning">' . $field_closed_by_reason[0]['value'] . '</div>';
     }
@@ -55,7 +55,7 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
     }
 
     // set uuid as recipient external id
-    $form['submitted']['recipient_external_id']['#value'] = $user->uuid;
+    $form['submitted']['recipient_external_id']['#value'] = $account->uuid;
 
     // set ip of user. in case of a reverse proxy take the X-Forwarded-For
     $request_header = getallheaders();
