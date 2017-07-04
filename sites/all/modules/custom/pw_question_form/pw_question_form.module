@@ -32,9 +32,6 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
     // load full parliament term
     $parliament = taxonomy_term_load($user->field_user_parliament[LANGUAGE_NONE][0]['tid']);
 
-    // election date
-    $date_election = $parliament->field_parliament_election[LANGUAGE_NONE][0]['value'];
-
     $body_markup = '';
 
     // question form closed by reason
