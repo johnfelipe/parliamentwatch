@@ -504,10 +504,6 @@ function pw_globals_update_7018() {
  * Delete obsolete fields.
  */
 function pw_globals_update_7019() {
-  field_delete_field('field_user_questions_get');
-  field_delete_field('field_user_answers_give');
-  field_delete_field('field_share_sum');
-  field_delete_field('field_user_first_letter_lname');
   field_delete_field('drulenium_num_command_errors');
   field_delete_field('drulenium_num_command_failures');
   field_delete_field('drulenium_num_command_passes');
@@ -519,6 +515,11 @@ function pw_globals_update_7019() {
   field_delete_field('drulenium_suite');
   field_delete_field('drulenium_total_time');
   field_delete_field('drulenium_version');
+  field_delete_field('field_share_sum');
+  field_delete_field('field_user_answers_give');
+  field_delete_field('field_user_first_letter_lname');
+  field_delete_field('field_user_questions_get');
+  node_type_delete('calendar_entry');
 }
 
 /**
