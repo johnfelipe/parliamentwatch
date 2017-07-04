@@ -205,10 +205,14 @@ function pw_poll_related_block() {
   $result = $q->execute();
 
   if (empty($result['node'])) {
-    return block;
+    return $block;
   }
 
   $nodes = node_load_multiple(array_keys($result['node']));
+
+  foreach (pw_poll_results($nodes) as $nid => $result) {
+    $nodes[$nid]->result = $result;
+  }
 
   $block['subject'] = t('Related polls');
   $block['content'] = node_view_multiple($nodes, 'tile');
