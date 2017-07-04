@@ -39,7 +39,7 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
     if (!empty($field_closed_by_reason)) {
       $body_markup = '<div class="pw-messages warning">' . $field_closed_by_reason[0]['value'] . '</div>';
     }
-    elseif (!_pw_is_profile_consultable()) {
+    elseif (!_pw_is_profile_consultable($account)) {
       $body_markup = '<div class="pw-messages warning">Die Fragefunktion in diesem Profil wurde geschlossen.</div>';
     }
 
