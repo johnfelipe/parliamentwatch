@@ -316,7 +316,6 @@ function pw_dialogues_profile_block() {
       '#answer_ratio' => round(100 * $account->number_of_answers / $account->number_of_questions, 0),
       '#average_response_time' => round(pw_dialogues_average_response_time($account) / 86400),
     ];
-    $block['content']['stats']['#attributes']['class'] = ['tabs__content__content', 'container'];
     $block['content']['stats']['#attached']['js'][$inline_js] = [
       'scope' => 'footer',
       'type' => 'inline',
