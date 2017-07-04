@@ -348,6 +348,29 @@ function pw_profiles_page_title($parliament_name, $role_name) {
 }
 
 /**
+ * Returns parliament term associated with the given account.
+ *
+ * Politician accounts are always associated with a parliament, whether they
+ * are deputies or candidates.
+ *
+ * @param object $account
+ *   The account object.
+ *
+ * @return object
+ *   The parliament term.
+ */
+function pw_profiles_parliament($account) {
+  $parliament_term = NULL;
+  $items = field_get_items('user', $account, 'field_user_parliament');
+
+  if ($items) {
+    $parliament_term = taxonomy_term_load($items[0]['tid']);
+  }
+
+  return $parliament_term;
+}
+
+/**
  * Load all archived revisions of the given account.
  *
  * @param object $account
