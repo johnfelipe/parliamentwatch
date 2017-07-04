@@ -4,7 +4,6 @@
  * @file
  * Code for the PW Globals feature.
  */
-
 include_once 'pw_globals.features.inc';
 
 define('PW_GLOBALS_API_USER_RID', 29859578);
@@ -242,30 +241,30 @@ function _pw_is_premium_user($user) {
 /**
  * Custom: Checks if profile is open for questions.
  */
-function _pw_is_profile_consultable($user=FALSE) {
-  if(!$user){
+function _pw_is_profile_consultable($user = FALSE) {
+  if (!$user) {
     $user = _pw_get_current_user();
-    if(!$user){
+    if (!$user) {
       return FALSE;
     }
   }
-  $profile_consultable = &drupal_static(__FUNCTION__.(isset($user->vid)?$user->vid:''));
+  $profile_consultable = &drupal_static(__FUNCTION__ . (isset($user->vid) ? $user->vid : ''));
   if (!isset($profile_consultable)) {
     $profile_consultable = FALSE;
-    if(!isset($user->field_user_question_form_closed) || empty($user->field_user_question_form_closed)){
+    if (!isset($user->field_user_question_form_closed) || empty($user->field_user_question_form_closed)) {
 
-      if(_pw_is_parliament_active()){
-        if(_pw_user_has_role($user, 'Candidate')){
+      if (_pw_is_parliament_active()) {
+        if (_pw_user_has_role($user, 'Candidate')) {
           $parliament = _pw_get_current_parliament_term();
-          if(!$parliament){
+          if (!$parliament) {
             return FALSE;
           }
           $date_election = field_get_items('taxonomy_term', $parliament, 'field_parliament_election');
-          if(empty($date_election)){
+          if (empty($date_election)) {
             return FALSE;
           }
-          $timestamp_day_before_election = strtotime($date_election[0]['value']) - 6*60*60;
-          if(time() > $timestamp_day_before_election){
+          $timestamp_day_before_election = strtotime($date_election[0]['value']) - 6 * 60 * 60;
+          if (time() > $timestamp_day_before_election) {
             return FALSE;
           }
         }
@@ -273,7 +272,7 @@ function _pw_is_profile_consultable($user=FALSE) {
         // joined and retired date
         $date_joined = field_get_items('user', $user, 'field_user_joined');
         $date_retired = field_get_items('user', $user, 'field_user_retired');
-        if(!empty($date_joined[0]['value']) && $date_joined[0]['value'] > date('Y-m-d') || !empty($date_retired[0]['value']) && $date_retired[0]['value'] <= date('Y-m-d 00:00:00')){
+        if (!empty($date_joined[0]['value']) && $date_joined[0]['value'] > date('Y-m-d') || !empty($date_retired[0]['value']) && $date_retired[0]['value'] <= date('Y-m-d 00:00:00')) {
           return FALSE;
         }
         $profile_consultable = TRUE;
@@ -305,11 +304,10 @@ function _pw_get_current_parliament_term() {
   $term_parliament = &drupal_static(__FUNCTION__);
   if (!isset($term_parliament)) {
 
-    // check if current page is a views page
     $menu_item = menu_get_item();
-    if($menu_item['page_callback'] == 'views_page' || $menu_item['path'] == 'profile/%/%'){
+    if ($menu_item['page_callback'] == 'views_page' || $menu_item['path'] == 'profile/%/%') {
       $terms = taxonomy_get_term_by_name(arg(1), 'parliaments');
-      if(!empty($terms)){
+      if (!empty($terms)) {
         $term_parliament = array_shift($terms);
         return $term_parliament;
       }
@@ -320,26 +318,12 @@ function _pw_get_current_parliament_term() {
       // load by archived user profile
       case 'profile':
       case 'user':
-        /*$user = user_load_by_name(arg(1));
-        $user_id = $user->uid;
-        $vid = arg(3);
-        $user = user_revision_load($user_id, $vid);
-        */
         $user = _pw_get_current_user();
         if (isset($user->field_user_parliament[LANGUAGE_NONE][0]['tid'])) {
           $term_parliament_id = $user->field_user_parliament[LANGUAGE_NONE][0]['tid'];
           $term_parliament = taxonomy_term_load($term_parliament_id);
         }
         break;
-
-      // load by user profile
-        /*$user = menu_get_object('user');
-        if (isset($user->field_user_parliament[LANGUAGE_NONE][0]['tid'])) {
-          $term_parliament_id = $user->field_user_parliament[LANGUAGE_NONE][0]['tid'];
-          $term_parliament = taxonomy_term_load($term_parliament_id);
-        }
-        break;
-        */
 
       // load by node
       case 'node':
@@ -353,10 +337,9 @@ function _pw_get_current_parliament_term() {
       // load by taxonomy
       case 'taxonomy':
         $taxonomy_term = menu_get_object('taxonomy_term', 2);
-        if($taxonomy_term->vocabulary_machine_name == 'parliaments'){
+        if ($taxonomy_term->vocabulary_machine_name == 'parliaments') {
           $term_parliament = $taxonomy_term;
-        }
-        elseif (isset($taxonomy_term->field_parliament[LANGUAGE_NONE][0]['tid'])) {
+        } elseif (isset($taxonomy_term->field_parliament[LANGUAGE_NONE][0]['tid'])) {
           $term_parliament_id = $taxonomy_term->field_parliament[LANGUAGE_NONE][0]['tid'];
           $term_parliament = taxonomy_term_load($term_parliament_id);
         }
@@ -371,7 +354,7 @@ function _pw_get_current_parliament_term() {
 /**
  * Custom: check if parliament is active or not.
  */
-function _pw_is_parliament_active($parliament=FALSE) {
+function _pw_is_parliament_active($parliament = FALSE) {
 
   // if parliament was not set, try to retrieve it from current context
   if (!$parliament) {
@@ -395,15 +378,14 @@ function _pw_is_parliament_active($parliament=FALSE) {
   return FALSE;
 }
 
-
 /**
  * Custom: Checks if a timestamp (date) is between start and end date of a date field
  * @param array $date_field
  *   date field with start and end date as value and value2
  * @return boolean
  */
-function _pw_is_between_dates($date_field, $timestamp=FALSE){
-  if(!$timestamp){
+function _pw_is_between_dates($date_field, $timestamp = FALSE) {
+  if (!$timestamp) {
     $timestamp = time();
   }
   $has_no_end_date = $date_field['value'] == $date_field['value2'];
@@ -469,7 +451,6 @@ function _pw_get_parliament_term_tid_by_nid($nid) {
 /**
  * Custom: Map items of a webform submission to their components..
  */
-
 function _pw_webform_get_keyed_fields($webform_node, $submission) {
 
   // query db to retrieve webform components
@@ -493,8 +474,8 @@ function _pw_webform_get_keyed_fields($webform_node, $submission) {
 /**
  * Custom: Send Debug Mail.
  */
-function _pw_send_debug_mail($subject, $body){
-  mail('debug@abgeordnetenwatch.de', $subject, print_r($body, true)."\n\n############################\n\n".print_r(debug_backtrace(), 1));
+function _pw_send_debug_mail($subject, $body) {
+  mail('debug@abgeordnetenwatch.de', $subject, print_r($body, true) . "\n\n############################\n\n" . print_r(debug_backtrace(), 1));
 }
 
 /**
@@ -506,12 +487,11 @@ function _pw_send_debug_mail($subject, $body){
  * @return string
  *   All terms linked to term page.
  */
-function _pw_get_linked_terms($terms, $separator=', '){
+function _pw_get_linked_terms($terms, $separator = ', ') {
   return implode($separator, array_map(function($term) {
-    return l($term['taxonomy_term']->name, 'taxonomy/term/' . $term['taxonomy_term']->tid);
-  }, $terms));
+      return l($term['taxonomy_term']->name, 'taxonomy/term/' . $term['taxonomy_term']->tid);
+    }, $terms));
 }
-
 
 /**
  * Custom: Helper, get fullname form user object.
@@ -520,71 +500,69 @@ function _pw_get_linked_terms($terms, $separator=', '){
  * @return string
  *   Fullname of user.
  */
-function _pw_get_fullname($user){
-  if(!empty($user)){
+function _pw_get_fullname($user) {
+  if (!empty($user)) {
     $title = field_get_items('user', $user, 'field_user_title');
     $first_name = field_get_items('user', $user, 'field_user_fname');
     $last_name = field_get_items('user', $user, 'field_user_lname');
-    return trim($title[0]['value'].' '.$first_name[0]['value'].' '.$last_name[0]['value']);
+    return trim($title[0]['value'] . ' ' . $first_name[0]['value'] . ' ' . $last_name[0]['value']);
   }
 }
-
 
 /**
  * Custom: Helper to load only actual profiles from user archive cache
  * @param SelectQuery $query
  *   query object by reference
  */
-function _pw_uac_add_conditions(&$query, $conditions = array()){
-  foreach($query->getTables() as $index => $table){
-    if($table['table'] == 'user_archive_cache'){
+function _pw_uac_add_conditions(&$query, $conditions = array()) {
+  foreach ($query->getTables() as $index => $table) {
+    if ($table['table'] == 'user_archive_cache') {
       $alias_uac = $index;
     }
   }
 
   // table was not joined or conditions not set
-  if(!isset($alias_uac) || empty($conditions) || !is_array($conditions)){
+  if (!isset($alias_uac) || empty($conditions) || !is_array($conditions)) {
     return FALSE;
   }
 
   // condition date
-  if(array_key_exists('date', $conditions) && !empty($conditions['date'])){
+  if (array_key_exists('date', $conditions) && !empty($conditions['date'])) {
     $or_user_joined = db_or();
-    $or_user_joined->condition($alias_uac.'.user_joined', $conditions['date'], '<');
-    $or_user_joined->condition($alias_uac.'.user_joined', NULL);
+    $or_user_joined->condition($alias_uac . '.user_joined', $conditions['date'], '<');
+    $or_user_joined->condition($alias_uac . '.user_joined', NULL);
     $query->condition($or_user_joined);
     $or_user_retired = db_or();
-    $or_user_retired->condition($alias_uac.'.user_retired', $conditions['date'], '>');
-    $or_user_retired->condition($alias_uac.'.user_retired', NULL);
+    $or_user_retired->condition($alias_uac . '.user_retired', $conditions['date'], '>');
+    $or_user_retired->condition($alias_uac . '.user_retired', NULL);
     $query->condition($or_user_retired);
   }
 
   // condition roles
-  if(array_key_exists('roles', $conditions)){
-    $query->condition($alias_uac.'.user_role', $conditions['roles']);
+  if (array_key_exists('roles', $conditions)) {
+    $query->condition($alias_uac . '.user_role', $conditions['roles']);
   }
 
   // condition parliament
-  if(array_key_exists('parliament', $conditions)){
-    $query->condition($alias_uac.'.parliament_name', $conditions['parliament']);
+  if (array_key_exists('parliament', $conditions)) {
+    $query->condition($alias_uac . '.parliament_name', $conditions['parliament']);
   }
 
   // condition uid
-  if(array_key_exists('uid', $conditions)){
-    $query->condition($alias_uac.'.uid', $conditions['uid']);
+  if (array_key_exists('uid', $conditions)) {
+    $query->condition($alias_uac . '.uid', $conditions['uid']);
   }
 
   // condition vid
-  if(array_key_exists('vid', $conditions)){
-    $query->condition($alias_uac.'.vid', $conditions['vid']);
+  if (array_key_exists('vid', $conditions)) {
+    $query->condition($alias_uac . '.vid', $conditions['vid']);
   }
 
   // condition username
-  if(array_key_exists('username', $conditions)){
-    $query->condition($alias_uac.'.user_name', $conditions['username']);
+  if (array_key_exists('username', $conditions)) {
+    $query->condition($alias_uac . '.user_name', $conditions['username']);
   }
 }
-
 
 /**
  * for debugging entity metadata wrapper object
@@ -606,11 +584,11 @@ function _pw_wrapper_debug($w) {
  */
 function _pw_query_debug($query) {
   $querystring = preg_replace('/[\{|\}]/', '', $query->__toString());
-  foreach($query->getArguments() as $key=> $item){
-    if(!$item) {
+  foreach ($query->getArguments() as $key => $item) {
+    if (!$item) {
       $item = 'NULL';
     }
-    $querystring = str_replace($key.')', "'".$item."')",$querystring);
+    $querystring = str_replace($key . ')', "'" . $item . "')", $querystring);
   }
   return $querystring;
 }
@@ -621,24 +599,20 @@ function _pw_query_debug($query) {
  * @param keep_key
  * @return array $array
  */
-function _pw_array_flatten($array, $keep_key=TRUE) {
+function _pw_array_flatten($array, $keep_key = TRUE) {
   $return = array();
   foreach ($array as $key => $value) {
-    if (is_array($value)){
+    if (is_array($value)) {
       $return = array_merge($return, _pw_array_flatten($value, $keep_key));
-    }
-    elseif($keep_key){
+    } elseif ($keep_key) {
       $return[$key] = $value;
-    }
-    else{
+    } else {
       $return[] = $value;
     }
   }
 
   return $return;
 }
-
-
 
 /**
  * sort array items by parliament
@@ -647,18 +621,18 @@ function _pw_array_flatten($array, $keep_key=TRUE) {
  * @return array $options
  */
 function _pw_sort_by_parliament($options, $parliament_tid) {
-  if(!empty($parliament_tid)){
+  if (!empty($parliament_tid)) {
     $parliament = taxonomy_term_load($parliament_tid);
-    if($parliament){
+    if ($parliament) {
       $efq = new EntityFieldQuery();
       $efq->entityCondition('entity_type', 'taxonomy_term')
-      ->fieldCondition('field_parliament', 'tid', $parliament_tid);
+        ->fieldCondition('field_parliament', 'tid', $parliament_tid);
       $result = $efq->execute();
       if (isset($result['taxonomy_term'])) {
         $tids_with_parliament = array_keys($result['taxonomy_term']);
-        foreach($options as $tid => $val){
-          if(in_array($tid, $tids_with_parliament)){
-            $options = array($tid => $val." (Parliament: ".$parliament->name.")") + $options;
+        foreach ($options as $tid => $val) {
+          if (in_array($tid, $tids_with_parliament)) {
+            $options = array($tid => $val . " (Parliament: " . $parliament->name . ")") + $options;
           }
         }
       }
