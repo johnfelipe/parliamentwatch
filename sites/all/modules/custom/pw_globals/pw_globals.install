@@ -369,7 +369,26 @@ function pw_globals_update_7012() {
     ->condition('theme', 'parliamentwatch')
     ->condition('region', BLOCK_REGION_NONE);
   _pw_globals_delete_blocks($q->execute()->fetchCol());
-  _pw_globals_delete_blocks([12]);
+  _pw_globals_delete_blocks([
+    12,
+    35,
+    42,
+    44,
+    51,
+    52,
+    53,
+    66,
+    74,
+    80,
+    94,
+    123,
+    128,
+    141,
+    144,
+    145,
+    166,
+    167,
+  ]);
 }
 
 /**
