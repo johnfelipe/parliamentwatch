@@ -764,7 +764,7 @@ function pw_vote_by_user_revision_query($account) {
   $q->entityCondition('bundle', 'vote');
   $q->propertyCondition('status', NODE_PUBLISHED);
   $q->fieldCondition('field_vote_user', 'target_id', $account->uid);
-  $q->fieldCondition('field_parliament', 'tid', _pw_get_current_parliament_term()->tid);
+  $q->fieldCondition('field_parliament', 'tid', pw_profiles_parliament($account)->tid);
 
   return $q;
 }
