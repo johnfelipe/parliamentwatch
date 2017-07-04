@@ -12,21 +12,17 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
 
   if ($form_id == 'webform_client_form_10446') {
 
-    // add custom validations
     $form['#validate'][] = 'pw_question_form_form_validate';
 
-    // load recipient user by path
-    if(empty($form['submitted']['recipient']['#value'])){
+    if (empty($form['submitted']['recipient']['#value'])) {
       $user = _pw_get_current_user();
     }
-    // load recipient user by parameter
-    else{
+    else {
       $user_name = $form['submitted']['recipient']['#value'];
       $user = user_load_by_name($user_name);
     }
 
-    // exit if user was not found
-    if(empty($user) || $user === FALSE){
+    if (empty($user) || $user === FALSE) {
       return;
     }
 
@@ -43,10 +39,10 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
 
     // question form closed by reason
     $field_closed_by_reason = field_get_items('user', $user, 'field_user_question_form_closed');
-    if(!empty($field_closed_by_reason)){
-      $body_markup = '<div class="pw-messages warning">'.$field_closed_by_reason[0]['value'].'</div>';
+    if (!empty($field_closed_by_reason)) {
+      $body_markup = '<div class="pw-messages warning">' . $field_closed_by_reason[0]['value'] . '</div>';
     }
-    elseif(!_pw_is_profile_consultable()){
+    elseif (!_pw_is_profile_consultable()) {
       $body_markup = '<div class="pw-messages warning">Die Fragefunktion in diesem Profil wurde geschlossen.</div>';
     }
 
@@ -54,7 +50,7 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
     $form['#node']->content['body'][0]['#markup'] = $body_markup;
 
     // if there is a message - keep question form closed
-    if(!empty($body_markup)){
+    if (!empty($body_markup)) {
       unset($form['#node']->content['field_webform_footer']);
       unset($form['submitted']);
       unset($form['actions']);
@@ -66,7 +62,7 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
 
     // set ip of user. in case of a reverse proxy take the X-Forwarded-For
     $request_header = getallheaders();
-    $form['submitted']['user_ip']['#value'] = isset($request_header['X-Forwarded-For'])?$request_header['X-Forwarded-For']:$_SERVER['REMOTE_ADDR'];
+    $form['submitted']['user_ip']['#value'] = isset($request_header['X-Forwarded-For']) ? $request_header['X-Forwarded-For'] : $_SERVER['REMOTE_ADDR'];
 
     // set recipient parliament
     $form['submitted']['recipient_parliament']['#value'] = $parliament->name;
@@ -74,18 +70,18 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
     // query for subject terms tagged with same parliament as user has
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'taxonomy_term')
-    ->entityCondition('bundle', 'dialogue_topics')
-    ->fieldCondition('field_parliament', 'tid', $parliament->tid)
-    ->propertyOrderBy('name');
+      ->entityCondition('bundle', 'dialogue_topics')
+      ->fieldCondition('field_parliament', 'tid', $parliament->tid)
+      ->propertyOrderBy('name');
     $result = $query->execute();
     $topic_tids = array_keys($result['taxonomy_term']);
 
     $a_options = array();
-    if(!empty($topic_tids)){
+    if (!empty($topic_tids)) {
 
       // add subjects to form element
       $subject_terms = taxonomy_term_load_multiple($topic_tids);
-      foreach($subject_terms as $subject_key => $subject_term){
+      foreach ($subject_terms as $subject_key => $subject_term) {
         $a_options[$subject_term->name] = $subject_term->name;
       }
     }
@@ -97,17 +93,17 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
  * Implements hook_form_validate()..
  * custom validations on webform submission
  */
-function pw_question_form_form_validate($form_id, $form_values){
+function pw_question_form_form_validate($form_id, $form_values) {
 
   // check if question has less than 2000 chars
-  if(drupal_strlen($form_values['values']['submitted']['question']) > 2000){
+  if (drupal_strlen($form_values['values']['submitted']['question']) > 2000) {
     form_set_error('question', 'Ihre Frage hat mehr als die zulässigen 2000 Zeichen.');
   }
 
   // check user exists
   $user_name = $form_values['values']['submitted']['recipient'];
   $user = user_load_by_name($user_name);
-  if($user === FALSE){
+  if ($user === FALSE) {
     form_set_error('user', 'Empfänger existiert nicht.');
   }
 }
