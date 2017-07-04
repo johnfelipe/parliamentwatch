@@ -20,17 +20,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'overlay',
   );
 
-  // Exported permission: create calendar_entry content.
-  $permissions['create calendar_entry content'] = array(
-    'name' => 'create calendar_entry content',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: create field_user_about.
   $permissions['create field_user_about'] = array(
     'name' => 'create field_user_about',
@@ -411,37 +400,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'file_entity',
   );
 
-  // Exported permission: delete any calendar_entry content.
-  $permissions['delete any calendar_entry content'] = array(
-    'name' => 'delete any calendar_entry content',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own calendar_entry content.
-  $permissions['delete own calendar_entry content'] = array(
-    'name' => 'delete own calendar_entry content',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any calendar_entry content.
-  $permissions['edit any calendar_entry content'] = array(
-    'name' => 'edit any calendar_entry content',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: edit field_user_about.
   $permissions['edit field_user_about'] = array(
     'name' => 'edit field_user_about',
@@ -815,17 +773,6 @@ function pw_profiles_user_default_permissions() {
       1 => 'administrator',
     ),
     'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own calendar_entry content.
-  $permissions['edit own calendar_entry content'] = array(
-    'name' => 'edit own calendar_entry content',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
-    ),
-    'module' => 'node',
   );
 
   // Exported permission: edit own field_user_about.
