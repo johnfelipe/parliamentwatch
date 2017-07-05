@@ -18,3 +18,5 @@ echo "Running update hooks..."
 drush updb -y -p
 echo "Resetting configuration..."
 drush fr-all -y -p
+echo "Disabling clientside validation"
+drush dis -y clientside_validation
