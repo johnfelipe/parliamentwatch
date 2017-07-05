@@ -56,6 +56,23 @@ function docReadyClass() {
  * Set mobile behaviour for the main-navigation as sidebar
  * */
 
+function resizeMainNavigation() {
+    var secondlevel = $('.header__bottom nav');
+
+    var subnavOffset = $('.header__subnav__indicator').outerWidth();
+    var wrapperPadding = parseInt($('.header__bottom__inner').css('padding-left'), 10);
+    var indicatorPadding = parseInt($('.header__subnav__indicator').css('padding-left'), 10);
+
+    if(wrapperPadding > 0) {
+        var subnavOffsetValue = subnavOffset - indicatorPadding;
+    } else {
+        var subnavOffsetValue = subnavOffset;
+    }
+
+    secondlevel.css('padding-left', subnavOffsetValue + 'px');
+    secondlevel.css('padding-right', '30px');
+}
+
 function mainNavigation() {
     var activeMenuItem = $('.nav__item.nav__item--active').index();
 
@@ -75,32 +92,12 @@ function mainNavigation() {
         nextButton: secondlevel.find('.swiper-button-next'),
         prevButton: secondlevel.find('.swiper-button-prev'),
         onInit: function(swiper){
-            var subnavOffset = $('.header__subnav__indicator').outerWidth();
-            var wrapperPadding = parseInt($('.header__bottom__inner').css('padding-left'), 10);
-            var indicatorPadding = parseInt($('.header__subnav__indicator').css('padding-left'), 10);
-
-            if(wrapperPadding > 0) {
-                var subnavOffsetValue = subnavOffset - indicatorPadding;
-            } else {
-                var subnavOffsetValue = subnavOffset;
-            }
-
-            // Set Styling
-            secondlevel.css('padding-left', subnavOffsetValue + 'px');
-            secondlevel.css('padding-right', '30px');
+            resizeMainNavigation();
 
             swiper.update();
             swiper.slideTo(activeMenuItem);
         }
     });
-}
-
-function resizeMainNavigation() {
-    var secondlevel = $('.header__bottom nav');
-    var subnavOffset = $('.header__subnav__indicator').outerWidth();
-    var subnavOffsetValue = subnavOffset;
-    secondlevel.css('padding-left', subnavOffsetValue + 'px');
-    secondlevel.css('padding-right', '30px');
 }
 
 function dropdown() {
