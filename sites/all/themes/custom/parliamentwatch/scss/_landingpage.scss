@@ -24,7 +24,7 @@
   .icon {
     color: $orangeBG;
     font-size: 20em;
-    text-shadow: -2px 0 $white, 0 2px $white, 2px 0 $white, 0 -2px $white;
+    text-shadow: -3px 0 $white, 0 3px $white, 3px 0 $white, 0 -3px $white;
   }
 }
 .lp-header__right {
@@ -70,6 +70,7 @@
       }
     }
   }
+  .form--pw-globals-politician-search-form,
   .form__item--combine {
     font-size: 1.2em;
   }

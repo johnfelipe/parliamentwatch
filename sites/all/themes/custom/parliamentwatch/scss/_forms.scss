@@ -180,6 +180,7 @@ textarea.form__item__control {
 
 /* Form-Item Combiner */
 
+.form--pw-globals-politician-search-form,
 .form__item--combine {
   background: $white;
   padding: $space-xsmall;
@@ -203,14 +204,16 @@ textarea.form__item__control {
   .select2-container .select2-selection--single .select2-selection__arrow {
     border-left: 0;
   }
+  .form__item--textfield,
   .twitter-typeahead,
   > .form__item__control {
     float: left;
-    width: 65%;
+    width: 85%;
     border: 0;
     display: block;
+    margin-bottom: 0;
     @include breakpoint($breakpoint-xs-min) {
-      width: 75%;
+      width: 90%;
     }
   }
   .tt-hint {
@@ -228,13 +231,17 @@ textarea.form__item__control {
   .form__item__control {
     border: 0;
   }
-  button {
+  .btn {
     float: left;
-    width: 10%;
-    padding: $space-xsmall;
+    width: 15%;
+    padding: $space-xsmall 0;
     border: 0;
     background: none;
     border-left: 1px solid $darkBeige;
+    color: $darkGray;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 10%;
+    }
   }
 }
 
