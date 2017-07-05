@@ -926,6 +926,7 @@ function _parliamentwatch_should_render_content_container($variables) {
 
   $pages_without_container = [
     'pw_blog_page',
+    'pw_dialogues_page',
     'pw_globals_info_page',
     'pw_globals_politician_search_page',
     'pw_petitions_page',
