@@ -328,20 +328,6 @@ function pw_globals_politician_search_form($form, &$form_state, $parliament_term
 }
 
 /**
- * Custom: Checks if User (Revision) is Premium User
- */
-function _pw_is_premium_user($user) {
-  $term_premium_user = taxonomy_get_term_by_name('Premium User', 'pw_profile_roles_for_view_mode_switch');
-  $tid_premium_user = key($term_premium_user);
-  foreach ($user->field_user_roles_for_view_mode_s[LANGUAGE_NONE] as $role) {
-    if ($tid_premium_user == $role['tid']) {
-      return TRUE;
-    }
-  }
-  return FALSE;
-}
-
-/**
  * Checks if given profile is open for questions.
  *
  * @param object $account
