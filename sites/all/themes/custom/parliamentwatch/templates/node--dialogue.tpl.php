@@ -92,9 +92,9 @@
   </div>
 
   <?php if (empty($content['answer'])): ?>
-    <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-      <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
-    </div>
+  <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+    <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
+  </div>
   <?php else: ?>
     <?php print render($content['answer']); ?>
   <?php endif; ?>
