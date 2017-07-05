@@ -4,7 +4,6 @@
  * @file
  * Module for the dialogue import.
  */
-
 include_once 'pw_dialogues.features.inc';
 
 /**
@@ -164,7 +163,6 @@ function pw_dialogues_entity_presave($entity, $type) {
     $entity->path = pathauto_node_update_alias($entity, 'update');
     variable_set('pathauto_update_action', $alias_action);
   }
-
 }
 
 /**
@@ -266,9 +264,9 @@ function pw_dialogues_triggered_import() {
 
       // delete answers and re-import them
       /* $sql = "SELECT cid FROM {comment} WHERE nid=:nid";
-      $cids_to_delete = db_query($sql, array(':nid' => $dialogue_nid))->fetchCol();
-      $debug_message['cids_to_delete'] = $cids_to_delete;
-      comment_delete_multiple($cids_to_delete);*/
+        $cids_to_delete = db_query($sql, array(':nid' => $dialogue_nid))->fetchCol();
+        $debug_message['cids_to_delete'] = $cids_to_delete;
+        comment_delete_multiple($cids_to_delete); */
       pw_dialogues_do_import_answers($source);
 
       // set return_value to OK
@@ -281,7 +279,7 @@ function pw_dialogues_triggered_import() {
     }
 
     // node deleted
-    elseif($xnode_status != 1 && !isset($result['node'])){
+    elseif ($xnode_status != 1 && !isset($result['node'])) {
       $return_value = 'OK';
     }
   }
