@@ -330,11 +330,18 @@ function pw_globals_politician_search_form($form, &$form_state, $parliament_term
   $form['#method'] = 'get';
   $form['#action'] = 'solr-search/politician-index';
 
+  if (strpos($parliament_term->name, 'EU') === 0) {
+    $placeholder = t('Enter a locality or name');
+  }
+  else {
+    $placeholder = t('Enter a postal code, locality or name');
+  }
+
   $form['keys'] = [
     '#type' => 'textfield',
     '#title' =>  t('Keywords'),
     '#title_display' => 'invisible',
-    '#attributes' => ['placeholder' => t('Enter a postal code, locality or name')]
+    '#attributes' => ['placeholder' => $placeholder],
   ];
   $form['submit'] = [
     '#type' => 'submit',
