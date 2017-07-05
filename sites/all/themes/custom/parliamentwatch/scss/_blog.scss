@@ -22,7 +22,7 @@
   }
 }
 
-.blog.tile.mh-item {
+.option-title + .blog.tile {
   padding-bottom: $space-large * 2;
   position: relative;
   @include breakpoint($breakpoint-s-min) {

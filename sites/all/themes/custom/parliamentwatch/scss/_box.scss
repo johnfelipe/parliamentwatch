@@ -242,8 +242,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
       @include breakpoint($breakpoint-s-min) {
         display: block;
         margin: 0;
-        padding: 0;
-        height: auto;
+        padding-bottom: 14%;
         width: 25%;
         float: left;
       }
