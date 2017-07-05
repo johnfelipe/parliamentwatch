@@ -7,19 +7,13 @@
 include_once 'pw_search_api.features.inc';
 include_once 'pw_customfacets.inc';
 
+/**
+ * Implements hook_views_query_alter().
+ */
 function pw_search_api_search_api_views_query_alter(view &$view, SearchApiViewsQuery &$query) { // check for display
   if ($view->name == 'vote_search' && arg(0) == 'node' && is_numeric(arg(1))) {
     // Adds filter to only show items for the current node.
     $query->where[1]['conditions'][] = array("field_vote_node", arg(1), "=");
-  }
-}
-
-// Sets search term in header form
-function pw_search_api_block_view_alter(&$data, $block) {
-  if ($block->module == "custom_search_blocks" && $block->delta == 1) {
-    if (isset(drupal_get_query_parameters()["s"])) {
-      $data['content']['custom_search_blocks_form_1']['#attributes']['value'] = drupal_get_query_parameters()["s"];
-    }
   }
 }
 
