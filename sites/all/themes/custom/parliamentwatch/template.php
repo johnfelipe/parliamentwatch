@@ -349,7 +349,13 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
  * Implements hook_preprocess_comment().
  */
 function parliamentwatch_preprocess_comment(&$variables) {
+  $elements = $variables['elements'];
   $variables['theme_hook_suggestions'][] = $variables['theme_hook_original'] . '__' . $variables['elements']['#view_mode'];
+
+  if ($elements['#bundle'] == 'comment_node_dialogue' && $elements['#view_mode'] == 'tile') {
+    $account = user_load($elements['#comment']->uid);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+  }
 }
 
 /**
