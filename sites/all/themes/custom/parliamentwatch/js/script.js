@@ -351,21 +351,23 @@ function autosuggest() {
  * */
 
 function sponsorCounter() {
-    $("#mscount").load("/images/membership-count.txt");
-    setInterval(function() {
-        $.get("/images/membership-count.txt",
-            function(count){
-                var old_count = document.getElementById('mscount').innerHTML;
-                if (old_count < count){
-                    $("#mscount").fadeOut('slow', function(){
-                            $('#mscount').html(count);
-                            $("#mscount").fadeIn('slow');
-                        }
-                    );
+    if ($("#mscount").length > 0) {
+        $("#mscount").load("/images/membership-count.txt");
+        setInterval(function() {
+            $.get("/images/membership-count.txt",
+                function(count){
+                    var old_count = document.getElementById('mscount').innerHTML;
+                    if (old_count < count){
+                        $("#mscount").fadeOut('slow', function(){
+                                $('#mscount').html(count);
+                                $("#mscount").fadeIn('slow');
+                            }
+                        );
+                    }
                 }
-            }
-        );
-    }, 10000);
+            );
+        }, 10000);
+    }
 }
 
 
