@@ -137,7 +137,7 @@ function parliamentwatch_preprocess_block(&$variables) {
     $parliament_term = menu_get_object('taxonomy_term', 2);
 
     if ($parliament_term) {
-      $variables['classes_array'][] = drupal_html_class('lp-header--' . $parliament_term->name);
+      $variables['icon_class'] = $parliament_term->field_icon_class[LANGUAGE_NONE][0]['value'];
     }
   }
 

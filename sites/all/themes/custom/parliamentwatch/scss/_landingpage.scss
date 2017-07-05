@@ -15,20 +15,16 @@
   position: relative;
   z-index: 1;
   display: none;
+  text-align: center;
   @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(6);
     display: block;
   }
-  svg {
-    max-width: 250px;
-    margin: 0 auto;
-    display: block;
-    path {
-      fill: $orangeBG;
-      stroke: $white;
-      stroke-width: 6px;
-    }
+  .icon {
+    color: $orangeBG;
+    font-size: 20em;
+    text-shadow: -2px 0 $white, 0 2px $white, 2px 0 $white, 0 -2px $white;
   }
 }
 .lp-header__right {
