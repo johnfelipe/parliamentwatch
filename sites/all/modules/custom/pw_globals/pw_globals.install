@@ -10,6 +10,7 @@
  */
 function pw_globals_update_7001() {
   $uninstall = [
+    'block_class',
     'colorbox',
     'content_menu',
     'context',
@@ -29,10 +30,12 @@ function pw_globals_update_7001() {
     'pw_calendar_entries',
     'pw_cron_first_letter',
     'pw_dialogues_view',
+    'pw_filters_form',
     'pw_menu',
     'pw_profileswitch',
     'pw_slider',
     'pw_subsite',
+    'pw_user_revision_switch',
     'quicktabs',
     'rdf',
     'schemaorg',
