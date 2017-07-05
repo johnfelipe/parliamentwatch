@@ -43,6 +43,12 @@ function pw_globals_menu() {
     'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
   ];
+  $items['images/membership-count.txt'] = [
+    'title' => 'Membeship count',
+    'page callback' => 'pw_globals_membership_count',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
   return $items;
 }
 
@@ -209,6 +215,13 @@ function pw_globals_politician_search_page() {
   }
 
   return $build;
+}
+
+/**
+ * Page callback: Returns number of supporters.
+ */
+function pw_globals_membership_count() {
+  print rand(4000, 6000);
 }
 
 /**
