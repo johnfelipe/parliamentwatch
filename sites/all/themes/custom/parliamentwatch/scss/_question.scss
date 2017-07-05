@@ -43,6 +43,7 @@
     background: $brightGray;
   }
   .tile__links__item:first-child .tile__links__item__link { color: $darkGray; }
+  .tile__links__item:first-child:last-child .tile__links__item__link { color: $orange; }
   .question__answer__author__image {
     @include image-circle(35px, 35px);
     border-width: 2px;
@@ -88,5 +89,32 @@
   .pager { clear: both; }
   .pager__next a {
     color: $white;
+  }
+}
+.question.full {
+  padding-top: $space-large;
+  .question__meta {
+    @include grid-column(12);
+  }
+  .question__question {
+    @include grid-column(12);
+    padding-bottom: $space-large * 2;
+  }
+  .question__answer-wrapper {
+    @include container-small-extended($brightGray);
+    padding-top: $space-large;
+    padding-bottom: $space-large;
+    @include breakpoint($breakpoint-m-min) {
+      padding-top: $space-large * 2;
+      padding-bottom: $space-large * 2;
+    }
+  }
+  .question__answer {
+    @include grid-column(12);
+  }
+  .question__answer__author {
+    padding-bottom: $space;
+    margin-bottom: $space-large;
+    border-bottom: 1px solid $gray;
   }
 }
