@@ -330,6 +330,7 @@ function pw_globals_politician_search_form($form, &$form_state, $parliament_term
   ];
   $form['submit'] = [
     '#type' => 'submit',
+    '#post_render' => ['pw_globals_replace_text_with_icon'],
     '#value' => t('Search'),
   ];
   $form['parliament'] = [
@@ -338,6 +339,19 @@ function pw_globals_politician_search_form($form, &$form_state, $parliament_term
   ];
 
   return $form;
+}
+
+/**
+ * Post-render callback: injects icon into element.
+ *
+ * @param string $element
+ *   The rendered element.
+ *
+ * @return string
+ *   The modified element.
+ */
+function pw_globals_replace_text_with_icon($element) {
+  return str_replace(t('Search'), '<i class="icon icon-search"></i>', $element);
 }
 
 /**
