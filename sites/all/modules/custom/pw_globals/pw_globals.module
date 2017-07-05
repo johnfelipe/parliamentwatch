@@ -19,25 +19,30 @@ define('PW_GLOBALS_DEPUTY_RID', 140336230);
  * @return array
  */
 function pw_globals_menu() {
-  $items = array();
-  $items['admin/config/pw'] = array(
+  $items['admin/config/pw'] = [
     'title' => 'Parliamentwatch',
     'description' => 'Custom settings for Parliamentwatch.',
-    'access arguments' => array('administer site configuration'),
+    'access arguments' => ['administer site configuration'],
     'type' => MENU_NORMAL_ITEM,
-  );
-  $items['info'] = array(
+  ];
+  $items['info'] = [
     'title' => 'Info',
     'page callback' => 'pw_globals_info_page',
-    'access arguments' => array('access content'),
+    'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
-  );
-  $items['test'] = array(
+  ];
+  $items['test'] = [
     'title' => 'Test',
     'page callback' => 'pw_globals_test_page',
-    'access arguments' => array('administer site configuration'),
+    'access arguments' => ['administer site configuration'],
     'type' => MENU_CALLBACK,
-  );
+  ];
+  $items['solr-search/politician-index'] = [
+    'title' => 'Search results',
+    'page callback' => 'pw_globals_politician_search_page',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
   return $items;
 }
 
@@ -145,6 +150,47 @@ function pw_globals_info_page() {
     foreach ($link['below'] as $child) {
       $build[$node->nid][] = node_view(node_load(substr($child['link']['link_path'], 5)), 'tile');
     }
+  }
+
+  return $build;
+}
+
+/**
+ * Page callback: Displays results of politician search.
+ */
+function pw_globals_politician_search_page() {
+  $limit = 12;
+  $q = search_api_query('politician_index');
+  $q->condition('field_user_retired', NULL, '=');
+
+  if (isset(drupal_get_query_parameters()['parliament'])) {
+    $q->condition('field_user_parliament', drupal_get_query_parameters()['parliament']);
+  }
+
+  if (isset(drupal_get_query_parameters()['keys'])) {
+    $q->keys(drupal_get_query_parameters()['keys']);
+  }
+
+  $response = $q
+    ->sort('field_has_picture', 'DESC')
+    ->sort('field_user_lname', 'DESC')
+    ->sort('search_api_relevance')
+    ->range(pager_find_page() * $limit, $limit)
+    ->execute();
+
+  if ($response['result count'] > 0) {
+    pager_default_initialize($response['result count'], $limit);
+    $build = entity_view('user', user_load_multiple(array_keys($response['results'])), 'tile');
+    $build['user']['#theme_wrappers'] = ['container__tiles'];
+    $build['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
+    ];
+  }
+  else {
+    $build = [
+      '#markup' => t('Sorry, there are no results matching your query.'),
+    ];
   }
 
   return $build;
