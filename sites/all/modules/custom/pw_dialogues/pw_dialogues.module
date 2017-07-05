@@ -16,32 +16,29 @@ define('PW_DIALOGUES_INTERVAL', 86400); // one day buffer
  * Implements hook_menu().
  */
 function pw_dialogues_menu() {
-  $menu['admin/config/pw/dialogues/settings'] = array(
+  $items['admin/config/pw/dialogues/settings'] = [
     'title' => 'Dialogue importer',
     'description' => 'Configure the source URL for the dialogue importer.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('pw_dialogues_admin_settings_form'),
     'access arguments' => array('import dialogue_importer feeds'),
     'file' => 'pw_dialogues.admin.inc',
-  );
-
-  $menu['admin/config/pw/dialogues'] = array(
+  ];
+  $items['admin/config/pw/dialogues'] = [
     'title' => 'Dialogue importer',
     'description' => 'Mass re-import dialogues.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('pw_dialogues_admin_reimport'),
     'access arguments' => array('import dialogue_importer feeds'),
     'file' => 'pw_dialogues.admin.inc',
-  );
-
-  $menu['api/import/dialogue/%'] = array(
+  ];
+  $items['api/import/dialogue/%'] = [
     'title' => 'imports dialogue',
     'access arguments' => array('access content'),
     'page callback' => 'pw_dialogues_triggered_import',
     'type' => MENU_SUGGESTED_ITEM,
-  );
-
-  return $menu;
+  ];
+  return $items;
 }
 
 /**
