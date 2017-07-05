@@ -62,20 +62,6 @@ function pw_poll_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_poll';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_poll'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_pw_poll';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_pw_poll'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'diff_enable_revisions_page_node_poll';
   $strongarm->value = 1;
   $export['diff_enable_revisions_page_node_poll'] = $strongarm;
@@ -113,7 +99,7 @@ function pw_poll_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'colorbox' => array(
         'custom_settings' => FALSE,
@@ -140,6 +126,9 @@ function pw_poll_strongarm() {
         'custom_settings' => FALSE,
       ),
       'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
+      'timeline' => array(
         'custom_settings' => FALSE,
       ),
     ),
