@@ -31,6 +31,7 @@ function pw_globals_update_7001() {
     'pw_dialogues_view',
     'pw_menu',
     'pw_profileswitch',
+    'pw_slider',
     'pw_subsite',
     'quicktabs',
     'rdf',
@@ -617,6 +618,7 @@ function pw_globals_update_7020() {
   field_delete_field('field_user_first_letter_lname');
   field_delete_field('field_user_questions_get');
   node_type_delete('calendar_entry');
+  node_type_delete('pw_slider');
 }
 
 /**
