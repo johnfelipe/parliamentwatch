@@ -22,7 +22,7 @@
  */
 ?>
 <div class="filterbar">
-  <div class="container">
+  <div class="filterbar__inner">
     <div class="filterbar__pre_swiper">
       <div class="filterbar__item filterbar__item--label">
         <i class="icon icon-investigation"></i> Filter
@@ -62,6 +62,14 @@
         <?php endif; ?>
         <?php endfor; ?>
       </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <div class="filterbar__view_options">
+      <li class="filterbar__view_options__item filterbar__view_options__item--active">
+        <a href="#" class="filterbar__view_options__item__link"><i class="icon icon-th-list"></i></a>
+      </li>
     </div>
   </div>
 </div>

@@ -8,11 +8,7 @@
   background: $white;
   position: relative;
   z-index: 9;
-  .container {
-    margin-bottom: -1px;
-    position: relative;
-
-  }
+  @include container();
   &.is_stuck {
     @media (max-width: $breakpoint-m-max) {
       z-index: 999;
@@ -20,16 +16,21 @@
     }
   }
 }
+.filterbar__inner {
+  position: relative;
+  @include grid-container();
+}
 .filterbar__pre_swiper {
   position: relative;
   z-index: 9;
   float: left;
+  padding-left: $space;
   @include grid-container();
   &:before {
     content: '';
     background: #fff;
     position: absolute;
-    right: 100%;
+    right: 50%;
     top: 0;
     bottom: 1px;
     display: block;
@@ -60,6 +61,7 @@
     display: block;
     margin-right: 0;
     border-left: 1px solid $darkBeige;
+    @include transform(translate(0, 0));
     &:before {
       color: $gray;
       line-height: 57px;
@@ -71,7 +73,7 @@
   .swiper-button-disabled {
     display: none;
   }
-  &.swiper-container-horizontal .filterbar__item--dropdown:last-child {
+  &.swiper-container-horizontal .filterbar__item:last-child {
     border-right: 0;
   }
   .filterbar__item:last-child {
@@ -82,6 +84,7 @@
   width: 100%;
   height: 100%;
 
+  @include transform(translate3d(0,0,0));
   @include display(flex);
   @include transition-property(transform);
   @include box-sizing(content-box);
@@ -110,17 +113,25 @@
 }
 
 .filterbar__item--input {
-  padding: $space-xsmall $space-xsmall $space-xsmall 0;
+  padding: $space-xsmall $space-large $space-xsmall 0;
+  padding-right: $space-large + $space + $space-xsmall;
   position: relative;
   border-right: 1px solid $darkBeige;
   position: relative;
   z-index: 9;
   @include grid-container();
-  @include breakpoint($breakpoint-s-min) {
-    padding-right: $space-large + $space + $space-xsmall;
-  }
   .select2 {
-    min-width: 210px;
+    min-width: 80px;
+    @include breakpoint($breakpoint-s-min) {
+      min-width: 210px;
+    }
+  }
+  .select2-container--default .select2-selection--single {
+    border-color: $darkBeige;
+    border-right: 0;
+  }
+  .select2-container .select2-selection--single .select2-selection__arrow {
+    border-color: $darkBeige;
   }
   .form__item__control {
     display: none;
@@ -135,18 +146,15 @@
     right: $space-xsmall;
     top: $space-xsmall;
     bottom: $space-xsmall;
-    padding: 0;
-    width: $space-large;
     background: $white;
-    border-color: transparent;
     padding: $space-xsmall $space-xsmall-mobile;
     color: $mediumGray;
-    @include text-overflow();
-    @include breakpoint($breakpoint-s-min) {
-      position: absolute;
-      border-color: $darkBeige;
-      width: $space-large + $space;
-    }
+    text-indent: calc(100% + #{$space-xsmall-mobile});
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    border-color: $darkBeige;
+    width: $space-large + $space;
     &:hover {
       background: $beige;
     }
@@ -159,6 +167,13 @@
     padding: $space $space;
     display: block;
     color: $darkGray;
+    line-height: $space - 1;
+    @include breakpoint($breakpoint-m-min) {
+      line-height: $space;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      line-height: $space + 1;
+    }
     .icon {
       font-size: .7em;
       position: relative;
@@ -176,9 +191,35 @@
     background: $white;
     padding: $space;
     box-shadow: 0 6px 10px rgba(0,0,0,.1);
-    min-width: 200px;
+    min-width: 710px;
+    @include transform(translate(-50%, $space));
 
-    @include transform(translate(-50%, 0));
+    // Dropdown display
+
+    .form__item--checkboxes,
+    .form-radios {
+      @include grid-container();
+      @include grid-collapse($neat-grid-large-gutter);
+      .form__item {
+        border-bottom: 1px solid $brightGray;
+        position: relative;
+        @include grid-column(4, $neat-grid-large-gutter);
+        @include padding($space-xsmall-mobile 0 $space-xsmall-mobile $space);
+      }
+      .form__item__control,
+      .form-radio {
+        position: absolute;
+        left: 0;
+        top: $space-xsmall - 2;
+      }
+      .form__item__label {
+        @include text-overflow();
+      }
+    }
+
+    &.dropdown__list--open {
+      @include transform(translate(-50%, 0));
+    }
   }
 }
 
@@ -188,8 +229,7 @@
   white-space: nowrap;
   @include grid-container();
   .form__item--checkbox {
-    float: left;
-    white-space: nowrap;
+    display: inline-block;
     label {
       margin-right: $space;
       &:last-child {
@@ -209,7 +249,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  bottom: 0;
+  bottom: -1px;
   list-style: none;
   margin: 0;
   padding: 0;

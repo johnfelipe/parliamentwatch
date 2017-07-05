@@ -962,16 +962,18 @@ function pollTimeline() {
  * Filter Bar
  * */
 function filterBar() {
+    var filterBarSwiper = $(".filterbar__swiper");
+
     function filterBarSwiperSize() {
         var filterBarOffsetRight = $('.filterbar__view_options').outerWidth();
         var filterBarOffsetLeft = $('.filterbar__pre_swiper').outerWidth();
-        var containerPadding = parseInt($('.filterbar .container').css('padding-right'));
+        // var containerPadding = parseInt($('.filterbar .container').css('padding-right'));
         var filterBarOffsetRightValue = filterBarOffsetRight;
-        var filterBarOffsetLeftValue = filterBarOffsetLeft + containerPadding;
+        var filterBarOffsetLeftValue = filterBarOffsetLeft;
         windowWidth = window.innerWidth;
 
         if (windowWidth >= breakpointSMin) {
-            filterBarOffsetRightValue = filterBarOffsetRight + containerPadding;
+            filterBarOffsetRightValue = filterBarOffsetRight + 20;
         }
 
         // Set Styling
@@ -980,10 +982,7 @@ function filterBar() {
             .css('left', filterBarOffsetLeftValue + 'px');
     }
 
-    var filterBarSwiper = $(".filterbar__swiper");
-
-
-    $(".filterbar__item").matchHeight();
+    // $(".filterbar__item").matchHeight();
 
     var mySwiper = new Swiper('.filterbar__swiper', {
         freeMode: true,
@@ -1009,16 +1008,18 @@ function filterBar() {
 
     $(window).load(function() {
         var filterBarOffset = $('#header').outerHeight() - 2;
-        var filterBarOffsetAdmin = $('#header').outerHeight() + $('#admin-menu').outerHeight() - 2;
+        var filterBarOffsetAdmin = $('#header').outerHeight() + $('#admin-menu').outerHeight() - 8;
 
         // Init stickyKit
         if ($("body").hasClass("admin-menu")) {
             $(".filterbar").stick_in_parent({
-                offset_top: filterBarOffsetAdmin
+                offset_top: filterBarOffsetAdmin,
+                parent: '#content'
             });
         } else {
             $(".filterbar").stick_in_parent({
-                offset_top: filterBarOffset
+                offset_top: filterBarOffset,
+                parent: '#content'
             });
         }
     });

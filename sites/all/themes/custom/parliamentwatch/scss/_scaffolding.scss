@@ -32,6 +32,9 @@ img {
 .container {
   @include container();
 }
+.container-regular {
+  @include container-regular();
+}
 
 .row {
   @include grid-container;

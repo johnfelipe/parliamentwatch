@@ -27,6 +27,7 @@
   .deputy__image {
     @include margin(null auto $space);
     @include image-circle(130px, 130px);
+    @include transform(translate3d(0,0,0));
   }
   .deputy__title {
     text-align: center;
