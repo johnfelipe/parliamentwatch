@@ -355,9 +355,6 @@
       </div>
     </div>
 
-
-
-
     <div class="question-teaser-pre intro">
       <div class="intro__left">
         <h2><?php print t('Questions & answer') ?></h2>
