@@ -12,105 +12,6 @@ function pw_search_api_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['facetapi-6LIkVo9hGpY0QNENsoc1rFvBAY2vvl91'] = array(
-    'cache' => '-1',
-    'css_class' => '',
-    'custom' => '0',
-    'delta' => '6LIkVo9hGpY0QNENsoc1rFvBAY2vvl91',
-    'module' => 'facetapi',
-    'node_types' => array(),
-    'pages' => 'suche/*',
-    'roles' => array(),
-    'themes' => array(
-      'blank' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'blank',
-        'weight' => '0',
-      ),
-      'parliamentwatch' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'parliamentwatch',
-        'weight' => '22',
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => '0',
-      ),
-    ),
-    'title' => 'Wahlkreis',
-    'visibility' => '1',
-  );
-
-  $export['facetapi-JMJyfWVTjAJO2jr2Biylawo43Py0MS4c'] = array(
-    'cache' => '-1',
-    'css_class' => '',
-    'custom' => '0',
-    'delta' => 'JMJyfWVTjAJO2jr2Biylawo43Py0MS4c',
-    'module' => 'facetapi',
-    'node_types' => array(),
-    'pages' => 'suche/*',
-    'roles' => array(),
-    'themes' => array(
-      'blank' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'blank',
-        'weight' => '0',
-      ),
-      'parliamentwatch' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'parliamentwatch',
-        'weight' => '31',
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => '0',
-      ),
-    ),
-    'title' => 'Partei',
-    'visibility' => '1',
-  );
-
-  $export['facetapi-QHQ9XNFUW6pTfzSfjKuWjYVJkxgIt1Hi'] = array(
-    'cache' => '-1',
-    'css_class' => '',
-    'custom' => '0',
-    'delta' => 'QHQ9XNFUW6pTfzSfjKuWjYVJkxgIt1Hi',
-    'module' => 'facetapi',
-    'node_types' => array(),
-    'pages' => 'suche/*',
-    'roles' => array(),
-    'themes' => array(
-      'blank' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'blank',
-        'weight' => '0',
-      ),
-      'parliamentwatch' => array(
-        'region' => 'content',
-        'status' => '1',
-        'theme' => 'parliamentwatch',
-        'weight' => '4',
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => '0',
-      ),
-    ),
-    'title' => '<none>',
-    'visibility' => '1',
-  );
-
   $export['search-form'] = array(
     'cache' => -1,
     'css_class' => '',
@@ -164,7 +65,7 @@ function pw_search_api_default_fe_block_settings() {
         'region' => 'content',
         'status' => '1',
         'theme' => 'parliamentwatch',
-        'weight' => '3',
+        'weight' => '-53',
       ),
       'seven' => array(
         'region' => '',
@@ -175,72 +76,6 @@ function pw_search_api_default_fe_block_settings() {
     ),
     'title' => 'abgeordnetenwatch.de durchsuchen',
     'visibility' => '1',
-  );
-
-  $export['views-dd2cb179c08ae616789999b01178b193'] = array(
-    'cache' => '-1',
-    'css_class' => 'compact-form',
-    'custom' => '0',
-    'delta' => 'dd2cb179c08ae616789999b01178b193',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => 'suche/*',
-    'roles' => array(),
-    'themes' => array(
-      'blank' => array(
-        'region' => 'content',
-        'status' => '1',
-        'theme' => 'blank',
-        'weight' => '0',
-      ),
-      'parliamentwatch' => array(
-        'region' => 'content',
-        'status' => '1',
-        'theme' => 'parliamentwatch',
-        'weight' => '2',
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => '0',
-      ),
-    ),
-    'title' => '',
-    'visibility' => '1',
-  );
-
-  $export['views-politician_search_view-block'] = array(
-    'cache' => -1,
-    'css_class' => '',
-    'custom' => '0',
-    'delta' => 'politician_search_view-block',
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'blank' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'blank',
-        'weight' => '0',
-      ),
-      'parliamentwatch' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'parliamentwatch',
-        'weight' => '0',
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => '0',
-      ),
-    ),
-    'title' => '',
-    'visibility' => '0',
   );
 
   return $export;
