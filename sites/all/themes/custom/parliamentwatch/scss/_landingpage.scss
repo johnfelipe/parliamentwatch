@@ -6,10 +6,14 @@
   position: relative;
   background: $beige;
   border-bottom: 1px solid $darkBeige;
-  padding-top: $space;
-  padding-bottom: $space;
+  padding-top: $space-large;
+  padding-bottom: $space-large;
   @include container();
   @include grid-container();
+  @include breakpoint($breakpoint-s-min) {
+    padding-top: $space;
+    padding-bottom: $space;
+  }
 }
 .lp-header__left {
   position: relative;

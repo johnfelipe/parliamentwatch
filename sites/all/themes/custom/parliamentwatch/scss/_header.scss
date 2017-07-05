@@ -472,10 +472,10 @@
   top: 0;
   z-index: 9;
   background: $white;
-  @include padding($space-small);
+  @include padding($space-small $space);
   @include breakpoint($breakpoint-xs-min) {
     font-size: 1.4em;
-    @include padding($space $space-small);
+    @include padding($space);
   }
   @include breakpoint($breakpoint-m-min) {
     font-size: 24px;

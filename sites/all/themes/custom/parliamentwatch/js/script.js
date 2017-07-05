@@ -76,8 +76,14 @@ function mainNavigation() {
         prevButton: secondlevel.find('.swiper-button-prev'),
         onInit: function(swiper){
             var subnavOffset = $('.header__subnav__indicator').outerWidth();
+            var wrapperPadding = parseInt($('.header__bottom__inner').css('padding-left'), 10);
             var indicatorPadding = parseInt($('.header__subnav__indicator').css('padding-left'), 10);
-            var subnavOffsetValue = subnavOffset - indicatorPadding;
+
+            if(wrapperPadding > 0) {
+                var subnavOffsetValue = subnavOffset - indicatorPadding;
+            } else {
+                var subnavOffsetValue = subnavOffset;
+            }
 
             // Set Styling
             secondlevel.css('padding-left', subnavOffsetValue + 'px');
