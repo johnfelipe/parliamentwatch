@@ -347,9 +347,9 @@ function autosuggest() {
  * */
 
 function sponsorCounter() {
-    $("#mscount").load("http://abgeordnetenwatch.de/images/membership-count.txt");
+    $("#mscount").load("/images/membership-count.txt");
     setInterval(function() {
-        $.get("http://abgeordnetenwatch.de/images/membership-count.txt",
+        $.get("/images/membership-count.txt",
             function(count){
                 var old_count = document.getElementById('mscount').innerHTML;
                 if (old_count < count){
@@ -361,7 +361,7 @@ function sponsorCounter() {
                 }
             }
         );
-    }, 300);
+    }, 10000);
 }
 
 
@@ -1039,7 +1039,7 @@ $(function () {
     pollTimeline();
     newsletterWidget();
     autosuggest();
-    // sponsorCounter();
+    sponsorCounter();
 
     // Init global matchHeight-plugin class
 
