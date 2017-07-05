@@ -545,9 +545,13 @@ function parliamentwatch_container__tiles($variables) {
   $element = $variables['element'];
   // Ensure #attributes is set.
   $element += ['#attributes' => []];
-  $element['#attributes']['class'] = ['container'];
+  $element['#attributes']['class'][] = 'tile-wrapper';
 
-  return '<div class="tile-wrapper">' . $element['#children'] . '</div>';
+  if (isset($element['#modifier'])) {
+    $element['#attributes']['class'][] = drupal_html_class('tile-wrapper--' . $element['#modifier']);
+  }
+
+  return '<div ' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</div>';
 }
 
 /**
