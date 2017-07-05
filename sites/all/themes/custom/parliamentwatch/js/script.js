@@ -76,7 +76,8 @@ function mainNavigation() {
         prevButton: secondlevel.find('.swiper-button-prev'),
         onInit: function(swiper){
             var subnavOffset = $('.header__subnav__indicator').outerWidth();
-            var subnavOffsetValue = subnavOffset;
+            var indicatorPadding = parseInt($('.header__subnav__indicator').css('padding-left'), 10);
+            var subnavOffsetValue = subnavOffset - indicatorPadding;
 
             // Set Styling
             secondlevel.css('padding-left', subnavOffsetValue + 'px');
@@ -363,8 +364,6 @@ function sponsorCounter() {
         );
     }, 10000);
 }
-
-
 
 
 /*
