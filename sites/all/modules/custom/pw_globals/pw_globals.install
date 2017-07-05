@@ -283,9 +283,86 @@ function pw_globals_update_7009() {
 }
 
 /**
- * Configure poll blocks.
+ * Configure parliament blocks.
  */
 function pw_globals_update_7010() {
+  $weight = 9;
+  $pw_globals_search = [
+    'module' => 'pw_globals',
+    'delta' => 'politician_search_form',
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'taxonomy/term/*',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  _pw_globals_configure_block($pw_globals_search);
+
+  $block = block_custom_block_get(164);
+  $edit['info'] = t('Campaign');
+  $edit['body']['format'] = $block['format'];
+  $edit['body']['value'] = <<<EOD
+<div class="donate-teaser">
+  <p>Unseren <span id="mscount"><?php print variable_get('pw_globals_supporters', 0); ?></span> Förderern stehen 6.000 Lobbyisten in Berlin gegenüber. <br> Mit Ihrer Hilfe wollen wir geheimen Lobbyismus stoppen – sind Sie dabei?</p>
+  <a href="/ueber-uns/spendenformular?recurring=1&pk_campaign=4000Foerderer&pk_kwd=Header" class="btn">Jetzt fördern</a>
+</div>
+EOD;
+  block_block_save(164, $edit);
+  $config = [
+    'module' => 'block',
+    'delta' => 164,
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => "taxonomy/term/*",
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  _pw_globals_configure_block($config);
+
+
+  $pw_blog_recent = [
+    'module' => 'pw_blog',
+    'delta' => 'recent_blogposts',
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'bundestag',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  _pw_globals_configure_block($pw_blog_recent);
+
+  $pw_poll_recent = [
+    'module' => 'pw_poll',
+    'delta' => 'recent',
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'taxonomy/term/*',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  _pw_globals_configure_block($pw_poll_recent);
+
+  $pw_dialogues_recent = [
+    'module' => 'pw_dialogues',
+    'delta' => 'recent',
+    'weight' => ++$weight,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'taxonomy/term/*',
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  _pw_globals_configure_block($pw_dialogues_recent);
+}
+
+/**
+ * Configure poll blocks.
+ */
+function pw_globals_update_7011() {
   $weight = -20;
 
   $pw_poll_intro = [
@@ -344,7 +421,7 @@ function pw_globals_update_7010() {
 /**
  * Configure block for switching legislative terms.
  */
-function pw_globals_update_7011() {
+function pw_globals_update_7012() {
   $block = [
     'module' => 'pw_globals',
     'delta' => 'term_switcher',
@@ -362,7 +439,7 @@ function pw_globals_update_7011() {
 /**
  * Delete obsolete custom blocks.
  */
-function pw_globals_update_7012() {
+function pw_globals_update_7013() {
   $q = db_select('block', 'b')
     ->fields('b', ['delta'])
     ->condition('module', 'block')
@@ -394,7 +471,7 @@ function pw_globals_update_7012() {
 /**
  * Update aliases.
  */
-function pw_globals_update_7013() {
+function pw_globals_update_7014() {
   $updates = [
     'petitionen' => 'petitions',
     'eu/profile/kandidierende' => 'profiles/16117/candidates',
@@ -434,7 +511,7 @@ function pw_globals_update_7013() {
 /**
  * Set variable parliamentwatch_state_parliament_tids.
  */
-function pw_globals_update_7014() {
+function pw_globals_update_7015() {
   variable_set('parliamentwatch_state_parliament_tids', [
     21316,
     16285,
@@ -458,7 +535,7 @@ function pw_globals_update_7014() {
 /**
  * Add links to main menu.
  */
-function pw_globals_update_7015() {
+function pw_globals_update_7016() {
   menu_delete_links('main-menu');
 
   $state_parliament_terms = taxonomy_term_load_multiple(variable_get('parliamentwatch_state_parliament_tids', []));
@@ -476,7 +553,7 @@ function pw_globals_update_7015() {
 /**
  * Add info menu.
  */
-function pw_globals_update_7016() {
+function pw_globals_update_7017() {
   menu_save(['menu_name' => 'info-menu', 'title' => 'Info-Menü', 'description' => 'Das <em>Info-Menü</em> stellt die Navigationspunkte für den "Über Uns"-Bereich']);
 
   $weight = 0;
@@ -503,7 +580,7 @@ function pw_globals_update_7016() {
 /**
  * Delete obsolete menus.
  */
-function pw_globals_update_7017() {
+function pw_globals_update_7018() {
   menu_delete(menu_load('devel'));
   menu_delete(menu_load('features'));
   menu_delete(menu_load('menu-main-menu-de'));
@@ -516,14 +593,14 @@ function pw_globals_update_7017() {
 /**
  * Delete obsolete redirects.
  */
-function pw_globals_update_7018() {
+function pw_globals_update_7019() {
   redirect_delete(32872);
 }
 
 /**
  * Delete obsolete fields.
  */
-function pw_globals_update_7019() {
+function pw_globals_update_7020() {
   field_delete_field('drulenium_num_command_errors');
   field_delete_field('drulenium_num_command_failures');
   field_delete_field('drulenium_num_command_passes');
@@ -545,7 +622,7 @@ function pw_globals_update_7019() {
 /**
  * Delete obsolete field groups.
  */
-function pw_globals_update_7020() {
+function pw_globals_update_7021() {
   field_group_group_export_delete(field_group_load_field_group('group_user_roles_current', 'user', 'user', 'user_deputy'));
   field_group_group_export_delete(field_group_load_field_group('group_user_basics_data', 'user', 'user', 'user_deputy'));
 }
@@ -553,7 +630,7 @@ function pw_globals_update_7020() {
 /**
  * Fix order of filters in text format "Managed Content".
  */
-function pw_globals_update_7021() {
+function pw_globals_update_7022() {
   $format = filter_format_load('managed_content');
   foreach (filter_list_format('managed_content') as $key => $filter) {
     $format->filters[$key] = (array) $filter;
@@ -565,7 +642,7 @@ function pw_globals_update_7021() {
 /**
  * Change node content for "Die Arbeit von abgeordnetenwatch.de unterstützen!".
  */
-function pw_globals_update_7022() {
+function pw_globals_update_7023() {
   $node = node_load(104846);
 
   $node->body[LANGUAGE_NONE][0]['value'] = <<<EOD
