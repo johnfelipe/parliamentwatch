@@ -132,6 +132,14 @@ function parliamentwatch_preprocess_block(&$variables) {
       $variables['classes_array'][] = 'tabs__content--active';
     }
   }
+
+  if ($variables['block']->module == 'pw_globals' && $variables['block']->delta == 'politician_search_form') {
+    $parliament_term = menu_get_object('taxonomy_term', 2);
+
+    if ($parliament_term) {
+      $variables['classes_array'][] = drupal_html_class('lp-header--' . $parliament_term->name);
+    }
+  }
 }
 
 /**

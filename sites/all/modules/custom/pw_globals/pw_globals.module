@@ -91,6 +91,15 @@ function pw_globals_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pw_globals_form_pw_globals_politician_search_form_alter(&$form, &$form_state) {
+  $form['form_build_id']['#access'] = FALSE;
+  $form['form_token']['#access'] = FALSE;
+  $form['form_id']['#access'] = FALSE;
+}
+
+/**
  * Implements hook_block_info().
  */
 function pw_globals_block_info() {
@@ -106,6 +115,10 @@ function pw_globals_block_info() {
     'info' => 'Legislative term switcher',
     'cache' => DRUPAL_CACHE_NO_CACHE,
   ];
+  $blocks['politician_search_form'] = [
+    'info' => 'Politician search form',
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -120,6 +133,8 @@ function pw_globals_block_view($delta = '') {
       return pw_globals_title_block();
     case 'term_switcher':
       return pw_globals_term_switcher_block();
+    case 'politician_search_form':
+      return pw_globals_politician_search_form_block();
     default:
       return [];
   }
@@ -268,6 +283,48 @@ function pw_globals_term_switcher_block() {
   }
 
   return $block;
+}
+
+/**
+ * Provides politician search for landing pages.
+ */
+function pw_globals_politician_search_form_block() {
+  $block = [];
+  $term = menu_get_object('taxonomy_term', 2);
+
+  if (!$term) {
+    return $block;
+  }
+
+  $block['subject'] = t('Find your <span>deputy</span>');
+  $block['content'] = drupal_get_form('pw_globals_politician_search_form', $term);
+
+  return $block;
+}
+
+/**
+ * Form constructor for the politician search form.
+ */
+function pw_globals_politician_search_form($form, &$form_state, $parliament_term) {
+  $form['#method'] = 'get';
+  $form['#action'] = 'solr-search/politician-index';
+
+  $form['keys'] = [
+    '#type' => 'textfield',
+    '#title' =>  t('Keywords'),
+    '#title_display' => 'invisible',
+    '#attributes' => ['placeholder' => t('Enter a postal code, locality or name')]
+  ];
+  $form['submit'] = [
+    '#type' => 'submit',
+    '#value' => t('Search'),
+  ];
+  $form['parliament'] = [
+    '#type' => 'hidden',
+    '#value' => $parliament_term->tid,
+  ];
+
+  return $form;
 }
 
 /**
