@@ -140,6 +140,11 @@ function parliamentwatch_preprocess_block(&$variables) {
       $variables['classes_array'][] = drupal_html_class('lp-header--' . $parliament_term->name);
     }
   }
+
+  if ($variables['block']->module == 'pw_dialogues' && $variables['block']->delta == 'profile') {
+    $account = menu_get_object('user');
+    $variables['user_dialogues_url'] = url('dialogues/' . pw_profiles_parliament($account)->tid . '/' . $account->uid);
+  }
 }
 
 /**
