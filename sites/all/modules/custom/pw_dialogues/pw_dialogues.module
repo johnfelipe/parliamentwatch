@@ -15,6 +15,21 @@ define('PW_DIALOGUES_INTERVAL', 86400); // one day buffer
  * Implements hook_menu().
  */
 function pw_dialogues_menu() {
+  $items['dialogues/%taxonomy_term'] = [
+    'title callback' => 'pw_dialogues_page_title',
+    'title arguments' => [1],
+    'page callback' => 'pw_dialogues_page',
+    'page arguments' => [1],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  $items['dialogues/%taxonomy_term/%'] = [
+    'title callback' => 'pw_dialogues_page_title',
+    'title arguments' => [1, 2],
+    'page arguments' => [1, 2],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
   $items['admin/config/pw/dialogues/settings'] = [
     'title' => 'Dialogue importer',
     'description' => 'Configure the source URL for the dialogue importer.',
@@ -218,6 +233,62 @@ function pw_dialogues_theme() {
       'template' => 'dialogues-stats',
     ],
   ];
+}
+
+/**
+ * Title callback: Sets the title for the dialogues page.
+ */
+function pw_dialogues_page_title($parliament_term, $uid = NULL) {
+  if (!isset($uid)) {
+    return t('Questions to deputies in @parliament', ['@parliament' => $parliament_term->name]);
+  }
+  else {
+    return t('Questions to @name', ['@name' => _pw_get_fullname(user_load($uid))]);
+  }
+}
+
+/**
+ * Page callback: Displays questions and answers for the given parliament.
+ */
+function pw_dialogues_page($parliament_term, $uid = NULL) {
+  $limit = 12;
+  $q = search_api_query('node_index');
+  $q->condition('type', 'dialogue');
+  $q->condition('field_parliament:name', $parliament_term->name);
+
+  if (isset($uid)) {
+    $q->condition('field_dialogue_recipient', $uid);
+  }
+
+  if (isset(drupal_get_query_parameters()['keywords'])) {
+    $f = $q->createFilter('OR');
+    $f->condition('body:value', drupal_get_query_parameters()['keywords']);
+    $f->condition('comments:field_dialogue_comment_body:value', drupal_get_query_parameters()['keywords']);
+    $q->filter($f);
+  }
+
+  $response = $q
+    ->sort('created', 'DESC')
+    ->range(pager_find_page() * $limit, $limit)
+    ->execute();
+
+  if ($response['result count'] > 0) {
+    pager_default_initialize($response['result count'], $limit);
+    $build = node_view_multiple(node_load_multiple(array_keys($response['results'])), 'tile');
+    $build['nodes']['#theme_wrappers'] = ['container__tiles'];
+    $build['nodes']['#modifier'] = 'qa';
+    $build['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
+    ];
+  }
+  else {
+    $build = [
+      '#markup' => t('Sorry, there are no results matching your query.'),
+    ];
+  }
+
+  return $build;
 }
 
 /**
