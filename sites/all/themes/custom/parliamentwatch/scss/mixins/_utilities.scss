@@ -54,6 +54,11 @@
   @include margin(null auto);
   @include padding(null $space);
 }
+@mixin container-regular-padded() {
+  max-width: 1360px;
+  @include margin(null auto);
+  @include padding(null ($space * 2));
+}
 @mixin container-small() {
   @include container();
   padding-left: calc(50% - 530px);

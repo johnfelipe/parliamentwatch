@@ -35,6 +35,9 @@ img {
 .container-regular {
   @include container-regular();
 }
+.container-regular-padded {
+  @include container-regular-padded();
+}
 
 .row {
   @include grid-container;

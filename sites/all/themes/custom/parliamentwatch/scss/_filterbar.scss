@@ -158,6 +158,15 @@
     &:hover {
       background: $beige;
     }
+    &:after {
+      content: '\e901';
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-indent: 0;
+
+      font-family: 'awfont';
+    }
   }
 }
 .filterbar__item--dropdown {
