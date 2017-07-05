@@ -309,7 +309,15 @@ function pw_globals_politician_search_form_block() {
     return $block;
   }
 
-  $block['subject'] = t('Find your <span>deputy</span>');
+  $today = new DateTime();
+  $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
+
+  if ($today > $election_date) {
+    $block['subject'] = t('Find your <span>@role</span>', ['@role' => t('Deputy')]);
+  }
+  else {
+    $block['subject'] = t('Find your <span>@role</span>', ['@role' => t('Candidate')]);
+  }
   $block['content'] = drupal_get_form('pw_globals_politician_search_form', $term);
 
   return $block;
