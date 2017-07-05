@@ -674,6 +674,13 @@ EOD;
 }
 
 /**
+ * Set frontpage.
+ */
+function pw_globals_update_7024() {
+  variable_set('site_frontpage', drupal_lookup_path('source', 'bundestag'));
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
