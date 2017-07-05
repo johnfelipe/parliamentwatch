@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
     drupal.vm.network "private_network", ip: "192.168.93.216"
 
     drupal.vm.provider "virtualbox" do |vb, override|
-      vb.cpus = 1
+      vb.cpus = 2
       vb.linked_clone = true
       vb.memory = 2048
       override.vm.synced_folder ".", "/vagrant",
@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
     solr.vm.provider "virtualbox" do |vb, override|
       vb.cpus = 1
       vb.linked_clone = true
-      vb.memory = 1024
+      vb.memory = 512
     end
 
     solr.vm.provision "shell", inline: <<-SHELL
