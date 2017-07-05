@@ -256,6 +256,10 @@ function tabs() {
         });
 
     }
+
+    $('.tabs__content__content .pager__next a').each(function () {
+        this.hash = $(this).parents('.tabs__content').attr('id');
+    });
 }
 
 
