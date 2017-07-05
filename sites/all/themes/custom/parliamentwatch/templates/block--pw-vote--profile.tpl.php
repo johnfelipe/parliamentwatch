@@ -45,25 +45,23 @@
  */
 ?>
 <section id="<?php print $block_html_id; ?>" class="<?php print $classes; ?>">
-  <div class="container">
-    <div class="tabs__content__title">
-      <h2><a href="#<?php print $block_html_id; ?>"><?php print $block->subject; ?></a></h2>
-      <?php print render($title_suffix) ?>
-    </div>
-    <div class="tabs__content__content">
-      <div class="abstimmverhalten-stats">
-        <div class="tile">
-          <div class="d3-label-wrapper">
-            <div class="d3 d3--donut"
-                data-d3-donut-labels
-                data-data="parseVotes">
-            </div>
+  <div class="tabs__content__title">
+    <h2><a href="#<?php print $block_html_id; ?>"><?php print $block->subject; ?></a></h2>
+    <?php print render($title_suffix) ?>
+  </div>
+  <div class="tabs__content__content">
+    <div class="abstimmverhalten-stats">
+      <div class="tile">
+        <div class="d3-label-wrapper">
+          <div class="d3 d3--donut"
+              data-d3-donut-labels
+              data-data="parseVotes">
           </div>
         </div>
       </div>
-      <div class="abstimmverhalten-overview">
-        <?php print $content; ?>
-      </div>
+    </div>
+    <div class="abstimmverhalten-overview">
+      <?php print $content; ?>
     </div>
   </div>
 </section>

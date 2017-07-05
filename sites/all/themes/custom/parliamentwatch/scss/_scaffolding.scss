@@ -32,6 +32,9 @@ img {
 .container {
   @include container();
 }
+.container-small {
+  @include container-small();
+}
 .container-regular {
   @include container-regular();
 }

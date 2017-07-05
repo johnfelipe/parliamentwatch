@@ -5,7 +5,6 @@
 #content {
   min-height: 400px;
   background: $white;
-  padding-bottom: $space-large;
 }
 .docready #content {
   @include transition(margin-top 300ms ease);
@@ -14,4 +13,7 @@
   padding: 0;
   @include container-regular();
   padding-bottom: $space-large;
+  &:last-child {
+    padding-bottom: $space-large * 2;
+  }
 }

@@ -64,7 +64,11 @@
   padding-left: calc(50% - 530px);
   padding-right: calc(50% - 530px);
 }
-
+@mixin container-small-extended($background-color) {
+  @include container-small();
+  background-clip: padding-box;
+  background-color: $background-color;
+}
 
 /* Icon-List */
 @mixin icon-list() {

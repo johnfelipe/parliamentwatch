@@ -1025,6 +1025,14 @@ function filterBar() {
     });
 }
 
+/*
+ * Footer
+ * */
+
+function footer() {
+    $('.footer__maincol__col').matchHeight();
+}
+
 
 $(function () {
 
@@ -1045,6 +1053,7 @@ $(function () {
     newsletterWidget();
     autosuggest();
     sponsorCounter();
+    footer();
 
     // Init global matchHeight-plugin class
 

@@ -446,7 +446,7 @@ $abstimmverhalten-node-item-width: 18px;
     }
   }
   @include breakpoint($breakpoint-m-min) {
-    @include grid-column(8, $neat-grid-rtl-no-gutter);
+    @include grid-column(8, $neat-grid-rtl);
   }
 }
 
@@ -551,7 +551,7 @@ $abstimmverhalten-node-item-width: 18px;
   @include grid-container();
   @include breakpoint($breakpoint-m-min) {
     margin-bottom: 0;
-    @include grid-column(4, $neat-grid-rtl-no-gutter);
+    @include grid-column(4, $neat-grid-rtl);
     padding-left: $space-large * 2;
   }
   .d3--donut {
