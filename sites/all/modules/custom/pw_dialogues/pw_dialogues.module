@@ -81,88 +81,6 @@ function pw_dialogues_block_view($delta) {
 }
 
 /**
- * Implements hook_node_view().
- */
-function pw_dialogues_node_view($node, $view_mode) {
-  if ($node->type != 'dialogue') {
-    return;
-  }
-
-  if ($cids = comment_get_thread($node, COMMENT_MODE_FLAT, 1)) {
-    $comments = comment_load_multiple($cids);
-    $node->content['answer'] = comment_view_multiple($comments, $node, $view_mode);
-  }
-}
-
-/**
- * Menu callback; imports questions.
- */
-function pw_dialogues_triggered_import() {
-  drupal_add_http_header('Content-type', 'text/plain; charset=utf8');
-  $debug_message = array();
-  $debug_message['request_uri'] = request_uri();
-  $return_value = 'FAILED';
-  if (is_numeric(arg(3))) {
-
-    // prepare for import
-    $dialogue_id = arg(3);
-    $source = variable_get('pw_dialogues_importer_source');
-    $source .= $dialogue_id;
-    $source .= '?unreleased=1';
-    $debug_message['source'] = $source;
-
-    // retrieve what to do (delete, create, ...)
-    $doc = new DOMDocument();
-    $doc->preserveWhiteSpace = false;
-    $doc->load($source);
-    $xpath = new DOMXpath($doc);
-    $xlist_status = $xpath->query("//message[type='question']/status");
-    $xnode_status = $xlist_status->item(0)->nodeValue;
-
-    // do import
-    pw_dialogues_do_import_questions($source);
-
-    // check if dialogue was imported
-    $efq_nodes = new EntityFieldQuery();
-    $efq_nodes->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'dialogue')
-      ->fieldCondition('field_dialogue_id', 'value', $dialogue_id);
-    $result = $efq_nodes->execute();
-    $debug_message['result'] = $result;
-
-    // dialogue found
-    if (isset($result['node'])) {
-      $dialogue_nid = key($result['node']);
-      $node = node_load($dialogue_nid);
-      $recipient_id = $node->field_dialogue_recipient['und'][0]['target_id'];
-
-      // delete answers and re-import them
-      /* $sql = "SELECT cid FROM {comment} WHERE nid=:nid";
-      $cids_to_delete = db_query($sql, array(':nid' => $dialogue_nid))->fetchCol();
-      $debug_message['cids_to_delete'] = $cids_to_delete;
-      comment_delete_multiple($cids_to_delete);*/
-      pw_dialogues_do_import_answers($source);
-
-      // set return_value to OK
-      if (is_numeric($recipient_id) && ($user = user_load($recipient_id)) || $node->status != 1) {
-        $return_value = 'OK';
-        if (function_exists('pw_userarchives_cron')) {
-          pw_userarchives_cron($recipient_id);
-        }
-      }
-    }
-
-    // node deleted
-    elseif($xnode_status != 1 && !isset($result['node'])){
-      $return_value = 'OK';
-    }
-  }
-
-  _pw_send_debug_mail('Import ' . $return_value . ': ' . request_uri(), $debug_message);
-  print $return_value;
-}
-
-/**
  * Implements hook_cron().
  *
  * Imports all dialogues once at night. Normally all dialogues should be
@@ -213,6 +131,20 @@ function pw_dialogues_cron() {
         variable_set('pw_dialogues_importer_last_import', REQUEST_TIME);
       }
     }
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function pw_dialogues_node_view($node, $view_mode) {
+  if ($node->type != 'dialogue') {
+    return;
+  }
+
+  if ($cids = comment_get_thread($node, COMMENT_MODE_FLAT, 1)) {
+    $comments = comment_load_multiple($cids);
+    $node->content['answer'] = comment_view_multiple($comments, $node, $view_mode);
   }
 }
 
@@ -288,6 +220,74 @@ function pw_dialogues_theme() {
       'template' => 'dialogues-stats',
     ],
   ];
+}
+
+/**
+ * Page callback: Imports questions.
+ */
+function pw_dialogues_triggered_import() {
+  drupal_add_http_header('Content-type', 'text/plain; charset=utf8');
+  $debug_message = array();
+  $debug_message['request_uri'] = request_uri();
+  $return_value = 'FAILED';
+  if (is_numeric(arg(3))) {
+
+    // prepare for import
+    $dialogue_id = arg(3);
+    $source = variable_get('pw_dialogues_importer_source');
+    $source .= $dialogue_id;
+    $source .= '?unreleased=1';
+    $debug_message['source'] = $source;
+
+    // retrieve what to do (delete, create, ...)
+    $doc = new DOMDocument();
+    $doc->preserveWhiteSpace = false;
+    $doc->load($source);
+    $xpath = new DOMXpath($doc);
+    $xlist_status = $xpath->query("//message[type='question']/status");
+    $xnode_status = $xlist_status->item(0)->nodeValue;
+
+    // do import
+    pw_dialogues_do_import_questions($source);
+
+    // check if dialogue was imported
+    $efq_nodes = new EntityFieldQuery();
+    $efq_nodes->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'dialogue')
+      ->fieldCondition('field_dialogue_id', 'value', $dialogue_id);
+    $result = $efq_nodes->execute();
+    $debug_message['result'] = $result;
+
+    // dialogue found
+    if (isset($result['node'])) {
+      $dialogue_nid = key($result['node']);
+      $node = node_load($dialogue_nid);
+      $recipient_id = $node->field_dialogue_recipient['und'][0]['target_id'];
+
+      // delete answers and re-import them
+      /* $sql = "SELECT cid FROM {comment} WHERE nid=:nid";
+      $cids_to_delete = db_query($sql, array(':nid' => $dialogue_nid))->fetchCol();
+      $debug_message['cids_to_delete'] = $cids_to_delete;
+      comment_delete_multiple($cids_to_delete);*/
+      pw_dialogues_do_import_answers($source);
+
+      // set return_value to OK
+      if (is_numeric($recipient_id) && ($user = user_load($recipient_id)) || $node->status != 1) {
+        $return_value = 'OK';
+        if (function_exists('pw_userarchives_cron')) {
+          pw_userarchives_cron($recipient_id);
+        }
+      }
+    }
+
+    // node deleted
+    elseif($xnode_status != 1 && !isset($result['node'])){
+      $return_value = 'OK';
+    }
+  }
+
+  _pw_send_debug_mail('Import ' . $return_value . ': ' . request_uri(), $debug_message);
+  print $return_value;
 }
 
 /**
