@@ -537,3 +537,4 @@ $conf['pw_search_api_solr_options'] = [
   'http_pass' => '',
 ];
 $conf['schema_suppress_type_warnings'] = TRUE;
+$conf['views_ui_show_advanced_help_warning'] = FALSE;
