@@ -113,7 +113,7 @@ function pw_globals_block_info() {
   ];
   $blocks['term_switcher'] = [
     'info' => 'Legislative term switcher',
-    'cache' => DRUPAL_CACHE_NO_CACHE,
+    'cache' => DRUPAL_NO_CACHE,
   ];
   $blocks['politician_search_form'] = [
     'info' => 'Politician search form',
