@@ -290,7 +290,7 @@ function pw_profiles_page($parliament_term, $role_name) {
     'date' => date('Y-m-d'),
   ] + drupal_get_query_parameters();
 
-  $users = pw_profiles_user_load_multiple($filters, 8);
+  $users = pw_profiles_user_load_multiple($filters, 12);
 
   if (empty($users)) {
     $build = [

@@ -63,7 +63,7 @@ function pw_petitions_page($parliament_term = NULL) {
     $q->fieldCondition('field_parliament', 'tid', $parliament_term->tid);
   }
 
-  $result = $q->pager(9)->execute();
+  $result = $q->pager(12)->execute();
 
   if (!empty($result['node'])) {
     $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
