@@ -93,11 +93,6 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{REMOTE_ADDR} !=89.238.74.203
   RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [L,R=301]
 
-  # CUSTOM: redirect frontpage
-  RewriteCond %{HTTP_HOST} .*\.abgeordnetenwatch.de
-  RewriteCond %{QUERY_STRING} ^$
-  RewriteRule ^/$|^$ http://www.abgeordnetenwatch.de [L,R=301]
-
   # Set "protossl" to "s" if we were accessed via https://.  This is used later
   # if you enable "www." stripping or enforcement, in order to ensure that
   # you don't bounce between http and https.
