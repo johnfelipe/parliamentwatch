@@ -260,6 +260,9 @@ figcaption {
       @include grid-column(7);
       padding-bottom: 0;
     }
+    h1 {
+      @include text-overflow-multi();
+    }
     h1:only-child {
       margin-bottom: 0;
     }

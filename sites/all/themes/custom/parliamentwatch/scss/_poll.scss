@@ -458,7 +458,12 @@
   }
   .poll__timeline__item__poll__title {
     padding-bottom: $space-small;
+    padding-left: 0;
     margin-bottom: $space-small;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: none;
+    text-align: center;
     &:after {
       content: '';
       bottom: 0;
