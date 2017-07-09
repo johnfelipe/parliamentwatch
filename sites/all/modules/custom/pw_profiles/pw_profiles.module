@@ -556,7 +556,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
     if (in_array(ord($last_name_initial), $alphabet)) {
       $last_name_options[$last_name_initial] = $last_name_initial;
     }
-    if($row->field_user_gender_value !== NULL){
+    if ($row->field_user_gender_value !== NULL) {
       $gender_options[$row->field_user_gender_value] = t($row->field_user_gender_value);
     }
   }
