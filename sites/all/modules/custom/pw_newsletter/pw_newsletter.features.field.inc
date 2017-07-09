@@ -77,6 +77,26 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'type' => 'text_default',
           'weight' => '3',
         ),
+        'search_result' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '3',
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -236,8 +256,26 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'destination' => '',
               'linked' => 0,
             ),
-            'taxonomy_term_link' => 1,
-            'taxonomy_term_separator' => ', ',
+          ),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '3',
+        ),
+        'search_result' => array(
+          'label' => 'inline',
+          'module' => 'taxonomy',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
           ),
           'type' => 'taxonomy_term_reference_link',
           'weight' => '3',
@@ -313,6 +351,27 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'description' => '',
       'display' => array(
         'default' => array(
+          'label' => 'hidden',
+          'module' => 'paragraphs',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'view_mode' => 'full',
+          ),
+          'type' => 'paragraphs_view',
+          'weight' => '4',
+        ),
+        'search_result' => array(
           'label' => 'hidden',
           'module' => 'paragraphs',
           'settings' => array(
@@ -431,6 +490,26 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'description' => 'Bitte keine Leer-, Sonderzeichen oder Umlaute verwenden.',
       'display' => array(
         'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'search_result' => array(
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
@@ -581,10 +660,27 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'label' => 'inline',
           'module' => 'entityreference',
           'settings' => array(
-            'colorbox_node_classes' => '',
-            'colorbox_node_height' => '600',
-            'colorbox_node_link' => FALSE,
-            'colorbox_node_width' => '600',
+            'field_delimiter' => '',
+            'link' => 1,
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '4',
+        ),
+        'search_result' => array(
+          'label' => 'inline',
+          'module' => 'entityreference',
+          'settings' => array(
             'field_delimiter' => '',
             'link' => 1,
             'linked_field' => array(
@@ -698,6 +794,12 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'type' => 'hidden',
           'weight' => '34',
         ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '34',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -764,6 +866,12 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'description' => 'Dieses Bild wird nur für die Darstellung auf der Webseite benutzt.',
       'display' => array(
         'default' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '33',
+        ),
+        'search_result' => array(
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',

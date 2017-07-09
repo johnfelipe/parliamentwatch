@@ -230,9 +230,6 @@ function pw_newsletter_views_default_views() {
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'h3';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['title']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['title']['node_in_colorbox_rel'] = '';
   /* Feld: Inhalt: Teaser image */
   $handler->display->display_options['fields']['field_teaser_image']['id'] = 'field_teaser_image';
   $handler->display->display_options['fields']['field_teaser_image']['table'] = 'field_data_field_teaser_image';
@@ -288,9 +285,6 @@ function pw_newsletter_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_wrapper_class'] = 'read-more';
   $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'weiterlesen';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_width'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_height'] = '600';
-  $handler->display->display_options['fields']['view_node']['node_in_colorbox_rel'] = '';
   /* Feld: Global: Feldgruppe */
   $handler->display->display_options['fields']['fieldset']['id'] = 'fieldset';
   $handler->display->display_options['fields']['fieldset']['table'] = 'views';

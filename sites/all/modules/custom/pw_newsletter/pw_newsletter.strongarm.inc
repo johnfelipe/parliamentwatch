@@ -128,6 +128,21 @@ function pw_newsletter_strongarm() {
       'pw_newsletter' => array(
         'custom_settings' => FALSE,
       ),
+      'tile' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
+      'timeline' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -157,6 +172,10 @@ function pw_newsletter_strongarm() {
             'visible' => FALSE,
           ),
           'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'search_result' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
