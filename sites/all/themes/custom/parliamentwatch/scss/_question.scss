@@ -39,7 +39,7 @@
   }
   .question__links {
     margin-top: 0;
-    padding-top: 0;
+    padding-top: $space;
     background: $brightGray;
   }
   .tile__links__item:first-child .tile__links__item__link { color: $darkGray; }
@@ -56,6 +56,14 @@
 .question-teaser-pre {
   border-top: 1px solid $darkBeige;
   @include container();
+  background: $orangeBG;
+  border-top: 1px solid $white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  color: $white;
+  h2 {
+    font-family: $font-sans-serif;
+    color: $white;
+  }
   .intro__right {
     text-align: right;
   }
@@ -83,7 +91,10 @@
     &:before {
       position: absolute;
       bottom: 0;
+      left: $space;
+      right: $space;
       margin: 0;
+      width: auto;
     }
   }
   .pager { clear: both; }
