@@ -131,7 +131,7 @@ function pw_dialogues_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'print' => array(
         'custom_settings' => TRUE,
@@ -158,6 +158,9 @@ function pw_dialogues_strongarm() {
         'custom_settings' => FALSE,
       ),
       'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
+      'timeline' => array(
         'custom_settings' => FALSE,
       ),
     ),
