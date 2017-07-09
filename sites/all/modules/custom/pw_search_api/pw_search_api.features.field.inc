@@ -72,7 +72,7 @@ function pw_search_api_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => 9,
+          'weight' => '9',
         ),
         'full' => array(
           'label' => 'above',
@@ -210,7 +210,7 @@ function pw_search_api_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => 15,
+          'weight' => '15',
         ),
         'full' => array(
           'label' => 'above',
@@ -222,7 +222,7 @@ function pw_search_api_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -336,7 +336,7 @@ function pw_search_api_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => 2,
+          'weight' => '2',
         ),
         'search_result' => array(
           'label' => 'above',
@@ -436,7 +436,7 @@ function pw_search_api_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -544,7 +544,7 @@ function pw_search_api_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => 29,
+          'weight' => '29',
         ),
         'search_result' => array(
           'label' => 'above',
