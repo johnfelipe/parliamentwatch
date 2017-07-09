@@ -369,7 +369,7 @@ node/*/edit';
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'full' => array(
         'custom_settings' => FALSE,
@@ -381,7 +381,7 @@ node/*/edit';
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'print' => array(
         'custom_settings' => FALSE,
@@ -411,6 +411,9 @@ node/*/edit';
         'custom_settings' => FALSE,
       ),
       'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
+      'timeline' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -449,6 +452,10 @@ node/*/edit';
             'visible' => FALSE,
           ),
           'tile' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'search_result' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
