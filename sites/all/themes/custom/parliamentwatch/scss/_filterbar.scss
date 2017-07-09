@@ -219,11 +219,15 @@
       .form-radio {
         position: absolute;
         left: 0;
-        top: $space-xsmall - 2;
+        top: $space-xsmall + 1;
       }
       .form__item__label {
         @include text-overflow();
+        padding: $space-xsmall-mobile 0;
       }
+    }
+    .form__item--checkboxes .form__item__control {
+      top: $space-xsmall + 3;
     }
 
     &.dropdown__list--open {
