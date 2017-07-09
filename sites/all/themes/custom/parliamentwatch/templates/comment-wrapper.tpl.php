@@ -37,6 +37,8 @@
  */
 ?>
 <div id="comments" class="<?php print $classes; ?>"<?php print $attributes; ?>>
+  <?php print render($title_prefix); ?>
+    <h2><?php print t('Comments to this poll'); ?></h2>
   <?php print render($title_suffix); ?>
   <?php print render($content['comments']); ?>
   <?php if ($content['comment_form']): ?>
