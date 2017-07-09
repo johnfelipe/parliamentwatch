@@ -86,7 +86,7 @@
     <span class="question__meta__date tile__meta__date"><?php print $date; ?></span>
   </div>
   <div class="question__question mh-item-tile" data-mh="questionTitle">
-    <h3 class="question__question__title"><?php print render($content['body']); ?></h3>
+    <header class="question__question__title"><?php print render($content['body']); ?></header>
     <?php print render($title_suffix); ?>
     <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
   </div>
