@@ -113,7 +113,7 @@ function pw_election_programmes_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'colorbox' => array(
         'custom_settings' => FALSE,
@@ -128,6 +128,21 @@ function pw_election_programmes_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tile' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
+      'timeline' => array(
         'custom_settings' => FALSE,
       ),
     ),

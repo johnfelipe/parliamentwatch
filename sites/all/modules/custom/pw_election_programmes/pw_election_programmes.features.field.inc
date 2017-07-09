@@ -278,23 +278,9 @@ function pw_election_programmes_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-          ),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 35,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '35',
         ),
         'search_result' => array(
           'label' => 'above',
@@ -558,7 +544,7 @@ function pw_election_programmes_field_default_fields() {
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => 'pw_landscape_l__normal',
+            'image_style' => 'large',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
