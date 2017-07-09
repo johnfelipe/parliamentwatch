@@ -1,7 +1,101 @@
 <?php
+
 /**
  * @file
  * Code for the PW Election programmes feature.
  */
-
 include_once 'pw_election_programmes.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function pw_election_programmes_menu() {
+  $items['election-manifestos/%taxonomy_term'] = [
+    'title callback' => 'pw_election_programmes_page_title',
+    'title arguments' => [1],
+    'page callback' => 'pw_election_programmes_page',
+    'page arguments' => [1],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  return $items;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function pw_election_programmes_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'election_programme' && node_is_page($node)) {
+    $parliament_tid = $node->field_parliament[LANGUAGE_NONE][0]['tid'];
+    menu_tree_set_path('main-menu', "election-manifestos/$parliament_tid");
+  }
+}
+
+/**
+ * Title callback: Returns title for election manifesto pages.
+ *
+ * @param object $parliament_term
+ *   The taxonomy term obhect.
+ *
+ * @return string
+ *   An unsanitized string containing the taxonomy term name.
+ *
+ * @see pw_election_programmes_menu()
+ */
+function pw_election_programmes_page_title($parliament_term) {
+  return t('Election manifestos @parliament', ['@parliament' => $parliament_term->name]);
+}
+
+/**
+ * Page callback: Displays election manifestos for the given parliament.
+ *
+ * @param object $parliament_term
+ *   The taxonomy term object.
+ *
+ * @return array
+ *   A render array for nodes of type election_programme.
+ *
+ * @see pw_election_programmes_menu()
+ */
+function pw_election_programmes_page($parliament_term) {
+  $result = pw_election_programmes_base_query()
+    ->fieldCondition('field_parliament', 'tid', $parliament_term->tid)
+    ->propertyOrderBy('title', 'ASC')
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    $compare_weight = function ($a, $b) {
+      if ($a->weight == $b->weight) {
+        return 0;
+      }
+      else {
+        return $a->weight < $b->weight ? -1 : 1;
+      }
+    };
+    uasort($nodes, $compare_weight);
+    $build = node_view_multiple($nodes, 'full');
+  }
+  else {
+    $build = [
+      '#markup' => t('There are no election manifestos for @parliament.', ['@parliament' => $parliament_term->name]),
+    ];
+  }
+
+  return $build;
+}
+
+/**
+ * Returns a query for fetching published nodes of type poll.
+ *
+ * @return EntityFieldQuery
+ *   The query object.
+ */
+function pw_election_programmes_base_query() {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'election_programme');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+
+  return $q;
+}
