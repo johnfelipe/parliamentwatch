@@ -148,7 +148,7 @@ function pw_press_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'colorbox' => array(
         'custom_settings' => FALSE,
@@ -166,6 +166,21 @@ function pw_press_strongarm() {
         'custom_settings' => FALSE,
       ),
       'pw_newsletter' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tile' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
+      'timeline' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -222,7 +237,7 @@ function pw_press_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'print' => array(
         'custom_settings' => FALSE,
@@ -237,6 +252,21 @@ function pw_press_strongarm() {
         'custom_settings' => FALSE,
       ),
       'pw_newsletter' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tile' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list_item' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embedded' => array(
+        'custom_settings' => FALSE,
+      ),
+      'tabular' => array(
+        'custom_settings' => FALSE,
+      ),
+      'timeline' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -273,6 +303,10 @@ function pw_press_strongarm() {
             'visible' => TRUE,
           ),
           'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'search_result' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
@@ -373,6 +407,13 @@ function pw_press_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_press_article_de_pattern';
+  $strongarm->value = 'ueber-uns/presse/presseartikel/[node:field-press-article-date:custom:Y-m-d]/[node:title]';
+  $export['pathauto_node_press_article_de_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_press_article_pattern';
   $strongarm->value = 'about/press/press-articles/[node:field-press-article-date:custom:Y-m-d]/[node:title]';
   $export['pathauto_node_press_article_pattern'] = $strongarm;
@@ -383,6 +424,13 @@ function pw_press_strongarm() {
   $strongarm->name = 'pathauto_node_press_article_und_pattern';
   $strongarm->value = 'ueber-uns/presse/presseartikel/[node:field-press-article-date:custom:Y-m-d]/[node:title]';
   $export['pathauto_node_press_article_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_press_release_de_pattern';
+  $strongarm->value = 'ueber-uns/presse/pressemitteilungen/[node:field-press-release-date:custom:Y-m-d]/[node:title]';
+  $export['pathauto_node_press_release_de_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
