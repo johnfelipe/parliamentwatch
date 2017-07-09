@@ -123,6 +123,22 @@
 textarea.form__item__control {
   min-height: 200px;
 }
+.form__item--textarea {
+  .form__item__label {
+    margin-bottom: $space-xsmall-mobile;
+    display: block;
+  }
+}
+
+/* Text fields */
+
+.form__item--textfield {
+  .form__item__label {
+    margin-bottom: $space-xsmall-mobile;
+    display: block;
+  }
+}
+
 
 /* Select2 Elements */
 
@@ -176,6 +192,7 @@ textarea.form__item__control {
 .select2-container--open .select2-dropdown--below {
   min-width: 200px;
 }
+
 
 
 /* Form-Item Combiner */
@@ -244,6 +261,7 @@ textarea.form__item__control {
     }
   }
 }
+
 
 /* Autosuggest - Typeahead */
 
