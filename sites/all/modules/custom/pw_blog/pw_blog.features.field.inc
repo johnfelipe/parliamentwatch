@@ -1105,6 +1105,26 @@ function pw_blog_field_default_fields() {
           'type' => 'text_default',
           'weight' => '4',
         ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '4',
+        ),
         'search_result' => array(
           'label' => 'above',
           'settings' => array(),
