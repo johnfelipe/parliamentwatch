@@ -197,17 +197,7 @@ function pw_profiles_user_update(&$edit, $account, $category) {
  */
 function pw_profiles_user_view($account, $view_mode, $langcode) {
   if ($view_mode == 'full') {
-    $options = [];
-
-    foreach (pw_profiles_archived_revisions($account, 'DESC') as $revision) {
-      if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($revision->roles))) {
-        $text = pw_profiles_parliament($revision)->name;
-      }
-      else {
-        $text = preg_replace('/\-\d+\s*$/', '', pw_profiles_parliament($revision)->name) . ' (Wahlen)';
-      }
-      $options[url(entity_uri('user', $revision)['path'])] = $text;
-    }
+    $options = _pw_profiles_revision_switcher_options($account);
 
     if (!empty($options)) {
       $account->content['revisions'] = [
@@ -688,4 +678,29 @@ function _pw_profiles_options(array $values) {
   }
 
   return array_intersect_key($terms, array_flip($values));
+}
+
+/**
+ * Returns an associative array to be used as options for a select box.
+ *
+ * @param object $account
+ *   The account object.
+ *
+ * @return array
+ *   An array with URLs as keys and labels for the legislative terms as values.
+ */
+function _pw_profiles_revision_switcher_options($account) {
+  $options = [];
+
+  foreach (pw_profiles_archived_revisions($account, 'DESC') as $revision) {
+    if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($revision->roles))) {
+      $text = pw_profiles_parliament($revision)->name;
+    }
+    else {
+      $text = preg_replace('/\-\d+\s*$/', '', pw_profiles_parliament($revision)->name) . ' (Wahlen)';
+    }
+    $options[url(entity_uri('user', $revision)['path'])] = $text;
+  }
+
+  return $options;
 }
