@@ -373,7 +373,14 @@ function pw_vote_block_view($delta, $arguments = array()) {
  */
 function pw_vote_profile_block() {
   $block = [];
-  $account = menu_get_object('user');
+
+  if (menu_get_item()['page_callback'] == 'user_revision_show') {
+    $map = menu_get_item()['original_map'];
+    $account = user_revision_load($map[1], $map[3]);
+  }
+  else {
+    $account = menu_get_object('user');
+  }
 
   if (!$account) {
     return $block;
