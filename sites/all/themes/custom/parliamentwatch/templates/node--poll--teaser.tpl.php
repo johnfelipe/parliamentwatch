@@ -91,6 +91,7 @@
   <?php print render($content['body']); ?>
   <a href="#poll-content" class="link-icon" data-localScroll><i class="icon icon-arrow-right"></i> Weiterlesen</a>
 </div>
+<?php if (isset($result)): ?>
 <div class="intro__right">
   <div class="poll_overview">
     <div class="poll_overview__primary">
@@ -118,3 +119,4 @@
     </div>
   </div>
 </div>
+<?php endif; ?>

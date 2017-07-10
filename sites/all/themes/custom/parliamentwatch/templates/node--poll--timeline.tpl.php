@@ -84,11 +84,16 @@
 
 <div class="poll__timeline__item__poll" data-poll-id="<?php print $node->nid; ?>">
   <span class="poll__timeline__item__poll__title">
-    <i class="icon icon-<?php print ($yays > $nays) ? 'ok' : 'close' ?>"></i> <?php print $title; ?>
+    <?php if (isset($result)): ?>
+    <i class="icon icon-<?php print ($yays > $nays) ? 'ok' : 'close' ?>"></i>
+    <?php endif ;?>
+    <?php print $title; ?>
   </span>
+  <?php if (isset($result)): ?>
   <span class="poll__timeline__item__poll__result">
     <span class="poll__timeline__item__poll__result__accepted"><?php print t('Yes') ?> <strong><?php print $yays; ?></strong></span>
     <span class="poll__timeline__item__poll__result__denied"><?php print t('No') ?> <strong><?php print $nays; ?></strong></span>
     <i class="icon icon-<?php print ($yays > $nays) ? 'ok' : 'close' ?>"></i>
   </span>
+  <?php endif; ?>
 </div>

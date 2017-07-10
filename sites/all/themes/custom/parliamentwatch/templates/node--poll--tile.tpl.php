@@ -85,6 +85,7 @@
     <?php print render($content['field_teaser_image']); ?>
   </div>
   <div class="tile__date"><?php print $date; ?></div>
+  <?php if (isset($result)): ?>
   <div class="tile__pollchart">
     <div class="tile__pollchart__value_left<?php if ($yays > $nays) { print ' won'; } ?>"><?php print $yays; ?></div>
     <div class="tile__pollchart__statistic">
@@ -95,6 +96,7 @@
     </div>
     <div class="tile__pollchart__value_right<?php if ($yays < $nays) { print ' won'; } ?>"><?php print $nays; ?></div>
   </div>
+  <?php endif; ?>
   <h2 class="tile__title mh-item"<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
   <?php print render($title_suffix); ?>
   <ul class="tile__links tile__links--2">

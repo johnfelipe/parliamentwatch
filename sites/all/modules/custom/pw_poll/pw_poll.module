@@ -312,13 +312,18 @@ function pw_poll_base_query() {
  */
 function pw_poll_results($nodes) {
   $results = [];
+  $eligible_nodes = array_filter($nodes, 'pw_poll_result_complete');
+
+  if (empty($eligible_nodes)) {
+    return $results;
+  }
 
   $q = db_select('field_data_field_vote', 'v');
   $q->join('field_data_field_vote_node', 'p', 'v.entity_id = p.entity_id');
   $q->addField('p', 'field_vote_node_target_id', 'nid');
   $q->addField('v', 'field_vote_tid');
   $q->addExpression('COUNT(v.field_vote_tid)', 'vote_count');
-  $q->condition('p.field_vote_node_target_id', array_map(function ($item) { return $item->nid; }, $nodes));
+  $q->condition('p.field_vote_node_target_id', array_map(function ($item) { return $item->nid; }, $eligible_nodes));
   $q->groupBy('p.field_vote_node_target_id')->groupBy('v.field_vote_tid');
 
   foreach ($q->execute() as $row) {
@@ -403,4 +408,25 @@ function pw_poll_results_by_party($nodes) {
   }
 
   return $results_by_party;
+}
+
+/**
+ * Returns whether all votes for the given poll have been imported or not.
+ *
+ * The return value depends on the related parliament only.
+ *
+ * @param object $node
+ *   The poll node.
+ *
+ * @return boolean
+ *   TRUE if all votes for this poll have been imported, FALSE otherwise.
+ */
+function pw_poll_result_complete($node) {
+  $items = field_get_items('node', $node, 'field_parliament');
+  if ($items) {
+    return !in_array($items[0]['tid'], [16117, 16236, 16251]);
+  }
+  else {
+    return TRUE;
+  }
 }
