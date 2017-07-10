@@ -50,7 +50,7 @@
       <div class="hstats__item hstats__item--digit">
         <span class="hstats__item__display mh-item-nr" data-mh="hstats"><?php print $questions; ?></span>
         <span class="hstats__item__label mh-item-nr" data-mh="hstats">
-          <?php print format_plural($questions, t('Question'), t('Questions')) ?>
+          <?php print format_plural($questions, 'Question', 'Questions') ?>
         </span>
       </div>
       <div class="hstats__item hstats__item--donut">

@@ -96,7 +96,7 @@
             <div class="hstats__item__label__value">
               <?php print $answers; ?>&thinsp;/&thinsp;<?php print $questions; ?>
             </div>
-            <?php print format_plural($questions, t('Answered question'), t('Answered questions')) ?>
+            <?php print format_plural($questions, 'Answered question', 'Answered questions') ?>
             <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-answered-questions') ?>"></i>
           </div>
         </a>
@@ -119,7 +119,7 @@
             <div class="hstats__item__label__value">
               <?php print $user_profile['votes_attended']; ?>&thinsp;/&thinsp;<?php print $user_profile['votes_total']; ?>
             </div>
-            <?php print format_plural($user_profile['votes_attended'], t('Vote by name'), t('Votes by name')) ?>
+            <?php print format_plural($user_profile['votes_attended'], 'Vote by name', 'Votes by name') ?>
             <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-votes-by-name') ?>"></i>
           </div>
         </a>
