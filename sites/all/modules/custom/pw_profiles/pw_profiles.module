@@ -201,10 +201,10 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
 
     foreach (pw_profiles_archived_revisions($account, 'DESC') as $revision) {
       if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($revision->roles))) {
-        $text = taxonomy_term_load($revision->field_user_parliament[LANGUAGE_NONE][0]['tid'])->name;
+        $text = pw_profiles_parliament($revision)->name;
       }
       else {
-        $text = preg_replace('/\-\d+\s*$/', '', taxonomy_term_load($revision->field_user_parliament[LANGUAGE_NONE][0]['tid'])->name) . ' (Wahlen)';
+        $text = preg_replace('/\-\d+\s*$/', '', pw_profiles_parliament($revision)->name) . ' (Wahlen)';
       }
       $options[url(entity_uri('user', $revision)['path'])] = $text;
     }
@@ -215,10 +215,11 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
         '#options' => $options,
       ];
     }
+
   }
 
   if (in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show'])) {
-    $parliament_tid = $account->field_user_parliament[LANGUAGE_NONE][0]['tid'];
+    $parliament_tid = pw_profiles_parliament($account)->tid;
     if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($account->roles))) {
       menu_tree_set_path('main-menu', "profiles/$parliament_tid/deputies");
     }
