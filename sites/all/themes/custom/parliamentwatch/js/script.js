@@ -906,7 +906,7 @@ function d3BarVerticalStackedPoll(element){
             var labelWrapper = chartwrapper
                 .append('div')
                 .attr('class', 'd3__label_outer')
-                .html('<h3>'+ key +' <span>'+ totalPollCount +' Mitglieder</span></h3>')
+                .html('<h3>'+ key +' <span>'+ Drupal.formatPlural(totalPollCount, '1 member', '@count members') + '</span></h3>')
                 .append("ul")
                 .attr('class', 'd3__label');
 
