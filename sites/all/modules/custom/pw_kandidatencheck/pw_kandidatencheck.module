@@ -64,3 +64,23 @@ function pw_kandidatencheck_by_user_revision_query($account) {
 
   return $q;
 }
+
+/**
+ * Returns thesis node associated with the given node.
+ *
+ * @param object $node
+ *   The node object.
+ *
+ * @return object
+ *   The thesis node.
+ */
+function pw_kandidatencheck_thesis($node) {
+  $thesis = NULL;
+  $items = field_get_items('node', $node, 'field_pw_kc_thesis_reference');
+
+  if ($items) {
+    $thesis = node_load($items[0]['target_id']);
+  }
+
+  return $thesis;
+}
