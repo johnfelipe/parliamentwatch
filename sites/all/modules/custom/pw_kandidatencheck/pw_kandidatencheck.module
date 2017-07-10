@@ -44,3 +44,23 @@ function pw_kandidatencheck_block_view($delta = '') {
     return $block;
   }
 }
+
+/**
+ * Returns query for all Kandidatencheck answers of the given account version.
+ *
+ * @param object $account
+ *   The user account (version).
+ *
+ * @return EntityFieldQuery
+ *   The query object.
+ */
+function pw_kandidatencheck_by_user_revision_query($account) {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'pw_kc_position');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  $q->fieldCondition('field_pw_kc_user_reference', 'target_id', $account->uid);
+  $q->fieldCondition('field_parliament', 'tid', pw_profiles_parliament($account)->tid);
+
+  return $q;
+}
