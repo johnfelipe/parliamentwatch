@@ -384,7 +384,71 @@ figcaption {
   }
 }
 
-
+/* Read more */
+.readmore {
+  position: relative;
+  max-height: 300px;
+  overflow: hidden;
+  padding-bottom: $space-large * 2;
+}
+.readmore__trigger {
+  position: absolute;
+  background: $white;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: $space-xsmall 0;
+  border-top: 1px solid $gray + 50;
+  border-bottom: 1px solid $gray + 50;
+  text-align: center;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    margin-bottom: 1px;
+    height: 200px;
+    @include background(linear-gradient(transparent, $white) left repeat);
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    margin-bottom: 1px;
+    height: 20px;
+    @include background(linear-gradient(transparent, rgba(0,0,0,.2)) left repeat);
+    opacity: .15;
+  }
+}
+.readmore__trigger__less {
+  display: none;
+}
+.readMore--expanded {
+  height: auto;
+  overflow: visible;
+  .readmore__trigger {
+    &:before {
+      opacity: 0;
+    }
+    &:after {
+      opacity: 0;
+    }
+  }
+  .readmore__trigger__more {
+    display: none;
+  }
+  .readmore__trigger__less {
+    display: inline-block;
+  }
+}
+.readMore--expanded-initial {
+  padding-bottom: 0;
+}
 
 /* Info-Elements */
 

@@ -1025,6 +1025,27 @@ function filterBar() {
     });
 }
 
+
+/*
+ * Readmore expander
+ * */
+function readMore() {
+    var readmoreHeight = $('.readmore').outerHeight();
+
+    if (readmoreHeight < 300) {
+        $('.readmore').addClass('readMore--expanded readMore--expanded-initial');
+        $('.readmore__trigger').hide();
+    }
+    $('.readmore__trigger .readmore__trigger__more').click(function () {
+        event.preventDefault();
+        $(this).parents('.readmore').addClass('readMore--expanded');
+    });
+    $('.readmore__trigger .readmore__trigger__less').click(function () {
+        event.preventDefault();
+        $(this).parents('.readmore').removeClass('readMore--expanded');
+    });
+}
+
 /*
  * Footer
  * */
@@ -1053,6 +1074,7 @@ $(function () {
     newsletterWidget();
     autosuggest();
     sponsorCounter();
+    readMore();
     footer();
 
     // Init global matchHeight-plugin class

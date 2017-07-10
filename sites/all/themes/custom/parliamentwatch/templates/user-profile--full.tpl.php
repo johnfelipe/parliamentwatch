@@ -164,8 +164,38 @@
         <?php endif; ?>
       </dl>
     </div>
-    <?php if (isset($field_user_twitter_account)): ?>
-    <a class="twitter-timeline" data-height="300" data-link-color=“#f46b3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
+
+    <div class="deputy__candidate_check">
+    </div>
+
+
+    <?php if (isset($user_profile['field_user_political_goals']) || isset($field_user_twitter_account)): ?>
+    <div class="deputy__goal readmore">
+      <h3>
+        <?php print t('Die politischen Ziele von'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?>
+      </h3>
+      <?php if (isset($user_profile['field_user_political_goals'])): ?>
+        <?php print render($user_profile['field_user_political_goals']); ?>
+        <div class="deputy__goal__read_more readmore__trigger">
+          <a href="#" class="btn btn--small readmore__trigger__more"><?php print t('Read more'); ?></a>
+          <a href="#" class="btn btn--small readmore__trigger__less"><?php print t('Show less'); ?></a>
+        </div>
+      <?php else: ?>
+        <div class="deputy__goal__empty">
+          <p><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?> <?php print t('did not saved a twitter account yet.'); ?></p>
+        </div>
+      <?php endif; ?>
+    </div>
+    <div class="deputy__twitter">
+      <?php if (isset($field_user_twitter_account)): ?>
+        <a class="twitter-timeline" data-height="300" data-link-color=“#f46b3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
+      <?php else: ?>
+        <div class="deputy__twitter__empty">
+          <h3><?php print t('twitter'); ?></h3>
+          <p><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?> <?php print t('did not saved a twitter account yet.'); ?></p>
+        </div>
+      <?php endif; ?>
+    </div>
     <?php endif; ?>
   </div>
 </article>
