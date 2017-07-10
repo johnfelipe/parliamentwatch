@@ -206,6 +206,9 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
       ];
     }
 
+    $account->content['#attached']['js'][drupal_get_path('module', 'pw_profiles') . '/twitter-widgets.js'] = [
+      'type' => 'file',
+    ];
   }
 
   if (in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show'])) {
