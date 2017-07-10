@@ -1,10 +1,26 @@
 <?php
+
 /**
  * @file
  * Code for the PW Kandidatencheck feature.
  */
-
 include_once 'pw_kandidatencheck.features.inc';
+
+/**
+ * Implements hook_node_load().
+ */
+function pw_kandidatencheck_node_load($nodes, $types) {
+  if (in_array('pw_kc_position', $types)) {
+    $map = function ($item) {
+      $items = field_get_items('node', $item, 'field_pw_kc_thesis_reference');
+
+      if ($items) {
+        return $items[0]['target_id'];
+      }
+    };
+    node_load_multiple(array_filter(array_map($map, $nodes)));
+  }
+}
 
 /**
  * Implements hook_block_info().
