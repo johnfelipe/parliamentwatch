@@ -84,7 +84,7 @@ function pw_profiles_form_validate($form, &$form_state) {
   if (isset($form_state['input']['name'])) {
     $username = $form_state['input']['name'];
     if (!preg_match('/^[a-z0-9\-]+$/', $username)) {
-      form_set_error('name', t($form['account']['name']['#description']));
+      form_set_error('name', $form['account']['name']['#description']);
     }
   }
   if (isset($form_state['input']['uuid'])) {
@@ -95,7 +95,7 @@ function pw_profiles_form_validate($form, &$form_state) {
     elseif ($user = entity_uuid_load('user', array($uuid))) {
       if($form['#user']->uid != key($user)){
         $user = array_pop($user);
-        form_set_error('uuid', t('UUID already used by ' . l(_pw_get_fullname($user), 'user/' . $user->uid)));
+        form_set_error('uuid', t('UUID already used by @name', ['@name' => l(_pw_get_fullname($user), 'user/' . $user->uid)]));
       }
     }
   }

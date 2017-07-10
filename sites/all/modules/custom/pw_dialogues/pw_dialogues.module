@@ -538,7 +538,7 @@ function pw_dialogues_do_import_questions($source) {
     ;
   }
 
-  watchdog('dialogue_importer', 'questions imported from ' . $source);
+  watchdog('dialogue_importer', 'questions imported from @source', ['@source' => $source]);
 
   return TRUE;
 }
@@ -556,7 +556,7 @@ function pw_dialogues_do_import_answers($source) {
     ;
   }
 
-  watchdog('dialogue_message_importer', 'answers imported from ' . $source);
+  watchdog('dialogue_message_importer', 'answers imported from @source', ['@source' => $source]);
 
   return TRUE;
 }
