@@ -714,4 +714,136 @@ $abstimmverhalten-node-item-width: 18px;
 
 .deputy__candidate_check {
   @include grid-column(12);
+  @include shadow();
+  position: relative;
+  margin-top: $space-large;
+  .swiper-pagination {
+    position: absolute;
+    top: 100px;
+    font-family: $font-serif;
+    color: $gray;
+    bottom: auto;
+    @include breakpoint($breakpoint-s-min) {
+      top: 150px;
+    }
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: absolute;
+    margin-top: 0;
+    top: 110px;
+    @include breakpoint($breakpoint-s-min) {
+      top: 150px;
+    }
+    @include breakpoint($breakpoint-xl-min) {
+      top: 180px;
+    }
+    &:before {
+      color: $gray;
+    }
+  }
+  .swiper-button-next {
+    right: 0;
+  }
+}
+.deputy__candidate_check__header {
+  background: $beige;
+  @include grid-container();
+  padding: 0 $space $space;
+  @include breakpoint($breakpoint-s-min) {
+    padding: 0 $space-large $space;
+  }
+}
+.deputy__candidate_check__header__logo {
+  background: $white;
+  padding: $space-small;
+  width: 110px;
+  box-shadow: 0 5px 15px 0 rgba(0,0,0,.2);
+  margin-right: $space;
+  float: left;
+  @include breakpoint($breakpoint-s-min) {
+    width: 160px;
+    margin-right: $space-large;
+    padding: $space;
+  }
+}
+.deputy__candidate_check__header__parliament {
+  float: left;
+  margin-top: $space;
+  font-family: $font-sans-serif;
+  font-size: 0.8em;
+  @include breakpoint($breakpoint-xs-min) {
+    font-size: 1em;
+  }
+  @include breakpoint($breakpoint-s-min) {
+    margin-top: $space-large;
+    font-size: 1.2em;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    margin-top: $space-large;
+    font-size: 1.4em;
+  }
+}
+.deputy__candidate_check__header__link {
+  margin-top: $space-large + $space-xsmall-mobile;
+  float: right;
+  color: $mediumGray;
+  display: none;
+  @include breakpoint($breakpoint-s-min) {
+    display: block;
+  }
+}
+.deputy__candidate_check__item {
+  width: 100%;
+  float: left;
+}
+.deputy__candidate_check__item__thesis {
+  background: $brightBeige;
+  padding: ($space-large * 2) 50px ($space-large) 50px;
+
+  text-align: center;
+  font-family: $font-serif;
+  font-size: 1.5em;
+  color: $darkGray;
+  @include breakpoint($breakpoint-s-min) {
+    padding: ($space-large * 3) ($space-large * 3) ($space-large * 2) ($space-large * 3);
+  }
+}
+.deputy__candidate_check__item__position {
+  padding: $space-large $space $space-large $space;
+  position: relative;
+  min-height: 100px;
+  font-size: 1.1em;
+  line-height: 1.6em;
+  @include breakpoint($breakpoint-s-min) {
+    padding: $space-large 250px $space-large 300px;
+  }
+}
+.deputy__candidate_check__item__position__info {
+  padding: 0 0 $space-xsmall 0;
+  color: $gray;
+  span {
+    color: $orange;
+    font-weight: 600;
+    display: block;
+    @include breakpoint($breakpoint-s-min) {
+      margin-left: $space-xsmall-mobile;
+      display: inline;
+      .icon {
+        font-size: .9em;
+        margin-right: $space-xsmall-mobile;
+      }
+    }
+  }
+}
+.deputy__candidate_check__item__position__info__image {
+  display: none;
+  @include breakpoint($breakpoint-s-min) {
+    display: block;
+    @include image-circle(75px, 75px);
+    border-width: 3px;
+    position: absolute;
+    left: 180px;
+    top: $space-large;
+  }
 }

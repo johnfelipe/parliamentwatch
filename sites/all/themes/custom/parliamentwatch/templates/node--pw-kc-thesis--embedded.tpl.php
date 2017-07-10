@@ -51,6 +51,8 @@
  * - $zebra: Outputs either "even" or "odd". Useful for zebra striping in
  *   teaser listings.
  * - $id: Position of the node. Increments each time it's output.
+ * - $user_display_name: Full name of the associated politician.
+ * - $user_picture: Picture of the associated politician.
  *
  * Node status variables:
  * - $view_mode: View mode; for example, "full", "teaser".
@@ -80,4 +82,7 @@
  * @ingroup themeable
  */
 ?>
-<?php print render($content); ?>
+<div class="deputy__candidate_check__item__thesis">
+  <?php print render($title_suffix); ?>
+  <?php print render($content['body']); ?>
+</div>

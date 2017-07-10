@@ -82,6 +82,19 @@
  * @ingroup themeable
  */
 ?>
-<div class="<?php print $classes; ?>">
-  <?php print render($content); ?>
+<div class="deputy__candidate_check__item swiper-slide <?php print $classes; ?>">
+  <?php print render($content['field_pw_kc_thesis_reference']); ?>
+  <div class="deputy__candidate_check__item__position">
+    <div class="deputy__candidate_check__item__position__info">
+      <div class="deputy__candidate_check__item__position__info__image"><?php print render($user_picture); ?></div>
+      <?php print t('Position of'); ?> <?php print $user_display_name; ?>:
+      <span>
+        <?php if ($field_pw_kc_vote_reference[0]['tid'] == '16815'): ?><i class="icon icon-minus"></i><?php endif; ?>
+        <?php if ($field_pw_kc_vote_reference[0]['tid'] == '16816'): ?><i class="icon icon-thumb-up"></i><?php endif; ?>
+        <?php if ($field_pw_kc_vote_reference[0]['tid'] == '16817'): ?><i class="icon icon-thumb-down"></i><?php endif; ?>
+        <?php print render($content['field_pw_kc_vote_reference']); ?>
+      </span>
+    </div>
+    <?php print render($content['body']); ?>
+  </div>
 </div>

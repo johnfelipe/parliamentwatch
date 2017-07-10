@@ -1047,6 +1047,31 @@ function readMore() {
 }
 
 /*
+ * Kandidaten check
+ * */
+function candidateCheck() {
+    var candidateCheckSwiper = $(".deputy__candidate_check");
+    var mySwiper = new Swiper('.deputy__candidate_check', {
+        speed: 400,
+        slidesPerView: 1,
+        autoHeight: 1,
+        nextButton: candidateCheckSwiper.find('.swiper-button-next'),
+        prevButton: candidateCheckSwiper.find('.swiper-button-prev'),
+        pagination: candidateCheckSwiper.find('.swiper-pagination'),
+        paginationType: 'fraction',
+        paginationFractionRender: function(swiper, currentClassName, totalClassName){
+            return Drupal.t('Proposition') + ' <span class="' + currentClassName + '"></span> ' +
+                Drupal.t('of') +
+                ' <span class="' + totalClassName + '"></span>';
+        },
+        onInit: function(swiper){
+        },
+        onAfterResize: function(swiper){
+        }
+    });
+}
+
+/*
  * Footer
  * */
 
@@ -1076,6 +1101,7 @@ $(function () {
     sponsorCounter();
     readMore();
     footer();
+    candidateCheck();
 
     // Init global matchHeight-plugin class
 
