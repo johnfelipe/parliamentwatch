@@ -291,6 +291,12 @@ function parliamentwatch_preprocess_node(&$variables) {
     $variables['yays'] = $node->result['yes'];
     $variables['nays'] = $node->result['no'];
   }
+
+  if ($variables['type'] == 'pw_kc_position') {
+    $account = user_load($node->field_pw_kc_user_reference[LANGUAGE_NONE][0]['target_id']);
+    $variables['user_display_name'] = _pw_get_fullname($account);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+  }
 }
 
 /**
