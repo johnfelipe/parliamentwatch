@@ -24,6 +24,7 @@ function pw_globals_update_7001() {
     'feedback_simple',
     'hms_field',
     'jcarousel',
+    'lazyloader',
     'menu_attributes',
     'oauth_common',
     'omega_tools',
