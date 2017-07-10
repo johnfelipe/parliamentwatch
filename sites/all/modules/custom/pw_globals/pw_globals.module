@@ -313,10 +313,10 @@ function pw_globals_politician_search_form_block() {
   $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
 
   if ($today > $election_date) {
-    $block['subject'] = t('Find your <span>@role</span>', ['@role' => t('Deputy')]);
+    $block['subject'] = t('Find your <span>deputy</span>');
   }
   else {
-    $block['subject'] = t('Find your <span>@role</span>', ['@role' => t('Candidate')]);
+    $block['subject'] = t('Find your <span>candidate</span>');
   }
   $block['content'] = drupal_get_form('pw_globals_politician_search_form', $term);
 
