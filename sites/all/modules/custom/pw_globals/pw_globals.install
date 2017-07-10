@@ -25,6 +25,7 @@ function pw_globals_update_7001() {
     'hms_field',
     'jcarousel',
     'menu_attributes',
+    'oauth_common',
     'omega_tools',
     'pw_announcements',
     'pw_calendar_entries',
@@ -45,6 +46,7 @@ function pw_globals_update_7001() {
     'tb_megamenu',
     'text_resize',
     'tvi',
+    'twitter',
     'views_slideshow',
   ];
 

@@ -28,7 +28,6 @@ dependencies[] = smart_trim
 dependencies[] = strongarm
 dependencies[] = textformatter
 dependencies[] = transliteration
-dependencies[] = twitter
 dependencies[] = uuid
 dependencies[] = views
 dependencies[] = webform_rules
