@@ -226,7 +226,27 @@ function pw_kandidatencheck_field_default_fields() {
             ),
           ),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -375,7 +395,13 @@ function pw_kandidatencheck_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 4,
+          'weight' => '4',
+        ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -461,10 +487,6 @@ function pw_kandidatencheck_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
-            'colorbox_node_classes' => '',
-            'colorbox_node_height' => '600',
-            'colorbox_node_link' => FALSE,
-            'colorbox_node_width' => '600',
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
@@ -480,7 +502,29 @@ function pw_kandidatencheck_field_default_fields() {
             ),
           ),
           'type' => 'entityreference_label',
-          'weight' => 1,
+          'weight' => '1',
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'entityreference',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+            'links' => 0,
+            'view_mode' => 'embedded',
+          ),
+          'type' => 'entityreference_entity_view',
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -564,10 +608,6 @@ function pw_kandidatencheck_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
-            'colorbox_node_classes' => '',
-            'colorbox_node_height' => '600',
-            'colorbox_node_link' => FALSE,
-            'colorbox_node_width' => '600',
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
@@ -583,7 +623,13 @@ function pw_kandidatencheck_field_default_fields() {
             ),
           ),
           'type' => 'entityreference_label',
-          'weight' => 3,
+          'weight' => '3',
+        ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -678,7 +724,27 @@ function pw_kandidatencheck_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 2,
+          'weight' => '2',
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -772,7 +838,27 @@ function pw_kandidatencheck_field_default_fields() {
             ),
           ),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -905,7 +991,27 @@ function pw_kandidatencheck_field_default_fields() {
             'thousand_separator' => '',
           ),
           'type' => 'number_integer',
-          'weight' => 3,
+          'weight' => '3',
+        ),
+        'embedded' => array(
+          'label' => 'hidden',
+          'module' => 'number',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'number_unformatted',
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -999,7 +1105,13 @@ function pw_kandidatencheck_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 2,
+          'weight' => '2',
+        ),
+        'embedded' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
