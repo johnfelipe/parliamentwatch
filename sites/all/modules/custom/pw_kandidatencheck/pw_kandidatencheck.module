@@ -7,6 +7,18 @@
 include_once 'pw_kandidatencheck.features.inc';
 
 /**
+ * Implements hook_field_extra_fields().
+ */
+function pw_kandidatencheck_field_extra_fields() {
+  $extra['user']['user']['display']['candidate_match'] = [
+    'label' => t('Candidate match'),
+    'description' => t(''),
+    'weight' => 100
+  ];
+  return $extra;
+}
+
+/**
  * Implements hook_node_load().
  */
 function pw_kandidatencheck_node_load($nodes, $types) {
@@ -19,6 +31,35 @@ function pw_kandidatencheck_node_load($nodes, $types) {
       }
     };
     node_load_multiple(array_filter(array_map($map, $nodes)));
+  }
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function pw_kandidatencheck_user_view($account, $view_mode, $langcode) {
+  $extra = field_extra_fields_get_display('user', 'user', $view_mode);
+
+  if (isset($extra['candidate_match']) && $extra['candidate_match']['visible']) {
+    $result = pw_kandidatencheck_by_user_revision_query($account)->execute();
+
+    if ($result['node']) {
+      $nodes = node_load_multiple(array_keys($result['node']));
+      $compare_thesis_number = function ($a, $b) {
+        $thesis_number_a = pw_kandidatencheck_thesis($a)->field_kc_thesis_number[LANGUAGE_NONE][0]['value'];
+        $thesis_number_b = pw_kandidatencheck_thesis($b)->field_kc_thesis_number[LANGUAGE_NONE][0]['value'];
+
+        if ($thesis_number_a == $thesis_number_b) {
+          return 0;
+        }
+        else {
+          return $thesis_number_a < $thesis_number_b ? -1 : 1;
+        }
+      };
+      uasort($nodes, $compare_thesis_number);
+      $account->content['candidate_match'] = node_view_multiple($nodes, 'embedded');
+      $account->content['candidate_match']['#weight'] = $extra['candidate_match']['weight'];
+    }
   }
 }
 
