@@ -414,7 +414,7 @@ function pw_globals_update_7011() {
   $pw_poll_related = [
     'module' => 'pw_poll',
     'delta' => 'related',
-    'weight' => ++$weight,
+    'weight' => $weight + 10,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'pages' => '',
     'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
