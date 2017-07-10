@@ -164,5 +164,8 @@
         <?php endif; ?>
       </dl>
     </div>
+    <?php if (isset($field_user_twitter_account)): ?>
+    <a class="twitter-timeline" data-height="300" data-link-color=“#f46b3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
+    <?php endif; ?>
   </div>
 </article>
