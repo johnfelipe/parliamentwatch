@@ -292,13 +292,13 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 
 /* Sidebar-Boxes */
 
-.sidebar-box {
+.sidebar__box {
   padding-bottom: $space-large;
   @include breakpoint($breakpoint-l-min) {
     padding-bottom: $space-large + $space;
   }
 }
-.sidebar-box__headline {
+.sidebar__box__headline {
   position: relative;
   .icon-info {
     position: absolute;
@@ -308,16 +308,16 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     color: $mediumGray;
   }
 }
-.sidebar-box__tag_list {
+.sidebar__box__tag_list {
   @include inline-list();
 }
-.sidebar-box__link_list {
+.sidebar__box__link_list {
   border-top: 1px solid $gray;
   padding: $space-small;
   padding: 0;
   margin: 0;
 }
-.sidebar-box__link_list__title {
+.sidebar__box__link_list__title {
   padding: $space-xsmall 0 $space-xsmall-mobile 0;
   margin: 0;
   display: block;
@@ -330,7 +330,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     color: $mediumGray;
   }
 }
-.sidebar-box__link_list__description {
+.sidebar__box__link_list__description {
   padding: 0 0 $space-xsmall 0;
   margin: 0;
   display: block;

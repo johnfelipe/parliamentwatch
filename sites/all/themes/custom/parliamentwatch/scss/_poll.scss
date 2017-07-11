@@ -523,7 +523,7 @@
     @include grid-column(4);
     @include grid-push(1);
   }
-  .sidebar-box:nth-child(1) {
+  .sidebar__box:nth-child(1) {
     .tag {
       @include tag($orangeBG, $orange, $white);
     }
