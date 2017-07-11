@@ -668,6 +668,7 @@ $abstimmverhalten-node-item-width: 18px;
 /* Political goal */
 
 .deputy__goal {
+  clear: both;
   @include grid-column(12);
   margin-top: $space-large * 2;
   @include breakpoint($breakpoint-s-min) {
