@@ -211,5 +211,11 @@
       <?php endif; ?>
     </div>
     <?php endif; ?>
+    <?php if (isset($user_profile['field_user_links_more'])): ?>
+      <div class="deputy__links">
+        <h2><?php print t('Links of'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h2>
+        <?php print render($user_profile['field_user_links_more']); ?>
+      </div>
+    <?php endif; ?>
   </div>
 </article>

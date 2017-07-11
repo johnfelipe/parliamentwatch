@@ -847,3 +847,17 @@ $abstimmverhalten-node-item-width: 18px;
     top: $space-large;
   }
 }
+
+.deputy__links {
+  @include grid-column(12);
+  background: $beige;
+  padding: $space;
+  margin-top: $space-large;
+  margin-bottom: $space-large;
+  @include breakpoint($breakpoint-m-min) {
+    padding: $space $space-large;
+  }
+  h2 {
+    margin-bottom: $space-large;
+  }
+}
