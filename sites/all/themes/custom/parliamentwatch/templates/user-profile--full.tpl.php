@@ -164,7 +164,7 @@
         <?php endif; ?>
       </dl>
     </div>
-
+    <?php if (isset($user_profile['candidate_match'])): ?>
     <div class="deputy__candidate_check swiper-container">
       <div class="deputy__candidate_check__header">
         <div class="deputy__candidate_check__header__logo">
@@ -182,7 +182,7 @@
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
-
+    <?php endif; ?>
     <?php if (isset($user_profile['field_user_political_goals']) || isset($field_user_twitter_account)): ?>
     <div class="deputy__goal readmore">
       <h3>
@@ -196,7 +196,7 @@
         </div>
       <?php else: ?>
         <div class="deputy__goal__empty">
-          <p><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?> <?php print t('did not saved a twitter account yet.'); ?></p>
+          <p><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?> <?php print t('did not saved a political goal yet.'); ?></p>
         </div>
       <?php endif; ?>
     </div>
