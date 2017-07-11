@@ -54,12 +54,16 @@
   }
 }
 
-
 /* Messages */
 
+.messages_container {
+  @include container();
+}
 .messages {
   @include box($brightGray);
+  @include grid-column(12);
   @include padding($space $space $space ($space-large * 2));
+  margin-top: $space-large;
   margin-bottom: $space-large;
   position: relative;
   &:before {

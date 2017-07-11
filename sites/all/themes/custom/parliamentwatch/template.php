@@ -514,7 +514,7 @@ function parliamentwatch_disable_messages_status_messages($vars) {
     'warning' => t('Warning message'),
   );
   foreach ($messages as $type => $arr_messages) {
-    $output .= "<div class='container'><div class=\"messages messages--$type\">\n";
+    $output .= "<div class='messages_container'><div class=\"messages messages--$type\">\n";
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
     }
@@ -951,6 +951,7 @@ function _parliamentwatch_should_render_content_container($variables) {
     'pw_parliaments_taxonomy_term_page',
     'user_view_page',
     'user_revision_show',
+    'comment_reply',
   ];
 
   if (in_array(menu_get_item()['page_callback'], $pages_without_container)) {
