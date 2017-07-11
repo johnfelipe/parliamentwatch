@@ -861,3 +861,30 @@ $abstimmverhalten-node-item-width: 18px;
     margin-bottom: $space-large;
   }
 }
+
+.deputy__gallery {
+  @include grid-column(12);
+  padding: $space-large 0;
+  a {
+    margin-bottom: $space;
+    display: block;
+    @include grid-column(4);
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(3, $neat-grid-large-gutter);
+      margin-bottom: $space-large;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(2, $neat-grid-large-gutter);
+    }
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+.deputy__gallery__inner {
+  @include grid-collapse();
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-collapse($neat-grid-large-gutter);
+  }
+}

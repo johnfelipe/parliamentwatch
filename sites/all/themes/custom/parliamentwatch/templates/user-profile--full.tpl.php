@@ -217,5 +217,14 @@
         <?php print render($user_profile['field_user_links_more']); ?>
       </div>
     <?php endif; ?>
+    <?php if (isset($user_profile['field_user_image_gallery'])): ?>
+      <div class="deputy__gallery">
+        <h2><?php print t('Image gallery of'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h2>
+        <div class="deputy__gallery__inner">
+          <?php print render($user_profile['field_user_image_gallery']); ?>
+        </div>
+      </div>
+    <?php endif; ?>
+
   </div>
 </article>
