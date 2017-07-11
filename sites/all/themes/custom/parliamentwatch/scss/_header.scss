@@ -39,6 +39,10 @@
     max-width: 290px;
     @include padding($space null);
   }
+  @include breakpoint($breakpoint-xl-min) {
+    max-width: 310px;
+    width: 310px;
+  }
 }
 
 /* Navigation */
