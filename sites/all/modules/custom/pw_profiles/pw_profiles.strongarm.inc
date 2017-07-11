@@ -116,6 +116,16 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
         ),
+        'candidate_match' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => TRUE,
+          ),
+          'full' => array(
+            'weight' => '100',
+            'visible' => TRUE,
+          ),
+        ),
       ),
     ),
   );

@@ -1285,7 +1285,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             ),
           ),
           'type' => 'link_default',
-          'weight' => 47,
+          'weight' => '47',
         ),
         'full' => array(
           'label' => 'above',
@@ -2034,18 +2034,18 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'description' => 'Die Bildergalerie ermöglicht Ihnen Fotos z.B. aus dem Wahlkampf in Ihrem Profil zu veröffentlichen.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '38',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => 'file',
-            'image_style' => 'thumbnail',
+            'image_style' => 'media_thumbnail',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2370,7 +2370,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'weight' => '15',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'link',
           'settings' => array(
             'field_delimiter' => '',
