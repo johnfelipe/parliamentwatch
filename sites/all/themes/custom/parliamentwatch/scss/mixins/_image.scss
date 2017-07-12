@@ -11,6 +11,7 @@
   border: 5px solid $white;
   box-shadow: 0 4px 10px 0 rgba(0,0,0,.15);
   position: relative;
+  @include transform(translate3d(0,0,0));
   img {
     width: 100%;
     max-width: none;
