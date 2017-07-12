@@ -583,7 +583,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   }
   if (!empty($constituency_values)) {
     $form['constituency'] = array(
-      '#type' => 'radios',
+      '#type' => 'select',
       '#title' => isset($parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value'] : t('Constituency'),
       '#title_display' => 'invisible',
       '#options' => ['' => t('All')] + _pw_profiles_options($constituency_values),
@@ -601,7 +601,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   }
   if (!empty($list_position_values) && !pw_profiles_filter_disabled('field_user_list_position_tid', $parliament)) {
     $form['list_position'] = array(
-      '#type' => 'radios',
+      '#type' => 'select',
       '#title' => t('List position'),
       '#title_display' => 'invisible',
       '#options' => ['' => t('All')] + _pw_profiles_options($list_position_values),
