@@ -107,15 +107,15 @@
   </div>
   <div class="sidebar">
     <div class="sidebar__box">
-      <h3 class="sidebar__box__headline"><?php print t('Security'); ?> <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-tags-ssl-hint') ?>"></i></h3>
+      <h3 class="sidebar__box__headline">Sicherheitshinweise <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-tags-ssl-hint') ?>"></i></h3>
       <p>Zum Schutz Ihrer Daten, erfolgt die Übertragung der Formular-Daten ausschließlich über zertifizierte SSL-Verschlüsselung.</p>
       <p><small><strong>Hinweis für SEPA-Lastschrift:</strong> Wenn Sie bis zum 13. des Monats spenden, dann ziehen wir die Spende am 15. des Monats oder am darauffolgenden Bankarbeitstag ein. Nach dem 13. des Monats ziehen wir Ihre Spende am 25. des Monats oder dem darauffolgenden Bankarbeitstag ein.</small></p>
     </div>
     <div class="sidebar__box">
-      <h3 class="sidebar__box__headline"><?php print t('Other donation possibilities'); ?> <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-ssl-hint-other-donation-possibilities') ?>"></i></h3>
+      <h3 class="sidebar__box__headline">Weitere Spendenmöglichkeiten <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-ssl-hint-other-donation-possibilities') ?>"></i></h3>
       <div class="sidebar__box__accordion">
         <div class="sidebar__box__accordion__item sidebar__box__accordion__item--open">
-          <h4 class="sidebar__box__accordion__item__title"><?php print t('Donations account') ?></h4>
+          <h4 class="sidebar__box__accordion__item__title">Spendenkonto</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>
               <strong>Parlamentwatch e.V.</strong><br>
@@ -128,7 +128,7 @@
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
-          <h4 class="sidebar__box__accordion__item__title"><?php print t('PayPal') ?></h4>
+          <h4 class="sidebar__box__accordion__item__title">PayPal</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>Zum Spenden können Sie auch PayPal nutzen.</p>
             <form target="_blank" action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -139,7 +139,7 @@
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
-          <h4 class="sidebar__box__accordion__item__title"><?php print t('BitCoin') ?></h4>
+          <h4 class="sidebar__box__accordion__item__title">BitCoin</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>Wir akzeptieren auch Bitcoin.</p>
             <form class="bitpay-donate" action="https://bitpay.com/checkout" method="post" target="_blank">
@@ -162,21 +162,21 @@
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
-          <h4 class="sidebar__box__accordion__item__title"><?php print t('Flattr') ?></h4>
+          <h4 class="sidebar__box__accordion__item__title">Flattr</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>Sie können uns auch "flattrn".</p>
             <iframe src="https://api.flattr.com/button/view/?uid=abgeordnetenwatch.de&amp;url=https://www.abgeordnetenwatch.de&amp;title=www.abgeordnetenwatch.de&amp;description=www.abgeordnetenwatch.de&amp;category=text&amp;language=de_DE" style="width:80px; height:62px;" allowtransparency="true" frameborder="0" scrolling="no" class="float-left"></iframe>
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
-          <h4 class="sidebar__box__accordion__item__title"><?php print t('Donate by mail') ?></h4>
+          <h4 class="sidebar__box__accordion__item__title">Spenden per Post</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>Alternativ zu einer Online-Spende können Sie auch einen Antrag herunterladen (PDF), ausdrucken und uns per Post oder Fax senden.</p>
-            <a href="#" class="link-icon"><i class="icon icon-arrow-right"></i> <?php print t('Download the donation form') ?></a>
+            <a href="#" class="link-icon"><i class="icon icon-arrow-right"></i> Spendenformular herunterladen</a>
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
-          <h4 class="sidebar__box__accordion__item__title"><?php print t('Donations when shopping') ?></h4>
+          <h4 class="sidebar__box__accordion__item__title">Spenden beim Einkaufen</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>Neben unserem Spendenformular gibt es weitere Möglichkeiten abgeordnetenwatch.de zu unterstützen.</p>
             <p>Sie kaufen hin und wieder online ein? Dann können Sie dabei gleichzeitig abgeordnetenwatch.de unterstützen. Wie? Das lesen sie hier:</p>
@@ -184,14 +184,14 @@
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
-          <h4 class="sidebar__box__accordion__item__title"><?php print t('Donate instead of gifts') ?></h4>
+          <h4 class="sidebar__box__accordion__item__title">Spenden statt Geschenke</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>Sie haben alles was Sie brauchen und möchten zum Geburtstag gerne für einen guten Zweck sammeln?</p>
             <a href="/spenden-statt-geschenke" class="link-icon"><i class="icon icon-arrow-right"></i> <?php print t('More information') ?></a>
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
-          <h4 class="sidebar__box__accordion__item__title"><?php print t('Testament donation') ?></h4>
+          <h4 class="sidebar__box__accordion__item__title">Testamentsspende</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>Sie möchten abgeordnetenwatch.de in Ihr Testament aufnehmen? Weitere Informationen finden Sie hier:</p>
             <a href="/testamentsspende" class="link-icon"><i class="icon icon-arrow-right"></i> <?php print t('More information') ?></a>
