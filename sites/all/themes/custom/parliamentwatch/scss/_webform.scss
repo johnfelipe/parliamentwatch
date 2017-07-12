@@ -25,3 +25,131 @@
     @include h3();
   }
 }
+
+
+/* Detail */
+
+.webform {
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(8, $neat-grid-no-gutter);
+  }
+  .fieldset-description {
+    margin-bottom: $space-large;
+    line-height: 1.5em;
+  }
+  .form-radios {
+    padding: $space-xsmall 0;
+  }
+  .field-suffix {
+    position: absolute;
+    right: $space-xsmall;
+    top: 50%;
+    @include transform(translate(0,-50%));
+  }
+}
+.webform-component-fieldset {
+  border: 0;
+  margin: 0 0 $space;
+  padding: $space;
+  background: $beige;
+  legend {
+    display: block;
+    width: auto;
+    max-width: none;
+    box-sizing: inherit;
+    width: 100%;
+    @include grid-collapse();
+    padding: 0 $space $space-small;
+    background: $beige;
+    border-bottom: 1px solid $darkBeige;
+  }
+  .fieldset-legend {
+    font-size: 1.2em;
+    font-family: $font-serif;
+    padding-bottom: $space-small;
+    display: block;
+    padding: $space 0 0 0;
+    margin: 0;
+    position: static;
+  }
+}
+
+
+/* Webform - Sidebar */
+
+.webform-wrapper .sidebar {
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4, $neat-grid-no-gutter);
+    padding-left: $space-large;
+  }
+}
+
+/* Webform - Spendenformular */
+
+.form--webform-client-form-10508 {
+  .form__item--radios > .form__item__label {
+    font-weight: 600;
+  }
+}
+
+.webform-component--fieldset-donationform-yourdonation {
+
+}
+
+.form__item--submitted-fieldset-donationform-yourdonation-donation-frequency,
+.form__item--submitted-fieldset-donationform-yourdonation-donation-amount {
+  @include grid-container();
+}
+.form-radios > .form__item--submitted-fieldset-donationform-yourdonation-donation-frequency,
+.form-radios > .form__item--submitted-fieldset-donationform-yourdonation-donation-amount {
+  float: left;
+  margin-right: $space-small;
+}
+.webform-component--fieldset-donationform-yourdata {
+  .fieldset-wrapper {
+    @include grid-collapse();
+    > .fieldset-description {
+      @include grid-column(12);
+    }
+    > .form__item {
+      @include grid-column(12);
+    }
+    > .form__item--submitted-fieldset-donationform-yourdata-personal-firstname,
+    > .form__item--submitted-fieldset-donationform-yourdata-personal-lastname,
+    > .form__item--submitted-fieldset-donationform-yourdata-personal-email,
+    > .form__item--submitted-fieldset-donationform-yourdata-personal-phone {
+      @include breakpoint($breakpoint-s-min) {
+        @include grid-column(6);
+      }
+    }
+    > .form__item--submitted-fieldset-donationform-yourdata-address-zipcode {
+      @include breakpoint($breakpoint-s-min) {
+        @include grid-column(3);
+      }
+    }
+    > .form__item--submitted-fieldset-donationform-yourdata-address-city {
+      @include breakpoint($breakpoint-s-min) {
+        @include grid-column(9);
+      }
+    }
+  }
+}
+.fieldset-wrapper > .webform-component--fieldset-donationform-paymentinfo--option-receipt {
+  margin-top: $space-large;
+}
+.form__item--submitted-fieldset-donationform-yourdata-option-newsletter {
+  border-top: 1px solid $darkBeige;
+  padding-top: $space;
+  margin-top: $space;
+}
+
+/* Spendenformular Sidebar */
+
+.bitpay-donate-field-price { @include grid-column(8); }
+.bitpay-donate-field-currency--wrapper { @include grid-column(4); }
+
+
+  /* TEMP */
+
+.webform-component--fieldset-meta,
+.webform-component--fieldset-donationform-civicrm { display: none; }

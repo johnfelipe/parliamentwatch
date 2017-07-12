@@ -308,9 +308,15 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     color: $mediumGray;
   }
 }
+
+/* Sidebar-Box: Tag-list */
+
 .sidebar__box__tag_list {
   @include inline-list();
 }
+
+/* Sidebar-Box: Link-list */
+
 .sidebar__box__link_list {
   border-top: 1px solid $gray;
   padding: $space-small;
@@ -337,6 +343,57 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   border-bottom: 1px solid $gray;
   font-size: .9em;
 }
+
+/* Sidebar-Box: Accordion */
+
+.sidebar__box__accordion {
+
+}
+.sidebar__box__accordion__item {
+  border-bottom: 1px solid $gray;
+}
+.sidebar__box__accordion__item__title {
+  margin-bottom: 0;
+  padding: $space-small-mobile;
+  position: relative;
+  cursor: pointer;
+  &:after {
+    content: '\e847';
+    font-family: 'awfont';
+    color: $orange;
+    position: absolute;
+    right: $space-xsmall-mobile;
+    top: 50%;
+    @include transition(transform 300ms ease);
+    @include transform(translate(0,-50%));
+  }
+}
+.sidebar__box__accordion__item__content {
+  height: 0;
+  overflow: hidden;
+  background: $brightBeige;
+  padding: 0 $space-small-mobile;
+  border-top: 1px solid transparent;
+  @include transition(all 300ms ease);
+}
+
+// State: open
+
+.sidebar__box__accordion__item--open {
+
+  .sidebar__box__accordion__item__content {
+    padding: $space-small $space-small-mobile;
+    border-top: 1px solid $gray;
+    height: auto;
+  }
+  .sidebar__box__accordion__item__title {
+    &:after {
+      @include transform(translate(0,-50%) rotate(180deg));
+    }
+
+  }
+}
+
 
 /* Wells */
 

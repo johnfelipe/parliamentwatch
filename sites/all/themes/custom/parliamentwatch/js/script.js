@@ -1072,6 +1072,38 @@ function candidateCheck() {
 }
 
 /*
+ * Sidebar
+ * */
+
+function sidebar() {
+    $('.sidebar__box__accordion__item__title').click(function () {
+        $('.sidebar__box__accordion__item').removeClass('sidebar__box__accordion__item--open');
+        $(this).parents('.sidebar__box__accordion__item').addClass('sidebar__box__accordion__item--open');
+        console.log('test');
+    });
+
+    $(window).load(function() {
+        var sideBarOffset = $('#header').outerHeight() + 20;
+        var sideBarOffsetAdmin = $('#header').outerHeight() + $('#admin-menu').outerHeight() + 16;
+
+        if (windowWidth >= breakpointSMin) {
+            // Init stickyKit
+            if ($("body").hasClass("admin-menu")) {
+                $(".sidebar").stick_in_parent({
+                    offset_top: sideBarOffsetAdmin,
+                    parent: '#content'
+                });
+            } else {
+                $(".sidebar").stick_in_parent({
+                    offset_top: sideBarOffset,
+                    parent: '#content'
+                });
+            }
+        }
+    });
+}
+
+/*
  * Footer
  * */
 
@@ -1102,6 +1134,7 @@ $(function () {
     readMore();
     footer();
     candidateCheck();
+    sidebar();
 
     // Init global matchHeight-plugin class
 
