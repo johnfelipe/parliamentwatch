@@ -236,7 +236,10 @@
   h3 {
     font-size: 1em;
     margin-bottom: $space-large;
+  }
+  .btn {
     @include grid-push(3);
+    clear: both;
   }
 }
 .patron-teaser__image {

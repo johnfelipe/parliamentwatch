@@ -125,6 +125,10 @@ function pw_globals_block_info() {
     'info' => 'Politician search form',
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['parliament_patron'] = [
+    'info' => 'Parliament patron teaser',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+  ];
   return $blocks;
 }
 
@@ -141,6 +145,8 @@ function pw_globals_block_view($delta = '') {
       return pw_globals_term_switcher_block();
     case 'politician_search_form':
       return pw_globals_politician_search_form_block();
+    case 'parliament_patron':
+      return pw_globals_parliament_patron_block();
     default:
       return [];
   }
@@ -322,6 +328,30 @@ function pw_globals_politician_search_form_block() {
 
   return $block;
 }
+
+/**
+ * Displays patron teaser for landing pages.
+ */
+function pw_globals_parliament_patron_block() {
+  $block = [];
+  $term = menu_get_object('taxonomy_term', 2);
+
+  if (!$term) {
+    return $block;
+  }
+
+  $today = new DateTime();
+  $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
+
+  if ($today > $election_date || !isset($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id'])) {
+    return $block;
+  }
+
+  $block['content'] = node_view(node_load($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id']), 'teaser');
+
+  return $block;
+}
+
 
 /**
  * Form constructor for the politician search form.
