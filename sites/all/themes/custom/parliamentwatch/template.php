@@ -141,17 +141,6 @@ function parliamentwatch_preprocess_block(&$variables) {
     }
   }
 
-  if ($variables['block']->module == 'pw_dialogues' && $variables['block']->delta == 'profile') {
-    if (menu_get_item()['page_callback'] == 'user_revision_show') {
-      $map = menu_get_item()['original_map'];
-      $account = user_revision_load($map[1], $map[3]);
-    }
-    else {
-      $account = menu_get_object('user');
-    }
-    $variables['user_dialogues_url'] = url('dialogues/' . pw_profiles_parliament($account)->tid . '/' . $account->uid);
-  }
-
 }
 
 /**

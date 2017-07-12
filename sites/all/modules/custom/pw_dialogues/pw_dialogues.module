@@ -396,6 +396,7 @@ function pw_dialogues_profile_block() {
       'scope' => 'footer',
       'type' => 'inline',
     ];
+    $block['overview_url'] = url('dialogues/' . pw_profiles_parliament($account)->tid . '/' . $account->uid);
   }
   $block['content']['question_form'] = node_view(node_load(10446), 'form');
 

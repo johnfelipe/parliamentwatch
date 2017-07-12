@@ -48,7 +48,9 @@
   <div class="tabs__content__title option-title">
     <h2><a href="#<?php print $block_html_id ?>"><?php print $block->subject; ?></a></h2>
     <?php print render($title_suffix) ?>
-    <a href="<?php print $user_dialogues_url; ?>" class="btn btn--white btn--mobile-block">Alle Fragen in der Übersicht</a>
+    <?php if (isset($block->overview_url)): ?>
+    <a href="<?php print $block->overview_url; ?>" class="btn btn--white btn--mobile-block">Alle Fragen in der Übersicht</a>
+    <?php endif; ?>
   </div>
   <div class="tabs__content__content">
     <?php print $content; ?>
