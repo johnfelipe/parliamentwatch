@@ -207,6 +207,9 @@ textarea.form__item__control {
 .select2-container--open .select2-dropdown--below {
   min-width: 200px;
 }
+.select2-selection__placeholder {
+  @include text-overflow();
+}
 
 
 

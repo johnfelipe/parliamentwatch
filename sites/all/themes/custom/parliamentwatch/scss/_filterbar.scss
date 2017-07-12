@@ -62,6 +62,9 @@
     margin-right: 0;
     border-left: 1px solid $darkBeige;
     @include transform(translate(0, 0));
+    @include breakpoint($breakpoint-xs-min) {
+      right: 0;
+    }
     &:before {
       color: $gray;
       line-height: 57px;
@@ -112,18 +115,21 @@
 
 }
 
+.filterbar__item--active {
+  color: $black;
+}
+
 .filterbar__item--input {
   padding: $space-xsmall $space-large $space-xsmall 0;
   padding-right: $space-large + $space + $space-xsmall;
   position: relative;
   border-right: 1px solid $darkBeige;
-  position: relative;
   z-index: 9;
   @include grid-container();
   .select2 {
-    min-width: 80px;
+    width: 80px !important;
     @include breakpoint($breakpoint-s-min) {
-      min-width: 210px;
+      width: 210px !important;
     }
   }
   .select2-container--default .select2-selection--single {
@@ -172,7 +178,7 @@
 .filterbar__item--dropdown {
   border-right: 1px solid $darkBeige;
   white-space: nowrap;
-  a {
+  .dropdown__trigger {
     padding: $space $space;
     display: block;
     color: $darkGray;
@@ -182,6 +188,19 @@
     }
     @include breakpoint($breakpoint-l-min) {
       line-height: $space + 1;
+    }
+    .badge {
+      display: inline-block;
+      background: $orangeBG;
+      color: $white;
+      min-width: 14px;
+      min-height: 14px;
+      font-size: .7em;
+      line-height: 14px;
+      font-weight: 600;
+      margin: 0 $space-xsmall-mobile;
+      border-radius: 7px;
+      padding: 0 4px;
     }
     .icon {
       font-size: .7em;
@@ -194,14 +213,18 @@
   .dropdown__list {
     top: 100%;
     position: absolute;
-    left: 50%;
     margin-top: 1px;
 
     background: $white;
     padding: $space;
     box-shadow: 0 6px 10px rgba(0,0,0,.1);
-    min-width: 710px;
     @include transform(translate(-50%, $space));
+    width: 300px;
+
+    @include breakpoint($breakpoint-s-min) {
+      width: 710px;
+      left: 50%;
+    }
 
     // Dropdown display
 
@@ -212,8 +235,11 @@
       .form__item {
         border-bottom: 1px solid $brightGray;
         position: relative;
-        @include grid-column(4, $neat-grid-large-gutter);
+        @include grid-column(6, $neat-grid-large-gutter);
         @include padding($space-xsmall-mobile 0 $space-xsmall-mobile $space);
+        @include breakpoint($breakpoint-s-min) {
+          @include grid-column(4, $neat-grid-large-gutter);
+        }
       }
       .form__item__control,
       .form-radio {
@@ -259,6 +285,7 @@
   }
 }
 .filterbar__view_options {
+  display: none;
   position: absolute;
   right: 0;
   top: 0;
@@ -271,6 +298,7 @@
   @include grid-container();
   @include breakpoint($breakpoint-s-min) {
     right: $space-small;
+    display: block;
   }
   @include breakpoint($breakpoint-m-min) {
     right: $space;

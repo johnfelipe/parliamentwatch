@@ -49,9 +49,9 @@
         ?>
         <div class="filterbar__item <?php print ($modifier == 'dropdown') ? 'filterbar__item--dropdown dropdown' : 'filterbar__item--checkbox'; ?>">
           <?php if ($modifier == 'dropdown'): ?>
-          <a class="dropdown__trigger" href="#">
+          <div class="dropdown__trigger">
             <?php print $form[$children[$i]]['#title'] ?> <i class="icon icon-arrow-down"></i>
-          </a>
+          </div>
           <div class="dropdown__list">
             <?php print render($form[$children[$i]]); ?>
           </div>
