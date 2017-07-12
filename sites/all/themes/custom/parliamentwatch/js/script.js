@@ -276,6 +276,15 @@ function select2init() {
         placeholder: 'Bitte wählen',
         dropdownParent: $('.page-container')
     });
+
+    $('select.form__item__control').on("select2:open", function (e) {
+
+        // close all dropdowns
+
+        $('.dropdown__list').removeClass('dropdown__list--open');
+        console.log("select2:open", e);
+    });
+
 }
 
 /*
@@ -986,8 +995,6 @@ function filterBar() {
             .css('left', filterBarOffsetLeftValue + 'px');
     }
 
-    // $(".filterbar__item").matchHeight();
-
     var mySwiper = new Swiper('.filterbar__swiper', {
         freeMode: true,
         resistance: true,
@@ -1029,9 +1036,8 @@ function filterBar() {
             }
         }
     });
-    $('.filterbar__swiper .filterbar__item').click(function () {
+    $('.filterbar__swiper .filterbar__item--dropdown').click(function () {
         var index = $(this).index();
-        console.log(index);
         mySwiper.slideTo(index, 300);
     });
 }

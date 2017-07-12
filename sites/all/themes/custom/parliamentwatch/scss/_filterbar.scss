@@ -94,7 +94,7 @@
 }
 .filterbar__item {
   float: left;
-  color: $darkGray;
+  color: $mediumGray;
   background: $white;
   margin-bottom: 1px;
   .form__item {
@@ -181,7 +181,7 @@
   .dropdown__trigger {
     padding: $space $space;
     display: block;
-    color: $darkGray;
+    color: $mediumGray;
     line-height: $space - 1;
     @include breakpoint($breakpoint-m-min) {
       line-height: $space;
@@ -284,6 +284,36 @@
     }
   }
 }
+
+.filterbar__item--select {
+  padding: $space-xsmall;
+  position: relative;
+  border-right: 1px solid $darkBeige;
+  z-index: 9;
+  @include grid-container();
+  .select2 {
+    width: 80px !important;
+    @include breakpoint($breakpoint-s-min) {
+      width: 210px !important;
+    }
+  }
+  .select2-container--default .select2-selection--single {
+    border-color: $darkBeige;
+  }
+  .select2-container .select2-selection--single .select2-selection__arrow {
+    border-color: $darkBeige;
+  }
+  .form__item__control {
+    display: none;
+    float: left;
+    border-color: $darkBeige;
+    border-right: 0;
+    @include breakpoint($breakpoint-s-min) {
+      display: block;
+    }
+  }
+}
+
 .filterbar__view_options {
   display: none;
   position: absolute;
