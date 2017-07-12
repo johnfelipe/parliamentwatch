@@ -849,7 +849,6 @@ function _pw_globals_menu_parliament_tree_add($path, $title, $weight) {
   $sub_items = [
     'Abgeordnete' => 'profile',
     'Abstimmungen' => 'abstimmungen',
-    'Petitionen' => 'petitionen',
     'Wahlrecht' => 'wahlrecht',
   ];
 
