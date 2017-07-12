@@ -454,7 +454,7 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
     else {
       $prefix .= '<li class="nav__item nav__item--dropdown dropdown">';
     }
-    $prefix .= '<a class="nav__item__link dropdown__text" href="#">Landtag</a>';
+    $prefix .= '<a class="nav__item__link dropdown__text" href="#">Landtage</a>';
     $prefix .= '<a class="nav__item__trigger dropdown__trigger" href="#"><i class="icon icon-arrow-down"></i></a>';
     $prefix .= '<ul class="dropdown__list">';
   }
