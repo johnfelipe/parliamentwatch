@@ -424,27 +424,9 @@ function pw_globals_update_7011() {
 }
 
 /**
- * Configure block for switching legislative terms.
- */
-function pw_globals_update_7012() {
-  $block = [
-    'module' => 'pw_globals',
-    'delta' => 'term_switcher',
-    'weight' => 0,
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => "polls/*\npetitions/*\nprofiles/*",
-    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
-    'title' => '',
-    'regions' => ['parliamentwatch' => 'intro_secondary'],
-    'node_types' => [],
-  ];
-  _pw_globals_configure_block($block);
-}
-
-/**
  * Delete obsolete custom blocks.
  */
-function pw_globals_update_7013() {
+function pw_globals_update_7012() {
   $q = db_select('block', 'b')
     ->fields('b', ['delta'])
     ->condition('module', 'block')
@@ -488,7 +470,7 @@ function pw_globals_update_7013() {
 /**
  * Update aliases.
  */
-function pw_globals_update_7014() {
+function pw_globals_update_7013() {
   $updates = [
     'petitionen' => 'petitions',
     'eu/profile/kandidierende' => 'profiles/16117/candidates',
@@ -542,7 +524,7 @@ function pw_globals_update_7014() {
 /**
  * Set variable parliamentwatch_state_parliament_tids.
  */
-function pw_globals_update_7015() {
+function pw_globals_update_7014() {
   variable_set('parliamentwatch_state_parliament_tids', [
     21316,
     16285,
@@ -566,7 +548,7 @@ function pw_globals_update_7015() {
 /**
  * Add links to main menu.
  */
-function pw_globals_update_7016() {
+function pw_globals_update_7015() {
   menu_delete_links('main-menu');
 
   $state_parliament_terms = taxonomy_term_load_multiple(variable_get('parliamentwatch_state_parliament_tids', []));
@@ -584,7 +566,7 @@ function pw_globals_update_7016() {
 /**
  * Add info menu.
  */
-function pw_globals_update_7017() {
+function pw_globals_update_7016() {
   menu_save(['menu_name' => 'info-menu', 'title' => 'Info-Menü', 'description' => 'Das <em>Info-Menü</em> stellt die Navigationspunkte für den "Über Uns"-Bereich']);
 
   $weight = 0;
@@ -611,7 +593,7 @@ function pw_globals_update_7017() {
 /**
  * Delete obsolete menus.
  */
-function pw_globals_update_7018() {
+function pw_globals_update_7017() {
   menu_delete(menu_load('devel'));
   menu_delete(menu_load('features'));
   menu_delete(menu_load('menu-main-menu-de'));
@@ -624,14 +606,14 @@ function pw_globals_update_7018() {
 /**
  * Delete obsolete redirects.
  */
-function pw_globals_update_7019() {
+function pw_globals_update_7018() {
   redirect_delete(32872);
 }
 
 /**
  * Delete obsolete fields.
  */
-function pw_globals_update_7020() {
+function pw_globals_update_7019() {
   field_delete_field('drulenium_num_command_errors');
   field_delete_field('drulenium_num_command_failures');
   field_delete_field('drulenium_num_command_passes');
@@ -654,14 +636,14 @@ function pw_globals_update_7020() {
 /**
  * Delete obsolete field groups.
  */
-function pw_globals_update_7021() {
+function pw_globals_update_7020() {
   db_delete('field_group')->condition('mode', 'form', '<>')->execute();
 }
 
 /**
  * Fix order of filters in text format "Managed Content".
  */
-function pw_globals_update_7022() {
+function pw_globals_update_7021() {
   $format = filter_format_load('managed_content');
   foreach (filter_list_format('managed_content') as $key => $filter) {
     $format->filters[$key] = (array) $filter;
@@ -673,7 +655,7 @@ function pw_globals_update_7022() {
 /**
  * Change node content for "Die Arbeit von abgeordnetenwatch.de unterstützen!".
  */
-function pw_globals_update_7023() {
+function pw_globals_update_7022() {
   $node = node_load(104846);
 
   $node->body[LANGUAGE_NONE][0]['value'] = <<<EOD
@@ -690,7 +672,7 @@ EOD;
 /**
  * Set frontpage.
  */
-function pw_globals_update_7024() {
+function pw_globals_update_7023() {
   variable_set('site_frontpage', drupal_lookup_path('source', 'bundestag'));
 }
 
