@@ -579,7 +579,7 @@ function pw_globals_update_7016() {
   }
   _pw_globals_menu_parliament_tree_add('eu', 'EU', $weight++, 'main-menu');
   _pw_globals_menu_link_add('blog', 'Blog', $weight++, 'main-menu');
-  _pw_globals_menu_link_add('ueber-uns', 'Info', $weight++, 'main-menu');
+  _pw_globals_menu_link_add('ueber-uns', t('About us'), $weight++, 'main-menu');
 }
 
 /**
