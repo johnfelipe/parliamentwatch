@@ -92,10 +92,11 @@
     <?php endif; ?>
   </header>
 
-  <?php print $messages; ?>
 
   <main id="content">
     <a id="main-content"></a>
+    <?php print $messages; ?>
+
     <?php if ($tabs): ?><div class="tabs tabs--admin"><?php print render($tabs); ?></div><?php endif; ?>
     <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
     <?php if ($page['intro_primary']): ?>
@@ -114,6 +115,21 @@
     <?php print render($page['content_tabs']); ?>
     <?php print render($page['content_extra']); ?>
   </main>
+
+  <div class="patron-teaser">
+    <h3>Schirmherrin zur Landtagswahl 2016</h3>
+    <figure class="patron-teaser__image">
+      <div class="patron-teaser__image__inner"><img src="https://www.abgeordnetenwatch.de/sites/abgeordnetenwatch.de/files/baden-wuerttemberg-2016-schirmherrin-brigitte-losch-teaser.jpg" alt=""></div>
+      <figcaption>
+        © Brigitte Lösch
+      </figcaption>
+    </figure>
+    <div class="patron-teaser__content">
+      <blockquote>Politische Aussagen zu hinterfragen, ist nicht nur eine Form praktizierten Selbstbewusstseins, sondern gehört zum Wesen der Demokratie mit dazu.</blockquote>
+      <p>Brigitte Lösch, Landtagsvizepräsidentin Baden-Württemberg 2011-2016</p>
+      <a href="#" class="btn btn--mobile-block"><?php print t('Read greeting words'); ?></a>
+    </div>
+  </div>
 
   <footer id="footer">
     <div class="footer__maincol">

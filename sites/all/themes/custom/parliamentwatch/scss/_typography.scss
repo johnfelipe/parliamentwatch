@@ -67,6 +67,33 @@ a {
   }
 }
 
+/* Quotes */
+
+blockquote {
+  margin: 0 0 $space;
+  padding: 0;
+  font-family: $font-serif;
+  font-style: italic;
+  font-size: 1.3em;
+  line-height: 1.5em;
+  quotes: "\201C""\201D""\2018""\2019";
+  @include breakpoint($breakpoint-s-min) {
+    font-size: 1.4em;
+    line-height: 1.6em;
+  }
+  &:before {
+    color: $gray;
+    content: open-quote;
+    font-size: 3.5em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+    @include breakpoint($breakpoint-s-min) {
+      font-size: 4em;
+    }
+  }
+}
+
 /* Text-Alignment */
 .text-left {
   text-align: left;
