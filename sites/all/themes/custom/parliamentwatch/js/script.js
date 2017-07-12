@@ -383,8 +383,8 @@ function swiperTile() {
             slideClass: 'tile',
             loop: false,
             spaceBetween: 20,
-            slidesPerView: 4,
-            slidesPerGroup: 4,
+            slidesPerView: 3,
+            slidesPerGroup: 3,
             nextButton: $this.find('.swiper-button-next'),
             prevButton: $this.find('.swiper-button-prev'),
             pagination: $this.find('.swiper-pagination'),
@@ -392,13 +392,15 @@ function swiperTile() {
             breakpoints: {
                 550: {
                     slidesPerView: 1,
-                    spaceBetween: 20,
                     slidesPerGroup: 1
                 },
                 768: {
                     slidesPerView: 2,
-                    slidesPerGroup: 2,
-                    spaceBetween: 20
+                    slidesPerGroup: 2
+                },
+                992: {
+                    slidesPerView: 2,
+                    slidesPerGroup: 2
                 },
                 1200: {
                     slidesPerView: 3,

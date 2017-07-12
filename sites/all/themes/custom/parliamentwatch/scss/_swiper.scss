@@ -2,6 +2,9 @@
 * Swiper definitions
 */
 
+.swiper-container-wrapper {
+  position: relative;
+}
 .swiper-container {
   width: 100%;
   position: static;
@@ -23,7 +26,8 @@
   }
   @include breakpoint($breakpoint-xl-min) {
     position: absolute;
-    top: 500px;
+    top: 50%;
+    margin-top: 0;
     @include transform(translate(0,-50%));
   }
   &:before {

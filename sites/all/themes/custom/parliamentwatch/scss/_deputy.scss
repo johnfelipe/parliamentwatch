@@ -418,6 +418,9 @@
     }
     .swiper-container {
       @include container-regular();
+      @include breakpoint($breakpoint-l-min) {
+        padding-right: calc(#{$space} - 1px);
+      }
     }
   }
 }
