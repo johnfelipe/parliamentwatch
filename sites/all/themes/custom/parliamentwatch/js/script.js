@@ -102,6 +102,7 @@ function mainNavigation() {
 
 function dropdown() {
     $('.dropdown__trigger').click(function () {
+        $('.dropdown__list').removeClass('dropdown__list--open');
         $(this).toggleClass('dropdown__trigger--active');
         $(this).parent('.dropdown').find('.dropdown__list').toggleClass('dropdown__list--open');
         return false;
