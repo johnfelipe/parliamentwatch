@@ -107,22 +107,32 @@
   @include container();
 }
 .footer__mediapartner__title {
-  float: left;
   font-family: $font-serif;
   font-weight: 300;
   font-size: 1em;
   color: $brightGray;
   margin-left: $space;
   line-height: $space;
-  @include margin($space 30px $space null);
+  @include margin(0 30px $space null);
+  @include breakpoint($breakpoint-m-min) {
+    float: left;
+    @include margin($space 30px $space null);
+  }
 }
 .footer__mediapartner__link {
   float: left;
   display: block;
-  height: $space;
-  margin: $space;
+  height: $space - 4;
+  margin: $space-xsmall $space;
   opacity: .6;
   @include transition(opacity 300ms);
+
+  @include breakpoint($breakpoint-s-min) {
+    margin: $space;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    height: $space - 2;
+  }
   img {
     width: auto;
     height: 100%;
@@ -134,6 +144,7 @@
 .footer__logo {
   display: block;
   @include container;
+  @include container-regular;
   .svg-container {
     float: right;
     margin-top: $space;
