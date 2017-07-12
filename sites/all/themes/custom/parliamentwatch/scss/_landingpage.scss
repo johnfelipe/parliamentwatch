@@ -28,7 +28,31 @@
   .icon {
     color: $orangeBG;
     font-size: 20em;
+    display: inline-block;
     text-shadow: -3px 0 $white, 0 3px $white, 3px 0 $white, 0 -3px $white;
+  }
+  .icon-eu {
+    margin-top: $space-large;
+    font-size: 19em;
+  }
+  .icon-de-bw {
+    font-size: 16em;
+    margin-bottom: $space-large + $space;
+  }
+  .icon-de-th,
+  .icon-de-sh,
+  .icon-de-st,
+  .icon-de-rp,
+  .icon-de-sl,
+  .icon-de-sl,
+  .icon-de-nw,
+  .icon-de-ni,
+  .icon-de-mv,
+  .icon-de-hh,
+  .icon-de-be {
+    font-size: 16em;
+    margin-top: $space;
+    margin-bottom: $space-large;
   }
 }
 .lp-header__right {
