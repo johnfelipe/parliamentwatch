@@ -207,7 +207,6 @@ function newsletterWidget() {
 }
 
 
-
 /*
  * Tabs
  * */
@@ -270,22 +269,19 @@ function tabs() {
 /*
  * Select2 Implementation
  * */
+
 function select2init() {
     $('select.form__item__control').select2({
         minimumResultsForSearch: 20,
         placeholder: 'Bitte wählen',
         dropdownParent: $('.page-container')
     });
-
     $('select.form__item__control').on("select2:open", function (e) {
-
         // close all dropdowns
-
         $('.dropdown__list').removeClass('dropdown__list--open');
-        console.log("select2:open", e);
     });
-
 }
+
 
 /*
  * Autosuggest
@@ -354,6 +350,7 @@ function autosuggest() {
         }
     });
 }
+
 
 /*
  * Sponsor-Counter
@@ -446,7 +443,6 @@ function viewDeputyDetail() {
 }
 
 
-
 /*
  * D3: Bars vertical
  * */
@@ -515,6 +511,7 @@ function d3BarsVertical(element) {
 /*
  * D3: Donut
  * */
+
 function d3Donut(element) {
     var wrapper = element;
     var dataset = JSON.parse(wrapper.getAttribute('data-data'));
@@ -551,6 +548,7 @@ function d3Donut(element) {
 /*
  * D3: Donut with labels
  * */
+
 function d3DonutLabels(element) {
     var wrapper = element;
     var dataset = window[wrapper.getAttribute('data-data')]();
@@ -603,6 +601,7 @@ function d3DonutLabels(element) {
 /*
  * D3: Donut with icon
  * */
+
 function d3DonutIcon(element) {
     var wrapper = element;
     var dataset = JSON.parse(wrapper.getAttribute('data-data'));
@@ -668,9 +667,12 @@ function d3DonutIcon(element) {
     });
 
 }
+
+
 /*
  * D3: Radial Gauge
  * */
+
 function d3RadialGauge(element) {
     var wrapper = element;
     var start = 0;
@@ -756,9 +758,11 @@ function d3RadialGauge(element) {
     })();
 }
 
+
 /*
  * D3: Bar-Chart Secondary Income
  * */
+
 function d3SecondaryIncome(element) {
     var wrapper = element;
     var barWrapper = d3.select(wrapper)
@@ -940,6 +944,7 @@ function d3BarVerticalStackedPoll(element){
 /*
  * Poll-Timeline
  * */
+
 function pollTimeline() {
     var pollTimeline = $(".poll__timeline");
 
@@ -969,9 +974,11 @@ function pollTimeline() {
     });
 }
 
+
 /*
  * Filter Bar
  * */
+
 function filterBar() {
     var filterBarSwiper = $(".filterbar__swiper");
 
@@ -1046,6 +1053,7 @@ function filterBar() {
 /*
  * Readmore expander
  * */
+
 function readMore() {
     var readmoreHeight = $('.readmore').outerHeight();
 
@@ -1063,9 +1071,11 @@ function readMore() {
     });
 }
 
+
 /*
  * Kandidaten check
  * */
+
 function candidateCheck() {
     var candidateCheckSwiper = $(".deputy__candidate_check");
     var mySwiper = new Swiper('.deputy__candidate_check', {
@@ -1087,6 +1097,7 @@ function candidateCheck() {
         }
     });
 }
+
 
 /*
  * Sidebar
@@ -1119,6 +1130,7 @@ function sidebar() {
         }
     });
 }
+
 
 /*
  * Footer
@@ -1195,9 +1207,6 @@ $(function () {
         $(this)
     });
 
-
-
-
     // Init functions on window resize
 
     var windowResize = debounce(function () {
@@ -1209,7 +1218,6 @@ $(function () {
     // Event-Listener
 
     window.addEventListener('resize', windowResize);
-
 });
 
 function parseDialogues() {
