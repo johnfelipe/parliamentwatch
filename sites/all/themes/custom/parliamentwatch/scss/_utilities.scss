@@ -431,6 +431,7 @@ figcaption {
 }
 .readMore--expanded {
   height: auto;
+  max-height: none;
   overflow: visible;
   .readmore__trigger {
     &:before {

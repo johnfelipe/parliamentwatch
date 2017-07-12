@@ -183,12 +183,14 @@
       <div class="swiper-button-next"></div>
     </div>
     <?php endif; ?>
-    <?php if (isset($user_profile['field_user_political_goals']) || isset($field_user_twitter_account)): ?>
+    
+    
+    <?php if (isset($user_profile['field_user_political_goals'])): ?>
     <div class="deputy__goal readmore">
       <h3>
         <?php print t('Die politischen Ziele von'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?>
       </h3>
-      <?php if (isset($user_profile['field_user_political_goals'])): ?>
+      <?php if ($user_profile['field_user_political_goals']): ?>
         <?php print render($user_profile['field_user_political_goals']); ?>
         <div class="deputy__goal__read_more readmore__trigger">
           <a href="#" class="btn btn--small readmore__trigger__more"><?php print t('Read more'); ?></a>
@@ -200,7 +202,10 @@
         </div>
       <?php endif; ?>
     </div>
-    <div class="deputy__twitter">
+    <?php endif; ?>
+
+    <?php if (isset($field_user_twitter_account)): ?>
+      <div class="deputy__twitter">
       <?php if (isset($field_user_twitter_account)): ?>
         <a class="twitter-timeline" data-height="300" data-link-color=“#f46b3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
       <?php else: ?>
@@ -211,8 +216,9 @@
       <?php endif; ?>
     </div>
     <?php endif; ?>
+
     <?php if (isset($user_profile['field_user_links_more'])): ?>
-      <div class="deputy__links">
+      <div class="deputy__custom-links">
         <h2><?php print t('Links of'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h2>
         <?php print render($user_profile['field_user_links_more']); ?>
       </div>

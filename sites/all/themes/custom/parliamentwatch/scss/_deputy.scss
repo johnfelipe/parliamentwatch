@@ -27,7 +27,6 @@
   .deputy__image {
     @include margin(null auto $space);
     @include image-circle(130px, 130px);
-    @include transform(translate3d(0,0,0));
   }
   .deputy__title {
     text-align: center;
@@ -77,6 +76,7 @@
     font-size: .9em;
     text-align: center;
   }
+
 }
 
 /* View-Mode: Detail (user_candidate) */
@@ -707,9 +707,8 @@ $abstimmverhalten-node-item-width: 18px;
     @include grid-column(6);
   }
 }
-.deputy__twitter__empty {
-  padding: $space;
-}
+.deputy__intro__content .deputy__twitter { clear: both; }
+.deputy__twitter__empty { padding: $space; }
 
 /* Candidate check */
 
@@ -849,7 +848,7 @@ $abstimmverhalten-node-item-width: 18px;
   }
 }
 
-.deputy__links {
+.deputy__custom-links {
   @include grid-column(12);
   background: $beige;
   padding: $space;
