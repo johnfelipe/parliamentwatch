@@ -64,40 +64,21 @@ function pw_kandidatencheck_user_view($account, $view_mode, $langcode) {
 }
 
 /**
- * Implements hook_block_info().
+ * Implements hook_form_FORM_ID_alter().
  */
-function pw_kandidatencheck_block_info() {
-  $blocks['kandidaten_check_link'] = [
-    'info' => t('Kandidaten-Check Link'),
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'user/*/edit',
-    'region' => 'content',
-  ];
-  return $blocks;
-}
-
-/**
- * Implements hook_block_view().
- */
-function pw_kandidatencheck_block_view($delta = '') {
-  if ($delta == 'kandidaten_check_link' && !empty(variable_get('pw_salt'))) {
-    $image = theme_image_style(
-      array(
-        'style_name' => 'pw_landscape_l',
-        'path' => 'public://kandidaten-check-link.jpg',
-      )
-    );
-    $hash = md5(variable_get('pw_salt') . _pw_get_current_user()->uuid);
-    $block = array();
-    $block['content'] = l(
-      $image, 'http://kandidatencheck.abgeordnetenwatch.de/thesen/?id=' . $hash, array(
+function pw_kandidatencheck_form_user_profile_form_alter(&$form, &$form_state) {
+  $image = theme('image', ['path' => drupal_get_path('module', 'pw_kandidatencheck') . '/kandidatencheck_teaser.png', 'attributes' => ['height' => 79, 'width' => 858]]);
+  $form['candidate_match'] = [
+    '#theme' => 'link',
+    '#text' => $image,
+    '#path' => 'https://kandidatencheck.abgeordnetenwatch.de/thesen/',
+    '#options' => [
+      'query' => ['id' => md5(variable_get('pw_salt') . $form['#user']->uuid)],
       'html' => TRUE,
-      'attributes' => array('target' => '_blank'),
-      )
-    );
-    return $block;
-  }
+      'attributes' => ['target' => '_blank'],
+    ],
+    '#weight' => -10,
+  ];
 }
 
 /**
