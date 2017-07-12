@@ -40,14 +40,17 @@
         <?php for ($i = 1; $i < count($children); $i++): ?>
         <?php if (!in_array($children[$i], ['submit', 'form_id', 'form_build_id', 'form_token'])): ?>
         <?php
-          if (!isset($form[$children[$i]]['#options']) || count($form[$children[$i]]['#options']) > 2) {
+          if ($form[$children[$i]]['#type'] == 'select') {
+            $modifier = 'select';
+          }
+          elseif (!isset($form[$children[$i]]['#options']) || count($form[$children[$i]]['#options']) > 2) {
             $modifier = 'dropdown';
           }
           else {
-            $modifier = 'checkboxes';
+            $modifier = 'checkbox';
           }
         ?>
-        <div class="filterbar__item <?php print ($modifier == 'dropdown') ? 'filterbar__item--dropdown dropdown' : 'filterbar__item--checkbox'; ?>">
+        <div class="filterbar__item <?php print ($modifier == 'dropdown') ? 'filterbar__item--dropdown dropdown' : "filterbar__item--$modifier"; ?>">
           <?php if ($modifier == 'dropdown'): ?>
           <div class="dropdown__trigger">
             <?php print $form[$children[$i]]['#title'] ?> <i class="icon icon-arrow-down"></i>
