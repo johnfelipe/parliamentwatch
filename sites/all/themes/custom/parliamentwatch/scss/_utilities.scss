@@ -287,6 +287,9 @@ figcaption {
   .intro__full {
     @include grid-column(12);
   }
+  & + .intro {
+    padding-top: 0;
+  }
 }
 
 /* Intro - Right to left */
