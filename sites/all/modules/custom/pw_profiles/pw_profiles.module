@@ -29,10 +29,10 @@ function pw_profiles_menu() {
  * Implements hook_form_alter().
  */
 function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == "user_profile_form") {
-    unset($form["locale"]);
+  if ($form_id == 'user_profile_form') {
+    unset($form['locale']);
     unset($form['mimemail']);
-    unset($form["overlay_control"]);
+    unset($form['overlay_control']);
     $form['#validate'][] = 'pw_profiles_form_validate';
     $form['account']['name']['#description'] = t('Only lowercase letters (a-z), numbers and dash are allowed.');
 
@@ -58,13 +58,13 @@ function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
-  elseif ($form_id == "user_revision_edit_form") {
-    unset($form["field_user_external_url"]);
-    unset($form["antispam_moderator"]);
-    unset($form["ckeditor"]);
-    unset($form["mimemail"]);
-    unset($form["overlay_control"]);
-    unset($form["xmlsitemap"]);
+  elseif ($form_id == 'user_revision_edit_form') {
+    unset($form['field_user_external_url']);
+    unset($form['antispam_moderator']);
+    unset($form['ckeditor']);
+    unset($form['mimemail']);
+    unset($form['overlay_control']);
+    unset($form['xmlsitemap']);
   }
 }
 
