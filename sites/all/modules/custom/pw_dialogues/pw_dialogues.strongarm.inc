@@ -116,7 +116,7 @@ function pw_dialogues_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'teaser' => array(
         'custom_settings' => FALSE,
@@ -149,7 +149,7 @@ function pw_dialogues_strongarm() {
         'custom_settings' => FALSE,
       ),
       'tile' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'list_item' => array(
         'custom_settings' => FALSE,
