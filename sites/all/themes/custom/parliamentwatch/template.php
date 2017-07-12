@@ -353,6 +353,21 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     $variables['field_user_birthday'][0]['iso_8601'] = $date->format(DateTime::ISO8601);
   }
 
+  if (isset($variables['field_user_childs'])) {
+    if ($variables['field_user_childs'][0]['value'] == 0) {
+      $variables['user_profile']['field_user_childs'][0]['#markup'] = t('None');
+    }
+    elseif ($variables['field_user_childs'][0]['value'] == -1) {
+      unset($variables['user_profile']['field_user_childs']);
+    }
+  }
+
+  if (isset($variables['field_user_list_position'])) {
+    if ($variables['field_user_list_position'][0]['tid'] == 19706) {
+      $variables['user_profile']['field_user_list_position'][0]['#markup'] = t('no information');
+    }
+  }
+
 }
 
 /**
