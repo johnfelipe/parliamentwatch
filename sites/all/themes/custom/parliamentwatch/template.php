@@ -317,7 +317,12 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   if (isset($account->number_of_questions)) {
     $variables['questions'] = $account->number_of_questions;
     $variables['answers'] = $account->number_of_answers;
-    $variables['answer_ratio'] = round(100 * $account->number_of_answers / $account->number_of_questions, 0);
+    if ($account->number_of_questions > 0) {
+      $variables['answer_ratio'] = round(100 * $account->number_of_answers / $account->number_of_questions, 0);
+    }
+    else {
+      $variables['answer_ratio'] = 0;
+    }
   }
 
   $gender = $account->field_user_gender[LANGUAGE_NONE][0]['value'];
@@ -880,7 +885,9 @@ function parliamentwatch_textarea($variables) {
  */
 function parliamentwatch_select($variables) {
   $element = $variables['element'];
-  $element['#attributes']['data-placeholder'] = $element['#title'];
+  if (isset($element['#title'])) {
+    $element['#attributes']['data-placeholder'] = $element['#title'];
+  }
   element_set_attributes($element, ['id', 'name', 'size']);
   _parliamentwatch_form_set_class($element, ['form__item__control']);
 

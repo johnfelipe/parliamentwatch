@@ -380,7 +380,7 @@ function pw_dialogues_profile_block() {
   $block['subject'] = t('Questions and Answers');
   $result = pw_dialogues_by_user_revision_query($account)->execute();
 
-  if ($result['node']) {
+  if (!empty($result['node'])) {
     $nodes = node_load_multiple(array_keys($result['node']));
     $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
     $block['content'] = node_view_multiple(array_slice($nodes, 0, 12, TRUE), 'embedded');

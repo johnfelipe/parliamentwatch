@@ -308,7 +308,7 @@ function pw_profiles_page($parliament_term, $role_name) {
 /**
  * Title callback; returns title for profile lists.
  *
- * @param string $parliament_name
+ * @param string $parliament
  *   The parliament name
  *
  * @param string $role_name
@@ -317,13 +317,7 @@ function pw_profiles_page($parliament_term, $role_name) {
  * @return string
  *   The title of the page
  */
-function pw_profiles_page_title($parliament_name, $role_name) {
-
-  $parliament = taxonomy_get_term_by_name($parliament_name, 'parliaments');
-  if (!$parliament) {
-    return '';
-  }
-  $parliament = array_pop($parliament);
+function pw_profiles_page_title($parliament, $role_name) {
 
   $role = $role_name == 'candidates' ? 'Kandidierende' : 'Abgeordnete';
 

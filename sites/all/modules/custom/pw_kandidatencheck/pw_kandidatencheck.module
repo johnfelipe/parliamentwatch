@@ -43,7 +43,7 @@ function pw_kandidatencheck_user_view($account, $view_mode, $langcode) {
   if (isset($extra['candidate_match']) && $extra['candidate_match']['visible']) {
     $result = pw_kandidatencheck_by_user_revision_query($account)->execute();
 
-    if ($result['node']) {
+    if (!empty($result['node'])) {
       $nodes = node_load_multiple(array_keys($result['node']));
       $compare_thesis_number = function ($a, $b) {
         $thesis_number_a = pw_kandidatencheck_thesis($a)->field_kc_thesis_number[LANGUAGE_NONE][0]['value'];
