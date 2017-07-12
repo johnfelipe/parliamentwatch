@@ -42,14 +42,15 @@ function debounce(func, wait, immediate) {
 };
 
 
-
 /*
  * docReadyClass
  * Add class to html-tag for styling purpose
  * */
+
 function docReadyClass() {
     $('html').addClass('docready');
 }
+
 
 /*
  * Main-Navigation
@@ -112,6 +113,7 @@ function dropdown() {
 /*
  * Content-Offset
  * */
+
 function contentOffset() {
     windowWidth = window.innerWidth;
     windowHeight = window.outerHeight;
@@ -163,6 +165,7 @@ function tooltip() {
     });
 }
 
+
 /*
  * Newsletter Widget
  * */
@@ -178,7 +181,6 @@ function newsletterWidget() {
         xhr.open('GET', '//www.abgeordnetenwatch.de/newsletter/subscribe?email=' + inputValue, true);
         xhr.onload = function () {
             // do something to response
-            console.log(this.responseText);
             var newsletter_message = document.getElementById('newsletter-widget-message');
             newsletter_message.setAttribute('class', 'form__item form__item--alert');
 
@@ -882,22 +884,12 @@ function d3BarVerticalStackedPoll(element){
     var dataset = window[wrapper.getAttribute('data-data')]();
 
     (function(data) {
-        //console.log(data);
-
         for (var key in data) {
-
-            //console.log(key);
 
             var obj = data[key];
             var totalPollCount = d3.sum(obj, function(o) {
                 return o.count;
             });
-            console.log(totalPollCount);
-            // console.log(obj);
-
-//
-            //console.log(obj.count);
-            //console.log('total: ' + totalPollCount);
 
             var chartwrapper = d3.select(wrapper)
                 .append('div')
@@ -1107,7 +1099,6 @@ function sidebar() {
     $('.sidebar__box__accordion__item__title').click(function () {
         $('.sidebar__box__accordion__item').removeClass('sidebar__box__accordion__item--open');
         $(this).parents('.sidebar__box__accordion__item').addClass('sidebar__box__accordion__item--open');
-        console.log('test');
     });
 
     $(window).load(function() {
