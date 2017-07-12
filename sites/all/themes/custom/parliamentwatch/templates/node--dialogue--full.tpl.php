@@ -82,6 +82,12 @@
 ?>
 <div class="question full <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="container-small">
+    <a href="<?php print $user_url; ?>">
+      <?php print render($user_display_name); ?>
+      <?php print render($user_picture); ?>
+      <?php print render($user_party); ?>
+    </a>
+
     <div class="question__meta tile__meta">
       <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
       <span class="question__meta__date tile__meta__date"><?php print $date; ?></span>

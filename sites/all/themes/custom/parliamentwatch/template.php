@@ -142,9 +142,16 @@ function parliamentwatch_preprocess_block(&$variables) {
   }
 
   if ($variables['block']->module == 'pw_dialogues' && $variables['block']->delta == 'profile') {
-    $account = menu_get_object('user');
+    if (menu_get_item()['page_callback'] == 'user_revision_show') {
+      $map = menu_get_item()['original_map'];
+      $account = user_revision_load($map[1], $map[3]);
+    }
+    else {
+      $account = menu_get_object('user');
+    }
     $variables['user_dialogues_url'] = url('dialogues/' . pw_profiles_parliament($account)->tid . '/' . $account->uid);
   }
+
 }
 
 /**
@@ -296,6 +303,14 @@ function parliamentwatch_preprocess_node(&$variables) {
     $account = user_load($node->field_pw_kc_user_reference[LANGUAGE_NONE][0]['target_id']);
     $variables['user_display_name'] = _pw_get_fullname($account);
     $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+  }
+
+  if ($variables['type'] == 'dialogue') {
+    $account = user_load($node->field_dialogue_recipient[LANGUAGE_NONE][0]['target_id']);
+    $variables['user_display_name'] = _pw_get_fullname($account);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+    $variables['user_party'] = field_view_field('user', $account, 'field_user_party', ['label' => 'hidden', 'type' => 'taxonomy_term_reference_plain']);
+    $variables['user_url'] = url(entity_uri('user', $account)['path']);
   }
 }
 
