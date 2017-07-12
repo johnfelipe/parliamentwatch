@@ -67,14 +67,6 @@ function pw_dialogues_block_info() {
     'info' => t('Recent questions and answers (in parliament)'),
     'cache' => DRUPAL_NO_CACHE,
   ];
-  $blocks['qa-filters-header'] = [
-    'info' => t('Questions and answers filters header'),
-    'cache' => DRUPAL_CACHE_PER_ROLE,
-  ];
-  $blocks['qa-filters-search'] = [
-    'info' => t('Questions and answers keyword search'),
-    'cache' => DRUPAL_NO_CACHE,
-  ];
   return $blocks;
 }
 
@@ -87,10 +79,6 @@ function pw_dialogues_block_view($delta) {
       return pw_dialogues_profile_block();
     case 'recent':
       return pw_dialogues_recent_block();
-    case 'qa-filters-header':
-      return pw_dialogues_questions_and_answers_filters_header_block();
-    case 'qa-filters-search':
-      return pw_dialogues_questions_and_answers_search_block();
   }
 }
 
@@ -456,59 +444,6 @@ function pw_dialogues_recent_block() {
       'type' => 'inline',
     ];
   }
-
-  return $block;
-}
-
-/**
- * Displays heading for questions and answers filter section.
- */
-function pw_dialogues_questions_and_answers_filters_header_block() {
-  $block = array();
-
-  $block['subject'] = t('Filter questions and answers');
-  $block['content']['clear'] = array(
-    '#theme' => 'html_tag',
-    '#tag' => 'a',
-    '#value' => t('Remove all filters'),
-    '#attributes' => array(
-      'href' => url($_GET['q']) . '#pw-block-questions-and-answers',
-    ),
-  );
-
-  return $block;
-}
-
-/**
- * Displays the keywords filter for questions and answers.
- */
-function pw_dialogues_questions_and_answers_search_block() {
-  $block = array();
-  $parameters = drupal_get_query_parameters();
-
-  $form = array(
-    '#type' => 'form',
-    '#action' => '#pw-block-questions-and-answers',
-    '#method' => 'GET',
-    '#attributes' => array('class' => array('form-search')),
-  );
-  $form['keywords'] = array(
-    '#type' => 'textfield',
-    '#name' => 'keywords',
-    '#title' => t('Filter questions and answers by keyword'),
-    '#value' => isset($parameters['keywords']) ? $parameters['keywords'] : '',
-    '#attributes' => array(
-      'placeholder' => t('Enter keyword'),
-      'class' => array('form-search-keywords'),
-    ),
-  );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('search'),
-    '#attributes' => array('class' => array('form-search-submit')),
-  );
-
-  $block['content']['form'] = $form;
 
   return $block;
 }
