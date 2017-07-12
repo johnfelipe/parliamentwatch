@@ -683,7 +683,8 @@ function parliamentwatch_form($variables) {
   if (empty($element['#attributes']['accept-charset'])) {
     $element['#attributes']['accept-charset'] = "UTF-8";
   }
-  $element['#attributes']['class'] = ['form', 'form--' . $element['#id']];
+  $element['#attributes']['class'][] = 'form';
+  $element['#attributes']['class'][] = 'form--' . $element['#id'];
   return '<form' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</form>';
 }
 
@@ -701,8 +702,17 @@ function parliamentwatch_webform_element($variables) {
   if (isset($element['#markup']) && !empty($element['#id'])) {
     $attributes['id'] = $element['#id'];
   }
+
+  // Convert the parents array into a string, excluding the "submitted" wrapper.
+  $nested_level = $element['#parents'][0] == 'submitted' ? 1 : 0;
+  $parents = str_replace('_', '-', implode('--', array_slice($element['#parents'], $nested_level)));
+
   // Add element's #type and #name as class to aid with JS/CSS selectors.
-  $attributes['class'] = ['form__item'];
+  $attributes['class'] = [
+    'form__item',
+    'webform-component',
+    'webform-component--' . $parents,
+  ];
   if (!empty($element['#type'])) {
     $attributes['class'][] = 'form__item--' . strtr($element['#type'], '_', '-');
   }
