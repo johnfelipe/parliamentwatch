@@ -201,7 +201,6 @@
     </div>
     <!-- <div class="sidebar__box">
       <h3><?php print t('Your parliament'); ?></h3>
-      <?php print views_embed_view('pw_donation_state', 'block_1'); ?>
     </div> -->
   </div>
 </div>
