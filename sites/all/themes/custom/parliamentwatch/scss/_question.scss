@@ -15,6 +15,14 @@
 /* Variant: Tile */
 
 .question.tile {
+  @include grid-column(12);
+  margin-bottom: $space;
+  @include breakpoint($breakpoint-xs-min) {
+    @include grid-column(6);
+  }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4);
+  }
   .question__question {
     padding-bottom: $space-large;
   }

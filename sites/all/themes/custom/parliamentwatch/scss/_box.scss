@@ -24,34 +24,13 @@
     @include breakpoint($breakpoint-s-min) {
       @include grid-collapse($neat-grid-large-gutter);
     }
-    //> h2 {
-    //  position: relative;
-    //  text-align: center;
-    //  padding: $space-large 0 $space;
-    //  margin-bottom: $space-large * 2;
-    //  clear: both;
-    //  border-bottom: 1px solid $gray;
-    //  @include grid-column(12, $neat-grid-large-gutter);
-    //  &:after,
-    //  &:before {
-    //    content: '';
-    //    position: absolute;
-    //    left: 50%;
-    //    top: 100%;
-    //    @include transform(translate(-50%,0));
-    //  }
-    //  &:after {
-    //    @include triangle(36px 12px, $beige, down);
-    //  }
-    //  &:before {
-    //    @include triangle(38px 13px, $gray, down);
-    //
-    //  }
-    //}
   }
   .filterbar {
     margin-bottom: $space-large;
   }
+}
+.tile-wrapper--qa {
+  background: $orangeBG;
 }
 
 /* Base Tile */

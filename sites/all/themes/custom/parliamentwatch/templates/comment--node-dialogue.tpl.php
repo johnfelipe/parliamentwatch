@@ -60,6 +60,6 @@
  */
 ?>
 <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-  <p class="question__answer__author"><?php print render($user_picture); ?> Antwort von <strong><?php print render($content['field_dialogue_sender_fullname']); ?></strong></p>
+  <p class="question__answer__author"><span class="question__answer__author__image"><?php print render($user_picture); ?></span> Antwort von <strong><?php print render($content['field_dialogue_sender_fullname']); ?></strong></p>
   <?php print render($content['field_dialogue_comment_body']); ?>
 </div>
