@@ -962,3 +962,8 @@ function _parliamentwatch_should_render_content_container($variables) {
 
   return TRUE;
 }
+
+t('Candidate', [], ['context' => 'female']);
+t('Candidate', [], ['context' => 'male']);
+t('Deputy', [], ['context' => 'female']);
+t('Deputy', [], ['context' => 'male']);
