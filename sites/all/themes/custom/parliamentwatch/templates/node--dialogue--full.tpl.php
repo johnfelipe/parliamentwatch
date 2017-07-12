@@ -81,12 +81,20 @@
  */
 ?>
 <div class="question full <?php print $classes; ?>"<?php print $attributes; ?>>
+  <div class="question__profile_teaser" href="<?php print $user_url; ?>">
+    <div class="question__profile_teaser__inner">
+      <div class="question__profile_teaser__inner__image">
+        <?php print render($user_picture); ?>
+      </div>
+      <div class="question__profile_teaser__inner__content">
+        <span class="question__profile_teaser__inner__content__name"><?php print render($user_display_name); ?></span>
+        <?php print render($user_party); ?>
+        <a href="<?php print render($user_url); ?>" class="btn btn--small btn--mobile-block"><?php print t('Open profile'); ?></a>
+      </div>
+      <h1><?php print t('Question from'); ?> <?php print render($content['field_dialogue_sender_name']); ?> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if ($content['field_dialogue_topic']): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
+    </div>
+  </div>
   <div class="container-small">
-    <a href="<?php print $user_url; ?>">
-      <?php print render($user_display_name); ?>
-      <?php print render($user_picture); ?>
-      <?php print render($user_party); ?>
-    </a>
 
     <div class="question__meta tile__meta">
       <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
@@ -98,7 +106,6 @@
       <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
     </div>
   </div>
-
   <div class="question__answer-wrapper">
     <?php if (empty($content['answer'])): ?>
       <div class="question__answer mh-item-tile" data-mh="questionAnswer">
