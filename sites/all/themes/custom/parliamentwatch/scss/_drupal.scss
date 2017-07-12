@@ -96,6 +96,20 @@
 }
 
 
+/* Maintenance page */
+
+.maintenance-message {
+  @include shadow();
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.5em;
+  padding: $space-large;
+  text-align: center;
+  position: relative;
+  top: $space-large * 2;
+  background: $brightGray;
+}
+
 /* Form specific */
 
 .filter-wrapper {
