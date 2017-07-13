@@ -642,21 +642,9 @@ function pw_globals_update_7020() {
 }
 
 /**
- * Fix order of filters in text format "Managed Content".
- */
-function pw_globals_update_7021() {
-  $format = filter_format_load('managed_content');
-  foreach (filter_list_format('managed_content') as $key => $filter) {
-    $format->filters[$key] = (array) $filter;
-  }
-  $format->filters['media_filter']['weight'] = $format->filters['filter_autop']['weight'] + 1;
-  filter_format_save($format);
-}
-
-/**
  * Change node content for "Die Arbeit von abgeordnetenwatch.de unterstützen!".
  */
-function pw_globals_update_7022() {
+function pw_globals_update_7021() {
   $node = node_load(104846);
 
   $node->body[LANGUAGE_NONE][0]['value'] = <<<EOD
@@ -673,7 +661,7 @@ EOD;
 /**
  * Set frontpage.
  */
-function pw_globals_update_7023() {
+function pw_globals_update_7022() {
   variable_set('site_frontpage', drupal_lookup_path('source', 'bundestag'));
 }
 
