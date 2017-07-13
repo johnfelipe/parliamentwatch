@@ -2654,7 +2654,7 @@ $display_output = rtrim($display_output);',
           'weight' => '2',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
             'field_delimiter' => '',
