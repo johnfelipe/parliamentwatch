@@ -12,9 +12,6 @@
     @include grid-column(6);
     margin-bottom: $space-large;
   }
-  @include breakpoint($breakpoint-m-min) {
-    @include grid-column(4);
-  }
   @include breakpoint($breakpoint-l-min) {
     @include grid-column(3);
   }
@@ -25,4 +22,23 @@
     text-align: center;
     @include h3();
   }
+}
+
+
+// Detail
+.node-type-page .intro {
+  @include container-small();
+}
+.page.detail {
+  @include container-small();
+  padding-bottom: $space-large;
+  @include breakpoint($breakpoint-l-min) {
+    padding-bottom: $space-large * 2;
+  }
+  .content {
+    @include grid-column(12);
+  }
+}
+.node-type-page #content > .container {
+  padding: 0;
 }
