@@ -189,7 +189,7 @@
       <?php if (isset($user_profile['field_user_political_goals'])): ?>
         <div class="deputy__goal readmore">
           <h3>
-            <?php print t('Die politischen Ziele von'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?>
+            <?php print t('Political goals of @full_name', ['@full_name' => render($user_profile['field_user_fname']) . ' ' . render($user_profile['field_user_lname'])]); ?>
           </h3>
           <?php if ($user_profile['field_user_political_goals']): ?>
             <?php print render($user_profile['field_user_political_goals']); ?>
@@ -211,7 +211,7 @@
             <a class="twitter-timeline" data-height="300" data-link-color=“#f46b3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
           <?php else: ?>
             <div class="deputy__twitter__empty">
-              <h3><?php print t('twitter'); ?></h3>
+              <h3><?php print t('Twitter'); ?></h3>
               <p><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?> <?php print t('did not saved a twitter account yet.'); ?></p>
             </div>
           <?php endif; ?>
@@ -221,7 +221,7 @@
       <?php if (isset($user_profile['field_user_about'])): ?>
         <div class="deputy__about readmore">
           <h3>
-            <?php print t('About'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?>
+            <?php print t('About @full_name', ['@full_name' => render($user_profile['field_user_fname']) . ' ' . render($user_profile['field_user_lname'])]); ?>
           </h3>
           <?php print render($user_profile['field_user_about']); ?>
           <div class="deputy__aboput__read_more readmore__trigger">
@@ -233,13 +233,13 @@
 
       <?php if (isset($user_profile['field_user_links_more'])): ?>
         <div class="deputy__custom-links">
-          <h2><?php print t('Links of'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h2>
+          <h2><?php print t('Links of @full_name', ['@full_name' => render($user_profile['field_user_fname']) . ' ' . render($user_profile['field_user_lname'])]); ?></h2>
           <?php print render($user_profile['field_user_links_more']); ?>
         </div>
       <?php endif; ?>
       <?php if (isset($user_profile['field_user_image_gallery'])): ?>
         <div class="deputy__gallery">
-          <h2><?php print t('Image gallery of'); ?> <?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h2>
+          <h2><?php print t('Image gallery of @full_name', ['@full_name' => render($user_profile['field_user_fname']) . ' ' . render($user_profile['field_user_lname'])]); ?></h2>
           <div class="deputy__gallery__inner">
             <?php print render($user_profile['field_user_image_gallery']); ?>
           </div>
