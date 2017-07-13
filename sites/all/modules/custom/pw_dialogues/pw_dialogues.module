@@ -251,7 +251,7 @@ function pw_dialogues_page($parliament_term, $uid = NULL) {
   $limit = 12;
   $q = search_api_query('node_index');
   $q->condition('type', 'dialogue');
-  $q->condition('field_parliament:name', $parliament_term->name);
+  $q->condition('field_parliament', $parliament_term->tid);
 
   if (isset($uid)) {
     $q->condition('field_dialogue_recipient', $uid);
