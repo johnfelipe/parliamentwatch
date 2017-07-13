@@ -131,7 +131,7 @@ function pw_election_programmes_strongarm() {
         'custom_settings' => FALSE,
       ),
       'tile' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'list_item' => array(
         'custom_settings' => FALSE,

@@ -196,6 +196,30 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 }
 
 
+.tile--horizontal {
+  padding-left: 0;
+  padding-right: 0;
+  .tile__image {
+    margin: -$space-small 0;
+    width: 100%;
+    @include breakpoint($breakpoint-s-min) {
+      margin: 0;
+      padding: 0;
+      @include grid-column(4);
+      height: auto;
+    }
+  }
+  .tile__content {
+    padding: 0 $space-small;
+    text-align: center;
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(8);
+      text-align: left;
+      padding: 0;
+    }
+  }
+}
+
 /* Small tiles */
 
 .small-tiles {

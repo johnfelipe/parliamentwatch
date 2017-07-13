@@ -52,9 +52,23 @@ function pw_election_programmes_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '32',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '3',
         ),
         'search_result' => array(
           'label' => 'hidden',
@@ -81,7 +95,27 @@ function pw_election_programmes_field_default_fields() {
             'trim_length' => 600,
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => 0,
+          'weight' => '0',
+        ),
+        'tile' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'node',
@@ -163,9 +197,29 @@ function pw_election_programmes_field_default_fields() {
             ),
           ),
           'type' => 'link_default',
-          'weight' => '3',
+          'weight' => '1',
         ),
         'search_result' => array(
+          'label' => 'hidden',
+          'module' => 'link',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'link_default',
+          'weight' => '1',
+        ),
+        'tile' => array(
           'label' => 'hidden',
           'module' => 'link',
           'settings' => array(
@@ -280,13 +334,19 @@ function pw_election_programmes_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '35',
+          'weight' => '5',
         ),
         'search_result' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => 0,
+        ),
+        'tile' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
         ),
       ),
       'ds_extras_field_template' => '',
@@ -364,9 +424,30 @@ function pw_election_programmes_field_default_fields() {
             ),
           ),
           'type' => 'media',
-          'weight' => '4',
+          'weight' => '2',
         ),
         'search_result' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'field_delimiter' => '',
+            'file_view_mode' => 'default',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'media',
+          'weight' => '2',
+        ),
+        'tile' => array(
           'label' => 'hidden',
           'module' => 'mediafield',
           'settings' => array(
@@ -473,13 +554,19 @@ function pw_election_programmes_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '33',
+          'weight' => '4',
         ),
         'search_result' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '33',
+        ),
+        'tile' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '4',
         ),
       ),
       'ds_extras_field_template' => '',
@@ -567,6 +654,28 @@ function pw_election_programmes_field_default_fields() {
             'field_delimiter' => '',
             'image_link' => '',
             'image_style' => 'pw_landscape_m',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
+        'tile' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'field_delimiter' => '',
+            'image_link' => '',
+            'image_style' => 'large',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',

@@ -976,6 +976,7 @@ function _parliamentwatch_should_render_content_container($variables) {
     'pw_parliaments_taxonomy_term_page',
     'user_view_page',
     'user_revision_show',
+    'pw_election_programmes_page',
     'comment_reply',
   ];
 
