@@ -1047,19 +1047,21 @@ function filterBar() {
  * */
 
 function readMore() {
-    var readmoreHeight = $('.readmore').outerHeight();
+    $('.readmore').each(function( index ) {
+        var readmoreHeight = $(this).outerHeight();
 
-    if (readmoreHeight < 300) {
-        $('.readmore').addClass('readMore--expanded readMore--expanded-initial');
-        $('.readmore__trigger').hide();
-    }
-    $('.readmore__trigger .readmore__trigger__more').click(function () {
-        event.preventDefault();
-        $(this).parents('.readmore').addClass('readMore--expanded');
-    });
-    $('.readmore__trigger .readmore__trigger__less').click(function () {
-        event.preventDefault();
-        $(this).parents('.readmore').removeClass('readMore--expanded');
+        if (readmoreHeight < 300) {
+            $(this).addClass('readMore--expanded readMore--expanded-initial');
+            $(this).find('.readmore__trigger').hide();
+        }
+        $('.readmore__trigger .readmore__trigger__more').click(function () {
+            event.preventDefault();
+            $(this).parents('.readmore').addClass('readMore--expanded');
+        });
+        $('.readmore__trigger .readmore__trigger__less').click(function () {
+            event.preventDefault();
+            $(this).parents('.readmore').removeClass('readMore--expanded');
+        });
     });
 }
 
