@@ -35,6 +35,7 @@ function pw_globals_update_7001() {
     'pw_dialogues_view',
     'pw_filters_form',
     'pw_menu',
+    'pw_profile_extender',
     'pw_profileswitch',
     'pw_slider',
     'pw_subsite',
