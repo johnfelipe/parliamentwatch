@@ -121,8 +121,8 @@
       <div class="footer__maincol__col">
         <strong><i class="icon icon-bundestag"></i> Bundestag</strong>
         <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Candidates'), 'profile/bundestag/candidates', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Election manifestos'), 'election-programme/bundestag', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profiles/16283/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l(t('Polls'), 'polls/16283', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Electoral law'), 'node/7752', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
         </ul>
       </div>
@@ -155,9 +155,8 @@
       <div class="footer__maincol__col">
         <strong><i class="icon icon-de"></i> EU-Parlament</strong>
         <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Polls'), 'polls/eu', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profile/eu/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Petitions'), 'petitions/eu', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l(t('Polls'), 'polls/16117', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profiles/16117/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Electoral law'), 'node/7754', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
         </ul>
       </div>
@@ -198,10 +197,10 @@
     </div>
     <div class="footer__mediapartner">
       <h3 class="footer__mediapartner__title">Medienpartner</h3>
-      <a href="http://www.spiegel.de" class="footer__mediapartner__link" title="Go to website of Spiegel Online"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_spon.png" alt="<?php print t('Logo of Spiegel Online'); ?>"></a>
-      <a href="http://www.sueddeutsche.de" class="footer__mediapartner__link" title="Go to website of Süddeutsche"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_sueddeutsche.png" alt="<?php print t('Logo of Süddeutsche'); ?>"></a>
-      <a href="https://www.welt.de" class="footer__mediapartner__link" title="Go to website of WELT-Online"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_welt.png" alt="<?php print t('Logo of Welt-Online'); ?>"></a>
-      <a href="http://www.t-online.de" class="footer__mediapartner__link" title="Go to website of Süddeutsche"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_t_online.png" alt="<?php print t('Logo of T-Online'); ?>"></a>
+      <a href="http://www.spiegel.de" class="footer__mediapartner__link" title="Go to website of Spiegel Online" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_spon.png" alt="<?php print t('Logo of Spiegel Online'); ?>"></a>
+      <a href="http://www.sueddeutsche.de" class="footer__mediapartner__link" title="Go to website of Süddeutsche" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_sueddeutsche.png" alt="<?php print t('Logo of Süddeutsche'); ?>"></a>
+      <a href="https://www.welt.de" class="footer__mediapartner__link" title="Go to website of WELT-Online" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_welt.png" alt="<?php print t('Logo of Welt-Online'); ?>"></a>
+      <a href="http://www.t-online.de" class="footer__mediapartner__link" title="Go to website of Süddeutsche" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_t_online.png" alt="<?php print t('Logo of T-Online'); ?>"></a>
     </div>
     <?php if ($logo): ?>
     <a class="footer__logo" href="<?php print $front_page; ?>" title="<?php print t('Back to home'); ?>" rel="home">
