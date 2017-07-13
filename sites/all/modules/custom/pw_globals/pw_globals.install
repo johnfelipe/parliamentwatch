@@ -123,7 +123,7 @@ function pw_globals_update_7004() {
 	<p>Alle Leserinnen und Leser sind eingeladen an der Diskussion teilzunehmen. Die Blogautoren selbst sind Mitglieder des abgeordnetenwatch.de-Teams. Ihre Einträge drücken nicht unbedingt die Position des Gesamtprojekts abgeordnetenwatch.de aus. </p>
 </div>
 <div class="intro__right">
-  <img src="http://via.placeholder.com/550x250">
+  <img src="/sites/all/themes/custom/parliamentwatch/images/temp_tagcloud.png">
 </div>
 EOD;
 
