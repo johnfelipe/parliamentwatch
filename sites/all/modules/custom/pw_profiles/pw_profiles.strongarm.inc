@@ -119,7 +119,7 @@ function pw_profiles_strongarm() {
         'candidate_match' => array(
           'default' => array(
             'weight' => '100',
-            'visible' => TRUE,
+            'visible' => FALSE,
           ),
           'full' => array(
             'weight' => '100',
