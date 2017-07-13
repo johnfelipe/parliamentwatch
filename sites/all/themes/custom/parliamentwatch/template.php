@@ -719,6 +719,15 @@ function parliamentwatch_form($variables) {
  */
 function parliamentwatch_webform_element($variables) {
   $element = &$variables['element'];
+  $variables['#attributes']['class'] = array_diff($element['#wrapper_attributes']['class'], ['form-item']);
+  return parliamentwatch_form_element($variables);
+}
+
+/**
+ * Overrides theme_form_element().
+ */
+function parliamentwatch_form_element($variables) {
+  $element = &$variables['element'];
 
   // This function is invoked as theme wrapper, but the rendered form element
   // may not necessarily have been processed by form_builder().
@@ -729,16 +738,11 @@ function parliamentwatch_webform_element($variables) {
     $attributes['id'] = $element['#id'];
   }
 
-  // Convert the parents array into a string, excluding the "submitted" wrapper.
-  $nested_level = $element['#parents'][0] == 'submitted' ? 1 : 0;
-  $parents = str_replace('_', '-', implode('--', array_slice($element['#parents'], $nested_level)));
-
+  if (isset($variables['#attributes']['class'])) {
+    $attributes['class'] = $variables['#attributes']['class'];
+  }
+  $attributes['class'][] = 'form__item';
   // Add element's #type and #name as class to aid with JS/CSS selectors.
-  $attributes['class'] = [
-    'form__item',
-    'webform-component',
-    'webform-component--' . $parents,
-  ];
   if (!empty($element['#type'])) {
     $attributes['class'][] = 'form__item--' . strtr($element['#type'], '_', '-');
   }
@@ -784,13 +788,6 @@ function parliamentwatch_webform_element($variables) {
   $output .= "</div>\n";
 
   return $output;
-}
-
-/**
- * Overrides theme_form_element().
- */
-function parliamentwatch_form_element($variables) {
-  return parliamentwatch_webform_element($variables);
 }
 
 /**
