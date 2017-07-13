@@ -410,6 +410,7 @@
       @include grid-column(6);
     }
   }
+  .form__item--submitted-residence { clear: both; }
   .tabs__content__content {
     padding-left: 0;
     padding-right: 0;
