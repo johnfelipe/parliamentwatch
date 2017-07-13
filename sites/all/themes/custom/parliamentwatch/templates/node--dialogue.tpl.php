@@ -82,7 +82,9 @@
 ?>
 <div class="question tile <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="question__meta tile__meta">
+    <?php if ($content['field_dialogue_topic']): ?>
     <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
+    <?php endif; ?>
     <span class="question__meta__date tile__meta__date"><?php print $date; ?></span>
   </div>
   <div class="question__question mh-item-tile" data-mh="questionTitle">
@@ -90,7 +92,6 @@
     <?php print render($title_suffix); ?>
     <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
   </div>
-
   <?php if (empty($content['answer'])): ?>
   <div class="question__answer mh-item-tile" data-mh="questionAnswer">
     <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
