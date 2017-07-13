@@ -48,9 +48,6 @@
   <div class="intro__left">
     <h2><?php print $block->subject; ?></h2>
     <?php print render($title_suffix) ?>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto beatae consectetur
-      exercitationem facilis labore, molestiae nostrum placeat possimus quo reiciendis sequi sint velit veritatis,
-      voluptatum. In praesentium provident sed?</p>
   </div>
   <div class="intro__right">
     <a href="<?php print url('dialogues/' . menu_get_object('taxonomy_term', 2)->tid); ?>" class="btn btn--mobile-block"><?php print t('Questions overview') ?></a>
