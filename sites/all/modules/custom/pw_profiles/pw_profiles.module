@@ -26,6 +26,15 @@ function pw_profiles_menu() {
 }
 
 /**
+ * Implements hook_menu_alter().
+ */
+function pw_profiles_menu_alter(&$items) {
+  $items['profile/%pw_profiles_username/archive/%'] = $items['user/%user/revisions/%/view'];
+  $items['profile/%pw_profiles_username/archive/%']['access callback'] = 'user_view_access';
+  $items['profile/%pw_profiles_username/archive/%']['access arguments'] = [1];
+}
+
+/**
  * Implements hook_form_alter().
  */
 function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
@@ -255,7 +264,7 @@ function pw_profiles_entity_info_alter(&$entity_info) {
  */
 function pw_profiles_user_uri($user) {
   if (isset($user->actual_profile) && $user->actual_profile == 0) {
-    $path = 'profile/' . $user->uid . '/archive/' . $user->vid;
+    $path = 'profile/' . $user->name . '/archive/' . $user->vid;
   }
   else {
     $path = 'user/' . $user->uid;
@@ -654,6 +663,19 @@ function pw_profiles_filter_disabled($filter, $parliament) {
   }
 
   return FALSE;
+}
+
+/**
+ * Returns the account object identified by the given name.
+ *
+ * @param string $name
+ *   The username.
+ *
+ * @return object
+ *   An account object with the given name.
+ */
+function pw_profiles_username_load($name) {
+  return user_load_by_name($name);
 }
 
 /**

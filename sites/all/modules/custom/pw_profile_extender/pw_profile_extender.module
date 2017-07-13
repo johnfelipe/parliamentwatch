@@ -45,14 +45,3 @@ function pw_profile_extender_theme($existing, $type, $theme, $path) {
     ),
   );
 }
-
-
-/**
- *  Implements hook_menu_alter
- *  Changes standard revision url
-*/
-function pw_profile_extender_menu_alter(&$items) {
-  $items['profile/%user/archive/%'] = $items['user/%user/revisions/%/view']; // arrays are copied here
-  $items['profile/%user/archive/%']['access callback'] = TRUE; // grant anonymous access
-  unset($items['profile/%user/archive/%']['access arguments']); // remove conflicting access
-}
