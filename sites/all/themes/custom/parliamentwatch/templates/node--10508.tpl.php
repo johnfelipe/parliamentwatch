@@ -199,8 +199,5 @@
         </div>
       </div>
     </div>
-    <!-- <div class="sidebar__box">
-      <h3><?php print t('Your parliament'); ?></h3>
-    </div> -->
   </div>
 </div>
