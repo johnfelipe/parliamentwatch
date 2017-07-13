@@ -139,7 +139,8 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 .tile__meta__date {
   font-size: .8em;
   float: right;
-  padding: $space-xsmall-mobile 0;
+  padding: ($space-xsmall-mobile + 2) 0;
+  display: inline-block;
   @include date-inline;
 }
 
