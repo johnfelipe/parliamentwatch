@@ -822,7 +822,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'module' => 'date',
           'settings' => array(
             'field_delimiter' => '',
-            'format_type' => 'short',
+            'format_type' => 'search_api_facetapi_YEAR',
             'fromto' => 'both',
             'linked_field' => array(
               'advanced' => array(

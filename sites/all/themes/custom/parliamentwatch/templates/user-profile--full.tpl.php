@@ -127,7 +127,7 @@
       </div>
       <dl class="dl">
         <?php if (isset($user_profile['field_user_birthday'])): ?>
-          <dt class="dl__dt"><?php print $user_profile['field_user_birthday']['#title']; ?></dt>
+          <dt class="dl__dt"><?php print t('Year of birth') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_birthday'][0]['#markup']; ?> (<?php print $user_profile['field_user_age'][0]['#markup']; ?> Jahre)</dd>
         <?php endif; ?>
         <?php if (isset($user_profile['field_user_childs'])): ?>
