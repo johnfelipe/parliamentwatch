@@ -8,6 +8,9 @@
   border-bottom: 1px solid $darkBeige;
   padding-top: $space-large;
   padding-bottom: $space-large;
+
+  background-image: url('../images/lp_header/default.jpg');
+  background-size: cover;
   @include container();
   @include grid-container();
   @include breakpoint($breakpoint-s-min) {
