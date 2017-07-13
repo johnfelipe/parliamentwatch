@@ -133,21 +133,6 @@ http://beta.abgeordnetenwatch.de/
           'filter_url_length' => '72',
         ),
       ),
-      'twitter_hashtag' => array(
-        'weight' => '0',
-        'status' => '1',
-        'settings' => array(),
-      ),
-      'twitter_links' => array(
-        'weight' => '0',
-        'status' => '1',
-        'settings' => array(),
-      ),
-      'twitter_username' => array(
-        'weight' => '0',
-        'status' => '1',
-        'settings' => array(),
-      ),
       'pathologic' => array(
         'weight' => '50',
         'status' => '1',
@@ -172,30 +157,30 @@ http://beta.abgeordnetenwatch.de/
     'status' => '1',
     'weight' => '-10',
     'filters' => array(
-      'media_filter' => array(
+      'filter_autop' => array(
         'weight' => '-50',
         'status' => '1',
         'settings' => array(),
       ),
-      'filter_autop' => array(
+      'media_filter' => array(
         'weight' => '-49',
         'status' => '1',
         'settings' => array(),
       ),
       'filter_url' => array(
-        'weight' => '-44',
+        'weight' => '-48',
         'status' => '1',
         'settings' => array(
           'filter_url_length' => '72',
         ),
       ),
       'filter_htmlcorrector' => array(
-        'weight' => '-42',
+        'weight' => '-47',
         'status' => '1',
         'settings' => array(),
       ),
       'pw_crypt' => array(
-        'weight' => '0',
+        'weight' => '-43',
         'status' => '1',
         'settings' => array(
           'allowed_html' => '',
@@ -204,16 +189,20 @@ http://beta.abgeordnetenwatch.de/
         ),
       ),
       'pathologic' => array(
-        'weight' => '50',
+        'weight' => '-41',
         'status' => '1',
         'settings' => array(
           'settings_source' => 'global',
-          'local_paths' => 'https://live.de.parliamentwatch.org/
+          'local_paths' => '',
+          'protocol_style' => 'full',
+          'local_settings' => array(
+            'protocol_style' => 'path',
+            'local_paths' => 'https://live.de.parliamentwatch.org/
 https://beta.abgeordnetenwatch.de/
 http://live.de.parliamentwatch.org/
 http://beta.abgeordnetenwatch.de/
 /',
-          'protocol_style' => 'path',
+          ),
         ),
       ),
     ),
