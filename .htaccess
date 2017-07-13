@@ -81,8 +81,8 @@ DirectoryIndex index.php index.html index.htm
   RewriteEngine on
 
   # CUSTOM: redirect to legacy platform
-  RewriteCond %{HTTP_HOST} .*\.abgeordnetenwatch.de
-  RewriteRule ^([^\-\/]+-\d+-\d+.*\.html)$ http://www.abgeordnetenwatch.de/$1 [L,R=301]
+  # RewriteCond %{HTTP_HOST} .*\.abgeordnetenwatch.de
+  # RewriteRule ^([^\-\/]+-\d+-\d+.*\.html)$ http://www.abgeordnetenwatch.de/$1 [L,R=301]
 
   # CUSTOM: redirect from beta to www
   RewriteCond %{HTTP_HOST} ^beta\.abgeordnetenwatch\.de$ [NC]
