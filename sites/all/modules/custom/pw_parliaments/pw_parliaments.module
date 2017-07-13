@@ -58,7 +58,11 @@ function pw_parliaments_menu_alter(&$items) {
  */
 function pw_parliaments_taxonomy_term_page($term) {
   if ($term->vid == 18) {
-    return '';
+    return [
+      '#prefix' => '<div class="container">',
+      '#markup' => $term->description,
+      '#suffix' => '</div>',
+    ];
   }
   else {
     module_load_include('inc', 'taxonomy', 'taxonomy.pages');
