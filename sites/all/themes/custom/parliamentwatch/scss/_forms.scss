@@ -30,8 +30,10 @@
 .form-type-checkbox,
 .form__item--checkbox {
   margin-bottom: 0;
+  position: relative;
   .form__item__label {
-    display: inline-block;
+    display: block;
+    margin-left: $space;
   }
   .form__item__control {
     display: inline-block;
@@ -39,12 +41,14 @@
     width: $space-small-mobile;
     height: $space-small-mobile;
     cursor: pointer;
-    margin-right: $space-xsmall-mobile;
+    position: absolute;
+    top: $space-xsmall-mobile;
     @include appearance(none);
     &:checked { background-color: $gray; }
     &:focus { outline: none; }
   }
 }
+
 .form-type-checkbox {
   padding: $space-xsmall 0;
   padding-left: $space;
