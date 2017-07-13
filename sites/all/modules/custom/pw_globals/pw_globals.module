@@ -316,7 +316,7 @@ function pw_globals_politician_search_form_block() {
   $block = [];
   $term = menu_get_object('taxonomy_term', 2);
 
-  if (!$term || !empty($term->description)) {
+  if (!$term || $term->vocabulary_machine_name != 'parliaments' || !empty($term->description)) {
     return $block;
   }
 

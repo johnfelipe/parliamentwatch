@@ -236,7 +236,7 @@ function pw_poll_recent_block() {
   $block = [];
   $parliament_term = menu_get_object('taxonomy_term', 2);
 
-  if (!$parliament_term) {
+  if (!$parliament_term || $parliament_term->vocabulary_machine_name != 'parliaments') {
     return $block;
   }
 

@@ -415,7 +415,7 @@ function pw_dialogues_recent_block() {
   ];
   $term = menu_get_object('taxonomy_term', 2);
 
-  if (!$term) {
+  if (!$term || $term->vocabulary_machine_name != 'parliaments') {
     return $block;
   }
 
