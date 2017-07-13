@@ -37,6 +37,7 @@ function pw_globals_update_7001() {
     'pw_profileswitch',
     'pw_slider',
     'pw_subsite',
+    'pw_twitter',
     'pw_user_revision_switch',
     'quicktabs',
     'rdf',
