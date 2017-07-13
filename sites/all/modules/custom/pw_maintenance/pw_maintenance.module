@@ -50,39 +50,3 @@ function pw_maintenance_menu() {
 
   return $items;
 }
-
-/**
- * Implements hook_watchdog().
- */
-function pw_maintenance_watchdog(array $log_entry) {
-  if($log_entry['severity'] <= WATCHDOG_ERROR){
-    // _pw_send_debug_mail("watchdog error - ".$_SERVER['SERVER_NAME'], $log_entry);
-  }
-}
-
-/**
- * Implements hook_block_view_alter().
- * Counts how often blocks were shown.
- */
-function pw_maintenance_block_view_alter($data, $block) {
-  if(strpos(current_path(), "admin") > -1 || empty($block->delta)){
-    return;
-  }
-  $path_log = dirname(__FILE__).'/blocks-shown-count.txt';
-  $a_log = file_exists($path_log)?file($path_log):array();
-  $block_found_in_file = FALSE;
-  foreach($a_log as &$line){
-    $data = explode(";", $line);
-    if($data[0] == $block->delta){
-      $line = $data[0].";".($data[1]+1);
-      $block_found_in_file = TRUE;
-    }
-    $line = trim($line);
-  }
-  if(!$block_found_in_file){
-    $a_log[] = $block->delta.";1";
-  }
-  $content_file = trim(implode("\n", $a_log));
-  file_put_contents($path_log, $content_file);
-}
-
