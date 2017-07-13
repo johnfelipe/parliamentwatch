@@ -72,7 +72,7 @@ function pw_blog_page() {
 
   $result = pw_blog_base_query()
     ->propertyOrderBy('created', 'DESC')
-    ->pager()
+    ->pager(12)
     ->execute();
 
   if (!empty($result['node'])) {
