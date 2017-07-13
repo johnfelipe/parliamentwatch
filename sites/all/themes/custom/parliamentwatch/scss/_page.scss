@@ -38,6 +38,7 @@
   .content {
     @include grid-column(12);
   }
+  @include basic-content();
 }
 .node-type-page #content > .container {
   padding: 0;

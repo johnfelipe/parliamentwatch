@@ -26,7 +26,7 @@
 
 /* Detail */
 
-.webform {
+.webform-client-form {
   @include breakpoint($breakpoint-m-min) {
     @include grid-column(8, $neat-grid-no-gutter);
   }
@@ -36,6 +36,7 @@
   }
   .form-radios {
     padding: $space-xsmall 0;
+    @include grid-container();
   }
   .field-suffix {
     position: absolute;
