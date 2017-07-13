@@ -1073,10 +1073,12 @@ function pw_profiles_user_default_permissions() {
   $permissions['edit own field_user_picture'] = array(
     'name' => 'edit own field_user_picture',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Deputy',
-      2 => 'Premium User',
-      3 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'Deputy',
+      3 => 'Politician',
+      4 => 'Premium User',
+      5 => 'administrator',
     ),
     'module' => 'field_permissions',
   );

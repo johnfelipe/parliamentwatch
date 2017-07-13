@@ -544,7 +544,7 @@ function pw_profiles_field_default_fields() {
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_about',
-      'label' => 'About',
+      'label' => 'Über mich',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
@@ -554,6 +554,7 @@ function pw_profiles_field_default_fields() {
             'full_html' => 0,
             'html_mail' => 0,
             'managed_content' => 0,
+            'newsletter' => 0,
             'php_code' => 0,
             'plain_text' => 0,
           ),
@@ -576,6 +577,9 @@ function pw_profiles_field_default_fields() {
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -586,7 +590,11 @@ function pw_profiles_field_default_fields() {
           ),
         ),
         'display_summary' => 0,
-        'exclude_cv' => FALSE,
+        'linkit' => array(
+          'button_text' => 'Suchen',
+          'enable' => 0,
+          'profile' => '',
+        ),
         'text_processing' => '1',
         'user_register_form' => 0,
       ),
@@ -597,6 +605,8 @@ function pw_profiles_field_default_fields() {
           'maxlength_js' => '',
           'maxlength_js_enforce' => 0,
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'maxlength_js_label_summary' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'maxlength_js_summary' => '',
           'maxlength_js_truncate_html' => 0,
           'rows' => '20',
           'summary_rows' => 5,
@@ -647,7 +657,7 @@ function pw_profiles_field_default_fields() {
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_address',
-      'label' => 'Address',
+      'label' => 'Adresse',
       'required' => 0,
       'settings' => array(
         'user_register_form' => 0,
@@ -708,7 +718,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'data_type' => 'int',
         ),
         'display_format' => '$display_output = $entity_field_item[\'value\'];',
-        'recalculate' => FALSE,
+        'recalculate' => 0,
         'store' => 1,
       ),
       'translatable' => '0',
@@ -748,7 +758,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_age',
-      'label' => 'Age',
+      'label' => 'Alter',
       'required' => 0,
       'settings' => array(
         'user_register_form' => 0,
@@ -756,9 +766,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'widget' => array(
         'active' => 0,
         'module' => 'computed_field',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'computed',
         'weight' => '51',
       ),
@@ -838,14 +846,13 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_birthday',
-      'label' => 'Birthday',
+      'label' => 'Geburtstag',
       'required' => 0,
       'settings' => array(
         'default_value' => 'blank',
         'default_value2' => 'same',
         'default_value_code' => '',
         'default_value_code2' => '',
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
@@ -857,7 +864,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'input_format' => 'd.m.Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'no_fieldset' => 0,
           'text_parts' => array(),
           'year_range' => '-70:+0',
         ),
@@ -925,10 +932,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_childs',
-      'label' => 'Children',
+      'label' => 'Kinder',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'max' => '',
         'min' => '',
         'prefix' => '',
@@ -1018,18 +1024,15 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_commitee',
-      'label' => 'Committee',
+      'label' => 'Ausschüsse',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'options_buttons',
         'weight' => '14',
       ),
@@ -1124,18 +1127,15 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_constituency',
-      'label' => 'Constituency',
+      'label' => 'Wahlkreis',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '56',
       ),
@@ -1210,7 +1210,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_constituency_won',
-      'label' => 'Constituency Won',
+      'label' => 'Wahlkreis gewonnen',
       'required' => 0,
       'settings' => array(
         'user_register_form' => 0,
@@ -1220,7 +1220,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(
           'display_label' => 1,
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'options_onoff',
         'weight' => '17',
@@ -1408,15 +1407,17 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_education',
-      'label' => 'Education',
+      'label' => 'Ausbildung',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
           'allowed_formats' => array(
+            'copyright' => 0,
             'filtered_html' => 'filtered_html',
             'full_html' => 'full_html',
             'html_mail' => 0,
             'managed_content' => 'managed_content',
+            'newsletter' => 0,
             'php_code' => 'php_code',
             'plain_text' => 'plain_text',
           ),
@@ -1424,6 +1425,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'default_order_toggle' => 0,
           'default_order_wrapper' => array(
             'formats' => array(
+              'copyright' => array(
+                'weight' => '0',
+              ),
               'filtered_html' => array(
                 'weight' => '-9',
               ),
@@ -1436,6 +1440,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -1445,7 +1452,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -1544,7 +1550,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_election_result',
-      'label' => 'Constituency Result',
+      'label' => 'Wahlkreisergebnis',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
@@ -1554,6 +1560,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             'full_html' => 'full_html',
             'html_mail' => 'html_mail',
             'managed_content' => 'managed_content',
+            'newsletter' => 0,
             'php_code' => 'php_code',
             'plain_text' => 'plain_text',
           ),
@@ -1576,6 +1583,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -1585,7 +1595,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -1894,18 +1903,15 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'entity_type' => 'user',
       'exclude_cv' => 0,
       'field_name' => 'field_user_fraction',
-      'label' => 'Fraction',
+      'label' => 'Fraktion',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '7',
       ),
@@ -1977,18 +1983,15 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_gender',
-      'label' => 'Gender',
+      'label' => 'Geschlecht',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '59',
       ),
@@ -2064,12 +2067,11 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_image_gallery',
-      'label' => 'Image Gallery',
+      'label' => 'Bildergalerie',
       'required' => 0,
       'settings' => array(
         'alt_field' => 1,
         'default_image' => 0,
-        'exclude_cv' => FALSE,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -2099,10 +2101,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
             'media_internet' => 0,
             'upload' => 'upload',
-            'youtube' => 0,
           ),
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-          'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
         'weight' => '59',
@@ -2177,7 +2176,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_job_skills',
-      'label' => 'Professional Qualification',
+      'label' => 'Berufliche Qualifikation',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
@@ -2187,6 +2186,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             'full_html' => 'full_html',
             'html_mail' => 0,
             'managed_content' => 'managed_content',
+            'newsletter' => 0,
             'php_code' => 'php_code',
             'plain_text' => 'plain_text',
           ),
@@ -2209,6 +2209,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -2218,7 +2221,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -2295,14 +2297,13 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'entity_type' => 'user',
       'exclude_cv' => 0,
       'field_name' => 'field_user_joined',
-      'label' => 'Joined Parliament',
+      'label' => 'Parlament beigetreten',
       'required' => 0,
       'settings' => array(
         'default_value' => 'blank',
         'default_value2' => 'same',
         'default_value_code' => '',
         'default_value_code2' => '',
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
@@ -2314,7 +2315,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'input_format' => 'd.m.Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'no_fieldset' => 0,
           'text_parts' => array(),
           'year_range' => '-10:+3',
         ),
@@ -2392,12 +2393,13 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_links_more',
-      'label' => 'External Links',
+      'label' => 'Externe Links',
       'required' => 0,
       'settings' => array(
         'absolute_url' => 1,
         'attributes' => array(
           'class' => '',
+          'configurable_class' => 0,
           'configurable_title' => 0,
           'rel' => '',
           'target' => '_blank',
@@ -2407,7 +2409,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 0,
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -2415,7 +2416,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         ),
         'rel_remove' => 'default',
         'title' => 'optional',
-        'title_label_use_field_label' => FALSE,
+        'title_label_use_field_label' => 0,
         'title_maxlength' => '128',
         'title_value' => '',
         'url' => 0,
@@ -2425,9 +2426,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'widget' => array(
         'active' => 0,
         'module' => 'link',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'link_field',
         'weight' => '58',
       ),
@@ -2507,18 +2506,15 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_list',
-      'label' => 'List',
+      'label' => 'Liste',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '54',
       ),
@@ -2598,18 +2594,15 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_list_position',
-      'label' => 'List Position',
+      'label' => 'Listenposition',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '55',
       ),
@@ -2684,7 +2677,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_list_won',
-      'label' => 'List Won',
+      'label' => 'Liste gewonnen',
       'required' => 0,
       'settings' => array(
         'user_register_form' => 0,
@@ -2694,7 +2687,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(
           'display_label' => 1,
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'options_onoff',
         'weight' => '18',
@@ -2897,10 +2889,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_marriage_status',
-      'label' => 'Marriage status',
+      'label' => 'Ehe-Status',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
@@ -2986,18 +2977,15 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_parliament',
-      'label' => 'Parliament',
+      'label' => 'Parlament',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '8',
       ),
@@ -3091,18 +3079,15 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_party',
-      'label' => 'Party',
+      'label' => 'Partei',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '6',
       ),
@@ -3162,7 +3147,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_phone',
-      'label' => 'Phone',
+      'label' => 'Telefon',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
@@ -3320,7 +3305,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
-        'exclude_cv' => FALSE,
         'file_directory' => 'users',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '1 MB',
@@ -3350,10 +3334,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
             'media_internet' => 'media_internet',
             'upload' => 'upload',
-            'youtube' => 0,
           ),
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-          'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
         'weight' => '4',
@@ -3578,15 +3559,17 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_political_goals',
-      'label' => 'Political Goals',
+      'label' => 'Politische Ziele',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
           'allowed_formats' => array(
+            'copyright' => 0,
             'filtered_html' => 'filtered_html',
             'full_html' => 0,
             'html_mail' => 0,
             'managed_content' => 0,
+            'newsletter' => 0,
             'php_code' => 0,
             'plain_text' => 0,
           ),
@@ -3594,6 +3577,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'default_order_toggle' => 0,
           'default_order_wrapper' => array(
             'formats' => array(
+              'copyright' => array(
+                'weight' => '0',
+              ),
               'filtered_html' => array(
                 'weight' => '-9',
               ),
@@ -3606,6 +3592,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -3616,7 +3605,11 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           ),
         ),
         'display_summary' => 0,
-        'exclude_cv' => FALSE,
+        'linkit' => array(
+          'button_text' => 'Suchen',
+          'enable' => 0,
+          'profile' => '',
+        ),
         'text_processing' => '1',
         'user_register_form' => 0,
       ),
@@ -3627,6 +3620,8 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'maxlength_js' => '',
           'maxlength_js_enforce' => 0,
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'maxlength_js_label_summary' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'maxlength_js_summary' => '',
           'maxlength_js_truncate_html' => 0,
           'rows' => '20',
           'summary_rows' => 5,
@@ -3696,10 +3691,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_political_roles',
-      'label' => 'Political Roles',
+      'label' => 'Politische Rollen',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
@@ -3707,7 +3701,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'taxonomy',
         'settings' => array(
           'autocomplete_path' => 'taxonomy/autocomplete',
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
@@ -3876,7 +3869,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_public_mail',
-      'label' => 'Public Mail',
+      'label' => 'Öffentliche Mailadresse',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
@@ -3886,6 +3879,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             'full_html' => 'full_html',
             'html_mail' => 0,
             'managed_content' => 'managed_content',
+            'newsletter' => 0,
             'php_code' => 'php_code',
             'plain_text' => 'plain_text',
           ),
@@ -3908,6 +3902,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -3917,7 +3914,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -3993,15 +3989,17 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_question_form_closed',
-      'label' => 'Question Form Closed By Reason',
+      'label' => 'Frageformular aus folgendem Grund geschlossen',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
           'allowed_formats' => array(
+            'copyright' => 0,
             'filtered_html' => 'filtered_html',
             'full_html' => 'full_html',
             'html_mail' => 'html_mail',
             'managed_content' => 'managed_content',
+            'newsletter' => 0,
             'php_code' => 'php_code',
             'plain_text' => 'plain_text',
           ),
@@ -4009,6 +4007,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'default_order_toggle' => 0,
           'default_order_wrapper' => array(
             'formats' => array(
+              'copyright' => array(
+                'weight' => '0',
+              ),
               'filtered_html' => array(
                 'weight' => '-9',
               ),
@@ -4021,6 +4022,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -4030,7 +4034,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -4107,14 +4110,13 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'entity_type' => 'user',
       'exclude_cv' => 0,
       'field_name' => 'field_user_retired',
-      'label' => 'Retired Parliament',
+      'label' => 'Parlament verlassen',
       'required' => 0,
       'settings' => array(
         'default_value' => 'blank',
         'default_value2' => 'same',
         'default_value_code' => '',
         'default_value_code2' => '',
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
@@ -4126,7 +4128,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'input_format' => 'd.m.Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'no_fieldset' => 0,
           'text_parts' => array(),
           'year_range' => '-10:+3',
         ),
@@ -4511,14 +4513,13 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       ),
       'entity_type' => 'user',
       'field_name' => 'field_user_valid',
-      'label' => 'Valid',
+      'label' => 'Gültig',
       'required' => 0,
       'settings' => array(
         'default_value' => 'now',
         'default_value2' => 'same',
         'default_value_code' => '',
         'default_value_code2' => '',
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
@@ -4530,6 +4531,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'input_format' => 'd.m.Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
+          'no_fieldset' => 0,
           'text_parts' => array(),
           'year_range' => '-100:+10',
         ),
@@ -4541,65 +4543,65 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('About');
-  t('Address');
-  t('Age');
+  t('Adresse');
   t('Alt Text');
+  t('Alter');
+  t('Ausbildung');
+  t('Ausschüsse');
   t('Because system user roles are not revisionable, this fields stores a copy of the user role.');
-  t('Birthday');
+  t('Berufliche Qualifikation');
+  t('Bildergalerie');
   t('Bitte geben Sie hier Ihren Twitter-Account an (nur der Name ohne @). Aus technischen Gründen kann es bis zu 30min dauern, bis diese Information in Ihrem Profil angezeigt wird.');
-  t('Children');
-  t('Committee');
-  t('Constituency');
-  t('Constituency Result');
-  t('Constituency Won');
   t('Data URL');
   t('Die Bildergalerie ermöglicht Ihnen Fotos z.B. aus dem Wahlkampf in Ihrem Profil zu veröffentlichen.');
   t('Die Telefonnummer dient zur einfachen Kontaktaufnahme, wird nicht veröffentlicht.');
   t('Diese E-Mail Adresse wird öffentlich in Profil angezeigt.');
-  t('Education');
-  t('External Links');
+  t('Ehe-Status');
   t('External URL');
+  t('Externe Links');
   t('First Name');
-  t('Fraction');
-  t('Gender');
+  t('Frageformular aus folgendem Grund geschlossen');
+  t('Fraktion');
+  t('Geburtstag');
+  t('Geschlecht');
+  t('Gültig');
   t('Hier können Sie beliebige Links ergänzen, die in Ihrem Profil öffentlich angezeigt werden sollen.');
   t('Hier können Sie ein Foto für Ihr Profil hochladen. Klicken Sie dazu auf "Auswählen", suchen Sie dann eine Bilddatei von Ihrem Computer aus und klicken Sie auf "Abschicken".');
   t('Hier können Sie einen Freitext über Ihre Person eintragen, z.B. eine Biographie oder einen Lebenslauf. Der Text wird in Ihrem Profil veröffentlicht.');
   t('If this field is filled, question form will be closed and content of this field will be shown to visitor.');
-  t('Image Gallery');
-  t('Joined Parliament');
+  t('Kinder');
   t('Last name');
-  t('List');
-  t('List Position');
-  t('List Won');
-  t('Marriage status');
-  t('Parliament');
-  t('Party');
-  t('Phone');
+  t('Liste');
+  t('Liste gewonnen');
+  t('Listenposition');
+  t('Parlament');
+  t('Parlament beigetreten');
+  t('Parlament verlassen');
+  t('Partei');
   t('Picture copyright');
-  t('Political Goals');
-  t('Political Roles');
+  t('Politische Rollen');
   t('Politische Rollen wie z.B. Parlamentarischer Geschäftsführer, Fraktionsvorsitzender, etc.');
+  t('Politische Ziele');
   t('Position');
-  t('Professional Qualification');
   t('Profile picture');
   t('Pseudonym');
-  t('Public Mail');
-  t('Question Form Closed By Reason');
-  t('Retired Parliament');
   t('Roles (revisionable)');
+  t('Telefon');
   t('Title');
   t('Title Text');
   t('Tragen Sie hier Ihre politischen Ziele ein. Diese werden in Ihrem Profil veröffentlicht.');
   t('Twitter');
-  t('Valid');
+  t('Wahlkreis');
+  t('Wahlkreis gewonnen');
+  t('Wahlkreisergebnis');
   t('Wählen Sie hier Ihren Listenplatz aus.');
   t('direkt gewählt');
   t('eingezogen über Liste');
   t('has picture');
   t('z.B. "Jurist" oder "Diplom Ingenieur"');
   t('z.B. "selbständiger IT-Berater" oder "Bürgermeister"');
+  t('Öffentliche Mailadresse');
+  t('Über mich');
 
   return $fields;
 }

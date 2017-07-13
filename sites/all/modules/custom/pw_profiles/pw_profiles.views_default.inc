@@ -202,23 +202,22 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['mail']['id'] = 'mail';
   $handler->display->display_options['fields']['mail']['table'] = 'users';
   $handler->display->display_options['fields']['mail']['field'] = 'mail';
-  /* Feld: Benutzer: Party */
+  /* Feld: Benutzer: Partei */
   $handler->display->display_options['fields']['field_user_party']['id'] = 'field_user_party';
   $handler->display->display_options['fields']['field_user_party']['table'] = 'field_data_field_user_party';
   $handler->display->display_options['fields']['field_user_party']['field'] = 'field_user_party';
   $handler->display->display_options['fields']['field_user_party']['delta_offset'] = '0';
-  /* Feld: Benutzer: Parliament */
+  /* Feld: Benutzer: Parlament */
   $handler->display->display_options['fields']['field_user_parliament']['id'] = 'field_user_parliament';
   $handler->display->display_options['fields']['field_user_parliament']['table'] = 'field_data_field_user_parliament';
   $handler->display->display_options['fields']['field_user_parliament']['field'] = 'field_user_parliament';
   $handler->display->display_options['fields']['field_user_parliament']['delta_offset'] = '0';
-  /* Feld: Benutzer: Constituency */
+  /* Feld: Benutzer: Wahlkreis */
   $handler->display->display_options['fields']['field_user_constituency']['id'] = 'field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['table'] = 'field_data_field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['field'] = 'field_user_constituency';
-  $handler->display->display_options['fields']['field_user_constituency']['label'] = 'Wahlkreis';
   $handler->display->display_options['fields']['field_user_constituency']['delta_offset'] = '0';
-  /* Feld: Benutzer: Committee */
+  /* Feld: Benutzer: Ausschüsse */
   $handler->display->display_options['fields']['field_user_commitee']['id'] = 'field_user_commitee';
   $handler->display->display_options['fields']['field_user_commitee']['table'] = 'field_data_field_user_commitee';
   $handler->display->display_options['fields']['field_user_commitee']['field'] = 'field_user_commitee';
@@ -233,7 +232,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['label'] = 'Antworten';
-  /* Feld: Benutzer: Address - Ort (z.B. Stadt) */
+  /* Feld: Benutzer: Adresse - Ort (z.B. Stadt) */
   $handler->display->display_options['fields']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['fields']['field_user_address_locality']['table'] = 'field_data_field_user_address';
   $handler->display->display_options['fields']['field_user_address_locality']['field'] = 'field_user_address_locality';
@@ -242,7 +241,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['rid']['id'] = 'rid';
   $handler->display->display_options['fields']['rid']['table'] = 'users_roles';
   $handler->display->display_options['fields']['rid']['field'] = 'rid';
-  /* Feld: Benutzer: List Position */
+  /* Feld: Benutzer: Listenposition */
   $handler->display->display_options['fields']['field_user_list_position']['id'] = 'field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['table'] = 'field_data_field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['field'] = 'field_user_list_position';
@@ -350,7 +349,7 @@ function pw_profiles_views_default_views() {
     185431326 => 0,
     178386088 => 0,
   );
-  /* Filterkriterium: Benutzer: Party (field_user_party) */
+  /* Filterkriterium: Benutzer: Partei (field_user_party) */
   $handler->display->display_options['filters']['field_user_party_tid']['id'] = 'field_user_party_tid';
   $handler->display->display_options['filters']['field_user_party_tid']['table'] = 'field_data_field_user_party';
   $handler->display->display_options['filters']['field_user_party_tid']['field'] = 'field_user_party_tid';
@@ -374,7 +373,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_party_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_party_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_party_tid']['vocabulary'] = 'party';
-  /* Filterkriterium: Benutzer: Parliament (field_user_parliament) */
+  /* Filterkriterium: Benutzer: Parlament (field_user_parliament) */
   $handler->display->display_options['filters']['field_user_parliament_tid']['id'] = 'field_user_parliament_tid';
   $handler->display->display_options['filters']['field_user_parliament_tid']['table'] = 'field_data_field_user_parliament';
   $handler->display->display_options['filters']['field_user_parliament_tid']['field'] = 'field_user_parliament_tid';
@@ -398,7 +397,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_parliament_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_parliament_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_parliament_tid']['vocabulary'] = 'parliaments';
-  /* Filterkriterium: Benutzer: Constituency (field_user_constituency) */
+  /* Filterkriterium: Benutzer: Wahlkreis (field_user_constituency) */
   $handler->display->display_options['filters']['field_user_constituency_tid']['id'] = 'field_user_constituency_tid';
   $handler->display->display_options['filters']['field_user_constituency_tid']['table'] = 'field_data_field_user_constituency';
   $handler->display->display_options['filters']['field_user_constituency_tid']['field'] = 'field_user_constituency_tid';
@@ -422,7 +421,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_constituency_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_constituency_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_constituency_tid']['vocabulary'] = 'constituency';
-  /* Filterkriterium: Benutzer: Committee (field_user_commitee) */
+  /* Filterkriterium: Benutzer: Ausschüsse (field_user_commitee) */
   $handler->display->display_options['filters']['field_user_commitee_tid']['id'] = 'field_user_commitee_tid';
   $handler->display->display_options['filters']['field_user_commitee_tid']['table'] = 'field_data_field_user_commitee';
   $handler->display->display_options['filters']['field_user_commitee_tid']['field'] = 'field_user_commitee_tid';
@@ -446,7 +445,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_commitee_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_commitee_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_commitee_tid']['vocabulary'] = 'committee';
-  /* Filterkriterium: Benutzer: Address - Ort (z.B. Stadt) */
+  /* Filterkriterium: Benutzer: Adresse - Ort (z.B. Stadt) */
   $handler->display->display_options['filters']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['filters']['field_user_address_locality']['table'] = 'field_data_field_user_address';
   $handler->display->display_options['filters']['field_user_address_locality']['field'] = 'field_user_address_locality';
@@ -720,25 +719,22 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['mail']['id'] = 'mail';
   $handler->display->display_options['fields']['mail']['table'] = 'users';
   $handler->display->display_options['fields']['mail']['field'] = 'mail';
-  /* Feld: Benutzer: Party */
+  /* Feld: Benutzer: Partei */
   $handler->display->display_options['fields']['field_user_party']['id'] = 'field_user_party';
   $handler->display->display_options['fields']['field_user_party']['table'] = 'field_data_field_user_party';
   $handler->display->display_options['fields']['field_user_party']['field'] = 'field_user_party';
-  $handler->display->display_options['fields']['field_user_party']['label'] = 'Partei';
   $handler->display->display_options['fields']['field_user_party']['delta_offset'] = '0';
-  /* Feld: Benutzer: Parliament */
+  /* Feld: Benutzer: Parlament */
   $handler->display->display_options['fields']['field_user_parliament']['id'] = 'field_user_parliament';
   $handler->display->display_options['fields']['field_user_parliament']['table'] = 'field_data_field_user_parliament';
   $handler->display->display_options['fields']['field_user_parliament']['field'] = 'field_user_parliament';
-  $handler->display->display_options['fields']['field_user_parliament']['label'] = 'Parlament';
   $handler->display->display_options['fields']['field_user_parliament']['delta_offset'] = '0';
-  /* Feld: Benutzer: Constituency */
+  /* Feld: Benutzer: Wahlkreis */
   $handler->display->display_options['fields']['field_user_constituency']['id'] = 'field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['table'] = 'field_data_field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['field'] = 'field_user_constituency';
-  $handler->display->display_options['fields']['field_user_constituency']['label'] = 'Wahlkreis';
   $handler->display->display_options['fields']['field_user_constituency']['delta_offset'] = '0';
-  /* Feld: Benutzer: Committee */
+  /* Feld: Benutzer: Ausschüsse */
   $handler->display->display_options['fields']['field_user_commitee']['id'] = 'field_user_commitee';
   $handler->display->display_options['fields']['field_user_commitee']['table'] = 'field_data_field_user_commitee';
   $handler->display->display_options['fields']['field_user_commitee']['field'] = 'field_user_commitee';
@@ -754,7 +750,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';
   $handler->display->display_options['fields']['field_user_answers_give']['label'] = 'Antworten';
-  /* Feld: Benutzer: Address - Ort (z.B. Stadt) */
+  /* Feld: Benutzer: Adresse - Ort (z.B. Stadt) */
   $handler->display->display_options['fields']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['fields']['field_user_address_locality']['table'] = 'field_data_field_user_address';
   $handler->display->display_options['fields']['field_user_address_locality']['field'] = 'field_user_address_locality';
@@ -763,7 +759,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['rid']['id'] = 'rid';
   $handler->display->display_options['fields']['rid']['table'] = 'users_roles';
   $handler->display->display_options['fields']['rid']['field'] = 'rid';
-  /* Feld: Benutzer: List Position */
+  /* Feld: Benutzer: Listenposition */
   $handler->display->display_options['fields']['field_user_list_position']['id'] = 'field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['table'] = 'field_data_field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['field'] = 'field_user_list_position';
@@ -854,7 +850,7 @@ function pw_profiles_views_default_views() {
     185431326 => 0,
     178386088 => 0,
   );
-  /* Filterkriterium: Benutzer: Party (field_user_party) */
+  /* Filterkriterium: Benutzer: Partei (field_user_party) */
   $handler->display->display_options['filters']['field_user_party_tid']['id'] = 'field_user_party_tid';
   $handler->display->display_options['filters']['field_user_party_tid']['table'] = 'field_data_field_user_party';
   $handler->display->display_options['filters']['field_user_party_tid']['field'] = 'field_user_party_tid';
@@ -878,7 +874,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_party_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_party_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_party_tid']['vocabulary'] = 'party';
-  /* Filterkriterium: Benutzer: Parliament (field_user_parliament) */
+  /* Filterkriterium: Benutzer: Parlament (field_user_parliament) */
   $handler->display->display_options['filters']['field_user_parliament_tid']['id'] = 'field_user_parliament_tid';
   $handler->display->display_options['filters']['field_user_parliament_tid']['table'] = 'field_data_field_user_parliament';
   $handler->display->display_options['filters']['field_user_parliament_tid']['field'] = 'field_user_parliament_tid';
@@ -902,7 +898,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_parliament_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_parliament_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_parliament_tid']['vocabulary'] = 'parliaments';
-  /* Filterkriterium: Benutzer: Constituency (field_user_constituency) */
+  /* Filterkriterium: Benutzer: Wahlkreis (field_user_constituency) */
   $handler->display->display_options['filters']['field_user_constituency_tid']['id'] = 'field_user_constituency_tid';
   $handler->display->display_options['filters']['field_user_constituency_tid']['table'] = 'field_data_field_user_constituency';
   $handler->display->display_options['filters']['field_user_constituency_tid']['field'] = 'field_user_constituency_tid';
@@ -926,7 +922,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_constituency_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_constituency_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_constituency_tid']['vocabulary'] = 'constituency';
-  /* Filterkriterium: Benutzer: Committee (field_user_commitee) */
+  /* Filterkriterium: Benutzer: Ausschüsse (field_user_commitee) */
   $handler->display->display_options['filters']['field_user_commitee_tid']['id'] = 'field_user_commitee_tid';
   $handler->display->display_options['filters']['field_user_commitee_tid']['table'] = 'field_data_field_user_commitee';
   $handler->display->display_options['filters']['field_user_commitee_tid']['field'] = 'field_user_commitee_tid';
@@ -950,7 +946,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_commitee_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_commitee_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_commitee_tid']['vocabulary'] = 'committee';
-  /* Filterkriterium: Benutzer: Address - Ort (z.B. Stadt) */
+  /* Filterkriterium: Benutzer: Adresse - Ort (z.B. Stadt) */
   $handler->display->display_options['filters']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['filters']['field_user_address_locality']['table'] = 'field_data_field_user_address';
   $handler->display->display_options['filters']['field_user_address_locality']['field'] = 'field_user_address_locality';
@@ -1046,10 +1042,10 @@ function pw_profiles_views_default_views() {
     t('- Wählen Sie eine Aufgabe -'),
     t('Name'),
     t('E-Mail'),
-    t('Party'),
-    t('Parliament'),
+    t('Partei'),
+    t('Parlament'),
     t('Wahlkreis'),
-    t('Committee'),
+    t('Ausschüsse'),
     t('Fragen'),
     t('Antworten'),
     t('Ort'),
@@ -1061,9 +1057,7 @@ function pw_profiles_views_default_views() {
     t('Nachname'),
     t('Suche nach Nachnamen.'),
     t('Suche nach E-Mail-Adressen.'),
-    t('Partei'),
     t('Suche nach Parteien.'),
-    t('Parlament'),
     t('Suche nach Parlamenten.'),
     t('Suche nach Wahlkreisen.'),
     t('Ausschuss'),
