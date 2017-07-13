@@ -192,6 +192,11 @@ function pw_globals_politician_search_page() {
 
   if (isset(drupal_get_query_parameters()['parliament'])) {
     $q->condition('field_user_parliament', drupal_get_query_parameters()['parliament']);
+    $term = taxonomy_term_load(drupal_get_query_parameters()['parliament']);
+    $today = new DateTime();
+    $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
+    $role = _pw_is_parliament_active($term) && ($today > $election_date) ? 7028 : 7029;
+    $q->condition('field_user_roles_for_view_mode_s', $role);
   }
 
   if (isset(drupal_get_query_parameters()['keys'])) {
