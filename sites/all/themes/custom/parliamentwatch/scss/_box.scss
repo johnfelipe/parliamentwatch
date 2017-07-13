@@ -380,20 +380,24 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   background: $beige;
   margin: $space 0;
   @include grid-container();
-}
-.well__left {
-  margin-top: $space;
-  margin-bottom: $space;
-  @include grid-column(12);
-  @include breakpoint($breakpoint-s-min) {
-    margin-top: $space-large;
-    margin-bottom: $space-large;
-    @include grid-column(6, $neat-grid-large-gutter);
+  .well__left {
+    margin-top: $space;
+    margin-bottom: $space;
+    @include grid-column(12);
+    @include breakpoint($breakpoint-s-min) {
+      margin-top: $space-large;
+      margin-bottom: $space-large;
+      @include grid-column(6, $neat-grid-large-gutter);
+    }
   }
 }
-
 .well--tabs {
   .tabs__navigation {
+    .nav--tab {
+      width: auto;
+      margin: 0;
+      float: none;
+    }
     .nav__item {
       margin: 0;
       padding: 0;
