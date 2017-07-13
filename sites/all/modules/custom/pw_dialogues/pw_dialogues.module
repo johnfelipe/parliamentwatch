@@ -382,7 +382,7 @@ function pw_dialogues_profile_block() {
 
   if (!empty($result['node'])) {
     $nodes = node_load_multiple(array_keys($result['node']));
-    $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
+    $inline_js = 'window.dialogues = ' . drupal_json_encode(pw_dialogues_topics_by_user_revision($account));
     $block['content'] = node_view_multiple(array_slice($nodes, 0, 12, TRUE), 'embedded');
     $block['content']['nodes']['#theme_wrappers'] = ['container__swiper'];
     $block['content']['stats'] = [
@@ -421,17 +421,15 @@ function pw_dialogues_recent_block() {
 
   $result = pw_dialogues_by_parliament_query($term)
     ->propertyOrderBy('created', 'DESC')
+    ->range(0, 4)
     ->execute();
 
-  if ($result['node']) {
+  if (!empty($result['node'])) {
     $nodes = node_load_multiple(array_keys($result['node']));
-    $inline_js = 'window.dialogues = ' . drupal_json_encode(array_map('pw_dialogues_to_array', array_values($nodes))) . ';';
-    $callback = function ($item) {
-      return $item->comment_count > 0;
-    };
-    $questions = count($nodes);
-    $answers = count(array_filter($nodes, $callback));
-    $block['content'] = node_view_multiple(array_slice($nodes, 0, 4, TRUE), 'embedded');
+    $inline_js = 'window.dialogues = ' . drupal_json_encode(pw_dialogues_topics_by_parliament($term)) . ';';
+    $questions = pw_dialogues_by_parliament_query($term)->count()->execute();
+    $answers = pw_dialogues_answered_questions_by_parliament($term);
+    $block['content'] = node_view_multiple($nodes, 'embedded');
     $block['content']['stats'] = [
       '#theme' => 'dialogues_stats',
       '#questions' => $questions,
@@ -582,6 +580,74 @@ function pw_dialogues_average_response_time_by_parliament($term) {
     . "WHERE rt.bundle = 'comment_node_dialogue' "
     . "AND p.field_parliament_tid = :tid";
   return db_query($sql, [':tid' => $term->tid])->fetchField();
+}
+
+/**
+ * Returns the number of answered questions for the given parliament.
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return int
+ *   The number of answered questions.
+ */
+function pw_dialogues_answered_questions_by_parliament($term) {
+  $q = db_select('node', 'n');
+  $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
+  $q->join('comment', 'c', 'c.nid = n.nid');
+  $q->condition('n.type', 'dialogue');
+  $q->condition('p.field_parliament_tid', $term->tid);
+  $q->groupBy('n.nid');
+
+  return $q->countQuery()->execute()->fetchField();
+}
+
+/**
+ * Returns number of questions by topic for the given user
+ *
+ * @param type $account
+ *   The account object.
+ *
+ * @return array
+ *   An associative array with topics as key and numbers as values.
+ */
+function pw_dialogues_topics_by_user_revision($account) {
+  $q = db_select('node', 'n');
+  $q->join('field_data_field_dialogue_recipient', 'r', 'n.nid = r.entity_id');
+  $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
+  $q->join('field_data_field_dialogue_topic', 't', 'n.nid = t.entity_id');
+  $q->join('taxonomy_term_data', 'td', 't.field_dialogue_topic_tid = td.tid');
+  $q->addField('td', 'name');
+  $q->addExpression('COUNT(n.nid)', 'count');
+  $q->condition('n.type', 'dialogue');
+  $q->condition('r.field_dialogue_recipient_target_id', $account->uid);
+  $q->condition('p.field_parliament_tid', pw_profiles_parliament($account)->tid);
+  $q->groupBy('t.field_dialogue_topic_tid');
+
+  return $q->execute()->fetchAllKeyed();
+}
+
+/**
+ * Returns number of questions by topic for the given parliament.
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return array
+ *   An associative array with topics as key and numbers as values.
+ */
+function pw_dialogues_topics_by_parliament($term) {
+  $q = db_select('node', 'n');
+  $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
+  $q->join('field_data_field_dialogue_topic', 't', 'n.nid = t.entity_id');
+  $q->join('taxonomy_term_data', 'td', 't.field_dialogue_topic_tid = td.tid');
+  $q->addField('td', 'name');
+  $q->addExpression('COUNT(n.nid)', 'count');
+  $q->condition('n.type', 'dialogue');
+  $q->condition('p.field_parliament_tid', $term->tid);
+  $q->groupBy('t.field_dialogue_topic_tid');
+
+  return $q->execute()->fetchAllKeyed();
 }
 
 /**

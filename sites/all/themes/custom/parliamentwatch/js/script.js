@@ -1214,24 +1214,11 @@ $(function () {
 });
 
 function parseDialogues() {
-    var topics = [];
     var data = [];
 
-    window.dialogues.forEach(function (d) {
-        if (topics.indexOf(d.topic) === -1) {
-            topics.push(d.topic);
-        }
-    });
-
-    topics.forEach(function (t) {
-        var count = 0;
-        window.dialogues.forEach(function (d) {
-            if (d.topic === t) {
-                count++;
-            }
-        });
-        data.push({name: t, value: count});
-    });
+    for (var key in window.dialogues) {
+        data.push({'name': key, 'value': window.dialogues[key]});
+    }
 
     return data;
 }
