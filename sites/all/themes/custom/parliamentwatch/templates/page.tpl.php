@@ -131,18 +131,23 @@
         <ul class="footer__maincol__col__nav">
           <li class="footer__maincol__col__nav__item"><?php print l('Baden-Württemberg', 'baden-wuerttemberg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Berlin', 'berlin', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l('Bayern', 'bayern', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Brandenburg', 'brandenburg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Bremen', 'bremen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Hamburg', 'hamburg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l('Hessen', 'hessen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Mecklenburg-Vorpommern', 'mecklenburg-vorpommern', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
         </ul>
       </div>
       <div class="footer__maincol__col">
         <strong>&nbsp;</strong>
         <ul class="footer__maincol__col__nav">
+          <li class="footer__maincol__col__nav__item"><?php print l('Niedersachen', 'niedersachen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Nordrhein-Westfalen', 'nordrhein-westfalen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Rheinland-Pfalz', 'rheinland-pfalz', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l('Saarland', 'saarland', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Sachsen', 'sachsen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l('Sachsen-Anhalt', 'sachsen-anhalt', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Schleswig-Holstein', 'schleswig-holstein', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Thüringen', 'thueringen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
         </ul>
