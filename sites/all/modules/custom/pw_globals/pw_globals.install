@@ -11,6 +11,7 @@
 function pw_globals_update_7001() {
   $uninstall = [
     'block_class',
+    'block_titlelink',
     'colorbox',
     'content_menu',
     'context',
