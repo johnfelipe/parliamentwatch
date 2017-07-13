@@ -2486,10 +2486,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         ),
         'full' => array(
           'label' => 'above',
-          'module' => 'shs',
+          'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
-            'linked' => FALSE,
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2502,7 +2501,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'linked' => 0,
             ),
           ),
-          'type' => 'shs_default',
+          'type' => 'taxonomy_term_reference_plain',
           'weight' => '16',
         ),
       ),
@@ -2578,10 +2577,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         ),
         'full' => array(
           'label' => 'above',
-          'module' => 'shs',
+          'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
-            'linked' => FALSE,
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2594,7 +2592,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
               'linked' => 0,
             ),
           ),
-          'type' => 'shs_default',
+          'type' => 'taxonomy_term_reference_plain',
           'weight' => '15',
         ),
       ),
