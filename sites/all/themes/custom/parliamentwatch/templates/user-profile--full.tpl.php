@@ -69,7 +69,7 @@
       <figure>
         <div class="deputy__image"><?php print render($user_profile['field_user_picture']); ?></div>
         <?php if ($is_consultable): ?>
-        <a href="#question-form" class="btn btn--block">Frage stellen</a>
+        <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
         <?php endif; ?>
         <figcaption>
           <?php print render($user_profile['field_user_picture_copyright']); ?>
