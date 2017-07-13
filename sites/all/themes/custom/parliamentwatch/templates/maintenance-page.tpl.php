@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
   "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>">
 
-<head profile="<?php print $grddl_profile; ?>">
+<head>
   <?php print $head; ?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title><?php print $head_title; ?></title>
@@ -13,7 +13,6 @@
 <div id="skip-link">
   <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
 </div>
-<?php print $page_top; ?>
 
 <div class="page-container" data-sidebar-container>
   <header id="header">
@@ -30,29 +29,10 @@
 
   <main id="content">
     <a id="main-content"></a>
-    <?php print $messages; ?>
-
-    <?php if ($tabs): ?><div class="tabs tabs--admin"><?php print render($tabs); ?></div><?php endif; ?>
-    <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-    <?php if ($page['intro_primary']): ?>
-    <div class="intro">
-      <?php if ($page['intro_secondary']): ?>
-      <div class="intro__left"><?php print render($page['intro_primary']); ?></div>
-      <div class="intro__right"><?php print render($page['intro_secondary']); ?></div>
-      <?php else: ?>
-      <?php print render($page['intro_primary']); ?>
-      <?php endif; ?>
-    </div>
-    <?php endif; ?>
     <div class="container">
       <div class="maintenance-message">
         <?php print $content; ?>
       </div>
-
-      <?php print render($page['content']); ?>
-    </div>
-    <?php print render($page['content_tabs']); ?>
-    <?php print render($page['content_extra']); ?>
   </main>
 
 
@@ -71,13 +51,7 @@
       </div>
     </a>
     <?php endif; ?>
-    <?php if ($page['footer']): ?>
-    <div class="container">
-      <?php print render($page['footer']); ?>
-    </div>
-    <?php endif; ?>
   </footer>
 </div>
-<?php print $page_bottom; ?>
 </body>
 </html>
