@@ -33,10 +33,6 @@
         <?php print t('@answers of total<br>@questions questions answered', ['@answers' => $answers, '@questions' => $questions]); ?>
       </div>
     </div>
-    <div class="hstats__item hstats__item--digit">
-      <span class="hstats__item__display mh-item-nr" data-mh="qa_hstats">5</span>
-      <span class="hstats__item__label mh-item-nr" data-mh="qa_hstats"><?php print t('Questioner per question') ?></span>
-    </div>
   </div>
   <div class="qa-stats__col">
     <div class="hstats__item hstats__item--digit">
