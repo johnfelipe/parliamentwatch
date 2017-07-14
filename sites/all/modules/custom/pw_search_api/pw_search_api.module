@@ -99,15 +99,6 @@ function pw_search_api_search_api_index_items_alter(array &$items, SearchApiInde
 }
 
 /**
- * Implements hook_search_api_server_load().
- *
- * Allows overriding production settings via configuration.
- */
-function pw_search_api_search_api_server_load(array $servers) {
-  $servers['solr']->options = array_merge($servers['solr']->options, variable_get('pw_search_api_solr_options', []));
-}
-
-/**
  * Implements hook_search_api_processor_info().
  *
  * Registers preprocessor to add leading zero to 4-digit postal codes.
