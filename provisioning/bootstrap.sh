@@ -70,3 +70,4 @@ if [ ! -L /etc/apache2/sites-enabled/drupal.conf ]; then
 fi
 
 service apache2 restart
+service mysql restart
