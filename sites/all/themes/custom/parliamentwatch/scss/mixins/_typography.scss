@@ -38,3 +38,13 @@
   &:hover { color: $mediumGray; }
   > a { color: $darkGray; &:hover { color: $mediumGray; } }
 }
+
+@mixin link-icon() {
+  &:before {
+    font-family: 'awfont';
+    margin-right: 3px;
+    font-size: .6em;
+    position: relative;
+    top: -2px;
+  }
+}

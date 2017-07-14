@@ -67,6 +67,31 @@ a {
   }
 }
 
+/* Links */
+a.read-more,
+a.read-codex,
+a.link-profile,
+a.link-committees,
+a.link-poll,
+a.link-download,
+a.link-sign,
+a.link-calendar,
+a.link-video,
+a.link-sound {
+  @include link-icon();
+}
+a.read-more:before { content: '\e805'; }
+a.read-codex:before { content: '\e805'; }
+a.link-profile:before { content: '\e84d'; }
+a.link-committees:before { content: '\e809'; }
+a.link-poll:before { content: '\e836'; }
+a.link-download:before { content: '\e821'; }
+a.link-sign:before { content: '\e83c'; }
+a.link-calendar:before { content: '\e851'; }
+a.link-video:before { content: '\e846'; }
+a.link-sound:before { content: '\e83d'; }
+
+
 /* Quotes */
 
 blockquote {
@@ -95,6 +120,7 @@ blockquote {
 }
 
 /* Text-Alignment */
+
 .text-left {
   text-align: left;
 }
