@@ -82,7 +82,7 @@
 ?>
 <div class="question tile <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="question__meta tile__meta">
-    <?php if ($content['field_dialogue_topic']): ?>
+    <?php if (!empty($content['field_dialogue_topic'])): ?>
     <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
     <?php endif; ?>
     <span class="question__meta__date tile__meta__date"><?php print $date; ?></span>

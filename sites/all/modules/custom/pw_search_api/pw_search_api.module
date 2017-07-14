@@ -88,8 +88,6 @@ function pw_search_api_search_api_index_items_alter(array &$items, SearchApiInde
         ':role' => $role
         ))->fetchCol();
       $user_revision = user_revision_load($item->uid, $result[0]);
-      $item->field_user_questions_get['und'][0]['value'] = $user_revision->field_user_questions_get['und'][0]['value'];
-      $item->field_user_answers_give['und'][0]['value'] = $user_revision->field_user_answers_give['und'][0]['value'];
 
       if (empty($item->field_user_picture)) {
         $item->field_has_picture['und'][0]['value'] = "0";

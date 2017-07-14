@@ -91,7 +91,7 @@
         <?php print render($user_party); ?>
         <a href="<?php print render($user_url); ?>" class="btn btn--small btn--mobile-block"><?php print t('Open profile'); ?></a>
       </div>
-      <h1><?php print t('Question from'); ?> <?php print render($content['field_dialogue_sender_name']); ?> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if ($content['field_dialogue_topic']): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
+      <h1><?php print t('Question from'); ?> <?php print render($content['field_dialogue_sender_name']); ?> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
     </div>
   </div>
   <div class="container-small">
