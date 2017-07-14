@@ -179,6 +179,9 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
   ksort($schemes);
 
   foreach($schemes as $table => $schema){
+    if (strpos($table, 'field_deleted_') === 0) {
+      continue;
+    }
 
     // update tables with columns uid
     if(array_key_exists('uid', $schema['fields'])){
