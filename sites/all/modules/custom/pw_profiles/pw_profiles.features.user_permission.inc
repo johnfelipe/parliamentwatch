@@ -392,10 +392,11 @@ function pw_profiles_user_default_permissions() {
   $permissions['create files'] = array(
     'name' => 'create files',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Deputy',
-      2 => 'Premium User',
-      3 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'Deputy',
+      3 => 'Premium User',
+      4 => 'administrator',
     ),
     'module' => 'file_entity',
   );

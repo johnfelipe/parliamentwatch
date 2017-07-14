@@ -14,8 +14,9 @@ function pw_content_authoring_layout_user_default_permissions() {
   $permissions['add media from remote sources'] = array(
     'name' => 'add media from remote sources',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'administrator',
     ),
     'module' => 'media_internet',
   );
