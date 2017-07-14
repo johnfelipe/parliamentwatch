@@ -292,7 +292,7 @@ function pw_content_authoring_layout_ckeditor_profile_defaults() {
           ),
         ),
         'css_mode' => 'self',
-        'css_path' => '/sites/all/themes/custom/parliamentwatch/css/global.css',
+        'css_path' => '/sites/all/themes/custom/parliamentwatch/css/theme.min.css',
         'css_style' => 'self',
         'styles_path' => '/sites/all/themes/custom/parliamentwatch/js/ckeditor.styles.js',
         'filebrowser' => 'none',
