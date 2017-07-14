@@ -134,10 +134,6 @@
           <dt class="dl__dt"><?php print $user_profile['field_user_childs']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_childs'][0]['#markup']; ?></dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_marriage_status'])): ?>
-          <dt class="dl__dt"><?php print $user_profile['field_user_marriage_status']['#title']; ?></dt>
-          <dd class="dl__dd"><?php print $user_profile['field_user_marriage_status'][0]['#markup']; ?></dd>
-        <?php endif; ?>
         <?php if (isset($user_profile['field_user_address']['#items'][0]['locality'])): ?>
           <dt class="dl__dt"><?php print t('Wohnort') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_address']['#items'][0]['locality']; ?></dd>
