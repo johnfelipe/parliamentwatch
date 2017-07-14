@@ -162,6 +162,11 @@
           <dt class="dl__dt"><?php print $user_profile['field_user_constituency']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_constituency'][0]['#markup']; ?></dd>
         <?php endif; ?>
+        <?php if (isset($user_profile['field_user_job_skills'])): ?>
+          <dt class="dl__dt"><?php print $user_profile['field_user_job_skills']['#title']; ?></dt>
+          <dd class="dl__dd"><?php print $user_profile['field_user_job_skills'][0]['#markup']; ?></dd>
+        <?php endif; ?>
+
       </dl>
     </div>
 
