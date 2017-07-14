@@ -146,6 +146,10 @@
           <dt class="dl__dt"><?php print $user_profile['field_user_education']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_education'][0]['#markup']; ?></dd>
         <?php endif; ?>
+        <?php if (isset($user_profile['field_user_job_skills'])): ?>
+          <dt class="dl__dt"><?php print $user_profile['field_user_job_skills']['#title']; ?></dt>
+          <dd class="dl__dd"><?php print $user_profile['field_user_job_skills'][0]['#markup']; ?></dd>
+        <?php endif; ?>
         <?php if (isset($user_profile['field_user_list'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_list']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_list'][0]['#markup']; ?><?php if ($user_profile['field_user_list_position']): ?>, Platz <?php print $user_profile['field_user_list_position'][0]['#markup']; ?><?php endif; ?></dd>
@@ -161,10 +165,6 @@
         <?php if (isset($user_profile['field_user_constituency'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_constituency']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_constituency'][0]['#markup']; ?></dd>
-        <?php endif; ?>
-        <?php if (isset($user_profile['field_user_job_skills'])): ?>
-          <dt class="dl__dt"><?php print $user_profile['field_user_job_skills']['#title']; ?></dt>
-          <dd class="dl__dd"><?php print $user_profile['field_user_job_skills'][0]['#markup']; ?></dd>
         <?php endif; ?>
 
       </dl>
