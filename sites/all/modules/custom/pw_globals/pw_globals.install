@@ -668,6 +668,13 @@ function pw_globals_update_7022() {
 }
 
 /**
+ * Delete calendar options menu.
+ */
+function pw_globals_update_7023() {
+  menu_delete(menu_load('menu-calendar-options-menu'));
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
