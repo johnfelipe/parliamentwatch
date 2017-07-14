@@ -5,4 +5,4 @@ core = 7.x
 version = "7.x-2.8+pw-20160324"
 project = "login_one_time"
 datestamp = "1418600132"
-
+dependencies[] = services_oauth
