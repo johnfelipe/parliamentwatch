@@ -84,7 +84,7 @@
   <div class="tile__image">
     <?php print render($content['field_teaser_image']); ?>
   </div>
-  <div class="tile__date"><?php print $date; ?></div>
+  <div class="tile__date"><?php print render($content['field_poll_date']); ?></div>
   <?php if (isset($result)): ?>
   <div class="tile__pollchart">
     <div class="tile__pollchart__value_left<?php if ($yays > $nays) { print ' won'; } ?>"><?php print $yays; ?></div>
