@@ -67,18 +67,20 @@ function pw_kandidatencheck_user_view($account, $view_mode, $langcode) {
  * Implements hook_form_FORM_ID_alter().
  */
 function pw_kandidatencheck_form_user_profile_form_alter(&$form, &$form_state) {
-  $image = theme('image', ['path' => drupal_get_path('module', 'pw_kandidatencheck') . '/kandidatencheck_teaser.png', 'attributes' => ['height' => 79, 'width' => 858]]);
-  $form['candidate_match'] = [
-    '#theme' => 'link',
-    '#text' => $image,
-    '#path' => 'https://kandidatencheck.abgeordnetenwatch.de/thesen/',
-    '#options' => [
-      'query' => ['id' => md5(variable_get('pw_salt') . $form['#user']->uuid)],
-      'html' => TRUE,
-      'attributes' => ['target' => '_blank'],
-    ],
-    '#weight' => -10,
-  ];
+  if (_pw_kandidatencheck_should_render_form_element($form['#user'])) {
+    $image = theme('image', ['path' => drupal_get_path('module', 'pw_kandidatencheck') . '/kandidatencheck_teaser.png', 'attributes' => ['height' => 79, 'width' => 858]]);
+    $form['candidate_match'] = [
+      '#theme' => 'link',
+      '#text' => $image,
+      '#path' => 'https://kandidatencheck.abgeordnetenwatch.de/thesen/',
+      '#options' => [
+        'query' => ['id' => md5(variable_get('pw_salt') . $form['#user']->uuid)],
+        'html' => TRUE,
+        'attributes' => ['target' => '_blank'],
+      ],
+      '#weight' => -10,
+    ];
+  }
 }
 
 /**
@@ -119,4 +121,30 @@ function pw_kandidatencheck_thesis($node) {
   }
 
   return $thesis;
+}
+
+/**
+ * Returns TRUE if the form element should be rendered, FALSE otherwise.
+ *
+ * Checks whether the account has the role Candidate and the feature is
+ * available for the associated parliament.
+ *
+ * @param type $account
+ *   The account object.
+ *
+ * @return boolean
+ *   TRUE if the form element should be rendered, FALSE otherwise.
+ */
+function _pw_kandidatencheck_should_render_form_element($account) {
+  if (!_pw_user_has_role($account, 'Candidate')) {
+    return FALSE;
+  }
+
+  $enabled_parliaments = variable_get('pw_kandidatencheck_enabled_parliament_tids', []);
+
+  if (!in_array(pw_profiles_parliament($account)->tid, $enabled_parliaments)) {
+    return FALSE;
+  }
+
+  return TRUE;
 }
