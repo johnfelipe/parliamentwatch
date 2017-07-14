@@ -91,11 +91,9 @@
   padding: $space-small $space;
   padding-right: 120px;
   position: relative;
-  max-width: 290px;
   margin: 0 auto;
   @include breakpoint($breakpoint-s-min) {
     padding-right: 100px;
-    max-width: 320px;
   }
   @include breakpoint($breakpoint-m-min) {
     padding-right: 150px;
@@ -113,9 +111,8 @@
       width: 120px;
     }
   }
-  .icon-ok {
-    color: $success;
-  }
+  .icon-ok { color: $color-accepted; }
+  .icon-close { color: $color-denied; }
   &:after {
     content: '}';
     font-size: 3.6em;
@@ -137,7 +134,7 @@
 .poll_overview__primary__item {
   @include grid-container();
   padding-top: $space-xsmall;
-  padding-bottom: $space-xsmall;
+  padding-bottom: $space-xsmall - 2;
   color: $mediumGray;
   font-size: .9em;
   @include breakpoint($breakpoint-m-min) {
@@ -149,12 +146,14 @@
   width: 80%;
   text-align: right;
   padding-right: $space;
+  padding-bottom: 2px;
   @include text-overflow();
 }
 .poll_overview__primary__value {
   float: right;
   width: 20%;
   font-weight: 600;
+  padding-bottom: 2px;
 }
 
 .poll_overview__secondary {
