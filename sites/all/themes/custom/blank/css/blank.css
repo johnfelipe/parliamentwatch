@@ -1,73 +1,9 @@
-.responsive-layout-mobile #block-views-exp-profile-list-rev-grid {
-    display: block;
-}
-.view-slider,
-#edit-field-user-age-value-wrapper,
-#feedback_simple {
-    display: none !important;
-}
-.view-id-profile_list_rev .view-content ul {
-    background: transparent !important;
-}
-#edit-field-user-address-administrative-area-wrapper,
-#edit-field-user-constituency-tid-wrapper,
-#edit-field-user-list-position-tid-wrapper,
-#edit-field-user-list-tid-wrapper {
-    width: 33%;
-    float: left;
-}
-#edit-field-user-address-administrative-area-wrapper select,
-#edit-field-user-constituency-tid-wrapper select,
-#edit-field-user-list-position-tid-wrapper select,
-#edit-field-user-list-tid-wrapper select {
-    width: 90%;
-}
-#edit-field-user-party-tid-wrapper {
-    clear: both;
+
+#header,
+#footer {
+    display: none;
 }
 
-#edit-field-user-party-tid-wrapper .form-item,
-#edit-field-user-gender-value-wrapper .form-item {
-    float: left;
-    padding: 0;
-}
-#edit-field-user-party-tid-wrapper .form-item input,
-#edit-field-user-gender-value-wrapper .form-item input {
-    position: absolute;
-    left: -5000em;
-}
-#edit-field-user-party-tid-wrapper .form-item label,
-#edit-field-user-gender-value-wrapper .form-item label {
-    cursor: pointer;
-    float: left;
-    line-height: 2rem;
-    margin: 0 4px 4px 0;
-    min-width: 10px;
-    padding: 0 5px;
-    text-align: center;
-}
-#edit-field-user-party-tid-wrapper .form-item label,
-#edit-field-user-party-tid-wrapper .form-item input[type="checkbox"]:checked + label:hover,
-#edit-field-user-party-tid-wrapper .form-item input[type="checkbox"]:checked + label:focus,
-#edit-field-user-party-tid-wrapper .form-item input[type="checkbox"]:checked + label:active,
-#edit-field-user-gender-value-wrapper .form-item label,
-#edit-field-user-gender-value-wrapper .form-item input[type="checkbox"]:checked + label:hover,
-#edit-field-user-gender-value-wrapper .form-item input[type="checkbox"]:checked + label:focus,
-#edit-field-user-gender-value-wrapper .form-item input[type="checkbox"]:checked + label:active {
-    background: none repeat scroll 0 0 #CCCCCC;
-    color: #FFFFFF;
-    position: relative;
-    top: 0;
-    width: auto;
-}
-#edit-field-user-party-tid-wrapper .form-item label:hover,
-#edit-field-user-party-tid-wrapper .form-item label:focus,
-#edit-field-user-party-tid-wrapper .form-item label:active,
-#edit-field-user-party-tid-wrapper .form-item input[type="checkbox"]:checked + label,
-#edit-field-user-gender-value-wrapper .form-item label:hover,
-#edit-field-user-gender-value-wrapper .form-item label:focus,
-#edit-field-user-gender-value-wrapper .form-item label:active,
-#edit-field-user-gender-value-wrapper .form-item input[type="checkbox"]:checked + label {
-    background: none repeat scroll 0 0 #F4F4F4;
-    color: #333333;
+#content {
+    margin-top: 0 !important;
 }

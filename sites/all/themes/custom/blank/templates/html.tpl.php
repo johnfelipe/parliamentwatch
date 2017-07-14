@@ -1,19 +1,20 @@
-<?php print $doctype; ?>
-<html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf->version . $rdf->namespaces; ?>>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
+
 <head<?php print $rdf->profile; ?>>
   <?php print $head; ?>
-  <title><?php print $head_title; ?></title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <?php print $scripts; ?>
-  <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <!-- affiliate css and js -->
   <?php print render($pw_affilliate_code); ?>
   <!-- /affiliate css and js -->
 </head>
-<body<?php print $attributes;?>>
+<body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print render($pw_tracking); ?>
   <div id="skip-link">
-    <a href="#nav" class="element-invisible element-focusable"><?php print t('Skip to main navigation'); ?></a>
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   </div>
   <?php print $page_top; ?>
