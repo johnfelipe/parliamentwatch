@@ -675,6 +675,287 @@ function pw_globals_update_7023() {
 }
 
 /**
+ * Add media partner blocks for embedded (blank) version.
+ */
+function pw_globals_update_7024() {
+  module_load_include('inc', 'block', 'block.admin');
+
+  $body_affilliate_code_1 = <<<EOD
+<link href="https://www.freiepresse.de/css/abgeordnetenwatch.css" rel="stylesheet" type="text/css" />
+EOD;
+  $block_affilliate_code_1 = [
+    'info' => t('Medienpartner Freie Presse CSS'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body_affilliate_code_1
+    ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_PHP,
+    'pages' => '<?php if ($_SERVER[\'SERVER_NAME\'] == "freiepresse.affiliate.abgeordnetenwatch.de") return true; ?>',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['blank' => 'pw_affilliate_code'],
+  ];
+  $block_affilliate_code_1['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block_affilliate_code_1['info'],
+      'body' => $block_affilliate_code_1['body']['value'],
+      'format' => $block_affilliate_code_1['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block_affilliate_code_1);
+
+  $body_affilliate_code_2 = <<<EOD
+<!-- Begin Sitestat4 code --><script language='JavaScript1.1' type='text/javascript'>
+<!--
+function sitestat(ns_l){ns_l+='&amp;ns__t='+(new Date()).getTime();ns_pixelUrl=ns_l;
+ns_0=document.referrer;
+ns_0=(ns_0.lastIndexOf('/')==ns_0.length-1)?ns_0.substring(ns_0.lastIndexOf('/'),0):ns_0;
+if(ns_0.length>0)ns_l+='&amp;ns_referrer='+escape(ns_0);
+if(document.images){ns_1=new Image();ns_1.src=ns_l;}else
+document.write('<img src="'+ns_l+'" width="1" height="1" alt="">');}
+sitestat("http://de.sitestat.com/cicero/freies-wort/s?ext_abgeordnetenwatch.index_phtm");
+//-->
+</script><noscript>
+<img src="http://de.sitestat.com/cicero/freies-wort/s?ext_abgeordnetenwatch.index_phtm" width="1" height="1" alt="">
+</noscript><!-- End Sitestat4 code -->
+EOD;
+  $block_affilliate_code_2 = [
+    'info' => t('Medienpartner Freies Wort Tracking'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body_affilliate_code_2
+    ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_PHP,
+    'pages' => '<?php if ($_SERVER[\'SERVER_NAME\'] == "freieswort.affiliate.abgeordnetenwatch.de") return true; ?>',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['blank' => 'pw_affilliate_code'],
+  ];
+  $block_affilliate_code_2['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block_affilliate_code_2['info'],
+      'body' => $block_affilliate_code_2['body']['value'],
+      'format' => $block_affilliate_code_2['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block_affilliate_code_2);
+
+  $body_affilliate_code_3 = <<<EOD
+<script type="text/javascript" src="https://script.ioam.de/iam.js"></script>
+EOD;
+  $block_affilliate_code_3 = [
+    'info' => t('Medienpartner SVZ Tracking JS'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body_affilliate_code_3
+    ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_PHP,
+    'pages' => '<?php if ($_SERVER[\'SERVER_NAME\'] == "svz.affiliate.abgeordnetenwatch.de") return true; ?>',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['blank' => 'pw_affilliate_code'],
+  ];
+  $block_affilliate_code_3['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block_affilliate_code_3['info'],
+      'body' => $block_affilliate_code_3['body']['value'],
+      'format' => $block_affilliate_code_3['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block_affilliate_code_3);
+
+  $body_affilliate_code_4 = <<<EOD
+<!-- ## IVW SZMnG - KAT 2.0 --><script type="text/javascript"
+src="https://script.ioam.de/iam.js"></script>
+EOD;
+  $block_affilliate_code_4 = [
+    'info' => t('Medienpartner Zeitungsgruppe Thüringen Tracking head'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body_affilliate_code_4
+    ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_PHP,
+    'pages' => '<?php if ($_SERVER[\'SERVER_NAME\'] == "zgt.affiliate.abgeordnetenwatch.de") return true; ?>',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['blank' => 'pw_affilliate_code'],
+  ];
+  $block_affilliate_code_4['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block_affilliate_code_4['info'],
+      'body' => $block_affilliate_code_4['body']['value'],
+      'format' => $block_affilliate_code_4['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block_affilliate_code_4);
+
+
+  $body_affilliate_tracking_1 = <<<EOD
+EOD;
+  $block_affilliate_tracking_1 = [
+    'info' => t('Medienpartner Hamburger Abendblatt Tracking'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body_affilliate_tracking_1
+    ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_PHP,
+    'pages' => '<?php if ($_SERVER[\'SERVER_NAME\'] == "abendblatt.affiliate.abgeordnetenwatch.de") return true; ?>',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['blank' => 'pw_tracking'],
+  ];
+  $block_affilliate_tracking_1['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block_affilliate_tracking_1['info'],
+      'body' => $block_affilliate_tracking_1['body']['value'],
+      'format' => $block_affilliate_tracking_1['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block_affilliate_tracking_1);
+
+  $body_affilliate_tracking_2 = <<<EOD
+<!-- SZM VERSION="2.0" -->
+<script type="text/javascript">
+var iam_data =
+{ "st":"svz", "cp":"abgeordnetenwatch", "sv":"in", "co":"" }
+
+iom.c(iam_data);
+</script>
+<!--/SZM -->
+EOD;
+  $block_affilliate_tracking_2 = [
+    'info' => t('Medienpartner SVZ Tracking Code'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body_affilliate_tracking_2
+    ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_PHP,
+    'pages' => '<?php if ($_SERVER[\'SERVER_NAME\'] == "svz.affiliate.abgeordnetenwatch.de") return true; ?>',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['blank' => 'pw_tracking'],
+  ];
+  $block_affilliate_tracking_2['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block_affilliate_tracking_2['info'],
+      'body' => $block_affilliate_tracking_2['body']['value'],
+      'format' => $block_affilliate_tracking_2['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block_affilliate_tracking_2);
+
+  $body_affilliate_tracking_3 = <<<EOD
+<!--## IVW Script SZMnG - KAT 2.0 --><script type="text/javascript">
+
+        /* <![CDATA[ */
+                ## IVW-Code (Seitenname)
+
+                var code = abgeordnetenwatch Portalseite;
+
+                // check auf startseite für FRABO/AGOF
+
+                var survey = (code.toLowerCase().indexOf("home") != -1) ? "ke" : "in";
+                var iam_data = {
+                    "mg": "yes", // Migrationsmodus AKTIVIERT
+                    "st": "zgtonlin", // site/domain
+                    "cp": code, // code SZMnG
+                    "oc": code, // code SZM - System 1.5
+                    "sv": survey // FRABO
+                };
+
+                iom.c(iam_data);
+        /* ]]> */
+
+</script>
+EOD;
+  $block_affilliate_tracking_3 = [
+    'info' => t('Medienpartner ZGT Tracking Body Landingpage'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body_affilliate_tracking_3
+    ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_PHP,
+    'pages' => '<?php $landingpage = ($_SERVER[\'REQUEST_URI\'] == \'/thueringen\') ? true : false; if ($_SERVER[\'SERVER_NAME\'] == "zgt.affiliate.abgeordnetenwatch.de" && $landingpage) return true; ?>',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['blank' => 'pw_tracking'],
+  ];
+  $block_affilliate_tracking_3['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block_affilliate_tracking_3['info'],
+      'body' => $block_affilliate_tracking_3['body']['value'],
+      'format' => $block_affilliate_tracking_3['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block_affilliate_tracking_3);
+
+  $body_affilliate_tracking_4 = <<<EOD
+<!-- ## IVW Script SZMnG - KAT 2.0 --><script type="text/javascript">
+
+        /* <![CDATA[ */
+
+                ## IVW-Code (Seitenname)
+
+                var code = abgeordnetenwatch Portalseite;
+
+                // check auf startseite für FRABO/AGOF
+
+                var survey = (code.toLowerCase().indexOf("home") != -1) ? "ke" : "in";
+                var iam_data = {
+
+                    "mg": "yes", // Migrationsmodus AKTIVIERT
+                    "st": "zgtonlin", // site/domain
+                    "cp": code, // code SZMnG
+                    "oc": code, // code SZM - System 1.5
+                    "sv": survey // FRABO
+                };
+
+                iom.c(iam_data);
+
+        /* ]]> */
+
+</script>
+EOD;
+  $block_affilliate_tracking_4 = [
+    'info' => t('Medienpartner ZGT Tracking Body sonstige'),
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body_affilliate_tracking_4
+    ],
+    'module' => 'block',
+    'weight' => 0,
+    'visibility' => BLOCK_VISIBILITY_PHP,
+    'pages' => '<?php $landingpage = ($_SERVER[\'REQUEST_URI\'] == \'/thueringen\') ? true : false; if ($_SERVER[\'SERVER_NAME\'] == "zgt.affiliate.abgeordnetenwatch.de" && !$landingpage) return true; ?>',
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+    'title' => '',
+    'regions' => ['blank' => 'pw_tracking'],
+  ];
+  $block_affilliate_tracking_4['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $block_affilliate_tracking_4['info'],
+      'body' => $block_affilliate_tracking_4['body']['value'],
+      'format' => $block_affilliate_tracking_4['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($block_affilliate_tracking_4);
+}
+
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
