@@ -107,12 +107,12 @@
   </div>
   <div class="sidebar">
     <div class="sidebar__box">
-      <h3 class="sidebar__box__headline">Sicherheitshinweise <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-tags-ssl-hint') ?>"></i></h3>
+      <h3 class="sidebar__box__headline">Sicherheitshinweise</h3>
       <p>Zum Schutz Ihrer Daten, erfolgt die Übertragung der Formular-Daten ausschließlich über zertifizierte SSL-Verschlüsselung.</p>
       <p><small><strong>Hinweis für SEPA-Lastschrift:</strong> Wenn Sie bis zum 13. des Monats spenden, dann ziehen wir die Spende am 15. des Monats oder am darauffolgenden Bankarbeitstag ein. Nach dem 13. des Monats ziehen wir Ihre Spende am 25. des Monats oder dem darauffolgenden Bankarbeitstag ein.</small></p>
     </div>
     <div class="sidebar__box">
-      <h3 class="sidebar__box__headline">Weitere Spendenmöglichkeiten <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-ssl-hint-other-donation-possibilities') ?>"></i></h3>
+      <h3 class="sidebar__box__headline">Weitere Spendenmöglichkeiten</h3>
       <div class="sidebar__box__accordion">
         <div class="sidebar__box__accordion__item sidebar__box__accordion__item--open">
           <h4 class="sidebar__box__accordion__item__title">Spendenkonto</h4>
