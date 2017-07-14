@@ -735,6 +735,8 @@ function pw_poll_field_default_fields() {
           'module' => 'date',
           'settings' => array(
             'field_delimiter' => '',
+            'format_type' => 'date_only_short',
+            'fromto' => 'both',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -746,8 +748,12 @@ function pw_poll_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_remaining_days' => 0,
           ),
-          'type' => 'date_plain',
+          'type' => 'date_default',
           'weight' => '2',
         ),
       ),
@@ -1032,6 +1038,7 @@ function pw_poll_field_default_fields() {
       'settings' => array(
         'alt_field' => 0,
         'default_image' => '129797',
+        'exclude_cv' => FALSE,
         'file_directory' => 'polls',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
