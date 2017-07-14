@@ -1001,7 +1001,7 @@ function pw_search_api_default_search_api_index() {
         "field_user_fraction:name" : { "type" : "text" },
         "field_user_gender" : { "type" : "string" },
         "field_user_job_skills" : { "type" : "text" },
-        "field_user_lname" : { "type" : "string", "boost" : "8.0" },
+        "field_user_lname" : { "type" : "text", "boost" : "8.0" },
         "field_user_parliament" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_parliament:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_user_party" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
