@@ -982,6 +982,7 @@ function pw_globals_update_7026() {
     ->execute();
 
   foreach ($result->fetchAll(PDO::FETCH_ASSOC) as $block) {
+    $block['regions']['parliamentwatch'] = $block['region'];
     $block['regions']['blank'] = $block['region'];
     _pw_globals_configure_block($block);
   }
