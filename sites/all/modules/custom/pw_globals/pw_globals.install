@@ -954,6 +954,22 @@ EOD;
   _pw_globals_configure_block($block_affilliate_tracking_4);
 }
 
+/**
+ * Assign blocks to renamed regions in blank theme.
+ */
+function pw_globals_update_7025() {
+  foreach ([176, 177, 178, 179] as $delta) {
+    $block = (array) block_load('block', $delta);
+    $block['regions'] = ['blank' => 'assets'];
+    _pw_globals_configure_block($block);
+  }
+
+  foreach ([180, 181, 182, 183] as $delta) {
+    $block = (array) block_load('block', $delta);
+    $block['regions'] = ['blank' => 'tracking'];
+    _pw_globals_configure_block($block);
+  }
+}
 
 /**
  * Adds a new menu block.

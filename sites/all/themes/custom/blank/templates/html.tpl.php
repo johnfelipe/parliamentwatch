@@ -8,12 +8,10 @@
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <?php print $scripts; ?>
-  <!-- affiliate css and js -->
-  <?php print render($pw_affilliate_code); ?>
-  <!-- /affiliate css and js -->
+  <?php print $assets; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
-  <?php print render($pw_tracking); ?>
+  <?php print $tracking; ?>
   <div id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   </div>

@@ -1,13 +1,12 @@
 name = 'Blank'
-description = 'An output of the normal PW page without blocks an fancy stuff'
+description = 'PW theme without header and footer'
 core = '7.x'
 engine = 'phptemplate'
 screenshot = 'screenshot.png'
 base theme = 'parliamentwatch'
 
-regions[pw_affilliate_code] = 'PW Affiliate CSS and JS'
-regions[pw_tracking] = 'PW Tracking Code'
-
+regions[assets] = 'Additional styles and scripts'
+regions[tracking] = 'Tracking code'
 regions[header_top] = Header top
 regions[header_bottom] = Header bottom
 regions[intro_primary] = Intro primary

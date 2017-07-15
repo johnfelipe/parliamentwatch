@@ -1,6 +1,9 @@
 <?php
 
+/**
+ * Implements hook_preprocess_html().
+ */
 function blank_preprocess_html(&$variables) {
-    $variables['pw_tracking'] = block_get_blocks_by_region('pw_tracking');
-    $variables['pw_affilliate_code'] = block_get_blocks_by_region('pw_affilliate_code');
+  $variables['tracking'] = render(block_get_blocks_by_region('tracking'));
+  $variables['assets'] = render(block_get_blocks_by_region('assets'));
 }
