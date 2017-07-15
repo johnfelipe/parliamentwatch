@@ -37,6 +37,13 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
       }
     }
   }
+  else{
+
+    // empty cache if uid is specified
+    db_delete('user_archive_cache')
+      ->condition('uid', $uid)
+      ->execute();
+  }
 
   // db_select: user revision
   $query = db_select('user_revision', 'ur');
@@ -209,8 +216,6 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
     $user_revision = user_revision_load($row['uid'], $row['vid']);
     if ($user_revision) {
       $revision_edit = array();
-      $revision_edit['field_user_questions_get'][LANGUAGE_NONE][0]['value'] = $row['number_of_questions'];
-      $revision_edit['field_user_answers_give'][LANGUAGE_NONE][0]['value'] = $row['number_of_answers'];
 
       // reset pictures which have a null value
       if (key_exists('und', $user_revision->field_user_picture) && $user_revision->field_user_picture['und'][0] === NULL) {
