@@ -70,5 +70,5 @@
 ?>
 <figure>
   <?php print render($content['file']); ?>
-  <figcaption><?php print $title; ?></figcaption>
+  <figcaption><?php print render($content['field_image_copyright']); ?></figcaption>
 </figure>

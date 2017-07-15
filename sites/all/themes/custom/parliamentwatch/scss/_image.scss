@@ -49,6 +49,7 @@
   background: $brightBeige;
   margin-bottom: $space;
   padding: $space;
+  clear: both;
   @include breakpoint($breakpoint-l-min) {
     margin-bottom: $space-large;
     padding: $space-large;
