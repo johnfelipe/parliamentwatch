@@ -127,7 +127,7 @@
         </ul>
       </div>
       <div class="footer__maincol__col">
-        <strong><i class="icon icon-de"></i> Landtag</strong>
+        <strong><i class="icon icon-de"></i> Landtage</strong>
         <ul class="footer__maincol__col__nav">
           <li class="footer__maincol__col__nav__item"><?php print l('Baden-Württemberg', 'baden-wuerttemberg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Berlin', 'berlin', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
@@ -153,15 +153,15 @@
         </ul>
       </div>
       <div class="footer__maincol__col">
-        <strong><i class="icon icon-de"></i> EU-Parlament</strong>
+        <strong><i class="icon icon-de"></i> EU</strong>
         <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Polls'), 'polls/16117', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profiles/16117/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l(t('Polls'), 'polls/16117', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Electoral law'), 'node/7754', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
         </ul>
       </div>
       <div class="footer__maincol__col">
-        <strong><i class="icon icon-logo-aw"></i> Über das Projekt</strong>
+        <strong><i class="icon icon-logo-aw"></i> Über uns</strong>
         <ul class="footer__maincol__col__nav">
           <li class="footer__maincol__col__nav__item">
             <?php print l(t('About us'), 'node/7760', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
