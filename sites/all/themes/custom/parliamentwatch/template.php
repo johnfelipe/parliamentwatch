@@ -968,6 +968,7 @@ function _parliamentwatch_should_render_content_container($variables) {
   $pages_without_container = [
     'pw_blog_page',
     'pw_dialogues_page',
+    'pw_election_programmes_page',
     'pw_globals_info_page',
     'pw_globals_politician_search_page',
     'pw_petitions_page',
@@ -976,7 +977,6 @@ function _parliamentwatch_should_render_content_container($variables) {
     'pw_parliaments_taxonomy_term_page',
     'user_view_page',
     'user_revision_show',
-    'pw_election_programmes_page',
     'comment_reply',
   ];
 
