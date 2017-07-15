@@ -561,6 +561,8 @@ function pw_dialogues_answer($node) {
   $q->propertyCondition('status', COMMENT_PUBLISHED);
   $q->propertyCondition('nid', $node->nid);
   $q->range(0, 1);
+  $q->addTag('node_access');
+  $q->addTag('comment_filter');
 
   $result = $q->execute();
 
