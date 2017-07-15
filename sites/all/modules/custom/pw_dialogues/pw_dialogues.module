@@ -144,10 +144,12 @@ function pw_dialogues_node_view($node, $view_mode) {
     return;
   }
 
-  if ($cids = comment_get_thread($node, COMMENT_MODE_FLAT, 1)) {
-    $comments = comment_load_multiple($cids);
-    $node->content['answer'] = comment_view_multiple($comments, $node, $view_mode);
+  $comment = pw_dialogues_answer($node);
+
+  if ($comment) {
+    $node->content['answer'] = comment_view($comment, $node, $view_mode);
   }
+
   if (node_is_page($node)) {
     $parliament_tid = $node->field_parliament[LANGUAGE_NONE][0]['tid'];
     if ($node->field_dialogue_before_election[LANGUAGE_NONE][0]['value']) {
@@ -542,6 +544,29 @@ function pw_dialogues_by_parliament_query($term) {
   $q->fieldCondition('field_parliament', 'tid', $term->tid);
 
   return $q;
+}
+
+/**
+ * Returns the answer to the given question.
+ *
+ * @param object $node
+ *   The dialogue node.
+ *
+ * @return object
+ *   The comment by the politician.
+ */
+function pw_dialogues_answer($node) {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'comment');
+  $q->propertyCondition('status', COMMENT_PUBLISHED);
+  $q->propertyCondition('nid', $node->nid);
+  $q->range(0, 1);
+
+  $result = $q->execute();
+
+  if (!empty($result['comment'])) {
+    return comment_load(key($result['comment']));
+  }
 }
 
 /**
