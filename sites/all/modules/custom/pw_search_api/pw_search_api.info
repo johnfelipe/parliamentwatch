@@ -28,7 +28,5 @@ features[search_api_index][] = politician_archive_index
 features[search_api_index][] = vote_index
 features[views_view][] = pw_search_api_main
 features[views_view][] = vote_search
-files[] = custom_facets.inc
-files[] = pw_customfacets.inc
 files[] = SearchApiAddLeadingZero.inc
 mtime = 1500215048
