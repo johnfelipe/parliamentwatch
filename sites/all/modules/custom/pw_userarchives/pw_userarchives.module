@@ -236,6 +236,18 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
 }
 
 /**
+ * Implements hook_search_api_item_type_info().
+ */
+function pw_userarchives_search_api_item_type_info() {
+  $types['user_revision'] = [
+    'name' => t('User revision'),
+    'datasource controller' => 'UserArchiveDataSourceController',
+    'entity_type' => 'user',
+  ];
+  return $types;
+}
+
+/**
  * Returns requested versions of user objects with all fields attached.
  *
  * @param  $vids
