@@ -283,6 +283,8 @@ function pw_userarchives_politician_load_multiple($vids) {
     ->fields('uac', ['actual_profile', 'number_of_questions', 'number_of_answers', 'user_role'])
     ->condition('ur.vid', $vids);
 
+  $sorted_users = array_flip($vids);
+
   foreach($q->execute()->fetchAllAssoc('uid') as $uid => $properties) {
     $users[$uid] = $properties;
     $users[$uid]->data = unserialize($properties->data);
@@ -295,11 +297,13 @@ function pw_userarchives_politician_load_multiple($vids) {
       $users[$uid]->roles[PW_GLOBALS_DEPUTY_RID] = 'Deputy';
     }
     unset($users[$uid]->user_role);
+
+    $sorted_users[$properties->vid] = $users[$uid];
   }
 
   field_attach_load_revision('user', $users);
 
-  return $users;
+  return $sorted_users;
 }
 
 /**
