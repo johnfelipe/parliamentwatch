@@ -970,21 +970,23 @@ function pw_search_api_default_search_api_index() {
         "field_has_picture" : { "type" : "boolean" },
         "field_user_age" : { "type" : "integer" },
         "field_user_constituency" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_user_constituency:field_constituency_ac_descriptor" : { "type" : "list\\u003Ctext\\u003E" },
         "field_user_constituency:field_constituency_area_codes:name" : { "type" : "list\\u003Clist\\u003Ctext\\u003E\\u003E" },
         "field_user_constituency:name" : { "type" : "list\\u003Ctext\\u003E" },
-        "field_user_fname" : { "type" : "text" },
+        "field_user_fname" : { "type" : "string" },
         "field_user_fraction" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_user_gender" : { "type" : "string" },
         "field_user_list" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_user_list_position" : { "type" : "integer", "entity_type" : "taxonomy_term" },
-        "field_user_lname" : { "type" : "text", "boost" : "2.0" },
+        "field_user_lname" : { "type" : "string", "boost" : "2.0" },
         "field_user_parliament" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_user_party" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_user_qanda_ratio" : { "type" : "integer" },
         "field_user_retired" : { "type" : "date" },
         "field_user_roles_for_view_mode_s" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_title" : { "type" : "text" },
-        "name" : { "type" : "text" },
+        "search_api_aggregation_1" : { "type" : "text", "boost" : "3.0" },
         "search_api_language" : { "type" : "string" },
-        "search_api_url" : { "type" : "uri" },
         "uid" : { "type" : "integer" },
         "url" : { "type" : "uri" },
         "uuid" : { "type" : "text" },
@@ -1002,27 +1004,31 @@ function pw_search_api_default_search_api_index() {
         "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
         "search_api_alter_user_status" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
-        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_url" : { "status" : 1, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_aggregation" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : { "fields" : { "search_api_aggregation_1" : {
+                "name" : "Full name",
+                "type" : "fulltext",
+                "fields" : [ "field_user_fname", "field_user_lname" ],
+                "description" : "A Fulltext aggregation of the following fields: First Name, Last name."
+              }
+            }
+          }
+        },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] }
       },
       "processors" : {
         "add_leading_zero" : {
           "status" : 1,
           "weight" : "-1",
-          "settings" : { "fields" : {
-              "field_user_fname" : true,
-              "field_user_lname" : true,
-              "field_user_title" : true,
-              "field_user_constituency:field_constituency_area_codes:name" : true
-            }
-          }
+          "settings" : { "fields" : { "field_user_constituency:field_constituency_area_codes:name" : true } }
         },
         "search_api_case_ignore" : {
           "status" : 0,
           "weight" : "0",
           "settings" : { "fields" : {
-              "name" : true,
               "uuid" : true,
               "field_user_fname" : true,
               "field_user_lname" : true,
@@ -1036,7 +1042,6 @@ function pw_search_api_default_search_api_index() {
           "weight" : "10",
           "settings" : {
             "fields" : {
-              "name" : true,
               "uuid" : true,
               "field_user_fname" : true,
               "field_user_lname" : true,
@@ -1052,7 +1057,6 @@ function pw_search_api_default_search_api_index() {
           "status" : 0,
           "weight" : "15",
           "settings" : { "fields" : {
-              "name" : true,
               "uuid" : true,
               "field_user_fname" : true,
               "field_user_lname" : true,
@@ -1066,10 +1070,7 @@ function pw_search_api_default_search_api_index() {
           "weight" : "20",
           "settings" : {
             "fields" : {
-              "name" : true,
               "uuid" : true,
-              "field_user_fname" : true,
-              "field_user_lname" : true,
               "field_user_title" : true,
               "field_user_constituency:field_constituency_area_codes:name" : true
             },
@@ -1082,7 +1083,6 @@ function pw_search_api_default_search_api_index() {
           "weight" : "30",
           "settings" : {
             "fields" : {
-              "name" : true,
               "uuid" : true,
               "field_user_fname" : true,
               "field_user_lname" : true,
