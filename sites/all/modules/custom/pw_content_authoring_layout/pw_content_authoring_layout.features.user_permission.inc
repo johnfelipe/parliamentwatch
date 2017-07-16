@@ -16,7 +16,8 @@ function pw_content_authoring_layout_user_default_permissions() {
     'roles' => array(
       0 => 'Candidate',
       1 => 'Content Manager',
-      2 => 'administrator',
+      2 => 'Politician',
+      3 => 'administrator',
     ),
     'module' => 'media_internet',
   );

@@ -2173,8 +2173,9 @@ function pw_profiles_user_default_permissions() {
     'roles' => array(
       0 => 'Content Manager',
       1 => 'Deputy',
-      2 => 'Premium User',
-      3 => 'administrator',
+      2 => 'Politician',
+      3 => 'Premium User',
+      4 => 'administrator',
     ),
     'module' => 'file_entity',
   );
