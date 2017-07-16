@@ -254,10 +254,13 @@ function pw_userarchives_search_api_index_items_alter(array &$items, SearchApiIn
   if ($index->machine_name == "politician_archive_index") {
     foreach ($items as $item) {
       if (empty($item->field_user_picture)) {
-        $item->field_has_picture['und'][0]['value'] = 0;
+        $item->field_has_picture[LANGUAGE_NONE][0]['value'] = 0;
       }
       else {
-        $item->field_has_picture['und'][0]['value'] = 1;
+        $item->field_has_picture[LANGUAGE_NONE][0]['value'] = 1;
+      }
+      if ($item->number_of_questions > 0) {
+        $item->field_user_qanda_ratio[LANGUAGE_NONE][0]['value'] = round(100 * $item->number_of_answers / $item->number_of_questions);
       }
     }
   }
