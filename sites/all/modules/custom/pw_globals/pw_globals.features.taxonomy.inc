@@ -9,6 +9,14 @@
  */
 function pw_globals_taxonomy_default_vocabularies() {
   return array(
+    'affiliates' => array(
+      'name' => 'Affiliates',
+      'machine_name' => 'affiliates',
+      'description' => '',
+      'hierarchy' => '0',
+      'module' => 'taxonomy',
+      'weight' => '0',
+    ),
     'area_codex' => array(
       'name' => 'Area Codes',
       'machine_name' => 'area_codex',

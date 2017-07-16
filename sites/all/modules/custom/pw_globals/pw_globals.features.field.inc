@@ -695,6 +695,7 @@ function pw_globals_field_default_fields() {
         'default_value2' => 'same',
         'default_value_code' => '',
         'default_value_code2' => '',
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -975,6 +976,7 @@ function pw_globals_field_default_fields() {
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -1211,6 +1213,7 @@ function pw_globals_field_default_fields() {
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
+        'exclude_cv' => FALSE,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -1402,6 +1405,221 @@ function pw_globals_field_default_fields() {
         ),
         'type' => 'text_textarea',
         'weight' => '31',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-affiliates-field_affiliate_logo'.
+  $fields['taxonomy_term-affiliates-field_affiliate_logo'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_affiliate_logo',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'affiliates',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'field_delimiter' => '',
+            'image_link' => '',
+            'image_style' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'image',
+          'weight' => 2,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_affiliate_logo',
+      'label' => 'Affiliate Logo',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'default_image' => 0,
+        'exclude_cv' => FALSE,
+        'file_directory' => 'affiliates',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'filefield_sources' => array(
+            'filefield_sources' => array(
+              'attach' => 0,
+              'clipboard' => 0,
+              'reference' => 0,
+              'remote' => 'remote',
+              'upload' => 'upload',
+            ),
+            'source_attach' => array(
+              'absolute' => '0',
+              'attach_mode' => 'move',
+              'path' => 'file_attach',
+            ),
+            'source_imce' => array(
+              'imce_mode' => 0,
+            ),
+            'source_reference' => array(
+              'autocomplete' => '0',
+            ),
+          ),
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-affiliates-field_affiliate_url'.
+  $fields['taxonomy_term-affiliates-field_affiliate_url'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_affiliate_url',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+    ),
+    'field_instance' => array(
+      'bundle' => 'affiliates',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'link_default',
+          'weight' => 1,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_affiliate_url',
+      'label' => 'Affiliate URL',
+      'required' => 0,
+      'settings' => array(
+        'absolute_url' => 1,
+        'attributes' => array(
+          'class' => '',
+          'configurable_class' => 0,
+          'configurable_title' => 0,
+          'rel' => '',
+          'target' => 'default',
+          'title' => '',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 1,
+        'exclude_cv' => FALSE,
+        'linkit' => array(
+          'button_text' => 'Suche',
+          'enable' => 0,
+          'profile' => '',
+        ),
+        'rel_remove' => 'default',
+        'title' => 'none',
+        'title_label_use_field_label' => 0,
+        'title_maxlength' => '128',
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+        'validate_url' => 1,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '1',
       ),
     ),
   );
@@ -2113,6 +2331,150 @@ function pw_globals_field_default_fields() {
     ),
   );
 
+  // Exported field: 'taxonomy_term-parliaments-field_affiliates'.
+  $fields['taxonomy_term-parliaments-field_affiliates'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_affiliates',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'affiliates',
+            'parent' => '0',
+          ),
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'parliaments',
+      'default_value' => array(
+        0 => array(
+          'tid' => '27266',
+          'vid' => '42',
+          'name' => 'Spiegel Online',
+          'description' => '',
+          'format' => 'managed_content',
+          'weight' => '0',
+          'uuid' => '0fd94ea3-b506-4f38-a4fc-df75f8dad1e8',
+          'vocabulary_machine_name' => 'affiliates',
+          'field_affiliate_url' => array(
+            'und' => array(
+              0 => array(
+                'url' => 'www.spiegel.de',
+                'title' => NULL,
+                'attributes' => array(),
+              ),
+            ),
+          ),
+          'field_affiliate_logo' => array(
+            'und' => array(
+              0 => array(
+                'fid' => '215723',
+                'uid' => '129697',
+                'filename' => 'spiegel-online-logo-250px.png',
+                'uri' => 'public://affiliates/spiegel-online-logo-250px.png',
+                'filemime' => 'image/png',
+                'filesize' => '1908',
+                'status' => '1',
+                'timestamp' => '1499249962',
+                'type' => 'image',
+                'uuid' => '20521780-4eb2-477e-8e84-25d06bb49cc1',
+                'field_image_copyright' => array(
+                  'und' => array(
+                    0 => array(
+                      'value' => '',
+                      'format' => 'copyright',
+                      'safe_value' => '',
+                    ),
+                  ),
+                ),
+                'field_file_image_alt_text' => array(),
+                'field_file_image_title_text' => array(),
+                'metadata' => array(
+                  'height' => 182,
+                  'width' => 250,
+                ),
+                'alt' => '',
+                'title' => '',
+                'height' => '182',
+                'width' => '250',
+              ),
+            ),
+          ),
+          'path' => array(
+            'pathauto' => '1',
+          ),
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 12,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'exclude_cv' => 0,
+      'field_name' => 'field_affiliates',
+      'label' => 'Affiliates',
+      'required' => 0,
+      'settings' => array(
+        'exclude_cv' => FALSE,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'taxonomy',
+        'settings' => array(
+          'autocomplete_path' => 'taxonomy/autocomplete',
+          'size' => 60,
+        ),
+        'type' => 'taxonomy_autocomplete',
+        'weight' => '2',
+      ),
+    ),
+  );
+
   // Exported field: 'taxonomy_term-parliaments-field_electoral_law'.
   $fields['taxonomy_term-parliaments-field_electoral_law'] = array(
     'field_config' => array(
@@ -2192,6 +2554,7 @@ function pw_globals_field_default_fields() {
       'label' => 'Electoral law',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -2203,7 +2566,7 @@ function pw_globals_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '41',
+        'weight' => '15',
       ),
     ),
   );
@@ -2315,6 +2678,7 @@ function pw_globals_field_default_fields() {
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -2332,7 +2696,7 @@ function pw_globals_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '13',
+        'weight' => '12',
       ),
     ),
   );
@@ -2556,7 +2920,7 @@ function pw_globals_field_default_fields() {
           'year_range' => '2000:2100',
         ),
         'type' => 'date_select',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -2755,6 +3119,7 @@ function pw_globals_field_default_fields() {
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
@@ -2772,7 +3137,7 @@ function pw_globals_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '11',
       ),
     ),
   );
@@ -2898,7 +3263,7 @@ function pw_globals_field_default_fields() {
           'year_range' => '2000:2100',
         ),
         'type' => 'date_select',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
@@ -2977,7 +3342,7 @@ function pw_globals_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'number',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -3050,6 +3415,7 @@ function pw_globals_field_default_fields() {
       'label' => 'Dargestellte Metriken',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -3059,7 +3425,7 @@ function pw_globals_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'options_buttons',
-        'weight' => '14',
+        'weight' => '13',
       ),
     ),
   );
@@ -3067,6 +3433,9 @@ function pw_globals_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('AC Descriptor');
+  t('Affiliate Logo');
+  t('Affiliate URL');
+  t('Affiliates');
   t('Anzeige Monat');
   t('Area Codes');
   t('Bitte im Format "Titel Vorname Nachname" eingeben.');
