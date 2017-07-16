@@ -248,6 +248,22 @@ function pw_userarchives_search_api_item_type_info() {
 }
 
 /**
+ * Implements hook_search_api_index_items_alter().
+ */
+function pw_userarchives_search_api_index_items_alter(array &$items, SearchApiIndex $index) {
+  if ($index->machine_name == "politician_archive_index") {
+    foreach ($items as $item) {
+      if (empty($item->field_user_picture)) {
+        $item->field_has_picture['und'][0]['value'] = 0;
+      }
+      else {
+        $item->field_has_picture['und'][0]['value'] = 1;
+      }
+    }
+  }
+}
+
+/**
  * Returns requested versions of user objects with all fields attached.
  *
  * @param  $vids

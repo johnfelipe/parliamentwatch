@@ -70,35 +70,6 @@ function pw_search_api_set_sort_date() {
 }
 
 /**
- * Implements hook_search_api_index_items_alter().
- */
-function pw_search_api_search_api_index_items_alter(array &$items, SearchApiIndex $index) {
-  if ($index->machine_name == "politician_index") {
-    // Fetch
-    foreach ($items as $id => $item) {
-      if (in_array("Candidate", $item->roles)) {
-        $role = "candidate";
-      } else {
-        $role = "deputy";
-      }
-      $parliament = taxonomy_term_load($item->field_user_parliament['und'][0]['tid'])->name;
-      $result = db_query('SELECT `vid` FROM `user_archive_cache` WHERE `uid` = :uid AND `parliament_name` = :parliament AND `user_role` = :role', array(
-        ':uid' => $item->uid,
-        ':parliament' => $parliament,
-        ':role' => $role
-        ))->fetchCol();
-      $user_revision = user_revision_load($item->uid, $result[0]);
-
-      if (empty($item->field_user_picture)) {
-        $item->field_has_picture['und'][0]['value'] = "0";
-      } else {
-        $item->field_has_picture['und'][0]['value'] = "1";
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_search_api_processor_info().
  *
  * Registers preprocessor to add leading zero to 4-digit postal codes.

@@ -445,7 +445,7 @@ function pw_search_api_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'tile' => array(
           'label' => 'above',

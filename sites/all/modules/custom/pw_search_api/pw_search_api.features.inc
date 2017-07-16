@@ -967,92 +967,77 @@ function pw_search_api_default_search_api_index() {
     "enabled" : "1",
     "read_only" : "0"
   }');
-  $items['politician_index'] = entity_import('search_api_index', '{
-    "name" : "Politician Index",
-    "machine_name" : "politician_index",
-    "description" : "Index of all politicians on the platform",
+  $items['politician_archive_index'] = entity_import('search_api_index', '{
+    "name" : "Politician Archive Index",
+    "machine_name" : "politician_archive_index",
+    "description" : null,
     "server" : "solr",
-    "item_type" : "user",
+    "item_type" : "user_revision",
     "options" : {
-      "index_directly" : 1,
+      "index_directly" : 0,
       "cron_limit" : "50",
       "fields" : {
-        "field_has_picture" : { "type" : "string" },
+        "field_has_picture" : { "type" : "boolean" },
         "field_user_age" : { "type" : "integer" },
-        "field_user_commitee" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_constituency" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_user_constituency:field_constituency_area_codes:field_constituency_ac_descriptor" : { "type" : "list\\u003Clist\\u003Ctext\\u003E\\u003E" },
-        "field_user_constituency:field_constituency_area_codes:field_constituency_area_codes" : {
-          "type" : "list\\u003Clist\\u003Clist\\u003Cinteger\\u003E\\u003E\\u003E",
-          "entity_type" : "taxonomy_term"
-        },
-        "field_user_constituency:field_constituency_area_codes:field_electoral_region" : {
-          "type" : "list\\u003Clist\\u003Cinteger\\u003E\\u003E",
-          "entity_type" : "taxonomy_term"
-        },
         "field_user_constituency:field_constituency_area_codes:name" : { "type" : "list\\u003Clist\\u003Ctext\\u003E\\u003E" },
-        "field_user_constituency:field_parliament" : {
-          "type" : "list\\u003Clist\\u003Cinteger\\u003E\\u003E",
-          "entity_type" : "taxonomy_term"
-        },
         "field_user_constituency:name" : { "type" : "list\\u003Ctext\\u003E" },
-        "field_user_education" : { "type" : "text" },
-        "field_user_fname" : { "type" : "text", "boost" : "3.0" },
-        "field_user_fraction:name" : { "type" : "text" },
-        "field_user_gender" : { "type" : "string" },
-        "field_user_job_skills" : { "type" : "text" },
-        "field_user_lname" : { "type" : "text", "boost" : "8.0" },
-        "field_user_parliament" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_user_parliament:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_user_fname" : { "type" : "text" },
+        "field_user_fraction" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_user_list" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_user_list_position" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_user_lname" : { "type" : "text", "boost" : "2.0" },
+        "field_user_parliament" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_user_party" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_user_qanda_ratio" : { "type" : "integer" },
         "field_user_retired" : { "type" : "date" },
         "field_user_roles_for_view_mode_s" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_title" : { "type" : "text" },
-        "last_access" : { "type" : "date" },
-        "last_login" : { "type" : "date" },
         "name" : { "type" : "text" },
         "search_api_language" : { "type" : "string" },
         "search_api_url" : { "type" : "uri" },
-        "status" : { "type" : "integer" },
+        "uid" : { "type" : "integer" },
         "url" : { "type" : "uri" },
-        "uuid" : { "type" : "text" }
+        "uuid" : { "type" : "text" },
+        "vid" : { "type" : "integer" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_role_filter" : {
-          "status" : 1,
-          "weight" : "-50",
-          "settings" : { "default" : "0", "roles" : { "181527986" : "181527986" } }
+          "status" : 0,
+          "weight" : "-10",
+          "settings" : {
+            "default" : "0",
+            "roles" : { "140336230" : "140336230", "185431326" : "185431326" }
+          }
         },
-        "search_api_alter_add_hierarchy" : {
-          "status" : 1,
-          "weight" : "-49",
-          "settings" : { "fields" : { "field_user_parliament:field_constituency_area_codes" : "field_user_parliament:field_constituency_area_codes" } }
-        },
-        "search_api_alter_user_status" : { "status" : 0, "weight" : "-48", "settings" : [] },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "-47", "settings" : { "mode" : "full" } },
-        "search_api_alter_add_url" : { "status" : 1, "weight" : "-46", "settings" : [] },
-        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "-45", "settings" : [] },
-        "search_api_alter_add_aggregation" : { "status" : 1, "weight" : "-44", "settings" : [] }
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
+        "search_api_alter_user_status" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_url" : { "status" : 1, "weight" : "0", "settings" : [] },
+        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] }
       },
       "processors" : {
         "add_leading_zero" : {
           "status" : 1,
           "weight" : "-1",
-          "settings" : { "fields" : { "field_user_constituency:field_constituency_area_codes:name" : true } }
+          "settings" : { "fields" : {
+              "field_user_fname" : true,
+              "field_user_lname" : true,
+              "field_user_title" : true,
+              "field_user_constituency:field_constituency_area_codes:name" : true
+            }
+          }
         },
         "search_api_case_ignore" : {
           "status" : 0,
           "weight" : "0",
           "settings" : { "fields" : {
+              "name" : true,
+              "uuid" : true,
               "field_user_fname" : true,
-              "field_user_job_skills" : true,
               "field_user_lname" : true,
-              "field_user_education" : true,
-              "field_user_first_letter_lname" : true,
               "field_user_title" : true,
-              "field_user_constituency:name" : true,
-              "field_user_constituency:field_constituency_area_codes:field_constituency_ac_descriptor" : true
+              "field_user_constituency:field_constituency_area_codes:name" : true
             }
           }
         },
@@ -1061,14 +1046,12 @@ function pw_search_api_default_search_api_index() {
           "weight" : "10",
           "settings" : {
             "fields" : {
+              "name" : true,
+              "uuid" : true,
               "field_user_fname" : true,
-              "field_user_job_skills" : true,
               "field_user_lname" : true,
-              "field_user_education" : true,
-              "field_user_first_letter_lname" : true,
               "field_user_title" : true,
-              "field_user_constituency:name" : true,
-              "field_user_constituency:field_constituency_area_codes:field_constituency_ac_descriptor" : true
+              "field_user_constituency:field_constituency_area_codes:name" : true
             },
             "title" : 0,
             "alt" : 1,
@@ -1079,14 +1062,12 @@ function pw_search_api_default_search_api_index() {
           "status" : 0,
           "weight" : "15",
           "settings" : { "fields" : {
+              "name" : true,
+              "uuid" : true,
               "field_user_fname" : true,
-              "field_user_job_skills" : true,
               "field_user_lname" : true,
-              "field_user_education" : true,
-              "field_user_first_letter_lname" : true,
               "field_user_title" : true,
-              "field_user_constituency:name" : true,
-              "field_user_constituency:field_constituency_area_codes:field_constituency_ac_descriptor" : true
+              "field_user_constituency:field_constituency_area_codes:name" : true
             }
           }
         },
@@ -1095,12 +1076,12 @@ function pw_search_api_default_search_api_index() {
           "weight" : "20",
           "settings" : {
             "fields" : {
+              "name" : true,
+              "uuid" : true,
               "field_user_fname" : true,
-              "field_user_job_skills" : true,
-              "field_user_education" : true,
+              "field_user_lname" : true,
               "field_user_title" : true,
-              "field_user_constituency:name" : true,
-              "field_user_constituency:field_constituency_area_codes:field_constituency_ac_descriptor" : true
+              "field_user_constituency:field_constituency_area_codes:name" : true
             },
             "spaces" : "[^[:alnum:]]",
             "ignorable" : "[\\u0027]"
@@ -1111,14 +1092,12 @@ function pw_search_api_default_search_api_index() {
           "weight" : "30",
           "settings" : {
             "fields" : {
+              "name" : true,
+              "uuid" : true,
               "field_user_fname" : true,
-              "field_user_job_skills" : true,
               "field_user_lname" : true,
-              "field_user_education" : true,
-              "field_user_first_letter_lname" : true,
               "field_user_title" : true,
-              "field_user_constituency:name" : true,
-              "field_user_constituency:field_constituency_area_codes:field_constituency_ac_descriptor" : true
+              "field_user_constituency:field_constituency_area_codes:name" : true
             },
             "file" : "",
             "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"

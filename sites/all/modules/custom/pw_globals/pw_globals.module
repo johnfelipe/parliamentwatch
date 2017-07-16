@@ -188,7 +188,7 @@ function pw_globals_info_page() {
  */
 function pw_globals_politician_search_page() {
   $limit = 12;
-  $q = search_api_query('politician_index');
+  $q = search_api_query('politician_archive_index');
   $q->condition('field_user_retired', NULL, '=');
 
   if (isset(drupal_get_query_parameters()['parliament'])) {
@@ -212,7 +212,7 @@ function pw_globals_politician_search_page() {
 
   if ($response['result count'] > 0) {
     pager_default_initialize($response['result count'], $limit);
-    $build = entity_view('user', user_load_multiple(array_keys($response['results'])), 'tile');
+    $build = entity_view('user', pw_userarchives_politician_load_multiple(array_keys($response['results'])), 'tile');
     $build['user']['#theme_wrappers'] = ['container__tiles'];
     $build['pager'] = [
       '#theme' => 'pager',
