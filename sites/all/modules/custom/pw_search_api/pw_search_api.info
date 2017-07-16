@@ -32,5 +32,5 @@ features[views_view][] = pw_search_api_main
 features[views_view][] = vote_search
 files[] = custom_facets.inc
 files[] = pw_customfacets.inc
-files[] = add_leading_zero.inc
+files[] = SearchApiAddLeadingZero.inc
 mtime = 1500141854
