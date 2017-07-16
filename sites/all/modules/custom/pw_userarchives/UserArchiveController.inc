@@ -21,6 +21,7 @@ class UserArchiveController extends UserRevisionController {
       foreach ($result as $record) {
         $queried_users[$record->uid]->roles = [];
         $queried_users[$record->uid]->roles[DRUPAL_AUTHENTICATED_RID] = 'authenticated user';
+        $queried_users[$record->uid]->roles[PW_GLOBALS_POLITICIAN_RID] = 'Politician';
         $queried_users[$record->uid]->roles[$record->rid] = $record->name;
         $queried_users[$record->uid]->actual_profile = $record->actual_profile;
       }
