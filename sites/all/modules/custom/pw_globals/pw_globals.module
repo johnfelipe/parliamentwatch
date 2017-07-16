@@ -206,6 +206,8 @@ function pw_globals_politician_search_page() {
 
   $response = $q
     ->sort('field_has_picture', 'DESC')
+    ->sort('field_user_qanda_ratio', 'DESC')
+    ->sort('field_user_lname')
     ->sort('search_api_relevance')
     ->range(pager_find_page() * $limit, $limit)
     ->execute();
