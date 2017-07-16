@@ -989,6 +989,20 @@ function pw_globals_update_7026() {
 }
 
 /**
+ * Uninstall obsolete modules.
+ */
+function pw_globals_update_7027() {
+  $uninstall = [
+    'facetapi',
+    'search_api_page',
+  ];
+
+  module_disable($uninstall);
+  module_list(TRUE);
+  drupal_uninstall_modules($uninstall);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
