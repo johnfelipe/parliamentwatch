@@ -13,6 +13,10 @@ define('PW_GLOBALS_CONTENT_MANAGER_RID', 51622513);
 define('PW_GLOBALS_POLITICIAN_RID', 181527986);
 define('PW_GLOBALS_CANDIDATE_RID', 185431326);
 define('PW_GLOBALS_DEPUTY_RID', 140336230);
+define('PW_GLOBALS_POLITICIAN_TID', 7027);
+define('PW_GLOBALS_DEPUTY_TID', 7028);
+define('PW_GLOBALS_CANDIDATE_TID', 7029);
+
 
 /**
  * Implements hook_menu().
@@ -192,12 +196,9 @@ function pw_globals_politician_search_page() {
   $q->condition('field_user_retired', NULL, '=');
 
   if (isset(drupal_get_query_parameters()['parliament'])) {
-    $q->condition('field_user_parliament', drupal_get_query_parameters()['parliament']);
     $term = taxonomy_term_load(drupal_get_query_parameters()['parliament']);
-    $today = new DateTime();
-    $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
-    $role = _pw_is_parliament_active($term) && ($today > $election_date) ? 7028 : 7029;
-    $q->condition('field_user_roles_for_view_mode_s', $role);
+    $q->condition('field_user_parliament', $term->tid);
+    $q->condition('field_user_roles_for_view_mode_s', _pw_globals_politician_search_role_condition($term));
   }
 
   if (isset(drupal_get_query_parameters()['keys'])) {
@@ -404,6 +405,36 @@ function pw_globals_politician_search_form($form, &$form_state, $parliament_term
  */
 function pw_globals_replace_text_with_icon($element) {
   return str_replace(t('Search'), '<i class="icon icon-search"></i>', $element);
+}
+
+/**
+ * Returns the role condition for the politician search.
+ *
+ * If the current parliament is past the election and the current date is after
+ * the beginning of the last valid period, returns the deputy role, otherwise
+ * the candidate role.
+ *
+ * @param object $parliament_term
+ *   The parliament term.
+ *
+ * @return int
+ *   The rid of the deputy or candidate role.
+ */
+function _pw_globals_politician_search_role_condition($parliament_term) {
+  $role_tid = PW_GLOBALS_CANDIDATE_TID;
+  $items = field_get_items('taxonomy_term', $parliament_term, 'field_parliament_valid');
+
+  if (!empty($items)) {
+    $item = end($items);
+    $today = new DateTime();
+    $valid_from = new DateTime($item['value'], new DateTimeZone($item['timezone']));
+
+    if ($today >= $valid_from) {
+      $role_tid = PW_GLOBALS_DEPUTY_TID;
+    }
+  }
+
+  return $role_tid;
 }
 
 /**
