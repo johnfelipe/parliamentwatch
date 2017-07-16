@@ -236,6 +236,42 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
 }
 
 /**
+ * Returns requested versions of user objects with all fields attached.
+ *
+ * @param  $vids
+ *   The revision IDs.
+ *
+ * @return array
+ *   The fully loaded user objects having the given revision IDs.
+ */
+function pw_userarchives_politician_load_multiple($vids) {
+  $users = [];
+  $q = db_select('user_revision', 'ur');
+  $q->join('user_archive_cache', 'uac', 'ur.vid = uac.vid');
+  $q->fields('ur')
+    ->fields('uac', ['actual_profile', 'number_of_questions', 'number_of_answers', 'user_role'])
+    ->condition('ur.vid', $vids);
+
+  foreach($q->execute()->fetchAllAssoc('uid') as $uid => $properties) {
+    $users[$uid] = $properties;
+    $users[$uid]->data = unserialize($properties->data);
+    $users[$uid]->roles[DRUPAL_AUTHENTICATED_RID] = 'authenticated user';
+    $users[$uid]->roles[PW_GLOBALS_POLITICIAN_RID] = 'Politician';
+    if ($properties->user_role == 'candidate') {
+      $users[$uid]->roles[PW_GLOBALS_CANDIDATE_RID] = 'Candidate';
+    }
+    elseif ($properties->user_role == 'deputy') {
+      $users[$uid]->roles[PW_GLOBALS_DEPUTY_RID] = 'Deputy';
+    }
+    unset($users[$uid]->user_role);
+  }
+
+  field_attach_load_revision('user', $users);
+
+  return $users;
+}
+
+/**
  * check if profiles needs to be refreshed based on parliament valid dates and election date.
  */
 function pw_userarchives_check_refresh_profiles($parliament) {
