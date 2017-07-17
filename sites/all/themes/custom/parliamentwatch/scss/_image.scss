@@ -56,22 +56,24 @@
   }
 }
 .floatbox-left {
+  clear: none;
   @include breakpoint($breakpoint-s-min) {
     float: left;
     margin-right: $space;
   }
   @include breakpoint($breakpoint-l-min) {
-    @include margin($space-large $space-large $space-large -100px);
+    @include margin(0 $space-large $space-large -100px);
     max-width: 400px;
   }
 }
 .floatbox-right {
+  clear: none;
   @include breakpoint($breakpoint-s-min) {
     float: right;
     margin-left: $space;
   }
   @include breakpoint($breakpoint-l-min) {
-    @include margin($space-large -100px $space-large $space-large);
+    @include margin(0 -100px $space-large $space-large);
     max-width: 400px;
   }
 }
