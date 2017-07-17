@@ -82,7 +82,7 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'full' => array(
-            'weight' => '35',
+            'weight' => '36',
             'visible' => FALSE,
           ),
         ),
@@ -92,7 +92,7 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'full' => array(
-            'weight' => '39',
+            'weight' => '40',
             'visible' => FALSE,
           ),
         ),
@@ -102,7 +102,7 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'full' => array(
-            'weight' => '34',
+            'weight' => '35',
             'visible' => FALSE,
           ),
         ),
@@ -122,7 +122,7 @@ function pw_profiles_strongarm() {
             'visible' => FALSE,
           ),
           'full' => array(
-            'weight' => '24',
+            'weight' => '25',
             'visible' => TRUE,
           ),
         ),
