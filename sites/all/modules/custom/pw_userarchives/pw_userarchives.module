@@ -229,7 +229,7 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   // update politician index
   $politician_index = search_api_index_load('politician_archive_index');
   if ($politician_index) {
-    search_api_index_specific_items($politician_index, $uids);
+    search_api_index_specific_items($politician_index, $vids);
   }
 
   return 'Done';
