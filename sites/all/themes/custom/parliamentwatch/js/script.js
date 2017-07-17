@@ -1057,11 +1057,11 @@ function readMore() {
             $(this).addClass('readMore--expanded readMore--expanded-initial');
             $(this).find('.readmore__trigger').hide();
         }
-        $('.readmore__trigger .readmore__trigger__more').click(function () {
+        $('.readmore__trigger .readmore__trigger__more').click(function (event) {
             event.preventDefault();
             $(this).parents('.readmore').addClass('readMore--expanded');
         });
-        $('.readmore__trigger .readmore__trigger__less').click(function () {
+        $('.readmore__trigger .readmore__trigger__less').click(function (event) {
             event.preventDefault();
             $(this).parents('.readmore').removeClass('readMore--expanded');
         });
