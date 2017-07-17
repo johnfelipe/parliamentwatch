@@ -1,6 +1,0 @@
-name = PW Dialogues View
-description = module implements hooks to alter views
-core = 7.x
-package = Parliamentwatch
-version = 7.x-1.4-20140402
-project = pw_dialogues_view

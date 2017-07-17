@@ -1,7 +1,0 @@
-name = PW ShareThis share count check
-description = Checks whether the visible share count is correct and adjusts it accordingly
-core = 7.x
-package = Sharing
-version = 7.x-1.0-20140519
-project = pw_sharethis_check
-configure = admin/config/sharethis_check/settings

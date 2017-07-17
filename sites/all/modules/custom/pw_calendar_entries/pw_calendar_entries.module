@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the PW Calendar Entries feature.
- */
-
-include_once 'pw_calendar_entries.features.inc';
