@@ -57,16 +57,34 @@ function pw_parliaments_menu_alter(&$items) {
  * Displays parliament pages, leaving other term pages to the default callback.
  */
 function pw_parliaments_taxonomy_term_page($term) {
-  if ($term->vid == 18) {
+  if ($term->vocabulary_machine_name == 'parliaments') {
     if (empty($term->description)) {
       return '';
     }
     else {
-      return $term->description;
+      return taxonomy_term_view($term);
     }
   }
-  else {
-    module_load_include('inc', 'taxonomy', 'taxonomy.pages');
-    return taxonomy_term_page($term);
+
+  $build = taxonomy_term_view($term);
+  $nids = taxonomy_select_nodes($term->tid, TRUE, variable_get('default_nodes_main', 12));
+
+  if ($nids) {
+    $nodes = node_load_multiple($nids);
+    $build = node_view_multiple($nodes, 'tile');
+    $build['#theme_wrappers'] = ['container__tiles'];
+    $build['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
+    ];
   }
+  else {
+    $build['no_content'] = [
+      '#prefix' => '<p>',
+      '#markup' => t('There is currently no content classified with this term.'),
+      '#suffix' => '</p>',
+    ];
+  }
+
+  return $build;
 }
