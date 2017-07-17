@@ -103,7 +103,6 @@ function mainNavigation() {
 
 function dropdown() {
     $('.dropdown__trigger').click(function () {
-        $('.dropdown__list').removeClass('dropdown__list--open');
         $(this).toggleClass('dropdown__trigger--active');
         $(this).parent('.dropdown').find('.dropdown__list').toggleClass('dropdown__list--open');
     });
@@ -1035,9 +1034,13 @@ function filterBar() {
             }
         }
     });
-    $('.filterbar__swiper .filterbar__item--dropdown').click(function () {
+    $('.filterbar__swiper .filterbar__item--dropdown').click(function (event) {
         var index = $(this).index();
         mySwiper.slideTo(index, 300);
+        $('.dropdown__list').removeClass('dropdown__list--open');
+        if ($(this).children('.dropdown__trigger').hasClass('dropdown__trigger--active')) {
+            $(this).find('.dropdown__list').addClass('dropdown__list--open');
+        }
     });
 }
 
