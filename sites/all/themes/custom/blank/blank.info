@@ -17,3 +17,6 @@ regions[content_extra] = Content extra
 regions[footer] = Footer
 
 stylesheets[screen][] = css/blank.css
+
+scripts[] = js/contrib/pym.v1.min.js
+scripts[] = js/blank_script.js
