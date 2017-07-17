@@ -227,7 +227,7 @@ function pw_profiles_field_group_info() {
         'required_fields' => 1,
         'id' => '',
         'classes' => ' group-user-premium-fields field-group-fieldset',
-        'description' => 'Social-Media, Bildergalerie, Biografie, politische Ziele',
+        'description' => '',
       ),
       'formatter' => 'collapsed',
     ),
