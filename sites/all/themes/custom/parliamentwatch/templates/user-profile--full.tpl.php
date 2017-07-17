@@ -130,7 +130,7 @@
           <dt class="dl__dt"><?php print t('Year of birth') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_birthday'][0]['#markup']; ?> (<?php print $user_profile['field_user_age'][0]['#markup']; ?> Jahre)</dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_address']['#items'][0]['locality'])): ?>
+        <?php if (!empty($user_profile['field_user_address']['#items'][0]['locality'])): ?>
           <dt class="dl__dt"><?php print t('Wohnort') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_address']['#items'][0]['locality']; ?></dd>
         <?php endif; ?>
