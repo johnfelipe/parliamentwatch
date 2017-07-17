@@ -1449,8 +1449,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         ),
       ),
       'entity_type' => 'user',
+      'exclude_cv' => 0,
       'field_name' => 'field_user_education',
-      'label' => 'Ausbildung',
+      'label' => 'Berufliche Qualifikation',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
@@ -2223,8 +2224,9 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         ),
       ),
       'entity_type' => 'user',
+      'exclude_cv' => 0,
       'field_name' => 'field_user_job_skills',
-      'label' => 'Berufliche Qualifikation',
+      'label' => 'Ausgeübte Tätigkeit',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
@@ -4612,7 +4614,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
   t('Adresse');
   t('Alt Text');
   t('Alter');
-  t('Ausbildung');
+  t('Ausgeübte Tätigkeit');
   t('Ausschüsse');
   t('Because system user roles are not revisionable, this fields stores a copy of the user role.');
   t('Berufliche Qualifikation');
