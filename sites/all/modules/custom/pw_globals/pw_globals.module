@@ -837,5 +837,7 @@ function _pw_sort_by_parliament($options, $parliament_tid) {
       }
     }
   }
+  unset($options['_none']);
+  $options = array('_none' => t('- None -')) + $options;
   return $options;
 }
