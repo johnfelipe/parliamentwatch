@@ -109,9 +109,7 @@
       <?php endif; ?>
     </div>
     <?php endif; ?>
-    <?php if ($render_content_container): ?><div class="container"><?php endif; ?>
-      <?php print render($page['content']); ?>
-    <?php if ($render_content_container): ?></div><?php endif; ?>
+    <?php print render($page['content']); ?>
     <?php print render($page['content_tabs']); ?>
     <?php print render($page['content_extra']); ?>
   </main>

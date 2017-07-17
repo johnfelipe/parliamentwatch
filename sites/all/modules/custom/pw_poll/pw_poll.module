@@ -106,7 +106,7 @@ function pw_poll_page($parliament_term = NULL) {
     }
 
     $build = node_view_multiple($nodes, 'tile');
-    $build['nodes']['#theme_wrappers'] = ['container__tiles'];
+    $build['#theme_wrappers'] = ['container__tiles'];
     $build['pager'] = [
       '#theme' => 'pager',
       '#weight' => 5,

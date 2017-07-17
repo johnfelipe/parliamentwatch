@@ -77,7 +77,7 @@ function pw_blog_page() {
 
   if (!empty($result['node'])) {
     $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
-    $build['nodes']['#theme_wrappers'] = ['container__tiles'];
+    $build['#theme_wrappers'] = ['container__tiles'];
     $build['pager'] = [
       '#theme' => 'pager',
       '#weight' => 5,

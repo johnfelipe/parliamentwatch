@@ -75,7 +75,7 @@ function pw_election_programmes_page($parliament_term) {
     };
     uasort($nodes, $compare_weight);
     $build = node_view_multiple($nodes, 'tile');
-    $build['nodes']['#theme_wrappers'] = ['container__tiles'];
+    $build['#theme_wrappers'] = ['container__tiles'];
   }
   else {
     $build = [

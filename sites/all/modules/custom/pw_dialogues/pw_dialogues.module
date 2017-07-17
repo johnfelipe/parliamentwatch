@@ -274,7 +274,7 @@ function pw_dialogues_page($parliament_term, $uid = NULL) {
   if ($response['result count'] > 0) {
     pager_default_initialize($response['result count'], $limit);
     $build = node_view_multiple(node_load_multiple(array_keys($response['results'])), 'tile');
-    $build['nodes']['#theme_wrappers'] = ['container__tiles'];
+    $build['#theme_wrappers'] = ['container__tiles'];
     $build['nodes']['#modifier'] = 'qa';
     $build['pager'] = [
       '#theme' => 'pager',

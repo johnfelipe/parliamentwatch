@@ -60,10 +60,19 @@ function parliamentwatch_media_wysiwyg_token_to_markup_alter(&$element, $tag_inf
 }
 
 /**
- * Implements hook_preprocess_page().
+ * Implements hook_page_alter().
  */
-function parliamentwatch_preprocess_page(&$variables) {
-  $variables['render_content_container'] = _parliamentwatch_should_render_content_container($variables);
+function parliamentwatch_page_alter(&$page) {
+  if (isset($page['content']['system_main'])) {
+    $filter = function ($item) {
+      return strpos('container', $item) === 0;
+    };
+    $container_wrappers = array_filter($page['content']['system_main']['#theme_wrappers'], $filter);
+    if (count($container_wrappers) == 0 && !isset($page['content']['system_main']['filters'])) {
+      $page['content']['system_main']['#prefix'] = '<div class="container">';
+      $page['content']['system_main']['#suffix'] = '</div>';
+    }
+  }
 }
 
 /**
@@ -949,42 +958,6 @@ function _parliamentwatch_form_set_class(array &$element, array $name) {
   if (isset($element['#parents']) && form_get_error($element) !== NULL && !empty($element['#validated'])) {
     $element['#attributes']['class'][] = 'form__item__control--invalid';
   }
-}
-
-/**
- * Determines whether the content regions should be wrapped in a container.
- *
- * @param array $variables
- *   The template variables.
- *
- * @return bool
- *   TRUE if the content container should be rendered, FALSE otherwise.
- */
-function _parliamentwatch_should_render_content_container($variables) {
-  if (isset($variables['node']) && !in_array($variables['node']->type, ['page', 'webform'])) {
-    return FALSE;
-  }
-
-  $pages_without_container = [
-    'pw_blog_page',
-    'pw_dialogues_page',
-    'pw_election_programmes_page',
-    'pw_globals_info_page',
-    'pw_globals_politician_search_page',
-    'pw_petitions_page',
-    'pw_poll_page',
-    'pw_profiles_page',
-    'pw_parliaments_taxonomy_term_page',
-    'user_view_page',
-    'user_revision_show',
-    'comment_reply',
-  ];
-
-  if (in_array(menu_get_item()['page_callback'], $pages_without_container)) {
-    return FALSE;
-  }
-
-  return TRUE;
 }
 
 t('Candidate', [], ['context' => 'female']);

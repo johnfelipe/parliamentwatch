@@ -62,11 +62,7 @@ function pw_parliaments_taxonomy_term_page($term) {
       return '';
     }
     else {
-      return [
-        '#prefix' => '<div class="container">',
-        '#markup' => $term->description,
-        '#suffix' => '</div>',
-      ];
+      return $term->description;
     }
   }
   else {
