@@ -102,7 +102,8 @@ function mainNavigation() {
 }
 
 function dropdown() {
-    $('.dropdown__trigger').click(function () {
+    $('.dropdown__trigger').click(function (event) {
+        event.preventDefault();
         $(this).toggleClass('dropdown__trigger--active');
         $(this).parent('.dropdown').find('.dropdown__list').toggleClass('dropdown__list--open');
     });
