@@ -1003,6 +1003,14 @@ function pw_globals_update_7027() {
 }
 
 /**
+ * Add user-login to main-navigation.
+ */
+function pw_globals_update_7028() {
+  _pw_globals_menu_link_add('user', 'Login', 30, 'main-menu');
+}
+
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
