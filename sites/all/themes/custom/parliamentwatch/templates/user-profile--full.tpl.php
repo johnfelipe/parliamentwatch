@@ -60,7 +60,7 @@
   <div class="deputy__intro">
     <div class="deputy__intro__sidebar">
       <header>
-        <h1 class="deputy__title"><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?></h1>
+        <h1 class="deputy__title"><?php print render($display_name); ?></h1>
         <div class="deputy__subtitle">
           <?php print render($user_profile['field_user_party']); ?> | <?php print $role; ?> <?php print render($user_profile['field_user_parliament']); ?>
         </div>
@@ -186,7 +186,7 @@
       <?php if (isset($user_profile['field_user_political_goals'])): ?>
         <div class="deputy__goal readmore">
           <h3>
-            <?php print t('Political goals of @full_name', ['@full_name' => render($user_profile['field_user_fname']) . ' ' . render($user_profile['field_user_lname'])]); ?>
+            <?php print t('Political goals of @full_name', ['@full_name' => render($display_name)]); ?>
           </h3>
           <?php if ($user_profile['field_user_political_goals']): ?>
             <?php print render($user_profile['field_user_political_goals']); ?>
@@ -218,7 +218,7 @@
       <?php if (isset($user_profile['field_user_about'])): ?>
         <div class="deputy__about readmore">
           <h3>
-            <?php print t('About @full_name', ['@full_name' => render($user_profile['field_user_fname']) . ' ' . render($user_profile['field_user_lname'])]); ?>
+            <?php print t('About @full_name', ['@full_name' => render($display_name)]); ?>
           </h3>
           <?php print render($user_profile['field_user_about']); ?>
           <div class="deputy__aboput__read_more readmore__trigger">
