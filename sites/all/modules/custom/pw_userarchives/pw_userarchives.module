@@ -227,7 +227,7 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   }
 
   // update politician index
-  $politician_index = search_api_index_load("politician_index");
+  $politician_index = search_api_index_load('politician_archive_index');
   if ($politician_index) {
     search_api_index_specific_items($politician_index, $uids);
   }
@@ -251,7 +251,7 @@ function pw_userarchives_search_api_item_type_info() {
  * Implements hook_search_api_index_items_alter().
  */
 function pw_userarchives_search_api_index_items_alter(array &$items, SearchApiIndex $index) {
-  if ($index->machine_name == "politician_archive_index") {
+  if ($index->machine_name == 'politician_archive_index') {
     foreach ($items as $item) {
       if (empty($item->field_user_picture)) {
         $item->field_has_picture[LANGUAGE_NONE][0]['value'] = 0;
