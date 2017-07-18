@@ -8,7 +8,6 @@ project = pw_profiles
 dependencies[] = addressfield
 dependencies[] = computed_field
 dependencies[] = date
-dependencies[] = fe_block
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = field_permissions

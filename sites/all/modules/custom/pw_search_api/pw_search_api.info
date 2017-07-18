@@ -7,7 +7,6 @@ version = 7.x-1.0-20170716
 project = pw_search_api
 dependencies[] = ctools
 dependencies[] = date
-dependencies[] = fe_block
 dependencies[] = features
 dependencies[] = search
 dependencies[] = search_api

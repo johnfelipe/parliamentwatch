@@ -7,7 +7,6 @@ version = 7.x-1.0-20170715
 project = pw_poll
 dependencies[] = ctools
 dependencies[] = date
-dependencies[] = fe_block
 dependencies[] = features
 dependencies[] = feeds
 dependencies[] = feeds_comment_processor

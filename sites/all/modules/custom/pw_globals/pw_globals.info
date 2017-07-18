@@ -8,7 +8,6 @@ project = pw_globals
 dependencies[] = antispam
 dependencies[] = date
 dependencies[] = entityreference
-dependencies[] = fe_block
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = link
