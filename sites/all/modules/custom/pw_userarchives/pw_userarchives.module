@@ -303,7 +303,7 @@ function pw_userarchives_politician_load_multiple($vids) {
 
   field_attach_load_revision('user', $users);
 
-  return $sorted_users;
+  return array_filter($sorted_users, 'is_object');
 }
 
 /**
