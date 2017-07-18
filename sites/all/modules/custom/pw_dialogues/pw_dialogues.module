@@ -169,7 +169,7 @@ function pw_dialogues_node_view($node, $view_mode) {
 function pw_dialogues_entity_presave($entity, $type) {
 
   // Force URL alias for dialogues
-  if ($type == 'node' && $entity->type == 'dialogue' && $entity->nid) {
+  if ($type == 'node' && $entity->type == 'dialogue' && isset($entity->nid)) {
     module_load_include('inc', 'pathauto');
     $entity->path['pathauto'] = TRUE;
     $alias_action = variable_get('pathauto_update_action', 0);
