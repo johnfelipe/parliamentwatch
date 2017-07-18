@@ -299,8 +299,8 @@ function pw_profiles_page($parliament_term, $role_name) {
     $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_CANDIDATE_TID);
   }
 
-  if (isset(drupal_get_query_parameters()['electoral_region'])) {
-    $q->condition('field_electoral_region', drupal_get_query_parameters()['region']);
+  if (isset(drupal_get_query_parameters()['region'])) {
+    $q->condition('field_user_constituency:field_electoral_region', drupal_get_query_parameters()['region']);
   }
 
   if (isset(drupal_get_query_parameters()['constituency'])) {
