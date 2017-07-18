@@ -61,15 +61,7 @@ function pw_parliaments_menu_alter(&$items) {
 function pw_parliaments_block_list_alter(&$blocks) {
   $term = menu_get_object('taxonomy_term', 2);
 
-  if (!isset($term)) {
-    return;
-  }
-
-  if ($term->vocabulary_machine_name != 'parliaments') {
-    return;
-  }
-
-  if (!pw_parliaments_is_funded($term)) {
+  if (!isset($term) || !pw_parliaments_is_funded($term)) {
     return;
   }
 
