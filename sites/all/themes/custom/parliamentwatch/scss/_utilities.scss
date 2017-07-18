@@ -330,6 +330,7 @@ figcaption {
 /* Pager */
 
 .pager {
+  clear: both;
   list-style: none;
   padding: $space 0;
   margin: 0;
