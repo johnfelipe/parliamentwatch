@@ -453,42 +453,6 @@ function pw_profiles_archived_revisions($account, $direction = 'ASC') {
 }
 
 /**
- * Returns user versions matching the given filters.
- *
- * @param array $filters
- *   The filters
- *
- * @param int $limit
- *   The maximum number of user entities to return
- *
- * @return array
- *   The selected users
- */
-function pw_profiles_user_load_multiple($filters = [], $limit = NULL) {
-  $users = [];
-
-  $query = pw_profiles_user_revision_query($filters)->extend('PagerDefault')->limit($limit);
-  if (empty($filters['last_name'])) {
-    $query->join('field_revision_field_user_lname', 'fuln', 'fuln.revision_id = ur.vid');
-  }
-  $query->leftJoin('field_revision_field_user_picture', 'fupic', 'fupic.revision_id = ur.vid');
-  $query->addExpression('CASE WHEN fupic.field_user_picture_fid IS NOT NULL THEN 1 ELSE 0 END', 'picture_uploaded');
-  $query
-    ->orderBy('uac.number_of_answers', 'DESC')
-    ->orderBy('uac.number_of_questions', 'DESC')
-    ->orderBy('picture_uploaded', 'DESC')
-    ->orderBy('fuln.field_user_lname_value');
-
-  foreach ($query->execute()->fetchAll() as $row) {
-    $users[$row->uid] = $row;
-  }
-
-  field_attach_load_revision('user', $users);
-
-  return $users;
-}
-
-/**
  * Returns a query for fetching uids and vids.
  *
  * @param array $filters
