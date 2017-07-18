@@ -1009,6 +1009,15 @@ function pw_globals_update_7028() {
   _pw_globals_menu_link_add('user', 'Login', 30, 'main-menu');
 }
 
+/**
+ * Configure title block.
+ */
+function pw_globals_update_7029() {
+  $block = (array) block_load('pw_globals', 'title');
+  $block['pages'] = "blog/*\n*/abstimmungen/*\nprofile/*";
+  $block['regions'] = ['parliamentwatch' => 'intro_primary', 'blank' => 'intro_primary'];
+  _pw_globals_configure_block($block);
+}
 
 /**
  * Adds a new menu block.

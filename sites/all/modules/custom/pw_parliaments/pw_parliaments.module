@@ -54,6 +54,31 @@ function pw_parliaments_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_block_list_alter().
+ */
+function pw_parliaments_block_list_alter(&$blocks) {
+  $term = menu_get_object('taxonomy_term', 2);
+
+  if (!isset($term)) {
+    return;
+  }
+
+  if ($term->vocabulary_machine_name != 'parliaments') {
+    return;
+  }
+
+  if (!empty($term->description)) {
+    return;
+  }
+
+  foreach ($blocks as $key => $block) {
+    if ($block->module == 'pw_globals' && $block->delta == 'title') {
+      unset($blocks[$key]);
+    }
+  }
+}
+
+/**
  * Displays parliament pages, leaving other term pages to the default callback.
  */
 function pw_parliaments_taxonomy_term_page($term) {
