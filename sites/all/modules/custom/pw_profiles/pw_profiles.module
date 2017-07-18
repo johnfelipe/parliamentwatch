@@ -286,23 +286,75 @@ function pw_profiles_user_uri($user) {
  *   The render array.
  */
 function pw_profiles_page($parliament_term, $role_name) {
+  $limit = 12;
 
-  $filters = [
-    'roles' => $role_name == 'candidates' ? 'candidate' : 'deputy',
-    'parliament' => $parliament_term->name,
-    'date' => date('Y-m-d'),
-  ] + drupal_get_query_parameters();
+  $q = search_api_query('politician_archive_index');
+  $q->condition('field_user_retired', NULL, '=');
+  $q->condition('field_user_parliament', $parliament_term->tid);
 
-  $users = pw_profiles_user_load_multiple($filters, 12);
+  if ($role_name == 'deputies') {
+    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_DEPUTY_TID);
+  }
+  else {
+    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_CANDIDATE_TID);
+  }
 
-  if (empty($users)) {
-    $build = [
-      'user' => ['#markup' => t('No results matching your criteria were found.')],
+  if (isset(drupal_get_query_parameters()['electoral_region'])) {
+    $q->condition('field_electoral_region', drupal_get_query_parameters()['region']);
+  }
+
+  if (isset(drupal_get_query_parameters()['constituency'])) {
+    $q->condition('field_user_constituency', drupal_get_query_parameters()['constituency']);
+  }
+
+  if (isset(drupal_get_query_parameters()['list'])) {
+    $q->condition('field_user_list', drupal_get_query_parameters()['list']);
+  }
+
+  if (isset(drupal_get_query_parameters()['list_position'])) {
+    $q->condition('field_user_list_position', drupal_get_query_parameters()['list_position']);
+  }
+
+  if (isset(drupal_get_query_parameters()['party'])) {
+    $f = new SearchApiQueryFilter('OR');
+    foreach (drupal_get_query_parameters()['party'] as $party) {
+      $f->condition('field_user_party', $party);
+    }
+    $q->filter($f);
+  }
+
+  if (isset(drupal_get_query_parameters()['gender'])) {
+    $f = new SearchApiQueryFilter('OR');
+    foreach (drupal_get_query_parameters()['gender'] as $gender) {
+      $f->condition('field_user_gender', $gender);
+    }
+    $q->filter($f);
+  }
+
+  if (isset(drupal_get_query_parameters()['keys'])) {
+    $q->keys(drupal_get_query_parameters()['keys']);
+  }
+
+  $response = $q
+    ->sort('field_has_picture', 'DESC')
+    ->sort('field_user_qanda_ratio', 'DESC')
+    ->sort('field_user_lname')
+    ->sort('search_api_relevance')
+    ->range(pager_find_page() * $limit, $limit)
+    ->execute();
+
+  if ($response['result count'] > 0) {
+    pager_default_initialize($response['result count'], $limit);
+    $build = entity_view('user', pw_userarchives_politician_load_multiple(array_keys($response['results'])), 'tile');
+    $build['user']['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
     ];
   }
   else {
-    $build = entity_view('user', $users, 'tile');
-    $build['user']['pager'] = ['#theme' => 'pager', '#weight' => 5];
+    $build['user'] = [
+      '#markup' => t('Sorry, there are no results matching your query.'),
+    ];
   }
 
   $build['user']['#theme_wrappers'] = ['container__tiles'];
@@ -564,13 +616,11 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
 
   $form['#method'] = 'get';
   $form['#theme'] = 'filterbar';
-  $form['last_name'] = [
-    '#type' => 'select',
-    '#title' => t('Filter by name'),
+  $form['keys'] = [
+    '#type' => 'textfield',
+    '#title' => t('Search'),
     '#title_display' => 'invisible',
-    '#options' => $last_name_options,
-    '#multiple' => FALSE,
-    '#default_value' => isset($parameters['last_name']) ? $parameters['last_name'] : '',
+    '#default_value' => isset($parameters['keys']) ? $parameters['keys'] : '',
   ];
   if (!empty($region_values) && !pw_profiles_filter_disabled('field_electoral_region_tid', $parliament)) {
     $form['region'] = array(
