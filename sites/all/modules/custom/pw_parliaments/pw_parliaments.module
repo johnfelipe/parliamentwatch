@@ -55,6 +55,8 @@ function pw_parliaments_menu_alter(&$items) {
 
 /**
  * Implements hook_block_list_alter().
+ *
+ * Removes title block from taxonomy term pages of funded parliaments.
  */
 function pw_parliaments_block_list_alter(&$blocks) {
   $term = menu_get_object('taxonomy_term', 2);
@@ -67,7 +69,7 @@ function pw_parliaments_block_list_alter(&$blocks) {
     return;
   }
 
-  if (!empty($term->description)) {
+  if (!pw_parliaments_is_funded($term)) {
     return;
   }
 
@@ -83,7 +85,7 @@ function pw_parliaments_block_list_alter(&$blocks) {
  */
 function pw_parliaments_taxonomy_term_page($term) {
   if ($term->vocabulary_machine_name == 'parliaments') {
-    if (empty($term->description)) {
+    if (pw_parliaments_is_funded($term)) {
       return '';
     }
     else {
@@ -112,4 +114,27 @@ function pw_parliaments_taxonomy_term_page($term) {
   }
 
   return $build;
+}
+
+/**
+ * Returns TRUE if the given parliament is funded, FALSE otherwise.
+ *
+ * If the given term is not a parliament term returns NULL.
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return bool
+ *   TRUE if the given parliament is funded, FALSE otherwise
+ */
+function pw_parliaments_is_funded($term) {
+  if ($term->vocabulary_machine_name != 'parliaments') {
+    return NULL;
+  }
+  elseif (empty($term->description)) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
 }
