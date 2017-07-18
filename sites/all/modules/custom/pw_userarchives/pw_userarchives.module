@@ -278,7 +278,7 @@ function pw_userarchives_search_api_index_items_alter(array &$items, SearchApiIn
 function pw_userarchives_politician_load_multiple($vids) {
   $users = [];
   $q = db_select('user_revision', 'ur');
-  $q->join('user_archive_cache', 'uac', 'ur.vid = uac.vid');
+  $q->leftJoin('user_archive_cache', 'uac', 'ur.vid = uac.vid');
   $q->fields('ur')
     ->fields('uac', ['actual_profile', 'number_of_questions', 'number_of_answers', 'user_role'])
     ->condition('ur.vid', $vids);
@@ -303,7 +303,7 @@ function pw_userarchives_politician_load_multiple($vids) {
 
   field_attach_load_revision('user', $users);
 
-  return array_filter($sorted_users, 'is_object');
+  return $sorted_users;
 }
 
 /**
