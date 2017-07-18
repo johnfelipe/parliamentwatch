@@ -40,20 +40,30 @@
         <?php for ($i = 1; $i < count($children); $i++): ?>
         <?php if (!in_array($children[$i], ['submit', 'form_id', 'form_build_id', 'form_token'])): ?>
         <?php
+          $dropdown = FALSE;
           if ($form[$children[$i]]['#type'] == 'select') {
-            $modifier = 'select';
+            $classes = 'filterbar__item--select';
           }
           elseif (!isset($form[$children[$i]]['#options']) || count($form[$children[$i]]['#options']) > 2) {
-            $modifier = 'dropdown';
+            $classes = 'filterbar__item--dropdown dropdown';
+            $dropdown = TRUE;
           }
           else {
-            $modifier = 'checkbox';
+            $classes = 'filterbar__item--checkbox';
+          }
+
+          if (!empty($form[$children[$i]]['#default_value'])) {
+            $classes .= ' swiper-slide-active';
           }
         ?>
-        <div class="filterbar__item <?php print ($modifier == 'dropdown') ? 'filterbar__item--dropdown dropdown' : "filterbar__item--$modifier"; ?>">
-          <?php if ($modifier == 'dropdown'): ?>
+        <div class="filterbar__item <?php print $classes; ?>">
+          <?php if ($dropdown): ?>
           <div class="dropdown__trigger">
-            <?php print $form[$children[$i]]['#title'] ?> <i class="icon icon-arrow-down"></i>
+            <?php print $form[$children[$i]]['#title'] ?>
+            <?php if (!empty($form[$children[$i]]['#default_value'])): ?>
+            <span class="badge"><?php print count($form[$children[$i]]['#default_value']); ?></span>
+            <?php endif; ?>
+            <i class="icon icon-arrow-down"></i>
           </div>
           <div class="dropdown__list">
             <?php print render($form[$children[$i]]); ?>
