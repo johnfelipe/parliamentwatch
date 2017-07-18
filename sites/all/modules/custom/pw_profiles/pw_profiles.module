@@ -11,17 +11,14 @@ include_once 'pw_profiles.features.inc';
  * Implements hook_menu().
  */
 function pw_profiles_menu() {
-  $items = [];
-
-  $items['profiles/%taxonomy_term/%'] = array(
+  $items['profiles/%taxonomy_term/%'] = [
     'title callback' => 'pw_profiles_page_title',
-    'title arguments' => array(1, 2),
+    'title arguments' => [1, 2],
     'page callback' => 'pw_profiles_page',
-    'page arguments' => array(1, 2),
-    'access arguments' => array('access content'),
+    'page arguments' => [1, 2],
+    'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
-  );
-
+  ];
   return $items;
 }
 
