@@ -476,7 +476,7 @@ function viewDeputyDetail() {
     /*
     * Implement select mechanism for changing the viewed profile (election period)
      */
-    $('.deputy__intro__content select').on('select2:select', function (evt) {
+    $('.deputy__intro select').on('select2:select', function (evt) {
         window.location.href = evt.currentTarget.value;
     });
 }
