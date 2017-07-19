@@ -450,24 +450,6 @@ function pw_dialogues_recent_block() {
 }
 
 /**
- * Provides a human readable base path for all profile pages with dialogue filters.
- */
-function pw_dialogues_facetapi_pretty_paths_base_path_provider() {
-  $base_path_providers = array(
-    'pwcustom' => array(
-      'handler' => array(
-        'label' => t('PW Custom base path provider'),
-        'class' => 'PwDialoguesCustomBasePathProvider',
-        'description' => 'Custom version for dialogues on profile pages.',
-      ),
-    ),
-  );
-  // Allow other modules to alter the base path provider definitions.
-  drupal_alter('facetapi_pretty_paths_base_path_provider', $base_path_providers);
-  return $base_path_providers;
-}
-
-/**
  * Starts feeds import.
  */
 function pw_dialogues_do_import_questions($source) {
