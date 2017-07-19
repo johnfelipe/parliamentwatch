@@ -197,25 +197,44 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 
 
 .tile--horizontal {
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
+  display: table;
+  .tile__title {
+    margin: 0;
+    padding: 0 0 $space;
+    width: auto;
+  }
   .tile__image {
-    margin: -$space-small 0;
     width: 100%;
     @include breakpoint($breakpoint-s-min) {
       margin: 0;
       padding: 0;
-      @include grid-column(4);
+      @include grid-column(4, $neat-grid-no-gutter);
       height: auto;
+      overflow: hidden;
+      position: relative;
+      padding-right: $space-xsmall;
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: $space-xsmall;
+        background: $white;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+      }
     }
   }
   .tile__content {
     padding: 0 $space-small;
     text-align: center;
     @include breakpoint($breakpoint-s-min) {
-      @include grid-column(8);
+      @include grid-column(8, $neat-grid-no-gutter);
+      padding: $space-large;
       text-align: left;
-      padding: 0;
+      position: relative;
+      z-index: 9;
     }
   }
 }

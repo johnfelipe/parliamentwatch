@@ -80,15 +80,15 @@
  * @ingroup themeable
  */
 ?>
-<article id="node-<?php print $node->nid; ?>" class="election-program tile tile--horizontal <?php print $classes; ?>"<?php print $attributes; ?>>
+<article id="node-<?php print $node->nid; ?>" class="election-manifesto tile tile--horizontal <?php print $classes; ?>"<?php print $attributes; ?>>
   <?php print render($title_suffix); ?>
   <div class="tile__image">
     <?php print render($content['field_teaser_image']); ?>
   </div>
   <div class="tile__content">
-    <h3 class="tile__title mh-item" <?php print $title_attributes; ?>><?php print $title; ?></h3>
+    <h1 class="tile__title mh-item" <?php print $title_attributes; ?>><?php print $title; ?></h1>
     <a href="<?php print file_create_url($field_pdf_download[0]['file']->uri); ?>" class="btn btn--mobile-block" target="_blank"><?php print t('Open election program') ?></a>
-    <div class="election-program__tag_cloud">
+    <div class="election-manifesto__tag_cloud">
       <?php print render($content['body']); ?>
     </div>
   </div>

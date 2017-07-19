@@ -1,0 +1,50 @@
+/**
+* Election programs
+*/
+
+.election-manifesto.tile {
+  @include grid-column(12);
+  margin-bottom: $space;
+  overflow: hidden;
+  @include breakpoint($breakpoint-s-min) {
+    margin-bottom: $space-large;
+  }
+  .tile__image {
+  }
+  .tile__title {
+    border: 0;
+  }
+  .tile__content {
+
+  }
+}
+.election-manifesto__tag_cloud {
+
+  text-align: center;
+  pointer-events: none;
+  margin-top: $space-large;
+  padding-top: $space-large;
+  border-top: 1px solid $brightGray;
+  font-size: 0.6em;
+  opacity: .6;
+  p {
+    line-height: 2.2em;
+  }
+  span,
+  a {
+    font-weight: 400;
+  }
+  br {
+    display: none;
+  }
+  .tagadelic {
+    opacity: .6;
+    &.level5 { opacity: .5; }
+    &.level6 { opacity: .6; }
+    &.level7 { opacity: .7; }
+    &.level8 { opacity: .8; }
+    &.level9 { opacity: .9; }
+    &.level10 { opacity: 1; }
+  }
+
+}
