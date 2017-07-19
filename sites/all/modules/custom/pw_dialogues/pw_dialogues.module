@@ -660,6 +660,26 @@ function pw_dialogues_topics_by_parliament($term) {
 }
 
 /**
+ * Returns the account version of the recipient of the question.
+ *
+ * @param object $node
+ *   The dialogue node.
+ *
+ * @return object
+ *   The account version.
+ */
+function pw_dialogues_recipient_user_revision($node) {
+  $uid = $node->field_dialogue_recipient[LANGUAGE_NONE][0]['target_id'];
+  $tid = $node->field_parliament[LANGUAGE_NONE][0]['tid'];
+
+  foreach (pw_profiles_archived_revisions(user_load($uid)) as $account) {
+    if ($account->field_user_parliament[LANGUAGE_NONE][0]['tid'] == $tid) {
+      return user_revision_load($uid, $account->vid);
+    }
+  }
+}
+
+/**
  * Returns array representation of dialogue for serialization.
  *
  * @param object $node
