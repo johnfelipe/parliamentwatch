@@ -125,8 +125,8 @@
   height: $space - 4;
   margin: $space-xsmall $space;
   opacity: .6;
+  position: relative;
   @include transition(opacity 300ms);
-
   @include breakpoint($breakpoint-s-min) {
     margin: $space;
   }
