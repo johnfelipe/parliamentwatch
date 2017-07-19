@@ -141,6 +141,18 @@
     opacity: 1;
   }
 }
+.footer__mediapartner__link--more {
+  color: $brightGray;
+  font-size: .8em;
+  border: 1px solid $brightGray;
+  padding: 3px $space-xsmall-mobile;
+  display: inline-block;
+  height: 22px;
+  margin-top: 17px;
+  &:hover {
+    color: $gray;
+  }
+}
 .footer__logo {
   display: block;
   @include container;
