@@ -8,6 +8,7 @@
   padding-top: $space-large;
   padding-bottom: $space-large;
   background: $beige;
+  clear: both;
   @include container();
   > h2,
   .option-title {

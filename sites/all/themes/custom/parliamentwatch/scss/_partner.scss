@@ -38,3 +38,13 @@
     @include h3();
   }
 }
+
+.partner-intro {
+  margin-top: -$space-small;
+  padding-bottom: $space-large;
+  @include breakpoint($breakpoint-m-min) {
+    margin-top: -$space-large;
+    padding-bottom: $space-large * 2;
+    @include grid-column(8, $neat-grid-no-gutter);
+  }
+}

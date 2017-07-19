@@ -82,12 +82,16 @@
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php print render($title_suffix); ?>
-
+  <div class="partner-intro">
+    <?php print render($content['body']); ?>
+  </div>
   <div class="tile-wrapper"<?php print $content_attributes; ?>>
     <?php foreach ($field_main_partners as $partner): ?>
       <div class="tile tile partner">
         <div class="tile__image">
-          <a href="http://<?php print $partner['taxonomy_term']->field_affiliate_url[LANGUAGE_NONE][0]['url'] ?>" target="_blank"><img src="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['uri']) ?>" alt="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ?>"></a>
+          <a href="http://<?php print $partner['taxonomy_term']->field_affiliate_url[LANGUAGE_NONE][0]['url'] ?>" target="_blank">
+            <img src="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['uri']) ?>" alt="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ?>">
+          </a>
         </div>
         <h2 class="tile__title mh-item"><a href="http://<?php print $partner['taxonomy_term']->field_affiliate_url[LANGUAGE_NONE][0]['url'] ?>" target="_blank"><?php print $partner['taxonomy_term']->name; ?></a></h2>
       </div>
@@ -95,9 +99,11 @@
     <?php foreach ($field_partners as $partner): ?>
       <div class="tile tile partner">
         <div class="tile__image">
-          <img src="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['uri']) ?>" alt="">
+          <a href="http://<?php print $partner['taxonomy_term']->field_affiliate_url[LANGUAGE_NONE][0]['url'] ?>" target="_blank">
+            <img src="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['uri']) ?>"alt="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ?>">
+          </a>
         </div>
-        <h2 class="tile__title mh-item"><a href="#"><?php print $partner['taxonomy_term']->name; ?></a></h2>
+        <h2 class="tile__title mh-item"><a href="http://<?php print $partner['taxonomy_term']->field_affiliate_url[LANGUAGE_NONE][0]['url'] ?>" target="_blank"><?php print $partner['taxonomy_term']->name; ?></a></h2>
       </div>
     <?php endforeach; ?>
   </div>
