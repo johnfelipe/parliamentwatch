@@ -299,10 +299,6 @@ function pw_profiles_page($parliament_term, $role_name) {
     $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_CANDIDATE_TID);
   }
 
-  if (isset(drupal_get_query_parameters()['region'])) {
-    $q->condition('field_user_constituency:field_electoral_region', drupal_get_query_parameters()['region']);
-  }
-
   if (isset(drupal_get_query_parameters()['constituency'])) {
     $q->condition('field_user_constituency', drupal_get_query_parameters()['constituency']);
   }
@@ -543,13 +539,10 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   $query->addField('fuln', 'field_user_lname_value');
   $query->leftJoin('field_revision_field_user_gender', 'fug', 'fug.revision_id = ur.vid');
   $query->addField('fug', 'field_user_gender_value');
-  $query->leftJoin('field_data_field_electoral_region', 'fer', 'fuc.field_user_constituency_tid = fer.entity_id');
-  $query->addField('fer', 'field_electoral_region_tid');
 
   $last_name_options = array('' => t('All'));
   $alphabet = range(ord('A'), ord('Z'));
 
-  $region_values = [];
   $constituency_values = [];
   $party_values = [];
   $list_values = [];
@@ -557,9 +550,6 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   $gender_options = [];
 
   foreach ($query->execute()->fetchAll() as $row) {
-    if ($row->field_electoral_region_tid) {
-      $region_values[] = $row->field_electoral_region_tid;
-    }
     if ($row->field_user_constituency_tid) {
       $constituency_values[] = $row->field_user_constituency_tid;
     }
@@ -591,16 +581,6 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
     '#title_display' => 'invisible',
     '#default_value' => isset($parameters['keys']) ? $parameters['keys'] : '',
   ];
-  if (!empty($region_values) && !pw_profiles_filter_disabled('field_electoral_region_tid', $parliament)) {
-    $form['region'] = array(
-      '#type' => 'radios',
-      '#title' => t('Filter by region'),
-      '#title_display' => 'invisible',
-      '#options' => ['' => t('All')] + _pw_profiles_options($region_values),
-      '#multiple' => FALSE,
-      '#default_value' => isset($parameters['region']) ? $parameters['region'] : '',
-    );
-  }
   if (!empty($constituency_values)) {
     $form['constituency'] = array(
       '#type' => 'select',
@@ -739,6 +719,5 @@ function _pw_profiles_revision_switcher_options($account) {
     }
     $options[url(entity_uri('user', $revision)['path'])] = $text;
   }
-
   return $options;
 }
