@@ -26,6 +26,15 @@
   float: left;
   padding-left: $space;
   @include grid-container();
+  .filterbar__item--input {
+    width: 150px;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 200px;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      width: 250px;
+    }
+  }
   &:before {
     content: '';
     background: #fff;
@@ -37,6 +46,7 @@
     width: 100%;
     clear: both;
   }
+
 }
 .filterbar__swiper {
   position: absolute;
@@ -128,20 +138,22 @@
   z-index: 9;
   @include grid-container();
   .select2 {
-    width: 80px !important;
+    width: 100px !important;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 120px !important;
+    }
     @include breakpoint($breakpoint-s-min) {
       width: 210px !important;
     }
   }
-  .select2-container--default .select2-selection--single {
-    border-color: $darkBeige;
-    border-right: 0;
-  }
-  .select2-container .select2-selection--single .select2-selection__arrow {
-    border-color: $darkBeige;
-  }
+  // .select2-container--default .select2-selection--single {
+  //   border-color: $darkBeige;
+  //   border-right: 0;
+  // }
+  // .select2-container .select2-selection--single .select2-selection__arrow {
+  //   border-color: $darkBeige;
+  // }
   .form__item__control {
-    display: none;
     float: left;
     border-color: $darkBeige;
     border-right: 0;
@@ -214,8 +226,7 @@
   .dropdown__list {
     top: 100%;
     position: absolute;
-    margin-top: 1px;
-
+    border-top: 1px solid $darkBeige;
     background: $white;
     padding: $space;
     box-shadow: 0 6px 10px rgba(0,0,0,.1);
@@ -251,18 +262,17 @@
       .form__item__label {
         @include text-overflow();
         padding: $space-xsmall-mobile 0;
+        margin-left: 0;
       }
     }
     .form__item--checkboxes .form__item__control {
       top: $space-xsmall + 3;
     }
-
-    &.dropdown__list--open {
-      @include transform(translate(-50%, 0));
-    }
   }
 }
-
+.filterbar__item--dropdown.dropdown--open .dropdown__list {
+  @include transform(translate(-50%, 0));
+}
 .filterbar__item--checkbox {
   border-right: 1px solid $darkBeige;
   padding: $space $space;
@@ -293,9 +303,12 @@
   z-index: 9;
   @include grid-container();
   .select2 {
-    width: 80px !important;
+    width: 100px !important;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 120px !important;
+    }
     @include breakpoint($breakpoint-s-min) {
-      width: 210px !important;
+      width: 170px !important;
     }
   }
   .select2-container--default .select2-selection--single {

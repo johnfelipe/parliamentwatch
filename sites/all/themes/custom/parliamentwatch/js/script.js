@@ -101,11 +101,49 @@ function mainNavigation() {
     });
 }
 
+
+/*
+ * Dropdown
+ * */
+
 function dropdown() {
-    $('.dropdown__trigger').click(function (event) {
+    $(window).click(function() {
+        $('.dropdown__list--open').removeClass('dropdown__list--open');
+    });
+
+    $('.dropdown .dropdown__trigger').click(function (event) {
+        var dropdownTrigger = $(this);
+        var dropdown = dropdownTrigger.parent('.dropdown');
+
         event.preventDefault();
-        $(this).toggleClass('dropdown__trigger--active');
-        $(this).parent('.dropdown').find('.dropdown__list').toggleClass('dropdown__list--open');
+
+        if (dropdown.parents('.filterbar')) {
+            dropdownTrigger.addClass('dropdown__trigger--active');
+            if (dropdown.hasClass('dropdown--open')) {
+                dropdown.removeClass('dropdown--open');
+            } else {
+                $('.filterbar').find('.dropdown').removeClass('dropdown--open');
+                dropdown.addClass('dropdown--open');
+            }
+        }
+    });
+}
+
+function dropdownHover() {
+    function dropdownOpen() {
+        $(this).find('.dropdown__trigger').addClass('dropdown__trigger--active');
+        $(this).addClass('dropdown--open');
+    }
+    function dropdownClose() {
+        $(this).find('.dropdown__trigger').removeClass('dropdown__trigger--active');
+        $(this).removeClass('dropdown--open');
+    }
+    $(".dropdown--hover").hoverIntent({
+        over: dropdownOpen,
+        out: dropdownClose
+    });
+    $('.dropdown__text').click(function (event) {
+        event.preventDefault();
     });
 }
 
@@ -217,7 +255,6 @@ function tabs() {
     $('.tabs__navigation a').on( "click", function(event) {
 
         event.preventDefault();
-        event.stopPropagation();
 
         var link = $(this);
         var id = link[0].hash;
@@ -1035,9 +1072,12 @@ function filterBar() {
             }
         }
     });
-    $('.filterbar__swiper .filterbar__item--dropdown').click(function (event) {
+    $('.filterbar__swiper .filterbar__item--dropdown').on("click",function(){
         var index = $(this).index();
         mySwiper.slideTo(index, 300);
+
+        console.log('test');
+
         $('.dropdown__list').removeClass('dropdown__list--open');
         if ($(this).children('.dropdown__trigger').hasClass('dropdown__trigger--active')) {
             $(this).find('.dropdown__list').addClass('dropdown__list--open');
@@ -1145,6 +1185,7 @@ $(function () {
     filterBar();
     mainNavigation();
     dropdown();
+    dropdownHover();
     contentOffset();
     tooltip();
     tabs();

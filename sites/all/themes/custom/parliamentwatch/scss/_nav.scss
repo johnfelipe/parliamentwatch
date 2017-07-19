@@ -68,7 +68,7 @@
     z-index: 99;
   }
 }
-.dropdown__list--open {
+.dropdown--open .dropdown__list {
   display: block;
   @include breakpoint($breakpoint-m-min) {
     opacity: 1;
