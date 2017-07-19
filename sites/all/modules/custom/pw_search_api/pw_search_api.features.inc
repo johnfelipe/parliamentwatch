@@ -47,7 +47,6 @@ function pw_search_api_default_search_api_index() {
         "created" : { "type" : "date" },
         "edit_url" : { "type" : "uri" },
         "feed_nid" : { "type" : "integer" },
-        "field_announce_tab_title" : { "type" : "text" },
         "field_blogpost_blogtags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_blogpost_categories" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_committee" : { "type" : "integer", "entity_type" : "taxonomy_term" },
@@ -736,7 +735,6 @@ function pw_search_api_default_search_api_index() {
         "field_user_constituency" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_constituency:field_constituency_ac_descriptor" : { "type" : "list\\u003Ctext\\u003E" },
         "field_user_constituency:field_constituency_area_codes:name" : { "type" : "list\\u003Clist\\u003Ctext\\u003E\\u003E" },
-        "field_user_constituency:field_electoral_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_constituency:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_user_fname" : { "type" : "string" },
         "field_user_fraction" : { "type" : "integer", "entity_type" : "taxonomy_term" },
@@ -819,13 +817,14 @@ function pw_search_api_default_search_api_index() {
           }
         },
         "search_api_transliteration" : {
-          "status" : 0,
+          "status" : 1,
           "weight" : "15",
           "settings" : { "fields" : {
-              "uuid" : true,
               "field_user_fname" : true,
               "field_user_lname" : true,
               "field_user_title" : true,
+              "search_api_aggregation_1" : true,
+              "field_user_constituency:name" : true,
               "field_user_constituency:field_constituency_area_codes:name" : true
             }
           }
