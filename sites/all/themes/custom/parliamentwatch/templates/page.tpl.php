@@ -195,10 +195,10 @@
     </div>
     <div class="footer__mediapartner">
       <h3 class="footer__mediapartner__title">Medienpartner</h3>
-      <a href="http://www.spiegel.de" class="footer__mediapartner__link" title="Go to website of Spiegel Online" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_spon.png" alt="<?php print t('Logo of Spiegel Online'); ?>"></a>
-      <a href="http://www.sueddeutsche.de" class="footer__mediapartner__link" title="Go to website of Süddeutsche" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_tagesspiegel.png" alt="<?php print t('Logo of Tagesspiegel'); ?>"></a>
-      <a href="https://www.welt.de" class="footer__mediapartner__link" title="Go to website of WELT-Online" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_welt.png" alt="<?php print t('Logo of Welt-Online'); ?>"></a>
-      <a href="http://www.t-online.de" class="footer__mediapartner__link" title="Go to website of Süddeutsche" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_t_online.png" alt="<?php print t('Logo of T-Online'); ?>"></a>
+      <a href="http://www.spiegel.de" class="footer__mediapartner__link" title="<?php print t('Go to website of Spiegel Online'); ?>" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_spon.png" alt="<?php print t('Logo of Spiegel Online'); ?>"></a>
+      <a href="http://www.tagesspiegel.de/" class="footer__mediapartner__link" title="<?php print t('Go to website of Tagesspiegel'); ?>" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_tagesspiegel.png" alt="<?php print t('Logo of Tagesspiegel'); ?>"></a>
+      <a href="https://www.welt.de" class="footer__mediapartner__link" title="<?php print t('Go to website of WELT-Online'); ?>" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_welt.png" alt="<?php print t('Logo of Welt-Online'); ?>"></a>
+      <a href="http://www.t-online.de" class="footer__mediapartner__link" title="<?php print t('Go to website of Süddeutsche'); ?>" target="_blank"><img src="<?php print base_path() . path_to_theme(); ?>/images/medienpartner/logo_t_online.png" alt="<?php print t('Logo of T-Online'); ?>"></a>
       <?php print l(t('Show all'), 'node/330046', ['attributes' => ['class' => ['footer__mediapartner__link footer__mediapartner__link--more']]]); ?>
     </div>
     <?php if ($logo): ?>
