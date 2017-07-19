@@ -817,7 +817,7 @@ function pw_search_api_default_search_api_index() {
           }
         },
         "search_api_transliteration" : {
-          "status" : 1,
+          "status" : 0,
           "weight" : "15",
           "settings" : { "fields" : {
               "field_user_fname" : true,
