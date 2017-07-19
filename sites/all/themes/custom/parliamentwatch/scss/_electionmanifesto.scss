@@ -10,17 +10,25 @@
     margin-bottom: $space-large;
   }
   .tile__image {
+    display: none;
+    @include breakpoint($breakpoint-s-min) {
+      display: block;
+    }
   }
   .tile__title {
     border: 0;
   }
   .tile__content {
-
+    @include grid-column(12, $neat-grid-no-gutter);
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(8, $neat-grid-no-gutter);
+    }
+    @include breakpoint($breakpoint-l-min) {
+      @include grid-column(9, $neat-grid-no-gutter);
+    }
   }
 }
 .election-manifesto__tag_cloud {
-
-  text-align: center;
   pointer-events: none;
   margin-top: $space-large;
   padding-top: $space-large;

@@ -205,36 +205,38 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     width: auto;
   }
   .tile__image {
-    width: 100%;
-    @include breakpoint($breakpoint-s-min) {
-      margin: 0;
-      padding: 0;
-      @include grid-column(4, $neat-grid-no-gutter);
-      height: auto;
-      overflow: hidden;
-      position: relative;
-      padding-right: $space-xsmall;
-      &:after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: $space-xsmall;
-        background: $white;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-      }
+    margin: 0;
+    padding: 0;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    padding-right: 0;
+    @include grid-column(4, $neat-grid-no-gutter);
+    @include breakpoint($breakpoint-l-min) {
+      @include grid-column(3, $neat-grid-no-gutter);
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: $space-xsmall;
+      background: $white;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
     }
   }
   .tile__content {
-    padding: 0 $space-small;
-    text-align: center;
+    padding: $space-small;
+    text-align: left;
+    position: relative;
+    z-index: 9;
+    @include grid-column(8, $neat-grid-no-gutter);
     @include breakpoint($breakpoint-s-min) {
-      @include grid-column(8, $neat-grid-no-gutter);
       padding: $space-large;
-      text-align: left;
-      position: relative;
-      z-index: 9;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      @include grid-column(9, $neat-grid-no-gutter);
     }
   }
 }
