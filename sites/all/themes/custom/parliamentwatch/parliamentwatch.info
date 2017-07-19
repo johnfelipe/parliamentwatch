@@ -24,4 +24,6 @@ scripts[] = js/contrib/swiper.jquery.min.js
 scripts[] = js/contrib/stupidtable.min.js
 scripts[] = js/contrib/jquery.scrollTo.min.js
 scripts[] = js/contrib/jquery.sticky-kit.min.js
+scripts[] = js/contrib/jquery.hoverintent.js
+
 scripts[] = js/script.js

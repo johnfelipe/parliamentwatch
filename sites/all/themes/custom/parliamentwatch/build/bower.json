@@ -14,6 +14,7 @@
         "select2": "4.0.x",
         "jquery.scrollTo": "2.1.x",
         "sticky-kit": "1.1.x",
+        "jquery-hoverintent": "1.8.x",
         "jquery-stupid-table": "1.0.x",
         "swiper": "3.4.x",
         "typeahead.js": "0.11.x",
