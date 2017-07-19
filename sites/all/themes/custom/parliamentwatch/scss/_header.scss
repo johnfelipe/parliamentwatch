@@ -32,15 +32,15 @@
     max-width: 250px;
   }
   @include breakpoint($breakpoint-s-min) {
-    max-width: 280px;
+    max-width: 270px;
     @include padding(($space-mobile - 3) null);
   }
   @include breakpoint($breakpoint-l-min) {
-    max-width: 290px;
+    max-width: 270px;
     @include padding($space null);
   }
   @include breakpoint($breakpoint-xl-min) {
-    max-width: 310px;
+    max-width: 300px;
     width: 310px;
   }
 }
