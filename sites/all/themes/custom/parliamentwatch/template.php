@@ -65,7 +65,7 @@ function parliamentwatch_media_wysiwyg_token_to_markup_alter(&$element, $tag_inf
 function parliamentwatch_page_alter(&$page) {
   if (isset($page['content']['system_main'])) {
     $filter = function ($item) {
-      return strpos('container', $item) === 0;
+      return strpos($item, 'container') === 0;
     };
     $container_wrappers = array_filter($page['content']['system_main']['#theme_wrappers'], $filter);
     if (count($container_wrappers) == 0 && !isset($page['content']['system_main']['filters'])) {
