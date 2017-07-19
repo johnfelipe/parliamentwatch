@@ -95,17 +95,21 @@
       content: '\e829';
     }
     &:nth-child(6) .nav__item__link {
-      @include hide-text();
-      width: 60px;
-      position: relative;
       &:before {
         content: '\e84d';
-        margin: 0;
-        text-indent: 0;
+      }
+      @include breakpoint($breakpoint-m-min) {
+        @include hide-text();
+        width: 60px;
+        position: relative;
+        &:before {
+          margin: 0;
+          text-indent: 0;
 
-        position: absolute;
-        left: 50%;
-        @include transform(translate(-50%,0));
+          position: absolute;
+          left: 50%;
+          @include transform(translate(-50%,0));
+        }
       }
     }
     &:nth-child(7) .nav__item__link:before {
