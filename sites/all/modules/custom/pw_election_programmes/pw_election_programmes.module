@@ -66,11 +66,11 @@ function pw_election_programmes_page($parliament_term) {
   if (!empty($result['node'])) {
     $nodes = node_load_multiple(array_keys($result['node']));
     $compare_weight = function ($a, $b) {
-      if ($a->weight == $b->weight) {
+      if ($a->weight_weight == $b->weight_weight) {
         return 0;
       }
       else {
-        return $a->weight < $b->weight ? -1 : 1;
+        return $a->weight_weight > $b->weight_weight ? -1 : 1;
       }
     };
     uasort($nodes, $compare_weight);
