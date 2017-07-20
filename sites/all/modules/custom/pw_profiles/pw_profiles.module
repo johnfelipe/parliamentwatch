@@ -546,18 +546,20 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   $list_position_values = [];
   $gender_options = [];
 
-  foreach ($query->execute()->fetchAll() as $row) {
-    if ($row->field_user_constituency_tid) {
+  foreach ($query->execute() as $row) {
+    if (isset($row->field_user_constituency_tid)) {
       $constituency_values[] = $row->field_user_constituency_tid;
     }
-    if ($row->field_user_list_tid) {
+    if (isset($row->field_user_list_tid)) {
       $list_values[] = $row->field_user_list_tid;
     }
-    if ($row->field_user_list_position_tid) {
+    if (isset($row->field_user_list_position_tid)) {
       $list_position_values[] = $row->field_user_list_position_tid;
     }
-    $party_values[] = $row->field_user_party_tid;
-    if ($row->field_user_gender_value !== NULL) {
+    if (isset($row->field_user_party_tid)) {
+      $party_values[] = $row->field_user_party_tid;
+    }
+    if (isset($row->field_user_gender_value)) {
       $gender_options[$row->field_user_gender_value] = t($row->field_user_gender_value);
     }
   }
