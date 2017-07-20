@@ -1469,7 +1469,7 @@ petitions/*
       'pages_block' => 1,
     ),
     'client-block-104846' => array(
-      'display' => 'full',
+      'display' => 'embedded',
       'pages_block' => '1',
       'confirmation_block' => '0',
     ),

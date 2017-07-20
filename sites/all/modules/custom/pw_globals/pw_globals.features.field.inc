@@ -1478,7 +1478,6 @@ function pw_globals_field_default_fields() {
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
-        'exclude_cv' => FALSE,
         'file_directory' => 'affiliates',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -1599,7 +1598,6 @@ function pw_globals_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
