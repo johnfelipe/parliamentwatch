@@ -142,8 +142,8 @@ function pw_blog_recent_blogposts_block() {
 
   if (!empty($result['node'])) {
     $nodes_rendered = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
-    $block['content']['head'] = array_shift($nodes_rendered);
-    $block['content']['tail'] = $nodes_rendered;
+    $block['content']['head']['nodes'] = array_shift($nodes_rendered['nodes']);
+    $block['content']['tail']['nodes'] = $nodes_rendered['nodes'];
     $block['content']['tail']['#theme_wrappers'] = ['container__small_tiles'];
   }
 
