@@ -2655,11 +2655,13 @@ function user_view($account, $view_mode = 'full', $langcode = NULL) {
 
   // Retrieve all profile fields and attach to $account->content.
   user_build_content($account, $view_mode, $langcode);
+  if(empty($account->content)){
+    return array();
+  }
 
   $build = $account->content;
   // We don't need duplicate rendering info in account->content.
   unset($account->content);
-
   $build += array(
     '#theme' => 'user_profile',
     '#account' => $account,
