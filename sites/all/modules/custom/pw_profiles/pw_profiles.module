@@ -540,9 +540,6 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   $query->leftJoin('field_revision_field_user_gender', 'fug', 'fug.revision_id = ur.vid');
   $query->addField('fug', 'field_user_gender_value');
 
-  $last_name_options = array('' => t('All'));
-  $alphabet = range(ord('A'), ord('Z'));
-
   $constituency_values = [];
   $party_values = [];
   $list_values = [];
@@ -560,18 +557,12 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
       $list_position_values[] = $row->field_user_list_position_tid;
     }
     $party_values[] = $row->field_user_party_tid;
-    $last_name_initial = drupal_strtoupper(drupal_substr(transliteration_get($row->field_user_lname_value), 0, 1));
-    if (in_array(ord($last_name_initial), $alphabet)) {
-      $last_name_options[$last_name_initial] = $last_name_initial;
-    }
     if ($row->field_user_gender_value !== NULL) {
       $gender_options[$row->field_user_gender_value] = t($row->field_user_gender_value);
     }
   }
 
   $parameters = drupal_get_query_parameters();
-
-  ksort($last_name_options);
 
   $form['#method'] = 'get';
   $form['#theme'] = 'filterbar';
