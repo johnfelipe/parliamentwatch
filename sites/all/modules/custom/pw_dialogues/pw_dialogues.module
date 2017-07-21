@@ -631,8 +631,9 @@ function pw_dialogues_topics_by_user_revision($account) {
   $q->addExpression('COUNT(n.nid)', 'count');
   $q->condition('n.type', 'dialogue');
   $q->condition('n.status', NODE_PUBLISHED);
-  $q->condition('r.field_dialogue_recipient_target_id', $account->uid);
   $q->condition('p.field_parliament_tid', pw_profiles_parliament($account)->tid);
+  $q->condition('r.field_dialogue_recipient_target_id', $account->uid);
+  $q->condition('t.entity_type', 'node');
   $q->groupBy('t.field_dialogue_topic_tid');
 
   return $q->execute()->fetchAllKeyed();
@@ -657,6 +658,7 @@ function pw_dialogues_topics_by_parliament($term) {
   $q->condition('n.type', 'dialogue');
   $q->condition('n.status', NODE_PUBLISHED);
   $q->condition('p.field_parliament_tid', $term->tid);
+  $q->condition('t.entity_type', 'node');
   $q->groupBy('t.field_dialogue_topic_tid');
 
   return $q->execute()->fetchAllKeyed();
