@@ -63,6 +63,14 @@
         line-height: 104px;
       }
     }
+    svg {
+      width: 84px;
+      height: 84px;
+      @include breakpoint($breakpoint-l-min) {
+        width: 104px;
+        height: 104px;
+      }
+    }
   }
   .tile__title {
     text-align: center;

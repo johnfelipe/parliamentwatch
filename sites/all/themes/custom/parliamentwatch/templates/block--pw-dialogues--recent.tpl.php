@@ -50,7 +50,7 @@
     <?php print render($title_suffix) ?>
   </div>
   <div class="intro__right">
-    <a href="<?php print url('dialogues/' . menu_get_object('taxonomy_term', 2)->tid); ?>" class="btn btn--mobile-block"><?php print t('Questions overview') ?></a>
+    <a href="<?php print url('dialogues/' . menu_get_object('taxonomy_term', 2)->tid); ?>" class="btn btn--white btn--mobile-block"><?php print t('Questions overview') ?></a>
   </div>
 </div>
 <div class="tile-wrapper question-teaser">

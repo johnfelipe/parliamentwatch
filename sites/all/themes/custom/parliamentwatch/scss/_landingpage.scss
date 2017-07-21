@@ -93,11 +93,11 @@
       display: block;
       position: absolute;
       font-family: 'awfont';
-      font-size: 1.8em;
+      font-size: 50px;
       left: $space-xsmall-mobile;
       top: -$space-xsmall-mobile;
       @include breakpoint($breakpoint-xs-min) {
-        font-size: 2em;
+        font-size: 64px;
       }
     }
   }

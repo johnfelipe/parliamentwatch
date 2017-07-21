@@ -21,27 +21,38 @@
 /* Logo */
 
 .header__logo {
-  max-width: 220px;
   float: left;
   position: relative;
   z-index: 9;
   margin-left: $space;
-
   @include padding($space-mobile null);
-  @include breakpoint($breakpoint-xs-min) {
-    max-width: 250px;
-  }
   @include breakpoint($breakpoint-s-min) {
-    max-width: 270px;
     @include padding(($space-mobile - 3) null);
   }
   @include breakpoint($breakpoint-l-min) {
-    max-width: 270px;
     @include padding($space null);
   }
-  @include breakpoint($breakpoint-xl-min) {
-    max-width: 300px;
-    width: 310px;
+  svg {
+    padding-bottom: 1px;
+    overflow: hidden;
+    width: 220px;
+    height: 28px;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 250px;
+      height: 32px;
+    }
+    @include breakpoint($breakpoint-s-min) {
+      width: 270px;
+      height: 34px;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      width: 270px;
+      height: 34px;
+    }
+    @include breakpoint($breakpoint-xl-min) {
+      width: 310px;
+      height: 38px;
+    }
   }
 }
 
@@ -62,8 +73,10 @@
   width: 280px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .3);
   perspective: 1000px;
-  @include transform(translate3d(120%, 0, 0));
   @include transition(transform 0.5s);
+  @media (max-width: $breakpoint-s-max) {
+    @include transform(translate3d(120%, 0, 0));
+  }
   @include breakpoint($breakpoint-m-min) {
     position: static;
     display: block;
@@ -74,7 +87,6 @@
 
     @include perspective(initial);
     @include transition(initial);
-    @include transform(initial);
     @include grid-container;
   }
   .nav__item {
