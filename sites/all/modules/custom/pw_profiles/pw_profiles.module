@@ -366,7 +366,7 @@ function pw_profiles_page($parliament_term, $role_name) {
 }
 
 /**
- * Title callback; returns title for profile lists.
+ * Title callback: Returns title for list of profile.
  *
  * @param string $parliament
  *   The parliament name
@@ -378,23 +378,12 @@ function pw_profiles_page($parliament_term, $role_name) {
  *   The title of the page
  */
 function pw_profiles_page_title($parliament, $role_name) {
-
-  $role = $role_name == 'candidates' ? 'Kandidierende' : 'Abgeordnete';
-
-  if (stripos($parliament->name, 'Bundestag') > -1) {
-    $text = $role_name == 'candidates' ? '@role für den @parliament' : '@role aus dem @parliament';
-  }
-  elseif (stripos($parliament->name, 'Saarland') > -1) {
-    $text = '@role für das @parliament';
-  }
-  elseif (substr($parliament->name, 0, 2) == "EU") {
-    $text = '@role für die @parliament';
+  if ($role_name == 'candidates') {
+    return t('Candidates @parliament', ['@parliament' => $parliament->name]);
   }
   else {
-    $text = '@role für @parliament';
+    return t('Deputies @parliament', ['@parliament' => $parliament->name]);
   }
-
-  return format_string($text, array('@role' => $role, '@parliament' => $parliament->name));
 }
 
 /**
