@@ -600,7 +600,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
   );
   $form['age'] = array(
     '#type' => 'textfield',
-    '#attributes' => ['type' => 'number'],
+    '#attributes' => ['type' => 'number', 'min' => 18],
     '#title' => t('Age'),
     '#title_display' => 'invisible',
     '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
