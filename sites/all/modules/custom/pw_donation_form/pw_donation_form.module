@@ -185,32 +185,3 @@ function pw_donation_form_webform_submission_presave($node, &$submission) {
     $form_values['civicrm_description'] = 'Webform - ' . date('Y-m-d H:i');
   }
 }
-
-
-function pw_donation_form_block_view_alter(&$data, $block){
-  if ($block->delta === "pw_testimonials_header-block"){
-    drupal_add_js(drupal_get_path('module', 'pw_donation_form') . '/pw_donation_form_update_counter.js');
-    $member_counter = pw_donation_membership_count();
-    $member_counter = number_format($member_counter, 0, ',', '.');
-    $data['content']['#markup'] = str_replace('%count%', $member_counter, $data['content']['#markup']);
-  }
-}
-
-
-/**
- * reads and returns number of members
- * @return int
- *   Number of members
- */
-function pw_donation_membership_count() {
-  $count_members = 0;
-  $files_path = variable_get('file_public_path', conf_path() . '/files');
-  if(file_exists($files_path.'/membership-count.txt')){
-    $file_content = file_get_contents($files_path.'/membership-count.txt');
-    $file_content = preg_replace('/\D/', '', $file_content);
-    if(is_int((int) $file_content)){
-      $count_members = (int) $file_content;
-    }
-  }
-  return $count_members;
-}
