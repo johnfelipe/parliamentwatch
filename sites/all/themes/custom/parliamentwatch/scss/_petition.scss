@@ -333,6 +333,19 @@
 }
 
 /* Detail */
+.petition.detail {
+  .sidebar-container {
+    padding-bottom: $space-large;
+  }
+  > h2 {
+    clear: both;
+    margin-top: $space-large;
+  }
+}
+
+.petition__intro {
+  @include container();
+}
 
 .petition__info {
   @include grid-column(12, $neat-grid-rtl);
@@ -345,13 +358,15 @@
 
 .petition__sidebar {
   @include grid-column(12, $neat-grid-rtl);
+  padding-bottom: $space;
   @include breakpoint($breakpoint-m-min) {
+    padding-bottom: 0;
     padding-left: $space-large;
     @include grid-column(4, $neat-grid-rtl);
   }
 }
 
-.petition__sidebar__signing {
+.petition__sidebar__stats {
   padding: $space-small 0;
   margin-top: $space;
   margin-bottom: $space-large;
@@ -380,5 +395,24 @@
     top: 100%;
     margin-left: -12px;
     @include triangle(24px 8px, $white, down);
+  }
+}
+
+.petition__thesis {
+  @include container-extended($beige);
+  padding-top: $space-large;
+  padding-bottom: $space-large;
+  blockquote {
+    border-left: 4px solid $darkBeige;
+    padding-left: $space-small;
+    margin-bottom: 0;
+    @include grid-column(12);
+    @include h4();
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(8);
+    }
+    &:before {
+      content: none;
+    }
   }
 }

@@ -318,6 +318,10 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 
 /* Sidebar-Boxes */
 
+.sidebar-container {
+  @include grid-container();
+}
+
 .sidebar__box {
   padding-bottom: $space-large;
   @include breakpoint($breakpoint-l-min) {

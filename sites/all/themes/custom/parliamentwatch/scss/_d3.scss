@@ -70,6 +70,8 @@
     background: $color-accepted;
     display: block;
     width: 0;
+    max-width: 100%;
+
     @include transition(all 800ms ease 600ms);
   }
 }

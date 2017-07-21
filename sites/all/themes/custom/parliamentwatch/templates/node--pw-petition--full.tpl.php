@@ -96,25 +96,86 @@
     </div>
   <?php endif; ?>
 
-  <div class="petition__sidebar sidebar">
-    <?php print render($content['field_teaser_image']); ?>
-    <div class="petition__sidebar__signing">
-      <span class="d3 d3--bar-vertical"
-        data-bar-vertical
-        data-value="<?php print $field_petition_signings[0]['value']; ?>"
-        data-value_max="<?php print $field_petition_required[0]['value']; ?>"><span class="bar"></span></span>
-      <p><?php print render($content['field_petition_signings']); ?><br>
-        <small><?php print render($content['field_petition_required']); ?> <?php print t('signings are required')?></small></p>
+
+  <?php if ($field_petition_status[0]['value'] == 'open_for_signings'): ?>
+  <div class="petition__intro sidebar-container">
+    <div class="petition__sidebar sidebar">
+      <?php print render($content['field_teaser_image']); ?>
+      <div class="petition__sidebar__stats">
+        <span class="d3 d3--bar-vertical"
+              data-bar-vertical
+              data-value="<?php print $field_petition_signings[0]['value']; ?>"
+              data-value_max="<?php print $field_petition_required[0]['value']; ?>"><span class="bar"></span></span>
+        <p><?php print render($content['field_petition_signings']); ?><br>
+          <small><?php print render($content['field_petition_required']); ?> <?php print t('signings are required')?></small></p>
+      </div>
+      <a href="#" class="btn btn--large btn--block"><?php print t('Sign the petition'); ?></a>
     </div>
-    <a href="#" class="btn btn--large btn--block"><?php print t('Sign the petition'); ?></a>
+    <div class="petition__info">
+      <?php print render($content['body']); ?>
+    </div>
   </div>
-
-  <div class="petition__info">
-    <?php print render($content['body']); ?>
+  <h2>
+    <?php print t('Sign the petition'); ?>
+  </h2>
+  <div class="petition__thesis">
+    <blockquote>
+      <?php print render($content['field_petition_content']); ?>
+    </blockquote>
   </div>
+  <?php endif; ?>
 
+  <?php if ($field_petition_status[0]['value'] == 'collecting_donations'): ?>
+    <div class="petition__intro sidebar-container">
+      <div class="petition__sidebar sidebar">
+        <?php print render($content['field_teaser_image']); ?>
+        <div class="petition__sidebar__stats">
+          <span class="d3 d3--bar-vertical"
+              data-bar-vertical
+              data-value="<?php print $field_donation_amount[0]['value']; ?>"
+              data-value_max="<?php print $field_donation_required[0]['value']; ?>"><span class="bar"></span></span>
+          <p><?php print $field_donation_amount[0]['value']; ?> € <?php print t('of')?> <?php print render($content['field_donation_required']); ?> € <?php print t('gathered'); ?></p>
+        </div>
+        <a href="#" class="btn btn--large btn--block"><?php print t('Make a donation'); ?></a>
+      </div>
+      <div class="petition__info">
+        <?php print render($content['field_petition_text_donation']); ?>
+      </div>
+    </div>
+  <?php endif; ?>
 
-  <pre style="clear: both;">
-  <?php print_r($field_petition_required); ?>
-  </pre>
+  <?php if ($field_petition_status[0]['value'] == 'survey_in_progress'): ?>
+    <div class="petition__intro sidebar-container">
+      <div class="petition__sidebar sidebar">
+        <?php print render($content['field_teaser_image']); ?>
+      </div>
+      <div class="petition__info">
+        <?php print render($content['body']); ?>
+      </div>
+    </div>
+  <?php endif; ?>
+
+  <?php if ($field_petition_status[0]['value'] == 'asking_parliament'): ?>
+    <div class="petition__intro sidebar-container">
+      <div class="petition__sidebar sidebar">
+        <?php print render($content['field_teaser_image']); ?>
+      </div>
+      <div class="petition__info">
+        <?php print render($content['field_petition_text_parliament']); ?>
+      </div>
+    </div>
+  <?php endif; ?>
+
+  <?php if ($field_petition_status[0]['value'] == 'passed_parliament'): ?>
+    <div class="petition__intro sidebar-container">
+      <div class="petition__sidebar sidebar">
+        <?php print render($content['field_teaser_image']); ?>
+      </div>
+      <div class="petition__info">
+        <?php print $field_petition_text_passed[0]['summary']; ?>
+        <?php print render($content['field_petition_text_passed']); ?>
+      </div>
+    </div>
+  <?php endif; ?>
+
 </div>

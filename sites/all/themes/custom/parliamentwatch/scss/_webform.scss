@@ -82,6 +82,36 @@
   }
 }
 
+
+/* Webform - Petitions */
+
+.webform-client-form-10369 {
+  background: $beige;
+  padding: $space 0;
+  @include grid-container();
+  > .form__item {
+    @include grid-column(12);
+  }
+  .webform-component--e-mail,
+  .webform-component--phone,
+  .webform-component--first-name,
+  .webform-component--last-name {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(6);
+    }
+  }
+  .webform-component--zipcode {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(3);
+    }
+  }
+  .webform-component--city {
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(9);
+    }
+  }
+}
+
 /* Webform - Spendenformular */
 
 .form--webform-client-form-10508 {
