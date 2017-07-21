@@ -1063,24 +1063,25 @@ function _pw_globals_add_menu_block($block, $config) {
 function _pw_globals_configure_block($block) {
   $transaction = db_transaction();
   try {
-    foreach (system_list('theme') as $theme) {
-      if ($theme->status) {
-        $block['regions'] += [$theme->name => BLOCK_REGION_NONE];
+    if (array_key_exists('regions', $block)) {
+      foreach (system_list('theme') as $theme) {
+        if ($theme->status) {
+          $block['regions'] += [$theme->name => BLOCK_REGION_NONE];
+        }
       }
-    }
-
-    foreach ($block['regions'] as $theme => $region) {
-      db_merge('block')
-        ->key(['theme' => $theme, 'delta' => $block['delta'], 'module' => $block['module']])
-        ->fields([
-          'region' => ($region == BLOCK_REGION_NONE ? '' : $region),
-          'visibility' => (int) $block['visibility'],
-          'pages' => trim($block['pages']),
-          'status' => (int) ($region != BLOCK_REGION_NONE),
-          'weight' => $block['weight'],
-          'cache' => $block['cache'],
-        ])
-        ->execute();
+      foreach ($block['regions'] as $theme => $region) {
+        db_merge('block')
+          ->key(['theme' => $theme, 'delta' => $block['delta'], 'module' => $block['module']])
+          ->fields([
+            'region' => ($region == BLOCK_REGION_NONE ? '' : $region),
+            'visibility' => (int) $block['visibility'],
+            'pages' => trim($block['pages']),
+            'status' => (int) ($region != BLOCK_REGION_NONE),
+            'weight' => $block['weight'],
+            'cache' => $block['cache'],
+          ])
+          ->execute();
+      }
     }
 
     if (array_key_exists('roles', $block)) {
