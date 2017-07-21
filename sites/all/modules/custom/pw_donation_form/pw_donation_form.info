@@ -25,5 +25,4 @@ features[views_view][] = pw_donation_drive
 features[views_view][] = pw_donation_state
 features[views_view][] = pw_donations_recent
 scripts[] = pw_donation_form.js
-stylesheets[all][] = pw_donation_form.css
 mtime = 1465373567
