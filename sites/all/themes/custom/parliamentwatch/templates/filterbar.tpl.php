@@ -44,12 +44,12 @@
           if ($form[$children[$i]]['#type'] == 'select') {
             $classes = 'filterbar__item--select';
           }
-          elseif (!isset($form[$children[$i]]['#options']) || count($form[$children[$i]]['#options']) > 2) {
-            $classes = 'filterbar__item--dropdown dropdown';
-            $dropdown = TRUE;
+          elseif ($form[$children[$i]]['#type'] == 'checkboxes' && count($form[$children[$i]]['#options']) < 3) {
+            $classes = 'filterbar__item--checkbox';
           }
           else {
-            $classes = 'filterbar__item--checkbox';
+            $classes = 'filterbar__item--dropdown dropdown';
+            $dropdown = TRUE;
           }
 
           if (!empty($form[$children[$i]]['#default_value'])) {
