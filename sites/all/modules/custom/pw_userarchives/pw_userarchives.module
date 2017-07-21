@@ -23,7 +23,6 @@ function pw_userarchives_entity_info_alter(&$entity_info) {
  * 4. Update fields, index, etc.
  */
 function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
-
   // check if election date or parliaments end date is reached, then delete profiles from meta table for triggering refresh
   if ($uid == NULL) {
     $vocabulary = taxonomy_vocabulary_machine_name_load('parliaments');
@@ -227,9 +226,14 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   }
 
   // update politician index
+  $vids_for_index_update = db_select('user_revision', 'ur')
+    ->fields('ur', ['vid'])
+    ->condition('ur.uid', $uid)
+    ->execute()
+    ->fetchCol();
   $politician_index = search_api_index_load('politician_archive_index');
   if ($politician_index) {
-    search_api_index_specific_items($politician_index, $vids);
+    search_api_index_specific_items($politician_index, $vids_for_index_update);
   }
 
   return 'Done';
