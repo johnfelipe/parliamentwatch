@@ -674,10 +674,16 @@ function pw_dialogues_topics_by_parliament($term) {
 function pw_dialogues_recipient_user_revision($node) {
   $uid = $node->field_dialogue_recipient[LANGUAGE_NONE][0]['target_id'];
   $tid = $node->field_parliament[LANGUAGE_NONE][0]['tid'];
+  $before_election = $node->field_dialogue_before_election[LANGUAGE_NONE][0]['value'];
 
   foreach (pw_profiles_archived_revisions(user_load($uid)) as $account) {
     if ($account->field_user_parliament[LANGUAGE_NONE][0]['tid'] == $tid) {
-      return user_revision_load($uid, $account->vid);
+      if ($before_election && _pw_user_has_role($account, 'Candidate')) {
+        return user_revision_load($uid, $account->vid);
+      }
+      elseif (!$before_election && _pw_user_has_role($account, 'Deputy')) {
+        return user_revision_load($uid, $account->vid);
+      }
     }
   }
 }
