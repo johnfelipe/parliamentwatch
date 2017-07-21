@@ -80,33 +80,41 @@
  * @ingroup themeable
  */
 ?>
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> poll detail sidebar-container clearfix"<?php print $attributes; ?> data-poll-id="<?php print $node->nid; ?>">
+<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> petition detail sidebar-container"<?php print $attributes; ?>>
 
-  <div id="poll-content" class="poll__content container">
-    <div class="poll__content__left">
-      <?php print render($content['body']); ?>
+  <?php print $user_picture; ?>
+
+  <?php print render($title_prefix); ?>
+  <?php if (!$page): ?>
+    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+  <?php endif; ?>
+  <?php print render($title_suffix); ?>
+
+  <?php if ($display_submitted): ?>
+    <div class="submitted">
+      <?php print $submitted; ?>
     </div>
-    <div class="poll__content__right sidebar">
-      <?php if ($content['field_blogpost_categories']): ?>
-      <div class="sidebar__box">
-        <h3 class="sidebar__box__headline"><?php print t('Tags'); ?> <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-tags') ?>"></i></h3>
-        <div class="sidebar__box__tag_list">
-          <?php print render($content['field_blogpost_categories']); ?>
-        </div>
-      </div>
-      <?php endif; ?>
+  <?php endif; ?>
+
+  <div class="petition__sidebar sidebar">
+    <?php print render($content['field_teaser_image']); ?>
+    <div class="petition__sidebar__signing">
+      <span class="d3 d3--bar-vertical"
+        data-bar-vertical
+        data-value="<?php print $field_petition_signings[0]['value']; ?>"
+        data-value_max="<?php print $field_petition_required[0]['value']; ?>"><span class="bar"></span></span>
+      <p><?php print render($content['field_petition_signings']); ?><br>
+        <small><?php print render($content['field_petition_required']); ?> <?php print t('signings are required')?></small></p>
     </div>
+    <a href="#" class="btn btn--large btn--block"><?php print t('Sign the petition'); ?></a>
   </div>
-  <div class="share">
-    <div class="container">
-      <h3><?php print t('Share this poll with your friends') ?></h3>
-      <ul class="share__links">
-        <li class="share__links__item share__links__item--facebook"><a class="share__links__item__link" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php print drupal_encode_path(url($node_url,array('absolute'=>TRUE))); ?>"><i class="icon icon-facebook"></i> <span>teilen</span></a></li>
-        <li class="share__links__item share__links__item--twitter"><a class="share__links__item__link" target="_blank" href="https://twitter.com/home?status=<?php print drupal_encode_path(url($node_url,array('absolute'=>TRUE))); ?>"><i class="icon icon-twitter"></i> <span>tweet</span></a></li>
-        <li class="share__links__item share__links__item--google"><a class="share__links__item__link" target="_blank" href="https://plus.google.com/share?url=<?php print drupal_encode_path(url($node_url,array('absolute'=>TRUE))); ?>"><i class="icon icon-google-plus"></i> <span>+1</span></a></li>
-        <li class="share__links__item share__links__item--whatsapp"><a class="share__links__item__link" href="whatsapp://send?text=<?php print drupal_encode_path(url($node_url,array('absolute'=>TRUE))); ?>"><i class="icon icon-whatsapp"></i> <span>WhatsApp</span></a></li>
-        <li class="share__links__item share__links__item--mail"><a class="share__links__item__link" href="mailto:?&body=<?php print drupal_encode_path(url($node_url,array('absolute'=>TRUE))); ?>"><i class="icon icon-mail"></i> <span>e-mail</span></a></li>
-      </ul>
-    </div>
+
+  <div class="petition__info">
+    <?php print render($content['body']); ?>
   </div>
-</article>
+
+
+  <pre style="clear: both;">
+  <?php print_r($field_petition_required); ?>
+  </pre>
+</div>

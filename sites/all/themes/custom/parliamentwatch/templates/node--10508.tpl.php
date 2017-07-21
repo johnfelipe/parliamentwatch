@@ -80,7 +80,7 @@
  * @ingroup themeable
  */
 ?>
-<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> webform-wrapper"<?php print $attributes; ?>>
+<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> webform-wrapper sidebar-container"<?php print $attributes; ?>>
   <?php print $user_picture; ?>
   <div class="webform">
     <?php print render($title_prefix); ?>

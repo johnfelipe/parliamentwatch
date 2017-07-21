@@ -61,6 +61,18 @@
   }
 }
 
+.d3--bar-vertical {
+  position: relative;
+  height: $space-large + $space;
+  background: $brightGray;
+  .bar {
+    height: $space-large + $space;
+    background: $color-accepted;
+    display: block;
+    width: 0;
+    @include transition(all 800ms ease 600ms);
+  }
+}
 
 /* D3 - Labels */
 

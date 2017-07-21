@@ -331,3 +331,54 @@
     @include transform(translate(0,-50%));
   }
 }
+
+/* Detail */
+
+.petition__info {
+  @include grid-column(12, $neat-grid-rtl);
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(8, $neat-grid-rtl);
+  }
+  .floatbox-left { margin-left: 0; }
+  .floatbox-right { margin-right: 0; }
+}
+
+.petition__sidebar {
+  @include grid-column(12, $neat-grid-rtl);
+  @include breakpoint($breakpoint-m-min) {
+    padding-left: $space-large;
+    @include grid-column(4, $neat-grid-rtl);
+  }
+}
+
+.petition__sidebar__signing {
+  padding: $space-small 0;
+  margin-top: $space;
+  margin-bottom: $space-large;
+  border-top: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  position: relative;
+  p {
+    text-align: center;
+    padding-top: $space-xsmall;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 100%;
+    margin-left: -13px;
+    @include triangle(26px 9px, $mediumGray, down);
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 100%;
+    margin-left: -12px;
+    @include triangle(24px 8px, $white, down);
+  }
+}

@@ -546,6 +546,22 @@ function d3BarsVertical(element) {
         });
 }
 
+/*
+ * D3: Bar vertical
+ * */
+
+function d3BarVertical(element) {
+    var wrapper = element;
+    var dataValue = wrapper.dataset.value;
+    var dataValueMax = wrapper.dataset.value_max;
+
+    var barWidth = 100/ dataValueMax * dataValue;
+    var barWidth = barWidth + '%';
+
+    console.log(element);
+    $('.d3--bar-vertical').find('.bar').attr('style', 'width:' + barWidth + ';');
+}
+
 
 /*
  * D3: Donut
@@ -1156,12 +1172,12 @@ function sidebar() {
             if ($("body").hasClass("admin-menu")) {
                 $(".sidebar").stick_in_parent({
                     offset_top: sideBarOffsetAdmin,
-                    parent: '#content'
+                    parent: '.sidebar-container'
                 });
             } else {
                 $(".sidebar").stick_in_parent({
                     offset_top: sideBarOffset,
-                    parent: '#content'
+                    parent: '.sidebar-container'
                 });
             }
         }
@@ -1244,6 +1260,12 @@ $(function () {
         d3BarVerticalStackedPoll(this);
         $(this)
     });
+    $('[data-bar-vertical]').each(function( index ) {
+        d3BarVertical(this);
+        $(this)
+    });
+
+
 
     // Init functions on window resize
 

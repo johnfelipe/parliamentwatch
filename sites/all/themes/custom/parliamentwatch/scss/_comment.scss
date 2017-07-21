@@ -7,6 +7,7 @@
   padding-top: $space-large;
   padding-bottom: $space-large * 2;
   background: $beige;
+  clear: both;
   @include container();
   > h2 {
     @include grid-column(12);
