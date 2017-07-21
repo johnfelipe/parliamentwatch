@@ -1020,6 +1020,17 @@ function pw_globals_update_7029() {
 }
 
 /**
+ * Configure block for signing petitions
+ */
+function pw_globals_update_7030() {
+  $block = (array) block_load('webform', 'client-block-10369');
+  $block['regions'] = ['parliamentwatch' => 'content', 'blank' => 'content'];
+  $block['weight'] = 0;
+  $block['node_types'] = ['pw_petition'];
+  _pw_globals_configure_block($block);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
