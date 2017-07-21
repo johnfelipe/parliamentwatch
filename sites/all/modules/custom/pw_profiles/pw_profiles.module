@@ -294,7 +294,7 @@ function pw_profiles_user_uri($user) {
 function pw_profiles_page($parliament_term, $role_name) {
   $limit = 12;
 
-  $q = search_api_query('politician_archive_index');
+  $q = search_api_query('politician_archive_index', ['search_api_facets' => _pw_profiles_facets()]);
   $q->condition('field_user_retired', NULL, '=');
   $q->condition('field_user_parliament', $parliament_term->tid);
 
@@ -306,19 +306,22 @@ function pw_profiles_page($parliament_term, $role_name) {
   }
 
   if (isset(drupal_get_query_parameters()['constituency'])) {
-    $q->condition('field_user_constituency', drupal_get_query_parameters()['constituency']);
+    $f = new SearchApiQueryFilter('OR', ['facet:field_user_constituency']);
+    $q->filter($f->condition('field_user_constituency', drupal_get_query_parameters()['constituency']));
   }
 
   if (isset(drupal_get_query_parameters()['list'])) {
-    $q->condition('field_user_list', drupal_get_query_parameters()['list']);
+    $f = new SearchApiQueryFilter('OR', ['facet:field_user_list']);
+    $q->filter($f->condition('field_user_list', drupal_get_query_parameters()['list']));
   }
 
   if (isset(drupal_get_query_parameters()['list_position'])) {
-    $q->condition('field_user_list_position', drupal_get_query_parameters()['list_position']);
+    $f = new SearchApiQueryFilter('OR', ['facet:field_user_list_position']);
+    $q->filter($f->condition('field_user_list_position', drupal_get_query_parameters()['list_position']));
   }
 
   if (isset(drupal_get_query_parameters()['party'])) {
-    $f = new SearchApiQueryFilter('OR');
+    $f = new SearchApiQueryFilter('OR', ['facet:field_user_party']);
     foreach (drupal_get_query_parameters()['party'] as $party) {
       $f->condition('field_user_party', $party);
     }
@@ -326,7 +329,7 @@ function pw_profiles_page($parliament_term, $role_name) {
   }
 
   if (isset(drupal_get_query_parameters()['gender'])) {
-    $f = new SearchApiQueryFilter('OR');
+    $f = new SearchApiQueryFilter('OR', ['facet:field_user_gender']);
     foreach (drupal_get_query_parameters()['gender'] as $gender) {
       $f->condition('field_user_gender', $gender);
     }
@@ -366,7 +369,7 @@ function pw_profiles_page($parliament_term, $role_name) {
   }
 
   $build['user']['#theme_wrappers'] = ['container__tiles'];
-  $build['filters'] = drupal_get_form('pw_profiles_filters_form', $parliament_term, $role_name);
+  $build['filters'] = drupal_get_form('pw_profiles_filters_form', $parliament_term, $response['search_api_facets']);
   $build['filters']['#weight'] = -5;
 
   return $build;
@@ -497,120 +500,15 @@ function pw_profiles_archived_revisions($account, $direction = 'ASC') {
 }
 
 /**
- * Returns a query for fetching uids and vids.
- *
- * @param array $filters
- *   The filters to apply to the query
- *
- * @return SelectQueryInterface
- *   The query object
- */
-function pw_profiles_user_revision_query($filters = []) {
-  $query = db_select('user_revision', 'ur');
-  $query->join('user_archive_cache', 'uac', 'uac.vid = ur.vid');
-  $query->fields('ur')->fields('uac');
-  _pw_uac_add_conditions($query, $filters);
-
-  if (!empty($filters['party'])) {
-    $query->join('field_revision_field_user_party', 'fup', 'fup.revision_id = ur.vid');
-    $query->condition('fup.field_user_party_tid', $filters['party'], 'IN');
-  }
-
-  if (!empty($filters['region'])) {
-    $query->join('field_revision_field_user_constituency', 'fuc', 'fuc.revision_id = ur.vid');
-    $query->join('field_data_field_electoral_region', 'fer', 'fuc.field_user_constituency_tid = fer.entity_id');
-    $query->join('field_revision_field_user_list', 'ful', 'ful.revision_id = ur.vid');
-    $query->join('field_data_field_electoral_region', 'fer2', 'ful.field_user_list_tid = fer2.entity_id');
-    $query->condition(db_or()
-      ->condition('fer.field_electoral_region_tid', $filters['region'])
-      ->condition('fer2.field_electoral_region_tid', $filters['region']));
-  }
-
-  if (!empty($filters['constituency'])) {
-    if (empty($filters['region'])) {
-      $query->join('field_revision_field_user_constituency', 'fuc', 'fuc.revision_id = ur.vid');
-    }
-    $query->condition('fuc.field_user_constituency_tid', $filters['constituency']);
-  }
-
-  if (!empty($filters['list'])) {
-    if (empty($filters['region'])) {
-      $query->join('field_revision_field_user_list', 'ful', 'ful.revision_id = ur.vid');
-    }
-    $query->condition('ful.field_user_list_tid', $filters['list']);
-  }
-
-  if (!empty($filters['list_position'])) {
-    $query->join('field_revision_field_user_list_position', 'fulp', 'fulp.revision_id = ur.vid');
-    $query->condition('fulp.field_user_list_position_tid', $filters['list_position']);
-  }
-
-  if (!empty($filters['last_name'])) {
-    $query->join('field_revision_field_user_lname', 'fuln', 'fuln.revision_id = ur.vid');
-    $query->condition('fuln.field_user_lname_value', $filters['last_name'] . '%', 'LIKE');
-  }
-
-  if (!empty($filters['age'])) {
-    $query->join('field_revision_field_user_age', 'fua', 'fua.revision_id = ur.vid');
-    $query->condition('fua.field_user_age_value', $filters['age'], '>=');
-  }
-
-  if (!empty($filters['gender'])) {
-    $query->join('field_revision_field_user_gender', 'fug', 'fug.revision_id = ur.vid');
-    $query->condition('fug.field_user_gender_value', $filters['gender']);
-  }
-
-  return $query;
-}
-
-/**
  * Form constructor for the profile filters form.
  */
-function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) {
+function pw_profiles_filters_form($form, &$form_state, $parliament, $facets) {
 
-  $filters = [
-    'roles' => $role_name == 'candidates' ? 'candidate' : 'deputy',
-    'parliament' => $parliament->name,
-    'date' => date('Y-m-d'),
-  ];
-
-  $query = pw_profiles_user_revision_query($filters);
-  $query->leftJoin('field_revision_field_user_constituency', 'fuc', 'fuc.revision_id = ur.vid');
-  $query->addField('fuc', 'field_user_constituency_tid');
-  $query->leftJoin('field_revision_field_user_party', 'fup', 'fup.revision_id = ur.vid');
-  $query->addField('fup', 'field_user_party_tid');
-  $query->leftJoin('field_revision_field_user_list', 'ful', 'ful.revision_id = ur.vid');
-  $query->addField('ful', 'field_user_list_tid');
-  $query->leftJoin('field_revision_field_user_list_position', 'fulp', 'fulp.revision_id = ur.vid');
-  $query->addField('fulp', 'field_user_list_position_tid');
-  $query->leftJoin('field_revision_field_user_lname', 'fuln', 'fuln.revision_id = ur.vid');
-  $query->addField('fuln', 'field_user_lname_value');
-  $query->leftJoin('field_revision_field_user_gender', 'fug', 'fug.revision_id = ur.vid');
-  $query->addField('fug', 'field_user_gender_value');
-
-  $constituency_values = [];
-  $party_values = [];
-  $list_values = [];
-  $list_position_values = [];
-  $gender_options = [];
-
-  foreach ($query->execute() as $row) {
-    if (isset($row->field_user_constituency_tid)) {
-      $constituency_values[] = $row->field_user_constituency_tid;
-    }
-    if (isset($row->field_user_list_tid)) {
-      $list_values[] = $row->field_user_list_tid;
-    }
-    if (isset($row->field_user_list_position_tid)) {
-      $list_position_values[] = $row->field_user_list_position_tid;
-    }
-    if (isset($row->field_user_party_tid)) {
-      $party_values[] = $row->field_user_party_tid;
-    }
-    if (isset($row->field_user_gender_value)) {
-      $gender_options[$row->field_user_gender_value] = t($row->field_user_gender_value);
-    }
-  }
+  $constituency_values = _pw_profiles_facet_values($facets['field_user_constituency']);
+  $party_values = _pw_profiles_facet_values($facets['field_user_party']);
+  $list_values = _pw_profiles_facet_values($facets['field_user_list']);
+  $list_position_values = _pw_profiles_facet_values($facets['field_user_list_position']);
+  $gender_options = array_combine(_pw_profiles_facet_values($facets['field_user_gender']), array_map('t', _pw_profiles_facet_values($facets['field_user_gender'])));
 
   $parameters = drupal_get_query_parameters();
 
@@ -622,7 +520,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
     '#title_display' => 'invisible',
     '#default_value' => isset($parameters['keys']) ? $parameters['keys'] : '',
   ];
-  if (!empty($constituency_values)) {
+  if (count($constituency_values) > 1) {
     $form['constituency'] = array(
       '#type' => 'select',
       '#title' => isset($parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value'] : t('Constituency'),
@@ -631,7 +529,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
       '#default_value' => empty($parameters['constituency']) ? '' : $parameters['constituency'],
     );
   }
-  if (!empty($list_values) && !pw_profiles_filter_disabled('field_user_list_tid', $parliament)) {
+  if (count($list_values) > 1 && !pw_profiles_filter_disabled('field_user_list_tid', $parliament)) {
     $form['list'] = array(
       '#type' => 'radios',
       '#title' => isset($parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value'] : t('List'),
@@ -640,7 +538,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
       '#default_value' => empty($parameters['list']) ? '' : $parameters['list'],
     );
   }
-  if (!empty($list_position_values) && !pw_profiles_filter_disabled('field_user_list_position_tid', $parliament)) {
+  if (count($list_position_values) > 1 && !pw_profiles_filter_disabled('field_user_list_position_tid', $parliament)) {
     $form['list_position'] = array(
       '#type' => 'select',
       '#title' => t('List position'),
@@ -649,14 +547,16 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
       '#default_value' => empty($parameters['list_position']) ? '' : $parameters['list_position'],
     );
   }
-  $form['party'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Filter by party'),
-    '#title_display' => 'invisible',
-    '#options' => ['' => t('All')] + _pw_profiles_options($party_values),
-    '#multiple' => TRUE,
-    '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
-  );
+  if (count($party_values) > 1) {
+    $form['party'] = array(
+      '#type' => 'checkboxes',
+      '#title' => t('Filter by party'),
+      '#title_display' => 'invisible',
+      '#options' => _pw_profiles_options($party_values),
+      '#multiple' => TRUE,
+      '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
+    );
+  }
   $form['age'] = array(
     '#type' => 'textfield',
     '#attributes' => ['type' => 'number', 'min' => 18],
@@ -664,13 +564,15 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $role_name) 
     '#title_display' => 'invisible',
     '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
   );
-  $form['gender'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Gender'),
-    '#title_display' => 'invisible',
-    '#options' => $gender_options,
-    '#default_value' => empty($parameters['gender']) ? [] : $parameters['gender'],
-  );
+  if (count($gender_values) > 1) {
+    $form['gender'] = array(
+      '#type' => 'checkboxes',
+      '#title' => t('Gender'),
+      '#title_display' => 'invisible',
+      '#options' => $gender_options,
+      '#default_value' => empty($parameters['gender']) ? [] : $parameters['gender'],
+    );
+  }
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Filter profiles'),
@@ -713,6 +615,46 @@ function pw_profiles_filter_disabled($filter, $parliament) {
  */
 function pw_profiles_username_load($name) {
   return user_load_by_name($name);
+}
+
+/**
+ * Returns list of facets for the profile page.
+ *
+ * @return array
+ *   An associative array to be used as facets option for a query.
+ */
+function _pw_profiles_facets() {
+  $common = ['limit' => -1, 'min_count' => 1, 'missing' => TRUE, 'operator' => 'or'];
+  return [
+    'field_user_list' => ['field' => 'field_user_list'] + $common,
+    'field_user_list_position' => ['field' => 'field_user_list_position'] + $common,
+    'field_user_gender' => ['field' => 'field_user_gender'] + $common,
+    'field_user_party' => ['field' => 'field_user_party'] + $common,
+    'field_user_constituency' => ['field' => 'field_user_constituency'] + $common,
+  ];
+}
+
+/**
+ * Extracts the values from a facet.
+ *
+ * This function also removes the additional double quotes around the value.
+ *
+ * @param array $facet
+ *   The facet.
+ *
+ * @return array
+ *   An array of values for filtering the result.
+ */
+function _pw_profiles_facet_values($facet) {
+  $values = [];
+
+  foreach ($facet as $result) {
+    if ($result['filter'] != '!') {
+      $values[] = trim($result['filter'], '"');
+    }
+  }
+
+  return $values;
 }
 
 /**
