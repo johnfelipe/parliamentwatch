@@ -1020,14 +1020,18 @@ function pw_globals_update_7029() {
 }
 
 /**
- * Configure block for signing petitions
+ * Configure petition blocks.
  */
 function pw_globals_update_7030() {
-  $block = (array) block_load('webform', 'client-block-10369');
-  $block['regions'] = ['parliamentwatch' => 'content', 'blank' => 'content'];
-  $block['weight'] = 0;
-  $block['node_types'] = ['pw_petition'];
-  _pw_globals_configure_block($block);
+  $block1 = (array) block_load('webform', 'client-block-10369');
+  $block1['regions'] = ['parliamentwatch' => 'content', 'blank' => 'content'];
+  $block1['weight'] = 0;
+  $block1['node_types'] = ['pw_petition'];
+  _pw_globals_configure_block($block1);
+
+  $block2 = (array) block_load('pw_globals', 'comments');
+  $block2['node_types'] = ['pw_petition', 'poll', 'blogpost'];
+  _pw_globals_configure_block($block2);
 }
 
 /**
