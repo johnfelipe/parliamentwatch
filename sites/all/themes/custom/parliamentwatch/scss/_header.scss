@@ -74,7 +74,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, .3);
   perspective: 1000px;
   @include transition(transform 0.5s);
-  @media (max-width: $breakpoint-s-max) {
+  @media (max-width: $breakpoint-m-max) {
     @include transform(translate3d(120%, 0, 0));
   }
   @include breakpoint($breakpoint-m-min) {
@@ -82,7 +82,6 @@
     display: block;
     width: auto;
     background: transparent;
-
     box-shadow: none;
 
     @include perspective(initial);
