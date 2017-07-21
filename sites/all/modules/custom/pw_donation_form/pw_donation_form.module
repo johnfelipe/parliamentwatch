@@ -7,12 +7,6 @@
 
 include_once 'pw_donation_form.features.inc';
 
-/**
- * Add module css and js
- */
-//drupal_add_css(drupal_get_path('module', 'pw_donation_form') .'/pw_donation_form.css','all');
-//drupal_add_js(drupal_get_path('module', 'pw_donation_form') . '/pw_donation_form.js');
-
 
 /**
  * Implements hook_form_alter()..
@@ -122,8 +116,7 @@ function pw_donation_form_webform_csv_data_alter(&$data, $component) {
 }
 
 /**
- * Implements hook_webform_submission_presave()..
- * alters data before submission will be saved
+ * Implements hook_webform_submission_presave().
  */
 function pw_donation_form_webform_submission_presave($node, &$submission) {
 
@@ -161,27 +154,8 @@ function pw_donation_form_webform_submission_presave($node, &$submission) {
       }
     }
 
-    // set direct debit or sepa
-    /*
-    if (preg_match('/[a-z]{2}/i', $form_values['payment_account'])) {
-      $form_values['payment_sepa_holder'] = $form_values['payment_holder'];
-      $form_values['payment_sepa_iban'] = $form_values['payment_account'];
-      $form_values['payment_sepa_bic'] = $form_values['payment_bank'];
-    }
-    else {
-      $form_values['payment_direct_debit_holder'] = $form_values['payment_holder'];
-      $form_values['payment_direct_debit_account'] = $form_values['payment_account'];
-      $form_values['payment_direct_debit_bank'] = $form_values['payment_bank'];
-    }
-    */
-
-    // set contribution type
     $form_values['civicrm_contribution_type'] = $form_values['donation_frequency'] == 0 ? 'Spende Parlamentwatch e.V.' : 'Fördermitglied';
-
-    // set date start
     $form_values['civicrm_date_start'] = date('Y-m-d H:i', $submission->submitted);
-
-    // set description text
     $form_values['civicrm_description'] = 'Webform - ' . date('Y-m-d H:i');
   }
 }
