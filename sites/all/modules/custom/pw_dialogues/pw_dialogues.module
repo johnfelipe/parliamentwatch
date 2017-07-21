@@ -605,6 +605,7 @@ function pw_dialogues_answered_questions_by_parliament($term) {
   $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
   $q->join('comment', 'c', 'c.nid = n.nid');
   $q->condition('n.type', 'dialogue');
+  $q->condition('n.status', NODE_PUBLISHED);
   $q->condition('p.field_parliament_tid', $term->tid);
   $q->groupBy('n.nid');
 
@@ -629,6 +630,7 @@ function pw_dialogues_topics_by_user_revision($account) {
   $q->addField('td', 'name');
   $q->addExpression('COUNT(n.nid)', 'count');
   $q->condition('n.type', 'dialogue');
+  $q->condition('n.status', NODE_PUBLISHED);
   $q->condition('r.field_dialogue_recipient_target_id', $account->uid);
   $q->condition('p.field_parliament_tid', pw_profiles_parliament($account)->tid);
   $q->groupBy('t.field_dialogue_topic_tid');
@@ -653,6 +655,7 @@ function pw_dialogues_topics_by_parliament($term) {
   $q->addField('td', 'name');
   $q->addExpression('COUNT(n.nid)', 'count');
   $q->condition('n.type', 'dialogue');
+  $q->condition('n.status', NODE_PUBLISHED);
   $q->condition('p.field_parliament_tid', $term->tid);
   $q->groupBy('t.field_dialogue_topic_tid');
 
