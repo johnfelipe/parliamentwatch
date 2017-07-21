@@ -40,23 +40,18 @@ class UserArchiveDataSourceController extends SearchApiAbstractDataSourceControl
    */
   public function loadItems(array $ids) {
     $items = [];
-    $item_ids_to_delete = [];
     $q = db_select('user_archive_cache', 'uac')
       ->fields('uac', ['vid', 'uid'])
-      ->condition('vid', $ids);
+      ->condition('uac.vid', $ids);
+    $q->join('user_revision', 'ur', 'uac.vid = ur.vid');
 
     foreach ($q->execute()->fetchAllKeyed() as $vid => $uid) {
-      $revision = user_revision_load($uid, $vid);
-
-      if (!$revision) {
-        $item_ids_to_delete[] = $vid;
-      }
-      else {
-        $items[$vid] = $revision;
-      }
+      $items[$vid] = user_revision_load($uid, $vid);
     }
 
-    search_api_track_item_delete($this->type, $item_ids_to_delete);
+    if (count($items) != count($ids)) {
+      search_api_track_item_delete($this->type, array_diff($ids, array_keys($items)));
+    }
 
     return $items;
   }
