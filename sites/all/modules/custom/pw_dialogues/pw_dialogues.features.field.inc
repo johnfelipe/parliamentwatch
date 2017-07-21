@@ -3040,7 +3040,7 @@ $display_output = rtrim($display_output);',
           'weight' => '0',
         ),
         'full' => array(
-          'label' => 'inline',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
