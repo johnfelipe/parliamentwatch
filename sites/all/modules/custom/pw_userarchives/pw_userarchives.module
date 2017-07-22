@@ -252,22 +252,16 @@ function pw_userarchives_search_api_item_type_info() {
 }
 
 /**
- * Implements hook_search_api_index_items_alter().
+ * Implements hook_search_api_alter_callback_info().
  */
-function pw_userarchives_search_api_index_items_alter(array &$items, SearchApiIndex $index) {
-  if ($index->machine_name == 'politician_archive_index') {
-    foreach ($items as $item) {
-      if (empty($item->field_user_picture)) {
-        $item->field_has_picture[LANGUAGE_NONE][0]['value'] = 0;
-      }
-      else {
-        $item->field_has_picture[LANGUAGE_NONE][0]['value'] = 1;
-      }
-      if ($item->number_of_questions > 0) {
-        $item->field_user_qanda_ratio[LANGUAGE_NONE][0]['value'] = round(100 * $item->number_of_answers ^ 2 / $item->number_of_questions);
-      }
-    }
-  }
+function pw_userarchives_search_api_alter_callback_info() {
+  $callbacks['user_archive_alter'] = [
+    'name' => t('User archive fields'),
+    'description' => t('Adds user archive fields to the items.'),
+    'class' => 'UserArchiveAlterAddFields',
+    'weight' => 100,
+  ];
+  return $callbacks;
 }
 
 /**
