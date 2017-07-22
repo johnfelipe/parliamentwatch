@@ -416,79 +416,6 @@ function pw_profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'user-user-field_has_picture'.
-  $fields['user-user-field_has_picture'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_has_picture',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '12',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '34',
-        ),
-      ),
-      'entity_type' => 'user',
-      'exclude_cv' => 0,
-      'field_name' => 'field_has_picture',
-      'label' => 'has picture',
-      'required' => 0,
-      'settings' => array(
-        'exclude_cv' => FALSE,
-        'user_register_form' => 0,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '8',
-      ),
-    ),
-  );
-
   // Exported field: 'user-user-field_user_about'.
   $fields['user-user-field_user_about'] = array(
     'field_config' => array(
@@ -4679,7 +4606,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
   t('Wählen Sie hier Ihren Listenplatz aus.');
   t('direkt gewählt');
   t('eingezogen über Liste');
-  t('has picture');
   t('z.B. "Jurist" oder "Diplom Ingenieur"');
   t('z.B. "selbständiger IT-Berater" oder "Bürgermeister"');
   t('Öffentliche Mailadresse');

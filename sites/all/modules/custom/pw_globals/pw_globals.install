@@ -1035,6 +1035,13 @@ function pw_globals_update_7030() {
 }
 
 /**
+ * Delete obsolete field.
+ */
+function pw_globals_update_7031() {
+  field_delete_field('field_has_picture');
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
