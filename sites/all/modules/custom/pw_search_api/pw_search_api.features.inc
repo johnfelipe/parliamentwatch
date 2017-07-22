@@ -730,7 +730,6 @@ function pw_search_api_default_search_api_index() {
       "index_directly" : 0,
       "cron_limit" : "50",
       "fields" : {
-        "field_has_picture" : { "type" : "boolean" },
         "field_user_age" : { "type" : "integer" },
         "field_user_constituency" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_constituency:field_constituency_ac_descriptor" : { "type" : "list\\u003Ctext\\u003E" },
@@ -748,6 +747,10 @@ function pw_search_api_default_search_api_index() {
         "field_user_retired" : { "type" : "date" },
         "field_user_roles_for_view_mode_s" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_title" : { "type" : "text" },
+        "has_picture" : { "type" : "boolean" },
+        "number_of_answers" : { "type" : "integer" },
+        "number_of_questions" : { "type" : "integer" },
+        "picture_uri" : { "type" : "uri" },
         "search_api_aggregation_1" : { "type" : "text", "boost" : "3.0" },
         "search_api_language" : { "type" : "string" },
         "uid" : { "type" : "integer" },
@@ -756,6 +759,7 @@ function pw_search_api_default_search_api_index() {
         "vid" : { "type" : "integer" }
       },
       "data_alter_callbacks" : {
+        "user_archive_alter" : { "status" : 1, "weight" : "-50", "settings" : [] },
         "search_api_alter_role_filter" : {
           "status" : 0,
           "weight" : "-10",
@@ -764,9 +768,8 @@ function pw_search_api_default_search_api_index() {
             "roles" : { "140336230" : "140336230", "185431326" : "185431326" }
           }
         },
-        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
         "search_api_alter_user_status" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
         "search_api_alter_add_aggregation" : {
           "status" : 1,
           "weight" : "0",
@@ -780,7 +783,8 @@ function pw_search_api_default_search_api_index() {
           }
         },
         "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] }
+        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } }
       },
       "processors" : {
         "add_leading_zero" : {

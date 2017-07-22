@@ -1,9 +1,9 @@
-name = PW Search api
+name = PW Search API
 description = Configures the site to use Search API for search along with the appropiate settings.
 core = 7.x
 package = Features
 php = 5.2.4
-version = 7.x-1.0-20170716
+version = 7.x-1.0-20170722
 project = pw_search_api
 dependencies[] = ctools
 dependencies[] = date
@@ -19,4 +19,4 @@ features[field][] = node-pw_petition-field_search_sort_date
 features[search_api_index][] = node_index
 features[search_api_index][] = politician_archive_index
 files[] = SearchApiAddLeadingZero.inc
-mtime = 1500473181
+mtime = 1500494712
