@@ -183,6 +183,12 @@ function parliamentwatch_preprocess_node(&$variables) {
   $year = sprintf('<span class="date__year">%s</span>', format_date($node->created, 'custom', 'Y'));
   $variables['date'] = sprintf('<span class="date">%s%s%s</span>', $day, $month, $year);
 
+  if ($variables['type'] == 'blogpost' && $variables['view_mode'] == 'full') {
+    $variables['username'] = _pw_get_fullname(user_load($node->uid));
+    $variables['date'] = format_date($node->created, 'short');
+    $variables['submitted'] = t('Submitted by !username on !datetime', array('!username' => $variables['name'], '!datetime' => $variables['date']));
+  }
+
   if ($variables['type'] == 'pw_testimonial' && $variables['view_mode'] == 'pw_newsletter') {
     $member_counter = pw_donation_membership_count();
     $member_counter = number_format($member_counter, 0, ',', '.');
