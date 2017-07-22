@@ -67,8 +67,11 @@ function parliamentwatch_page_alter(&$page) {
     $filter = function ($item) {
       return strpos($item, 'container') === 0;
     };
-    $container_wrappers = array_filter($page['content']['system_main']['#theme_wrappers'], $filter);
-    if (count($container_wrappers) == 0 && !isset($page['content']['system_main']['filters'])) {
+
+    $has_container = !empty(array_filter($page['content']['system_main']['#theme_wrappers'], $filter));
+    $has_filters = isset($page['content']['system_main']['filters']);
+
+    if (!$has_container && !$has_filters) {
       $page['content']['system_main']['#prefix'] = '<div class="container">';
       $page['content']['system_main']['#suffix'] = '</div>';
     }
