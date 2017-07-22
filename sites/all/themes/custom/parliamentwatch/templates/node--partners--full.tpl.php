@@ -99,7 +99,7 @@
     <?php foreach ($field_partners as $partner): ?>
       <div class="tile tile partner">
         <div class="tile__image">
-          <a href="http://<?php print $partner['taxonomy_term']->field_affiliate_url[LANGUAGE_NONE][0]['url'] ?>" target="_blank">
+          <a href="<?php print $partner['taxonomy_term']->field_affiliate_url[LANGUAGE_NONE][0]['url'] ?>" target="_blank">
             <img src="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['uri']) ?>"alt="<?php print file_create_url($partner['taxonomy_term']->field_affiliate_logo[LANGUAGE_NONE][0]['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ?>">
           </a>
         </div>
