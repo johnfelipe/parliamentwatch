@@ -279,10 +279,14 @@ function pw_userarchives_politician_load_multiple($vids) {
   }
 
   $q = db_select('user_revision', 'ur');
+  $q->join('users', 'u', 'u.uid = ur.uid');
   $q->leftJoin('user_archive_cache', 'uac', 'ur.vid = uac.vid');
   $q->fields('ur')
+    ->fields('u', ['created', 'uuid'])
     ->fields('uac', ['actual_profile', 'number_of_questions', 'number_of_answers', 'user_role'])
     ->condition('ur.vid', $vids);
+  $q->addField('ur', 'timestamp', 'revision_timestamp');
+  $q->addField('ur', 'authorid', 'revision_uid');
 
   $sorted_users = array_flip($vids);
 
