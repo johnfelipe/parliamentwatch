@@ -388,7 +388,7 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
 
   if ($element['#href'] == reset($state_parliament_paths)) {
     $trail = menu_get_active_trail();
-    if (isset($trail[1]) && in_array($trail[1]['link_path'], $state_parliament_paths)) {
+    if (isset($trail[1]['link_path']) && in_array($trail[1]['link_path'], $state_parliament_paths)) {
       $prefix .= '<li class="nav__item nav__item--active nav__item--dropdown dropdown--hover">';
     }
     else {
