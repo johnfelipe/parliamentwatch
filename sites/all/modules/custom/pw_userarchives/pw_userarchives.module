@@ -274,7 +274,10 @@ function pw_userarchives_search_api_alter_callback_info() {
  *   The fully loaded user objects having the given revision IDs.
  */
 function pw_userarchives_politician_load_multiple($vids) {
-  $users = [];
+  if (empty($vids)) {
+    return [];
+  }
+
   $q = db_select('user_revision', 'ur');
   $q->leftJoin('user_archive_cache', 'uac', 'ur.vid = uac.vid');
   $q->fields('ur')
