@@ -871,6 +871,9 @@ function _parliamentwatch_form_set_class(array &$element, array $name) {
   if (isset($element['#parents']) && form_get_error($element) !== NULL && !empty($element['#validated'])) {
     $element['#attributes']['class'][] = 'form__item__control--invalid';
   }
+  if (isset($element['#attributes']['data-autosuggest-url'])) {
+    $element['#attributes']['class'][] = 'form__item__control--autosuggest';
+  }
 }
 
 t('Candidate', [], ['context' => 'female']);

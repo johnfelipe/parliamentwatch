@@ -331,7 +331,12 @@ function pw_globals_politician_search_form($form, &$form_state, $parliament_term
     '#type' => 'textfield',
     '#title' =>  t('Keywords'),
     '#title_display' => 'invisible',
-    '#attributes' => ['placeholder' => $placeholder],
+    '#attributes' => [
+      'data-autosuggest-url' => "profiles/$parliament_term->tid/$role_condition/autocomplete",
+      'placeholder' => $placeholder,
+      'type' => 'search',
+    ],
+    '#autocomplete' => 'off',
   ];
   $form['submit'] = [
     '#type' => 'submit',
