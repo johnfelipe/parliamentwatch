@@ -19,6 +19,12 @@ function pw_profiles_menu() {
     'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
   ];
+  $items['profiles/%taxonomy_term/%/autocomplete'] = [
+    'page callback' => 'pw_profiles_autocomplete',
+    'page arguments' => [1, 2],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
   return $items;
 }
 
@@ -364,6 +370,58 @@ function pw_profiles_page($parliament_term, $role_name) {
   $build['filters']['#weight'] = -5;
 
   return $build;
+}
+
+/**
+ *
+ * @param type $parliament_term
+ * @param type $role_name
+ */
+function pw_profiles_autocomplete($parliament_term, $role_name) {
+  $q = search_api_query('politician_archive_index');
+  $q->condition('field_user_retired', NULL, '=');
+  $q->condition('field_user_parliament', $parliament_term->tid);
+
+  if ($role_name == 'deputies') {
+    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_DEPUTY_TID);
+  }
+  else {
+    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_CANDIDATE_TID);
+  }
+
+  $response = $q->execute();
+
+  if ($response['result count'] > 0) {
+    $suggestions = [];
+    foreach ($response['results'] as $result) {
+      $data = [
+        'id' => $result['id'],
+        'name' => $result['fields']['field_user_fname'] . ' ' . $result['fields']['field_user_lname'],
+        'parliament' => $parliament_term->name,
+        'party' => $result['fields']['field_user_party:name'],
+        'url' => $result['fields']['url'],
+      ];
+      if (isset($result['fields']['picture_uri'])) {
+        $data['picture_url'] = file_create_url(image_style_path('thumbnail', $result['fields']['picture_uri']));
+      }
+      else {
+        $data['picture_url'] = 'http://via.placeholder.com/100x100';
+      }
+      $data['politicianDatum'] = $result['fields']['field_user_fname'] . ' ' . $result['fields']['field_user_lname'];
+      if (isset($result['fields']['field_user_constituency:field_constituency_area_codes:name'])) {
+        $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:field_constituency_area_codes:name']);
+      }
+      if (isset($result['fields']['field_user_constituency:name'][0])) {
+        $data['constituency'] = $result['fields']['field_user_constituency:name'];
+        $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:name']);
+      }
+      $suggestions[] = $data;
+    };
+    drupal_json_output($suggestions);
+  }
+  else {
+    return MENU_NOT_FOUND;
+  }
 }
 
 /**
