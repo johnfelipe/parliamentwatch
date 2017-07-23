@@ -102,6 +102,10 @@ function pw_globals_form_pw_globals_politician_search_form_alter(&$form, &$form_
   $form['form_build_id']['#access'] = FALSE;
   $form['form_token']['#access'] = FALSE;
   $form['form_id']['#access'] = FALSE;
+
+  if (!variable_get('pw_globals_autosuggest_enabled', FALSE)) {
+    unset($form['keys']['#attributes']['data-autosuggest-url']);
+  }
 }
 
 /**
