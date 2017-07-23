@@ -94,31 +94,19 @@ function pw_api_profiles($parliament) {
         'parliament' => $parliament,
       )
     );
-    $result = $query->groupBy('uac.uid');
+    $query->groupBy('uac.uid');
   }
-  $result = $query->execute()->fetchAll();
 
-  // query parameters
+  $result = $query->execute()->fetchCol(1);
   $parameters = drupal_get_query_parameters();
   $activities = isset($parameters['activities'])?array($parameters['activities']):array();
 
   $profiles = array();
-  foreach ($result as $row) {
-    $user = user_revision_load($row->uid, $row->vid);
-    if($user){
-      $profiles['profile_'.$row->uid] = pw_api_user_to_array($user, $activities);
-    }
+  foreach (pw_userarchives_politician_load_multiple($result) as $user) {
+    $profiles['profile_'.$user->uid] = pw_api_user_to_array($user, $activities);
   }
 
-  /*
-  if(empty($profiles)){
-    return MENU_NOT_FOUND;
-  }
-  */
-
-  $profiles = array('profiles' => $profiles);
-
-  return $profiles;
+  return array('profiles' => $profiles);
 }
 
 function pw_api_user_to_array($user, $activities = array()) {
