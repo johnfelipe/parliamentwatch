@@ -613,7 +613,7 @@ function pw_dialogues_answered_questions_by_parliament($term) {
 }
 
 /**
- * Returns number of questions by topic for the given user
+ * Returns number of questions by topic for the given user.
  *
  * @param type $account
  *   The account object.
