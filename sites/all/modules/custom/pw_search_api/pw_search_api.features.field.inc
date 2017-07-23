@@ -217,7 +217,7 @@ function pw_search_api_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'search_result' => array(
           'label' => 'above',
@@ -549,6 +549,12 @@ function pw_search_api_field_default_fields() {
           ),
           'type' => 'date_default',
           'weight' => '29',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'search_result' => array(
           'label' => 'above',

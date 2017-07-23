@@ -743,7 +743,7 @@ function pw_search_api_default_search_api_index() {
         "field_user_lname" : { "type" : "string", "boost" : "2.0" },
         "field_user_parliament" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_user_party" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_user_qanda_ratio" : { "type" : "integer" },
+        "field_user_party:name" : { "type" : "list\\u003Cstring\\u003E" },
         "field_user_retired" : { "type" : "date" },
         "field_user_roles_for_view_mode_s" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_user_title" : { "type" : "text" },
