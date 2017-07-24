@@ -1,9 +1,33 @@
+/**
+* Blank theme specific overrides
+*/
 
 #header,
 #footer {
-    display: none;
+  display: none;
+}
+#content {
+  margin-top: 0 !important;
+}
+.donate-teaser, .tile-wrapper, .intro, .blog__content, .blog__submitted, .question-teaser-pre, .comment-wrapper,
+.tabs__navigation, .comment-teaser, .share, .container-small, .question__profile_teaser,
+.full.question .question__answer-wrapper, .detail.deputy .deputy__intro, .tabs__content--qa .question-form,
+.filterbar, .poll__charts, .lp-header {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  .donate-teaser, .tile-wrapper, .intro, .blog__content, .blog__submitted, .question-teaser-pre, .comment-wrapper,
+  .tabs__navigation, .comment-teaser, .share, .container-small, .question__profile_teaser,
+  .full.question .question__answer-wrapper, .detail.deputy .deputy__intro, .tabs__content--qa .question-form,
+  .filterbar, .poll__charts, .lp-header  {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
-#content {
-    margin-top: 0 !important;
+#content > .container,
+.container .container {
+  padding-left: 0px;
+  padding-right: 0px;
 }

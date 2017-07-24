@@ -146,13 +146,6 @@
       width: 210px !important;
     }
   }
-  // .select2-container--default .select2-selection--single {
-  //   border-color: $darkBeige;
-  //   border-right: 0;
-  // }
-  // .select2-container .select2-selection--single .select2-selection__arrow {
-  //   border-color: $darkBeige;
-  // }
   .form__item__control {
     float: left;
     border-color: $darkBeige;
@@ -188,6 +181,12 @@
     }
   }
 }
+_:-ms-fullscreen,
+:root .filterbar__item--input .btn {
+  text-indent: 999px;
+}
+
+
 .filterbar__item--dropdown {
   border-right: 1px solid $darkBeige;
   white-space: nowrap;

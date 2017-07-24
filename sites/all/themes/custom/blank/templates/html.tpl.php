@@ -8,7 +8,7 @@
   <?php print $scripts; ?>
   <?php print $assets; ?>
 </head>
-<body class="<?php print $classes; ?>" <?php print $attributes;?>>
+<body class="<?php print $classes; ?> blank-theme" <?php print $attributes;?>>
   <?php print $tracking; ?>
   <div id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
