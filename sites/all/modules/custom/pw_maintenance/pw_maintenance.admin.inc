@@ -288,3 +288,108 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
 }
 
 
+
+/**
+ * Form builder.
+ */
+function pw_maintenance_user_revision_delete($form, &$form_state) {
+
+  // after submitting the form, the user object appears instead of the form array
+  if(is_object($form) && isset($form->vid)){
+    return;
+  }
+
+  $form['pw_maintenance_user_revision_delete_user'] = array(
+    '#type' => 'textfield',
+    '#title' => t('User'),
+    '#autocomplete_path' => 'user/autocomplete',
+    '#default_value' => variable_get('pw_maintenance_user_revision_delete_user', ''),
+    '#required' => TRUE,
+  );
+
+  $form['pw_maintenance_user_revision_delete_parliament'] = array(
+    '#type' => 'select',
+    '#title' => t('Parliament'),
+    '#options' => taxonomy_allowed_values(field_info_field('field_parliament')),
+    '#default_value' => variable_get('pw_maintenance_user_revision_delete_parliament', ''),
+    '#required' => TRUE,
+  );
+
+  // add submit button
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Delete Revisions',
+  );
+
+  // add custom submit handler
+  $form['#submit'][] = 'pw_maintenance_user_revision_delete_submit';
+
+  return $form;
+}
+
+/**
+ * Form submit handler.
+ */
+function pw_maintenance_user_revision_delete_submit($form, &$form_state) {
+
+  // store selected values in vars
+  variable_set('pw_maintenance_user_revision_delete_user', $form['pw_maintenance_user_revision_delete_user']['#value']);
+  variable_set('pw_maintenance_user_revision_delete_parliament', $form['pw_maintenance_user_revision_delete_parliament']['#value']);
+
+  $parliament_tid = $form['pw_maintenance_user_revision_delete_parliament']['#value'];
+
+  // load and check user
+  $user = user_load_by_name($form['pw_maintenance_user_revision_delete_user']['#value']);
+  if(!$user){
+    drupal_set_message("User not found", "error");
+  }
+  $query = db_select("field_revision_field_user_parliament", "fr_parl");
+  $query->addExpression('COUNT(*)', 'parliament_count');
+  $query->condition("fr_parl.entity_id", $user->uid);
+  $query->condition("fr_parl.entity_type", "user");
+  $query->groupBy("fr_parl.field_user_parliament_tid");
+
+  // check if there is only one parliament
+  if($query->execute()->rowCount() < 2){
+    drupal_set_message("Won't delete users related to one parliament only. Please ".l("delete the user", "user/".$user->uid."/cancel")." instead.", "error");
+    return;
+  }
+
+  // fetch all vids from the user in relation to the selected parliament
+  $query = db_select("field_revision_field_user_parliament", "fr_parl");
+  $query->fields("fr_parl", array("revision_id"));
+  $query->condition("fr_parl.entity_id", $user->uid);
+  $query->condition("fr_parl.entity_type", "user");
+  $query->condition("fr_parl.field_user_parliament_tid", $parliament_tid);
+  $result = $query->execute()->fetchCol();
+
+  // reset the user profile to the newest, but not to one of the revisions marked for deletion
+  pw_reset_actuale_profile($user->uid, $result);
+
+  // reload user to get current vid
+  $user = user_load($user->uid, TRUE);
+
+  foreach($result as $vid){
+
+    // the if clause shouldn't be necessary
+    if($user->vid != $vid){
+      $user_revision = user_revision_load($user->uid, $vid);
+      user_revision_delete($user_revision);
+    }
+  }
+
+  // rebuild voters memory
+  pw_userarchives_cron($user->uid);
+
+  drupal_set_message("Deleted ".sizeof($result)." revisions of user ".l($user->name, "user/".$user->uid));
+
+  // leave a message
+  $parliament = taxonomy_term_load($parliament_tid);
+  watchdog('pw_maintenance_user_revision_delete', ':num_deleted user revisions for user :user_name for :parliament.', array(
+      ':num_deleted' => sizeof($result),
+      ':user_name' => $user->name,
+      ':parliament' => $parliament->name,
+    ));
+}
+
+

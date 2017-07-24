@@ -389,7 +389,7 @@ function pw_delete_old_user_revisions($uid = NULL) {
  * Chaecks and resets user revision to actual (newest) profile
  * @param $uid
  */
-function pw_reset_actuale_profile($uid) {
+function pw_reset_actuale_profile($uid, $exclude_vids=array()) {
 
   // load current profile
   $user = user_load($uid, TRUE);
@@ -402,6 +402,9 @@ function pw_reset_actuale_profile($uid) {
   $query = db_select('user_archive_cache', 'uac');
   $query->addField('uac', 'vid');
   $query->condition('uac.uid', $uid);
+  if(!empty($exclude_vids)){
+    $query->condition('uac.vid', $exclude_vids, 'NOT IN');
+  }
   $query->orderBy('uac.question_form_open', 'DESC');
   $query->orderBy('uac.timestamp', 'DESC');
   $query->orderBy('uac.user_role=\'deputy\'', 'DESC');
