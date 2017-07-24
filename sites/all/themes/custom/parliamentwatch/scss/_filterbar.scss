@@ -395,3 +395,10 @@
     color: $darkGray;
   }
 }
+
+/* Filterbar: Disabled */
+
+.filterbar--disabled .filterbar__item {
+  opacity: .3;
+  pointer-events: none;
+}
