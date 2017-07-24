@@ -329,56 +329,57 @@ function select2init() {
  * */
 
 function autosuggest() {
+    if ($('.form__item__control--autosuggest').length) {
+        var data = [];
 
-    var data = [];
+        var politicians = new Bloodhound({
+            initialize: true,
+            prefetch: {
+                url: $('.form__item__control--autosuggest').data('autosuggest-url'),
+                cache: false,
+            },
+            identify: function (obj) { return obj.id; },
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('politicianDatum'),
+        });
 
-    var politicians = new Bloodhound({
-        initialize: true,
-        prefetch: {
-            url: $('.form__item__control--autosuggest').data('autosuggest-url'),
-            cache: false,
-        },
-        identify: function (obj) { return obj.id; },
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('politicianDatum'),
-    });
-
-    var templates = {
-        header: function (query) {
-            return '<div class="autosuggest__header">Abgeordnete</div>';
-        },
-        notFound: function (query) {
+        var templates = {
+            header: function (query) {
+                return '<div class="autosuggest__header">Abgeordnete</div>';
+            },
+            notFound: function (query) {
                 return '<div class="autosuggest__item autosuggest__item--empty">Kein Ergebnisse unter "' + query.query + '" Gefunden</div>';
-        },
-        suggestion: function (query) {
-            return '' +
-                '<div class="autosuggest__item">' +
+            },
+            suggestion: function (query) {
+                return '' +
+                    '<div class="autosuggest__item">' +
                     '<div class="autosuggest__item__image">' +
-                        '<img src="' + query.picture_url + '" alt="">' +
+                    '<img src="' + query.picture_url + '" alt="">' +
                     '</div>' +
                     '<div class="autosuggest__item__info">' +
-                        '<div class="autosuggest__item__name">' + query.name + '</div>' +
-                        '<div class="autosuggest__item__subtitle">' + query.parliament + ' <i class="icon icon-arrow-right"></i> <span class="party-indicator">' + query.party + '</span></div>' +
-                        '<div class="autosuggest__item__constituency">' + query.constituency + '</div>' +
+                    '<div class="autosuggest__item__name">' + query.name + '</div>' +
+                    '<div class="autosuggest__item__subtitle">' + query.parliament + ' <i class="icon icon-arrow-right"></i> <span class="party-indicator">' + query.party + '</span></div>' +
+                    '<div class="autosuggest__item__constituency">' + query.constituency + '</div>' +
                     '</div>' +
                     '<a href="' + query.url + '#block-pw-dialogues-profile" class="btn--small">' + Drupal.t('Ask now') + '</a>' +
-                '</div>';
-        }
-    };
+                    '</div>';
+            }
+        };
 
-    var display = function (obj) {
-        return obj.name;
-    };
+        var display = function (obj) {
+            return obj.name;
+        };
 
-    $('.form__item--keys > .form__item__control').typeahead({
-        minLength: 2,
-        highlight: true
-    }, {
-        name: 'politicians',
-        source: politicians,
-        display: display,
-        templates: templates
-    });
+        $('.form__item--keys > .form__item__control').typeahead({
+            minLength: 2,
+            highlight: true
+        }, {
+            name: 'politicians',
+            source: politicians,
+            display: display,
+            templates: templates
+        });
+    }
 }
 
 
