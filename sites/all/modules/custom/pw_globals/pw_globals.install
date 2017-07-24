@@ -1042,6 +1042,41 @@ function pw_globals_update_7031() {
 }
 
 /**
+ * Delete dangling views block configurations.
+ */
+function pw_globals_update_7032() {
+  db_delete('block')
+    ->condition('module', 'views')
+    ->condition('theme', ['parliamentwatch', 'blank'])
+    ->execute();
+}
+
+/**
+ * Disable obsolete modules.
+ */
+function pw_globals_update_7033() {
+  $disable = [
+    'bulk_export',
+    'fe_block',
+    'node_class',
+    'node_export',
+    'search_api_multi',
+    'search_restrict',
+    'viewfield',
+  ];
+
+  module_disable($disable);
+}
+
+/**
+ * Delete obsolete content type.
+ */
+function pw_globals_update_7034() {
+  node_type_delete('announcement');
+  node_type_delete('speech');
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
