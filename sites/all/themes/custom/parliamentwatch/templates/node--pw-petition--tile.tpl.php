@@ -98,19 +98,62 @@
   <?php if ($field_petition_partner): ?>
   <div class="tile__flag"><?php print render($field_petition_partner[0]['value']); ?></div>
   <?php endif; ?>
-  <div class="tile__content mh-item">
-    <h3 class="tile__title" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
+  <div class="tile__content">
+    <h3 class="tile__title mh-item" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
     <?php print render($title_suffix); ?>
-    <!-- Ouput for State 5 -->
-    <?php if (trim($field_petition_status[0]['value']) == 'passed_parliament'): ?>
-      <p class="petition__result_asked">
-    <span class="petition__result_asked__inner">
-      <i class="icon icon-ok"></i>
-      <strong>Petition wurde im Parlament abgefragt</strong><br>
-      40 Politiker haben Stellung genommen
-    </span>
-      </p>
-    <?php endif; ?>
+
+    <div class="petition__result_outer mh-item-nr">
+      <div class="petition__result">
+        <?php if ($field_petition_status[0]['value'] == 'open_for_signings'): ?>
+          <span class="d3 d3--bar-horizontal"
+                data-bar-horizontal
+                data-value="<?php print $field_petition_signings[0]['value']; ?>"
+                data-value_max="<?php print $field_petition_required[0]['value']; ?>"><span class="bar"></span></span>
+          <p><?php print render($content['field_petition_signings']); ?><br>
+            <small><?php print render($content['field_petition_required']); ?> <?php print t('signings are required')?></small></p>
+        <?php endif; ?>
+
+        <?php if ($field_petition_status[0]['value'] == 'collecting_donations'): ?>
+          <span class="d3 d3--bar-horizontal"
+                data-bar-horizontal
+                data-value="<?php print $field_donation_amount[0]['value']; ?>"
+                data-value_max="<?php print $field_donation_required[0]['value']; ?>"><span class="bar"></span></span>
+          <p><?php print $field_donation_amount[0]['value']; ?> € <?php print t('of')?> <?php print render($content['field_donation_required']); ?> € <?php print t('gathered'); ?></p>
+        <?php endif; ?>
+
+        <?php if ($field_petition_status[0]['value'] == 'survey_in_progress'): ?>
+          <p class="petition__result_asked">
+        <span class="petition__result_asked__inner">
+          <i class="icon icon-microphone"></i>
+          <strong><?php print t('The survey is in progress now.') ?></strong>
+          <?php print t('The survey is in progress now.') ?>
+        </span>
+          </p>
+        <?php endif; ?>
+
+        <?php if ($field_petition_status[0]['value'] == 'asking_parliament'): ?>
+          <p class="petition__result_asked">
+        <span class="petition__result_asked__inner">
+          <i class="icon icon-microphone"></i>
+          <strong><?php print t('Politicians are now giving their statements.') ?></strong>
+        </span>
+          </p>
+        <?php endif; ?>
+
+        <!-- Ouput for State 5 -->
+        <?php if ($field_petition_status[0]['value'] == 'passed_parliament'): ?>
+          <p class="petition__result_asked">
+        <span class="petition__result_asked__inner">
+          <i class="icon icon-ok"></i>
+          <strong><?php print t('Petition passed the parliament') ?></strong><br>
+          <?php print t('Politicians gave a statement.') ?>
+        </span>
+          </p>
+        <?php endif; ?>
+      </div>
+    </div>
+
+
   </div>
   <ul class="tile__links tile__links--2">
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('read more'); ?></a></li>

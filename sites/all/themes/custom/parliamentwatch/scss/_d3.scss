@@ -61,7 +61,7 @@
   }
 }
 
-.d3--bar-vertical {
+.d3--bar-horizontal {
   position: relative;
   height: $space-large + $space;
   background: $brightGray;
@@ -71,8 +71,7 @@
     display: block;
     width: 0;
     max-width: 100%;
-
-    @include transition(all 800ms ease 600ms);
+    @include transition(all 800ms ease);
   }
 }
 

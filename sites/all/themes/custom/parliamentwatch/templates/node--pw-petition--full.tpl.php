@@ -102,10 +102,10 @@
     <div class="petition__sidebar sidebar">
       <?php print render($content['field_teaser_image']); ?>
       <div class="petition__sidebar__stats">
-        <span class="d3 d3--bar-vertical"
-              data-bar-vertical
+        <span class="d3 d3--bar-horizontal"
+              data-bar-horizontal
               data-value="<?php print $field_petition_signings[0]['value']; ?>"
-              data-value_max="<?php print $field_petition_required[0]['value']; ?>"><span class="bar"></span></span>
+              data-value_max="<?php print $field_petition_required[0]['value']; ?>"></span>
         <p><?php print render($content['field_petition_signings']); ?><br>
           <small><?php print render($content['field_petition_required']); ?> <?php print t('signings are required')?></small></p>
       </div>
@@ -130,10 +130,10 @@
       <div class="petition__sidebar sidebar">
         <?php print render($content['field_teaser_image']); ?>
         <div class="petition__sidebar__stats">
-          <span class="d3 d3--bar-vertical"
-              data-bar-vertical
+          <span class="d3 d3--bar-horizontal"
+              data-bar-horizontal
               data-value="<?php print $field_donation_amount[0]['value']; ?>"
-              data-value_max="<?php print $field_donation_required[0]['value']; ?>"><span class="bar"></span></span>
+              data-value_max="<?php print $field_donation_required[0]['value']; ?>"></span>
           <p><?php print $field_donation_amount[0]['value']; ?> € <?php print t('of')?> <?php print render($content['field_donation_required']); ?> € <?php print t('gathered'); ?></p>
         </div>
         <a href="#" class="btn btn--large btn--block"><?php print t('Make a donation'); ?></a>

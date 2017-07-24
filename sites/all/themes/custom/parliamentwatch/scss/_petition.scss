@@ -297,15 +297,29 @@
   }
 }
 
+.petition__result_outer {
 
-.petition__result_asked {
+}
+.petition__result {
   border-top: 1px solid $darkBeige;
   border-bottom: 1px solid $darkBeige;
-  text-align: center;
+  padding-top: $space-xsmall-mobile;
+  padding-bottom: $space-xsmall-mobile;
+  .d3--bar-horizontal,
+  .d3--bar-horizontal .bar {
+    height: 30px;
+  }
+  .d3--bar-horizontal + p {
+    text-align: center;
+    padding-top: $space-xsmall-mobile;
+  }
 }
 
+.petition__result_asked {
+  text-align: center;
+}
 .petition__result_asked__inner {
-  padding: $space-xsmall 0 $space-xsmall ($space-large + $space-small);
+  padding: $space-xsmall-mobile 0 $space-xsmall-mobile ($space-large + $space);
   position: relative;
   font-size: .9em;
   margin-bottom: 0;
@@ -321,14 +335,18 @@
   @include breakpoint($breakpoint-xl-min) {
     font-size: .9em;
   }
-  .icon-ok {
+  .icon {
     position: absolute;
     top: 50%;
     left: 0;
+    font-size: 1.3em;
     width: ($space-large + $space-small);
-    color: $color-accepted;
     text-align: center;
+    color: $gray;
     @include transform(translate(0,-50%));
+  }
+  .icon-ok {
+    color: $color-accepted;
   }
 }
 

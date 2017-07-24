@@ -20,6 +20,8 @@ var windowWidth = window.innerWidth,
     beige = '#f3efe6',
     orange = '#f46b3b';
 
+    iterateTime = 200;
+
 /*
  * Debounce-Function
  * Defines a debounce function for window-resizing
@@ -536,19 +538,26 @@ function d3BarsVertical(element) {
 }
 
 /*
- * D3: Bar vertical
+ * D3: Bar horizontal
  * */
 
-function d3BarVertical(element) {
+
+function d3BarHorizontal(element) {
     var wrapper = element;
+    var chartBar = $(element).find('.bar');
+
     var dataValue = wrapper.dataset.value;
     var dataValueMax = wrapper.dataset.value_max;
 
     var barWidth = 100/ dataValueMax * dataValue;
     var barWidth = barWidth + '%';
 
-    console.log(element);
-    $('.d3--bar-vertical').find('.bar').attr('style', 'width:' + barWidth + ';');
+
+    setTimeout( function(){
+        chartBar.attr('style', 'width:' + barWidth + ';');
+    }, iterateTime);
+    iterateTime += 400;
+
 }
 
 
@@ -1249,9 +1258,9 @@ $(function () {
         d3BarVerticalStackedPoll(this);
         $(this)
     });
-    $('[data-bar-vertical]').each(function( index ) {
-        d3BarVertical(this);
-        $(this)
+    $('[data-bar-horizontal]').each(function( index ) {
+        d3BarHorizontal(this);
+        $(this);
     });
 
 
