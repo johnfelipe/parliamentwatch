@@ -89,12 +89,26 @@
 }
 
 .constituency-selection {
+  @include grid-container();
   > p {
     @include grid-column(12);
     margin-bottom: $space-large;
   }
   .constituency-selection__item {
-    @include grid-column(3);
+    @include grid-column(12);
+    margin-bottom: $space;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    @include breakpoint($breakpoint-xs-min) {
+      @include grid-column(6);
+    }
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(4);
+    }
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(3);
+    }
     .tile__title {
       padding-bottom: $space-small;
       margin-bottom: $space-small;

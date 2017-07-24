@@ -153,13 +153,13 @@
       <div class="constituency-selection">
         <p><?php print t('The zip-code you searched for, shows candidates from multiple constituencies:') ?></p>
         <div class="tile constituency-selection__item">
-          <div class="tile__title">
+          <div class="tile__title mh-item">
             Berlin - Charlottenburg-Wilmersdorf
           </div>
           <a href="#" class="btn btn--small"><?php print t('Select constituency') ?></a>
         </div>
         <div class="tile constituency-selection__item">
-          <div class="tile__title">
+          <div class="tile__title mh-item">
             Berlin - Tempelhof-Schöneberg
           </div>
           <a href="#" class="btn btn--small"><?php print t('Select constituency') ?></a>
