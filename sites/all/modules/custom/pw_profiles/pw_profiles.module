@@ -338,7 +338,15 @@ function pw_profiles_page($parliament_term, $role_name) {
     ->range(pager_find_page() * $limit, $limit)
     ->execute();
 
-  if ($response['result count'] > 0) {
+  if (_pw_profiles_is_postal_code_search(drupal_get_query_parameters()) && count($response['search_api_facets']['field_user_constituency']) > 1) {
+    drupal_add_http_header('Status', '300 Multiple Choices');
+    $constituency_values = _pw_profiles_facet_values($response['search_api_facets']['field_user_constituency']);
+    $build['user'] = [
+      '#theme' => 'item_list__constituency_selection',
+      '#items' => _pw_profiles_constituency_selection_items($constituency_values, current_path(), drupal_get_query_parameters()),
+    ];
+  }
+  elseif ($response['result count'] > 0) {
     pager_default_initialize($response['result count'], $limit);
     $politicians = pw_userarchives_politician_load_multiple(array_keys($response['results']));
     $weight = 0;
@@ -510,49 +518,51 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets) {
       '#default_value' => empty($parameters['constituency']) ? '' : $parameters['constituency'],
     );
   }
-  if (count($list_values) > 1 && !pw_profiles_filter_disabled('field_user_list_tid', $parliament)) {
-    $form['list'] = array(
-      '#type' => 'radios',
-      '#title' => isset($parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value'] : t('List'),
+  if (!_pw_profiles_is_postal_code_search($parameters)) {
+    if (count($list_values) > 1 && !pw_profiles_filter_disabled('field_user_list_tid', $parliament)) {
+      $form['list'] = array(
+        '#type' => 'radios',
+        '#title' => isset($parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_list_rename[LANGUAGE_NONE][0]['value'] : t('List'),
+        '#title_display' => 'invisible',
+        '#options' => ['' => t('All')] + _pw_profiles_options($list_values),
+        '#default_value' => empty($parameters['list']) ? '' : $parameters['list'],
+      );
+    }
+    if (count($list_position_values) > 1 && !pw_profiles_filter_disabled('field_user_list_position_tid', $parliament)) {
+      $form['list_position'] = array(
+        '#type' => 'select',
+        '#title' => t('List position'),
+        '#title_display' => 'invisible',
+        '#options' => ['' => t('All')] + _pw_profiles_options($list_position_values),
+        '#default_value' => empty($parameters['list_position']) ? '' : $parameters['list_position'],
+      );
+    }
+    if (count($party_values) > 1) {
+      $form['party'] = array(
+        '#type' => 'checkboxes',
+        '#title' => t('Filter by party'),
+        '#title_display' => 'invisible',
+        '#options' => _pw_profiles_options($party_values),
+        '#multiple' => TRUE,
+        '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
+      );
+    }
+    $form['age'] = array(
+      '#type' => 'textfield',
+      '#attributes' => ['type' => 'number', 'min' => 18],
+      '#title' => t('Age'),
       '#title_display' => 'invisible',
-      '#options' => ['' => t('All')] + _pw_profiles_options($list_values),
-      '#default_value' => empty($parameters['list']) ? '' : $parameters['list'],
+      '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
     );
-  }
-  if (count($list_position_values) > 1 && !pw_profiles_filter_disabled('field_user_list_position_tid', $parliament)) {
-    $form['list_position'] = array(
-      '#type' => 'select',
-      '#title' => t('List position'),
-      '#title_display' => 'invisible',
-      '#options' => ['' => t('All')] + _pw_profiles_options($list_position_values),
-      '#default_value' => empty($parameters['list_position']) ? '' : $parameters['list_position'],
-    );
-  }
-  if (count($party_values) > 1) {
-    $form['party'] = array(
-      '#type' => 'checkboxes',
-      '#title' => t('Filter by party'),
-      '#title_display' => 'invisible',
-      '#options' => _pw_profiles_options($party_values),
-      '#multiple' => TRUE,
-      '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
-    );
-  }
-  $form['age'] = array(
-    '#type' => 'textfield',
-    '#attributes' => ['type' => 'number', 'min' => 18],
-    '#title' => t('Age'),
-    '#title_display' => 'invisible',
-    '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
-  );
-  if (count($gender_values) > 1) {
-    $form['gender'] = array(
-      '#type' => 'checkboxes',
-      '#title' => t('Gender'),
-      '#title_display' => 'invisible',
-      '#options' => $gender_options,
-      '#default_value' => empty($parameters['gender']) ? [] : $parameters['gender'],
-    );
+    if (count($gender_values) > 1) {
+      $form['gender'] = array(
+        '#type' => 'checkboxes',
+        '#title' => t('Gender'),
+        '#title_display' => 'invisible',
+        '#options' => $gender_options,
+        '#default_value' => empty($parameters['gender']) ? [] : $parameters['gender'],
+      );
+    }
   }
   $form['submit'] = array(
     '#type' => 'submit',
@@ -685,6 +695,41 @@ function _pw_profiles_options(array $values) {
   }
 
   return array_intersect_key($terms, array_flip($values));
+}
+
+/**
+ * Returns constituency descriptors grouped by constituency.
+ *
+ * @param array $constituency_values
+ *   An array of constituency term IDs.
+ * @param string $url
+ *   The URL.
+ * @param array $parameters
+ *   The query parameters.
+ *
+ * @return
+ *   An array of constituency descriptors keyed by term ID.
+ */
+function _pw_profiles_constituency_selection_items(array $constituency_values, $url, $parameters) {
+  $items = [];
+
+  foreach (taxonomy_term_load_multiple($constituency_values) as $term) {
+    $parameters['constituency'] = $term->tid;
+    $descriptor_items = field_get_items('taxonomy_term', $term, 'field_constituency_ac_descriptor');
+    if (!$descriptor_items) {
+      $items[] = ['data' => $term->name, url($url, ['query' => $parameters])];
+    }
+    else {
+      foreach (explode(',', rtrim($descriptor_items[0]['safe_value'], ',')) as $descriptor) {
+        list($postal_code, $locality) = explode(':', $descriptor);
+        if ($postal_code == $parameters['keys']) {
+          $items[] = ['data' => $locality, 'href' => url($url, ['query' => $parameters])];
+        }
+      }
+    }
+  }
+
+  return $items;
 }
 
 /**
