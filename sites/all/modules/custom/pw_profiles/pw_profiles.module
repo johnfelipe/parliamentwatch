@@ -773,5 +773,5 @@ function _pw_profiles_is_postal_code_search($parameters) {
   if (count(array_filter($parameters)) > 1) {
     return FALSE;
   }
-  return preg_match('/^[0-9]{4,5}$/', $parameters['keys']);
+  return preg_match('/^[0-9]{4,5}$/', trim($parameters['keys']));
 }
