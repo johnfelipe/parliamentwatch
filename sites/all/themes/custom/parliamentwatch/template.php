@@ -614,6 +614,44 @@ function parliamentwatch_item_list(&$variables) {
 }
 
 /**
+ * Overrides theme_item_list() for constituency selection.
+ */
+function parliamentwatch_item_list__constituency_selection(&$variables) {
+  $items = $variables['items'];
+  $attributes = $variables['attributes'];
+
+  if (!empty($items)) {
+    $output = '<div class="constituency-selection">';
+    $output .= '<p>' . t('We have found multiple constituencies for the postal code you have entered. Please select one of the localities below:') . '</p>';
+    $i = 0;
+    foreach ($items as $item) {
+      $attributes = array();
+      $data = '';
+      $i++;
+      if (is_array($item)) {
+        foreach ($item as $key => $value) {
+          if ($key == 'data') {
+            $data = $value;
+          }
+          else {
+            $attributes[$key] = $value;
+          }
+        }
+      }
+      else {
+        $data = $item;
+      }
+      $output .= '<div class="tile constituency-selection__item">';
+      $output .= '<div class="tile__title mh-item">' . $data . '</div>';
+      $output .= '<a ' . drupal_attributes($attributes) . '" class="btn btn--small">' . t('Select constituency') . '</a>';
+      $output .= "</div>\n";
+    }
+    $output .= "</div>";
+  }
+  return $output;
+}
+
+/**
  * Overrides theme_form().
  */
 function parliamentwatch_form($variables) {
