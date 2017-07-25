@@ -284,7 +284,6 @@ function pw_profiles_user_uri($user) {
  *
  * @param string $parliament_term
  *   The parliament term.
- *
  * @param string $role_name
  *   The role.
  *
@@ -293,17 +292,7 @@ function pw_profiles_user_uri($user) {
  */
 function pw_profiles_page($parliament_term, $role_name) {
   $limit = 12;
-
-  $q = search_api_query('politician_archive_index', ['search_api_facets' => _pw_profiles_facets()]);
-  $q->condition('field_user_retired', NULL, '=');
-  $q->condition('field_user_parliament', $parliament_term->tid);
-
-  if ($role_name == 'deputies') {
-    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_DEPUTY_TID);
-  }
-  else {
-    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_CANDIDATE_TID);
-  }
+  $q = pw_profiles_base_search_query($parliament_term, $role_name);
 
   if (isset(drupal_get_query_parameters()['constituency'])) {
     $f = new SearchApiQueryFilter('OR', ['facet:field_user_constituency']);
@@ -376,23 +365,15 @@ function pw_profiles_page($parliament_term, $role_name) {
 }
 
 /**
+ * Page callback: Returns JSON object for autosuggest.
  *
- * @param type $parliament_term
+ * @param object $parliament_term
+ *   The parliament term.
  * @param type $role_name
+ *   The role.
  */
 function pw_profiles_autocomplete($parliament_term, $role_name) {
-  $q = search_api_query('politician_archive_index');
-  $q->condition('field_user_retired', NULL, '=');
-  $q->condition('field_user_parliament', $parliament_term->tid);
-
-  if ($role_name == 'deputies') {
-    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_DEPUTY_TID);
-  }
-  else {
-    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_CANDIDATE_TID);
-  }
-
-  $response = $q->execute();
+  $response = pw_profiles_base_search_query($parliament_term, $role_name)->execute();
 
   if ($response['result count'] > 0) {
     $suggestions = [];
@@ -615,6 +596,31 @@ function pw_profiles_filter_disabled($filter, $parliament) {
  */
 function pw_profiles_username_load($name) {
   return user_load_by_name($name);
+}
+
+/**
+ * Returns a query object for fetching politicians of the given role on.
+ *
+ * @param type $parliament_term
+ *   The parliament term.
+ * @param type $role_name
+ *   The role (candidates or deputies).
+ *
+ * @return SearchApiQuery
+ *   The search query object.
+ */
+function pw_profiles_base_search_query($parliament_term, $role_name) {
+  $q = search_api_query('politician_archive_index', ['search_api_facets' => _pw_profiles_facets()]);
+  $q->condition('field_user_retired', NULL, '=');
+  $q->condition('field_user_parliament', $parliament_term->tid);
+
+  if ($role_name == 'deputies') {
+    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_DEPUTY_TID);
+  }
+  else {
+    $q->condition('field_user_roles_for_view_mode_s', PW_GLOBALS_CANDIDATE_TID);
+  }
+  return $q;
 }
 
 /**
