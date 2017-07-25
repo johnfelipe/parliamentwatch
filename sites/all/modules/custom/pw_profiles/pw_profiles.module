@@ -710,3 +710,23 @@ function _pw_profiles_revision_switcher_options($account) {
   }
   return $options;
 }
+
+/**
+ * Returns whether the given search is exclusively for a postal code.
+ *
+ * @param array $parameters
+ *   The query parameters
+ *
+ * @return bool
+ *   TRUE if $parameters['keys'] matches the postal code pattern and there
+ *   are no other search parameters, FALSE otherwise.
+ */
+function _pw_profiles_is_postal_code_search($parameters) {
+  if (!isset($parameters['keys'])) {
+    return FALSE;
+  }
+  if (count(array_filter($parameters)) > 1) {
+    return FALSE;
+  }
+  return preg_match('/^[0-9]{4,5}$/', $parameters['keys']);
+}
