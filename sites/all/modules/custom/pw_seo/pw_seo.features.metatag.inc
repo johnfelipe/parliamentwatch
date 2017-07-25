@@ -761,7 +761,7 @@ function pw_seo_metatag_export_default() {
         ),
       ),
       'image_src' => array(
-        'value' => '[site:url]sites/abgeordnetenwatch.de/files/styles/pw_portrait_l__normal/public/users/[user:field-user-picture:file]',
+        'value' => '[user:field-user-picture:file:url]',
       ),
       'itemtype' => array(
         'value' => 'Person',
@@ -779,7 +779,7 @@ function pw_seo_metatag_export_default() {
         'value' => '[site:name] | Profil von [user:field-user-title] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
       'og:image' => array(
-        'value' => '[site:url]sites/abgeordnetenwatch.de/files/styles/pw_portrait_l__normal/public/users/[user:field-user-picture:file]',
+        'value' => '[user:field-user-picture:file:url]',
       ),
       'profile:username' => array(
         'value' => '[user:name]',
@@ -788,7 +788,7 @@ function pw_seo_metatag_export_default() {
         'value' => '[site:name] | Profil von [user:field-user-title] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
       'twitter:image' => array(
-        'value' => '[site:url]sites/abgeordnetenwatch.de/files/styles/pw_portrait_l__normal/public/users/[user:field-user-picture:file]',
+        'value' => '[user:field-user-picture:file:url]',
       ),
     ),
   );
