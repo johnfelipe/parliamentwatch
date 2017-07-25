@@ -554,7 +554,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets) {
       '#title_display' => 'invisible',
       '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
     );
-    if (count($gender_values) > 1) {
+    if (count($gender_options) > 1) {
       $form['gender'] = array(
         '#type' => 'checkboxes',
         '#title' => t('Gender'),
