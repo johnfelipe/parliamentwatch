@@ -236,18 +236,24 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
     }
   }
 
-// add redirect from the source user to the target one
+  // add redirect from the source user to the target one
   if(module_exists('redirect')){
-    $redirect = new stdClass();
-    redirect_object_prepare($redirect, array(
+    if($redirect = redirect_load_by_source("user/".$user_source->uid, LANGUAGE_NONE, array(), FALSE)){
+      $redirect->status = 1;
+      $redirect->redirect = 'user/'.$user_target->uid;
+    }
+    else{
+      $redirect = new stdClass();
+      redirect_object_prepare($redirect, array(
         'source' => 'profile/'.$user_source->name,
-        'redirect' => 'profile/'.$user_target->name,
-      )
-    );
+        'redirect' => 'user/'.$user_target->uid,
+        )
+      );
+    }
     redirect_save($redirect);
   }
 
-// connect all user revisions with the target user
+  // connect all user revisions with the target user
   db_update("user_revision")
     ->fields(array(
       'name' => $user_target->name,
@@ -255,7 +261,7 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
     ->condition('uid', $user_target->uid)
     ->execute();
 
-// update associated files
+  // update associated files
   db_update("file_usage")
     ->fields(array(
       'id' => $user_target->uid,
@@ -264,24 +270,24 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
     ->condition('type', 'user')
     ->execute();
 
-// delete all entries from meta table related to the source user
+  // delete all entries from meta table related to the source user
   db_delete('user_archive_cache')
     ->condition('uid', $user_source->uid)
     ->execute();
 
-// user names for output
+  // user names for output
   $user_source_fullname = _pw_get_fullname($user_source);
 
-// remove source user from system
+  // remove source user from system
   user_delete($user_source->uid);
 
-// clear field caches to refresh field information in forms
+  // clear field caches to refresh field information in forms
   field_cache_clear();
 
-// rebuild meta table
+  // rebuild meta table
   pw_userarchives_cron($user_target->uid);
 
-// message to the frontend
+  // message to the frontend
   $msg = 'User '.$user_source_fullname.' (UUID: '.$user_source->uuid.') merged into '.l(_pw_get_fullname($user_target), 'user/'.$user_target->uid).' (UUID: '.$user_target->uuid.')';
   drupal_set_message($msg);
   watchdog('pw_maintenance', $msg);
