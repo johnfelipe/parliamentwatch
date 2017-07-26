@@ -341,7 +341,8 @@ function pw_profiles_page($parliament_term, $role_name) {
   if (_pw_profiles_is_postal_code_search(drupal_get_query_parameters()) && count($response['search_api_facets']['field_user_constituency']) > 1) {
     drupal_add_http_header('Status', '300 Multiple Choices');
     $constituency_values = _pw_profiles_facet_values($response['search_api_facets']['field_user_constituency']);
-    $build['user'] = [
+    $build['constituency_selection'] = [
+      '#theme_wrappers' => ['container__tiles'],
       '#theme' => 'item_list__constituency_selection',
       '#items' => _pw_profiles_constituency_selection_items($constituency_values, current_path(), drupal_get_query_parameters()),
     ];
@@ -354,6 +355,7 @@ function pw_profiles_page($parliament_term, $role_name) {
       $build['user'][$vid] = user_view($politician, 'tile');
       $build['user'][$vid]['#weight'] = ++$weight;
     }
+    $build['user']['#theme_wrappers'] = ['container__tiles'];
     $build['user']['pager'] = [
       '#theme' => 'pager',
       '#weight' => ++$weight,
@@ -362,11 +364,11 @@ function pw_profiles_page($parliament_term, $role_name) {
   else {
     $build['user'] = [
       '#markup' => t('Sorry, there are no results matching your query.'),
+      '#theme_wrappers' => ['container__tiles']
     ];
   }
 
-  $build['user']['#theme_wrappers'] = ['container__tiles'];
-  $build['filters'] = drupal_get_form('pw_profiles_filters_form', $parliament_term, $response['search_api_facets']);
+  $build['filters'] = drupal_get_form('pw_profiles_filters_form', $parliament_term, $response['search_api_facets'], isset($build['user']));
   $build['filters']['#weight'] = -5;
 
   return $build;
@@ -491,7 +493,7 @@ function pw_profiles_archived_revisions($account, $direction = 'ASC') {
 /**
  * Form constructor for the profile filters form.
  */
-function pw_profiles_filters_form($form, &$form_state, $parliament, $facets) {
+function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $additional_filters_enabled = TRUE) {
 
   $constituency_values = _pw_profiles_facet_values($facets['field_user_constituency']);
   $party_values = _pw_profiles_facet_values($facets['field_user_party']);
@@ -518,7 +520,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets) {
       '#default_value' => empty($parameters['constituency']) ? '' : $parameters['constituency'],
     );
   }
-  if (!_pw_profiles_is_postal_code_search($parameters)) {
+  if ($additional_filters_enabled) {
     if (count($list_values) > 1 && !pw_profiles_filter_disabled('field_user_list_tid', $parliament)) {
       $form['list'] = array(
         '#type' => 'radios',
