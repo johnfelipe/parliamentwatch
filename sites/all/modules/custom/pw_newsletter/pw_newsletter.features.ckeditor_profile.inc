@@ -51,7 +51,7 @@ function pw_newsletter_ckeditor_profile_defaults() {
           ),
         ),
         'css_mode' => 'self',
-        'css_path' => '%t/css/newsletter.css',
+        'css_path' => '%t/css/theme.min.css',
         'css_style' => 'self',
         'styles_path' => '%t/js/ckeditor.newsletter.js',
         'filebrowser' => 'none',

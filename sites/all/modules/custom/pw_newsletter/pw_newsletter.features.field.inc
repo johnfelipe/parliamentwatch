@@ -169,6 +169,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           ),
         ),
         'display_summary' => 1,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
@@ -437,6 +438,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'paragraphs_pw_testmonial' => '4',
         ),
         'default_edit_mode' => 'preview',
+        'exclude_cv' => FALSE,
         'title' => 'Paragraph',
         'title_multiple' => 'Paragraphs',
         'user_register_form' => FALSE,
@@ -584,6 +586,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -813,6 +816,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Im Archiv anzeigen',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1055,6 +1059,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Blogartikel',
       'required' => 1,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1123,6 +1128,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Klasse',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1252,6 +1258,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -1350,6 +1357,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
+        'exclude_cv' => FALSE,
         'file_directory' => 'newsletter',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '2 MB',
@@ -1471,6 +1479,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 0,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 1,
@@ -1624,6 +1633,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -1715,6 +1725,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Zielgruppe',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1785,7 +1796,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
           ),
-          'type' => 'list_default',
+          'type' => 'list_key',
           'weight' => '5',
         ),
         'paragraphs_editor_preview' => array(
@@ -1801,6 +1812,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Im Archiv anzeigen',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1931,6 +1943,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -2029,6 +2042,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
+        'exclude_cv' => FALSE,
         'file_directory' => 'newsletter',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '2 MB',
@@ -2106,7 +2120,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'list',
           'settings' => array(
             'field_delimiter' => '',
@@ -2138,6 +2152,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Letztes Element',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -2213,8 +2228,8 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
           ),
-          'type' => 'link_absolute',
-          'weight' => '4',
+          'type' => 'link_title_plain',
+          'weight' => '6',
         ),
         'paragraphs_editor_preview' => array(
           'label' => 'above',
@@ -2241,6 +2256,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -2394,6 +2410,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -2485,6 +2502,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Zielgruppe',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -2555,8 +2573,8 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
           ),
-          'type' => 'list_default',
-          'weight' => '6',
+          'type' => 'list_key',
+          'weight' => '4',
         ),
         'paragraphs_editor_preview' => array(
           'label' => 'above',
@@ -2571,6 +2589,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Im Archiv anzeigen',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -2654,6 +2673,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Zielgruppe',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -2782,6 +2802,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
@@ -2919,6 +2940,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
@@ -3013,6 +3035,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Titel klein',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -3083,7 +3106,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
           ),
-          'type' => 'list_default',
+          'type' => 'list_key',
           'weight' => '4',
         ),
         'paragraphs_editor_preview' => array(
@@ -3099,6 +3122,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Im Archiv anzeigen',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -3221,6 +3245,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -3336,6 +3361,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Zielgruppe',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -3480,6 +3506,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Testimonial',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -3550,7 +3577,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
           ),
-          'type' => 'list_default',
+          'type' => 'list_key',
           'weight' => '3',
         ),
         'paragraphs_editor_preview' => array(
@@ -3566,6 +3593,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'label' => 'Im Archiv anzeigen',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
