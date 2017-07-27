@@ -13,6 +13,13 @@ function pw_userarchives_entity_info_alter(&$entity_info) {
 }
 
 /**
+ * Implements hook_user_update().
+ */
+function pw_userarchives_user_update(&$edit, $account, $category) {
+  search_api_track_item_insert('user_revision', [$account->vid]);
+}
+
+/**
  * Implements hook_cron().
  *
  * Updates stats for users.
