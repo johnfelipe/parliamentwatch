@@ -62,12 +62,15 @@ function pw_api_profile($username, $parliament=FALSE) {
   return $profile;
 }
 
-function pw_api_profiles($parliament) {
+function pw_api_profiles($parliament, $file_type) {
 
   // translate uuid into parliament name
   if(preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i', $parliament, $uuid)){
     $parliament_term = entity_uuid_load('taxonomy_term', $uuid);
     $parliament = array_pop($parliament_term)->name;
+  }
+  else{
+    $parliament_term = array_pop(taxonomy_get_term_by_name($parliament, 'parliaments'));
   }
 
   // query for users
@@ -106,7 +109,21 @@ function pw_api_profiles($parliament) {
     $profiles['profile_'.$user->uid] = pw_api_user_to_array($user, $activities);
   }
 
-  return array('profiles' => $profiles);
+  $contributer = array();
+  $field_contributer = field_get_items('taxonomy_term', $parliament_term, 'field_contributer');
+  $i = 0;
+  foreach ($field_contributer as $field_value) {
+    $contributer['name_'.++$i] = $field_value['value'];
+  }
+
+  if($file_type == 'json'){
+    $return_array = array('contributer' => $contributer, 'profiles' => $profiles);
+  }
+  else{
+    $return_array = array('profiles' => array('contributer' => $contributer) + $profiles);
+  }
+
+  return $return_array;
 }
 
 function pw_api_user_to_array($user, $activities = array()) {
