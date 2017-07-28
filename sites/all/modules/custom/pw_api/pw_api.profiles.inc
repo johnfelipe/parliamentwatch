@@ -205,8 +205,12 @@ function pw_api_user_to_array($user, $activities = array()) {
     $profile['parliament'] = array();
     $profile['parliament']['name'] = $w_user->field_user_parliament->label();
     $profile['parliament']['uuid'] = $w_user->field_user_parliament->uuid->value();
-    $profile['parliament']['joined'] = format_date($w_user->field_user_joined->value(), 'custom', 'Y-m-d');
-    $profile['parliament']['retired'] = format_date($w_user->field_user_retired->value(), 'custom', 'Y-m-d');
+    if ($w_user->field_user_joined->value()) {
+      $profile['parliament']['joined'] = format_date($w_user->field_user_joined->value(), 'custom', 'Y-m-d');
+    }
+    if ($w_user->field_user_retired->value()) {
+      $profile['parliament']['retired'] = format_date($w_user->field_user_retired->value(), 'custom', 'Y-m-d');
+    }
 
     // add constituency
     $profile['constituency'] = array();
