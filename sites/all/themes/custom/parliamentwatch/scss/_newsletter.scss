@@ -2,39 +2,27 @@
 * Newsletter
 */
 
-
-.view-pw-newsletter {
-  .view-filters {
-    @include grid-container();
+.newsletter.tile {
+  @include grid-column(12);
+  margin-bottom: $space;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(6);
+    margin-bottom: $space-large;
   }
-  .view-content {
-    @include grid-container();
-    background: $beige;
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4);
   }
-  .tile {
-    @include grid-column(12);
-    margin-bottom: $space;
-    @include breakpoint($breakpoint-s-min) {
-      @include grid-column(6);
-      margin-bottom: $space-large;
-    }
-    @include breakpoint($breakpoint-m-min) {
-      @include grid-column(4);
-    }
-    .tile__title {
-      border: 0;
-      padding-top: $space;
-      padding-bottom: $space;
-      text-align: center;
-      @include h3();
-    }
+  .tile__title {
+    border: 0;
+    padding-top: $space;
+    padding-bottom: $space;
+    text-align: center;
+    @include h3();
   }
   .tile__image {
     background: $brightGray;
   }
-
 }
-
 
 .newsletter.detail {
   @include container();

@@ -47,7 +47,7 @@ function pw_newsletter_page() {
     ->execute();
 
   if (!empty($result['node'])) {
-    $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'full');
+    $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'tile');
     $build['#theme_wrappers'] = ['container__tiles'];
     $build['pager'] = [
       '#theme' => 'pager',
