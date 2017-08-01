@@ -19,6 +19,15 @@ function pw_newsletter_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_form_alter().
+ */
+function pw_newsletter_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'newsletter_node_form' && is_null($form['nid']['#value'])) {
+    $form['field_piwik_campaign'][LANGUAGE_NONE][0]['value']['#default_value'] = 'nl' . date('Ymd');
+  }
+}
+
 function subscribe_to_newsletter() {
   drupal_add_http_header('Content-type', 'text/html; charset=utf8');
   $http_origin = $_SERVER['HTTP_ORIGIN'];
@@ -98,14 +107,5 @@ function subscribe_to_newsletter() {
   }
   else {
     print 'email_error';
-  }
-}
-
-/**
- * Implements hook_form_alter().
- */
-function pw_newsletter_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'newsletter_node_form' && is_null($form['nid']['#value'])) {
-    $form['field_piwik_campaign'][LANGUAGE_NONE][0]['value']['#default_value'] = 'nl' . date('Ymd');
   }
 }
