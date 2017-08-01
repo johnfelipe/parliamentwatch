@@ -154,6 +154,14 @@ function parliamentwatch_preprocess_block(&$variables) {
     }
   }
 
+  if ($variables['block']->module == 'pw_globals' && $variables['block']->delta == 'title') {
+    $variables['classes_array'][] = 'title';
+
+    if (menu_get_object('node')) {
+      $variables['classes_array'][] = drupal_html_class('title--' . menu_get_object('node')->type);
+    }
+  }
+
 }
 
 /**
