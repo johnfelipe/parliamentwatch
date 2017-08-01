@@ -75,7 +75,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
           'type' => 'text_default',
-          'weight' => '3',
+          'weight' => '2',
         ),
         'search_result' => array(
           'label' => 'hidden',
@@ -242,7 +242,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'description' => 'Bitte wählen Sie die Kategorien, welche die Themen im Newsletter bestmöglich beschreiben. Zur Verfügung stehen die selben Kategorien, die z.B. auch Blogartikeln, Abstimmungen und Petitionen zugeordnet werden.',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(
             'field_delimiter' => '',
@@ -258,7 +258,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
           ),
-          'type' => 'taxonomy_term_reference_link',
+          'type' => 'taxonomy_term_reference_plain',
           'weight' => '3',
         ),
         'search_result' => array(
@@ -370,7 +370,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             'view_mode' => 'full',
           ),
           'type' => 'paragraphs_view',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'search_result' => array(
           'label' => 'hidden',
@@ -509,7 +509,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'search_result' => array(
           'label' => 'hidden',
@@ -660,7 +660,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'description' => 'Welche Politiker werden in dem Newsletter explizit genannt?',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
+          'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
             'field_delimiter' => '',
@@ -795,7 +795,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '34',
+          'weight' => '6',
         ),
         'search_result' => array(
           'label' => 'above',
@@ -871,9 +871,25 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '33',
+          'module' => 'image',
+          'settings' => array(
+            'field_delimiter' => '',
+            'image_link' => '',
+            'image_style' => 'large',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'image',
+          'weight' => '0',
         ),
         'search_result' => array(
           'label' => 'hidden',
