@@ -4,50 +4,47 @@
  * @file pw_newsletter.module
  * + helper module to subscribe users via webform to newsletter
  */
-
 include_once 'pw_newsletter.features.inc';
 
 /**
  * Implements hook_menu().
  */
 function pw_newsletter_menu() {
-  $items = array();
-
   $items['newsletter/subscribe'] = array(
     'title' => 'Newsletter Subscription',
     'access arguments' => array('access content'),
     'delivery callback' => 'subscribe_to_newsletter',
     'type' => MENU_SUGGESTED_ITEM,
-    );
+  );
   return $items;
 }
 
-function subscribe_to_newsletter(){
+function subscribe_to_newsletter() {
   drupal_add_http_header('Content-type', 'text/html; charset=utf8');
   $http_origin = $_SERVER['HTTP_ORIGIN'];
   if ($http_origin) {
-      drupal_add_http_header('Access-Control-Allow-Origin', $http_origin);
+    drupal_add_http_header('Access-Control-Allow-Origin', $http_origin);
   }
 
   // check if email address is submitted via get parameter
   $email = false;
-  if(isset($_GET['email'])){
+  if (isset($_GET['email'])) {
     $email = $_GET['email'];
   }
 
   $source = '';
-  if(isset($_GET['source'])){
+  if (isset($_GET['source'])) {
     $source = $_GET['source'];
   }
 
   // validate email address
-  if(valid_email_address($email)){
+  if (valid_email_address($email)) {
 
     // retrieve webform node
     $internal_path = drupal_lookup_path('source', 'newsletter-subscription');
 
     // check and load node
-    if($internal_path && $node = menu_get_object('node', 1, $internal_path)){
+    if ($internal_path && $node = menu_get_object('node', 1, $internal_path)) {
 
       // load webform module
       module_load_include('inc', 'webform', 'webform.module');
@@ -57,13 +54,13 @@ function subscribe_to_newsletter(){
       $submissions = webform_get_submissions($node->nid);
 
       // check if address is on list
-      foreach($submissions as $submission){
+      foreach ($submissions as $submission) {
         $form_values = _pw_webform_get_keyed_fields($node, $submission);
-        if($form_values['e_mail'] == $email){
-          if($form_values['status'] == 'exported'){
+        if ($form_values['e_mail'] == $email) {
+          if ($form_values['status'] == 'exported') {
             print 'already_in_list';
           }
-          else{
+          else {
             print 'please_confirm';
           }
           return;
@@ -76,42 +73,39 @@ function subscribe_to_newsletter(){
         'status' => 'subscribed',
         'node_path' => $internal_path,
         'source' => $source
-        );
+      );
 
       // get indexed data array
       $data = _webform_client_form_submit_flatten($node, $data);
       $data = webform_submission_data($node, $data);
 
       $submission = (object) array(
-        'nid' => $node->nid,
-        'submitted' => REQUEST_TIME,
-        'remote_addr' => ip_address(),
-        'is_draft' => FALSE,
-        'data' => $data,
-        );
+          'nid' => $node->nid,
+          'submitted' => REQUEST_TIME,
+          'remote_addr' => ip_address(),
+          'is_draft' => FALSE,
+          'data' => $data,
+      );
 
       webform_submission_insert($node, $submission);
       webform_submission_send_mail($node, $submission);
       print 'success';
     }
-    else{
-     print 'unknown_error';
-     watchdog('pw_newsletter', 'Could not load node from path "newsletter-subscription"', NULL, WATCHDOG_ALERT);
-   }
- }
- else{
-  print 'email_error';
-}
+    else {
+      print 'unknown_error';
+      watchdog('pw_newsletter', 'Could not load node from path "newsletter-subscription"', NULL, WATCHDOG_ALERT);
+    }
+  }
+  else {
+    print 'email_error';
+  }
 }
 
 /**
  * Implements hook_form_alter().
  */
 function pw_newsletter_form_alter(&$form, &$form_state, $form_id) {
-
-  if($form_id == 'newsletter_node_form' && is_null($form['nid']['#value'])){
-
-    // set default value for piwik campaign
-    $form["field_piwik_campaign"][LANGUAGE_NONE][0]['value']['#default_value'] = "nl".date("Ymd");
+  if ($form_id == 'newsletter_node_form' && is_null($form['nid']['#value'])) {
+    $form['field_piwik_campaign'][LANGUAGE_NONE][0]['value']['#default_value'] = 'nl' . date('Ymd');
   }
 }
