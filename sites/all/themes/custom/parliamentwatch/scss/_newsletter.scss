@@ -2,6 +2,40 @@
 * Newsletter
 */
 
+
+.view-pw-newsletter {
+  .view-filters {
+    @include grid-container();
+  }
+  .view-content {
+    @include grid-container();
+    background: $beige;
+  }
+  .tile {
+    @include grid-column(12);
+    margin-bottom: $space;
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(6);
+      margin-bottom: $space-large;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(4);
+    }
+    .tile__title {
+      border: 0;
+      padding-top: $space;
+      padding-bottom: $space;
+      text-align: center;
+      @include h3();
+    }
+  }
+  .tile__image {
+    background: $brightGray;
+  }
+
+}
+
+
 .newsletter.detail {
   @include container();
 
@@ -31,10 +65,6 @@
       content: none;
     }
   }
-
-
-
-
   .hide {
     display: none;
   }
@@ -118,6 +148,7 @@
   ul { list-style: none; color: #4d4d4d; margin: 0; padding: 0; padding-bottom: 20px; padding-top: 0px; }
   li, ul li { list-style: none; color: #4d4d4d; margin: 0; padding: 0; padding-left: 20px; background-image: url(https://www.abgeordnetenwatch.de/sites/all/themes/custom/parliamentwatch/images/newsletter/list-icon.png); background-repeat: no-repeat; background-position: 2px 3px; }
 }
+
 
 
 

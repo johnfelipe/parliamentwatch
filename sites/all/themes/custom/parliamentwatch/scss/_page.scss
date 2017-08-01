@@ -24,12 +24,12 @@
   }
 }
 
-
 // Detail
 .node-type-page .intro {
   @include container-small();
 }
 .page.detail {
+  @include basic-content();
   @include container-small();
   padding-bottom: $space-large;
   @include breakpoint($breakpoint-l-min) {
@@ -38,7 +38,6 @@
   .content {
     @include grid-column(12);
   }
-  @include basic-content();
 }
 .node-type-page #content > .container {
   padding: 0;

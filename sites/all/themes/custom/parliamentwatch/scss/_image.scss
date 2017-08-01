@@ -13,32 +13,41 @@
     width: 100%;
     height: auto;
   }
-  &.float-left {
-    margin-bottom: $space;
-    @include breakpoint($breakpoint-s-min) {
-      float: left;
-      max-width: 300px;
-      @include margin(0 $space $space null);
-    }
-    @include breakpoint($breakpoint-l-min) {
-      @include margin(0 $space-large $space-large -100px);
-      max-width: 400px;
-    }
-  }
-  &.float-right {
-    margin-bottom: $space;
-    @include breakpoint($breakpoint-s-min) {
-      float: right;
-      max-width: 300px;
-      @include margin(0 null $space $space);
-    }
-    @include breakpoint($breakpoint-l-min) {
-      @include margin(0 -100px $space-large $space-large);
-      max-width: 400px;
-    }
-  }
   .copyright {
     font-size: .8em;
+  }
+}
+.float-left,
+.float-right {
+  margin-bottom: $space;
+  img {
+    padding: $space-xsmall-mobile;
+    border: 1px solid $darkBeige;
+    max-width: none;
+    width: 100%;
+    height: auto;
+  }
+}
+.float-left {
+  @include breakpoint($breakpoint-s-min) {
+    float: left;
+    max-width: 300px;
+    @include margin(0 $space $space null);
+  }
+  @include breakpoint($breakpoint-l-min) {
+    @include margin(0 $space-large $space-large -100px);
+    max-width: 400px;
+  }
+}
+.float-right {
+  @include breakpoint($breakpoint-s-min) {
+    float: right;
+    max-width: 300px;
+    @include margin(0 null $space $space);
+  }
+  @include breakpoint($breakpoint-l-min) {
+    @include margin(0 -100px $space-large $space-large);
+    max-width: 400px;
   }
 }
 
