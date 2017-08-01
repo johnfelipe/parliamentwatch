@@ -10,6 +10,12 @@ include_once 'pw_newsletter.features.inc';
  * Implements hook_menu().
  */
 function pw_newsletter_menu() {
+  $items['newsletter'] = array(
+    'title' => 'Newsletter',
+    'page callback' => 'pw_newsletter_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_SUGGESTED_ITEM,
+  );
   $items['newsletter/subscribe'] = array(
     'title' => 'Newsletter Subscription',
     'access arguments' => array('access content'),
@@ -26,6 +32,30 @@ function pw_newsletter_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'newsletter_node_form' && is_null($form['nid']['#value'])) {
     $form['field_piwik_campaign'][LANGUAGE_NONE][0]['value']['#default_value'] = 'nl' . date('Ymd');
   }
+}
+
+/**
+ * Page callback: Displays a listing of newsletters.
+ */
+function pw_newsletter_page() {
+  $build = [];
+
+  $result = pw_newsletter_base_query()
+    ->fieldCondition('field_show', 'value', TRUE)
+    ->propertyOrderBy('created', 'DESC')
+    ->pager(12)
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $build = node_view_multiple(node_load_multiple(array_keys($result['node'])), 'full');
+    $build['#theme_wrappers'] = ['container__tiles'];
+    $build['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
+    ];
+  }
+
+  return $build;
 }
 
 function subscribe_to_newsletter() {
@@ -108,4 +138,19 @@ function subscribe_to_newsletter() {
   else {
     print 'email_error';
   }
+}
+
+/**
+ * Returns a query for fetching published nodes of type newsletter.
+ *
+ * @return EntityFieldQuery
+ *   The query object.
+ */
+function pw_newsletter_base_query() {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'newsletter');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+
+  return $q;
 }
