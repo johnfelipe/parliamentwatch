@@ -755,7 +755,7 @@ function pw_search_api_default_search_api_index() {
         "search_api_language" : { "type" : "string" },
         "uid" : { "type" : "integer" },
         "url" : { "type" : "uri" },
-        "uuid" : { "type" : "text" },
+        "uuid" : { "type" : "string" },
         "vid" : { "type" : "integer" }
       },
       "data_alter_callbacks" : {
