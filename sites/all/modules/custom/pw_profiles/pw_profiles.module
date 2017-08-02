@@ -419,7 +419,7 @@ function pw_profiles_autocomplete($parliament_term, $role_name) {
 }
 
 /**
- * Title callback: Returns title for list of profile.
+ * Title callback: Returns title for list of profiles.
  *
  * @param string $parliament
  *   The parliament name
