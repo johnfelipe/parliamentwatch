@@ -302,14 +302,14 @@ function pw_globals_parliament_patron_block() {
     return $block;
   }
 
-  $node_url = 5;
   $today = new DateTime();
   $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
 
   if ($today > $election_date || !isset($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id'])) {
-    $block['content'] = node_view(node_load($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id']), 'teaser');
     return $block;
   }
+
+  $block['content'] = node_view(node_load($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id']), 'teaser');
 
   return $block;
 }
