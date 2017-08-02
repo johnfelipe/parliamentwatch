@@ -46,12 +46,12 @@
 ?>
 
 <?php
-  $node_url = 'node/' . $elements['#node']->nid;
+  $node_url = url('node/' . $elements['#node']->nid, ['absolute' => TRUE]);
 ?>
 
 <div class="patron-teaser">
   <?php print render($content); ?>
   <div class="patron-teaser__btn">
-    <a href="<?php print url($node_url, ['absolute' => TRUE]); ?>" class="btn btn--mobile-block"><?php print t('Read greeting words'); ?></a>
+    <a href="<?php print $node_url; ?>" class="btn btn--mobile-block"><?php print t('Read greeting words'); ?></a>
   </div>
 </div>
