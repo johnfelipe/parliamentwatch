@@ -387,7 +387,7 @@ function pw_vote_profile_block() {
   }
 
   $nids = pw_vote_by_user_revision_query($account)
-    ->orderBy('n.created', 'DESC')
+    ->orderBy('vnd.field_poll_date_value', 'DESC')
     ->extend('PagerDefault')
     ->limit(6)
     ->execute()
@@ -772,6 +772,8 @@ function pw_vote_by_user_revision_query($account) {
   $q->fields('n', ['nid']);
   $q->join('field_data_field_vote_user', 'u', 'n.nid = u.entity_id');
   $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
+  $q->join('field_data_field_vote_node', 'vn', 'n.nid = vn.entity_id');
+  $q->join('field_data_field_poll_date', 'vnd', 'vn.field_vote_node_target_id = vnd.entity_id');
   $q->condition('type', 'vote');
   $q->condition('status', NODE_PUBLISHED);
   $q->condition('u.field_vote_user_target_id', $account->uid);
