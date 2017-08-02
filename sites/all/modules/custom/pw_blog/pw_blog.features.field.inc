@@ -1205,6 +1205,7 @@ function pw_blog_field_default_fields() {
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
