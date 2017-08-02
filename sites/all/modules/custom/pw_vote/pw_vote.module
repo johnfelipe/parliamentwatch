@@ -26,10 +26,10 @@ function pw_vote_menu() {
  */
 function pw_vote_user_view($account, $view_mode, $langcode) {
   if ($view_mode == 'full') {
-    $result = pw_vote_by_user_revision_query($account)->execute();
+    $nids = pw_vote_by_user_revision_query($account)->execute()->fetchCol();
 
-    if (!empty($result['node'])) {
-      $nodes = node_load_multiple(array_keys($result['node']));
+    if (!empty($nids)) {
+      $nodes = node_load_multiple($nids);
       $inline_js = 'window.votes = ' . drupal_json_encode(array_map('pw_vote_to_aray', array_values($nodes))) . ';';
       $filter_attended = function ($item) {
         return ($item->field_vote[LANGUAGE_NONE][0]['tid'] == 19670) ? FALSE : TRUE;
@@ -386,17 +386,19 @@ function pw_vote_profile_block() {
     return $block;
   }
 
-  $result = pw_vote_by_user_revision_query($account)
-    ->propertyOrderBy('created', 'DESC')
-    ->pager(6, 1)
-    ->execute();
+  $nids = pw_vote_by_user_revision_query($account)
+    ->orderBy('n.created', 'DESC')
+    ->extend('PagerDefault')
+    ->limit(6)
+    ->execute()
+    ->fetchCol();
 
-  if (!empty($result['node'])) {
+  if (!empty($nids)) {
     $callback = function ($item) {
       $vote = node_load($item->field_vote_node[LANGUAGE_NONE][0]['target_id']);
       return $vote->type == 'poll';
     };
-    $nodes = array_filter(node_load_multiple(array_keys($result['node'])), $callback);
+    $nodes = array_filter(node_load_multiple($nids), $callback);
     $block['subject'] = t('Voting behavior');
     $block['content'] = node_view_multiple($nodes, 'embedded');
     $block['content']['pager'] = [
@@ -766,12 +768,14 @@ function pw_vote_mark_deviant_votes($nid) {
  *   The query object
  */
 function pw_vote_by_user_revision_query($account) {
-  $q = new EntityFieldQuery();
-  $q->entityCondition('entity_type', 'node');
-  $q->entityCondition('bundle', 'vote');
-  $q->propertyCondition('status', NODE_PUBLISHED);
-  $q->fieldCondition('field_vote_user', 'target_id', $account->uid);
-  $q->fieldCondition('field_parliament', 'tid', pw_profiles_parliament($account)->tid);
+  $q = db_select('node', 'n');
+  $q->fields('n', ['nid']);
+  $q->join('field_data_field_vote_user', 'u', 'n.nid = u.entity_id');
+  $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
+  $q->condition('type', 'vote');
+  $q->condition('status', NODE_PUBLISHED);
+  $q->condition('u.field_vote_user_target_id', $account->uid);
+  $q->condition('p.field_parliament_tid', pw_profiles_parliament($account)->tid);
 
   return $q;
 }
