@@ -136,8 +136,8 @@
         <strong><i class="icon icon-de"></i> Landtage</strong>
         <ul class="footer__maincol__col__nav">
           <li class="footer__maincol__col__nav__item"><?php print l('Baden-Württemberg', 'baden-wuerttemberg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Berlin', 'berlin', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Bayern', 'bayern', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l('Berlin', 'berlin', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Brandenburg', 'brandenburg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Bremen', 'bremen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Hamburg', 'hamburg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
@@ -159,7 +159,7 @@
         </ul>
       </div>
       <div class="footer__maincol__col">
-        <strong><i class="icon icon-de"></i> EU</strong>
+        <strong><i class="icon icon-eu"></i> EU</strong>
         <ul class="footer__maincol__col__nav">
           <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profiles/16117/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Polls'), 'polls/16117', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
@@ -184,6 +184,9 @@
           </li>
           <li class="footer__maincol__col__nav__item">
             <?php print l(t('Imprint'), 'node/7732', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
+          </li>
+          <li class="footer__maincol__col__nav__item">
+            <?php print l(t('Contact'), 'node/6578', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
           </li>
         </ul>
       </div>
