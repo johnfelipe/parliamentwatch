@@ -1084,6 +1084,16 @@ function pw_globals_update_7035() {
 }
 
 /**
+ * Configure patron block.
+ */
+function pw_globals_update_7036() {
+  $block1 = (array) block_load('pw_globals', 'parliament_patron');
+  $block1['regions'] = ['parliamentwatch' => 'content', 'blank' => 'content'];
+  $block1['weight'] = 30;
+  _pw_globals_configure_block($block1);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
