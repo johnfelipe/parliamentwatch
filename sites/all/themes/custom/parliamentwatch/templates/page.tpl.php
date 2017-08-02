@@ -95,7 +95,6 @@
     <?php endif; ?>
   </header>
 
-
   <main id="content">
     <a id="main-content"></a>
     <?php print $messages; ?>

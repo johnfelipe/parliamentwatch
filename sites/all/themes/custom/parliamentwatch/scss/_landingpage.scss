@@ -253,29 +253,50 @@
   @include grid-container();
   position: relative;
   border-top: 1px solid $darkBeige;
-  padding-top: $space-large;
+  padding-top: $space;
   padding-bottom: $space-large;
   @include container();
+  @include breakpoint($breakpoint-xs-min) {
+    padding-top: $space-large;
+    padding-bottom: $space-large;
+  }
   @include breakpoint($breakpoint-xl-min) {
     padding-top: $space-large + $space;
     padding-bottom: $space-large + $space;
   }
   h3 {
     font-size: 1em;
-    margin-bottom: $space-large;
+    padding-left: 33.3%;
+    padding-right: 10%;
+    margin-bottom: 60px;
+    margin-top: $space + $space-xsmall-mobile;
+    @include breakpoint($breakpoint-xs-min) {
+      padding-left: 0;
+      padding-right: 0;
+      margin-top: $space-small;
+      margin-bottom: $space;
+    }
   }
-  .btn {
-    @include grid-push(3);
+  .patron-teaser__btn {
+    @include grid-column(12);
     clear: both;
+    @include breakpoint($breakpoint-xs-min) {
+      @include grid-column(9);
+      @include grid-push(3);
+    }
+  }
+  .node-teaser {
+    @include grid-container();
   }
 }
 .patron-teaser__image {
   position: absolute;
   top: $space-xsmall;
-  @include grid-column(3);
+  @include grid-column(4);
   text-align: center;
   @include breakpoint($breakpoint-xs-min) {
     position: static;
+    @include grid-column(3);
   }
   @include breakpoint($breakpoint-m-min) {
     @include grid-column(2);
@@ -300,16 +321,22 @@
       border-width: 5px;
     }
   }
+  .patron-teaser__image__info {
+    font-size: .8em;
+    padding-top: $space-xsmall-mobile;
+  }
 }
 .patron-teaser__content {
   @include grid-column(12);
-  padding-top: $space-large + $space;
   @include breakpoint($breakpoint-xs-min) {
     padding-top: 0;
     @include grid-column(9);
   }
   blockquote {
     margin-bottom: $space-xsmall;
+    p {
+      display: inline;
+    }
   }
   blockquote + p {
     margin-bottom: $space;

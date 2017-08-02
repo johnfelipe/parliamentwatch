@@ -44,6 +44,14 @@
  * @ingroup themeable
  */
 ?>
+
+<?php
+  $node_url = 'node/' . $elements['#node']->nid;
+?>
+
 <div class="patron-teaser">
-  <?php print $content ?>
+  <?php print render($content); ?>
+  <div class="patron-teaser__btn">
+    <a href="<?php print url($node_url, array('absolute' => true)); ?>" class="btn btn--mobile-block"><?php print t('Read greeting words'); ?></a>
+  </div>
 </div>
