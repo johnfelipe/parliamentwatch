@@ -235,6 +235,14 @@ function pw_dialogues_theme() {
 }
 
 /**
+ * Implements hook_query_TAG_alter().
+ */
+function pw_dialogues_query_ignore_standard_replies_alter(QueryAlterableInterface $query) {
+  $query->join('field_data_field_dialogue_is_standard_reply', 's', 'c.cid = s.entity_id');
+  $query->condition('s.field_dialogue_is_standard_reply_value', 0);
+}
+
+/**
  * Title callback: Sets the title for the dialogues page.
  */
 function pw_dialogues_page_title($parliament_term, $uid = NULL) {
@@ -596,8 +604,7 @@ function pw_dialogues_average_response_time_by_account($account) {
   $q = pw_dialogues_aggregate_base_query($parliament_term, $before_election);
   $q->join('comment', 'c', 'n.nid = c.nid');
   $q->condition('c.uid', $account->uid);
-  $q->join('field_data_field_dialogue_is_standard_reply', 's', 'c.cid = s.entity_id');
-  $q->condition('s.field_dialogue_is_standard_reply_value', 0);
+  $q->addTag('ignore_standard_replies');
   $q->addExpression('AVG(c.created - n.created)');
 
   return $q->execute()->fetchField();
@@ -619,8 +626,7 @@ function pw_dialogues_average_response_time_by_parliament($term) {
 
   $q = pw_dialogues_aggregate_base_query($term, $before_election);
   $q->join('comment', 'c', 'n.nid = c.nid');
-  $q->join('field_data_field_dialogue_is_standard_reply', 's', 'c.cid = s.entity_id');
-  $q->condition('s.field_dialogue_is_standard_reply_value', 0);
+  $q->addTag('ignore_standard_replies');
   $q->addExpression('AVG(c.created - n.created)');
 
   return $q->execute()->fetchField();
@@ -642,8 +648,7 @@ function pw_dialogues_answered_questions_by_parliament($term) {
 
   $q = pw_dialogues_aggregate_base_query($term, $before_election);
   $q->join('comment', 'c', 'n.nid = c.nid');
-  $q->join('field_data_field_dialogue_is_standard_reply', 's', 'c.cid = s.entity_id');
-  $q->condition('s.field_dialogue_is_standard_reply_value', 0);
+  $q->addTag('ignore_standard_replies');
   $q->addExpression('COUNT(DISTINCT n.nid)');
 
   return $q->execute()->fetchField();
