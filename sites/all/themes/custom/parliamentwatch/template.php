@@ -198,7 +198,7 @@ function parliamentwatch_preprocess_node(&$variables) {
   if ($variables['type'] == 'blogpost' && $variables['view_mode'] == 'full') {
     $variables['username'] = _pw_get_fullname(user_load($node->uid));
     $variables['date'] = format_date($node->created, 'short');
-    $variables['submitted'] = t('Submitted by !username on !datetime', array('!username' => $variables['name'], '!datetime' => $variables['date']));
+    $variables['submitted'] = t('Submitted by !username on !datetime', array('!username' => $variables['username'], '!datetime' => $variables['date']));
   }
 
   if ($variables['type'] == 'poll' && isset($node->result)) {
