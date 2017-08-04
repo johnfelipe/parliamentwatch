@@ -66,11 +66,11 @@ function pw_api_profiles($parliament, $file_type) {
 
   // translate uuid into parliament name
   if(preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i', $parliament, $uuid)){
-    $parliament_term = entity_uuid_load('taxonomy_term', $uuid);
-    $parliament = array_pop($parliament_term)->name;
+    $parliament_terms = entity_uuid_load('taxonomy_term', $uuid);
+    $parliament = reset($parliament_terms)->name;
   }
   else{
-    $parliament_term = array_pop(taxonomy_get_term_by_name($parliament, 'parliaments'));
+    $parliament_terms = taxonomy_get_term_by_name($parliament, 'parliaments');
   }
 
   // query for users
@@ -110,7 +110,7 @@ function pw_api_profiles($parliament, $file_type) {
   }
 
   $contributer = array();
-  $field_contributer = field_get_items('taxonomy_term', $parliament_term, 'field_contributer');
+  $field_contributer = field_get_items('taxonomy_term', reset($parliament_terms), 'field_contributer');
   $i = 0;
   foreach ($field_contributer as $field_value) {
     $contributer['name_'.++$i] = $field_value['value'];
