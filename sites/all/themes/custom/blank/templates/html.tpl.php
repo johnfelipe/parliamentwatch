@@ -17,15 +17,15 @@
   <?php print $page; ?>
   <?php print $page_bottom; ?>
   <script language="javascript">
-  $(document).ready( function(){
-    var pymChild = new pym.Child({ id: 'awpym' });
-    var searchForm = $("form[action*='profile']");
-    if (searchForm) {
-      searchForm.submit(function(e){
-        pymChild.sendMessage('awSearchSubmit', searchForm.serialize());
-      });
-    };
-  });
+    $(document).ready( function(){
+      var pymChild = new pym.Child({ id: 'awpym' });
+      var searchForm = $("form[action*='bundestag/profile']");
+      if (searchForm) {
+        searchForm.submit(function(e){
+          pymChild.sendMessage('awSearchSubmit', searchForm.serialize());
+        });
+      };
+    });
   </script>
 </body>
 </html>
