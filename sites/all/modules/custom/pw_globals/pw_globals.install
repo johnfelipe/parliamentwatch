@@ -1094,6 +1094,19 @@ function pw_globals_update_7036() {
 }
 
 /**
+ * Disable obsolete module.
+ */
+function pw_globals_update_7037() {
+  $disable = [
+    'data',
+    'pw_forms_filter',
+    'schema',
+    'webform_mysql_views'
+  ];
+  module_disable($disable);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
