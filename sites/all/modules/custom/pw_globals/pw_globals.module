@@ -443,7 +443,15 @@ function _pw_is_profile_consultable($account) {
 }
 
 /**
- * Custom: Checks if User (Revision) has specific role.
+ * Returns TRUE if the given account has the given role, FALSE otherwise.
+ *
+ * @param type $account
+ *   The user object.
+ * @param string $role
+ *   The role.
+ *
+ * @return bool
+ *   TRUE if the given account has the given role, FALSE otherwise.
  */
 function _pw_user_has_role($account, $role) {
   $role_term = taxonomy_get_term_by_name($role, 'pw_profile_roles_for_view_mode_switch');
