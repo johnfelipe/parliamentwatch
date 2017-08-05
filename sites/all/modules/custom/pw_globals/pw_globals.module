@@ -649,21 +649,6 @@ function _pw_send_debug_mail($subject, $body) {
 }
 
 /**
- * Custom: Get terms as links primarily for listing tags.
- * @param array $terms
- *   array of terms
- * @param string $separator
- *   separator as string
- * @return string
- *   All terms linked to term page.
- */
-function _pw_get_linked_terms($terms, $separator = ', ') {
-  return implode($separator, array_map(function($term) {
-      return l($term['taxonomy_term']->name, 'taxonomy/term/' . $term['taxonomy_term']->tid);
-    }, $terms));
-}
-
-/**
  * Custom: Helper, get fullname form user object.
  * @param object $user
  *   user object
