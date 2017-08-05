@@ -448,8 +448,9 @@ function _pw_is_profile_consultable($account) {
 function _pw_user_has_role($user, $role) {
   $term_role = taxonomy_get_term_by_name($role, 'pw_profile_roles_for_view_mode_switch');
   $tid_role = key($term_role);
+  $items = field_get_items('user', $user, 'field_user_roles_for_view_mode_s');
 
-  foreach (field_get_items('user', $user, 'field_user_roles_for_view_mode_s') as $user_role) {
+  foreach ($items as $user_role) {
     if ($tid_role == $user_role['tid']) {
       return TRUE;
     }
