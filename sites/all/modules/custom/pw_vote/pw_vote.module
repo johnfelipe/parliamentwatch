@@ -77,23 +77,6 @@ function pw_vote_check_user_allowed() {
  * Implements hook_form_alter().
  */
 function pw_vote_form_alter(&$form, &$form_state, $form_id) {
-  // modify vote search filters
-  if ($form_id == 'views_exposed_form' && $form['#id'] == "views-exposed-form-vote-search-block") {
-    $parliament_name = _pw_get_current_parliament_term()->name;
-    if ($parliament_name == "EU") {
-      $form['#info']['filter-search_api_views_fulltext']['label'] = "Suche nach Name";
-    }
-    $fractions = db_query("SELECT DISTINCT fraction_name FROM user_archive_cache WHERE parliament_name = :parliament AND user_role = :role", array(':parliament' => $parliament_name, ':role' => 'deputy'));
-    $form['field_vote_user_field_user_fraction']['#options'] = array('All' => t("All"));
-    foreach ($fractions as $fraction) {
-      if ($fraction->fraction_name){
-        $fraction_term = taxonomy_get_term_by_name($fraction->fraction_name,"fraction");
-        reset($fraction_term);
-        $tid = key($fraction_term);
-        $form['field_vote_user_field_user_fraction']['#options'][$tid] = $fraction->fraction_name;
-      }
-    }
-  }
   // modify vote form
   if ($form_id == 'webform_client_form_57286') {
 
