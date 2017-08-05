@@ -1107,6 +1107,13 @@ function pw_globals_update_7037() {
 }
 
 /**
+ * Drop webform view.
+ */
+function pw_globals_update_7038() {
+  db_query('DROP VIEW webform_views_untersttzen_sie_abgeordnetenwatchde');
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

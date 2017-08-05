@@ -174,7 +174,7 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
 
   // load all database schemes
   $schemes = drupal_get_schema(NULL, TRUE);
-  $excluded_tables = array('feeds_item', 'users', 'users_roles', 'user_archive_cache', 'webform_views_untersttzen_sie_abgeordnetenwatchde');
+  $excluded_tables = array('feeds_item', 'users', 'users_roles', 'user_archive_cache');
   $schemes = array_diff_key($schemes, array_flip($excluded_tables));
   ksort($schemes);
 
