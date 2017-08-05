@@ -25,7 +25,7 @@ function pw_vote_menu() {
  * Implements hook_user_view().
  */
 function pw_vote_user_view($account, $view_mode, $langcode) {
-  if ($view_mode == 'full') {
+  if ($view_mode == 'full' && _pw_user_has_role($account, 'Politician')) {
     $nids = pw_vote_by_user_revision_query($account)->execute()->fetchCol();
 
     if (!empty($nids)) {
@@ -365,7 +365,7 @@ function pw_vote_profile_block() {
     $account = menu_get_object('user');
   }
 
-  if (!$account) {
+  if (!$account || !_pw_user_has_role($account, 'Politician')) {
     return $block;
   }
 

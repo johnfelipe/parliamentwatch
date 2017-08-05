@@ -383,7 +383,7 @@ function pw_dialogues_profile_block() {
     $account = menu_get_object('user');
   }
 
-  if (!$account) {
+  if (!$account || !_pw_user_has_role($account, 'Politician')) {
     return $block;
   }
 

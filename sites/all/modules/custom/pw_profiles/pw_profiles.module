@@ -210,7 +210,7 @@ function pw_profiles_user_update(&$edit, $account, $category) {
  * Implements hook_user_view().
  */
 function pw_profiles_user_view($account, $view_mode, $langcode) {
-  if ($view_mode == 'full') {
+  if ($view_mode == 'full' && _pw_user_has_role($account, 'Politician')) {
     $options = _pw_profiles_revision_switcher_options($account);
 
     if (!empty($options)) {

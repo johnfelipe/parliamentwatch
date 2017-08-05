@@ -40,7 +40,7 @@ function pw_kandidatencheck_node_load($nodes, $types) {
 function pw_kandidatencheck_user_view($account, $view_mode, $langcode) {
   $extra = field_extra_fields_get_display('user', 'user', $view_mode);
 
-  if (isset($extra['candidate_match']) && $extra['candidate_match']['visible']) {
+  if (isset($extra['candidate_match']) && $extra['candidate_match']['visible'] && _pw_user_has_role($account, 'Politician')) {
     $result = pw_kandidatencheck_by_user_revision_query($account)->execute();
 
     if (!empty($result['node'])) {
