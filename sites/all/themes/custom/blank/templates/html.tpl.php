@@ -17,7 +17,15 @@
   <?php print $page; ?>
   <?php print $page_bottom; ?>
   <script language="javascript">
-      var pymChild = new pym.Child({ id: 'awpym' });
+    var pymChild = new pym.Child({ id: 'awpym' });
+    var searchKeys = document.getElementById('edit-keys');
+    var submitButton = document.getElementById('edit-submit');
+    if (searchKeys && submitButton) {
+      document.getElementById('edit-submit').addEventListener('click', function(e){
+        var keys = searchKeys.value;
+        pymChild.sendMessage('awSearchSubmit', '?keys=' + keys + '?op=');
+      }, false);
+    };
   </script>
 </body>
 </html>
