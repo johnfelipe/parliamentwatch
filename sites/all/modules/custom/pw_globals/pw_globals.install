@@ -1094,6 +1094,36 @@ function pw_globals_update_7036() {
 }
 
 /**
+ * Disable obsolete module.
+ */
+function pw_globals_update_7037() {
+  $disable = [
+    'data',
+    'pw_forms_filter',
+    'schema',
+    'webform_mysql_views'
+  ];
+  module_disable($disable);
+}
+
+/**
+ * Drop webform view.
+ */
+function pw_globals_update_7038() {
+  db_query('DROP VIEW webform_views_untersttzen_sie_abgeordnetenwatchde');
+}
+
+/**
+ * Delete field left over due to disabling module prematurely.
+ */
+function pw_globals_update_7039() {
+  module_enable(['hms_field']);
+  field_delete_field('field_duration');
+  field_purge_batch(1);
+  module_disable(['hms_field']);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

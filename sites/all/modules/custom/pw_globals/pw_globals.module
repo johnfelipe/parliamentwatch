@@ -42,12 +42,6 @@ function pw_globals_menu() {
     'access arguments' => ['administer site configuration'],
     'type' => MENU_CALLBACK,
   ];
-  $items['images/membership-count.txt'] = [
-    'title' => 'Membeship count',
-    'page callback' => 'pw_globals_membership_count',
-    'access arguments' => ['access content'],
-    'type' => MENU_CALLBACK,
-  ];
   return $items;
 }
 
@@ -183,13 +177,6 @@ function pw_globals_info_page() {
   }
 
   return $build;
-}
-
-/**
- * Page callback: Returns number of supporters.
- */
-function pw_globals_membership_count() {
-  print rand(4000, 6000);
 }
 
 /**
@@ -646,21 +633,6 @@ function _pw_webform_get_keyed_fields($webform_node, $submission) {
  */
 function _pw_send_debug_mail($subject, $body) {
   mail('debug@abgeordnetenwatch.de', $subject, print_r($body, true) . "\n\n############################\n\n" . print_r(debug_backtrace(), 1));
-}
-
-/**
- * Custom: Get terms as links primarily for listing tags.
- * @param array $terms
- *   array of terms
- * @param string $separator
- *   separator as string
- * @return string
- *   All terms linked to term page.
- */
-function _pw_get_linked_terms($terms, $separator = ', ') {
-  return implode($separator, array_map(function($term) {
-      return l($term['taxonomy_term']->name, 'taxonomy/term/' . $term['taxonomy_term']->tid);
-    }, $terms));
 }
 
 /**

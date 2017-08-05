@@ -228,10 +228,10 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
 
   if (in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show'])) {
     $parliament_tid = pw_profiles_parliament($account)->tid;
-    if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($account->roles))) {
+    if (_pw_user_has_role($account, 'Deputy')) {
       menu_tree_set_path('main-menu', "profiles/$parliament_tid/deputies");
     }
-    else if (in_array(PW_GLOBALS_CANDIDATE_RID, array_keys($account->roles))) {
+    elseif (_pw_user_has_role($account, 'Candidate')) {
       menu_tree_set_path('main-menu', "profiles/$parliament_tid/candidates");
     }
   }
