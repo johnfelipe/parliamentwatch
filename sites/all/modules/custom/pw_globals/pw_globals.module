@@ -450,11 +450,16 @@ function _pw_user_has_role($user, $role) {
   $tid_role = key($term_role);
   $items = field_get_items('user', $user, 'field_user_roles_for_view_mode_s');
 
+  if (!$items) {
+    return FALSE;
+  }
+
   foreach ($items as $user_role) {
     if ($tid_role == $user_role['tid']) {
       return TRUE;
     }
   }
+
   return FALSE;
 }
 
