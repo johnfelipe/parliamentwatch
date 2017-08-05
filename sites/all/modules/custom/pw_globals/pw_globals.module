@@ -453,14 +453,9 @@ function _pw_user_has_role($user, $role) {
   if (!$items) {
     return FALSE;
   }
-
-  foreach ($items as $user_role) {
-    if ($tid_role == $user_role['tid']) {
-      return TRUE;
-    }
+  else {
+    return in_array($tid_role, array_column($items, 'tid'));
   }
-
-  return FALSE;
 }
 
 /**
