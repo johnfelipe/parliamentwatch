@@ -51,6 +51,26 @@ function pw_petitions_block_list_alter(&$blocks) {
 }
 
 /**
+ * Implements hook_node_load().
+ */
+function pw_petitions_node_load($nodes, $types) {
+  if (count(array_intersect(['pw_petition'], $types))) {
+    $q = db_select('field_data_field_voted', 'v');
+    $q->fields('n', ['field_vote_node_target_id']);
+    $q->addExpression('COUNT(n.entity_id)');
+    $q->join('field_data_field_vote_node', 'n', 'v.entity_id = n.entity_id');
+    $q->condition('n.field_vote_node_target_id', array_keys($nodes));
+    $q->condition('v.field_voted_value', TRUE);
+    $q->groupBy('n.field_vote_node_target_id');
+    $result = $q->execute()->fetchAllKeyed();
+
+    foreach ($result as $nid => $count) {
+      $nodes[$nid]->votes = $count;
+    }
+  }
+}
+
+/**
  * Implements hook_node_view().
  */
 function pw_petitions_node_view($node, $view_mode, $langcode) {

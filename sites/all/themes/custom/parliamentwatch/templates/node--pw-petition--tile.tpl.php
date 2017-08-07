@@ -147,8 +147,8 @@
           <p class="petition__result_asked">
         <span class="petition__result_asked__inner">
           <i class="icon icon-ok"></i>
-          <strong><?php print t('Petition passed the parliament') ?></strong><br>
-          <?php print t('Politicians gave a statement.') ?>
+          <strong><?php print t('The petition passed parliament.') ?></strong><br>
+          <?php print format_plural($node->votes, '1 politician gave a statement.', '@count politicians gave a statement.'); ?>
         </span>
           </p>
         <?php endif; ?>
