@@ -195,6 +195,10 @@ function parliamentwatch_preprocess_node(&$variables) {
   $year = sprintf('<span class="date__year">%s</span>', format_date($node->created, 'custom', 'Y'));
   $variables['date'] = sprintf('<span class="date">%s%s%s</span>', $day, $month, $year);
 
+  if (isset($variables['field_teaser_image'])) {
+    $variables['content']['field_teaser_image_copyright'] = field_view_field('file', file_load($variables['field_teaser_image'][0]['fid']), 'field_image_copyright', 'default');
+  }
+
   if ($variables['type'] == 'blogpost' && $variables['view_mode'] == 'full') {
     $variables['username'] = _pw_get_fullname(user_load($node->uid));
     $variables['date'] = format_date($node->created, 'short');

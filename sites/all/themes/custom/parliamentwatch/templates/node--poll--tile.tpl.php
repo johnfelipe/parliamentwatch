@@ -83,6 +83,7 @@
 <article id="node-<?php print $node->nid; ?>" class="poll tile <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="tile__image">
     <?php print render($content['field_teaser_image']); ?>
+    <?php print render($content['field_teaser_image_copyright']); ?>
   </div>
   <div class="tile__date"><?php print render($content['field_poll_date']); ?></div>
   <?php if (isset($result)): ?>
