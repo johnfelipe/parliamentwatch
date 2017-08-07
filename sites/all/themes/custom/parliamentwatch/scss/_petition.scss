@@ -352,12 +352,14 @@
 
 /* Detail */
 .petition.detail {
+  margin-bottom: $space-large;
   .sidebar-container {
     padding-bottom: $space-large;
   }
   > h2 {
     clear: both;
     margin-top: $space-large;
+    @include container-regular();
   }
 }
 
@@ -381,6 +383,10 @@
     padding-bottom: 0;
     padding-left: $space-large;
     @include grid-column(4, $neat-grid-rtl);
+  }
+  img {
+    max-width: none;
+    width: 100%;
   }
 }
 

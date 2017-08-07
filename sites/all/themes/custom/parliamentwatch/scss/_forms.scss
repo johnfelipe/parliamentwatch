@@ -45,7 +45,8 @@
     position: absolute;
     top: $space-xsmall-mobile;
     @include appearance(none);
-    &:checked { background-color: $gray; }
+    border-color: $orange;
+    &:checked { background-color: $orange; }
     &:focus { outline: none; }
   }
 }
