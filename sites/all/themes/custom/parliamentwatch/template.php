@@ -70,7 +70,7 @@ function parliamentwatch_page_alter(&$page) {
 
     $has_container = !empty(array_filter($page['content']['system_main']['#theme_wrappers'], $filter));
     $has_filters = isset($page['content']['system_main']['filters']);
-    $is_blog_or_petition_page = menu_get_object('node') ? in_array(menu_get_object('node')->type, ['blogpost', 'petition']) : FALSE;
+    $is_blog_or_petition_page = menu_get_object('node') ? in_array(menu_get_object('node')->type, ['blogpost', 'pw_petition']) : FALSE;
 
     if (!$has_container && !$has_filters && !$is_blog_or_petition_page) {
       $page['content']['system_main']['#prefix'] = '<div class="container">';
