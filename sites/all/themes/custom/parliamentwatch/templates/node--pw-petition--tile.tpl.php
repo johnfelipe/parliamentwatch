@@ -108,9 +108,12 @@
           <span class="d3 d3--bar-horizontal"
                 data-bar-horizontal
                 data-value="<?php print $field_petition_signings[0]['value']; ?>"
-                data-value_max="<?php print $field_petition_required[0]['value']; ?>"><span class="bar"></span></span>
+                data-value_max="<?php print $field_petition_required[0]['value']; ?>">
+            <span class="bar"></span>
+          </span>
           <p><?php print render($content['field_petition_signings']); ?><br>
-            <small><?php print render($content['field_petition_required']); ?> <?php print t('signings are required')?></small></p>
+            <small><?php print render($content['field_petition_required']); ?> <?php print t('signings are required')?></small>
+          </p>
         <?php endif; ?>
 
         <?php if ($field_petition_status[0]['value'] == 'collecting_donations'): ?>
@@ -140,7 +143,6 @@
           </p>
         <?php endif; ?>
 
-        <!-- Ouput for State 5 -->
         <?php if ($field_petition_status[0]['value'] == 'passed_parliament'): ?>
           <p class="petition__result_asked">
         <span class="petition__result_asked__inner">
@@ -152,8 +154,6 @@
         <?php endif; ?>
       </div>
     </div>
-
-
   </div>
   <ul class="tile__links tile__links--2">
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('read more'); ?></a></li>
