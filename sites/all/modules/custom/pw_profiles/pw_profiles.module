@@ -398,6 +398,9 @@ function pw_profiles_autocomplete($parliament_term, $role_name) {
       if (isset($result['fields']['field_user_constituency:field_constituency_area_codes:name'])) {
         $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:field_constituency_area_codes:name']);
       }
+      if (isset($result['fields']['field_user_constituency:field_constituency_ac_descriptor'])) {
+        $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:field_constituency_ac_descriptor']);
+      }
       if (isset($result['fields']['field_user_constituency:name'][0])) {
         $data['constituency'] = $result['fields']['field_user_constituency:name'];
         $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:name']);
