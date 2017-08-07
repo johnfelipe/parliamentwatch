@@ -297,6 +297,9 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     }
   }
 
+  if (isset($variables['field_user_picture'])) {
+    $variables['user_profile']['field_user_picture_copyright'] = field_view_field('file', file_load($variables['field_user_picture'][0]['fid']), 'field_image_copyright', 'default');
+  }
 }
 
 /**
