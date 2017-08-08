@@ -503,6 +503,13 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
 
   $parameters = drupal_get_query_parameters();
 
+  if (strpos($parliament->name, 'EU') === 0) {
+    $keys_placeholder = t('Enter a locality or name');
+  }
+  else {
+    $keys_placeholder = t('Enter a postal code, locality or name');
+  }
+
   $form['#method'] = 'get';
   $form['#theme'] = 'filterbar';
   $form['keys'] = [
@@ -510,6 +517,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
     '#title' => t('Search'),
     '#title_display' => 'invisible',
     '#default_value' => isset($parameters['keys']) ? $parameters['keys'] : '',
+    '#attributes' => ['placeholder' => $keys_placeholder],
   ];
   if (count($constituency_values) > 1) {
     $form['constituency'] = array(
