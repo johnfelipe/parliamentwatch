@@ -24,6 +24,11 @@
   display: block;
   width: 100%;
   padding: $space-xsmall;
+  font-family: $font-sans-serif;
+  font-weight: 300;
+  @include placeholder {
+    color: $gray;
+  }
 }
 
 /* Type: Checkbox */
@@ -45,8 +50,8 @@
     position: absolute;
     top: $space-xsmall-mobile;
     @include appearance(none);
-    border-color: $orange;
-    &:checked { background-color: $orange; }
+    border-color: $gray;
+    &:checked { border-color: $orange; background-color: $orange; }
     &:focus { outline: none; }
   }
 }
@@ -154,6 +159,9 @@ textarea.form__item__control {
     display: block;
   }
 }
+
+
+
 
 .form__item--multi {
   @include grid-container();

@@ -10,8 +10,8 @@
   z-index: 9;
   @include container();
   &.is_stuck {
+    z-index: 999;
     @media (max-width: $breakpoint-m-max) {
-      z-index: 999;
       top: 0 !important;
     }
   }
@@ -32,7 +32,7 @@
       width: 200px;
     }
     @include breakpoint($breakpoint-m-min) {
-      width: 250px;
+      width: 310px;
     }
   }
   &:before {
@@ -116,6 +116,7 @@
   font-weight: 600;
   float: left;
   padding-top: $space;
+  padding-bottom: $space;
   padding-right: $space-small;
   display: none;
   position: relative;
@@ -400,4 +401,10 @@ _:-ms-fullscreen,
 .filterbar--disabled .filterbar__item {
   opacity: .3;
   pointer-events: none;
+}
+
+/* Filterbar: summary */
+
+.filter-summary {
+  @include grid-column(12);
 }
