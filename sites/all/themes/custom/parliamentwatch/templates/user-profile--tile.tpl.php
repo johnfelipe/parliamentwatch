@@ -48,13 +48,13 @@
     <div class="deputy__party-indicator"><?php print render($user_profile['field_user_party']); ?></div>
     <div class="deputy__stats hstats hstats--2">
       <div class="hstats__item hstats__item--digit">
-        <span class="hstats__item__display mh-item-nr" data-mh="hstats"><?php print $questions; ?></span>
-        <span class="hstats__item__label mh-item-nr" data-mh="hstats">
+        <span class="hstats__item__display" data-mh="hstats"><?php print $questions; ?></span>
+        <span class="hstats__item__label" data-mh="hstats">
           <?php print format_plural($questions, 'Question', 'Questions') ?>
         </span>
       </div>
       <div class="hstats__item hstats__item--donut">
-        <span class="hstats__item__display mh-item-nr" data-mh="hstats">
+        <span class="hstats__item__display" data-mh="hstats">
           <span class="d3 d3--gauge"
                 data-d3-gauge
                 data-percentage="<?php print $answer_ratio; ?>"
@@ -67,7 +67,7 @@
             <span><?php print $answer_ratio; ?>%</span>
           </span>
         </span>
-        <span class="hstats__item__label mh-item-nr" data-mh="hstats"><?php print t('answered') ?></span>
+        <span class="hstats__item__label" data-mh="hstats"><?php print t('answered') ?></span>
       </div>
     </div>
   </a>

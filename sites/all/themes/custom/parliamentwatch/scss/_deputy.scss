@@ -48,25 +48,23 @@
     }
   }
   .hstats__item__display {
+    width: 35px;
     height: 35px;
     @include breakpoint($breakpoint-m-min) {
+      width: 40px;
       height: 40px;
     }
   }
   .d3--gauge {
-    width: 40px;
     float: right;
     margin-right: $space-small;
     @include breakpoint($breakpoint-xs-min) {
-      width: 30px;
       margin-right: $space-small-mobile;
     }
     @include breakpoint($breakpoint-s-min) {
-      width: 40px;
       margin-right: $space-small-mobile;
     }
     @include breakpoint($breakpoint-m-min) {
-      width: 40px;
     }
     svg {
       height: 40px;
