@@ -256,13 +256,11 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
 
   $gender = $account->field_user_gender[LANGUAGE_NONE][0]['value'];
 
-  if (is_array($account->roles)) {
-    if (in_array(PW_GLOBALS_CANDIDATE_RID, array_keys($account->roles))) {
-      $variables['role'] = t('Candidate', [], ['context' => $gender]);
-    }
-    elseif (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($account->roles))) {
-      $variables['role'] = t('Deputy', [], ['context' => $gender]);
-    }
+  if (_pw_user_has_role($account, 'Candidate')) {
+    $variables['role'] = t('Candidate', [], ['context' => $gender]);
+  }
+  elseif (_pw_user_has_role($account, 'Deputy')) {
+    $variables['role'] = t('Deputy', [], ['context' => $gender]);
   }
 
   if (isset($variables['user_profile']['votes_total'])) {
@@ -271,10 +269,10 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
 
   if (isset($variables['field_user_party']) && $variables['elements']['#view_mode'] == 'full') {
     $text = $variables['field_user_party'][0]['taxonomy_term']->name;
-    if (in_array(PW_GLOBALS_CANDIDATE_RID, array_keys($account->roles))) {
+    if (_pw_user_has_role($account, 'Candidate')) {
       $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/candidates';
     }
-    elseif (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($account->roles))) {
+    elseif (_pw_user_has_role($account, 'Deputy')) {
       $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/deputies';
     }
     $options = ['query' => ['party[]' => $variables['field_user_party'][0]['tid']]];
