@@ -295,6 +295,7 @@
   border-top: 1px solid $darkBeige;
   .header__bottom__inner {
     position: relative;
+    @include grid-container();
     @include breakpoint($breakpoint-m-min) {
       @include container-regular();
     }
