@@ -41,7 +41,6 @@
   <a href="<?php print $user_url; ?>">
     <div class="deputy__image">
       <?php print render($user_profile['field_user_picture']); ?>
-      <?php print render($user_profile['field_user_picture_copyright']); ?>
     </div>
 
     <h2 class="deputy__title mh-item"><?php print $display_name; ?></h2>
