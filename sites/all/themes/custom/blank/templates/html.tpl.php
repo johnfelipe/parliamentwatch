@@ -6,6 +6,7 @@
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <?php print $scripts; ?>
+  <? >
   <?php print render($assets); ?>
 </head>
 <body class="<?php print $classes; ?> blank-theme" <?php print $attributes;?>>
@@ -16,16 +17,5 @@
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
-  <script language="javascript">
-    $(document).ready( function(){
-      var pymChild = new pym.Child({ id: 'awpym' });
-      var searchForm = $("form[action*='bundestag/profile']");
-      if (searchForm) {
-        searchForm.submit(function(e){
-          pymChild.sendMessage('awSearchSubmit', searchForm.serialize());
-        });
-      };
-    });
-  </script>
 </body>
 </html>
