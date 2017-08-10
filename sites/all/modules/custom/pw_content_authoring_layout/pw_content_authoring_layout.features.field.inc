@@ -345,6 +345,7 @@ function pw_content_authoring_layout_field_default_fields() {
             'full_html' => 0,
             'html_mail' => 0,
             'managed_content' => 0,
+            'newsletter' => 0,
             'php_code' => 0,
             'plain_text' => 0,
           ),
@@ -367,6 +368,9 @@ function pw_content_authoring_layout_field_default_fields() {
               'managed_content' => array(
                 'weight' => '-10',
               ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
               'php_code' => array(
                 'weight' => '-6',
               ),
@@ -376,7 +380,6 @@ function pw_content_authoring_layout_field_default_fields() {
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -394,7 +397,7 @@ function pw_content_authoring_layout_field_default_fields() {
           'maxlength_js_enforce' => 0,
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'maxlength_js_truncate_html' => 0,
-          'rows' => '1',
+          'rows' => '3',
         ),
         'type' => 'text_textarea',
         'weight' => '1',
