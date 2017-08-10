@@ -356,6 +356,7 @@ function pw_profiles_page($parliament_term, $role_name) {
       $build['user'][$vid]['#weight'] = ++$weight;
     }
     $build['user']['#theme_wrappers'] = ['container__tiles'];
+    $build['user']['summary'] = _pw_profiles_search_summary($response, $role_name, drupal_get_query_parameters());
     $build['user']['pager'] = [
       '#theme' => 'pager',
       '#weight' => ++$weight,
@@ -619,7 +620,7 @@ function pw_profiles_username_load($name) {
 }
 
 /**
- * Returns a query object for fetching politicians of the given role on.
+ * Returns a query object for fetching politicians.
  *
  * @param type $parliament_term
  *   The parliament term.
@@ -784,4 +785,95 @@ function _pw_profiles_is_postal_code_search($parameters) {
     return FALSE;
   }
   return preg_match('/^[0-9]{4,5}$/', trim($parameters['keys']));
+}
+
+/**
+ * Builds a summary reflecting the current search criteria.
+ *
+ * @param array $response
+ *   The response from the search service.
+ * @param string $role_name
+ *   The role.
+ * @param array $filters
+ *   The selected filters.
+ *
+ * @return array
+ *   The render array.
+ */
+function _pw_profiles_search_summary(array $response, $role_name, array $filters) {
+  $facets = $response['search_api_facets'];
+
+  $options['@count'] = $response['result count'];
+  $options['!gender'] = '';
+
+  if (!empty($filters['gender'])) {
+    if (count($filters['gender']) == 1) {
+      $value = reset($filters['gender']);
+      $options['!gender'] = l(format_plural($response['result count'], $value, $value, [], ['context' => 'search-summary']), current_path(), ['query' => _pw_profiles_reject_filter($filters, 'gender')]);
+    }
+    elseif ($filters['gender'] == ['male' => 'male', 'female' => 'female']) {
+      $text = format_plural($response['result count'], 'female or male', 'female and male', [], ['context' => 'search-summary']);
+      $options['!gender'] = l($text, current_path(), ['query' => _pw_profiles_reject_filter($filters, 'gender')]);
+    }
+  }
+
+  if (!empty($filters['party'])) {
+    $parties_count = count($filters['party']);
+    $parties_text = format_plural($parties_count, '1 party', '@count parties');
+    $options['!parties'] = l($parties_text, current_path(), ['query' => _pw_profiles_reject_filter($filters, 'party')]);
+  }
+  else {
+    $parties_count = count(_pw_profiles_facet_values($facets['field_user_party']));
+    $parties_text = format_plural($parties_count, '1 party', '@count parties');
+    $options['!parties'] = $parties_text;
+  }
+
+  if (!empty($filters['constituency'])) {
+    $constituencies_count = 1;
+    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies');
+    $options['!constituencies'] = l($constituencies_text, current_path(), ['query' => _pw_profiles_reject_filter($filters, 'constituency')]);
+  }
+  else {
+    $constituencies_count = count(_pw_profiles_facet_values($facets['field_user_constituency']));
+    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies');
+    $options['!constituencies'] = $constituencies_text;
+  }
+
+  if ($role_name == 'candidates') {
+    $summary = t('Found @count !gender candidates from !parties and !constituencies.', $options);
+  }
+  else {
+    $summary = t('Found @count !gender deputies from !parties and !constituencies.', $options);
+  }
+
+  if (!empty($filters['keys'])) {
+    $options['!keys'] = l(check_plain($filters['keys']), current_path(), ['query' => _pw_profiles_reject_filter($filters, 'keys')]);
+    $summary .= ' ' . t('You have searched for: !keys', $options);
+  }
+
+  return [
+    '#markup' => '<p>' . $summary . ' ' . l(t('Reset all filters'), current_path()) . '</p>',
+  ];
+}
+
+/**
+ * Removes the filter with the given key.
+ *
+ * @param array $filters
+ *   The filters.
+ * @param string $key
+ *
+ * @return array
+ *   The filters without the given key.
+ */
+function _pw_profiles_reject_filter(array $filters, $key, $value = NULL) {
+  if (array_key_exists($key, $filters)) {
+    if (!isset($value)) {
+      unset($filters[$key]);
+    }
+    else {
+      unset($filters[$key][array_search($value, $filters[$key])]);
+    }
+  }
+  return array_filter($filters);
 }
