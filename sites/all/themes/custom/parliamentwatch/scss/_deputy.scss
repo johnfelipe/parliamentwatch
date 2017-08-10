@@ -233,7 +233,13 @@
         text-align: center;
       }
     }
+    figcaption {
+      &:before {
+        content: '©';
+      }
+    }
   }
+
   .deputy__image {
     display: block;
     img {
