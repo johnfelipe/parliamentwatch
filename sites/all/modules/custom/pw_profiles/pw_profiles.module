@@ -557,13 +557,6 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
         '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
       );
     }
-    $form['age'] = array(
-      '#type' => 'textfield',
-      '#attributes' => ['type' => 'number', 'min' => 18],
-      '#title' => t('Age'),
-      '#title_display' => 'invisible',
-      '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
-    );
     if (count($gender_options) > 1) {
       $form['gender'] = array(
         '#type' => 'checkboxes',
