@@ -98,11 +98,172 @@
   <main id="content">
     <a id="main-content"></a>
 
+    <!-- Filter: Summary -->
+
+    <div class="intro">
+      <h1>Abgeordnete</h1>
+    </div>
+    <div class="filterbar filterbar--disabled">
+      <div class="container">
+        <div class="filterbar__pre_swiper">
+          <div class="filterbar__item filterbar__item--label">
+            <i class="icon icon-investigation"></i> <?php print t('Filter') ?>
+          </div>
+          <div class="filterbar__item filterbar__item--input">
+            <label for="filter_textsearch" class="sr-only"></label>
+            <input type="text" id="filter_textsearch" class="form__item__control" placeholder="Volltextsuche">
+            <button class="btn"><i class="icon icon-search"></i></button>
+          </div>
+        </div>
+        <div class="filterbar__swiper">
+          <div class="filterbar__swiper__inner">
+            <div class="filterbar__item filterbar__item--checkbox">
+              <div class="form__item--checkbox">
+                <input type="checkbox" class="form__item__control" id="filter_vote_behavior_yes"> <label for="filter_vote_behavior_yes">Angenommen</label>
+              </div>
+              <div class="form__item--checkbox">
+                <input type="checkbox" class="form__item__control" id="filter_vote_behavior_no"> <label for="filter_vote_behavior_no">Abgelehnt</label>
+              </div>
+            </div>
+            <div class="filterbar__item filterbar__item--dropdown dropdown">
+              <a href="#" class="dropdown__trigger">Politikfeld <i class="icon icon-arrow-down"></i></a>
+              <div class="dropdown__list">
+                test
+              </div>
+            </div>
+            <div class="filterbar__item filterbar__item--dropdown dropdown">
+              <a href="#" class="dropdown__trigger">Zeitraum <i class="icon icon-arrow-down"></i></a>
+              <div class="dropdown__list">
+                test
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        <ul class="filterbar__view_options">
+          <li class="filterbar__view_options__item filterbar__view_options__item--active"><a href="#" class="filterbar__view_options__item__link"><i class="icon icon-th"></i></a></li>
+          <li class="filterbar__view_options__item"><a href="#" class="filterbar__view_options__item__link"><i class="icon icon-th-list"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tile-wrapper">
+      <div class="filter-summary">
+        <div class="filter-summary__content">
+          <p>Sie sehen 1320 Kandidierende aus 12 Parteien und 184 Wahlkreisen</p>
+        </div>
+        <p><strong><?php print t('Sorted by'); ?>:</strong> <?php print t('Response behavior descending'); ?></p>
+      </div>
+
+      <div class="filter-summary">
+        <div class="filter-summary__content">
+          <p class="filter-summary__content__mobile"><?php print t('You can see'); ?> 650 <?php print t('candidates after filtering by'); ?>:</p>
+          <p><span>Sie sehen 650 </span><a href="#" class="filter-summary__content__link">männliche</a><span> Kandidierende aus 12 Parteien und 184 Wahlkreisen</span></p>
+          <a href="#" class="btn"><i class="icon icon-close"></i> <?php print t('Reset filter'); ?></a>
+        </div>
+        <p><strong><?php print t('Sorted by'); ?>:</strong> <?php print t('Response behavior descending'); ?></p>
+      </div>
+
+      <div class="filter-summary">
+        <div class="filter-summary__content">
+          <p class="filter-summary__content__mobile"><?php print t('You can see'); ?> 650 <?php print t('candidates after filtering by'); ?>:</p>
+          <p><span>Sie sehen 650 </span><a href="#" class="filter-summary__content__link">männliche</a><span> Kandidierende aus </span><a href="#" class="filter-summary__content__link">3 Parteien</a><span> und 184 Wahlkreisen</span></p>
+          <a href="#" class="btn"><i class="icon icon-close"></i> <?php print t('Reset filter'); ?></a>
+        </div>
+        <p><strong><?php print t('Sorted by'); ?>:</strong> <?php print t('Response behavior descending'); ?></p>
+      </div>
+
+      <div class="filter-summary">
+        <div class="filter-summary__content">
+          <p class="filter-summary__content__mobile"><?php print t('You can see'); ?> 650 <?php print t('candidates after filtering by'); ?>:</p>
+          <p><span>Sie sehen 650 </span><a href="#" class="filter-summary__content__link">männliche</a><span> Kandidierende im Alter zwischen </span><a href="#" class="filter-summary__content__link">30 - 35 Jahre</a><span> aus </span><a href="#" class="filter-summary__content__link">3 Parteien</a><span> und 184 Wahlkreisen</span></p>
+          <a href="#" class="btn"><i class="icon icon-close"></i> <?php print t('Reset filter'); ?></a>
+        </div>
+        <p><strong><?php print t('Sorted by'); ?>:</strong> <?php print t('Response behavior descending'); ?></p>
+      </div>
+
+      <div class="filter-summary">
+        <div class="filter-summary__content">
+          <p class="filter-summary__content__mobile"><?php print t('You can see'); ?> 650 <?php print t('candidates after filtering by'); ?>:</p>
+          <p><span>Sie sehen 6 Kandidierende aus 2 Fraktionen, 5 Wahlkreisen, 3 Listenplätze, entsprechend der Suchanfrage:</span> <a href="#" class="filter-summary__content__link">"Katja"</a></p>
+          <a href="#" class="btn"><i class="icon icon-close"></i> <?php print t('Reset filter'); ?></a>
+        </div>
+        <p><strong><?php print t('Sorted by'); ?>:</strong> <?php print t('Response behavior descending'); ?></p>
+      </div>
+
+      <div class="tile poll">
+        <div class="tile__image">
+          <img typeof="foaf:Image" src="/sites/default/files/styles/large/public/bankenviertel_frankfurt.jpg" width="280" height="187" alt="#" title="#">
+        </div>
+        <div class="tile__date">10.11.2016</div>
+        <div class="tile__pollchart">
+          <div class="tile__pollchart__value_left won">351</div>
+          <div class="tile__pollchart__statistic">
+            <div class='d3 d3--donut'
+                 data-d3-donut-icon
+                 data-data='[{"name":"Ja","count":63,"color":"#9fd773"},{"name":"Nein","count":24,"color":"#cc6c5b"},{"name":"Enthalten","count":8,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+            </div>
+          </div>
+          <div class="tile__pollchart__value_right">231</div>
+        </div>
+        <h2 class="tile__title"><a href="#">Bundeswehreinsatzin Afghanistan</a></h2>
+        <p class="tile__summary">Mit den Stimmen der Regierungskoalition hat der Bundestag ein Fortsetzung des Bundeswehreinsatzes gegen die Terrormiliz IS beschlossen.</p>
+        <ul class="tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+        </ul>
+      </div>
+      <div class="tile poll">
+        <div class="tile__image">
+          <img typeof="foaf:Image" src="/sites/default/files/styles/large/public/bankenviertel_frankfurt.jpg" width="280" height="187" alt="#" title="#">
+        </div>
+        <div class="tile__date">10.11.2016</div>
+        <div class="tile__pollchart">
+          <div class="tile__pollchart__value_left won">351</div>
+          <div class="tile__pollchart__statistic">
+            <div class='d3 d3--donut'
+                 data-d3-donut-icon
+                 data-data='[{"name":"Ja","count":24,"color":"#9fd773"},{"name":"Nein","count":63,"color":"#cc6c5b"},{"name":"Enthalten","count":8,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+            </div>
+          </div>
+          <div class="tile__pollchart__value_right">231</div>
+        </div>
+        <h2 class="tile__title"><a href="#">Bundeswehreinsatzin Afghanistan</a></h2>
+        <p class="tile__summary">Mit den Stimmen der Regierungskoalition hat der Bundestag ein Fortsetzung des Bundeswehreinsatzes gegen die Terrormiliz IS beschlossen.</p>
+        <ul class="tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+        </ul>
+      </div>
+      <div class="tile poll">
+        <div class="tile__image">
+          <img typeof="foaf:Image" src="/sites/default/files/styles/large/public/bankenviertel_frankfurt.jpg" width="280" height="187" alt="#" title="#">
+        </div>
+        <div class="tile__date">10.11.2016</div>
+        <div class="tile__pollchart">
+          <div class="tile__pollchart__value_left won">351</div>
+          <div class="tile__pollchart__statistic">
+            <div class='d3 d3--donut'
+                 data-d3-donut-icon
+                 data-data='[{"name":"Ja","count":8,"color":"#9fd773"},{"name":"Nein","count":24,"color":"#cc6c5b"},{"name":"Enthalten","count":63,"color":"#e2e2e2"},{"name":"Nicht abgestimmt","count":2,"color":"#a6a6a6" }]'>
+            </div>
+          </div>
+          <div class="tile__pollchart__value_right">231</div>
+        </div>
+        <h2 class="tile__title"><a href="#">Bundeswehreinsatzin Afghanistan</a></h2>
+        <p class="tile__summary">Mit den Stimmen der Regierungskoalition hat der Bundestag ein Fortsetzung des Bundeswehreinsatzes gegen die Terrormiliz IS beschlossen.</p>
+        <ul class="tile__links tile__links--2">
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#kommentare">12 Kommentare</a></li>
+          <li class="tile__links__item"><a class="tile__links__item__link" href="#">Mehr anzeigen</a></li>
+        </ul>
+      </div>
+    </div>
+
+
     <!-- PLZ-Suche Zwischenschritt -->
     <div class="intro">
-      <div class="container">
-        <h1>Abgeordnete</h1>
-      </div>
+      <h1>Abgeordnete</h1>
     </div>
     <div class="filterbar filterbar--disabled">
       <div class="container">

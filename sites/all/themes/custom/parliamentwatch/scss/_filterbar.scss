@@ -407,4 +407,98 @@ _:-ms-fullscreen,
 
 .filter-summary {
   @include grid-column(12);
+  margin-bottom: $space-large;
+
+  .filter-summary__content {
+    @include grid-container();
+    margin-bottom: $space-xsmall-mobile;
+    border-bottom: 1px solid $darkBeige;
+    p {
+      color: $darkGray;
+      padding-bottom: $space-xsmall;
+      margin-bottom: 0;
+      line-height: 1.6em;
+      float: left;
+      @include breakpoint($breakpoint-s-min) {
+        padding-top: $space-xsmall;
+        line-height: 1em;
+      }
+      > span {
+        display: none;
+        @include breakpoint($breakpoint-s-min) {
+          display: inline;
+        }
+      }
+    }
+    .btn {
+      display: none;
+      @include breakpoint($breakpoint-s-min) {
+        display: block;
+        padding: 3px $space-xsmall-mobile;
+        background: $white;
+        color: $darkGray;
+        border-color: $white;
+        font-weight: 300;
+        font-size: .8em;
+        margin-top: 7px;
+        float: right;
+      }
+      .icon {
+        color: $darkGray + 30;
+        font-size: .7em;
+        float: left;
+        margin-right: 6px;
+        margin-top: 3px;
+      }
+    }
+    .filter-summary__content__mobile {
+      display: block;
+      float: none;
+      @include breakpoint($breakpoint-s-min) {
+        display: none;
+      }
+    }
+  }
+  .filter-summary__content__link {
+    font-weight: 300;
+    color: $darkGray;
+    border: 1px solid $darkBeige;
+    padding: 2px ($space + $space-xsmall-mobile) 2px $space-xsmall-mobile;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    margin-right: $space-xsmall-mobile;
+    @include transition(background 300ms ease);
+    @include breakpoint($breakpoint-s-min) {
+      margin-right: 0;
+    }
+    &:after {
+      content:'\e808';
+      font-family: 'awfont';
+      color: $darkGray + 30;
+      font-size: 0.5em;
+      line-height: 26px;
+      border-left: 1px solid $darkBeige;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: $space;
+      text-align: center;
+      @include transition(background 600ms ease);
+    }
+    &:hover {
+      background: $white - 10;
+      &:after {
+        background: $white;
+        border-radius: 0 3px 3px 0;
+      }
+    }
+  }
+  > p {
+    margin-bottom: 0;
+    font-size: .8em;
+    text-align: right;
+    color: $darkGray;
+  }
 }
