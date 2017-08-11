@@ -104,6 +104,12 @@
       <h3 class="question__question__title"><?php print render($content['body']); ?></h3>
       <?php print render($title_suffix); ?>
       <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
+      <?php if (!empty($content['field_dialogue_annotation'])): ?>
+        <div class="question__annotation">
+          <h3><?php print t("Editor's note") ?></h3>
+          <?php print render($content['field_dialogue_annotation']); ?>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
   <div class="question__answer-wrapper">

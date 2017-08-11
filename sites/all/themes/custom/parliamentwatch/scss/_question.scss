@@ -159,6 +159,22 @@
     line-height: 1.6em;
     margin-bottom: $space;
   }
+  .question__documents,
+  .question__annotation {
+    padding-top: $space-large;
+    margin-top: $space-large;
+    border-top: 1px solid $gray;
+  }
+
+}
+.question__answer-wrapper .question__documents,
+.question__answer-wrapper .question__annotation {
+  @include grid-column(12);
+}
+.question__documents .link-list { margin-bottom: 0; }
+
+@include breakpoint($breakpoint-m-min) {
+  .question__documents .link-list__item { border-bottom: 0; }
 }
 
 .question__profile_teaser {
