@@ -1384,4 +1384,37 @@
     return data;
   }
 
-}(jQuery));
+  Drupal.behaviors.ajaxTracking = {
+    attach: function (context, settings) {
+      if (window.history && window.history.pushState && settings.url) {
+        history.pushState({}, document.title, settings.url);
+        _paq.push(['setCustomUrl', window.location.href]);
+        _paq.push(['trackPageView']);
+      }
+    }
+  }
+
+  Drupal.behaviors.ajaxFilterbar = {
+    attach: function (context, settings) {
+      $('form[data-ajax-target] .form__item__control').change(function (event) {
+        event.preventDefault();
+        var path = $(this).parents('form').attr('action');
+        var search = $(this).parents('form').serialize();
+        var target = $(this).parents('form').data('ajax-target');
+        var url = path + '?' + search ;
+        $(target).load(url + ' ' + target + ' > *', function () {
+          Drupal.attachBehaviors(target, {url: url});
+        });
+      });
+      $('a[data-ajax-target]').click(function (event) {
+        event.preventDefault();
+        var target = $(this).data('ajax-target');
+        var url = $(this).attr('href');
+        $(target).load(url  + ' ' + target + ' > *', function () {
+          Drupal.attachBehaviors(target, {url: url});
+        });
+      });
+    }
+  }
+
+} (jQuery));
