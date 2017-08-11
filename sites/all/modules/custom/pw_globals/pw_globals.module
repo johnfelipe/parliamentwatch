@@ -46,6 +46,18 @@ function pw_globals_menu() {
 }
 
 /**
+ * Implements hook_page_delivery_callback_alter().
+ */
+function pw_globals_page_delivery_callback_alter(&$callback) {
+  // jQuery sets a HTTP_X_REQUESTED_WITH header of 'XMLHttpRequest'.
+  // If a page would normally be delivered as an html page, and it is called
+  // from jQuery, deliver it instead as an Ajax response.
+  if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $callback == 'drupal_deliver_html_page') {
+    $callback = 'pw_globals_deliver_ajax_page';
+  }
+}
+
+/**
  * Implements hook_entity_info_alter().
  */
 function pw_globals_entity_info_alter(&$entity_info) {
@@ -177,6 +189,32 @@ function pw_globals_info_page() {
   }
 
   return $build;
+}
+
+/**
+ * Delivery callback:
+ *
+ * @param mixed $page_callback_result
+ *   The result of a page callback. Can be one of:
+ *   - NULL: to indicate no content.
+ *   - An integer menu status constant: to indicate an error condition.
+ *   - A string of HTML content.
+ *   - A renderable array of content.
+ */
+function pw_globals_deliver_ajax_page($page_callback_result) {
+  // Only render content.
+  $content = drupal_render($page_callback_result);
+  $title = drupal_get_title();
+
+  // Add CSS and JS files and basic markup.
+  $html = '<html><head><title>' . $title . '</title>';
+  $html .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
+  $html .= drupal_get_css() . drupal_get_js() . '</head>';
+  $html .= '<body class="jquery-ajax-load">' . $content . '</body></html>';
+  print $html;
+
+  // Perform end-of-request tasks.
+  drupal_page_footer();
 }
 
 /**
