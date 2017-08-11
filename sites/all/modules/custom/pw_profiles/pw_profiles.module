@@ -371,6 +371,8 @@ function pw_profiles_page($parliament_term, $role_name) {
 
   $build['filters'] = drupal_get_form('pw_profiles_filters_form', $parliament_term, $response['search_api_facets'], isset($build['user']));
   $build['filters']['#weight'] = -5;
+  $build['#theme_wrappers'] = ['container'];
+  $build['#attributes'] = ['id' => 'ajax'];
 
   return $build;
 }
@@ -512,6 +514,8 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
   }
 
   $form['#method'] = 'get';
+  $form['#action'] = url(current_path());
+  $form['#attributes']['data-ajax-target'] = '#ajax';
   $form['#theme'] = 'filterbar';
   $form['keys'] = [
     '#type' => 'textfield',
@@ -802,6 +806,7 @@ function _pw_profiles_is_postal_code_search($parameters) {
  */
 function _pw_profiles_search_summary(array $response, $role_name, array $filters) {
   $facets = $response['search_api_facets'];
+  $link_options = ['attributes' => ['data-ajax-target' => '#ajax']];
 
   $options['@count'] = $response['result count'];
   $options['!gender'] = '';
@@ -809,18 +814,19 @@ function _pw_profiles_search_summary(array $response, $role_name, array $filters
   if (!empty($filters['gender'])) {
     if (count($filters['gender']) == 1) {
       $value = reset($filters['gender']);
-      $options['!gender'] = l(format_plural($response['result count'], $value, $value, [], ['context' => 'search-summary']), current_path(), ['query' => _pw_profiles_reject_filter($filters, 'gender')]);
+      $text = format_plural($response['result count'], $value, $value, [], ['context' => 'search-summary']);
+      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'gender')]);
     }
     elseif ($filters['gender'] == ['male' => 'male', 'female' => 'female']) {
       $text = format_plural($response['result count'], 'female or male', 'female and male', [], ['context' => 'search-summary']);
-      $options['!gender'] = l($text, current_path(), ['query' => _pw_profiles_reject_filter($filters, 'gender')]);
+      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'gender')]);
     }
   }
 
   if (!empty($filters['party'])) {
     $parties_count = count($filters['party']);
     $parties_text = format_plural($parties_count, '1 party', '@count parties');
-    $options['!parties'] = l($parties_text, current_path(), ['query' => _pw_profiles_reject_filter($filters, 'party')]);
+    $options['!parties'] = l($parties_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'party')]);
   }
   else {
     $parties_count = count(_pw_profiles_facet_values($facets['field_user_party']));
@@ -831,7 +837,7 @@ function _pw_profiles_search_summary(array $response, $role_name, array $filters
   if (!empty($filters['constituency'])) {
     $constituencies_count = 1;
     $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies');
-    $options['!constituencies'] = l($constituencies_text, current_path(), ['query' => _pw_profiles_reject_filter($filters, 'constituency')]);
+    $options['!constituencies'] = l($constituencies_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'constituency')]);
   }
   else {
     $constituencies_count = count(_pw_profiles_facet_values($facets['field_user_constituency']));
@@ -847,12 +853,16 @@ function _pw_profiles_search_summary(array $response, $role_name, array $filters
   }
 
   if (!empty($filters['keys'])) {
-    $options['!keys'] = l(check_plain($filters['keys']), current_path(), ['query' => _pw_profiles_reject_filter($filters, 'keys')]);
+    $options['!keys'] = l(check_plain($filters['keys']), current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'keys')]);
     $summary .= ' ' . t('You have searched for: !keys', $options);
   }
 
+  if (!empty(array_filter($filters))) {
+    $summary .= ' ' . l(t('Reset all filters'), current_path(), $link_options);
+  }
+
   return [
-    '#markup' => '<p>' . $summary . ' ' . l(t('Reset all filters'), current_path()) . '</p>',
+    '#markup' => '<p>' . $summary . '</p>',
   ];
 }
 
