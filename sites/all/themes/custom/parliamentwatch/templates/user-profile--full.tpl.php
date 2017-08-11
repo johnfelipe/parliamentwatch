@@ -71,7 +71,7 @@
         <?php if ($is_consultable): ?>
         <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
         <?php endif; ?>
-        <?php if (!empty($user_profile['field_user_picture_copyright'])): ?>
+        <?php if (!empty(trim(render($user_profile['field_user_picture_copyright'])))): ?>
         <figcaption><?php print render($user_profile['field_user_picture_copyright']);?></figcaption>
         <?php endif; ?>
       </figure>
