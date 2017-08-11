@@ -70,9 +70,17 @@
     color: $darkGray;
     font-weight: 900;
     position: relative;
-    padding-left: 65px;
-    font-size: 1.7em;
+    padding-left: 45px;
+    font-size: 1.45em;
     @include breakpoint($breakpoint-xs-min) {
+      padding-left: 70px;
+      font-size: 1.9em;
+    }
+    @include breakpoint($breakpoint-s-min) {
+      padding-left: 45px;
+      font-size: 1.45em;
+    }
+    @include breakpoint($breakpoint-m-min) {
       padding-left: 70px;
       font-size: 1.9em;
     }
@@ -93,11 +101,20 @@
       display: block;
       position: absolute;
       font-family: 'awfont';
-      font-size: 50px;
-      left: $space-xsmall-mobile;
+      font-size: 45px;
+      left: 0;
       top: -$space-xsmall-mobile;
       @include breakpoint($breakpoint-xs-min) {
         font-size: 64px;
+        left: $space-xsmall-mobile;
+      }
+      @include breakpoint($breakpoint-s-min) {
+        font-size: 45px;
+        left: 0;
+      }
+      @include breakpoint($breakpoint-m-min) {
+        font-size: 64px;
+        left: $space-xsmall-mobile;
       }
     }
   }
