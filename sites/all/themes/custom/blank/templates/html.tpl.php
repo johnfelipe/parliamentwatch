@@ -6,7 +6,6 @@
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <?php print $scripts; ?>
-  <? >
   <?php print render($assets); ?>
 </head>
 <body class="<?php print $classes; ?> blank-theme" <?php print $attributes;?>>
