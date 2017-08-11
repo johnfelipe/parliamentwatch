@@ -1,5 +1,5 @@
 $(document).ready( function(){
-  var pymChild = new pym.Child({id: 'awpym'});
+  var pymChild = new pym.Child({id: 'awpym', polling: 1000});
   var searchForm = $("form[action*='bundestag/profile']");
   if (searchForm) {
     searchForm.submit(function(event){
