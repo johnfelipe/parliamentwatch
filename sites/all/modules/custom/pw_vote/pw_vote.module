@@ -30,7 +30,7 @@ function pw_vote_user_view($account, $view_mode, $langcode) {
 
     if (!empty($nids)) {
       $nodes = node_load_multiple($nids);
-      $inline_js = 'window.votes = ' . drupal_json_encode(array_map('pw_vote_to_aray', array_values($nodes))) . ';';
+      $inline_js = 'window.votes = ' . drupal_json_encode(array_map('pw_vote_to_array', array_values($nodes))) . ';';
       $filter_attended = function ($item) {
         return ($item->field_vote[LANGUAGE_NONE][0]['tid'] == 19670) ? FALSE : TRUE;
       };
@@ -772,7 +772,7 @@ function pw_vote_by_user_revision_query($account) {
  * @return array
  *   The array representation.
  */
-function pw_vote_to_aray($node) {
+function pw_vote_to_array($node) {
   if (!empty($node->field_vote_node[LANGUAGE_NONE])) {
     $poll = node_load($node->field_vote_node[LANGUAGE_NONE][0]['target_id']);
   }
