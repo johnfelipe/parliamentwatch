@@ -22,6 +22,23 @@ function pw_vote_menu() {
 }
 
 /**
+ * Implements hook_node_load().
+ *
+ * Pre-loads polls associated with the given votes to prevent loading them
+ * individually, e.g. in pw_vote_to_array().
+ */
+function pw_vote_node_load($nodes, $types) {
+  if (in_array('vote', $types)) {
+    $map = function ($node) {
+      if (isset($node->field_vote_node[LANGUAGE_NONE][0]['target_id'])) {
+        return $node->field_vote_node[LANGUAGE_NONE][0]['target_id'];
+      }
+    };
+    node_load_multiple(array_filter(array_map($map, $nodes)));
+  }
+}
+
+/**
  * Implements hook_user_view().
  */
 function pw_vote_user_view($account, $view_mode, $langcode) {
