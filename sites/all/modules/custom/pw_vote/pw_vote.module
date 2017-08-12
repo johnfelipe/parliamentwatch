@@ -641,22 +641,6 @@ function pw_vote_theme() {
 }
 
 /**
- * Temporary hook to alter behavior of the poll search blocks since the current Solr module
- * does not respect view filters correctly. Should be obsolete with the introduction of Search
- * API modules.
- */
-function pw_vote_views_query_alter(&$view, &$query) {
-  if ($view->name == 'pw_vote_search' && $view->current_display == 'block_2') {
-    $node_id = "*".arg(1)."*";
-    $query->add_where(1,'sm_field_vote_node', $node_id, 'LIKE');
-  }
-  if ($view->name == 'pw_vote_positions' && arg(0) == 'node' && is_numeric(arg(1))) {
-    $node_id = menu_get_object()->nid;
-    $query->add_where(1,'field_data_field_vote_node.field_vote_node_target_id', $node_id, '=');
-  }
-}
-
-/**
  * Find and mark votes that deviate from the fractions majority opinion.
  * @param $nid: Node ID of poll or petition.
  */
