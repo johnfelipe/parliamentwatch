@@ -850,10 +850,13 @@ $abstimmverhalten-node-item-width: 18px;
 .deputy__candidate_check__item__position {
   padding: $space-large $space $space-large $space;
   position: relative;
-  min-height: 100px;
   font-size: 1.1em;
   line-height: 1.6em;
   @include breakpoint($breakpoint-s-min) {
+    min-height: 130px;
+    padding: $space-large 140px $space-large 210px;
+  }
+  @include breakpoint($breakpoint-m-min) {
     padding: $space-large 250px $space-large 300px;
   }
 }
@@ -881,8 +884,11 @@ $abstimmverhalten-node-item-width: 18px;
     @include image-circle(75px, 75px);
     border-width: 3px;
     position: absolute;
-    left: 180px;
+    left: 110px;
     top: $space-large;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    left: 180px;
   }
 }
 
