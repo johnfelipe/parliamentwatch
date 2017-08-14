@@ -133,10 +133,6 @@ function pw_content_authoring_layout_ckeditor_profile_defaults() {
       'name' => 'Full',
       'settings' => array(
         'ss' => '2',
-        'default' => 't',
-        'show_toggle' => 't',
-        'uicolor' => 'custom',
-        'uicolor_user' => '#B50000',
         'toolbar' => '[
     [\'Source\'],
     [\'Cut\',\'Copy\',\'Paste\',\'PasteText\',\'PasteFromWord\',\'-\',\'SpellChecker\',\'Scayt\'],
@@ -154,10 +150,16 @@ function pw_content_authoring_layout_ckeditor_profile_defaults() {
     [\'DrupalBreak\',\'PageBreak\']
 ]',
         'expand' => 't',
+        'default' => 't',
+        'show_toggle' => 't',
+        'uicolor' => 'custom',
+        'uicolor_user' => '#B50000',
         'width' => '100%',
         'lang' => 'en',
         'auto_lang' => 't',
         'language_direction' => 'default',
+        'allowed_content' => 't',
+        'extraAllowedContent' => '',
         'enter_mode' => 'br',
         'shift_enter_mode' => 'p',
         'font_format' => 'p;div;pre;address;h1;h2;h3;h4;h5;h6',
@@ -181,13 +183,12 @@ function pw_content_authoring_layout_ckeditor_profile_defaults() {
         'filebrowser_flash' => '',
         'UserFilesPath' => '%b%f/',
         'UserFilesAbsolutePath' => '%d%b%f/',
-        'ckeditor_load_method' => 'ckeditor.js',
-        'ckeditor_load_time_out' => '0',
         'forcePasteAsPlainText' => 't',
         'html_entities' => 'f',
         'scayt_autoStartup' => 't',
         'theme_config_js' => 'f',
-        'js_conf' => 'config.templates_replaceContent = false;',
+        'js_conf' => 'config.templates_replaceContent = false;
+config.allowedContent = true;',
         'loadPlugins' => array(
           'counter' => array(
             'name' => 'counter',
@@ -215,25 +216,25 @@ function pw_content_authoring_layout_ckeditor_profile_defaults() {
             'buttons' => array(
               'linkit' => array(
                 'label' => 'Linkit',
-                'icon' => 'linkit.png',
+                'icon' => 'icons/linkit.png',
               ),
             ),
           ),
           'media' => array(
             'name' => 'media',
-            'desc' => 'Plugin for inserting images from Drupal media module',
-            'path' => '%plugin_dir%media/',
+            'desc' => 'Plugin for embedding files using Media CKEditor',
+            'path' => '%base_path%sites/all/modules/contrib/media_ckeditor/js/plugins/media/',
             'buttons' => array(
               'Media' => array(
-                'label' => 'Media',
                 'icon' => 'images/icon.gif',
+                'label' => 'Add media',
               ),
             ),
             'default' => 'f',
           ),
           'mediaembed' => array(
             'name' => 'mediaembed',
-            'desc' => 'Plugin for inserting Drupal embeded media',
+            'desc' => 'Plugin for embedding HTML snippets',
             'path' => '%plugin_dir%mediaembed/',
             'buttons' => array(
               'MediaEmbed' => array(
@@ -304,7 +305,8 @@ function pw_content_authoring_layout_ckeditor_profile_defaults() {
         'html_entities' => 'f',
         'scayt_autoStartup' => 't',
         'theme_config_js' => 'f',
-        'js_conf' => 'config.templates_replaceContent = false;',
+        'js_conf' => 'config.templates_replaceContent = false;
+config.allowedContent = true;',
         'loadPlugins' => array(
           'counter' => array(
             'name' => 'counter',
