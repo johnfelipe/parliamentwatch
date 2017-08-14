@@ -105,23 +105,8 @@
     &:nth-child(5) .nav__item__link:before {
       content: '\e829';
     }
-    &:nth-child(6) .nav__item__link {
-      &:before {
-        content: '\e84d';
-      }
-      @include breakpoint($breakpoint-m-min) {
-        @include hide-text();
-        width: 60px;
-        position: relative;
-        &:before {
-          margin: 0;
-          text-indent: 0;
-
-          position: absolute;
-          left: 50%;
-          @include transform(translate(-50%,0));
-        }
-      }
+    &:nth-child(6) .nav__item__link:before {
+      content: '\e84d';
     }
     &:nth-child(7) .nav__item__link:before {
       content: '\e901';
