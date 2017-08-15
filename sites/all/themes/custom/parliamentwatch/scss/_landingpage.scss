@@ -17,6 +17,9 @@
     padding-top: $space;
     padding-bottom: $space;
   }
+  & + .donate-teaser {
+    border-top: 0;
+  }
 }
 .lp-header__left {
   position: relative;
@@ -223,6 +226,7 @@
 
 .donate-teaser {
   @include grid-container();
+  border-top: 1px solid $darkBeige;
   border-bottom: 1px solid $darkBeige;
   padding-top: $space-large;
   padding-bottom: $space-large;
@@ -263,6 +267,9 @@
     @include breakpoint($breakpoint-l-min) {
       margin-top: $space-small;
     }
+  }
+  & + .patron-teaser {
+    border-top: 0;
   }
 }
 
