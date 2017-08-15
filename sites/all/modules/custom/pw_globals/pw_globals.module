@@ -293,10 +293,7 @@ function pw_globals_parliament_patron_block() {
     return $block;
   }
 
-  $today = new DateTime();
-  $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
-
-  if ($today > $election_date || !isset($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id'])) {
+  if (!isset($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id'])) {
     return $block;
   }
 
