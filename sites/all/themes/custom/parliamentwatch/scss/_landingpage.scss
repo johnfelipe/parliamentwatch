@@ -311,6 +311,7 @@
   top: $space-xsmall;
   @include grid-column(4);
   text-align: center;
+  margin-top: $space * 2;
   @include breakpoint($breakpoint-xs-min) {
     position: static;
     @include grid-column(3);
