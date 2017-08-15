@@ -305,6 +305,14 @@ function pw_maintenance_user_revision_delete($form, &$form_state) {
     return;
   }
 
+  if(isset(drupal_get_query_parameters()['username'])){
+    variable_set('pw_maintenance_user_revision_delete_user', drupal_get_query_parameters()['username']);
+  }
+  if(isset(drupal_get_query_parameters()['parliament'])){
+    $parliaments = taxonomy_get_term_by_name(drupal_get_query_parameters()['parliament'], 'parliaments');
+    variable_set('pw_maintenance_user_revision_delete_parliament', array_pop($parliaments)->tid);
+  }
+
   $form['pw_maintenance_user_revision_delete_user'] = array(
     '#type' => 'textfield',
     '#title' => t('User'),
