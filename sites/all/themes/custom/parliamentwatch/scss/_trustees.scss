@@ -2,14 +2,13 @@
 * Trustees - Kuratorium
 */
 
-.view-Trustees {
-  @include container-small();
+.trustees {
+  @include grid-container();
   padding-bottom: $space-large;
+  margin-top: $space-large * 2;
   margin-bottom: $space-large;
-
-  .views-row {
+  .trustees__item {
     @include grid-container();
-    @include grid-column(12);
     border-bottom: 1px solid $gray;
     margin-bottom: $space-large;
     .float-left {
