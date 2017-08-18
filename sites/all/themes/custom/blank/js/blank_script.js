@@ -1,5 +1,11 @@
 $(document).ready( function(){
   var pymChild = new pym.Child({id: 'awpym', polling: 1000});
+  var questionButton = $('a[href="#question-form"]');
+  if (questionButton) {
+    questionButton.click(function(event){
+      pymChild.scrollParentToChildEl('question-form');
+    });
+  }
   var searchForm = $("form[action*='bundestag/profile']");
   if (searchForm) {
     searchForm.submit(function(event){
