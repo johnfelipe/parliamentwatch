@@ -126,6 +126,11 @@ function pw_globals_block_info() {
     'info' => 'Parliament patron teaser',
     'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
   ];
+
+  $blocks['lp_teaser'] = [
+    'info' => 'Landingpage teaser',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+  ];
   return $blocks;
 }
 
@@ -144,6 +149,8 @@ function pw_globals_block_view($delta = '') {
       return pw_globals_politician_search_form_block();
     case 'parliament_patron':
       return pw_globals_parliament_patron_block();
+    case 'lp_teaser':
+      return pw_globals_parliament_lp_teaser();
     default:
       return [];
   }
@@ -302,6 +309,25 @@ function pw_globals_parliament_patron_block() {
   return $block;
 }
 
+/**
+ * Displays teaser section for landing pages.
+ */
+function pw_globals_parliament_lp_teaser() {
+  $block = [];
+  $term = menu_get_object('taxonomy_term', 2);
+
+  if (!$term || $term->vocabulary_machine_name != 'parliaments') {
+    return $block;
+  }
+
+  $block['content'] = '';
+  $block['parliament'] = $term->name;
+  $block['kc_url'] = $term->field_parliament_candidate_check[LANGUAGE_NONE][0]['url'];
+  $block['electoral_law_reference'] = $term->field_electoral_law[LANGUAGE_NONE][0]['target_id'];
+  $block['archive'] = '';
+
+  return $block;
+}
 
 /**
  * Form constructor for the politician search form.

@@ -152,6 +152,13 @@ function dropdownHover() {
   });
 }
 
+/*
+ * LP-Teaser
+ * */
+
+function lpTeaser() {
+  $('.lp-teaser__item').matchHeight();
+}
 
 /*
  * Content-Offset
@@ -1270,6 +1277,7 @@ $(function () {
   footer();
   candidateCheck();
   sidebar();
+  lpTeaser();
 
   // Init global matchHeight-plugin class
 

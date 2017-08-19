@@ -100,9 +100,7 @@
 
     <!-- PLZ-Suche Zwischenschritt -->
     <div class="intro">
-      <div class="container">
-        <h1>Abgeordnete</h1>
-      </div>
+      <h1>Abgeordnete</h1>
     </div>
     <div class="filterbar filterbar--disabled">
       <div class="container">
