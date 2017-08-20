@@ -320,7 +320,7 @@ function pw_globals_parliament_lp_teaser() {
     return $block;
   }
 
-  $block['content'] = '';
+  $block['content'] = 'test';
   $block['parliament'] = $term->name;
   $block['kc_url'] = $term->field_parliament_candidate_check[LANGUAGE_NONE][0]['url'];
   $block['electoral_law_reference'] = $term->field_electoral_law[LANGUAGE_NONE][0]['target_id'];
