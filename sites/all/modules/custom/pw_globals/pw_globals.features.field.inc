@@ -1489,7 +1489,6 @@ function pw_globals_field_default_fields() {
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
-        'exclude_cv' => FALSE,
         'file_directory' => 'affiliates',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -1610,7 +1609,6 @@ function pw_globals_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
@@ -2611,7 +2609,7 @@ function pw_globals_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '11',
       ),
     ),
   );
@@ -2842,6 +2840,108 @@ function pw_globals_field_default_fields() {
     ),
   );
 
+  // Exported field: 'taxonomy_term-parliaments-field_parliament_candidate_check'.
+  $fields['taxonomy_term-parliaments-field_parliament_candidate_check'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_parliament_candidate_check',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+    ),
+    'field_instance' => array(
+      'bundle' => 'parliaments',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'link_default',
+          'weight' => 14,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_parliament_candidate_check',
+      'label' => 'Kandidaten-Check',
+      'required' => 0,
+      'settings' => array(
+        'absolute_url' => 1,
+        'attributes' => array(
+          'class' => '',
+          'configurable_class' => 0,
+          'configurable_title' => 0,
+          'rel' => '',
+          'target' => 'default',
+          'title' => '',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 1,
+        'linkit' => array(
+          'button_text' => 'Suchen',
+          'enable' => 0,
+          'profile' => '',
+        ),
+        'rel_remove' => 'default',
+        'title' => 'none',
+        'title_label_use_field_label' => 0,
+        'title_maxlength' => '128',
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+        'validate_url' => 1,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '17',
+      ),
+    ),
+  );
+
   // Exported field: 'taxonomy_term-parliaments-field_parliament_constit_rename'.
   $fields['taxonomy_term-parliaments-field_parliament_constit_rename'] = array(
     'field_config' => array(
@@ -2964,7 +3064,7 @@ function pw_globals_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -3359,6 +3459,7 @@ function pw_globals_field_default_fields() {
       'label' => 'Patron',
       'required' => FALSE,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -3369,7 +3470,7 @@ function pw_globals_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '41',
+        'weight' => '16',
       ),
     ),
   );
@@ -3682,6 +3783,7 @@ function pw_globals_field_default_fields() {
   t('Filter Disabled');
   t('Footer');
   t('Icon Class');
+  t('Kandidaten-Check');
   t('List Rename');
   t('Number');
   t('Parliament');
