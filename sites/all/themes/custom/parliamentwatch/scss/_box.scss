@@ -9,12 +9,13 @@
   padding-bottom: $space-large;
   background: $beige;
   clear: both;
+  position: relative;
   @include container();
   > h2,
   .option-title {
     margin-bottom: $space;
   }
-  h2 {
+  > h2 {
     @include grid-column(12);
   }
   .small-tiles + .option-title,
@@ -29,9 +30,86 @@
   .filterbar {
     margin-bottom: $space-large;
   }
+
+  &:before {
+    content: '';
+    opacity: 0;
+    background: $beige;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: block;
+    z-index: 9;
+    transition: opacity 600ms ease;
+    pointer-events: none;
+  }
 }
 .tile-wrapper--qa {
   background: $orangeBG;
+}
+
+@keyframes rotationCenter {
+  0%   { @include transform(translate(-50%, -50%) rotate(0deg)); }
+  80%  { @include transform(translate(-50%, -50%) rotate(360deg)); }
+  100% { @include transform(translate(-50%, -50%) rotate(360deg)); }
+}
+
+@keyframes rotationCenterDelayed {
+  0%   { @include transform(translate(-50%, -50%) rotate(0deg)); }
+  100% { @include transform(translate(-50%, -50%) rotate(360deg)); }
+}
+
+.tile-wrapper--loading {
+  &:before {
+    opacity: .8;
+    pointer-events: inherit;
+  }
+  .tile-wrapper__loader {
+    opacity: 1;
+  }
+}
+.tile-wrapper__loader {
+  background: $white;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  padding: $space-xsmall-mobile;
+  transition: opacity 600ms ease 200ms;
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  z-index: 9;
+  opacity: 0;
+  @include transform(translate(-50%, 0));
+  @include breakpoint($breakpoint-s-min) {
+    top: 150px;
+  }
+  svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    @include transform(translate(-50%, -50%));
+    @include transform-origin(center center);
+  }
+
+  svg:first-child {
+    animation-name: rotationCenter;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+  }
+
+  svg:last-child {
+    animation-name: rotationCenterDelayed;
+    animation-duration: 2s;
+    animation-delay: 0;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+  }
 }
 
 /* Base Tile */
@@ -39,7 +117,6 @@
 .tile {
   @include box-padded($white);
 }
-
 
 /* Title */
 
