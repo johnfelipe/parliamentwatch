@@ -1314,10 +1314,11 @@
   };
 
   // Init global matchHeight-plugin class
-
-  $(".mh-item").matchHeight();
-  $(".mh-item-nr").matchHeight({
-    byRow: false
+  $(function() {
+    $('.mh-item').matchHeight();
+    $('.mh-item-nr').matchHeight({
+      byRow: false
+    });
   });
 
   /*
