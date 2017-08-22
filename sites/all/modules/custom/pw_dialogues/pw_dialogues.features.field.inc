@@ -378,23 +378,9 @@ function pw_dialogues_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'link',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-          ),
-          'type' => 'link_default',
-          'weight' => '4',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '6',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -492,7 +478,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '11',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -504,7 +490,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '11',
         ),
         'tile' => array(
           'label' => 'above',
@@ -575,10 +561,24 @@ function pw_dialogues_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '12',
+          'label' => 'hidden',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => '4',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -587,10 +587,24 @@ function pw_dialogues_field_default_fields() {
           'weight' => '12',
         ),
         'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '12',
+          'label' => 'hidden',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => '5',
         ),
         'tile' => array(
           'label' => 'above',
@@ -647,7 +661,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '12',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -659,7 +673,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '12',
         ),
         'tile' => array(
           'label' => 'above',
@@ -726,7 +740,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '9',
+          'weight' => '10',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -738,7 +752,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '9',
+          'weight' => '10',
         ),
         'tile' => array(
           'label' => 'above',
@@ -815,7 +829,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '5',
         ),
         'embedded' => array(
           'label' => 'hidden',
@@ -827,7 +841,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '7',
         ),
         'tile' => array(
           'label' => 'hidden',
@@ -1221,7 +1235,7 @@ $display_output = rtrim($display_output);',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '9',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -1233,7 +1247,7 @@ $display_output = rtrim($display_output);',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '9',
         ),
         'tile' => array(
           'label' => 'above',
@@ -1308,7 +1322,7 @@ $display_output = rtrim($display_output);',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '7',
+          'weight' => '8',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -1320,7 +1334,7 @@ $display_output = rtrim($display_output);',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '7',
+          'weight' => '8',
         ),
         'tile' => array(
           'label' => 'above',

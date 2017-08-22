@@ -93,13 +93,12 @@
       </div>
       <h1><?php print t('Question from'); ?> <?php print render($content['field_dialogue_sender_name']); ?> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
     </div>
-  </div>
-  <div class="container-small">
-
     <div class="question__meta tile__meta">
       <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
       <span class="question__meta__date tile__meta__date"><?php print $date; ?></span>
     </div>
+  </div>
+  <div class="container-small">
     <div class="question__question mh-item-tile" data-mh="questionTitle">
       <h3 class="question__question__title"><?php print render($content['body']); ?></h3>
       <?php print render($title_suffix); ?>
