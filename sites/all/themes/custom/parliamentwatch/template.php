@@ -444,7 +444,6 @@ function parliamentwatch_menu_local_tasks(&$variables) {
 
   if (!empty($variables['primary'])) {
     $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
-    $variables['primary']['#prefix'] .= '<div class="nav-mobile-trigger"><i class="icon icon-investigation"></i></div>';
     $variables['primary']['#prefix'] .= '<ul class="nav nav--tab primary">';
     $variables['primary']['#suffix'] = '</ul>';
     $output .= drupal_render($variables['primary']);
