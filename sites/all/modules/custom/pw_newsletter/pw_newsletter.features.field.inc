@@ -169,7 +169,6 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           ),
         ),
         'display_summary' => 1,
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
@@ -188,11 +187,11 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'maxlength_js_label_summary' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'maxlength_js_summary' => '',
           'maxlength_js_truncate_html' => 0,
-          'rows' => '50',
+          'rows' => '30',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -448,7 +447,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
         'module' => 'paragraphs',
         'settings' => array(),
         'type' => 'paragraphs_embed',
-        'weight' => '5',
+        'weight' => '4',
       ),
     ),
   );
@@ -1194,6 +1193,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'default_value' => array(
         0 => array(
           'value' => '',
+          'format' => 'newsletter',
         ),
       ),
       'deleted' => '0',
@@ -1274,7 +1274,6 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -1291,7 +1290,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'maxlength_js_enforce' => 0,
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'maxlength_js_truncate_html' => 0,
-          'rows' => '5',
+          'rows' => '15',
         ),
         'type' => 'text_textarea',
         'weight' => '4',
@@ -3190,7 +3189,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'bundle' => 'paragraphs_pw_testmonial',
       'default_value' => array(
         0 => array(
-          'url' => 'node/10508?recurring=1',
+          'url' => 'node/10508',
         ),
       ),
       'deleted' => '0',
@@ -3252,6 +3251,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
         'absolute_url' => 1,
         'attributes' => array(
           'class' => '',
+          'configurable_class' => 0,
           'configurable_title' => 0,
           'rel' => '',
           'target' => '_blank',
@@ -3261,7 +3261,6 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -3269,7 +3268,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
         ),
         'rel_remove' => 'default',
         'title' => 'none',
-        'title_label_use_field_label' => FALSE,
+        'title_label_use_field_label' => 0,
         'title_maxlength' => '128',
         'title_value' => '',
         'url' => 0,
@@ -3279,9 +3278,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'widget' => array(
         'active' => 0,
         'module' => 'link',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
+        'settings' => array(),
         'type' => 'link_field',
         'weight' => '3',
       ),
