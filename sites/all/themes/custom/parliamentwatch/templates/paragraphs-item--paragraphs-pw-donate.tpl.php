@@ -90,7 +90,7 @@
                 <table border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
                   <tr>
                     <td>
-                      <a href="<?php print render($content['field_pg_content_link']); ?>" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; background-color: #f63; border-top: 12px solid #f63; border-bottom: 12px solid #f63; border-right: 18px solid #f63; border-left: 18px solid #f63; display: inline-block; white-space: nowrap;"><?php print $content['field_pg_content_link'][0]['#element']['title']; ?></a>
+                      <a href="<?php print render($content['field_pg_content_link'][0]['#element']['url']); ?>" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; background-color: #f63; border-top: 12px solid #f63; border-bottom: 12px solid #f63; border-right: 18px solid #f63; border-left: 18px solid #f63; display: inline-block; white-space: nowrap;"><?php print $content['field_pg_content_link'][0]['#element']['title']; ?></a>
                     </td>
                   </tr>
                 </table>

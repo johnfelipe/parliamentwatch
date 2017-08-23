@@ -9,7 +9,7 @@
  */
 
 if(typeof(CKEDITOR) !== 'undefined') {
-
+    CKEDITOR._scaytParams = {sLang : 'de_DE'};
     CKEDITOR.config.templates = 'custom';
     CKEDITOR.config.format_p = {
         name : 'Default',
@@ -54,21 +54,15 @@ if(typeof(CKEDITOR) !== 'undefined') {
                 title: 'Image container with ©opyright',
                 image: 'template_default_3.gif',
                 description: 'A container with an image and a subline floating to the left.',
-                html: '<div style="float: left; padding-right: 20px; padding-bottom: 15px;">'
-                +'<img src="/sites/all/modules/contrib/ckeditor/ckeditor/plugins/templates/templates/images/template_default_3.gif">'
-                +'<div class="copyright" style="font-family: Arial, Helvetica, Sans-Serif; color: #4d4d4d; font-size: 10px; color: #666;">©opyright</div>'
-                +'</div>'
-                +'<p style="font-family: Arial, Helvetica, Sans-Serif; color: #4d4d4d; font-size: 15px; line-height: 21px; margin: 0 0 10px;">Lorem ipsum</p>'
+                html: '<div style="float: left; padding-right: 20px; padding-bottom: 10px;"><img src="/sites/all/modules/contrib/ckeditor/ckeditor/plugins/templates/templates/images/template_default_3.gif"><div class="copyright" style="font-family: Arial, Helvetica, Sans-Serif; font-size: 10px; color: #aaa;">©opyright</div></div>'
+                +'<p style="font-family: Arial, Helvetica, Sans-Serif; color: #4d4d4d; font-size: 15px; line-height: 21px; margin: 0 0 10px;"></p>'
             },
             {
                 title: 'Image container with ©opyright',
                 image: 'template_default_4.gif',
                 description: 'A container with an image and a subline floating to the right.',
-                html: '<div style="float: right; padding-left: 20px; padding-bottom: 15px;">'
-                +'<img src="/sites/all/modules/contrib/ckeditor/ckeditor/plugins/templates/templates/images/template_default_4.gif">'
-                +'<div class="copyright" style="font-family: Arial, Helvetica, Sans-Serif; color: #4d4d4d; font-size: 10px; color: #666;">©opyright</div>'
-                +'</div>'
-                +'<p style="font-family: Arial, Helvetica, Sans-Serif; color: #4d4d4d; font-size: 15px; line-height: 21px; margin: 0 0 10px;">Lorem ipsum</p>'
+                html: '<div style="float: right; padding-left: 20px; padding-bottom: 10px;"><img src="/sites/all/modules/contrib/ckeditor/ckeditor/plugins/templates/templates/images/template_default_3.gif"><div class="copyright" style="font-family: Arial, Helvetica, Sans-Serif; font-size: 10px; color: #aaa;">©opyright</div></div>'
+                +'<p style="font-family: Arial, Helvetica, Sans-Serif; color: #4d4d4d; font-size: 15px; line-height: 21px; margin: 0 0 10px;"></p>'
             },
             {
                 title: 'Link with icon',

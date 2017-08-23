@@ -68,7 +68,4 @@
  * @ingroup themeable
  */
 ?>
-<figure>
-  <?php print render($content['file']); ?>
-  <figcaption><?php print render($content['field_image_copyright']); ?></figcaption>
-</figure>
+<figure><?php print render($content['file']); ?><?php if ($content['field_image_copyright']): ?><figcaption><?php print render($content['field_image_copyright']); ?></figcaption><?php endif; ?></figure>

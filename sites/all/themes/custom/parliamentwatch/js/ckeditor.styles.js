@@ -8,6 +8,11 @@
  * The 'Styles' button is not enabled by default in DrupalFull and DrupalFiltered toolbars.
  */
 if(typeof(CKEDITOR) !== 'undefined') {
+    CKEDITOR.config.language = 'de';
+    CKEDITOR.config.wsc_lang = 'de_DE'; // The default spell checker language
+    CKEDITOR.config.scayt_sLang = 'de_DE'; // The SCAYT spell checker language
+
+    CKEDITOR.config
     CKEDITOR.config.templates = 'custom';
     CKEDITOR.addStylesSet( 'drupal',
         [

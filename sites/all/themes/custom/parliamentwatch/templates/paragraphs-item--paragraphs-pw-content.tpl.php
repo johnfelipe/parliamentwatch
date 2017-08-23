@@ -36,7 +36,7 @@
     <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth">
       <?php if (!empty($field_pg_content_title) && !empty($field_pg_content_link)): ?>
         <tr>
-          <td colspan="3" width="100%" style="height: 20px;">&nbsp;</td>
+          <td colspan="3" width="100%" style="height: 15px; font-size: 1px;">&nbsp;</td>
         </tr>
         <tr>
           <td colspan="3" width="100%">
@@ -64,7 +64,7 @@
       <?php endif; ?>
       <?php if (!empty($field_pg_content_title) && empty($field_pg_content_link)): ?>
         <tr>
-          <td colspan="3" width="100%" style="height: 20px;">&nbsp;</td>
+          <td colspan="3" width="100%" style="height: 15px; font-size: 1px;">&nbsp;</td>
         </tr>
         <tr>
           <td colspan="3" width="100%">
