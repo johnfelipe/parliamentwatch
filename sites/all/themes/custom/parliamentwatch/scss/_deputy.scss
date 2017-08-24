@@ -442,6 +442,7 @@ $abstimmverhalten-node-width: 60px;
 $abstimmverhalten-node-item-width: 18px;
 
 .abstimmverhalten-overview {
+  @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
     padding-left: $abstimmverhalten-node-width;
     position: relative;
@@ -457,6 +458,11 @@ $abstimmverhalten-node-item-width: 18px;
       background-color: $darkBeige;
     }
   }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(12, $neat-grid);
+  }
+}
+.abstimmverhalten-stats + .abstimmverhalten-overview {
   @include breakpoint($breakpoint-m-min) {
     @include grid-column(8, $neat-grid-rtl);
   }
@@ -524,7 +530,7 @@ $abstimmverhalten-node-item-width: 18px;
   right: 0;
   top: 0;
   bottom: 0;
-  padding: $space 0;
+  padding: $space $space-xsmall-mobile;
   width: $abstimmverhalten-indicator-width-mobile;
   text-align: center;
   border-left: 1px solid $darkBeige;
@@ -561,8 +567,10 @@ $abstimmverhalten-node-item-width: 18px;
 .abstimmverhalten-stats {
   margin-bottom: $space-large;
   @include grid-container();
+  @include grid-column(12);
   @include breakpoint($breakpoint-m-min) {
     margin-bottom: 0;
+    margin-left: 0;
     @include grid-column(4, $neat-grid-rtl);
     padding-left: $space-large * 2;
   }
