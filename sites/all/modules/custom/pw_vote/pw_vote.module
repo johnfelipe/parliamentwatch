@@ -343,6 +343,10 @@ function pw_vote_block_info() {
     'info' => t('Voting behavior'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['profile_petitions'] = [
+    'info' => t('Voting behavior (PetitionPlus)'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -359,7 +363,10 @@ function pw_vote_block_view($delta, $arguments = array()) {
       }
       break;
     case 'profile':
-      $block = pw_vote_profile_block();
+      $block = pw_vote_profile_block('poll');
+      break;
+    case 'profile_petitions':
+      $block = pw_vote_profile_block('pw_petition');
       break;
   }
   return $block;
@@ -371,7 +378,7 @@ function pw_vote_block_view($delta, $arguments = array()) {
  * @return array
  *   The block render array.
  */
-function pw_vote_profile_block() {
+function pw_vote_profile_block($type = 'poll') {
   $block = [];
 
   if (menu_get_item()['page_callback'] == 'user_revision_show') {
@@ -386,20 +393,25 @@ function pw_vote_profile_block() {
     return $block;
   }
 
-  $nids = pw_vote_by_user_revision_query($account)
-    ->orderBy('vnd.field_poll_date_value', 'DESC')
+  $nids = pw_vote_by_user_revision_query($account, $type)
+    ->orderBy('decision_date', 'DESC')
     ->extend('PagerDefault')
     ->limit(6)
     ->execute()
     ->fetchCol();
 
+
   if (!empty($nids)) {
-    $callback = function ($item) {
-      $vote = node_load($item->field_vote_node[LANGUAGE_NONE][0]['target_id']);
-      return $vote->type == 'poll';
-    };
-    $nodes = array_filter(node_load_multiple($nids), $callback);
-    $block['subject'] = t('Voting behavior');
+    $nodes = node_load_multiple($nids);
+    switch($type){
+      case 'pw_petition':
+      $block['subject'] = t('PetitionPlus');
+      break;
+      default:
+      $block['subject'] = t('Voting behavior');
+      break;
+    }
+
     $block['content'] = node_view_multiple($nodes, 'embedded');
     $block['content']['pager'] = [
       '#theme' => 'pager',
@@ -750,16 +762,26 @@ function pw_vote_mark_deviant_votes($nid) {
  * @return EntityFieldQuery
  *   The query object
  */
-function pw_vote_by_user_revision_query($account) {
+function pw_vote_by_user_revision_query($account, $node_target_type = 'poll') {
   $q = db_select('node', 'n');
   $q->fields('n', ['nid']);
   $q->join('field_data_field_vote_user', 'u', 'n.nid = u.entity_id');
   $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
   $q->join('field_data_field_vote_node', 'vn', 'n.nid = vn.entity_id');
-  $q->join('field_data_field_poll_date', 'vnd', 'vn.field_vote_node_target_id = vnd.entity_id');
-  $q->condition('type', 'vote');
-  $q->condition('status', NODE_PUBLISHED);
+  $q->join('node', 'n_target', 'vn.field_vote_node_target_id = n_target.nid');
+
+  if($node_target_type == 'pw_petition') {
+    $q->join('field_data_field_petition_end_date', 'vnd', 'vn.field_vote_node_target_id = vnd.entity_id');
+    $q->addField('vnd', 'field_petition_end_date_value', 'decision_date');
+  }
+  else {
+    $q->join('field_data_field_poll_date', 'vnd', 'vn.field_vote_node_target_id = vnd.entity_id');
+    $q->addField('vnd', 'field_poll_date_value', 'decision_date');
+  }
+  $q->condition('n.type', 'vote');
+  $q->condition('n.status', NODE_PUBLISHED);
   $q->condition('u.field_vote_user_target_id', $account->uid);
+  $q->condition('n_target.type', $node_target_type);
   $q->condition('p.field_parliament_tid', pw_profiles_parliament($account)->tid);
 
   return $q;
