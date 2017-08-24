@@ -17,6 +17,9 @@
   border-bottom: 1px solid $gray + 40;
   margin-bottom: $space-large;
   @include container();
+  &:empty {
+    display: none;
+  }
 }
 .nav--tab.primary {
   padding: 0;
