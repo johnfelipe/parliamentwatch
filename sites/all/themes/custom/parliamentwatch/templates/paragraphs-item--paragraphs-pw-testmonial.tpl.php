@@ -46,7 +46,7 @@
         <td width="10" class="block_td percent_td">&nbsp;</td>
       </tr>
 
-      <?php if ($content['field_pg_donate_targetgroup'][0]['#markup'] == 'donator'): ?>
+      <?php if ($content['field_pg_donate_targetgroup'][0]['#markup'] == 'sponsor'): ?>
         <tr>
           <td colspan="3" width="600">
             <p style="font-family: Arial, Helvetica, Sans-Serif; color: #999; font-size: 15px; line-height: 21px; margin: 0; text-align: center;">
