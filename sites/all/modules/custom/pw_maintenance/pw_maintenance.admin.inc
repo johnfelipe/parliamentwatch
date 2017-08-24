@@ -238,7 +238,8 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
 
   // add redirect from the source user to the target one
   if(module_exists('redirect')){
-    if($redirect = redirect_load_by_source("user/".$user_source->uid, LANGUAGE_NONE, array(), FALSE)){
+    if(($redirect = redirect_load_by_source("user/".$user_source->uid, LANGUAGE_NONE, array(), FALSE)) ||
+        ($redirect = redirect_load_by_source("profile/".$user_source->name, LANGUAGE_NONE, array(), FALSE))){
       $redirect->status = 1;
       $redirect->redirect = 'user/'.$user_target->uid;
     }
