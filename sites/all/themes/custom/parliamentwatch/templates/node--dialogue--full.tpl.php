@@ -91,7 +91,7 @@
         <?php print render($user_party); ?>
         <a href="<?php print render($user_url); ?>" class="btn btn--small btn--mobile-block"><?php print t('Open profile'); ?></a>
       </div>
-      <h1><?php print t('Question from'); ?> <?php print render($content['field_dialogue_sender_name']); ?> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
+      <h1><?php print t('Question from'); ?> <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
     </div>
     <div class="question__meta tile__meta">
       <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
@@ -102,7 +102,7 @@
     <div class="question__question mh-item-tile" data-mh="questionTitle">
       <h3 class="question__question__title"><?php print render($content['body']); ?></h3>
       <?php print render($title_suffix); ?>
-      <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
+      <p class="question__question__author"><?php print t('By'); ?>: <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span></p>
       <?php if (!empty($content['field_dialogue_annotation'])): ?>
         <div class="question__annotation">
           <h3><?php print t("Editor's note") ?></h3>
