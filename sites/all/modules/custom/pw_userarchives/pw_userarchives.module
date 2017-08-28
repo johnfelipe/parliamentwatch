@@ -23,7 +23,9 @@ function pw_userarchives_user_insert(&$edit, $account, $category) {
  * Implements hook_user_update().
  */
 function pw_userarchives_user_update(&$edit, $account, $category) {
-  search_api_track_item_insert('user_revision', [$account->vid]);
+  if ($account->revision) {
+    search_api_track_item_insert('user_revision', [$account->vid]);
+  }
 }
 
 /**
