@@ -310,9 +310,13 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
  */
 function parliamentwatch_preprocess_comment(&$variables) {
   $elements = $variables['elements'];
-  $variables['theme_hook_suggestions'][] = $variables['theme_hook_suggestion'];
+
+  if (isset($variables['theme_hook_suggestion'])) {
+    $variables['theme_hook_suggestions'][] = $variables['theme_hook_suggestion'];
+    unset($variables['theme_hook_suggestion']);
+  }
+
   $variables['theme_hook_suggestions'][] = $variables['theme_hook_original'] . '__' . $elements['#view_mode'];
-  unset($variables['theme_hook_suggestion']);
 
   if ($elements['#bundle'] == 'comment_node_dialogue' && $elements['#view_mode'] == 'tile') {
     $account = user_load($elements['#comment']->uid);
