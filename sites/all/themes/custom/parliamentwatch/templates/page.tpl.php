@@ -151,7 +151,7 @@
       <div class="footer__maincol__col">
         <strong>&nbsp;</strong>
         <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l('Niedersachen', 'niedersachen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l('Niedersachsen', 'niedersachsen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Nordrhein-Westfalen', 'nordrhein-westfalen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Rheinland-Pfalz', 'rheinland-pfalz', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l('Saarland', 'saarland', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
