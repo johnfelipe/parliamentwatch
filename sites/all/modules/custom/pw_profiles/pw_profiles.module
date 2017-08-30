@@ -257,6 +257,21 @@ function pw_profiles_entity_info_alter(&$entity_info) {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function pw_profiles_theme() {
+  return [
+    'profile_search_summary' => [
+      'variables' => [
+        'response' => NULL,
+        'filters' => NULL,
+        'role_name' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
  * Entity URI callback; returns path to current or archived profile.
  *
  * @param object $user
@@ -356,7 +371,12 @@ function pw_profiles_page($parliament_term, $role_name) {
       $build['user'][$vid]['#weight'] = ++$weight;
     }
     $build['user']['#theme_wrappers'] = ['container__tiles'];
-    $build['user']['summary'] = _pw_profiles_search_summary($response, $role_name, drupal_get_query_parameters());
+    $build['user']['summary'] = [
+      '#theme' => 'profile_search_summary',
+      '#response' => $response,
+      '#role_name' => $role_name,
+      '#filters' => drupal_get_query_parameters(),
+    ];
     $build['user']['pager'] = [
       '#theme' => 'pager',
       '#weight' => ++$weight,
@@ -792,41 +812,38 @@ function _pw_profiles_is_postal_code_search($parameters) {
 }
 
 /**
- * Builds a summary reflecting the current search criteria.
+ * Returns HTML for a summary of the search result.
  *
- * @param array $response
- *   The response from the search service.
- * @param string $role_name
- *   The role.
- * @param array $filters
- *   The selected filters.
- *
- * @return array
- *   The render array.
+ * @param array $variables
+ *   An associative array containing:
+ *   - response
+ *   - role_name
+ *   - filters
  */
-function _pw_profiles_search_summary(array $response, $role_name, array $filters) {
-  $facets = $response['search_api_facets'];
+function theme_profile_search_summary(&$variables) {
+  $output = '';
+  $facets = $variables['response']['search_api_facets'];
   $link_options = ['attributes' => ['data-ajax-target' => '#ajax']];
 
-  $options['@count'] = $response['result count'];
+  $options['@count'] = $variables['response']['result count'];
   $options['!gender'] = '';
 
-  if (!empty($filters['gender'])) {
-    if (count($filters['gender']) == 1) {
-      $value = reset($filters['gender']);
-      $text = format_plural($response['result count'], $value, $value, [], ['context' => 'search-summary']);
-      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'gender')]);
+  if (!empty($variables['filters']['gender'])) {
+    if (count($variables['filters']['gender']) == 1) {
+      $value = reset($variables['filters']['gender']);
+      $text = format_plural($variables['response']['result count'], $value, $value, [], ['context' => 'search-summary']);
+      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
     }
-    elseif ($filters['gender'] == ['male' => 'male', 'female' => 'female']) {
-      $text = format_plural($response['result count'], 'female or male', 'female and male', [], ['context' => 'search-summary']);
-      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'gender')]);
+    elseif ($variables['filters']['gender'] == ['male' => 'male', 'female' => 'female']) {
+      $text = format_plural($variables['response']['result count'], 'female or male', 'female and male', [], ['context' => 'search-summary']);
+      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
     }
   }
 
-  if (!empty($filters['party'])) {
-    $parties_count = count($filters['party']);
+  if (!empty($variables['filters']['party'])) {
+    $parties_count = count($variables['filters']['party']);
     $parties_text = format_plural($parties_count, '1 party', '@count parties');
-    $options['!parties'] = l($parties_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'party')]);
+    $options['!parties'] = l($parties_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'party')]);
   }
   else {
     $parties_count = count(_pw_profiles_facet_values($facets['field_user_party']));
@@ -834,10 +851,10 @@ function _pw_profiles_search_summary(array $response, $role_name, array $filters
     $options['!parties'] = $parties_text;
   }
 
-  if (!empty($filters['constituency'])) {
+  if (!empty($variables['filters']['constituency'])) {
     $constituencies_count = 1;
     $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies');
-    $options['!constituencies'] = l($constituencies_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'constituency')]);
+    $options['!constituencies'] = l($constituencies_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'constituency')]);
   }
   else {
     $constituencies_count = count(_pw_profiles_facet_values($facets['field_user_constituency']));
@@ -845,25 +862,27 @@ function _pw_profiles_search_summary(array $response, $role_name, array $filters
     $options['!constituencies'] = $constituencies_text;
   }
 
-  if ($role_name == 'candidates') {
-    $summary = t('Found @count !gender candidates from !parties and !constituencies.', $options);
+  $output .= '<p>';
+
+  if ($variables['role_name'] == 'candidates') {
+    $output .= t('Found @count !gender candidates from !parties and !constituencies.', $options);
   }
   else {
-    $summary = t('Found @count !gender deputies from !parties and !constituencies.', $options);
+    $output .= t('Found @count !gender deputies from !parties and !constituencies.', $options);
   }
 
-  if (!empty($filters['keys'])) {
-    $options['!keys'] = l(check_plain($filters['keys']), current_path(), $link_options + ['query' => _pw_profiles_reject_filter($filters, 'keys')]);
-    $summary .= ' ' . t('You have searched for: !keys', $options);
+  if (!empty($variables['filters']['keys'])) {
+    $options['!keys'] = l(check_plain($variables['filters']['keys']), current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'keys')]);
+    $output .= ' ' . t('You have searched for: !keys', $options);
   }
 
-  if (!empty(array_filter($filters))) {
-    $summary .= ' ' . l(t('Reset all filters'), current_path(), $link_options);
+  if (!empty(array_filter($variables['filters']))) {
+    $output .= ' ' . l(t('Reset all filters'), current_path(), $link_options);
   }
 
-  return [
-    '#markup' => '<p>' . $summary . '</p>',
-  ];
+  $output .= '</p>';
+
+  return $output;
 }
 
 /**
