@@ -408,10 +408,11 @@ function pw_globals_field_default_fields() {
         ),
         'tile' => array(
           'label' => 'hidden',
-          'module' => 'file_entity',
+          'module' => 'image',
           'settings' => array(
             'field_delimiter' => '',
-            'file_view_mode' => 'default',
+            'image_link' => '',
+            'image_style' => 'width_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -424,7 +425,7 @@ function pw_globals_field_default_fields() {
               'linked' => 0,
             ),
           ),
-          'type' => 'file_rendered',
+          'type' => 'image',
           'weight' => '0',
         ),
       ),
