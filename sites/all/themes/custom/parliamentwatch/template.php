@@ -220,13 +220,13 @@ function parliamentwatch_preprocess_node(&$variables) {
   if ($variables['type'] == 'pw_kc_position') {
     $account = user_load($node->field_pw_kc_user_reference[LANGUAGE_NONE][0]['target_id']);
     $variables['user_display_name'] = _pw_get_fullname($account);
-    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_medium']]);
   }
 
   if ($variables['type'] == 'dialogue' && $variables['view_mode'] != 'embedded') {
     $account = pw_dialogues_recipient_user_revision($node);
     $variables['user_display_name'] = _pw_get_fullname($account);
-    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
     $variables['user_party'] = field_view_field('user', $account, 'field_user_party', ['label' => 'hidden', 'type' => 'taxonomy_term_reference_plain']);
     $variables['user_url'] = url(entity_uri('user', $account)['path']);
   }
@@ -320,7 +320,7 @@ function parliamentwatch_preprocess_comment(&$variables) {
 
   if ($elements['#bundle'] == 'comment_node_dialogue' && $elements['#view_mode'] == 'tile') {
     $account = user_load($elements['#comment']->uid);
-    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
   }
 }
 
