@@ -2037,7 +2037,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => 'file',
-            'image_style' => 'media_thumbnail',
+            'image_style' => 'square_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3260,7 +3260,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => 'large',
+            'image_style' => 'square_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3282,7 +3282,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => 'large',
+            'image_style' => 'width_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
