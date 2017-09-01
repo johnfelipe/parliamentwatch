@@ -94,8 +94,8 @@ function pw_globals_form_alter(&$form, &$form_state, $form_id) {
  */
 function pw_globals_form_user_login_alter(&$form, &$form_state) {
   $form['help'] = [
-    '#prefix' => '<h2>',
-    '#suffix' => '</h2>',
+    '#prefix' => '<p>',
+    '#suffix' => '</p>',
     '#markup' => t('If you are a politician you can log in and edit your profile.'),
     '#weight' => -1,
   ];

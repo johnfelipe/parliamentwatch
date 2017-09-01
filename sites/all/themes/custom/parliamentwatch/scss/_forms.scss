@@ -400,3 +400,9 @@ textarea.form__item__control {
     }
   }
 }
+
+/* Login */
+
+.form--user-login {
+  > p { margin-bottom: $space-large; }
+}
