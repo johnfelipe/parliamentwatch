@@ -185,6 +185,8 @@ function pw_api_user_to_array($user, $activities = array()) {
     // publish private email for authorized users
     if(user_access('access authorized api')){
       $profile['personal']['email'] = $w_user->mail->value();
+      $profile['personal']['phone'] = $w_user->field_user_phone->value();
+      $profile['personal']['mobile'] = $w_user->field_user_mobile->value();
     }
     else{
       $profile['personal']['email'] = $w_user->field_user_public_mail->value();

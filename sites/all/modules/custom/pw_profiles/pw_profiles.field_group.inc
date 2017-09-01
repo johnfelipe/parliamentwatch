@@ -163,6 +163,7 @@ function pw_profiles_field_group_info() {
       10 => 'field_user_phone',
       11 => 'field_user_public_mail',
       12 => 'field_user_list',
+      13 => 'field_user_mobile',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
