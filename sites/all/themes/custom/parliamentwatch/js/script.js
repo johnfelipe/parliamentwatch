@@ -81,6 +81,101 @@
   }
 
   /**
+   * Maps vote statistics to format expected by D3.
+   *
+   * @param {Object} votes
+   *   Vote statistics to map to D3 data.
+   *
+   * @returns {Object}
+   *   Vote statistics ready for D3.
+   */
+  function mapVotes(votes) {
+    var map = {
+      'yes': {name: 'Ja', 'color': '#9fd773'},
+      'no': {name: 'Nein', color: '#cc6c5b'},
+      'abstain': {name: 'Enthalten', color: '#e2e2e2'},
+      'no-show': {name: 'Nicht abgestimmt', color: '#a6a6a6'}
+    };
+
+    var data = [];
+
+    for (var key in votes) {
+      map[key].count = votes[key];
+      data.push(map[key]);
+    }
+
+    return data;
+  }
+
+  /**
+   * Returns dialogue statistics ready for D3.
+   *
+   * @returns {Array}
+   *   Dialogue statistics ready for D3.
+   */
+  Drupal.parseDialogues = function() {
+    var data = [];
+
+    for (var key in window.dialogues) {
+      data.push({'name': key, 'value': window.dialogues[key]});
+    }
+
+    return data;
+  };
+
+  /**
+   * Returns vote statistics suitable for D3.
+   *
+   * @returns {Array}
+   *   Vote statistics ready for D3.
+   */
+  Drupal.parseVotes = function() {
+    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
+
+    window.votes.forEach(function (v) {
+      data[v.vote]++;
+    });
+
+    return mapVotes(data);
+  };
+
+  /**
+   * Returns votes statistics by party ready for D3.
+   *
+   * @returns {Array}
+   *   Vote statistics by party ready for D3.
+   */
+  Drupal.parseResultsByParty = function() {
+    var data = {};
+
+    for (var party in window.resultsByParty) {
+      data[party] = mapVotes(window.resultsByParty[party]);
+    }
+
+    return data;
+  };
+
+  /**
+   * Returns vote statistics suitable for D3.
+   *
+   * @returns {Array}
+   *   Vote statistics ready for D3.
+   */
+  Drupal.parseResultsTotal = function() {
+    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
+
+    for (var party in window.resultsByParty) {
+      data['yes'] += window.resultsByParty[party]['yes'];
+      data['no'] += window.resultsByParty[party]['no'];
+      data['abstain'] += window.resultsByParty[party]['abstain'];
+      data['no-show'] += window.resultsByParty[party]['no-show'];
+    }
+
+    return mapVotes(data);
+  };
+
+
+  /**
    * Attaches the main navigation behavior.
    *
    * @type {Drupal~behavior}
@@ -1504,99 +1599,5 @@
       });
     }
   };
-
-  /**
-   * Returns dialogue statistics ready for D3.
-   *
-   * @returns {Array}
-   *   Dialogue statistics ready for D3.
-   */
-  Drupal.parseDialogues = function() {
-    var data = [];
-
-    for (var key in window.dialogues) {
-      data.push({'name': key, 'value': window.dialogues[key]});
-    }
-
-    return data;
-  };
-
-  /**
-   * Returns vote statistics suitable for D3.
-   *
-   * @returns {Array}
-   *   Vote statistics ready for D3.
-   */
-  Drupal.parseVotes = function() {
-    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
-
-    window.votes.forEach(function (v) {
-      data[v.vote]++;
-    });
-
-    return mapVotes(data);
-  };
-
-  /**
-   * Returns votes statistics by party ready for D3.
-   *
-   * @returns {Array}
-   *   Vote statistics by party ready for D3.
-   */
-  Drupal.parseResultsByParty = function() {
-    var data = {};
-
-    for (var party in window.resultsByParty) {
-      data[party] = mapVotes(window.resultsByParty[party]);
-    }
-
-    return data;
-  };
-
-  /**
-   * Returns vote statistics suitable for D3.
-   *
-   * @returns {Array}
-   *   Vote statistics ready for D3.
-   */
-  Drupal.parseResultsTotal = function() {
-    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
-
-    for (var party in window.resultsByParty) {
-      data['yes'] += window.resultsByParty[party]['yes'];
-      data['no'] += window.resultsByParty[party]['no'];
-      data['abstain'] += window.resultsByParty[party]['abstain'];
-      data['no-show'] += window.resultsByParty[party]['no-show'];
-    }
-
-    return mapVotes(data);
-  };
-
-  /**
-   * Maps vote statistics to format expected by D3.
-   *
-   * @param {Object} votes
-   *   Vote statistics to map to D3 data.
-   *
-   * @returns {Object}
-   *   Vote statistics ready for D3.
-   */
-  function mapVotes(votes) {
-    var map = {
-      'yes': {name: 'Ja', 'color': '#9fd773'},
-      'no': {name: 'Nein', color: '#cc6c5b'},
-      'abstain': {name: 'Enthalten', color: '#e2e2e2'},
-      'no-show': {name: 'Nicht abgestimmt', color: '#a6a6a6'}
-    };
-
-    var data = [];
-
-    for (var key in votes) {
-      map[key].count = votes[key];
-      data.push(map[key]);
-    }
-
-    return data;
-  }
 
 } (jQuery));
