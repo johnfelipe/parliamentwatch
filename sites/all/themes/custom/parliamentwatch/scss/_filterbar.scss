@@ -451,7 +451,7 @@ _:-ms-fullscreen,
         margin-top: 3px;
       }
     }
-    .filter-summary__content__mobile {
+    .filter-summary__content--mobile {
       display: block;
       float: none;
       @include breakpoint($breakpoint-s-min) {

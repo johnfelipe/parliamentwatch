@@ -968,7 +968,7 @@ function parliamentwatch_profile_search_summary(&$variables) {
     $summary_mobile .= '.';
   }
 
-  $output .= '<p class="filter-summary__content__mobile">';
+  $output .= '<p class="filter-summary__content--mobile">';
   $output .= $summary_mobile;
   $output .= '</p><p>';
   $output .= $summary;
