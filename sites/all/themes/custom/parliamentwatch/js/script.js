@@ -21,7 +21,7 @@
     beige = '#f3efe6',
     orange = '#f46b3b';
 
-  iterateTime = 200;
+  var iterateTime = 200;
 
   /*
    * Debounce-Function
