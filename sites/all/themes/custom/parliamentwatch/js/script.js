@@ -577,7 +577,7 @@
         var wrapper = $(this)[0];
         var width = 600;
         var height = wrapper.dataset.height;
-        var data = window[wrapper.getAttribute('data-data')]();
+        var data = Drupal[wrapper.getAttribute('data-data')]();
 
         var colours = {
           fill: '#' + wrapper.dataset.fillColour,
@@ -731,7 +731,7 @@
     attach: function (context) {
       $('[data-d3-donut-labels]', context).once('d3DonutLabels', function () {
         var wrapper = $(this)[0];
-        var dataset = window[wrapper.getAttribute('data-data')]();
+        var dataset = Drupal[wrapper.getAttribute('data-data')]();
 
         var width = 360;
         var height = 360;
@@ -1079,7 +1079,7 @@
     attach: function (context) {
       $('[data-bar-horizontal-stacked]', context).once('d3BarHorizontalStacked', function () {
         var wrapper = $(this)[0];
-        var dataset = window[wrapper.getAttribute('data-data')]();
+        var dataset = Drupal[wrapper.getAttribute('data-data')]();
         var barWrapper = d3.select(wrapper)
           .append('div')
           .attr('class', 'd3-bars');
@@ -1143,7 +1143,7 @@
     attach: function (context) {
       $('[data-bar-vertical-stacked-poll]', context).once('d3BarVerticalStackedPoll', function () {
         var wrapper = $(this)[0];
-        var dataset = window[wrapper.getAttribute('data-data')]();
+        var dataset = Drupal[wrapper.getAttribute('data-data')]();
 
         (function (data) {
           for (var key in data) {
@@ -1511,7 +1511,7 @@
    * @returns {Array}
    *   Dialogue statistics ready for D3.
    */
-  window.parseDialogues = function() {
+  Drupal.parseDialogues = function() {
     var data = [];
 
     for (var key in window.dialogues) {
@@ -1527,7 +1527,7 @@
    * @returns {Array}
    *   Vote statistics ready for D3.
    */
-  window.parseVotes = function() {
+  Drupal.parseVotes = function() {
     var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
 
     window.votes.forEach(function (v) {
@@ -1543,7 +1543,7 @@
    * @returns {Array}
    *   Vote statistics by party ready for D3.
    */
-  window.parseResultsByParty = function() {
+  Drupal.parseResultsByParty = function() {
     var data = {};
 
     for (var party in window.resultsByParty) {
@@ -1559,7 +1559,7 @@
    * @returns {Array}
    *   Vote statistics ready for D3.
    */
-  window.parseResultsTotal = function() {
+  Drupal.parseResultsTotal = function() {
     var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
 
     for (var party in window.resultsByParty) {
