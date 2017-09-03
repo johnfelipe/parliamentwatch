@@ -1326,13 +1326,12 @@
     }
   };
 
-  // Init global matchHeight-plugin class
-  $(function() {
-    $('.mh-item').matchHeight();
-    $('.mh-item-nr').matchHeight({
-      byRow: false
-    });
-  });
+  Drupal.behaviors.matchHeight = {
+    attach: function (context) {
+      $('.mh-item', context).matchHeight();
+      $('.mh-item-nr', context).matchHeight({ byRow: false });
+    }
+  }
 
   /*
    * Parser functions for chart visualizations
