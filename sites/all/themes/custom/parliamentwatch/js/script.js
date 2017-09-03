@@ -1,8 +1,12 @@
+/**
+ * @file
+ * Provides behaviors for the parliamentwatch theme.
+ */
+
 (function ($) {
 
-  /*
-   * Custom global js/jquery
-   */
+   "use strict";
+
   var windowWidth = window.innerWidth,
     windowHeight = window.outerHeight,
 
@@ -23,51 +27,67 @@
 
   var iterateTime = 200;
 
-  /*
-   * Debounce-Function
-   * Defines a debounce function for window-resizing
-   * source: https://davidwalsh.name/javascript-debounce-function
-   * */
+  /**
+   * Calls given function after wait milliseconds.
+   *
+   * @param {Function} func
+   *   The function to be debounced.
+   * @param {String} wait
+   *   The time in milliseconds to wait before the function is executed.
+   * @param {Bool} immediate
+   *   Indicates whether the function should be executed immediately.
+   *
+   * @see https://davidwalsh.name/javascript-debounce-function
+   */
   function debounce(func, wait, immediate) {
     var timeout;
     return function () {
-      var context = this, args = arguments;
+      var context = this;
+      var args = arguments;
       var later = function () {
         timeout = null;
-        if (!immediate) func.apply(context, args);
+        if (!immediate) {
+          func.apply(context, args)
+        };
       };
       var callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
+      if (callNow) {
+        func.apply(context, args);
+      }
     };
   };
 
-  /*
-   * docReadyClass
-   * Add class to html-tag for styling purpose
-   * */
-
+  /**
+   * Adds class to html-tag for styling purpose
+   */
   function docReadyClass() {
     $('html').addClass('docready');
   }
 
-  /*
-   * Tile-Wrapper loader
-   * */
+  /**
+   * Adds loading animation to tile-wrappers.
+   */
   function addTileWrapperLoader() {
     $('.tile-wrapper').addClass('tile-wrapper--loading').append('<div class="tile-wrapper__loader"><svg viewBox="0 0 65 65"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="05_filter-textsuche" transform="translate(-744.000000, -698.000000)"> <g id="Loader" transform="translate(744.000000, 698.000000)"> <g id="Group-2"> <circle id="Oval" fill="none" cx="32.5" cy="32.5" r="32.5"></circle> <g id="Group" transform="translate(28.000000, 36.500000) scale(-1, -1) translate(-28.000000, -36.500000) translate(4.000000, 12.000000)" fill="#FFFFFF"> <path d="M35.0628019,13.4372093 C31.5458937,9.66976744 26.8985507,7.28372093 22,6.78139535 L22.3768116,0 C29.1594203,0.753488372 35.4396135,3.76744186 40.0869565,8.66511628 C44.8599034,13.6883721 47.6231884,19.9674419 48,27 L41.0917874,27 C40.7149758,22.1023256 38.5797101,17.2046512 35.0628019,13.4372093 Z M19.9055118,0 L19.6535433,6.875 C13.984252,6.875 8.69291339,9.125 4.66141732,13 L0,8 C5.29133858,2.75 12.3464567,0 19.9055118,0 C20.0314961,0 20.0314961,0 19.9055118,0 Z M34,44.1807229 C35.7906977,42.7349398 37.1976744,40.8072289 38.2209302,39 L45,41.0481928 C43.4651163,43.939759 41.2906977,46.7108434 38.7325581,49 L34,44.1807229 Z M46.3030303,38 L40,35.9701493 C40.8484848,34.1791045 41.2121212,32.1492537 41.3333333,30 L48,30 C47.8787879,32.8656716 47.3939394,35.6119403 46.3030303,38 Z" id="Combined-Shape"></path> </g> <g id="Group" transform="translate(13.000000, 4.000000)" fill="#FF6C36"> <path d="M35.0628019,13.4372093 C31.5458937,9.66976744 26.8985507,7.28372093 22,6.78139535 L22.3768116,0 C29.1594203,0.753488372 35.4396135,3.76744186 40.0869565,8.66511628 C44.8599034,13.6883721 47.6231884,19.9674419 48,27 L41.0917874,27 C40.7149758,22.1023256 38.5797101,17.2046512 35.0628019,13.4372093 Z M19.9055118,0 L19.6535433,6.875 C13.984252,6.875 8.69291339,9.125 4.66141732,13 L0,8 C5.29133858,2.75 12.3464567,0 19.9055118,0 C20.0314961,0 20.0314961,0 19.9055118,0 Z M34,44.1807229 C35.7906977,42.7349398 37.1976744,40.8072289 38.2209302,39 L45,41.0481928 C43.4651163,43.939759 41.2906977,46.7108434 38.7325581,49 L34,44.1807229 Z M46.3030303,38 L40,35.9701493 C40.8484848,34.1791045 41.2121212,32.1492537 41.3333333,30 L48,30 C47.8787879,32.8656716 47.3939394,35.6119403 46.3030303,38 Z" id="Combined-Shape"></path> </g> </g> </g> </g> </g> </svg> <svg viewBox="0 0 65 65"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="05_filter-textsuche" transform="translate(-744.000000, -698.000000)"> <g id="Loader" transform="translate(744.000000, 698.000000)"> <g id="Group-4"> <circle id="Oval" fill="none" cx="32.5" cy="32.5" r="32.5"></circle> <g id="Group" transform="translate(29.000000, 34.000000) scale(-1, -1) translate(-29.000000, -34.000000) translate(13.000000, 18.000000)" fill="#FFFFFF"> <path d="M23,12.68 L28.2173913,8 C30.4347826,10.64 31.6086957,13.64 32,17 L24.826087,17 C24.4347826,15.44 23.9130435,14 23,12.68 Z M24.2926829,20 L31,20 C30.7560976,24.5 28.6829268,28.875 25.5121951,32 L21,27 C22.8292683,25.125 24.0487805,22.625 24.2926829,20 Z M0,5.125 C3.38,1.875 8.06,0 13,0 L12.61,6.875 C9.62,7 7.02,8.125 4.81,10 L0,5.125 Z M21.0116279,10 C19.3488372,8.48101266 17.1744186,7.34177215 15,6.96202532 L15.3837209,0 C19.3488372,0.506329114 23.0581395,2.40506329 26,5.18987342 L21.0116279,10 Z" id="Combined-Shape"></path> </g> <g id="Group" transform="translate(19.000000, 14.000000)" fill="#FF6C36"> <path d="M23,12.68 L28.2173913,8 C30.4347826,10.64 31.6086957,13.64 32,17 L24.826087,17 C24.4347826,15.44 23.9130435,14 23,12.68 Z M24.2926829,20 L31,20 C30.7560976,24.5 28.6829268,28.875 25.5121951,32 L21,27 C22.8292683,25.125 24.0487805,22.625 24.2926829,20 Z M0,5.125 C3.38,1.875 8.06,0 13,0 L12.61,6.875 C9.62,7 7.02,8.125 4.81,10 L0,5.125 Z M21.0116279,10 C19.3488372,8.48101266 17.1744186,7.34177215 15,6.96202532 L15.3837209,0 C19.3488372,0.506329114 23.0581395,2.40506329 26,5.18987342 L21.0116279,10 Z" id="Combined-Shape"></path> </g> </g> </g> </g> </g> </svg></div>')
   }
 
+  /**
+   * Removes loading animation from tile-wrappers.
+   */
   function removeTileWrapperLoader() {
     $('.tile-wrapper').removeClass('tile-wrapper--loading');
   }
 
-  /*
-   * Main-Navigation
-   * Set mobile behaviour for the main-navigation as sidebar
-   * */
-
+  /**
+   * Attaches the main navigation behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   *   Converts the main navigation to a sidebar menu.
+   */
   Drupal.behaviors.mainNavigation = {
     attach: function () {
       var activeMenuItem = $('.nav__item.nav__item--active').index();
@@ -122,9 +142,13 @@
     }
   };
 
-  /*
-   * Dropdowns
-   * */
+  /**
+   * Attaches the dropdown behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.dropdown = {
     attach: function (context, settings) {
       $(window).click(function () {
@@ -150,6 +174,13 @@
     }
   };
 
+  /**
+   * Attaches the dropdown hover behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.dropdownHover = {
     attach: function () {
       function dropdownOpen() {
@@ -172,9 +203,13 @@
     }
   };
 
-  /*
-   * Content-Offset
-   * */
+  /**
+   * Attaches the content offset behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.contentOffset = {
     attach: function () {
       function contentOffset() {
@@ -202,9 +237,13 @@
     }
   };
 
-  /*
-   * Local scroll Plugin
-   * */
+  /**
+   * Attaches the local scroll behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.initLocalScroll = {
     attach: function (context) {
       $('[data-localScroll]', context).once('initLocalScroll', function () {
@@ -222,9 +261,13 @@
     }
   };
 
-  /*
-   * Tooltips
-   * */
+  /**
+   * Attaches the tooltip behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.tooltip = {
     attach: function (context) {
       $('[data-tooltip-content]', context).once('tooltip', function () {
@@ -238,10 +281,13 @@
     }
   };
 
-  /*
-   * Newsletter Widget
-   * */
-
+  /**
+   * Attaches the newsletter widget behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.newsletterWidget = {
     attach: function (context) {
       $('#newsletter-widget', context).once('newsletterWidget', function () {
@@ -284,9 +330,13 @@
     }
   };
 
-  /*
-   * Tabs
-   * */
+  /**
+   * Attaches the tabs behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.tabs = {
     attach: function (context) {
       $('.tabs', context).once('tabs', function () {
@@ -339,9 +389,13 @@
     }
   };
 
-  /*
-   * Swiper Implementation
-   * */
+  /**
+   * Attaches the swiper tile behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.swiperTile = {
     attach: function () {
       $('.swiper-container--tile').each(function (index, element) {
@@ -383,9 +437,13 @@
     }
   };
 
-  /*
-   * Select2 Implementation
-   * */
+  /**
+   * Attaches the select2 behavior to select elements.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.select2init = {
     attach: function (context) {
       $('select.form__item__control', context).once('select2init', function () {
@@ -402,9 +460,13 @@
     }
   };
 
-  /*
-   * Autosuggest
-   * */
+  /**
+   * Attaches the autosuggest behavior to form inputs.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.autosuggest = {
     attach: function (context) {
       $('.form__item__control--autosuggest', context).once('autosuggest', function () {
@@ -465,36 +527,13 @@
     }
   };
 
-  /*
-   * Sponsor-Counter
-   * */
-  Drupal.behaviors.sponsorCounter = {
-    attach: function (context) {
-      $('#mscount', context).once('sponsorCounter', function () {
-        if ($(this).length > 0) {
-          $(this).load("/images/membership-count.txt");
-          setInterval(function () {
-            $.get("/images/membership-count.txt",
-              function (count) {
-                var old_count = document.getElementById('mscount').innerHTML;
-                if (old_count < count) {
-                  $(this).fadeOut('slow', function () {
-                      $(this).html(count);
-                      $(this).fadeIn('slow');
-                    }
-                  );
-                }
-              }
-            );
-          }, 10000);
-        }
-      });
-    }
-  };
-
-  /*
-   * View: deputy detail
-   * */
+  /**
+   * Attaches the deputy detail behavior to deputy detail views.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.viewDeputyDetail = {
     attach: function () {
       function viewDeputyDetail() {
@@ -525,9 +564,13 @@
     }
   };
 
-  /*
-   * D3: Bars vertical
-   * */
+  /**
+   * Attaches the D3 vertical bars behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3BarsVertical = {
     attach: function (context) {
       $('[data-d3-bars-vert]', context).once('d3BarsVertical', function () {
@@ -602,9 +645,13 @@
     }
   };
 
-  /*
-   * D3: Bar horizontal
-   * */
+  /**
+   * Attaches the D3 horizontal bar behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3BarHorizontal = {
     attach: function (context) {
       $('[data-bar-horizontal]', context).once('d3BarHorizontal', function () {
@@ -625,9 +672,13 @@
     }
   };
 
-  /*
-   * D3: Donut
-   * */
+  /**
+   * Attaches the D3 donut behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3Donut = {
     attach: function (context) {
       $('[data-d3-donut]', context).once('d3Donut', function () {
@@ -669,9 +720,13 @@
     }
   };
 
-  /*
-   * D3: Donut with labels
-   * */
+  /**
+   * Attaches the D3 donut with labels behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3DonutLabels = {
     attach: function (context) {
       $('[data-d3-donut-labels]', context).once('d3DonutLabels', function () {
@@ -733,9 +788,13 @@
     }
   };
 
-  /*
-   * D3: Donut with icon
-   * */
+  /**
+   * Attaches the D3 donut with icon behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3DonutIcon = {
     attach: function (context) {
       $('[data-d3-donut-icon]', context).once('d3DonutIcon', function () {
@@ -812,9 +871,13 @@
   };
 
 
-  /*
-   * D3: Radial Gauge
-   * */
+  /**
+   * Attaches the D3 radial gauge behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3RadialGauge = {
     attach: function (context) {
       $('[data-d3-gauge]', context).once('d3RadialGauge', function () {
@@ -904,10 +967,13 @@
     }
   };
 
-
-  /*
-   * D3: Bar-Chart Secondary Income
-   * */
+  /**
+   * Attaches the D3 secondary income behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3SecondaryIncome = {
     attach: function (context) {
       $('[data-d3-secondary-income]', context).once('d3SecondaryIncome', function () {
@@ -962,6 +1028,13 @@
     }
   };
 
+  /**
+   * Attaches the table seconday income behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.tableSecondaryIncome = {
     attach: function (context) {
       $('.table--secondary-income', context).once('tableSecondaryIncome', function () {
@@ -970,6 +1043,13 @@
     }
   };
 
+  /**
+   * Attaches the table seconday highlight behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.tableSecondaryHighlight = {
     attach: function (context) {
       $('[data-sidejobid]', context).once('tableSecondaryHighlight', function () {
@@ -988,9 +1068,13 @@
     }
   };
 
-  /*
-   * Bars horizontal stacked
-   * */
+  /**
+   * Attaches the D3 stacked horizontal bar behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3BarHorizontalStacked = {
     attach: function (context) {
       $('[data-bar-horizontal-stacked]', context).once('d3BarHorizontalStacked', function () {
@@ -1048,6 +1132,13 @@
     }
   };
 
+  /**
+   * Attaches the D3 stacked vertical poll behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.d3BarVerticalStackedPoll = {
     attach: function (context) {
       $('[data-bar-vertical-stacked-poll]', context).once('d3BarVerticalStackedPoll', function () {
@@ -1106,10 +1197,13 @@
     }
   };
 
-  /*
-   * Poll-Timeline
-   * */
-
+  /**
+   * Attaches the poll timeline behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.pollTimeline = {
     attach: function (context) {
       $('.poll__timeline', context).once('pollTimeline', function () {
@@ -1142,9 +1236,13 @@
     }
   };
 
-  /*
-   * Filter Bar
-   * */
+  /**
+   * Attaches the filterbar behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.filterBar = {
     attach: function () {
       var filterBarSwiper = $('.filterbar__swiper');
@@ -1228,9 +1326,13 @@
 
 
 
-  /*
-   * Readmore expander
-   * */
+  /**
+   * Attaches the read more behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.readMore = {
     attach: function (context) {
       $('.readmore', context).once('readMore', function () {
@@ -1252,9 +1354,13 @@
     }
   };
 
-  /*
-   * Kandidaten check
-   * */
+  /**
+   * Attaches the candidate check behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.candidateCheck = {
     attach: function (context) {
       $('.deputy__candidate_check', context).once('candidateCheck', function () {
@@ -1281,9 +1387,13 @@
     }
   };
 
-  /*
-   * Sidebar
-   * */
+  /**
+   * Attaches the sidebar behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.sidebar = {
     attach: function (context) {
       $('.sidebar__box__accordion__item__title', context).once('sidebar', function () {
@@ -1315,9 +1425,13 @@
     }
   };
 
-  /*
-   * Footer
-   * */
+  /**
+   * Attaches the footer behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.footer = {
     attach: function (context) {
       $('.footer__maincol__col', context).once('footer', function () {
@@ -1326,77 +1440,27 @@
     }
   };
 
+  /**
+   * Attaches the match height behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.matchHeight = {
     attach: function (context) {
       $('.mh-item', context).matchHeight();
       $('.mh-item-nr', context).matchHeight({ byRow: false });
     }
-  }
-
-  /*
-   * Parser functions for chart visualizations
-   * */
-  window.parseDialogues = function() {
-    var data = [];
-
-    for (var key in window.dialogues) {
-      data.push({'name': key, 'value': window.dialogues[key]});
-    }
-
-    return data;
   };
 
-  window.parseVotes = function() {
-    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
-
-    window.votes.forEach(function (v) {
-      data[v.vote]++;
-    });
-
-    return mapVotes(data);
-  };
-
-  window.parseResultsByParty = function() {
-    var data = {};
-
-    for (var party in window.resultsByParty) {
-      data[party] = mapVotes(window.resultsByParty[party]);
-    }
-
-    return data;
-  };
-
-  window.parseResultsTotal = function() {
-    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
-
-    for (var party in window.resultsByParty) {
-      data['yes'] += window.resultsByParty[party]['yes'];
-      data['no'] += window.resultsByParty[party]['no'];
-      data['abstain'] += window.resultsByParty[party]['abstain'];
-      data['no-show'] += window.resultsByParty[party]['no-show'];
-    }
-
-    return mapVotes(data);
-  };
-
-  function mapVotes(votes) {
-    var map = {
-      'yes': {name: 'Ja', 'color': '#9fd773'},
-      'no': {name: 'Nein', color: '#cc6c5b'},
-      'abstain': {name: 'Enthalten', color: '#e2e2e2'},
-      'no-show': {name: 'Nicht abgestimmt', color: '#a6a6a6'}
-    };
-
-    var data = [];
-
-    for (key in votes) {
-      map[key].count = votes[key];
-      data.push(map[key]);
-    }
-
-    return data;
-  }
-
+  /**
+   * Attaches the AJAX tracking behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.ajaxTracking = {
     attach: function (context, settings) {
       if (window.history && window.history.pushState && settings.url) {
@@ -1407,6 +1471,13 @@
     }
   };
 
+  /**
+   * Attaches the AJAX filterbar behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.ajaxFilterbar = {
     attach: function (context, settings) {
       $('form[data-ajax-target] .form__item__control').change(function (event) {
@@ -1432,6 +1503,100 @@
         });
       });
     }
+  };
+
+  /**
+   * Returns dialogue statistics ready for D3.
+   *
+   * @returns {Array}
+   *   Dialogue statistics ready for D3.
+   */
+  window.parseDialogues = function() {
+    var data = [];
+
+    for (var key in window.dialogues) {
+      data.push({'name': key, 'value': window.dialogues[key]});
+    }
+
+    return data;
+  };
+
+  /**
+   * Returns vote statistics suitable for D3.
+   *
+   * @returns {Array}
+   *   Vote statistics ready for D3.
+   */
+  window.parseVotes = function() {
+    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
+
+    window.votes.forEach(function (v) {
+      data[v.vote]++;
+    });
+
+    return mapVotes(data);
+  };
+
+  /**
+   * Returns votes statistics by party ready for D3.
+   *
+   * @returns {Array}
+   *   Vote statistics by party ready for D3.
+   */
+  window.parseResultsByParty = function() {
+    var data = {};
+
+    for (var party in window.resultsByParty) {
+      data[party] = mapVotes(window.resultsByParty[party]);
+    }
+
+    return data;
+  };
+
+  /**
+   * Returns vote statistics suitable for D3.
+   *
+   * @returns {Array}
+   *   Vote statistics ready for D3.
+   */
+  window.parseResultsTotal = function() {
+    var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
+
+    for (var party in window.resultsByParty) {
+      data['yes'] += window.resultsByParty[party]['yes'];
+      data['no'] += window.resultsByParty[party]['no'];
+      data['abstain'] += window.resultsByParty[party]['abstain'];
+      data['no-show'] += window.resultsByParty[party]['no-show'];
+    }
+
+    return mapVotes(data);
+  };
+
+  /**
+   * Maps vote statistics to format expected by D3.
+   *
+   * @param {Object} votes
+   *   Vote statistics to map to D3 data.
+   *
+   * @returns {Object}
+   *   Vote statistics ready for D3.
+   */
+  function mapVotes(votes) {
+    var map = {
+      'yes': {name: 'Ja', 'color': '#9fd773'},
+      'no': {name: 'Nein', color: '#cc6c5b'},
+      'abstain': {name: 'Enthalten', color: '#e2e2e2'},
+      'no-show': {name: 'Nicht abgestimmt', color: '#a6a6a6'}
+    };
+
+    var data = [];
+
+    for (var key in votes) {
+      map[key].count = votes[key];
+      data.push(map[key]);
+    }
+
+    return data;
   }
 
 } (jQuery));
