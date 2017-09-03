@@ -900,6 +900,101 @@ function parliamentwatch_button($variables) {
 }
 
 /**
+ * Overrides theme_profile_search_summary().
+ */
+function parliamentwatch_profile_search_summary(&$variables) {
+  $output = '';
+  $facets = $variables['response']['search_api_facets'];
+  $link_options = [
+    'attributes' => [
+      'class' => ['filter-summary__content__link'],
+      'data-ajax-target' => '#ajax',
+    ],
+  ];
+
+  $options['@count'] = $variables['response']['result count'];
+  $options['!gender'] = '';
+
+  if (!empty($variables['filters']['gender'])) {
+    if (count($variables['filters']['gender']) == 1) {
+      $value = reset($variables['filters']['gender']);
+      $text = format_plural($variables['response']['result count'], $value, $value, [], ['context' => 'search-summary']);
+      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
+    }
+    elseif ($variables['filters']['gender'] == ['male' => 'male', 'female' => 'female']) {
+      $text = format_plural($variables['response']['result count'], 'female or male', 'female and male', [], ['context' => 'search-summary']);
+      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
+    }
+  }
+
+  if (!empty($variables['filters']['party'])) {
+    $parties_count = count($variables['filters']['party']);
+    $parties_text = format_plural($parties_count, '1 party', '@count parties');
+    $options['!parties'] = l($parties_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'party')]);
+  }
+  else {
+    $parties_count = count(_pw_profiles_facet_values($facets['field_user_party']));
+    $parties_text = format_plural($parties_count, '1 party', '@count parties');
+    $options['!parties'] = "<span>$parties_text</span>";
+  }
+
+  if (!empty($variables['filters']['constituency'])) {
+    $constituencies_count = 1;
+    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies');
+    $options['!constituencies'] = l($constituencies_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'constituency')]);
+  }
+  else {
+    $constituencies_count = count(_pw_profiles_facet_values($facets['field_user_constituency']));
+    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies');
+    $options['!constituencies'] = "<span>$constituencies_text</span>";
+  }
+
+  $output .= '<div class="filter-summary">';
+  $output .= '<div class="filter-summary__content">';
+
+  if ($variables['role_name'] == 'candidates') {
+    $summary = t('<span>Found @count</span> !gender <span>candidates from </span>!parties<span> and </span>!constituencies<span>.</span>', $options);
+    $summary_mobile = t('Found @count candidates', $options);
+  }
+  else {
+    $summary = t('Found @count !gender deputies from !parties and !constituencies.', $options);
+    $summary_mobile = t('Found @count deputies', $options);
+  }
+
+  if (!empty(array_filter($variables['filters']))) {
+    $summary_mobile .= ' ' . t('filtered by:');
+  }
+  else {
+    $summary_mobile .= '.';
+  }
+
+  $output .= '<p class="filter-summary__content__mobile">';
+  $output .= $summary_mobile;
+  $output .= '</p><p>';
+  $output .= $summary;
+
+  if (!empty($variables['filters']['keys'])) {
+    $options['!keys'] = l(check_plain($variables['filters']['keys']), current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'keys')]);
+    $output .= ' ' . t('<span>You have searched for:</span> !keys', $options);
+  }
+
+  $output .= '</p>';
+
+  if (!empty(array_filter($variables['filters']))) {
+    $options = $link_options;
+    $options['html'] = TRUE;
+    $options['attributes']['class'] = ['btn'];
+    $output .= ' ' . l('<i class="icon icon-close"></i>' . t('Reset all filters'), current_path(), $options);
+  }
+
+  $output .= '</div>';
+  $output .= '<p>' . t('<strong>Sorted by:</strong> number of answers') . '</p>';
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
  * Sets a form element's class attribute.
  *
  * Adds 'error' class as needed.
