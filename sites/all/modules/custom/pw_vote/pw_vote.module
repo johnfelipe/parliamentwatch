@@ -158,7 +158,7 @@ function pw_vote_form_alter(&$form, &$form_state, $form_id) {
       }
       $portrait = theme('image_style', array(
           'path' => $portrait_uri,
-          'style_name' => 'pw_portrait_l__normal',
+          'style_name' => 'width_medium',
         )
       );
       $form['submitted']['portrait']['#markup'] = $portrait;

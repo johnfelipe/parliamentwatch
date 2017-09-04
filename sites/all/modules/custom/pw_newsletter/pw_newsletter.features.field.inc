@@ -874,7 +874,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => 'large',
+            'image_style' => 'width_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',

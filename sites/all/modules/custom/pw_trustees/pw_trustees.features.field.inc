@@ -271,7 +271,7 @@ function pw_trustees_field_default_fields() {
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => 'content',
-            'image_style' => 'pw_portrait_m',
+            'image_style' => 'square_small',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
