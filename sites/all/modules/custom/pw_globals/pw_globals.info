@@ -56,6 +56,7 @@ features[field][] = taxonomy_term-parliaments-field_parliament_election
 features[field][] = taxonomy_term-parliaments-field_parliament_filter_disabled
 features[field][] = taxonomy_term-parliaments-field_parliament_list_rename
 features[field][] = taxonomy_term-parliaments-field_parliament_patron
+features[field][] = taxonomy_term-parliaments-field_parliament_previous
 features[field][] = taxonomy_term-parliaments-field_parliament_valid
 features[field][] = taxonomy_term-parliaments-field_premium_profile_price
 features[field][] = taxonomy_term-parliaments-field_shown_metrics
