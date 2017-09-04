@@ -1243,6 +1243,46 @@ function sidebar() {
   });
 }
 
+/*
+ * Modal
+ * */
+function modal() {
+  $('[data-modal-close]').click(function (event) {
+    var attr = $(this).parents('.modal').attr('data-modal-cookie');
+    $('.modal__close').parents('.modal').removeClass('modal--open');
+
+    // Cookie handling
+    if (typeof attr !== typeof undefined && attr !== false) {
+      var cookieName = $(this).parents('.modal').attr('data-modal-name');
+      $.cookie(cookieName, '1', { expires: 90 });
+    }
+
+    event.preventDefault();
+  });
+
+  $('.modal-overlay').click(function () {
+    var modalName = $(this).attr('data-modal-name');
+    var modal = $('.modal[data-modal-name=' + modalName +']');
+    var attr = modal.attr('data-modal-cookie');
+    modal.removeClass('modal--open');
+
+    // Cookie handling
+    if (typeof attr !== typeof undefined && attr !== false) {
+      var cookieName = modalName;
+      $.cookie(cookieName, '1', { expires: 90 });
+    }
+  });
+
+  // Control inital modals
+  if ($('[data-modal-initial]').length) {
+    $('[data-modal-initial]').each(function( index ) {
+      var cookieName = $(this).attr('data-modal-name');
+      if (!$.cookie(cookieName) == '1') {
+        $('[data-modal-initial]').addClass('modal--open');
+      }
+    });
+  }
+}
 
 /*
  * Footer
@@ -1278,6 +1318,7 @@ $(function () {
   candidateCheck();
   sidebar();
   lpTeaser();
+  modal();
 
   // Init global matchHeight-plugin class
 
