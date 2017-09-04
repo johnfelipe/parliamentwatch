@@ -23,14 +23,21 @@
     background: $brightGray;
   }
 }
-
 #body_style {
   padding: 0!important;
 }
-
 .newsletter.detail {
   @include container();
-
+  padding-top: $space-large;
+  margin-left: -10px;
+  margin-right: -10px;
+  @include breakpoint($breakpoint-m-min) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    padding-top: $space-large * 2;
+  }
   .archive_0 { display: none; }
   .archive_1 { display: block; }
 
