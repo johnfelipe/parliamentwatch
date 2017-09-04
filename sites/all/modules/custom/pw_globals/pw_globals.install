@@ -1133,6 +1133,15 @@ function pw_globals_update_7040() {
   $block1['weight'] = -69;
   _pw_globals_configure_block($block1);
 }
+
+/**
+ * Disable trustees feature and remove related content type.
+ */
+function pw_globals_update_7041() {
+  module_disable(['pw_trustees']);
+  node_type_delete('trustee');
+}
+
 /**
  * Adds a new menu block.
  *
