@@ -1269,7 +1269,7 @@ function modal() {
     // Cookie handling
     if (typeof attr !== typeof undefined && attr !== false) {
       var cookieName = modalName;
-      $.cookie(cookieName, '1', { expires: 90 });
+      $.cookie(cookieName, '1', { expires: 7 });
     }
   });
 
