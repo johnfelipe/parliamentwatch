@@ -23,6 +23,9 @@ function pw_userarchives_user_insert(&$edit, $account, $category) {
  * Implements hook_user_update().
  */
 function pw_userarchives_user_update(&$edit, $account, $category) {
+  $reset_actual_profile = !isset($_REQUEST['form_id']);
+  pw_userarchives_cron($account->uid, $reset_actual_profile);
+
   if ($account->revision) {
     search_api_track_item_insert('user_revision', [$account->vid]);
   }

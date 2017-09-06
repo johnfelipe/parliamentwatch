@@ -197,13 +197,6 @@ function pw_profiles_user_update(&$edit, $account, $category) {
     }
   }
 
-  // trigger user archive cron
-  if (function_exists('pw_userarchives_cron') && $account->uid) {
-
-    // reset to actual profile only if profile was not updated by a form (eg feeds importer or cron)
-    $reset_actual_profile = !isset($_REQUEST['form_id']);
-    pw_userarchives_cron($account->uid, $reset_actual_profile);
-  }
 }
 
 /**
