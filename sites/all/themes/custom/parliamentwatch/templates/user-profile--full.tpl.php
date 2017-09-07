@@ -180,6 +180,9 @@
           <div class="swiper-pagination"></div>
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
+          <div class="deputy__candidate_check__footer">
+            <a href="https://kandidatencheck.abgeordnetenwatch.de/<?php print drupal_html_class(transliteration_get($user_profile['field_user_parliament'][0]['#markup'])); ?>" class="btn btn--mobile-block" target="_blank"><?php print t('Go to candidate check'); ?></a>
+          </div>
         </div>
       <?php endif; ?>
 

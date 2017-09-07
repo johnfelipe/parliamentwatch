@@ -899,6 +899,13 @@ $abstimmverhalten-node-item-width: 18px;
     left: 180px;
   }
 }
+.deputy__candidate_check__footer {
+  padding: $space;
+  border-top: 1px solid $darkBeige;
+  @include breakpoint($breakpoint-s-min) {
+    display: none;
+  }
+}
 
 .deputy__custom-links {
   @include grid-column(12, $neat-grid-large-gutter);
