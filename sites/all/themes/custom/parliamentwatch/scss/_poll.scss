@@ -549,6 +549,12 @@
   }
   ul { @include icon-list() }
   a { font-weight: 600; color: $orange; }
+  .float-left {
+    margin-left: 0;
+    @include breakpoint(1550px) {
+      margin-left: -100px
+    }
+  }
 }
 .poll__content__right {
   @include grid-column(12);
