@@ -268,7 +268,8 @@
       margin-top: $space-small;
     }
   }
-  & + .patron-teaser {
+  & + .patron-teaser,
+  & + .question-teaser-pre {
     border-top: 0;
   }
 }
@@ -318,8 +319,8 @@
   top: $space-xsmall;
   @include grid-column(4);
   text-align: center;
-  margin-top: $space * 2;
   @include breakpoint($breakpoint-xs-min) {
+    margin-top: $space * 2;
     position: static;
     @include grid-column(3);
   }
