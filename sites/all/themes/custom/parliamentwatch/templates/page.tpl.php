@@ -239,7 +239,7 @@
     <?php endif; ?>
   </footer>
 
-  <?php if ($is_front): ?>
+  <?php if ($is_front && $GLOBALS['theme_key'] === 'parliamentwatch'): ?>
     <div class="modal modal--splash" data-modal-initial data-modal-cookie data-modal-name="modal_splash">
       <div class="modal__content">
         <button class="modal__close" data-modal-close><i class="icon icon-close"></i></button>
