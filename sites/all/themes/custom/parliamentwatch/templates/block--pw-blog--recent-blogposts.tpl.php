@@ -50,5 +50,7 @@
     <?php print render($title_suffix) ?>
     <?php print l(t('Blog overview'), 'blog', ['attributes' => ['class' => ['btn']]]); ?>
   </header>
-  <?php print $content ?>
+  <div class="lp-blog">
+    <?php print $content ?>
+  </div>
 </div>
