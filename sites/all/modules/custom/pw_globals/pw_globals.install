@@ -1143,6 +1143,23 @@ function pw_globals_update_7041() {
 }
 
 /**
+ * Configure candidate matcher teaser block.
+ */
+function pw_globals_update_7042() {
+  $config = [
+    'module' => 'pw_kandidatencheck',
+    'delta' => 'teaser',
+    'weight' => -71,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => "<front>",
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  _pw_globals_configure_block($config);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

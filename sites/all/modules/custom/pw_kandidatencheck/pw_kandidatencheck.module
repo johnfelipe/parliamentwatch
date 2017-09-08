@@ -84,6 +84,54 @@ function pw_kandidatencheck_form_user_profile_form_alter(&$form, &$form_state) {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function pw_kandidatencheck_block_info() {
+  $blocks['teaser'] = [
+    'info' => 'Candidate matcher teaser',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function pw_kandidatencheck_block_view($delta = '') {
+  switch ($delta) {
+    case 'teaser':
+      return pw_kandidatencheck_teaser_block();
+    default:
+      return [];
+  }
+}
+
+/**
+ * Displays teaser section for candidate matcher.
+ *
+ * @return array
+ *   The block render array.
+ *
+ */
+function pw_kandidatencheck_teaser_block() {
+  $block = [];
+
+  $term = menu_get_object('taxonomy_term', 2);
+
+  if (!$term || $term->vocabulary_machine_name != 'parliaments') {
+    return $block;
+  }
+
+  if (!isset($term->field_parliament_candidate_check[LANGUAGE_NONE][0]['url'])) {
+    return $block;
+  }
+
+  $block['content'] = $term->field_parliament_candidate_check[LANGUAGE_NONE][0]['url'];
+
+  return $block;
+}
+
+/**
  * Returns query for all Kandidatencheck answers of the given account version.
  *
  * @param object $account
