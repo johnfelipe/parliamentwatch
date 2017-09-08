@@ -1374,10 +1374,8 @@
         nextButton: filterBarSwiper.find('.swiper-button-next'),
         prevButton: filterBarSwiper.find('.swiper-button-prev'),
         onInit: function (swiper) {
-          $(window).load(function () {
-            filterBarSwiperSize();
-            swiper.update();
-          });
+          filterBarSwiperSize();
+          swiper.update();
         },
         onAfterResize: function (swiper) {
           filterBarSwiperSize();
