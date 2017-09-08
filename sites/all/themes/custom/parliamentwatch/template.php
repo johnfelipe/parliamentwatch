@@ -1,11 +1,6 @@
 <?php
 
 /**
- * Implements drupal jquery libraries
- */
-drupal_add_library('system', 'jquery.cookie');
-
-/**
  * Implements hook_theme().
  */
 function parliamentwatch_theme(&$existing, $type, $theme, $path) {
@@ -82,6 +77,15 @@ function parliamentwatch_page_alter(&$page) {
       $page['content']['system_main']['#prefix'] = '<div class="container">';
       $page['content']['system_main']['#suffix'] = '</div>';
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function parliamentwatch_preprocess_page(&$variables) {
+  if ($variables['is_front'] && $GLOBALS['theme_key'] == 'parliamentwatch') {
+    drupal_add_library('system', 'jquery.cookie');
   }
 }
 
