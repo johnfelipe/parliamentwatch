@@ -330,6 +330,9 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   @include breakpoint($breakpoint-l-min) {
     padding-bottom: $space-large + $space;
   }
+  .media_embed {
+    margin-bottom: $space-small;
+  }
 }
 .sidebar__box__headline {
   position: relative;
