@@ -169,6 +169,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           ),
         ),
         'display_summary' => 1,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
@@ -926,7 +927,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
-        'default_image' => 0,
+        'default_image' => '236861',
         'exclude_cv' => FALSE,
         'file_directory' => 'newsletter',
         'file_extensions' => 'png gif jpg jpeg',
@@ -957,10 +958,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
             'media_internet' => 0,
             'upload' => 'upload',
-            'youtube' => 0,
           ),
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-          'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
         'weight' => '3',
@@ -1274,6 +1272,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -1495,6 +1494,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 0,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 1,
@@ -3259,6 +3259,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
