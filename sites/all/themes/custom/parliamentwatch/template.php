@@ -957,7 +957,7 @@ function parliamentwatch_profile_search_summary(&$variables) {
     $summary_mobile = t('Found @count candidates', $options);
   }
   else {
-    $summary = t('Found @count !gender deputies from !parties and !constituencies.', $options);
+    $summary = t('<span>Found @count</span> !gender <span>deputies from </span>!parties<span> and </span>!constituencies<span>.</span>', $options);
     $summary_mobile = t('Found @count deputies', $options);
   }
 
