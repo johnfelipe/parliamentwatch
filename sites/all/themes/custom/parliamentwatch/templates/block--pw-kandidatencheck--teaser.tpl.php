@@ -49,5 +49,5 @@
     <img src="/<?php print drupal_get_path('theme', 'parliamentwatch'); ?>/images/logo-kc.svg" alt="<?php print t('Logo of Kandidaten-Check') ?>">
   </a>
   <p class="mh-item"><?php print t('Which politician of your constituency is the right choice for you? Make the Kandidaten-Check!') ?></p>
-  <a href="<?php print $content; ?>" class="btn"><?php print t('Start the Kandidaten-Check') ?></a>
+  <p><a href="<?php print $content; ?>" class="btn"><?php print t('Start the Kandidaten-Check') ?></a></p>
 </div>
