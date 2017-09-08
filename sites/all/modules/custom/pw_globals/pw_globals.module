@@ -266,7 +266,10 @@ function pw_globals_term_switcher_block() {
 }
 
 /**
- * Provides politician search for landing pages.
+ * Displays politician search for landing pages.
+ *
+ * @return array
+ *   The block render array.
  */
 function pw_globals_politician_search_form_block() {
   $block = [];
@@ -292,6 +295,9 @@ function pw_globals_politician_search_form_block() {
 
 /**
  * Displays patron teaser for landing pages.
+ *
+ * @return array
+ *   The block render array.
  */
 function pw_globals_parliament_patron_block() {
   $block = [];
