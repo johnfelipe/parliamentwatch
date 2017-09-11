@@ -109,6 +109,7 @@ figcaption {
 .party-indicator {
   color: $darkGray;
   display: inline-block;
+  @include text-overflow();
   &:before {
     content: '';
     background-color: $gray;
