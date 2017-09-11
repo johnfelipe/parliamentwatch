@@ -1,0 +1,145 @@
+/**
+* Modals
+*/
+
+.modal {
+  pointer-events: none;
+  opacity: 0;
+
+  background: $white;
+  position: fixed;
+  left: $space;
+  right: $space;
+  top: 50%;
+  z-index: 149;
+  box-shadow: 0 10px 35px 0 rgba(0,0,0,.2);
+  @include transform(translate(0,-60%));
+  @include transition(all 300ms ease);
+  @include breakpoint($breakpoint-m-min) {
+    left: 50%;
+    right: auto;
+    width: 100%;
+    max-width: 970px;
+    @include transform(translate(-50%,-60%));
+  }
+}
+
+.modal__content {
+  padding: $space;
+  @include breakpoint($breakpoint-s-min) {
+    padding: $space-large;
+  }
+}
+
+.modal__footer {
+  padding: $space;
+  background: $brightGray;
+  border-top: 1px solid $gray;
+  margin-top: $space;
+  @include grid-container();
+  @include breakpoint($breakpoint-s-min) {
+    padding: $space-large;
+    margin-top: $space-large;
+  }
+}
+
+.modal__close {
+  position: absolute;
+  right: $space;
+  top: $space;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: $gray;
+  font-size: 1.4em;
+  @include transition(color 300ms ease);
+  @include breakpoint($breakpoint-s-min) {
+    right: $space-large;
+    top: $space-large;
+  }
+  &:hover {
+    color: $mediumGray;
+  }
+}
+
+.modal-overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+
+  background: $beige;
+  z-index: 148;
+  @include transition(opacity 800ms ease 200ms);
+}
+
+/* Open modal */
+
+.modal--open {
+  opacity: 1;
+  pointer-events: auto;
+  @include transform(translate(0,-50%));
+  @include breakpoint($breakpoint-m-min) {
+    @include transform(translate(-50%,-50%));
+  }
+}
+.modal--open + .modal-overlay {
+  opacity: .8;
+  pointer-events: auto;
+}
+
+
+/**
+* Splashscreen for frontpage
+*/
+
+.modal--splash {
+  .modal__content {
+    text-align: center;
+    p {
+      max-width: 500px;
+      margin: 0 auto $space-large;
+      @include breakpoint($breakpoint-s-min) {
+        font-size: 1.2em;
+      }
+    }
+    .btn {
+      @media (max-width: $breakpoint-s-max) {
+        @include button($orange, $white, 15px, 12px);
+        font-size: 1em;
+      }
+    }
+  }
+  .logo {
+    max-width: 200px;
+    margin: $space-large auto;
+    @include breakpoint($breakpoint-s-min) {
+      max-width: 280px;
+    }
+  }
+  .modal__footer {
+    @media (max-width: $breakpoint-m-max) {
+      text-align: center;
+    }
+    .btn {
+      border: 1px solid $gray;
+      background: none;
+      color: $mediumGray;
+      @include breakpoint($breakpoint-m-min) {
+        float: right;
+      }
+    }
+    p {
+      color: $mediumGray;
+      @include breakpoint($breakpoint-m-min) {
+        float: left;
+        padding-top: $space-xsmall;
+        font-size: 1.2em;
+      }
+    }
+  }
+}

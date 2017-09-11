@@ -90,7 +90,7 @@
   <div class="question__question mh-item-tile" data-mh="questionTitle">
     <header class="question__question__title"><?php print render($content['body']); ?></header>
     <?php print render($title_suffix); ?>
-    <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
+    <p class="question__question__author"><?php print t('By'); ?>: <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span></p>
   </div>
   <?php if (empty($content['answer'])): ?>
   <div class="question__answer mh-item-tile" data-mh="questionAnswer">

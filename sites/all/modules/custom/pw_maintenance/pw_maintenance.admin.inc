@@ -238,7 +238,8 @@ function pw_maintenance_user_merge_submit($form, &$form_state) {
 
   // add redirect from the source user to the target one
   if(module_exists('redirect')){
-    if($redirect = redirect_load_by_source("user/".$user_source->uid, LANGUAGE_NONE, array(), FALSE)){
+    if(($redirect = redirect_load_by_source("user/".$user_source->uid, LANGUAGE_NONE, array(), FALSE)) ||
+        ($redirect = redirect_load_by_source("profile/".$user_source->name, LANGUAGE_NONE, array(), FALSE))){
       $redirect->status = 1;
       $redirect->redirect = 'user/'.$user_target->uid;
     }
@@ -303,6 +304,14 @@ function pw_maintenance_user_revision_delete($form, &$form_state) {
   // after submitting the form, the user object appears instead of the form array
   if(is_object($form) && isset($form->vid)){
     return;
+  }
+
+  if(isset(drupal_get_query_parameters()['username'])){
+    variable_set('pw_maintenance_user_revision_delete_user', drupal_get_query_parameters()['username']);
+  }
+  if(isset(drupal_get_query_parameters()['parliament'])){
+    $parliaments = taxonomy_get_term_by_name(drupal_get_query_parameters()['parliament'], 'parliaments');
+    variable_set('pw_maintenance_user_revision_delete_parliament', array_pop($parliaments)->tid);
   }
 
   $form['pw_maintenance_user_revision_delete_user'] = array(

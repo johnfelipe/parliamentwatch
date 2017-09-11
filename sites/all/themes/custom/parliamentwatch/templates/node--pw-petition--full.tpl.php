@@ -112,7 +112,7 @@
           <small><?php print render($content['field_petition_required']); ?> <?php print t('signings are required')?></small>
         </p>
       </div>
-      <a href="#" class="btn btn--large btn--block"><?php print t('Sign the petition'); ?></a>
+      <a href="#petition-form" class="btn btn--large btn--block" data-localScroll><?php print t('Sign the petition'); ?></a>
     </div>
     <div class="petition__info">
       <?php print render($content['body']); ?>
@@ -182,5 +182,6 @@
       </div>
     </div>
   <?php endif; ?>
-
 </div>
+
+<a id="petition-form"></a>

@@ -104,6 +104,18 @@ function pw_globals_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Implements hook_form_FORM_ID_alter().
  */
+function pw_globals_form_user_login_alter(&$form, &$form_state) {
+  $form['help'] = [
+    '#prefix' => '<p>',
+    '#suffix' => '</p>',
+    '#markup' => t('If you are a politician you can log in and edit your profile.'),
+    '#weight' => -1,
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function pw_globals_form_pw_globals_politician_search_form_alter(&$form, &$form_state) {
   $form['form_build_id']['#access'] = FALSE;
   $form['form_token']['#access'] = FALSE;
@@ -292,7 +304,10 @@ function pw_globals_term_switcher_block() {
 }
 
 /**
- * Provides politician search for landing pages.
+ * Displays politician search for landing pages.
+ *
+ * @return array
+ *   The block render array.
  */
 function pw_globals_politician_search_form_block() {
   $block = [];
@@ -318,6 +333,9 @@ function pw_globals_politician_search_form_block() {
 
 /**
  * Displays patron teaser for landing pages.
+ *
+ * @return array
+ *   The block render array.
  */
 function pw_globals_parliament_patron_block() {
   $block = [];
@@ -331,10 +349,7 @@ function pw_globals_parliament_patron_block() {
     return $block;
   }
 
-  $today = new DateTime();
-  $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
-
-  if ($today > $election_date || !isset($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id'])) {
+  if (!isset($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id'])) {
     return $block;
   }
 
@@ -342,7 +357,6 @@ function pw_globals_parliament_patron_block() {
 
   return $block;
 }
-
 
 /**
  * Form constructor for the politician search form.

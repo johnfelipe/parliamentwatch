@@ -197,13 +197,6 @@ function pw_profiles_user_update(&$edit, $account, $category) {
     }
   }
 
-  // trigger user archive cron
-  if (function_exists('pw_userarchives_cron') && $account->uid) {
-
-    // reset to actual profile only if profile was not updated by a form (eg feeds importer or cron)
-    $reset_actual_profile = !isset($_REQUEST['form_id']);
-    pw_userarchives_cron($account->uid, $reset_actual_profile);
-  }
 }
 
 /**
@@ -428,6 +421,9 @@ function pw_profiles_autocomplete($parliament_term, $role_name) {
       if (isset($result['fields']['field_user_constituency:field_constituency_area_codes:name'])) {
         $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:field_constituency_area_codes:name']);
       }
+      if (isset($result['fields']['field_user_constituency:field_constituency_ac_descriptor'])) {
+        $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:field_constituency_ac_descriptor']);
+      }
       if (isset($result['fields']['field_user_constituency:name'][0])) {
         $data['constituency'] = $result['fields']['field_user_constituency:name'];
         $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:name']);
@@ -582,13 +578,6 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
         '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
       );
     }
-    $form['age'] = array(
-      '#type' => 'textfield',
-      '#attributes' => ['type' => 'number', 'min' => 18],
-      '#title' => t('Age'),
-      '#title_display' => 'invisible',
-      '#default_value' => empty($parameters['age']) ? [] : $parameters['age'],
-    );
     if (count($gender_options) > 1) {
       $form['gender'] = array(
         '#type' => 'checkboxes',

@@ -47,6 +47,12 @@ function pw_seo_metatag_export_default() {
       'standout' => array(
         'value' => '',
       ),
+      'rating' => array(
+        'value' => '',
+      ),
+      'referrer' => array(
+        'value' => '',
+      ),
       'generator' => array(
         'value' => 'Drupal 7 (http://drupal.org)',
       ),
@@ -62,26 +68,53 @@ function pw_seo_metatag_export_default() {
       'shortlink' => array(
         'value' => '[current-page:url:unaliased]',
       ),
-      'publisher' => array(
-        'value' => '',
-      ),
-      'author' => array(
-        'value' => '',
-      ),
       'original-source' => array(
+        'value' => '',
+      ),
+      'prev' => array(
+        'value' => '',
+      ),
+      'next' => array(
+        'value' => '',
+      ),
+      'content-language' => array(
+        'value' => '',
+      ),
+      'geo.position' => array(
+        'value' => '',
+      ),
+      'geo.placename' => array(
+        'value' => '',
+      ),
+      'geo.region' => array(
+        'value' => '',
+      ),
+      'icbm' => array(
+        'value' => '',
+      ),
+      'refresh' => array(
         'value' => '',
       ),
       'revisit-after' => array(
         'value' => '',
         'period' => '',
       ),
-      'content-language' => array(
+      'pragma' => array(
+        'value' => '',
+      ),
+      'cache-control' => array(
+        'value' => '',
+      ),
+      'expires' => array(
         'value' => '',
       ),
       'fb:admins' => array(
         'value' => '',
       ),
       'fb:app_id' => array(
+        'value' => '',
+      ),
+      'fb:pages' => array(
         'value' => '',
       ),
       'itemtype' => array(
@@ -94,6 +127,12 @@ function pw_seo_metatag_export_default() {
         'value' => '',
       ),
       'itemprop:image' => array(
+        'value' => '',
+      ),
+      'author' => array(
+        'value' => '',
+      ),
+      'publisher' => array(
         'value' => '',
       ),
       'og:site_name' => array(
@@ -121,6 +160,9 @@ function pw_seo_metatag_export_default() {
         'value' => '',
       ),
       'og:image' => array(
+        'value' => '[site:url]sites/all/themes/custom/parliamentwatch/images/share/aw_share_image_default.jpg',
+      ),
+      'og:image:url' => array(
         'value' => '',
       ),
       'og:image:secure_url' => array(
@@ -141,10 +183,19 @@ function pw_seo_metatag_export_default() {
       'og:longitude' => array(
         'value' => '',
       ),
+      'og:street_address' => array(
+        'value' => '',
+      ),
       'og:locality' => array(
         'value' => '',
       ),
       'og:region' => array(
+        'value' => '',
+      ),
+      'og:postal_code' => array(
+        'value' => '',
+      ),
+      'og:country_name' => array(
         'value' => '',
       ),
       'og:email' => array(
@@ -216,6 +267,9 @@ function pw_seo_metatag_export_default() {
       'book:tag' => array(
         'value' => '',
       ),
+      'og:video:url' => array(
+        'value' => '',
+      ),
       'og:video:secure_url' => array(
         'value' => '',
       ),
@@ -276,10 +330,16 @@ function pw_seo_metatag_export_default() {
       'twitter:description' => array(
         'value' => '',
       ),
+      'twitter:image' => array(
+        'value' => '',
+      ),
       'twitter:image:width' => array(
         'value' => '',
       ),
       'twitter:image:height' => array(
+        'value' => '',
+      ),
+      'twitter:image:alt' => array(
         'value' => '',
       ),
       'twitter:image0' => array(
@@ -349,18 +409,6 @@ function pw_seo_metatag_export_default() {
         'value' => '',
       ),
       'twitter:data2' => array(
-        'value' => '',
-      ),
-      'twitter:image' => array(
-        'value' => '',
-      ),
-      'og:street_address' => array(
-        'value' => '',
-      ),
-      'og:postal_code' => array(
-        'value' => '',
-      ),
-      'og:country_name' => array(
         'value' => '',
       ),
     ),
@@ -699,6 +747,7 @@ function pw_seo_metatag_export_default() {
   // Exported Metatag config instance: node:pw_petition.
   $config['node:pw_petition'] = array(
     'instance' => 'node:pw_petition',
+    'disabled' => FALSE,
     'config' => array(
       'og:image' => array(
         'value' => '[node:field_teaser_image]',

@@ -13,10 +13,25 @@ function pw_userarchives_entity_info_alter(&$entity_info) {
 }
 
 /**
+ * Implements hook_user_insert().
+ */
+function pw_userarchives_user_insert(&$edit, $account, $category) {
+  $reset_actual_profile = !isset($_REQUEST['form_id']);
+  pw_userarchives_cron($account->uid, $reset_actual_profile);
+
+  search_api_track_item_insert('user_revision', [$account->vid]);
+}
+
+/**
  * Implements hook_user_update().
  */
 function pw_userarchives_user_update(&$edit, $account, $category) {
-  search_api_track_item_insert('user_revision', [$account->vid]);
+  $reset_actual_profile = !isset($_REQUEST['form_id']);
+  pw_userarchives_cron($account->uid, $reset_actual_profile);
+
+  if ($account->revision) {
+    search_api_track_item_insert('user_revision', [$account->vid]);
+  }
 }
 
 /**

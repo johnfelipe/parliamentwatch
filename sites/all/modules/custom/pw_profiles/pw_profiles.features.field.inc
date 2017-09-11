@@ -732,7 +732,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'computed_field',
         'settings' => array(),
         'type' => 'computed',
-        'weight' => '51',
+        'weight' => '52',
       ),
     ),
   );
@@ -834,7 +834,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'year_range' => '-70:+0',
         ),
         'type' => 'date_popup',
-        'weight' => '50',
+        'weight' => '51',
       ),
     ),
   );
@@ -912,7 +912,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '53',
+        'weight' => '54',
       ),
     ),
   );
@@ -1105,7 +1105,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '56',
+        'weight' => '57',
       ),
     ),
   );
@@ -1455,7 +1455,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '48',
+        'weight' => '49',
       ),
     ),
   );
@@ -2037,7 +2037,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => 'file',
-            'image_style' => 'media_thumbnail',
+            'image_style' => 'square_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2230,7 +2230,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '47',
+        'weight' => '48',
       ),
     ),
   );
@@ -2512,7 +2512,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '54',
+        'weight' => '55',
       ),
     ),
   );
@@ -2601,7 +2601,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '55',
+        'weight' => '56',
       ),
     ),
   );
@@ -2898,7 +2898,143 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '52',
+        'weight' => '53',
+      ),
+    ),
+  );
+
+  // Exported field: 'user-user-field_user_mobile'.
+  $fields['user-user-field_user_mobile'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_user_mobile',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'user',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => 48,
+        ),
+        'full' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'user',
+      'exclude_cv' => 0,
+      'field_name' => 'field_user_mobile',
+      'label' => 'Telefon (mobil)',
+      'required' => 0,
+      'settings' => array(
+        'better_formats' => array(
+          'allowed_formats' => array(
+            'copyright' => 'copyright',
+            'filtered_html' => 'filtered_html',
+            'full_html' => 'full_html',
+            'html_mail' => 'html_mail',
+            'managed_content' => 'managed_content',
+            'newsletter' => 'newsletter',
+            'php_code' => 'php_code',
+            'plain_text' => 'plain_text',
+          ),
+          'allowed_formats_toggle' => 0,
+          'default_order_toggle' => 0,
+          'default_order_wrapper' => array(
+            'formats' => array(
+              'copyright' => array(
+                'weight' => '0',
+              ),
+              'filtered_html' => array(
+                'weight' => '-9',
+              ),
+              'full_html' => array(
+                'weight' => '-8',
+              ),
+              'html_mail' => array(
+                'weight' => '0',
+              ),
+              'managed_content' => array(
+                'weight' => '-10',
+              ),
+              'newsletter' => array(
+                'weight' => '0',
+              ),
+              'php_code' => array(
+                'weight' => '-6',
+              ),
+              'plain_text' => array(
+                'weight' => '-7',
+              ),
+            ),
+          ),
+        ),
+        'exclude_cv' => FALSE,
+        'linkit' => array(
+          'button_text' => 'Suchen',
+          'enable' => 0,
+          'profile' => '',
+        ),
+        'text_processing' => '0',
+        'user_register_form' => 0,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'maxlength_js' => 0,
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '47',
       ),
     ),
   );
@@ -3260,7 +3396,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => 'large',
+            'image_style' => 'square_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3282,7 +3418,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => 'large',
+            'image_style' => 'width_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3816,7 +3952,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '49',
+        'weight' => '50',
       ),
     ),
   );
@@ -4596,6 +4732,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
   t('Pseudonym');
   t('Roles (revisionable)');
   t('Telefon');
+  t('Telefon (mobil)');
   t('Title');
   t('Title Text');
   t('Tragen Sie hier Ihre politischen Ziele ein. Diese werden in Ihrem Profil veröffentlicht.');

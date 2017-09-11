@@ -458,11 +458,14 @@ function pw_dialogues_recent_block() {
 }
 
 /**
- * Starts feeds import.
+ * Import dialogues (questions) from the given source.
+ *
+ * @param string $source
+ *   The URL of the mod-tool.
+ *
+ * @return boolean
  */
 function pw_dialogues_do_import_questions($source) {
-
-  // Import dialogues (questions).
   $dialogue_feed = feeds_source('dialogue_importer');
   $dialogue_feed->addConfig(array(
     'FeedsHTTPFetcher' => array(
@@ -478,9 +481,23 @@ function pw_dialogues_do_import_questions($source) {
   return TRUE;
 }
 
+/**
+ * Imports answers from the given source.
+ *
+ * In order to avoid checking the answers for spam the user is switched to
+ * the site administrator account for the duration of the import.
+ *
+ * @param string $source
+ *   The URL of the mod-tool.
+ *
+ * @return boolean
+ */
 function pw_dialogues_do_import_answers($source) {
+  $original_user = $GLOBALS['user'];
+  $old_state = drupal_save_session();
+  drupal_save_session(FALSE);
+  $GLOBALS['user'] = user_load(1);
 
-  // Import messages (answers).
   $message_feed = feeds_source('dialogue_message_importer');
   $message_feed->addConfig(array(
     'FeedsHTTPFetcher' => array(
@@ -490,6 +507,9 @@ function pw_dialogues_do_import_answers($source) {
   while (FEEDS_BATCH_COMPLETE != $message_feed->import()) {
     ;
   }
+
+  $GLOBALS['user'] = $original_user;
+  drupal_save_session($old_state);
 
   watchdog('dialogue_message_importer', 'answers imported from @source', ['@source' => $source]);
 

@@ -32,11 +32,12 @@ function pw_content_authoring_layout_ctools_plugin_api() {
 function pw_content_authoring_layout_image_default_styles() {
   $styles = array();
 
-  // Exported image style: pw_grid_8_normal.
-  $styles['pw_grid_8_normal'] = array(
-    'name' => 'pw_grid_8_normal',
+  // Exported image style: share_image.
+  $styles['share_image'] = array(
+    'name' => 'share_image',
+    'label' => 'Share-Image',
     'effects' => array(
-      3 => array(
+      5 => array(
         'label' => 'Skalierung',
         'help' => 'Eine Skalierung behält das Seitenverhältnis des Originalbildes bei. Sofern nur eine Seitenlänge angegeben ist, wird die andere berechnet.',
         'effect callback' => 'image_scale_effect',
@@ -46,22 +47,37 @@ function pw_content_authoring_layout_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '620',
+          'width' => '1200',
           'height' => '',
-          'upscale' => 1,
+          'upscale' => 0,
         ),
         'weight' => '1',
       ),
+      6 => array(
+        'label' => 'Zuschneiden',
+        'help' => 'Das Zuschneiden wird Teile von einem Bild entfernen, um es an die angegebene Größe anpassen zu können.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => '1200',
+          'height' => '630',
+          'anchor' => 'center-center',
+        ),
+        'weight' => '2',
+      ),
     ),
-    'label' => 'pw_grid_8_normal',
   );
 
-  // Exported image style: pw_landscape_l.
-  $styles['pw_landscape_l'] = array(
-    'name' => 'pw_landscape_l',
-    'label' => 'pw_landscape_l',
+  // Exported image style: square_medium.
+  $styles['square_medium'] = array(
+    'name' => 'square_medium',
+    'label' => 'Quadrat Medium',
     'effects' => array(
-      1 => array(
+      10 => array(
         'label' => 'Skalieren und zuschneiden',
         'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -71,19 +87,20 @@ function pw_content_authoring_layout_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '280',
-          'height' => '187',
+          'width' => '300',
+          'height' => '300',
         ),
-        'weight' => '1',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported image style: pw_landscape_l__mobile.
-  $styles['pw_landscape_l__mobile'] = array(
-    'name' => 'pw_landscape_l__mobile',
+  // Exported image style: square_small.
+  $styles['square_small'] = array(
+    'name' => 'square_small',
+    'label' => 'Quadrat Klein',
     'effects' => array(
-      13 => array(
+      9 => array(
         'label' => 'Skalieren und zuschneiden',
         'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -93,44 +110,20 @@ function pw_content_authoring_layout_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '140',
-          'height' => '93',
+          'width' => '150',
+          'height' => '150',
         ),
-        'weight' => '1',
+        'weight' => '3',
       ),
     ),
-    'label' => 'pw_landscape_l__mobile',
   );
 
-  // Exported image style: pw_landscape_l__normal.
-  $styles['pw_landscape_l__normal'] = array(
-    'name' => 'pw_landscape_l__normal',
+  // Exported image style: width_large.
+  $styles['width_large'] = array(
+    'name' => 'width_large',
+    'label' => 'Breite Groß',
     'effects' => array(
-      12 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '280',
-          'height' => '187',
-        ),
-        'weight' => '1',
-      ),
-    ),
-    'label' => 'pw_landscape_l__normal',
-  );
-
-  // Exported image style: pw_landscape_m.
-  $styles['pw_landscape_m'] = array(
-    'name' => 'pw_landscape_m',
-    'label' => 'pw_landscape_m',
-    'effects' => array(
-      1 => array(
+      4 => array(
         'label' => 'Skalierung',
         'help' => 'Eine Skalierung behält das Seitenverhältnis des Originalbildes bei. Sofern nur eine Seitenlänge angegeben ist, wird die andere berechnet.',
         'effect callback' => 'image_scale_effect',
@@ -140,7 +133,7 @@ function pw_content_authoring_layout_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '125',
+          'width' => '1200',
           'height' => '',
           'upscale' => 0,
         ),
@@ -149,230 +142,24 @@ function pw_content_authoring_layout_image_default_styles() {
     ),
   );
 
-  // Exported image style: pw_megamenu_span3.
-  $styles['pw_megamenu_span3'] = array(
-    'name' => 'pw_megamenu_span3',
-    'label' => 'pw_megamenu_span3',
+  // Exported image style: width_medium.
+  $styles['width_medium'] = array(
+    'name' => 'width_medium',
+    'label' => 'Breite Medium',
     'effects' => array(
       3 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
+        'label' => 'Skalierung',
+        'help' => 'Eine Skalierung behält das Seitenverhältnis des Originalbildes bei. Sofern nur eine Seitenlänge angegeben ist, wird die andere berechnet.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
         'module' => 'image',
-        'name' => 'image_scale_and_crop',
+        'name' => 'image_scale',
         'data' => array(
-          'width' => '215',
-          'height' => '144',
-        ),
-        'weight' => '1',
-      ),
-    ),
-  );
-
-  // Exported image style: pw_megamenu_thumbnail.
-  $styles['pw_megamenu_thumbnail'] = array(
-    'name' => 'pw_megamenu_thumbnail',
-    'label' => 'pw_megamenu_thumbnail',
-    'effects' => array(
-      2 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '140',
-          'height' => '93',
-        ),
-        'weight' => '1',
-      ),
-    ),
-  );
-
-  // Exported image style: pw_portrait_l__mobile.
-  $styles['pw_portrait_l__mobile'] = array(
-    'name' => 'pw_portrait_l__mobile',
-    'effects' => array(
-      14 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '70',
-          'height' => '105',
-        ),
-        'weight' => '1',
-      ),
-    ),
-    'label' => 'pw_portrait_l__mobile',
-  );
-
-  // Exported image style: pw_portrait_l__normal.
-  $styles['pw_portrait_l__normal'] = array(
-    'name' => 'pw_portrait_l__normal',
-    'effects' => array(
-      15 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '140',
-          'height' => '210',
-        ),
-        'weight' => '1',
-      ),
-    ),
-    'label' => 'pw_portrait_l__normal',
-  );
-
-  // Exported image style: pw_portrait_m.
-  $styles['pw_portrait_m'] = array(
-    'name' => 'pw_portrait_m',
-    'effects' => array(
-      3 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '100',
-          'height' => '150',
-        ),
-        'weight' => '1',
-      ),
-    ),
-    'label' => 'pw_portrait_m',
-  );
-
-  // Exported image style: pw_portrait_ms.
-  $styles['pw_portrait_ms'] = array(
-    'name' => 'pw_portrait_ms',
-    'label' => 'pw_portrait_ms',
-    'effects' => array(
-      1 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '50',
-          'height' => '75',
-        ),
-        'weight' => '1',
-      ),
-    ),
-  );
-
-  // Exported image style: pw_portrait_s.
-  $styles['pw_portrait_s'] = array(
-    'name' => 'pw_portrait_s',
-    'effects' => array(
-      4 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '70',
-          'height' => '105',
-        ),
-        'weight' => '1',
-      ),
-    ),
-    'label' => 'pw_portrait_s',
-  );
-
-  // Exported image style: pw_portrait_xs.
-  $styles['pw_portrait_xs'] = array(
-    'name' => 'pw_portrait_xs',
-    'effects' => array(
-      1 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '40',
-          'height' => '60',
-        ),
-        'weight' => '1',
-      ),
-    ),
-    'label' => 'pw_portrait_xs',
-  );
-
-  // Exported image style: pw_thumbnail.
-  $styles['pw_thumbnail'] = array(
-    'name' => 'pw_thumbnail',
-    'effects' => array(
-      2 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '60',
-          'height' => '60',
-        ),
-        'weight' => '1',
-      ),
-    ),
-    'label' => 'pw_thumbnail',
-  );
-
-  // Exported image style: pw_thumbnail_70.
-  $styles['pw_thumbnail_70'] = array(
-    'name' => 'pw_thumbnail_70',
-    'label' => 'PW Thumbnail (70x70)',
-    'effects' => array(
-      3 => array(
-        'label' => 'Skalieren und zuschneiden',
-        'help' => 'Skalieren und zuschneiden wird das Seitenverhältnis des ursprünglichen Bildes erhalten, und dann die überstehenden Ränder entfernen. Dies ist besonders nützlich für die Erstellung von perfekt quadratischen Vorschaubildern ohne Verzerrung des Bildes.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => '70',
-          'height' => '70',
+          'width' => '500',
+          'height' => '',
+          'upscale' => 0,
         ),
         'weight' => '1',
       ),

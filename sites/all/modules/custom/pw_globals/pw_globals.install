@@ -1124,6 +1124,78 @@ function pw_globals_update_7039() {
 }
 
 /**
+ * Configure trustees block.
+ */
+function pw_globals_update_7040() {
+  $block1 = (array) block_load('views', 'Trustees-block_1');
+  $block1['regions'] = ['parliamentwatch' => 'content', 'blank' => 'content'];
+  $block1['pages'] = "ueber-uns/mehr/kuratorium";
+  $block1['weight'] = -69;
+  _pw_globals_configure_block($block1);
+}
+
+/**
+ * Disable trustees feature and remove related content type.
+ */
+function pw_globals_update_7041() {
+  module_disable(['pw_trustees']);
+  node_type_delete('trustee');
+}
+
+/**
+ * Configure candidate matcher teaser block.
+ */
+function pw_globals_update_7042() {
+  $config = [
+    'module' => 'pw_kandidatencheck',
+    'delta' => 'teaser',
+    'weight' => -71,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => "<front>",
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  _pw_globals_configure_block($config);
+}
+
+/**
+ * Add custom block for #wahrplakat teaser.
+ */
+function pw_globals_update_7043() {
+  $logo_path = drupal_get_path('theme', 'parliamentwatch') . '/images/logo-wahrplakat.png';
+  $body = <<<EOD
+<div class="lp-teaser lp-teaser--wahrplakat">
+  <a href="https://wahrplakat.abgeordnetenwatch.de/" class="lp-teaser__logo"><img src="$logo_path" alt="Logo von #wahrplakat"></a>
+  <p class="mh-item">Wie haben die Abgeordneten in den letzten 4 Jahren im Bundestag abgestimmt? Mit wenigen Klicks ein #wahrplakat für die Abgeordneten erstellen.</p>
+  <a href="https://wahrplakat.abgeordnetenwatch.de/" class="btn">#wahrplakat erstellen</a>
+</div>
+EOD;
+  $config = [
+    'info' => '#wahrplakat',
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body
+    ],
+    'module' => 'block',
+    'weight' => -71.5,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '<front>',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  $config['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $config['info'],
+      'body' => $config['body']['value'],
+      'format' => $config['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($config);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

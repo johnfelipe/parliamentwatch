@@ -51,7 +51,7 @@ function pw_newsletter_ckeditor_profile_defaults() {
           ),
         ),
         'css_mode' => 'self',
-        'css_path' => '%t/css/theme.min.css',
+        'css_path' => '%t/css/theme.min.css, %t/css/ckeditor.newsletter.css',
         'css_style' => 'self',
         'styles_path' => '%t/js/ckeditor.newsletter.js',
         'filebrowser' => 'none',
@@ -64,7 +64,10 @@ function pw_newsletter_ckeditor_profile_defaults() {
         'scayt_autoStartup' => 'f',
         'theme_config_js' => 'f',
         'js_conf' => 'config.templates_replaceContent = false;
-config.allowedContent=true;',
+config.allowedContent=true;
+config.language = \'de\';  
+config.wsc_lang = "de_DE";  
+config.scayt_sLang = \'de_DE\';  ',
         'loadPlugins' => array(
           'counter' => array(
             'name' => 'counter',

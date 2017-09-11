@@ -87,7 +87,7 @@ function pw_dialogues_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'tile' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'full' => array(
         'custom_settings' => TRUE,

@@ -2,9 +2,6 @@
 * Forms
 */
 
-
-.form {
-}
 .form__item {
   margin-bottom: $space-small;
   position: relative;
@@ -390,3 +387,22 @@ textarea.form__item__control {
   }
 }
 
+/* Contact */
+
+#webform-ajax-wrapper-6578 {
+  padding-bottom: $space-large;
+  @include container-small();
+  @include grid-container();
+  .webform-client-form {
+    @include grid-column(12);
+    @include breakpoint($breakpoint-s-min) {
+      @include grid-column(8);
+    }
+  }
+}
+
+/* Login */
+
+.form--user-login {
+  > p { margin-bottom: $space-large; }
+}

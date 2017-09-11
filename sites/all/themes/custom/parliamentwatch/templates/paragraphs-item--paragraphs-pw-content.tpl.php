@@ -36,7 +36,7 @@
     <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth">
       <?php if (!empty($field_pg_content_title) && !empty($field_pg_content_link)): ?>
         <tr>
-          <td colspan="3" width="100%" style="height: 20px;">&nbsp;</td>
+          <td colspan="3" width="100%" style="height: 15px; font-size: 1px;">&nbsp;</td>
         </tr>
         <tr>
           <td colspan="3" width="100%">
@@ -64,7 +64,7 @@
       <?php endif; ?>
       <?php if (!empty($field_pg_content_title) && empty($field_pg_content_link)): ?>
         <tr>
-          <td colspan="3" width="100%" style="height: 20px;">&nbsp;</td>
+          <td colspan="3" width="100%" style="height: 15px; font-size: 1px;">&nbsp;</td>
         </tr>
         <tr>
           <td colspan="3" width="100%">
@@ -107,9 +107,9 @@
           <td colspan="3" width="100%">
             <?php print render($content['field_pg_content_body']); ?>
             <?php if (!empty($field_pg_content_link)): ?>
-              <a target="_blank" href="<?php print $field_pg_content_link[0]['url'] ?>" style="font-family: Arial, Helvetica, Sans-Serif; color: #f63; text-decoration: none; font-weight: bold; font-size: 15px; line-height: 21px;">
-                <img src="<?php print $GLOBALS['base_url'] ?>/sites/all/themes/custom/parliamentwatch/images/newsletter/link-icon.png" width="12" height="12" border="0" style="display:inline-block;"> <?php print $field_pg_content_link[0]['title'] ?>
-              </a>
+              <?php foreach ($field_pg_content_link as $delta => $item): ?>
+              <p style="margin: 0; padding: 0;"><a target="_blank" href="<?php print $item['url'] ?>" style="font-family: Arial, Helvetica, Sans-Serif; color: #f63; text-decoration: none; font-weight: bold; font-size: 15px; line-height: 21px;"><img src="<?php print $GLOBALS['base_url'] ?>/sites/all/themes/custom/parliamentwatch/images/newsletter/link-icon.png" width="12" height="12" border="0" style="display:inline-block;"> <?php print $item['title'] ?></a></p>
+              <?php endforeach; ?>
             <?php endif; ?>
           </td>
         <?php else: ?>
@@ -120,9 +120,9 @@
           <td width="340" class="block_td percent_td" style="vertical-align: top;">
             <?php print render($content['field_pg_content_body']); ?>
             <?php if (!empty($field_pg_content_link)): ?>
-              <a target="_blank" href="<?php print $field_pg_content_link[0]['url'] ?>" style="font-family: Arial, Helvetica, Sans-Serif; color: #f63; text-decoration: none; font-size: 15px; line-height: 21px; font-weight: bold;">
-                <img src="<?php print $GLOBALS['base_url'] ?>/sites/all/themes/custom/parliamentwatch/images/newsletter/link-icon.png" width="12" height="12" border="0" style="display:inline-block;"> <?php print $field_pg_content_link[0]['title'] ?>
-              </a>
+              <?php foreach ($field_pg_content_link as $delta => $item): ?>
+                <p style="margin: 0; padding: 0;"><a target="_blank" href="<?php print $item['url'] ?>" style="font-family: Arial, Helvetica, Sans-Serif; color: #f63; text-decoration: none; font-weight: bold; font-size: 15px; line-height: 21px;"><img src="<?php print $GLOBALS['base_url'] ?>/sites/all/themes/custom/parliamentwatch/images/newsletter/link-icon.png" width="12" height="12" border="0" style="display:inline-block;"> <?php print $item['title'] ?></a></p>
+              <?php endforeach; ?>
             <?php endif; ?>
           </td>
         <?php endif; ?>

@@ -2,6 +2,10 @@
 * Images
 */
 
+.copyright,
+.copyright a {
+  color: $gray;
+}
 
 /* Image Float-Boxes */
 
@@ -14,9 +18,12 @@
     height: auto;
   }
   .copyright {
+    color: $gray;
     font-size: .8em;
+    padding: $space-xsmall-mobile 0;
   }
 }
+
 .float-left,
 .float-right {
   margin-bottom: $space;

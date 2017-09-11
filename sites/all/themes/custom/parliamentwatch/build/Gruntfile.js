@@ -89,5 +89,6 @@ module.exports = function (grunt) {
    */
   grunt.registerTask('update', ['npm-install', 'bower_install']);
   grunt.registerTask('build', ['update', 'sass', 'bowercopy', 'cssmin']);
+  grunt.registerTask('compile', ['sass', 'cssmin']);
 
 };

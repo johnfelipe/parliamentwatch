@@ -233,7 +233,16 @@
         text-align: center;
       }
     }
+    figcaption {
+      &:before {
+        content: '©';
+      }
+      &:empty {
+        display: none;
+      }
+    }
   }
+
   .deputy__image {
     display: block;
     img {
@@ -433,6 +442,7 @@ $abstimmverhalten-node-width: 60px;
 $abstimmverhalten-node-item-width: 18px;
 
 .abstimmverhalten-overview {
+  @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
     padding-left: $abstimmverhalten-node-width;
     position: relative;
@@ -448,6 +458,11 @@ $abstimmverhalten-node-item-width: 18px;
       background-color: $darkBeige;
     }
   }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(12, $neat-grid);
+  }
+}
+.abstimmverhalten-stats + .abstimmverhalten-overview {
   @include breakpoint($breakpoint-m-min) {
     @include grid-column(8, $neat-grid-rtl);
   }
@@ -515,7 +530,7 @@ $abstimmverhalten-node-item-width: 18px;
   right: 0;
   top: 0;
   bottom: 0;
-  padding: $space 0;
+  padding: $space $space-xsmall-mobile;
   width: $abstimmverhalten-indicator-width-mobile;
   text-align: center;
   border-left: 1px solid $darkBeige;
@@ -552,8 +567,10 @@ $abstimmverhalten-node-item-width: 18px;
 .abstimmverhalten-stats {
   margin-bottom: $space-large;
   @include grid-container();
+  @include grid-column(12);
   @include breakpoint($breakpoint-m-min) {
     margin-bottom: 0;
+    margin-left: 0;
     @include grid-column(4, $neat-grid-rtl);
     padding-left: $space-large * 2;
   }
@@ -841,10 +858,13 @@ $abstimmverhalten-node-item-width: 18px;
 .deputy__candidate_check__item__position {
   padding: $space-large $space $space-large $space;
   position: relative;
-  min-height: 100px;
   font-size: 1.1em;
   line-height: 1.6em;
   @include breakpoint($breakpoint-s-min) {
+    min-height: 130px;
+    padding: $space-large 140px $space-large 210px;
+  }
+  @include breakpoint($breakpoint-m-min) {
     padding: $space-large 250px $space-large 300px;
   }
 }
@@ -872,8 +892,18 @@ $abstimmverhalten-node-item-width: 18px;
     @include image-circle(75px, 75px);
     border-width: 3px;
     position: absolute;
-    left: 180px;
+    left: 110px;
     top: $space-large;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    left: 180px;
+  }
+}
+.deputy__candidate_check__footer {
+  padding: $space;
+  border-top: 1px solid $darkBeige;
+  @include breakpoint($breakpoint-s-min) {
+    display: none;
   }
 }
 

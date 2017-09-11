@@ -25,7 +25,7 @@
     <?php if ($field_teaser_image): ?>
       <td width="280" class="block_td pic_td" style="vertical-align: top;">
         <a href="<?php print $node_url; ?>" title="zum Blogartikel" target="_blank" style="display:block;">
-          <img src="<?php $uri = $field_teaser_image[0]['uri']; $uri = image_style_path('pw_landscape_l',$uri); $url = file_create_url($uri); print $url; ?>" alt="">
+          <img src="<?php $uri = $field_teaser_image[0]['uri']; $uri = image_style_path('width_medium',$uri); $url = file_create_url($uri); print $url; ?>" alt="">
         </a>
         <p style="font-family: Arial, Helvetica, Sans-Serif; color: #999; font-size: 11px; line-height: 16px; margin: 5px 0 0 0;">
           <?php print($field_teaser_image[0]['field_image_copyright']['und'][0]['value']); ?></p>

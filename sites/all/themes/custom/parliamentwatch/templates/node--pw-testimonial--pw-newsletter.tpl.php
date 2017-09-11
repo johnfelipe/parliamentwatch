@@ -8,10 +8,12 @@
       </td>
       <td width="20">&nbsp;</td>
       <td width="390" style="vertical-align: top;">
-        <blockquote style="font-family: 'Times New Roman', Times, serif; font-size: 18px; line-height: 22px; font-style: italic; color: #4d4d4d; margin: 0; padding: 0;">
+        <blockquote style="font-family: 'Times New Roman', Times, serif; font-size: 18px; line-height: 22px; font-style: italic; color: #4d4d4d; margin: 0 0 10px; padding: 0;">
           <span style="color: #999; font-family: Georgia,Times New Roman,Times,serif; font-size: 20px;">„</span><?php print render($content['field_testimonial_quote']); ?><span style="color: #999; font-family: Georgia,Times New Roman,Times,serif; font-size: 20px; ">“</span>
         </blockquote>
-        <p style="font-family: Arial, Helvetica, Sans-Serif; color: #999; font-size: 11px; line-height: 19px; margin: 0 0 10px;"><?php print $right; ?> ist eines von <span id="mscount"><?php print $count_memberships; ?></span> Fördermitgliedern von abgeordnetenwatch.de</p>
+        <p style="font-family: Arial, Helvetica, Sans-Serif; color: #999; font-size: 11px; line-height: 16px; margin: 0 0 10px;">
+          <?php print render($content['field_testimonial_fullname']); ?> ist eines von <?php print variable_get('pw_globals_supporters', 0); ?> Fördermitgliedern von abgeordnetenwatch.de
+        </p>
       </td>
       <td width="20">&nbsp;</td>
     </tr>

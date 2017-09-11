@@ -22,6 +22,23 @@ function pw_vote_menu() {
 }
 
 /**
+ * Implements hook_node_load().
+ *
+ * Pre-loads polls associated with the given votes to prevent loading them
+ * individually, e.g. in pw_vote_to_array().
+ */
+function pw_vote_node_load($nodes, $types) {
+  if (in_array('vote', $types)) {
+    $map = function ($node) {
+      if (isset($node->field_vote_node[LANGUAGE_NONE][0]['target_id'])) {
+        return $node->field_vote_node[LANGUAGE_NONE][0]['target_id'];
+      }
+    };
+    node_load_multiple(array_filter(array_map($map, $nodes)));
+  }
+}
+
+/**
  * Implements hook_user_view().
  */
 function pw_vote_user_view($account, $view_mode, $langcode) {
@@ -30,7 +47,7 @@ function pw_vote_user_view($account, $view_mode, $langcode) {
 
     if (!empty($nids)) {
       $nodes = node_load_multiple($nids);
-      $inline_js = 'window.votes = ' . drupal_json_encode(array_map('pw_vote_to_aray', array_values($nodes))) . ';';
+      $inline_js = 'window.votes = ' . drupal_json_encode(array_map('pw_vote_to_array', array_values($nodes))) . ';';
       $filter_attended = function ($item) {
         return ($item->field_vote[LANGUAGE_NONE][0]['tid'] == 19670) ? FALSE : TRUE;
       };
@@ -141,7 +158,7 @@ function pw_vote_form_alter(&$form, &$form_state, $form_id) {
       }
       $portrait = theme('image_style', array(
           'path' => $portrait_uri,
-          'style_name' => 'pw_portrait_l__normal',
+          'style_name' => 'width_medium',
         )
       );
       $form['submitted']['portrait']['#markup'] = $portrait;
@@ -326,6 +343,10 @@ function pw_vote_block_info() {
     'info' => t('Voting behavior'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['profile_petitions'] = [
+    'info' => t('Voting behavior (PetitionPlus)'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -342,7 +363,10 @@ function pw_vote_block_view($delta, $arguments = array()) {
       }
       break;
     case 'profile':
-      $block = pw_vote_profile_block();
+      $block = pw_vote_profile_block('poll');
+      break;
+    case 'profile_petitions':
+      $block = pw_vote_profile_block('pw_petition');
       break;
   }
   return $block;
@@ -354,7 +378,7 @@ function pw_vote_block_view($delta, $arguments = array()) {
  * @return array
  *   The block render array.
  */
-function pw_vote_profile_block() {
+function pw_vote_profile_block($type = 'poll') {
   $block = [];
 
   if (menu_get_item()['page_callback'] == 'user_revision_show') {
@@ -369,20 +393,25 @@ function pw_vote_profile_block() {
     return $block;
   }
 
-  $nids = pw_vote_by_user_revision_query($account)
-    ->orderBy('vnd.field_poll_date_value', 'DESC')
+  $nids = pw_vote_by_user_revision_query($account, $type)
+    ->orderBy('decision_date', 'DESC')
     ->extend('PagerDefault')
     ->limit(6)
     ->execute()
     ->fetchCol();
 
+
   if (!empty($nids)) {
-    $callback = function ($item) {
-      $vote = node_load($item->field_vote_node[LANGUAGE_NONE][0]['target_id']);
-      return $vote->type == 'poll';
-    };
-    $nodes = array_filter(node_load_multiple($nids), $callback);
-    $block['subject'] = t('Voting behavior');
+    $nodes = node_load_multiple($nids);
+    switch($type){
+      case 'pw_petition':
+      $block['subject'] = t('PetitionPlus');
+      break;
+      default:
+      $block['subject'] = t('Voting behavior');
+      break;
+    }
+
     $block['content'] = node_view_multiple($nodes, 'embedded');
     $block['content']['pager'] = [
       '#theme' => 'pager',
@@ -641,22 +670,6 @@ function pw_vote_theme() {
 }
 
 /**
- * Temporary hook to alter behavior of the poll search blocks since the current Solr module
- * does not respect view filters correctly. Should be obsolete with the introduction of Search
- * API modules.
- */
-function pw_vote_views_query_alter(&$view, &$query) {
-  if ($view->name == 'pw_vote_search' && $view->current_display == 'block_2') {
-    $node_id = "*".arg(1)."*";
-    $query->add_where(1,'sm_field_vote_node', $node_id, 'LIKE');
-  }
-  if ($view->name == 'pw_vote_positions' && arg(0) == 'node' && is_numeric(arg(1))) {
-    $node_id = menu_get_object()->nid;
-    $query->add_where(1,'field_data_field_vote_node.field_vote_node_target_id', $node_id, '=');
-  }
-}
-
-/**
  * Find and mark votes that deviate from the fractions majority opinion.
  * @param $nid: Node ID of poll or petition.
  */
@@ -749,16 +762,26 @@ function pw_vote_mark_deviant_votes($nid) {
  * @return EntityFieldQuery
  *   The query object
  */
-function pw_vote_by_user_revision_query($account) {
+function pw_vote_by_user_revision_query($account, $node_target_type = 'poll') {
   $q = db_select('node', 'n');
   $q->fields('n', ['nid']);
   $q->join('field_data_field_vote_user', 'u', 'n.nid = u.entity_id');
   $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
   $q->join('field_data_field_vote_node', 'vn', 'n.nid = vn.entity_id');
-  $q->join('field_data_field_poll_date', 'vnd', 'vn.field_vote_node_target_id = vnd.entity_id');
-  $q->condition('type', 'vote');
-  $q->condition('status', NODE_PUBLISHED);
+  $q->join('node', 'n_target', 'vn.field_vote_node_target_id = n_target.nid');
+
+  if($node_target_type == 'pw_petition') {
+    $q->join('field_data_field_petition_end_date', 'vnd', 'vn.field_vote_node_target_id = vnd.entity_id');
+    $q->addField('vnd', 'field_petition_end_date_value', 'decision_date');
+  }
+  else {
+    $q->join('field_data_field_poll_date', 'vnd', 'vn.field_vote_node_target_id = vnd.entity_id');
+    $q->addField('vnd', 'field_poll_date_value', 'decision_date');
+  }
+  $q->condition('n.type', 'vote');
+  $q->condition('n.status', NODE_PUBLISHED);
   $q->condition('u.field_vote_user_target_id', $account->uid);
+  $q->condition('n_target.type', $node_target_type);
   $q->condition('p.field_parliament_tid', pw_profiles_parliament($account)->tid);
 
   return $q;
@@ -772,7 +795,7 @@ function pw_vote_by_user_revision_query($account) {
  * @return array
  *   The array representation.
  */
-function pw_vote_to_aray($node) {
+function pw_vote_to_array($node) {
   if (!empty($node->field_vote_node[LANGUAGE_NONE])) {
     $poll = node_load($node->field_vote_node[LANGUAGE_NONE][0]['target_id']);
   }

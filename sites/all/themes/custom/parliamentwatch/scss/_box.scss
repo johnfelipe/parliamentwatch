@@ -333,12 +333,13 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   }
   .blog.tile {
     @include grid-column(12, $neat-grid-no-gutter);
-
-    margin-bottom: 0;
+    margin-bottom: $space;
     border-bottom: 1px solid $darkBeige;
     @include breakpoint($breakpoint-s-min) {
-      border-bottom: 0;
       padding: $space-large;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      border-bottom: 0;
     }
     .tile__image {
       display: none;
@@ -368,8 +369,12 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     .tile__links {
       padding: 0;
       margin-top: 0;
+      padding-top: $space;
       clear: both;
       @include breakpoint($breakpoint-s-min) {
+        margin-bottom: -$space-large;
+      }
+      @include breakpoint($breakpoint-l-min) {
         margin: 0;
         clear: none;
         float: left;
@@ -378,7 +383,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
       }
     }
     .tile__links__item {
-      @include breakpoint($breakpoint-s-min) {
+      @include breakpoint($breakpoint-l-min) {
         width: auto;
       }
     }
@@ -388,6 +393,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     }
     &:last-child {
       border: 0;
+      margin-bottom: 0;
     }
   }
 }
@@ -397,12 +403,18 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 
 .sidebar-container {
   @include grid-container();
+  [style*="position: static;"] {
+    width: auto !important;
+  }
 }
 
 .sidebar__box {
   padding-bottom: $space-large;
   @include breakpoint($breakpoint-l-min) {
     padding-bottom: $space-large + $space;
+  }
+  .media_embed {
+    margin-bottom: $space-small;
   }
 }
 .sidebar__box__headline {

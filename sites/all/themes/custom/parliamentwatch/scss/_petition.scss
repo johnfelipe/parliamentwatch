@@ -144,12 +144,11 @@
   }
 }
 
-
 // Tiles
-
 .petition.tile {
   @include grid-column(12);
   margin-bottom: $space;
+  position: relative;
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(6, $neat-grid-large-gutter);
     margin-bottom: $space-large;

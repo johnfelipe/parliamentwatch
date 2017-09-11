@@ -44,10 +44,24 @@ function pw_dialogues_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '7',
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '3',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -56,10 +70,24 @@ function pw_dialogues_field_default_fields() {
           'weight' => '7',
         ),
         'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '7',
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '3',
         ),
         'tile' => array(
           'label' => 'above',
@@ -149,18 +177,20 @@ function pw_dialogues_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
-            'more_link' => FALSE,
+            'more_link' => '0',
             'more_text' => 'Read more',
             'summary_handler' => 'full',
-            'trim_length' => 300,
-            'trim_link' => FALSE,
-            'trim_options' => array(),
+            'trim_length' => '150',
+            'trim_link' => '0',
+            'trim_options' => array(
+              'text' => 0,
+            ),
             'trim_preserve_tags' => '',
             'trim_suffix' => '...',
             'trim_type' => 'chars',
           ),
           'type' => 'smart_trim_format',
-          'weight' => '3',
+          'weight' => '1',
         ),
         'embedded' => array(
           'label' => 'hidden',
@@ -211,7 +241,7 @@ function pw_dialogues_field_default_fields() {
             ),
           ),
           'type' => 'text_default',
-          'weight' => '3',
+          'weight' => '1',
         ),
         'tile' => array(
           'label' => 'hidden',
@@ -347,10 +377,10 @@ function pw_dialogues_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '6',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -359,10 +389,24 @@ function pw_dialogues_field_default_fields() {
           'weight' => '11',
         ),
         'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '11',
+          'label' => 'hidden',
+          'module' => 'link',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'link_default',
+          'weight' => '4',
         ),
         'tile' => array(
           'label' => 'above',
@@ -434,7 +478,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '9',
+          'weight' => '11',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -446,7 +490,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '9',
+          'weight' => '11',
         ),
         'tile' => array(
           'label' => 'above',
@@ -517,10 +561,24 @@ function pw_dialogues_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '12',
+          'label' => 'hidden',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => '4',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -529,10 +587,24 @@ function pw_dialogues_field_default_fields() {
           'weight' => '12',
         ),
         'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '12',
+          'label' => 'hidden',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => '5',
         ),
         'tile' => array(
           'label' => 'above',
@@ -589,7 +661,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '12',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -601,7 +673,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '12',
         ),
         'tile' => array(
           'label' => 'above',
@@ -668,7 +740,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '10',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -680,7 +752,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '10',
         ),
         'tile' => array(
           'label' => 'above',
@@ -757,7 +829,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '1',
+          'weight' => '5',
         ),
         'embedded' => array(
           'label' => 'hidden',
@@ -769,7 +841,7 @@ function pw_dialogues_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '1',
+          'weight' => '7',
         ),
         'tile' => array(
           'label' => 'hidden',
@@ -897,7 +969,7 @@ $display_output = rtrim($display_output);',
             ),
           ),
           'type' => 'computed_field_plain',
-          'weight' => '4',
+          'weight' => '2',
         ),
         'embedded' => array(
           'label' => 'hidden',
@@ -937,7 +1009,7 @@ $display_output = rtrim($display_output);',
             ),
           ),
           'type' => 'computed_field_plain',
-          'weight' => '4',
+          'weight' => '2',
         ),
         'tile' => array(
           'label' => 'hidden',
@@ -1163,7 +1235,7 @@ $display_output = rtrim($display_output);',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '9',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -1175,7 +1247,7 @@ $display_output = rtrim($display_output);',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '9',
         ),
         'tile' => array(
           'label' => 'above',
@@ -1250,7 +1322,7 @@ $display_output = rtrim($display_output);',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '8',
         ),
         'embedded' => array(
           'label' => 'above',
@@ -1262,7 +1334,7 @@ $display_output = rtrim($display_output);',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '8',
         ),
         'tile' => array(
           'label' => 'above',
@@ -1590,7 +1662,7 @@ $display_output = rtrim($display_output);',
           'weight' => '9',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
             'field_delimiter' => '',
@@ -1879,7 +1951,7 @@ $display_output = rtrim($display_output);',
           'weight' => '5',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'link',
           'settings' => array(
             'field_delimiter' => '',

@@ -82,8 +82,16 @@
 ?>
 <div id="node-newsletter-<?php print $node->nid; ?>" class="<?php print $classes; ?> newsletter detail"<?php print $attributes; ?>>
   <?php print render($title_suffix); ?>
+  <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth">
+    <tbody><tr>
+      <td width="600">
+        <h1><?php print render($title); ?></h1>
+      </td>
+    </tr>
+    </tbody>
+  </table>
   <div id="body_style" style="padding:10px">
-    <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth" style="border-bottom: 1px solid #f63;">
+    <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth">
       <?php if ($content['body']): ?>
       <tr>
         <td width="600">

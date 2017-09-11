@@ -84,6 +84,11 @@
 
   <div id="poll-content" class="poll__content container">
     <div class="poll__content__left">
+      <?php if (!empty($content['field_teaser_image'])): ?>
+      <div class="file-image float-left">
+        <?php print render($content['field_teaser_image']); ?>
+      </div>
+      <?php endif; ?>
       <?php print render($content['body']); ?>
     </div>
     <div class="poll__content__right sidebar">

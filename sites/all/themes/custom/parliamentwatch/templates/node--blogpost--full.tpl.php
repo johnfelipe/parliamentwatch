@@ -90,7 +90,7 @@
         <?php print render($content['field_blogpost_intro']);  ?>
       <?php print render($title_suffix); ?>
     </div>
-    <div class="blog__header__bg" style="background-image: url('<?php print file_create_url($node->field_teaser_image[LANGUAGE_NONE][0]['uri']); ?>')"></div>
+    <div class="blog__header__bg" style="background-image: url('<?php print image_style_url('width_large', $node->field_teaser_image[LANGUAGE_NONE][0]['uri']); ?>')"></div>
   </div>
 
   <div class="blog__submitted">

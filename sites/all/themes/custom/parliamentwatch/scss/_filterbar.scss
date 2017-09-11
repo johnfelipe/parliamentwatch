@@ -75,6 +75,12 @@
     @include breakpoint($breakpoint-xs-min) {
       right: 0;
     }
+    @include breakpoint($breakpoint-s-min) {
+      right: 79px;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      right: 0;
+    }
     &:before {
       color: $gray;
       line-height: 57px;

@@ -87,21 +87,23 @@
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td>
+                <?php foreach ($field_pg_content_link as $delta => $item): ?>
                 <table border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
                   <tr>
                     <td>
-                      <a href="<?php print render($content['field_pg_content_link']); ?>" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; background-color: #f63; border-top: 12px solid #f63; border-bottom: 12px solid #f63; border-right: 18px solid #f63; border-left: 18px solid #f63; display: inline-block; white-space: nowrap;"><?php print $content['field_pg_content_link'][0]['#element']['title']; ?></a>
+                      <a href="<?php print $item['url']; ?>" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; background-color: #f63; border-top: 12px solid #f63; border-bottom: 12px solid #f63; border-right: 18px solid #f63; border-left: 18px solid #f63; display: inline-block; white-space: nowrap;"><?php print $item['title']; ?></a>
                     </td>
                   </tr>
+                  <tr>
+                    <td width="100%" style="height: 20px;">&nbsp;</td>
+                  </tr>
                 </table>
+                <?php endforeach; ?>
               </td>
             </tr>
           </table>
         </td>
         <td width="180">&nbsp;</td>
-      </tr>
-      <tr>
-        <td colspan="3" width="100%" style="height: 20px;">&nbsp;</td>
       </tr>
     </table>
     <?php if ($field_pg_content_last_element[0]['value'] == '0'): ?>

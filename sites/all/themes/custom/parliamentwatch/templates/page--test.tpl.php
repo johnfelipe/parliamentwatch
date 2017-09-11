@@ -261,7 +261,6 @@
     </div>
 
 
-    <!-- PLZ-Suche Zwischenschritt -->
     <div class="intro">
       <h1>Abgeordnete</h1>
     </div>

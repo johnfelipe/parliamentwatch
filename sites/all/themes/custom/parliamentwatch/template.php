@@ -70,13 +70,22 @@ function parliamentwatch_page_alter(&$page) {
 
     $has_container = !empty(array_filter($page['content']['system_main']['#theme_wrappers'], $filter));
     $has_filters = isset($page['content']['system_main']['filters']);
-    $is_blog_or_petition_page = menu_get_object('node') ? in_array(menu_get_object('node')->type, ['blogpost', 'pw_petition']) : FALSE;
+    $is_blog_or_petition_or_dialogue_page_or_poll_page = menu_get_object('node') ? in_array(menu_get_object('node')->type, ['blogpost', 'dialogue', 'pw_petition', 'poll']) : FALSE;
     $is_profile_page = in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show']);
 
-    if (!$has_container && !$has_filters && !$is_blog_or_petition_page && !$is_profile_page) {
+    if (!$has_container && !$has_filters && !$is_blog_or_petition_or_dialogue_page_or_poll_page && !$is_profile_page) {
       $page['content']['system_main']['#prefix'] = '<div class="container">';
       $page['content']['system_main']['#suffix'] = '</div>';
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function parliamentwatch_preprocess_page(&$variables) {
+  if ($variables['is_front'] && $GLOBALS['theme_key'] == 'parliamentwatch') {
+    drupal_add_library('system', 'jquery.cookie');
   }
 }
 
@@ -220,13 +229,13 @@ function parliamentwatch_preprocess_node(&$variables) {
   if ($variables['type'] == 'pw_kc_position') {
     $account = user_load($node->field_pw_kc_user_reference[LANGUAGE_NONE][0]['target_id']);
     $variables['user_display_name'] = _pw_get_fullname($account);
-    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_medium']]);
   }
 
   if ($variables['type'] == 'dialogue' && $variables['view_mode'] != 'embedded') {
     $account = pw_dialogues_recipient_user_revision($node);
     $variables['user_display_name'] = _pw_get_fullname($account);
-    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
     $variables['user_party'] = field_view_field('user', $account, 'field_user_party', ['label' => 'hidden', 'type' => 'taxonomy_term_reference_plain']);
     $variables['user_url'] = url(entity_uri('user', $account)['path']);
   }
@@ -310,11 +319,17 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
  */
 function parliamentwatch_preprocess_comment(&$variables) {
   $elements = $variables['elements'];
-  $variables['theme_hook_suggestions'][] = $variables['theme_hook_original'] . '__' . $variables['elements']['#view_mode'];
+
+  if (isset($variables['theme_hook_suggestion'])) {
+    $variables['theme_hook_suggestions'][] = $variables['theme_hook_suggestion'];
+    unset($variables['theme_hook_suggestion']);
+  }
+
+  $variables['theme_hook_suggestions'][] = $variables['theme_hook_original'] . '__' . $elements['#view_mode'];
 
   if ($elements['#bundle'] == 'comment_node_dialogue' && $elements['#view_mode'] == 'tile') {
     $account = user_load($elements['#comment']->uid);
-    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'media_thumbnail']]);
+    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
   }
 }
 
@@ -442,7 +457,6 @@ function parliamentwatch_menu_local_tasks(&$variables) {
 
   if (!empty($variables['primary'])) {
     $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
-    $variables['primary']['#prefix'] .= '<div class="nav-mobile-trigger"><i class="icon icon-investigation"></i></div>';
     $variables['primary']['#prefix'] .= '<ul class="nav nav--tab primary">';
     $variables['primary']['#suffix'] = '</ul>';
     $output .= drupal_render($variables['primary']);

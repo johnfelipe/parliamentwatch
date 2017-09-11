@@ -1384,7 +1384,7 @@ function pw_blog_field_default_fields() {
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => 'large',
+            'image_style' => 'width_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
