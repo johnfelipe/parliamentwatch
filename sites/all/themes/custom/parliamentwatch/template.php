@@ -943,19 +943,8 @@ function parliamentwatch_profile_search_summary(&$variables) {
   ];
 
   $options['@count'] = $variables['response']['result count'];
-  $options['!gender'] = '';
-
-  if (!empty($variables['filters']['gender'])) {
-    if (count($variables['filters']['gender']) == 1) {
-      $value = reset($variables['filters']['gender']);
-      $text = format_plural($variables['response']['result count'], $value, $value, [], ['context' => 'search-summary']);
-      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
-    }
-    elseif ($variables['filters']['gender'] == ['male' => 'male', 'female' => 'female']) {
-      $text = format_plural($variables['response']['result count'], 'female or male', 'female and male', [], ['context' => 'search-summary']);
-      $options['!gender'] = l($text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
-    }
-  }
+  $options['@class'] = implode(' ', $link_options['attributes']['class']);
+  $options['@data-ajax-target'] = $link_options['attributes']['data-ajax-target'];
 
   if (!empty($variables['filters']['party'])) {
     $parties_count = count($variables['filters']['party']);
@@ -982,12 +971,46 @@ function parliamentwatch_profile_search_summary(&$variables) {
   $output .= '<div class="filter-summary">';
   $output .= '<div class="filter-summary__content">';
 
+  if (empty($variables['filters']['gender'])) {
+    if ($variables['role_name'] == 'candidates') {
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1 candidate from</span> !parties <span>and</span> !constituencies', '<span>Found @count candidates from</span> !parties <span>and</span> !constituencies', $options);
+    }
+    else {
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1 deputy from</span> !parties <span>and</span> !constituencies', '<span>Found @count deputies from</span> !parties <span>and</span> !constituencies', $options);
+    }
+  }
+  elseif ($variables['filters']['gender'] == ['male' => 'male', 'female' => 'female']) {
+    $options['@url'] = url(current_path(), ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
+    if ($variables['role_name'] == 'candidates') {
+      $summary = format_plural($variables['response']['result count'], '<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female or male</a> candidate from </span> !parties <span>and</span> !constituencies','<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female and male</a> <span>candidates from </span> !parties <span>and</span> !constituencies', $options);
+    }
+    else {
+      $summary = format_plural($variables['response']['result count'], '<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female or male</a> deputy from </span> !parties <span>and</span> !constituencies','<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female and male</a> <span>deputies from </span> !parties <span>and</span> !constituencies', $options);
+    }
+  }
+  elseif (!empty($variables['filters']['gender']['male'])) {
+    $options['@url'] = url(current_path(), ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
+    if ($variables['role_name'] == 'candidates') {
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>candidate from</span> !parties <span>and</span> !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>candidates from</span> !parties <span>and</span> !constituencies', $options);
+    }
+    else {
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>deputy from</span> !parties <span>and</span> !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>deputies from</span> !parties <span>and</span> !constituencies', $options);
+    }
+  }
+  elseif (!empty($variables['filters']['gender']['female'])) {
+    $options['@url'] = url(current_path(), ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
+    if ($variables['role_name'] == 'candidates') {
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>candidate from </span> !parties <span>and</span> !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>candidates from </span> !parties <span>and</span> !constituencies', $options);
+    }
+    else {
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>deputy from </span> !parties <span>and</span> !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>deputies from </span> !parties <span>and</span> !constituencies', $options);
+    }
+  }
+
   if ($variables['role_name'] == 'candidates') {
-    $summary = t('<span>Found @count</span> !gender <span>candidates from </span>!parties<span> and </span>!constituencies', $options);
     $summary_mobile = t('Found @count candidates', $options);
   }
   else {
-    $summary = t('<span>Found @count</span> !gender <span>deputies from </span>!parties<span> and </span>!constituencies', $options);
     $summary_mobile = t('Found @count deputies', $options);
   }
 
@@ -1003,22 +1026,17 @@ function parliamentwatch_profile_search_summary(&$variables) {
     $list_link = l($list->name, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list')]);
     $position_text = t('list position @position', ['@position' => $list_position->name]);
     $position_link = l($position_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list_position')]);
-    $list_position_text = ' ' . t('<span>having </span>!position<span> of </span>!list', ['!position' => $position_link, '!list' => $list_link]);
+    $summary .= t('<span> having </span>!position<span> of </span>!list', ['!position' => $position_link, '!list' => $list_link]);
   }
   elseif (isset($list)) {
     $list_link = l($list->name, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list')]);
-    $list_position_text = ' ' . t('<span>of </span>!list', ['!list' => $list_link]);
+    $summary .= t('<span> of </span>!list', ['!list' => $list_link]);
   }
   elseif (isset($list_position)) {
     $position_text = t('list position @position', ['@position' => $list_position->name]);
     $position_link = l($position_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list_position')]);
-    $list_position_text = ' ' . t('<span>having </span>!position', ['!position' => $position_link]);
+    $summary .= t('<span> having </span>!position', ['!position' => $position_link]);
   }
-  else {
-    $list_position_text = '';
-  }
-
-  $summary .= $list_position_text . '<span>.</span>';
 
   if (!empty(array_filter($variables['filters']))) {
     $summary_mobile .= ', ' . t('filtered by:');
@@ -1034,7 +1052,7 @@ function parliamentwatch_profile_search_summary(&$variables) {
 
   if (!empty($variables['filters']['keys'])) {
     $options['!keys'] = l(check_plain($variables['filters']['keys']), current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'keys')]);
-    $output .= ' ' . t('<span>You have searched for:</span> !keys', $options);
+    $output .= t('<span>, matching </span>!keys', $options);
   }
 
   $output .= '</p>';
