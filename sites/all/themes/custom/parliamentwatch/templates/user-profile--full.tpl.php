@@ -172,7 +172,6 @@
               </div>
             </div>
             <h3 class="deputy__candidate_check__header__parliament"><?php print $user_profile['field_user_parliament'][0]['#markup']; ?></h3>
-            <a href="https://kandidatencheck.abgeordnetenwatch.de/<?php print drupal_html_class(transliteration_get($user_profile['field_user_parliament'][0]['#markup'])); ?>" class="deputy__candidate_check__header__link" target="_blank"><i class="icon icon-link"></i> <?php print t('Go to candidate check'); ?></a>
           </div>
           <div class="deputy__candidate_check__inner swiper-wrapper">
             <?php print render($user_profile['candidate_match']); ?>

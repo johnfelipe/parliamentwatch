@@ -830,15 +830,6 @@ $abstimmverhalten-node-item-width: 18px;
     font-size: 1.4em;
   }
 }
-.deputy__candidate_check__header__link {
-  margin-top: $space-large + $space-xsmall-mobile;
-  float: right;
-  color: $mediumGray;
-  display: none;
-  @include breakpoint($breakpoint-s-min) {
-    display: block;
-  }
-}
 .deputy__candidate_check__item {
   width: 100%;
   float: left;
@@ -902,8 +893,8 @@ $abstimmverhalten-node-item-width: 18px;
 .deputy__candidate_check__footer {
   padding: $space;
   border-top: 1px solid $darkBeige;
-  @include breakpoint($breakpoint-s-min) {
-    display: none;
+  @include breakpoint($breakpoint-m-min) {
+    padding: $space $space-large;
   }
 }
 
