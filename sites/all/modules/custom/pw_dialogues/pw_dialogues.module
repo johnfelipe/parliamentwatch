@@ -485,7 +485,8 @@ function pw_dialogues_do_import_questions($source) {
  * Imports answers from the given source.
  *
  * In order to avoid checking the answers for spam the user is switched to
- * the site administrator account for the duration of the import.
+ * the site administrator account for the duration of the import. See @link
+ * https://www.drupal.org/docs/7/security/safely-impersonating-another-user.
  *
  * @param string $source
  *   The URL of the mod-tool.
