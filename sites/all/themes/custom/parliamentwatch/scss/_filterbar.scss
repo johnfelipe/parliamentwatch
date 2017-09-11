@@ -72,15 +72,6 @@
     margin-right: 0;
     border-left: 1px solid $darkBeige;
     @include transform(translate(0, 0));
-    @include breakpoint($breakpoint-xs-min) {
-      right: 0;
-    }
-    @include breakpoint($breakpoint-s-min) {
-      right: 79px;
-    }
-    @include breakpoint($breakpoint-m-min) {
-      right: 0;
-    }
     &:before {
       color: $gray;
       line-height: 57px;
