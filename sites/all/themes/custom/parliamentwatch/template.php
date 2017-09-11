@@ -884,6 +884,22 @@ function parliamentwatch_checkbox($variables) {
 }
 
 /**
+ * Overrides theme_radio().
+ */
+function parliamentwatch_radio($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'radio';
+  element_set_attributes($element, array('id', 'name', '#return_value' => 'value'));
+
+  if (isset($element['#return_value']) && $element['#value'] !== FALSE && $element['#value'] == $element['#return_value']) {
+    $element['#attributes']['checked'] = 'checked';
+  }
+  _form_set_class($element, ['form__item__control']);
+
+  return '<input' . drupal_attributes($element['#attributes']) . ' />';
+}
+
+/**
  * Overrides theme_button().
  */
 function parliamentwatch_button($variables) {
