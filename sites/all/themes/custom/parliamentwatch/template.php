@@ -969,16 +969,45 @@ function parliamentwatch_profile_search_summary(&$variables) {
   $output .= '<div class="filter-summary__content">';
 
   if ($variables['role_name'] == 'candidates') {
-    $summary = t('<span>Found @count</span> !gender <span>candidates from </span>!parties<span> and </span>!constituencies<span>.</span>', $options);
+    $summary = t('<span>Found @count</span> !gender <span>candidates from </span>!parties<span> and </span>!constituencies', $options);
     $summary_mobile = t('Found @count candidates', $options);
   }
   else {
-    $summary = t('<span>Found @count</span> !gender <span>deputies from </span>!parties<span> and </span>!constituencies<span>.</span>', $options);
+    $summary = t('<span>Found @count</span> !gender <span>deputies from </span>!parties<span> and </span>!constituencies', $options);
     $summary_mobile = t('Found @count deputies', $options);
   }
 
+  if (!empty($variables['filters']['list'])) {
+    $list = taxonomy_term_load($variables['filters']['list']);
+  }
+
+  if (!empty($variables['filters']['list_position'])) {
+    $list_position = taxonomy_term_load($variables['filters']['list_position']);
+  }
+
+  if (isset($list) && isset($list_position)) {
+    $list_link = l($list->name, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list')]);
+    $position_text = t('list position @position', ['@position' => $list_position->name]);
+    $position_link = l($position_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list_position')]);
+    $list_position_text = ' ' . t('<span>having </span>!position<span> of </span>!list', ['!position' => $position_link, '!list' => $list_link]);
+  }
+  elseif (isset($list)) {
+    $list_link = l($list->name, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list')]);
+    $list_position_text = ' ' . t('<span>of </span>!list', ['!list' => $list_link]);
+  }
+  elseif (isset($list_position)) {
+    $position_text = t('list position @position', ['@position' => $list_position->name]);
+    $position_link = l($position_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list_position')]);
+    $list_position_text = ' ' . t('<span>having </span>!position', ['!position' => $position_link]);
+  }
+  else {
+    $list_position_text = '';
+  }
+
+  $summary .= $list_position_text . '<span>.</span>';
+
   if (!empty(array_filter($variables['filters']))) {
-    $summary_mobile .= ' ' . t('filtered by:');
+    $summary_mobile .= ', ' . t('filtered by:');
   }
   else {
     $summary_mobile .= '.';
