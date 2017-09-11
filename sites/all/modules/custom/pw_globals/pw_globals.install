@@ -1149,7 +1149,7 @@ function pw_globals_update_7042() {
   $config = [
     'module' => 'pw_kandidatencheck',
     'delta' => 'teaser',
-    'weight' => -71,
+    'weight' => -71.5,
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => "<front>",
     'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
@@ -1178,7 +1178,7 @@ EOD;
       'value' => $body
     ],
     'module' => 'block',
-    'weight' => -71.5,
+    'weight' => -71,
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => '<front>',
     'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
