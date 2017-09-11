@@ -419,7 +419,7 @@ figcaption {
     bottom: 100%;
     margin-bottom: 1px;
     height: 200px;
-    @include background(linear-gradient(transparent, $white) left repeat);
+    @include background(linear-gradient(rgba(255,255,255,0), $white) left repeat);
   }
   &:after {
     content: '';
