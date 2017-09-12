@@ -73,8 +73,10 @@
   .deputy__party-indicator {
     font-size: .9em;
     text-align: center;
+    .party-indicator {
+      @include text-overflow();
+    }
   }
-
 }
 
 /* View-Mode: Detail (user_candidate) */
@@ -128,11 +130,9 @@
   /* Intro */
 
   .deputy__intro {
-    padding-bottom: $space;
     @include container();
     @include breakpoint($breakpoint-s-min) {
       @include grid-container();
-      padding-bottom: $space-large;
     }
   }
 
@@ -256,12 +256,15 @@
     }
   }
 
+  .share {
+    border-bottom: 0;
+    margin-top: $space-large;
+  }
 }
 
 
 /* Tabs */
 .deputy.detail + .tabs {
-  margin-top: $space-large;
   border-top: 1px solid $darkBeige;
   clear: both;
   .nav__item {
