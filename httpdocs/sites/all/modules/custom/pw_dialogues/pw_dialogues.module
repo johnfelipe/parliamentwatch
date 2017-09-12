@@ -185,6 +185,62 @@ function pw_dialogues_entity_presave($entity, $type) {
 }
 
 /**
+ * Implements hook_webform_submission_insert().
+ */
+function pw_dialogues_webform_submission_insert($node, $submission) {
+  if ($submission->nid == 10446){ // node id of question form
+    $queue = DrupalQueue::get('pw_dialogues_questions', TRUE);
+    $payload = array(
+      'type' => "question",
+      'recipient_id_e' => TRUE,
+      'recipient_id' => $submission->data[18][0],
+      'text' => $submission->data[13][0],
+      'topic' => $submission->data[12][0],
+      'summary' => null,
+      'context' => $submission->data[19][0],
+      'sender_first_name' => $submission->data[8][0],
+      'sender_last_name' => $submission->data[9][0],
+      'sender_email' => $submission->data[7][0],
+      'sender_city' => $submission->data[10][0],
+      'sender_ip' => $submission->remote_addr,
+      'inserted_date' => date('Y-m-d\TH:i:s', $submission->submitted)
+    );
+    $queue->createItem($payload);
+  }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function pw_dialogues_cron_queue_info() {
+  $queues['pw_dialogues_questions'] = array(
+    'worker callback' => '_pw_dialogues_questions_queue_worker',
+    'time' => 60,
+    'skip on cron' => TRUE
+  );
+  return $queues;
+}
+
+/**
+ * Implements worker callback
+ * Throws exception upon unsuccessful delivery
+ */
+function _pw_dialogues_questions_queue_worker($payload) {
+  $payload['auth_token'] = variable_get('pw_modtool_api_auth_token', 'k6ojxrp0n2v9f1cnq0f1');
+  $endpoint = variable_get('pw_modtool_api_question_endpoint', 'https://mod.parliamentwatch.org/aw/api2/message/');
+  $curl = curl_init($endpoint);
+  curl_setopt($curl, CURLOPT_POST, TRUE);
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+  $response = curl_exec($curl);
+  $response_info = curl_getinfo($curl);
+  curl_close($curl);
+  if ($response_info['http_code'] != 200) {
+    throw new Exception('Modtool API responded with a return code of ' . $response_info['http_code'] . '. The response body is: ' . $response);
+  }
+}
+
+/**
  * Implements hook_feeds_presave().
  */
 function pw_dialogues_feeds_presave(FeedsSource $source, $entity, $item) {
