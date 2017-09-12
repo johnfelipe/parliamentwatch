@@ -107,12 +107,6 @@
   </div>
   <div class="sidebar">
     <div class="sidebar__box">
-      <div class="media_embed">
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/7ccvtwBwjT0" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <p><small>Wolfgang Kubicki erzählt, wie er im Bundestag bei der Angabe seiner Zuverdienste täuschen will. Unterstützen Sie unsere Arbeit für volle Transparenz bei den Nebeneinkünften der Abgeordneten.</small></p>
-    </div>
-    <div class="sidebar__box">
       <h3 class="sidebar__box__headline">Sicherheitshinweise</h3>
       <p>Zum Schutz Ihrer Daten, erfolgt die Übertragung der Formular-Daten ausschließlich über zertifizierte SSL-Verschlüsselung.</p>
       <p><small><strong>Hinweis für SEPA-Lastschrift:</strong> Wenn Sie bis zum 13. des Monats spenden, dann ziehen wir die Spende am 15. des Monats oder am darauffolgenden Bankarbeitstag ein. Nach dem 13. des Monats ziehen wir Ihre Spende am 25. des Monats oder dem darauffolgenden Bankarbeitstag ein.</small></p>
