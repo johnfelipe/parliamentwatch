@@ -1008,10 +1008,10 @@ function parliamentwatch_profile_search_summary(&$variables) {
   }
 
   if ($variables['role_name'] == 'candidates') {
-    $summary_mobile = t('Found @count candidates', $options);
+    $summary_mobile = format_plural($variables['response']['result count'], 'Found 1 candidate', 'Found @count candidates', $options);
   }
   else {
-    $summary_mobile = t('Found @count deputies', $options);
+    $summary_mobile = format_plural($variables['response']['result count'], 'Found 1 deputy', 'Found @count deputies', $options);
   }
 
   if (!empty($variables['filters']['list'])) {
