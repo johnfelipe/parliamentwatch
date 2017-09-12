@@ -37,7 +37,7 @@ function pw_content_authoring_layout_image_default_styles() {
     'name' => 'share_image',
     'label' => 'Share-Image',
     'effects' => array(
-      5 => array(
+      1 => array(
         'label' => 'Skalierung',
         'help' => 'Eine Skalierung behält das Seitenverhältnis des Originalbildes bei. Sofern nur eine Seitenlänge angegeben ist, wird die andere berechnet.',
         'effect callback' => 'image_scale_effect',
@@ -49,11 +49,11 @@ function pw_content_authoring_layout_image_default_styles() {
         'data' => array(
           'width' => '1200',
           'height' => '',
-          'upscale' => 0,
+          'upscale' => 1,
         ),
         'weight' => '1',
       ),
-      6 => array(
+      2 => array(
         'label' => 'Zuschneiden',
         'help' => 'Das Zuschneiden wird Teile von einem Bild entfernen, um es an die angegebene Größe anpassen zu können.',
         'effect callback' => 'image_crop_effect',
