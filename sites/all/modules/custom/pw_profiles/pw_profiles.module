@@ -39,8 +39,18 @@ function pw_profiles_menu_alter(&$items) {
 
 /**
  * Implements hook_page_delivery_callback_alter().
+ *
+ * In order to ensure caching mechanisms store a distinct copy for AJAX
+ * responses the parameter ajax needs to be present. For caches evaluating Vary
+ * headers one would usually add Vary: X-Requested-With to the HTTP headers.
+ * Drupal's internal page cache uses only the request URI as an identifier
+ * though.
  */
 function pw_profiles_page_delivery_callback_alter(&$callback) {
+  if (!isset(drupal_get_query_parameters()['ajax'])) {
+    return;
+  }
+
   if (menu_get_item()['page_callback'] != 'pw_profiles_page') {
     return;
   }
@@ -604,6 +614,9 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
       );
     }
   }
+  $form['ajax'] = [
+    '#type' => 'hidden',
+  ];
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Filter profiles'),
