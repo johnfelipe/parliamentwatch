@@ -216,7 +216,7 @@ function pw_dialogues_cron_queue_info() {
   $queues['pw_dialogues_questions'] = array(
     'worker callback' => '_pw_dialogues_questions_queue_worker',
     'time' => 60,
-    'skip on cron' => TRUE
+    'skip on cron' => variable_get('pw_modtool_api_skip_on_cron', TRUE)
   );
   return $queues;
 }
@@ -226,8 +226,8 @@ function pw_dialogues_cron_queue_info() {
  * Throws exception upon unsuccessful delivery
  */
 function _pw_dialogues_questions_queue_worker($payload) {
-  $payload['auth_token'] = variable_get('pw_modtool_api_auth_token', 'k6ojxrp0n2v9f1cnq0f1');
-  $endpoint = variable_get('pw_modtool_api_question_endpoint', 'https://mod.parliamentwatch.org/aw/api2/message/');
+  $payload['auth_token'] = variable_get('pw_modtool_api_auth_token');
+  $endpoint = variable_get('pw_modtool_api_question_endpoint');
   $curl = curl_init($endpoint);
   curl_setopt($curl, CURLOPT_POST, TRUE);
   curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
