@@ -1594,8 +1594,10 @@
         var path = $(this).parents('form').attr('action');
         var search = $(this).parents('form').serialize();
         var target = $(this).parents('form').data('ajax-target');
-        var url = path + '?' + search ;
-        $(target).load(url + ' ' + target + ' > *', function () {
+        var url = path + '?' + search;
+        var ajaxUrl = search ? url + '&ajax=' : '?ajax=';
+
+        $(target).load(ajaxUrl + ' ' + target + ' > *', function () {
           Drupal.attachBehaviors(target, {url: url});
           removeTileWrapperLoader();
         });
@@ -1605,7 +1607,9 @@
         addTileWrapperLoader();
         var target = $(this).data('ajax-target');
         var url = $(this).attr('href');
-        $(target).load(url  + ' ' + target + ' > *', function () {
+        var ajaxUrl = this.search ? url + '&ajax=' : '?ajax=';
+
+        $(target).load(ajaxUrl  + ' ' + target + ' > *', function () {
           Drupal.attachBehaviors(target, {url: url});
           removeTileWrapperLoader();
         });

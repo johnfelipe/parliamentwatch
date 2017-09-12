@@ -614,9 +614,6 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
       );
     }
   }
-  $form['ajax'] = [
-    '#type' => 'hidden',
-  ];
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Filter profiles'),
