@@ -215,7 +215,7 @@ function pw_dialogues_webform_submission_insert($node, $submission) {
 function pw_dialogues_cron_queue_info() {
   $queues['pw_dialogues_questions'] = array(
     'worker callback' => '_pw_dialogues_questions_queue_worker',
-    'time' => 60,
+    'time' => variable_get('pw_modtool_api_queue_run_time', 60),
     'skip on cron' => variable_get('pw_modtool_api_skip_on_cron', TRUE)
   );
   return $queues;
