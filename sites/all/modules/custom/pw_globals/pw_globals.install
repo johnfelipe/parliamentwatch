@@ -1195,6 +1195,41 @@ EOD;
   _pw_globals_configure_block($config);
 }
 
+
+/**
+ * Add custom block for parliament election of lower saxony.
+ */
+function pw_globals_update_7044() {
+  $body = <<<EOD
+<div class="lp-teaser lp-teaser--election">
+  <p>Auch in <a href="/niedersachsen"><i class="icon icon-de-ni">&nbsp;</i> <strong>Niedersachsen</strong></a> sind Wahlen. Befragen Sie Ihre Kandiierenden auch dort.</p>
+  <p><a href="/niedersachsen" class="btn btn--white">Zum Wahlportal Niedersachsen</a></p>
+</div>
+EOD;
+  $config = [
+    'info' => 'Election: lower saxony',
+    'body' => [
+      'format' => 'full_html',
+      'value' => $body
+    ],
+    'module' => 'block',
+    'weight' => -80,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '<front>',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+    'title' => '',
+    'regions' => ['parliamentwatch' => 'content'],
+  ];
+  $config['delta'] = db_insert('block_custom')
+    ->fields(array(
+      'info' => $config['info'],
+      'body' => $config['body']['value'],
+      'format' => $config['body']['format'],
+    ))
+    ->execute();
+  _pw_globals_configure_block($config);
+}
+
 /**
  * Adds a new menu block.
  *

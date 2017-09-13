@@ -456,6 +456,38 @@
   }
 }
 
+.lp-teaser--election {
+  background: $orangeBG;
+  padding-top: $space-small;
+  padding-bottom: $space-small;
+  p:first-child {
+    color: $white;
+    margin-bottom: 0;
+    @include grid-column(12);
+    @include breakpoint($breakpoint-m-min) {
+      padding-top: $space-xsmall;
+      @include grid-column(8);
+    }
+    a {
+      font-weight: 500;
+      color: $white;
+    }
+  }
+  p:last-child {
+    display: none;
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-column(4);
+      display: block;
+    }
+  }
+  .icon {
+    color: $white;
+    font-size: 1.2em;
+    margin-left: $space-xsmall-mobile;
+    margin-right: $space-xsmall-mobile - 2;
+  }
+}
+
 
 .lp-blog {
   clear: both;
