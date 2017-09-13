@@ -127,12 +127,12 @@
   }
   .link-icon {
     font-weight: 300;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    display: inline-block;
     text-align: center;
+    margin-right: auto;
+    margin-top: $space-xsmall;
+    margin-left: $space;
     @include breakpoint($breakpoint-s-min) {
-      margin-left: $space-xsmall;
       text-align: left;
     }
   }
