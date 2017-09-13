@@ -198,6 +198,9 @@ function pw_parser_edit_sidejobs_replace($form, &$form_state) {
 
   $nid = substr(strrchr($form_state['triggering_element']['#name'], '-'), 1);
   $form_state['node'] = node_load($nid);
+  $form_state['node']->date = format_date($form_state['node']->created, 'custom', 'Y-m-d H:i:s O');
+  $form_state['values']['nid'] = $form_state['node']->nid;
+  $form_state['values']['vid'] = $form_state['node']->vid;
 
   $node = node_form_submit_build_node($form, $form_state);
   node_save($node);
