@@ -129,12 +129,14 @@ function pw_parser_edit_sidejobs_form($form, &$form_state, $account) {
     '#suffix' => '</div>'
   );
 
+  $weight = 0;
+
   foreach (pw_sidejobs_load($account) as $sidejob) {
     $elements = node_view($sidejob, 'tabular');
     $form['list']['#weight'] = 100;
     $form['list'][$sidejob->nid] = array(
       '#type' => 'container',
-      '#weight' => isset($_REQUEST['edit']) ? _pw_parser_edit_sidejob_matching_score($sidejob, $_REQUEST['edit']) : 0,
+      '#weight' => isset($_REQUEST['edit']) ? _pw_parser_edit_sidejob_matching_score($sidejob, $_REQUEST['edit']) : $weight++,
     );
     $form['list'][$sidejob->nid]['node'] = array(
       '#markup' => drupal_render($elements),
