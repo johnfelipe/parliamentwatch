@@ -27,6 +27,7 @@
   .deputy__image {
     @include margin(null auto $space);
     @include image-circle(130px, 130px);
+    max-width: 300px;
   }
   .deputy__title {
     text-align: center;
@@ -249,6 +250,7 @@
       display: block;
       margin-bottom: $space-small-mobile;
       width: 100%;
+      max-width: 300px;
     }
     @media (max-width: $breakpoint-s-max) {
       @include image-circle(130px, 130px);

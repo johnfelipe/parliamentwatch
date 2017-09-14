@@ -14,7 +14,7 @@
   @include transform(translate3d(0,0,0));
   img {
     width: 100%;
-    max-width: none;
+    max-width: 800px;
     position: relative;
     top: 50%;
     transform: translate(0, -50%);
