@@ -1202,7 +1202,7 @@ EOD;
 function pw_globals_update_7044() {
   $body = <<<EOD
 <div class="lp-teaser lp-teaser--election">
-  <p>Auch in <a href="/niedersachsen"><i class="icon icon-de-ni">&nbsp;</i> <strong>Niedersachsen</strong></a> sind Wahlen. Befragen Sie Ihre Kandidierenden auch dort.</p>
+  <p>Auch in <a href="/niedersachsen"><i class="icon icon-de-ni">&nbsp;</i> <strong>Niedersachsen</strong></a> sind Landtagswahlen. Befragen Sie Ihre Kandidierenden auch dort.</p>
   <p><a href="/niedersachsen" class="btn btn--white">Zum Wahlportal Niedersachsen</a></p>
 </div>
 EOD;
