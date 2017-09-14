@@ -493,42 +493,40 @@
    */
   Drupal.behaviors.swiperTile = {
     attach: function () {
-      $(window).load(function(){
-        $('.swiper-container--tile').each(function (index, element) {
-          var $this = $(this);
-          $this.swiper({
-            slideClass: 'tile',
-            loop: false,
-            spaceBetween: 20,
-            slidesPerView: 3,
-            slidesPerGroup: 3,
-            nextButton: $this.find('.swiper-button-next'),
-            prevButton: $this.find('.swiper-button-prev'),
-            pagination: $this.find('.swiper-pagination'),
-            paginationType: 'fraction',
-            breakpoints: {
-              550: {
-                slidesPerView: 1,
-                slidesPerGroup: 1
-              },
-              768: {
-                slidesPerView: 2,
-                slidesPerGroup: 2
-              },
-              992: {
-                slidesPerView: 2,
-                slidesPerGroup: 2
-              },
-              1200: {
-                slidesPerView: 3,
-                slidesPerGroup: 3
-              }
+      $('.swiper-container--tile').each(function (index, element) {
+        var $this = $(this);
+        $this.swiper({
+          slideClass: 'tile',
+          loop: false,
+          spaceBetween: 20,
+          slidesPerView: 3,
+          slidesPerGroup: 3,
+          nextButton: $this.find('.swiper-button-next'),
+          prevButton: $this.find('.swiper-button-prev'),
+          pagination: $this.find('.swiper-pagination'),
+          paginationType: 'fraction',
+          breakpoints: {
+            550: {
+              slidesPerView: 1,
+              slidesPerGroup: 1
             },
-            onInit: function () {
-              $('.question__question').matchHeight();
-              $('.question__answer').matchHeight();
+            768: {
+              slidesPerView: 2,
+              slidesPerGroup: 2
+            },
+            992: {
+              slidesPerView: 2,
+              slidesPerGroup: 2
+            },
+            1200: {
+              slidesPerView: 3,
+              slidesPerGroup: 3
             }
-          });
+          },
+          onInit: function () {
+            $('.question__question').matchHeight();
+            $('.question__answer').matchHeight();
+          }
         });
       });
     }
@@ -1458,27 +1456,25 @@
    */
   Drupal.behaviors.candidateCheck = {
     attach: function (context) {
-      $(window).load(function(){
-        $('.deputy__candidate_check', context).once('candidateCheck', function () {
-          var candidateCheckSwiper = $(this);
-          var mySwiper = new Swiper('.deputy__candidate_check', {
-            speed: 400,
-            slidesPerView: 1,
-            autoHeight: 1,
-            nextButton: candidateCheckSwiper.find('.swiper-button-next'),
-            prevButton: candidateCheckSwiper.find('.swiper-button-prev'),
-            pagination: candidateCheckSwiper.find('.swiper-pagination'),
-            paginationType: 'fraction',
-            paginationFractionRender: function (swiper, currentClassName, totalClassName) {
-              return Drupal.t('Proposition') + ' <span class="' + currentClassName + '"></span> ' +
-                Drupal.t('of') +
-                ' <span class="' + totalClassName + '"></span>';
-            },
-            onInit: function (swiper) {
-            },
-            onAfterResize: function (swiper) {
-            }
-          });
+      $('.deputy__candidate_check', context).once('candidateCheck', function () {
+        var candidateCheckSwiper = $(this);
+        var mySwiper = new Swiper('.deputy__candidate_check', {
+          speed: 400,
+          slidesPerView: 1,
+          autoHeight: 1,
+          nextButton: candidateCheckSwiper.find('.swiper-button-next'),
+          prevButton: candidateCheckSwiper.find('.swiper-button-prev'),
+          pagination: candidateCheckSwiper.find('.swiper-pagination'),
+          paginationType: 'fraction',
+          paginationFractionRender: function (swiper, currentClassName, totalClassName) {
+            return Drupal.t('Proposition') + ' <span class="' + currentClassName + '"></span> ' +
+              Drupal.t('of') +
+              ' <span class="' + totalClassName + '"></span>';
+          },
+          onInit: function (swiper) {
+          },
+          onAfterResize: function (swiper) {
+          }
         });
       });
     }
