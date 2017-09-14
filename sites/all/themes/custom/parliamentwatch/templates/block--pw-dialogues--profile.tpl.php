@@ -53,6 +53,7 @@
     <?php endif; ?>
   </div>
   <div class="tabs__content__content">
+    <a href="<?php print $block->overview_url; ?>" class="btn btn--white btn--mobile-block">Alle Fragen in der Übersicht</a>
     <?php print $content; ?>
   </div>
 </section>

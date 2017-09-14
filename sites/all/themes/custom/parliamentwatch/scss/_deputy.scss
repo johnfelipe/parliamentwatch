@@ -280,7 +280,7 @@
   }
   .tabs__content {
     .question-side__item {
-      border-top: 1px solid $darkGray;
+      border-top: 1px solid $white;
       padding-top: $space;
       margin-top: $space;
       @include breakpoint($breakpoint-s-min) {
@@ -339,6 +339,16 @@
   h2, h2 a { color: $white; }
   h2 a {
     border-color: $white;
+  }
+  .tabs__content__content > .btn {
+    display: block;
+    margin-bottom: $space;
+    margin-left: $space;
+    margin-right: $space;
+    width: auto;
+    @include breakpoint($breakpoint-m-min) {
+      display: none;
+    }
   }
   .option-title {
     .select2-container--default .select2-selection--multiple { border-color: $orangeBG; }

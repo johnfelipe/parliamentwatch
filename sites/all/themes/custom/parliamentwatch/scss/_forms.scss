@@ -72,8 +72,16 @@
 /* Type: Radio */
 
 .form__item--radio {
+  @include grid-container();
   .form-radio {
     margin-right: $space-xsmall-mobile;
+  }
+  .form__item__control {
+    float: left;
+    border: 0;
+    width: auto;
+    margin-right: $space-xsmall-mobile;
+    padding: 0;
   }
 }
 
