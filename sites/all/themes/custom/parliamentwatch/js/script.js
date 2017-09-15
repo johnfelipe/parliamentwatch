@@ -1458,8 +1458,8 @@
    */
   Drupal.behaviors.candidateCheck = {
     attach: function (context) {
-      $('.deputy__candidate_check', context).once('candidateCheck', function () {
-        $(window).load(function(){
+      $(window).load(function(){
+        $('.deputy__candidate_check', context).once('candidateCheck', function () {
           var candidateCheckSwiper = $(this);
           var mySwiper = new Swiper('.deputy__candidate_check', {
             speed: 400,
