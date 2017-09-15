@@ -78,6 +78,9 @@ function pw_parliaments_block_list_alter(&$blocks) {
 function pw_parliaments_taxonomy_term_page($term) {
   if ($term->vocabulary_machine_name == 'parliaments') {
     if (pw_parliaments_is_funded($term)) {
+      // Ensure side effects of taxonomy_term_view like generation of metatags
+      // are triggered.
+      taxonomy_term_view($term);
       return '';
     }
     else {
