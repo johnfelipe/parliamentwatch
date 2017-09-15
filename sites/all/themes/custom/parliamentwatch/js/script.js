@@ -623,6 +623,31 @@
   };
 
   /**
+   * Attaches the autosuggest behavior to form inputs.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.geolocate = {
+    attach: function () {
+      var geolocate = function(){
+        console.log('test');
+        window.navigator.geolocation.getCurrentPosition(function(p){
+          $('.form--pw-globals-politician-search-form').addClass('loading');
+          $.getJSON('//nominatim.openstreetmap.org/reverse?format=json&lat='+p.coords.latitude+'&lon='+p.coords.longitude+'&zoom=18&addressdetails=1&email=admin@abgeordnetenwatch.de',
+            function(r) {
+              $('.form--pw-globals-politician-search-form .form__item__control').val(r.address.postcode);
+            });
+          $('.form--pw-globals-politician-search-form').removeClass('loading');
+        });
+      };
+      $('[data-geolocate]').click(geolocate);
+    }
+  };
+
+
+  /**
    * Attaches the deputy detail behavior to deputy detail views.
    *
    * @type {Drupal~behavior}

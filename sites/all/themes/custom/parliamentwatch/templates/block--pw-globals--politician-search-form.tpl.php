@@ -52,7 +52,7 @@
   <div class="lp-header__right">
     <h2><?php print $block->subject; ?></h2>
     <?php print $content; ?>
-    <p><a href="#" class="link-icon"><i class="icon icon-map-marker"></i> <?php print t('Use current location'); ?></a></p>
+    <p><a href="#" class="link-icon" data-geolocate><i class="icon icon-map-marker"></i> <?php print t('Use current location'); ?></a></p>
   </div>
   <div class="lp-header__bg"></div>
 </div>
