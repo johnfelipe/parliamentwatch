@@ -702,6 +702,8 @@ $abstimmverhalten-node-item-width: 18px;
 
 .deputy__candidate_check {
   @include grid-column(12);
+  float: none;
+  width: 100%;
 }
 
 /* Political goal */
@@ -894,7 +896,6 @@ $abstimmverhalten-node-item-width: 18px;
 .deputy__candidate_check__item__position__info__image {
   display: none;
   @include breakpoint($breakpoint-s-min) {
-    display: block;
     @include image-circle(75px, 75px);
     border-width: 3px;
     position: absolute;
