@@ -106,13 +106,13 @@
   }
 }
 .qa-stats__col {
-  margin-bottom: $space;
+  margin-bottom: $space-large;
   @include grid-column(12, $neat-grid-no-gutter);
   @include breakpoint($breakpoint-xs-min) {
-    margin-bottom: 0;
     @include grid-column(6, $neat-grid-no-gutter);
   }
   @include breakpoint($breakpoint-m-min) {
+    margin-bottom: 0;
     @include grid-column(3, $neat-grid-no-gutter);
   }
   @include breakpoint($breakpoint-l-min) {
@@ -120,12 +120,16 @@
   }
 }
 .qa-stats__col--large {
+  clear: both;
   margin-bottom: 0;
-  @include breakpoint($breakpoint-xs-min) {
-    @include grid-column(6, $neat-grid-no-gutter);
-  }
+  padding-top: $space-large;
+  border-top: 1px solid rgba(255,255,255,.4);
   @include breakpoint($breakpoint-m-min) {
+    clear: none;
+    border-top: 0;
+    padding-top: $space-xsmall-mobile;
     padding-left: 6%;
+    @include grid-column(6, $neat-grid-no-gutter);
   }
   strong {
     display: block;
