@@ -323,6 +323,11 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     }
   }
 }
+.tile__share__list__item--whatsapp {
+  @include breakpoint($breakpoint-s-min) {
+    display: none;
+  }
+}
 
 .tile__share__list__item--facebook a .icon { background: #3953a1; }
 .tile__share__list__item--twitter a .icon { background: #25b7f9; }
