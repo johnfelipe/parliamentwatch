@@ -297,6 +297,27 @@ textarea.form__item__control {
       width: 10%;
     }
   }
+
+  &.loading {
+    position: relative;
+    &:before {
+      content: '\f110';
+      font-family: 'awfont';
+      display: block;
+      color: $gray;
+      text-align: center;
+      width: 32px;
+      height: 32px;
+      margin-top: -16px;
+      line-height: 32px;
+      position: absolute;
+      right: 10%;
+      z-index: 9;
+      top: 50%;
+      margin-right: $space-small;
+      @include animation(spin 1s linear infinite);
+    }
+  }
 }
 
 
