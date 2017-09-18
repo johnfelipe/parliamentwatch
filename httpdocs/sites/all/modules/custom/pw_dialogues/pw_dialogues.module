@@ -229,8 +229,8 @@ function _pw_dialogues_questions_queue_worker($payload) {
   $payload['auth_token'] = variable_get('pw_modtool_api_auth_token');
   $endpoint = variable_get('pw_modtool_api_question_endpoint');
   $curl = curl_init($endpoint);
-  curl_setopt($curl, CURLOPT_POST, TRUE);
-  curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+  curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
   $response = curl_exec($curl);
   $response_info = curl_getinfo($curl);
