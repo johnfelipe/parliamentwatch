@@ -156,13 +156,28 @@
       padding-bottom: $space-large * 2;
     }
   }
+
   .question__answer {
     @include grid-column(12);
+    + a {
+      clear: both;
+      display: block;
+      margin-top: $space-large * 2;
+    }
   }
   .question__answer__author {
     padding-bottom: $space;
     margin-bottom: $space-large;
     border-bottom: 1px solid $gray;
+    @include grid-container();
+    span {
+      padding-top: $space-xsmall-mobile;
+      display: block;
+      color: $mediumGray;
+      @include breakpoint($breakpoint-s-min) {
+        float: right;
+      }
+    }
   }
   .question__answer__default_hint {
     border-top: 1px solid $gray;

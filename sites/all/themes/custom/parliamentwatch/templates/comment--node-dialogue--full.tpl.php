@@ -59,26 +59,55 @@
  * @ingroup themeable
  */
 ?>
-<div class="question__answer mh-item-tile" data-mh="questionAnswer">
-  <p class="question__answer__author">
-    <?php if (!empty(trim(render($user_picture)))): ?><span class="question__answer__author__image"><?php print render($user_picture); ?></span><?php endif; ?>
-    Antwort von <strong><?php print render($content['field_dialogue_sender_fullname']); ?></strong>
-  </p>
-  <?php print render($content['field_dialogue_comment_body']); ?>
-  <?php if ($content['field_dialogue_is_standard_reply']['#items'][0]['value'] == 1): ?>
-    <p class="question__answer__default_hint"><?php print t('This answer is a standardized text, which does not answer the actual question and will not be counted.'); ?></p>
-  <?php endif; ?>
-</div>
 
-<?php if (!empty($content['field_dialogue_documents'])): ?>
-  <div class="question__documents">
-    <h3><?php print t('Documents') ?></h3>
-    <?php print render($content['field_dialogue_documents']); ?>
+<?php if ($comment->thread === '01/'): ?>
+  <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+    <p class="question__answer__author">
+      <?php if (!empty(trim(render($user_picture)))): ?><span class="question__answer__author__image"><?php print render($user_picture); ?></span><?php endif; ?>
+      <?php print t('Reply by') ?><strong><?php print render($content['field_dialogue_sender_fullname']); ?></strong>
+      <span><?php print format_date($comment->created, $type = 'custom', $format = 'd.m.Y'); ?></span>
+    </p>
+    <?php print render($content['field_dialogue_comment_body']); ?>
+    <?php if ($content['field_dialogue_is_standard_reply']['#items'][0]['value'] == 1): ?>
+      <p class="question__answer__default_hint"><?php print t('This answer is a standardized text, which does not answer the actual question and will not be counted.'); ?></p>
+    <?php endif; ?>
   </div>
-<?php endif; ?>
-<?php if (!empty($content['field_dialogue_annotation'])): ?>
-  <div class="question__annotation">
-    <h3><?php print t("Editor's note") ?></h3>
-    <?php print render($content['field_dialogue_annotation']); ?>
+
+  <?php if (!empty($content['field_dialogue_documents'])): ?>
+    <div class="question__documents">
+      <h3><?php print t('Documents') ?></h3>
+      <?php print render($content['field_dialogue_documents']); ?>
+    </div>
+  <?php endif; ?>
+  <?php if (!empty($content['field_dialogue_annotation'])): ?>
+    <div class="question__annotation">
+      <h3><?php print t("Editor's note") ?></h3>
+      <?php print render($content['field_dialogue_annotation']); ?>
+    </div>
+  <?php endif; ?>
+<?php else: ?>
+  <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+    <p class="question__answer__author">
+      <?php if (!empty(trim(render($user_picture)))): ?><span class="question__answer__author__image"><?php print render($user_picture); ?></span><?php endif; ?>
+      <?php print t('Addition by') ?> <strong><?php print render($content['field_dialogue_sender_fullname']); ?></strong>
+      <span><?php print format_date($comment->created, $type = 'custom', $format = 'd.m.Y'); ?></span>
+    </p>
+    <?php print render($content['field_dialogue_comment_body']); ?>
+    <?php if ($content['field_dialogue_is_standard_reply']['#items'][0]['value'] == 1): ?>
+      <p class="question__answer__default_hint"><?php print t('This answer is a standardized text, which does not answer the actual question and will not be counted.'); ?></p>
+    <?php endif; ?>
   </div>
+
+  <?php if (!empty($content['field_dialogue_documents'])): ?>
+    <div class="question__documents">
+      <h3><?php print t('Documents') ?></h3>
+      <?php print render($content['field_dialogue_documents']); ?>
+    </div>
+  <?php endif; ?>
+  <?php if (!empty($content['field_dialogue_annotation'])): ?>
+    <div class="question__annotation">
+      <h3><?php print t("Editor's note") ?></h3>
+      <?php print render($content['field_dialogue_annotation']); ?>
+    </div>
+  <?php endif; ?>
 <?php endif; ?>
