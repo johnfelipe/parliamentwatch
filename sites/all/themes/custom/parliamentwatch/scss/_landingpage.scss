@@ -128,13 +128,9 @@
   .link-icon {
     font-weight: 300;
     display: inline-block;
-    text-align: center;
     margin-right: auto;
-    margin-top: $space-xsmall;
     margin-left: $space;
-    @include breakpoint($breakpoint-s-min) {
-      text-align: left;
-    }
+    padding-top: $space-xsmall-mobile;
   }
 }
 .lp-header__bg {
