@@ -102,12 +102,12 @@
       <li class="tile__share__list__item tile__share__list__item--mail"><a href="mailto:?&subject=abgeordnetenwatch.de&body=<?php print drupal_encode_path(url($node_url,array('absolute'=>TRUE))); ?>" target="_blank"><i class="icon icon-mail"></i> <?php print t('E-Mail') ?></a></li>
     </ul>
   </div>
-  <?php if (empty($content['answer'])): ?>
+  <?php if (empty($content['answers'])): ?>
   <div class="question__answer mh-item-tile" data-mh="questionAnswer">
     <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
   </div>
   <?php else: ?>
-    <?php print render($content['answer']); ?>
+    <?php print render($content['answers']); ?>
   <?php endif; ?>
   <ul class="question__links tile__links tile__links--2">
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('details'); ?></a></li>

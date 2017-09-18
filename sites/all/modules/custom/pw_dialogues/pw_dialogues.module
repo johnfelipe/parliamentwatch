@@ -144,10 +144,15 @@ function pw_dialogues_node_view($node, $view_mode) {
     return;
   }
 
-  $comment = pw_dialogues_answer($node);
+  $comments = pw_dialogues_answers($node);
 
-  if ($comment) {
-    $node->content['answer'] = comment_view($comment, $node, $view_mode);
+  if ($comments) {
+    if ($view_mode == 'full') {
+      $node->content['answers'] = comment_view_multiple($comments, $node, $view_mode);
+    }
+    else {
+      $node->content['answers'] = comment_view_multiple(array_slice($comments, 0, 1), $node, $view_mode);
+    }
   }
 
   if (node_is_page($node)) {
@@ -562,27 +567,27 @@ function pw_dialogues_by_parliament_query($term) {
 }
 
 /**
- * Returns the answer to the given question.
+ * Returns the answers to the given question.
  *
  * @param object $node
  *   The dialogue node.
  *
- * @return object
- *   The comment by the politician.
+ * @return array
+ *   The answers.
  */
-function pw_dialogues_answer($node) {
+function pw_dialogues_answers($node) {
   $q = new EntityFieldQuery();
   $q->entityCondition('entity_type', 'comment');
   $q->propertyCondition('status', COMMENT_PUBLISHED);
   $q->propertyCondition('nid', $node->nid);
-  $q->range(0, 1);
+  $q->propertyOrderBy('created');
   $q->addTag('node_access');
   $q->addTag('comment_filter');
 
   $result = $q->execute();
 
   if (!empty($result['comment'])) {
-    return comment_load(key($result['comment']));
+    return comment_load_multiple(array_keys($result['comment']));
   }
 }
 

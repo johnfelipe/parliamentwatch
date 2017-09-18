@@ -112,12 +112,12 @@
     </div>
   </div>
   <div class="question__answer-wrapper">
-    <?php if (empty($content['answer'])): ?>
+    <?php if (empty($content['answers'])): ?>
       <div class="question__answer">
         <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
       </div>
     <?php else: ?>
-      <?php print render($content['answer']); ?>
+      <?php print render($content['answers']); ?>
     <?php endif; ?>
   </div>
   <div class="share">
