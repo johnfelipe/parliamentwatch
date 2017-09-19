@@ -683,6 +683,78 @@
     }
   };
 
+
+
+  /**
+   * Attaches the item expander behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.expander = {
+    attach: function (context) {
+      $('[data-expander]', context).once('expander', function () {
+        var itemCount = $(this).data('expander-count');
+        var items = $(this).find('[data-expander-item]');
+        var lastShowedItem = $(this).find('[data-expander-item]:nth-child('+ itemCount + ')');
+        var showButton = $('<a class="btn btn--small-white">' + Drupal.t('Show more') + '</a>');
+        var hideButton = $('<a class="btn btn--small-white" style="display: none;">' + Drupal.t('Show less') + '</a>');
+
+
+        // Add cta
+        showButton.insertAfter(lastShowedItem).click(function() {
+          // Show hidden elements
+          items.each(function(index) {
+            index ++;
+            if (index > itemCount) {
+              $(this).show();
+            }
+          });
+          $(this).hide();
+          hideButton.show();
+        });
+
+        hideButton.appendTo($(this)).click(function() {
+          // Hide hidden elements
+          items.each(function(index) {
+            index ++;
+            if (index > itemCount) {
+              $(this).hide();
+            }
+          });
+          $(this).hide();
+          showButton.show();
+        });
+
+        // Hide all items after cta
+        items.each(function(index) {
+          index ++;
+          if (index > itemCount) {
+            $(this).hide();
+          }
+        });
+      });
+    }
+  };
+
+  /**
+   * Attaches the single vertical bar behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.verticalBar = {
+    attach: function (context) {
+      $('.vertical-bar').each(function() {
+        var value = $(this).data('value');
+        $(this).find('span').css('width', value + '%');
+      });
+    }
+  };
+
+
   /**
    * Attaches the D3 vertical bars behavior.
    *
