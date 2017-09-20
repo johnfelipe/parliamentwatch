@@ -746,6 +746,11 @@ function pw_dialogues_topics_by_parliament($term) {
  *   The parliament term.
  */
 function pw_dialogues_party_ratios_by_parliament($term) {
+  $party_ratios = [
+    'in_previous_parliament' => [],
+    'not_in_previous_parliament' => []
+  ];
+
   $today = new DateTime();
   $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
   $before_election = ($today < $election_date) ? 1 : 0;
@@ -792,7 +797,16 @@ function pw_dialogues_party_ratios_by_parliament($term) {
   ));
   $result = $q->execute();
 
-  return $result->fetchAllAssoc('party');
+  foreach ($result as $row) {
+    if ($row->is_top_party == '1') {
+      $party_ratios['in_previous_parliament'][$row->party] = $row;
+    }
+    else {
+      $party_ratios['not_in_previous_parliament'][$row->party] = $row;
+    }
+  }
+
+  return $party_ratios;
 }
 
 /**
