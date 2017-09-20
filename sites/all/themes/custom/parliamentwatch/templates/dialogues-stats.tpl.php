@@ -14,7 +14,9 @@
  */
 ?>
 <div class="qa-stats">
+  <?php if (!empty($answer_ratio_by_party)): ?>
   <div class="qa-stats__left">
+  <?php endif; ?>
     <div class="qa-stats__col">
       <div class="hstats__item hstats__item--donut-digit">
         <div class="hstats__item__display mh-item-nr" data-mh="qa_hstats">
@@ -49,44 +51,24 @@
             data-height='100'
             data-fill-colour='ffffff'
             data-stroke-colour='f68a66'>
-      <span class="tooltip d3__tooltip"></span>
-    </span>
+        <span class="tooltip d3__tooltip"></span>
+      </span>
     </div>
+  <?php if (!empty($answer_ratio_by_party)): ?>
   </div>
   <div class="qa-stats__right">
     <div class="qa-stats__col qa-stats__col--large">
       <div class="qa-stats-behavior" data-expander data-expander-count="3">
+        <?php foreach ($answer_ratio_by_party as $party => $data): ?>
         <div class="qa-stats-behavior__item" data-expander-item>
-          <div class="qa-stats-behavior__item__party"><span>SPD</span> (78 <?php print t('Candidates') ?>)</div>
-          <div class="vertical-bar" data-value="82"><span></span></div>
-          <div class="qa-stats-behavior__item__info">507 <?php print t('Questions') ?> / 438 <?php print t('Answers') ?></div>
-          <div class="qa-stats-behavior__item__info-sub">86,39% <?php print t('answered') ?></div>
+          <div class="qa-stats-behavior__item__party"><span><?php print format_plural($data->count_politicians, '<span>@party</span> (1 candidate)', '<span>@party</span> (@count candidates)', ['@party' => $party]); ?></div>
+          <div class="vertical-bar" data-value="<?php print $data->percentage; ?>"><span></span></div>
+          <div class="qa-stats-behavior__item__info"><?php print t('@count_answers answers / @count_questions questions', ['@count_questions' => $data->count_questions, '@count_answers' => $data->count_answers]); ?></div>
+          <div class="qa-stats-behavior__item__info-sub"><?php print t('@percentage % answered', ['@percentage' => round($data->percentage, 2)]) ?></div>
         </div>
-        <div class="qa-stats-behavior__item" data-expander-item>
-          <div class="qa-stats-behavior__item__party"><span>CDU</span> (78 <?php print t('Candidates') ?>)</div>
-          <div class="vertical-bar" data-value="75"><span></span></div>
-          <div class="qa-stats-behavior__item__info">507 <?php print t('Questions') ?> / 438 <?php print t('Answers') ?></div>
-          <div class="qa-stats-behavior__item__info-sub">86,39% <?php print t('answered') ?></div>
-        </div>
-        <div class="qa-stats-behavior__item" data-expander-item>
-          <div class="qa-stats-behavior__item__party"><span>Die Linke</span> (78 <?php print t('Candidates') ?>)</div>
-          <div class="vertical-bar" data-value="71"><span></span></div>
-          <div class="qa-stats-behavior__item__info">507 <?php print t('Questions') ?> / 438 <?php print t('Answers') ?></div>
-          <div class="qa-stats-behavior__item__info-sub">86,39% <?php print t('answered') ?></div>
-        </div>
-        <div class="qa-stats-behavior__item" data-expander-item>
-          <div class="qa-stats-behavior__item__party"><span>FDP</span> (78 <?php print t('Candidates') ?>)</div>
-          <div class="vertical-bar" data-value="65"><span></span></div>
-          <div class="qa-stats-behavior__item__info">507 <?php print t('Questions') ?> / 438 <?php print t('Answers') ?></div>
-          <div class="qa-stats-behavior__item__info-sub">86,39% <?php print t('answered') ?></div>
-        </div>
-        <div class="qa-stats-behavior__item" data-expander-item>
-          <div class="qa-stats-behavior__item__party"><span>SPD</span> (78 <?php print t('Candidates') ?>)</div>
-          <div class="vertical-bar" data-value="55"><span></span></div>
-          <div class="qa-stats-behavior__item__info">507 <?php print t('Questions') ?> / 438 <?php print t('Answers') ?></div>
-          <div class="qa-stats-behavior__item__info-sub">86,39% <?php print t('answered') ?></div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>
+  <?php endif; ?>
 </div>
