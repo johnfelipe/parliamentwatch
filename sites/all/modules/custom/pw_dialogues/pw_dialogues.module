@@ -232,6 +232,7 @@ function pw_dialogues_theme() {
         'questions' => NULL,
         'answers' => NULL,
         'answer_ratio' => NULL,
+        'answer_ratio_by_party' => NULL,
         'average_response_time' => NULL,
       ],
       'template' => 'dialogues-stats',
@@ -450,6 +451,7 @@ function pw_dialogues_recent_block() {
       '#questions' => $questions,
       '#answers' => $answers,
       '#answer_ratio' => round(100 * $answers / $questions, 0),
+      '#answer_ratio_by_party' => pw_dialogues_party_ratios_by_parliament($term),
       '#average_response_time' => round(pw_dialogues_average_response_time_by_parliament($term) / 86400),
       '#weight' => -5,
     ];
@@ -729,6 +731,62 @@ function pw_dialogues_topics_by_parliament($term) {
   $q->groupBy('t.field_dialogue_topic_tid');
 
   return $q->execute()->fetchAllKeyed();
+}
+
+/**
+ * Returns answer ratios by party for the given parliament term.
+ *
+ * @param object $term
+ *   The parliament term.
+ */
+function pw_dialogues_party_ratios_by_parliament($term) {
+  $today = new DateTime();
+  $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
+  $before_election = ($today < $election_date) ? 1 : 0;
+
+  $parties_in_previous_parliament = [];
+  if ($before_election && $field_previous_parliament = field_get_items('taxonomy_term', $term, 'field_parliament_previous')){
+    $previous_parliament = taxonomy_term_load($field_previous_parliament[0]['tid']);
+    if ($previous_parliament){
+      $q = db_select('user_archive_cache', 'uac');
+      $q->join('field_revision_field_user_party', 'f_party', "uac.vid = f_party.revision_id AND f_party.entity_type = 'user'");
+      $q->fields('f_party', ['field_user_party_tid']);
+      _pw_uac_add_conditions($q, array(
+        'parliament' => $previous_parliament->name,
+        'roles' => 'deputy',
+        'date' => date('Y-m-d'),
+      ));
+      $q->groupBy('f_party.field_user_party_tid');
+      $parties_in_previous_parliament = $q->execute()->fetchCol();
+    }
+  }
+
+  $q = db_select('user_archive_cache', 'uac');
+  $q->addExpression('COUNT(*)', 'count_politicians');
+  $q->addExpression('SUM(number_of_questions)', 'count_questions');
+  $q->addExpression('SUM(number_of_answers)', 'count_answers');
+  $q->addExpression('SUM(number_of_answers) / SUM(number_of_questions) * 100', 'percentage');
+  $q->join('field_revision_field_user_party', 'f_party', "uac.vid = f_party.revision_id AND f_party.entity_type = 'user'");
+  $q->join('taxonomy_term_data', 't_data', 'f_party.field_user_party_tid = t_data.tid');
+  $q->addField('t_data', 'name', 'party');
+  $q->addExpression(
+    sizeof($parties_in_previous_parliament) > 0
+      ? format_string('t_data.tid IN (@party_tids)', ['@party_tids' => implode(',', $parties_in_previous_parliament)])
+      : '1',
+    'is_top_party');
+  $q->orderBy('is_top_party', 'DESC');
+  $q->orderBy('percentage', 'DESC');
+  $q->orderBy('count_politicians', 'DESC');
+  $q->orderBy('party', 'ASC');
+  $q->groupBy('t_data.tid');
+  _pw_uac_add_conditions($q, array(
+    'parliament' => $term->name,
+    'roles' => $before_election ? 'candidate' : 'deputy',
+    'date' => date('Y-m-d'),
+  ));
+  $result = $q->execute();
+
+  return $result->fetchAllAssoc('party');
 }
 
 /**
