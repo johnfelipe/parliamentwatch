@@ -61,7 +61,13 @@
       <div class="qa-stats-behavior" data-expander data-expander-count="3">
         <?php foreach ($answer_ratio_by_party as $party => $data): ?>
         <div class="qa-stats-behavior__item" data-expander-item>
-          <div class="qa-stats-behavior__item__party"><span><?php print format_plural($data->count_politicians, '<span>@party</span> (1 candidate)', '<span>@party</span> (@count candidates)', ['@party' => $party]); ?></div>
+          <div class="qa-stats-behavior__item__party">
+            <?php if ($before_election): ?>
+              <?php print format_plural($data->count_politicians, '<span>@party</span> (1 candidate)', '<span>@party</span> (@count candidates)', ['@party' => $party]); ?>
+            <?php else: ?>
+              <?php print format_plural($data->count_politicians, '<span>@party</span> (1 deputy)', '<span>@party</span> (@count deputies)', ['@party' => $party]); ?>
+            <?php endif; ?>
+          </div>
           <div class="vertical-bar" data-value="<?php print $data->percentage; ?>"><span></span></div>
           <div class="qa-stats-behavior__item__info"><?php print t('@count_answers answers / @count_questions questions', ['@count_questions' => $data->count_questions, '@count_answers' => $data->count_answers]); ?></div>
           <div class="qa-stats-behavior__item__info-sub"><?php print t('@percentage % answered', ['@percentage' => round($data->percentage, 2)]) ?></div>

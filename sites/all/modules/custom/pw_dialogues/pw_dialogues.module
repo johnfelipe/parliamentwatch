@@ -234,6 +234,7 @@ function pw_dialogues_theme() {
         'answer_ratio' => NULL,
         'answer_ratio_by_party' => NULL,
         'average_response_time' => NULL,
+        'before_election' => NULL,
       ],
       'template' => 'dialogues-stats',
     ],
@@ -441,6 +442,10 @@ function pw_dialogues_recent_block() {
     ->execute();
 
   if (!empty($result['node'])) {
+    $today = new DateTime();
+    $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
+    $before_election = ($today < $election_date) ? 1 : 0;
+
     $nodes = node_load_multiple(array_keys($result['node']));
     $inline_js = 'window.dialogues = ' . drupal_json_encode(pw_dialogues_topics_by_parliament($term)) . ';';
     $questions = pw_dialogues_by_parliament_query($term)->count()->execute();
@@ -453,6 +458,7 @@ function pw_dialogues_recent_block() {
       '#answer_ratio' => round(100 * $answers / $questions, 0),
       '#answer_ratio_by_party' => pw_dialogues_party_ratios_by_parliament($term),
       '#average_response_time' => round(pw_dialogues_average_response_time_by_parliament($term) / 86400),
+      '#before_election' => $before_election,
       '#weight' => -5,
     ];
     $block['content']['stats']['#attached']['js'][$inline_js] = [
