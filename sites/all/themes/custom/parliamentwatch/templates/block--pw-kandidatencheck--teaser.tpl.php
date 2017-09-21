@@ -45,7 +45,7 @@
  */
 ?>
 <div class="lp-teaser lp-teaser--kc">
-  <a href="<?php print $block->content; ?>" class="lp-teaser__logo">
+  <a href="<?php print $content; ?>" class="lp-teaser__logo">
     <img src="/<?php print drupal_get_path('theme', 'parliamentwatch'); ?>/images/logo-kc.svg" alt="<?php print t('Logo of Kandidaten-Check') ?>">
   </a>
   <p class="mh-item"><?php print t('Which politician of your constituency is the right choice for you? Make the Kandidaten-Check!') ?></p>
