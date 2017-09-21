@@ -1,0 +1,25 @@
+/**
+* Contact
+*/
+
+
+.contact {
+  .float-left {
+    margin-left: 0;
+    clear: both;
+  }
+  #webform-ajax-wrapper-6578 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: $space-large;
+    .webform-client-form {
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 0;
+      width: 100%;
+      @include breakpoint($breakpoint-s-min) {
+        @include grid-column(8, $neat-grid-no-gutter);
+      }
+    }
+  }
+}
