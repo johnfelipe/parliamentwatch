@@ -63,7 +63,7 @@
 }
 .lp-header__right {
   position: relative;
-  z-index: 1;
+  z-index: 19;
   @include grid-column(12);
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(6);
@@ -509,3 +509,4 @@
     }
   }
 }
+

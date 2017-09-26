@@ -98,6 +98,50 @@
   <main id="content">
     <a id="main-content"></a>
 
+    <br><br><br><br><br>
+
+    <div class="lp-header contextual-links-region">
+      <div class="lp-header__left">
+        <i class="icon icon-de"></i>
+      </div>
+      <div class="lp-header__right">
+        <h2>Finden Sie Ihre <span>Kandidierenden</span></h2>
+        <form action="/bundestag/profile" method="get" accept-charset="UTF-8" class="form form--pw-globals-politician-search-form">
+          <div class="form__item form__item--textfield form__item--keys">
+            <label class="form__item__label sr-only" for="edit-keys">Schlagwörter</label>
+            <input data-autosuggest-url="profiles/26909/candidates/autocomplete" placeholder="PLZ oder Namen eingeben" type="text" id="edit-keys" name="keys" value="" size="60" maxlength="128" class="form__item__control" />
+            <div class="tt-menu tt-menu--custom">
+              <div class="autosuggest__item--separator">
+                Für die PLZ <strong>'41238'</strong> konnten 43 Politiker in folgenden Parliamenten gefunden werden:
+              </div>
+              <div class="autosuggest__item">
+                <div class="autosuggest__item__info">
+                  <div class="autosuggest__item__name">Bundestag</div>
+                  <div class="autosuggest__item__subtitle">12 Politiker</div>
+                </div>
+                <a href="https://abgeordnetenwatch.de/profile/holger-hexgen#block-pw-dialogues-profile" class="btn--small">Zu den Politikern</a>
+              </div>
+              <div class="autosuggest__item">
+                <div class="autosuggest__item__info">
+                  <div class="autosuggest__item__name">Landtag Nordrhein-Westfalen</div>
+                  <div class="autosuggest__item__subtitle">18 Politiker</div>
+                </div>
+                <a href="https://abgeordnetenwatch.de/profile/holger-hexgen#block-pw-dialogues-profile" class="btn--small">Zu den Politikern</a>
+              </div>
+              <div class="autosuggest__item">
+                <div class="autosuggest__item__info">
+                  <div class="autosuggest__item__name">EU-Parlament</div>
+                  <div class="autosuggest__item__subtitle">8 Politiker</div>
+                </div>
+                <a href="https://abgeordnetenwatch.de/profile/holger-hexgen#block-pw-dialogues-profile" class="btn--small">Zu den Politikern</a>
+              </div>
+            </div>
+          </div>
+          <button type="submit" id="edit-submit" name="op" class="btn"><i class="icon icon-search"></i></button></form>    <p style="display: none"><a href="#" class="link-icon" data-geolocate><i class="icon icon-map-marker"></i> Use my current location</a></p>
+      </div>
+      <div class="lp-header__bg"></div>
+    </div>
+
     <!-- Filter: Summary -->
 
     <div class="intro">

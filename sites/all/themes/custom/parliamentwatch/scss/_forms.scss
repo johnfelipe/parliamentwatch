@@ -240,6 +240,7 @@ textarea.form__item__control {
   padding: $space-xsmall;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
   @include grid-container();
+  position: relative;
   .select2-container {
     float: left;
     width: 25% !important;
@@ -259,13 +260,13 @@ textarea.form__item__control {
     border-left: 0;
   }
   .form__item--textfield,
-  .twitter-typeahead,
   > .form__item__control {
     float: left;
     width: 85%;
     border: 0;
     display: block;
     margin-bottom: 0;
+    position: static;
     @include breakpoint($breakpoint-xs-min) {
       width: 90%;
     }
@@ -325,10 +326,12 @@ textarea.form__item__control {
 
 .tt-menu {
   background: $white;
-  right: 0;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
-
   border-top: 1px solid $darkBeige;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
 
   /* Header */
 
@@ -347,6 +350,9 @@ textarea.form__item__control {
     border-bottom: 1px solid $darkBeige;
     position: relative;
     @include grid-container();
+    @include breakpoint($breakpoint-s-min) {
+      padding: $space-small $space;
+    }
     &:last-child {
       border-bottom: 0;
     }
@@ -355,7 +361,7 @@ textarea.form__item__control {
       @include breakpoint($breakpoint-s-min) {
         display: block;
         position: absolute;
-        right: $space-xsmall;
+        right: $space;
         top: $space-small;
       }
     }
@@ -385,6 +391,7 @@ textarea.form__item__control {
     font-family: $font-serif;
     padding-bottom: 3px;
     padding-right: 100px;
+    color: $mediumGray;
     @include text-overflow();
   }
   .autosuggest__item__subtitle {
@@ -409,12 +416,34 @@ textarea.form__item__control {
     @include text-overflow();
   }
 
+  /* Separator */
+
+  .autosuggest__item--separator {
+    border-bottom: 1px solid $darkBeige;
+    font-size: 0.8em;
+    padding: $space-xsmall;
+    background: $brightBeige;
+  }
+
   /* Kein Ergebnis */
 
   .autosuggest__item--empty {
     text-align: center;
   }
+
 }
+
+.tt-menu--custom {
+  .autosuggest__item {
+    .autosuggest__item__info {
+      padding-top: 0;
+    }
+    .autosuggest__item__name {
+      padding-right: 0;
+    }
+  }
+}
+
 
 /* Contact */
 
