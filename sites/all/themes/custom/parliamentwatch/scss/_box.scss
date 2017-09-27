@@ -477,7 +477,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 
 .sidebar-container {
   @include grid-container();
-  [style*="position: static;"] {
+  > [style*="position:"] {
     width: auto !important;
   }
 }
