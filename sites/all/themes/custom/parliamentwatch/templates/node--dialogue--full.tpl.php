@@ -91,8 +91,8 @@
         <?php print render($user_party); ?>
         <a href="<?php print render($user_url); ?>" class="btn btn--small btn--mobile-block"><?php print t('Open profile'); ?></a>
       </div>
-      <h1><?php print t('Question from'); ?> <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
     </div>
+    <h1><?php print t('Question from'); ?> <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
     <div class="question__meta tile__meta">
       <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
       <span class="question__meta__date tile__meta__date"><?php print $date; ?></span>
@@ -100,7 +100,7 @@
   </div>
   <div class="container-small">
     <div class="question__question mh-item-tile" data-mh="questionTitle">
-      <h3 class="question__question__title"><?php print render($content['body']); ?></h3>
+      <div class="question__question__title"><?php print render($content['body']); ?></div>
       <?php print render($title_suffix); ?>
       <p class="question__question__author"><?php print t('By'); ?>: <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span></p>
       <?php if (!empty($content['field_dialogue_annotation'])): ?>
@@ -111,16 +111,7 @@
       <?php endif; ?>
     </div>
   </div>
-  <div class="question__answer-wrapper">
-    <?php if (empty($content['answers'])): ?>
-      <div class="question__answer">
-        <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
-      </div>
-    <?php else: ?>
-      <?php print render($content['answers']); ?>
-    <?php endif; ?>
-  </div>
-  <div class="share">
+  <div class="share share--small">
     <h3><?php print t('Share this question') ?></h3>
     <ul class="share__links">
       <li class="share__links__item share__links__item--facebook">
@@ -149,5 +140,14 @@
         </a>
       </li>
     </ul>
+  </div>
+  <div class="question__answer-wrapper">
+    <?php if (empty($content['answers'])): ?>
+      <div class="question__answer">
+        <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
+      </div>
+    <?php else: ?>
+      <?php print render($content['answers']); ?>
+    <?php endif; ?>
   </div>
 </div>
