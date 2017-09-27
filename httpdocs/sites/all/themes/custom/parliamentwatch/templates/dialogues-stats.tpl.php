@@ -8,6 +8,7 @@
  * - $questions: The number of questions given.
  * - $answers: The number of answers given.
  * - $answer_ratio: The percentage of answered questions.
+ * - $answer_ratio_by_party: The aggregated question and answer data per party.
  * - $average_response_time: The average response time in days.
  *
  * @ingroup themeable
@@ -69,7 +70,7 @@
             <?php endif; ?>
           </div>
           <div class="vertical-bar" data-value="<?php print $data->percentage; ?>"><span></span></div>
-          <div class="qa-stats-behavior__item__info"><?php print t('@count_answers answers / @count_questions questions', ['@count_questions' => $data->count_questions, '@count_answers' => $data->count_answers]); ?></div>
+          <div class="qa-stats-behavior__item__info"><?php print format_plural($data->count_questions, '@count_answers of 1 question answered (@percentage %)', '@count_answers of @count questions answered (@percentage %)', ['@count_answers' => $data->count_answers, '@percentage' => round($data->percentage, 2)]); ?></div>
           <div class="qa-stats-behavior__item__info-sub"><?php print t('@percentage % answered', ['@percentage' => round($data->percentage, 2)]) ?></div>
         </div>
         <?php endforeach; ?>
@@ -88,7 +89,7 @@
             <?php endif; ?>
           </div>
           <div class="vertical-bar" data-value="<?php print $data->percentage; ?>"><span></span></div>
-          <div class="qa-stats-behavior__item__info"><?php print t('@count_answers answers / @count_questions questions', ['@count_questions' => $data->count_questions, '@count_answers' => $data->count_answers]); ?></div>
+          <div class="qa-stats-behavior__item__info"><?php print format_plural($data->count_questions, '@count_answers of 1 question answered (@percentage %)', '@count_answers of @count questions answered (@percentage %)', ['@count_answers' => $data->count_answers, '@percentage' => round($data->percentage, 2)]); ?></div>
           <div class="qa-stats-behavior__item__info-sub"><?php print t('@percentage % answered', ['@percentage' => round($data->percentage, 2)]) ?></div>
         </div>
         <?php endforeach; ?>

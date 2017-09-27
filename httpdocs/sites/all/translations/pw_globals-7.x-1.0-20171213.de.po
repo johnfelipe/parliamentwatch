@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-12-11 10:09+0100\n"
+"POT-Creation-Date: 2017-12-15 11:08+0100\n"
 "PO-Revision-Date: 2017-12-11 09:27+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -814,44 +814,46 @@ msgstr "veröffentlicht am"
 msgid "Add new comment"
 msgstr "Neuen Kommentar schreiben"
 
-#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:36
+#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:37
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:531
 msgid "@answers of total<br>@questions questions answered"
 msgstr "@answers von insgesamt<br>@questions Fragen beantwortet"
 
-#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:43
+#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:44
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:542
 msgid "average time to answer"
 msgstr "Tage durchschnittliche Antwortzeit"
 
-#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:47
+#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:48
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:546
 msgid "Questions by category"
 msgstr "Fragen nach Kategorien"
 
-#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:72;91
-msgid "@count_answers answers / @count_questions questions"
-msgstr "@count_answers Antworten / @count_questions Fragen"
-
-#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:73;92
+#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:74;93
 msgid "@percentage % answered"
 msgstr "@percentage % beantwortet"
 
-#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:78
+#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:79
 msgid "The following parties wants to become member of the parliament:"
 msgstr "Die folgenden Parteien sind derzeit noch nicht im Parlament:"
 
-#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:66;85
+#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:67;86
 msgid "<span>@party</span> (1 candidate)"
 msgid_plural "<span>@party</span> (@count candidates)"
 msgstr[0] "<span>@party</span> (1 Kandierende/r)"
 msgstr[1] "<span>@party</span> (@count Kandierende)"
 
-#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:68;87
+#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:69;88
 msgid "<span>@party</span> (1 deputy)"
 msgid_plural "<span>@party</span> (@count deputies)"
 msgstr[0] "<span>@party</span> (1 Abgeordnete/r)"
 msgstr[1] "<span>@party</span> (@count Abgeordnete)"
+
+#: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:73;92
+msgid "@count_answers of 1 question answered (@percentage %)"
+msgid_plural "@count_answers of @count questions answered (@percentage %)"
+msgstr[0] "@count_answers von 1 Frage beantwortet (@percentage %)"
+msgstr[1] "@count_answers von @count Fragen beantwortet (@percentage %)"
 
 #: sites/all/themes/custom/parliamentwatch/templates/html.tpl.php:55
 #: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:14
@@ -887,15 +889,15 @@ msgstr "Logo Welt Online"
 msgid "Logo of T-Online"
 msgstr "Logo T-Online"
 
-#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:85
+#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:88
 msgid "Ask question"
 msgstr "Frage stellen"
 
-#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:94
+#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:97
 msgid "Moderation"
 msgstr "Moderation"
 
-#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:96
+#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:99
 msgid ""
 "The unblocking of questions can vary depending on the user's volume. Some "
 "hours, as all incoming questions are checked by a moderator team. I have "
@@ -912,11 +914,11 @@ msgstr ""
 "gegen diesen verstößt. Falls meine Frage nicht freigeschaltet werden kann, "
 "werde ich darüber von einem Moderator informiert."
 
-#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:100
+#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:103
 msgid "Data protection"
 msgstr "Datenschutz"
 
-#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:102
+#: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:105
 msgid ""
 "Data protection - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, "
 "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam "
