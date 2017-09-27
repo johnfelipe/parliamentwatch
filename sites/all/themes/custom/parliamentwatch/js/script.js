@@ -599,9 +599,6 @@
           });
 
           var templates = {
-            header: function (query) {
-              return '<div class="autosuggest__header">Abgeordnete</div>';
-            },
             notFound: function (query) {
               return '<div class="autosuggest__item autosuggest__item--empty">Kein Ergebnisse unter "' + query.query + '" Gefunden</div>';
             },
