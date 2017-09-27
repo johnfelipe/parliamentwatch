@@ -148,21 +148,6 @@ return $user->field_user_address[\'und\'][0][\'postal_code\'];',
   $feeds_tamper = new stdClass();
   $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
   $feeds_tamper->api_version = 2;
-  $feeds_tamper->id = 'gdata_elected_profiles-xpathparser_8-find_term_id_by_parliament';
-  $feeds_tamper->importer = 'gdata_elected_profiles';
-  $feeds_tamper->source = 'xpathparser:8';
-  $feeds_tamper->plugin_id = 'find_term_id_by_parliament';
-  $feeds_tamper->settings = array(
-    'position_parliament' => '10',
-    'target_vocabulary_id' => '38',
-  );
-  $feeds_tamper->weight = 0;
-  $feeds_tamper->description = 'Find List Term ID';
-  $export['gdata_elected_profiles-xpathparser_8-find_term_id_by_parliament'] = $feeds_tamper;
-
-  $feeds_tamper = new stdClass();
-  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
-  $feeds_tamper->api_version = 2;
   $feeds_tamper->id = 'gdata_external_links_importer-xpathparser_2-find_username_by_uuid';
   $feeds_tamper->importer = 'gdata_external_links_importer';
   $feeds_tamper->source = 'xpathparser:2';
