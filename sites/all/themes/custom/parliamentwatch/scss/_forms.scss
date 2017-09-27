@@ -421,7 +421,7 @@ textarea.form__item__control {
   .autosuggest__item--separator {
     border-bottom: 1px solid $darkBeige;
     font-size: 0.8em;
-    padding: $space-xsmall;
+    padding: $space-xsmall $space;
     background: $brightBeige;
   }
 
@@ -430,16 +430,15 @@ textarea.form__item__control {
   .autosuggest__item--empty {
     text-align: center;
   }
-
 }
 
 .tt-menu--custom {
   .autosuggest__item {
     .autosuggest__item__info {
-      padding-top: 0;
+      padding: 0;
     }
     .autosuggest__item__name {
-      padding-right: 0;
+      padding: $space-xsmall-mobile 0 $space-xsmall-mobile;
     }
   }
 }
