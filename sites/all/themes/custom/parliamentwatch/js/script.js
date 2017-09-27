@@ -181,29 +181,25 @@
    * @type {Drupal~behavior}
    *
    * @prop {Drupal~attachBehavior}
-   *   Converts the main navigation to a sidebar menu.
+   *   Converts the main navigation to a swiper.
    */
   Drupal.behaviors.mainNavigation = {
     attach: function () {
       var activeMenuItem = $('.nav__item.nav__item--active').index();
 
-      $('[data-sidebar-trigger]').click(function () {
-        $(this).toggleClass('lines-button-close');
-        $('[data-sidebar-container]').toggleClass('sidebar-open');
-      });
       /* 2nd-Navigation level with optional swiper integration */
-      var secondlevel = $('.header__bottom nav');
-      secondlevel.append('<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>');
+      var secondLevel = $('.header__bottom nav');
+      secondLevel.append('<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>');
 
-      var mySwiper = new Swiper('.header__bottom nav', {
+      var mainNavSwiper = new Swiper('.header__bottom nav', {
         slideClass: 'nav__item',
         wrapperClass: 'nav',
         speed: 400,
         slidesPerView: 'auto',
         resistance: true,
         resistanceRatio: 0.5,
-        nextButton: secondlevel.find('.swiper-button-next'),
-        prevButton: secondlevel.find('.swiper-button-prev'),
+        nextButton: secondLevel.find('.swiper-button-next'),
+        prevButton: secondLevel.find('.swiper-button-prev'),
         onInit: function(swiper){
           resizeMainNavigation();
 
@@ -213,7 +209,7 @@
       });
 
       function resizeMainNavigation() {
-        var secondlevel = $('.header__bottom nav');
+        var secondLevel = $('.header__bottom nav');
 
         var subnavOffset = $('.header__subnav__indicator').outerWidth();
         var wrapperPadding = parseInt($('.header__bottom__inner').css('padding-left'), 10);
@@ -224,8 +220,8 @@
         } else {
           var subnavOffsetValue = subnavOffset;
         }
-        secondlevel.css('padding-left', subnavOffsetValue + 'px');
-        secondlevel.css('padding-right', '30px');
+        secondLevel.css('padding-left', subnavOffsetValue + 'px');
+        secondLevel.css('padding-right', '30px');
       }
 
       var windowResize = debounce(function () {
@@ -234,6 +230,27 @@
 
       // Event-Listener
       window.addEventListener('resize', windowResize);
+    }
+  };
+
+
+  /**
+   * Attaches the mobile navigation-trigger behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   *   Triggers the Sidebar.
+   */
+
+  Drupal.behaviors.mainNavigationTrigger = {
+    attach: function (context) {
+      $('[data-sidebar-trigger]', context).once('mainNavigationTrigger', function () {
+        $('[data-sidebar-trigger]').click(function () {
+          $(this).toggleClass('lines-button-close');
+          $('[data-sidebar-container]').toggleClass('sidebar-open');
+        });
+      });
     }
   };
 
