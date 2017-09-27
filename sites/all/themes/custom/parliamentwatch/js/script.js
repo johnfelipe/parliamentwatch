@@ -613,7 +613,7 @@
                 '<div class="autosuggest__item__subtitle">' + query.parliament + ' <i class="icon icon-arrow-right"></i> <span class="party-indicator">' + query.party + '</span></div>' +
                 '<div class="autosuggest__item__constituency">' + query.constituency + '</div>' +
                 '</div>' +
-                '<a href="' + query.url + '#block-pw-dialogues-profile" class="btn--small">' + Drupal.t('Ask now') + '</a>' +
+                '<a href="' + query.url + '#block-pw-dialogues-profile" class="btn--small">' + Drupal.t('Ask') + '</a>' +
                 '</div>';
             }
           };
