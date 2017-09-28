@@ -116,6 +116,9 @@ blockquote {
     @include breakpoint($breakpoint-s-min) {
       font-size: 4em;
     }
+    @media all and (-ms-high-contrast:none) {
+      font-size: 40px;
+    }
   }
 }
 
