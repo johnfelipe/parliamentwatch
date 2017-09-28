@@ -19,13 +19,14 @@
     breakpointMMin = 992,
     breakpointMMax = breakpointMMin - 1,
 
-    breakpointLMin = 1200,
+    breakpointLMin = 1280,
     breakpointLMax = breakpointLMin - 1,
 
     beige = '#f3efe6',
     orange = '#f46b3b';
 
   var iterateTime = 200;
+  var isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
 
   /**
    * Calls given function after wait milliseconds.
@@ -173,7 +174,35 @@
 
     return mapVotes(data);
   };
-
+  
+  /**
+   * Attaches header sticky behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   *   Add class to header element
+   */
+  Drupal.behaviors.stickyPageHeader = {
+    attach: function () {
+      if (isIE11 == false) {
+        var lastScrollTop = 0, delta = 5;
+        $(window).scroll(function(event){
+          var scrollPosition = $(this).scrollTop();
+          if(Math.abs(lastScrollTop - scrollPosition) <= delta)
+            return;
+          if (scrollPosition > lastScrollTop){
+            $('#header').addClass('sticky');
+          } else {
+            if (scrollPosition < 5) {
+              $('#header').removeClass('sticky');
+            }
+          }
+          lastScrollTop = scrollPosition;
+        });
+      }
+    }
+  };
 
   /**
    * Attaches the main navigation behavior.
@@ -332,9 +361,8 @@
           headerHeight = $('#header').height(),
           contentOffset = 0;
 
-        if (windowWidth >= breakpointMMin) {
+        if (windowWidth >= breakpointLMin) {
           contentOffset = headerHeight - 1;
-
         } else {
           contentOffset = 0;
         }
@@ -1498,17 +1526,24 @@
           $(function() {
             var filterBarOffset = $('#header').outerHeight() - 2;
             var filterBarOffsetAdmin = $('#header').outerHeight() + $('#admin-menu').outerHeight() - 8;
+
+            console.log(filterBarOffset);
+
             if (windowWidth >= breakpointSMin) {
               // Init stickyKit
-
+              $(window).scroll(function(event){
+                filterBarOffset = $('#header').outerHeight() - 2;
+                console.log('onScroll:' + filterBarOffset);
+                $(document.body).trigger("sticky_kit:recalc");
+              });
               if ($('body').hasClass('admin-menu')) {
                 $(".filterbar").stick_in_parent({
-                  offset_top: filterBarOffsetAdmin,
+                  offset_top: $('#header').outerHeight() + $('#admin-menu').outerHeight() - 8,
                   parent: '#content'
                 });
               } else {
                 $(".filterbar").stick_in_parent({
-                  offset_top: filterBarOffset,
+                  offset_top: $('#header').outerHeight() - 2,
                   parent: '#content'
                 });
               }

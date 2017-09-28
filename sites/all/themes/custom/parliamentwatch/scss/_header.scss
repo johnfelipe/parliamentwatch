@@ -9,7 +9,7 @@
   border-bottom: 1px solid $darkBeige;
   width: 100%;
   z-index: 99;
-  @include breakpoint($breakpoint-m-min) {
+  @include breakpoint($breakpoint-l-min) {
     position: fixed;
   }
 }
@@ -25,6 +25,8 @@
   position: relative;
   z-index: 9;
   margin-left: $space;
+  will-change: padding;
+  transition: padding 300ms ease;
   @include padding($space-mobile null);
   @include breakpoint($breakpoint-s-min) {
     @include padding(($space-mobile - 3) null);
@@ -37,6 +39,8 @@
     overflow: hidden;
     width: 220px;
     height: 28px;
+    will-change: width;
+    transition: width 300ms ease;
     @include breakpoint($breakpoint-xs-min) {
       width: 250px;
       height: 32px;
@@ -126,8 +130,8 @@
     line-height: 23px;
     border-bottom: 1px solid transparent;
     background: $brightGray;
-
-    @include transition(background 200ms ease-in-out);
+    will-change: padding, background;
+    transition: padding 300ms ease, background 200ms ease-in-out;
     @include padding($space ($space*0.7) $space (($space*0.7)-5));
     @include breakpoint($breakpoint-m-min) {
       background: transparent;
@@ -172,7 +176,7 @@
       }
     }
     .nav__item__trigger {
-      background: $white - 10;
+      background: $white;
       border-bottom: 1px solid $darkBeige;
     }
   }
@@ -184,7 +188,8 @@
     border-bottom: 1px solid transparent;
     line-height: 23px;
     font-size: .8em;
-    @include transition(background 200ms ease-in-out);
+    will-change: padding, background;
+    transition: padding 300ms ease, background 200ms ease-in-out;
     @include padding($space $space-small-mobile);
     background: $brightGray;
     @include breakpoint($breakpoint-m-min) {
@@ -322,8 +327,9 @@
   .nav__item__link {
     font-family: $font-serif;
     line-height: $space;
+    will-change: padding, color;
+    transition: padding 300ms ease, color 200ms ease-in-out;
     @include padding($space-mobile $space-xsmall-mobile);
-    @include transition(color 200ms ease-in-out);
     @include breakpoint($breakpoint-xs-min) {
       @include padding($space $space-small);
     }
@@ -426,8 +432,6 @@
   }
 }
 
-
-
 /* Open Navigation for Mobile devices */
 [data-sidebar-container] {
   &:after {
@@ -494,6 +498,8 @@
   top: 0;
   z-index: 9;
   background: $white;
+  will-change: padding;
+  transition: padding 300ms ease;
   @include padding($space-small $space);
   @include breakpoint($breakpoint-xs-min) {
     font-size: 1.4em;
@@ -508,5 +514,43 @@
 
   a {
     text-decoration: none;
+  }
+}
+
+
+/* Sticky header */
+
+#header.sticky {
+  .header__logo {
+    @include breakpoint($breakpoint-l-min) {
+      @include padding($space-small null);
+    }
+    @include breakpoint($breakpoint-xl-min) {
+      @include padding(($space-small - 2) null);
+    }
+  }
+  .nav--main-menu--level-1 {
+    .nav__item__link {
+      @include breakpoint($breakpoint-l-min) {
+        @include padding($space ($space-large*0.7) $space (($space-large*0.7)-10));
+      }
+    }
+    .nav__item__trigger {
+      @include breakpoint($breakpoint-l-min) {
+        @include padding($space $space-small-mobile);
+      }
+    }
+  }
+  .header__subnav__indicator {
+    @include breakpoint($breakpoint-l-min) {
+      @include padding($space $space);
+    }
+  }
+  .nav--main-menu--level-2 {
+    .nav__item__link {
+      @include breakpoint($breakpoint-l-min) {
+        @include padding($space ($space-large*0.65));
+      }
+    }
   }
 }
