@@ -135,6 +135,9 @@ function pw_api_user_to_array($user, $activities = array()) {
     // wrap user
     $w_user = entity_metadata_wrapper('user', $user);
 
+    // load kc theses
+    $kc_theses = pw_kandidatencheck_by_user_revision_query($user)->execute();
+
     // allowed target content types
     $field_info = field_info_field('field_vote_node');
     $types_allowed = array_keys($field_info['settings']['handler_settings']['target_bundles']);
@@ -145,6 +148,12 @@ function pw_api_user_to_array($user, $activities = array()) {
     $profile['meta']['edited'] = date('Y-m-d H:i', $user->revision_timestamp);
     $profile['meta']['uuid'] = $w_user->uuid->value();
     $profile['meta']['username'] = $w_user->name->value();
+    if (isset($kc_theses['node'])){
+      $profile['meta']['kc_theses'] = sizeof($kc_theses['node']);
+    }
+    else {
+      $profile['meta']['kc_theses'] = 0;
+    }
 
     // fetch stats into meta
     $query = db_select('user_archive_cache', 'uac');
