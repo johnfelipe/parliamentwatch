@@ -26,7 +26,7 @@
 
 /* Detail */
 
-.webform-client-form {
+.webform {
   @include breakpoint($breakpoint-m-min) {
     @include grid-column(8, $neat-grid-no-gutter);
   }
