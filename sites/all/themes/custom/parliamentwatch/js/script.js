@@ -185,18 +185,49 @@
    */
   Drupal.behaviors.stickyPageHeader = {
     attach: function () {
-      if (isIE11 == false) {
-        var lastScrollTop = 0, delta = 5;
+      if (!$('body').hasClass('blank-theme') || isIE11 == false) {
+        var lastScrollTop = 0, delta = 2;
         $(window).scroll(function(event){
           var scrollPosition = $(this).scrollTop();
           if(Math.abs(lastScrollTop - scrollPosition) <= delta)
             return;
+
           if (scrollPosition > lastScrollTop){
+            // Header
             $('#header').addClass('sticky');
-          } else {
-            if (scrollPosition < 5) {
-              $('#header').removeClass('sticky');
+          } else if(scrollPosition < 20) {
+            // Header
+            $('#header').removeClass('sticky');
+          }
+
+          // Filter
+
+          if (windowWidth >= breakpointLMin) {
+            var filterbarOffsetAdmin = $('#header').outerHeight() + $('#admin-menu').outerHeight() - 2;
+            var filterbarOffset = $('#header').outerHeight() - 2;
+            var filterbarScrollOffsetAdmin = $('#header').outerHeight() + $('#admin-menu').outerHeight() + $('.intro').outerHeight() - 2;
+            var filterbarScrollOffset = $('.intro').outerHeight() + $('.filter-bar').outerHeight() - 2;
+
+            // Filter - with admin bar
+            if ($('body').hasClass('admin-menu') && !$('body').hasClass('blank-theme')) {
+              if(scrollPosition > filterbarScrollOffsetAdmin) {
+                $('.filterbar').css('margin-top', filterbarOffsetAdmin).addClass('is_stuck');
+              } else {
+                $('.filterbar').css('margin-top', 0).removeClass('is_stuck');
+              }
             }
+
+            // Filter - without admin bar
+            if (!$('body').hasClass('admin-menu') && !$('body').hasClass('blank-theme')) {
+              if(scrollPosition > filterbarScrollOffset + 20) {
+                $('.filterbar').css('margin-top', filterbarOffset).addClass('is_stuck');
+                $('.filterbar-placeholder').css('height', $('.filterbar').outerHeight() - 20);
+              } else {
+                $('.filterbar').css('margin-top', 0).removeClass('is_stuck');
+              }
+            }
+          } else {
+            $('.filterbar').css('margin-top', 0).removeClass('is_stuck');
           }
           lastScrollTop = scrollPosition;
         });
@@ -1521,36 +1552,7 @@
         }
       });
 
-      if (!$('body').hasClass('blank-theme')) {
-        $(window).load(function () {
-          $(function() {
-            var filterBarOffset = $('#header').outerHeight() - 2;
-            var filterBarOffsetAdmin = $('#header').outerHeight() + $('#admin-menu').outerHeight() - 8;
 
-            console.log(filterBarOffset);
-
-            if (windowWidth >= breakpointSMin) {
-              // Init stickyKit
-              $(window).scroll(function(event){
-                filterBarOffset = $('#header').outerHeight() - 2;
-                console.log('onScroll:' + filterBarOffset);
-                $(document.body).trigger("sticky_kit:recalc");
-              });
-              if ($('body').hasClass('admin-menu')) {
-                $(".filterbar").stick_in_parent({
-                  offset_top: $('#header').outerHeight() + $('#admin-menu').outerHeight() - 8,
-                  parent: '#content'
-                });
-              } else {
-                $(".filterbar").stick_in_parent({
-                  offset_top: $('#header').outerHeight() - 2,
-                  parent: '#content'
-                });
-              }
-            }
-          });
-        });
-      }
       $('.filterbar__swiper .filterbar__item--dropdown').on("click", function () {
         var index = $(this).index();
         mySwiper.slideTo(index, 300);
