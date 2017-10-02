@@ -6,6 +6,16 @@
 
 include_once 'pw_parliaments.features.inc';
 
+function pw_parliaments_menu() {
+  $items['parliaments/suggestions'] = [
+    'title' => 'Suggested parliaments',
+    'page callback' => 'pw_parliaments_suggestions',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  return $items;
+}
+
 /**
  * Implements hook_taxonomy_term_presave().
  */
@@ -70,6 +80,62 @@ function pw_parliaments_block_list_alter(&$blocks) {
       unset($blocks[$key]);
     }
   }
+}
+
+/**
+ * Page callback: Returns JSON object for parliament suggestions.
+ *
+ * The result lists parliaments with constituencies matching the given digits
+ * of the postal_code parameter from the URL and indicates whether the user
+ * will be directed to the candidates or deputies search.
+ *
+ * Example:
+ *
+ * GET /parliaments/suggestions?postal_code=30159
+ *
+ * {
+ *   30159: [
+ *     {"parliament": "Bundestag", "role": "deputies"},
+ *     {"parliament": "Niedersachsen", "role": "candidates"},
+ *   ]
+ * }
+ *
+ * @return string
+ *   JSON object for parliament suggestions.
+ */
+function pw_parliaments_suggestions() {
+  $suggestions = [];
+  $current_parliaments = pw_globals_current_parliaments();
+
+  if (!isset(drupal_get_query_parameters()['postal_code'])) {
+    return MENU_ACCESS_DENIED;
+  }
+
+  $postal_code = drupal_get_query_parameters()['postal_code'];
+
+  $q = db_select('field_data_field_user_parliament', 'parliament');
+  $q->join('field_data_field_user_constituency', 'constituency', 'parliament.entity_id = constituency.entity_id');
+  $q->join('field_data_field_constituency_area_codes', 'acref', 'constituency.field_user_constituency_tid = acref.entity_id');
+  $q->join('taxonomy_term_data', 'postal_codes', 'acref.field_constituency_area_codes_tid = postal_codes.tid');
+  $q->condition('postal_codes.name', "$postal_code%", 'LIKE');
+  $q->condition('parliament.field_user_parliament_tid', array_keys($current_parliaments));
+  $q->addExpression("GROUP_CONCAT(postal_codes.name, ' ')", 'postal_codes');
+  $q->fields('parliament', ['field_user_parliament_tid']);
+  $q->groupBy('parliament.field_user_parliament_tid');
+
+  $data = [];
+
+  foreach ($q->execute() as $row) {
+    $role = _pw_globals_politician_search_role_condition($current_parliaments[$row->field_user_parliament_tid]);
+    $suggestions[] = [
+      'postalCodes' => $row->postal_codes,
+      'parliament' => $current_parliaments[$row->field_user_parliament_tid]->name,
+      'role' => $role,
+      'url' => url('profiles/' . $row->field_user_parliament_tid . '/' . $role),
+    ];
+  }
+
+  return drupal_json_output($suggestions);
 }
 
 /**
