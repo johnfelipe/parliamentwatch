@@ -393,6 +393,22 @@ function pw_globals_replace_text_with_icon($element) {
 }
 
 /**
+ * Returns all current parliaments.
+ *
+ * @return array
+ *   The current parliaments.
+ */
+function pw_globals_current_parliaments() {
+  $q = db_select('taxonomy_term_data', 'parliament');
+  $q->leftJoin('field_data_field_parliament_previous', 'previous', 'parliament.tid = previous.field_parliament_previous_tid');
+  $q->fields('parliament', ['tid']);
+  $q->condition('vid', 18);
+  $q->isNull('previous.field_parliament_previous_tid');
+
+  return taxonomy_term_load_multiple($q->execute()->fetchCol());
+}
+
+/**
  * Returns the role condition for the politician search.
  *
  * If the current parliament is past the election and the current date is after
