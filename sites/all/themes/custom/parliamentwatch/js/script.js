@@ -633,22 +633,20 @@
   };
 
   /**
-   * Attaches the autosuggest behavior to form inputs.
+   * Attaches the typeahead plugin to the politician search.
    *
    * @type {Drupal~behavior}
    *
    * @prop {Drupal~attachBehavior}
    */
-  Drupal.behaviors.autosuggest = {
+  Drupal.behaviors.politicianSearch = {
     attach: function (context) {
-      $('.form__item__control--autosuggest', context).once('autosuggest', function () {
-        if ($('.form__item__control--autosuggest').length) {
-          var data = [];
-
-          var politicians = new Bloodhound({
+      $('.form--pw-globals-politician-search-form .form__item__control--autosuggest', context).once('autosuggest', function () {
+        if ($(this).data('autosuggest-url')) {
+          var politicianIndex = new Bloodhound({
             initialize: true,
             prefetch: {
-              url: $('.form__item__control--autosuggest').data('autosuggest-url'),
+              url: $(this).data('autosuggest-url'),
               cache: false,
             },
             identify: function (obj) {
@@ -658,7 +656,7 @@
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('politicianDatum'),
           });
 
-          var templates = {
+          var politicianTemplates = {
             notFound: function (query) {
               return '<div class="autosuggest__item autosuggest__item--empty">Kein Ergebnisse unter "' + query.query + '" Gefunden</div>';
             },
@@ -678,18 +676,50 @@
             }
           };
 
-          var display = function (obj) {
+          var politicianDisplay = function (obj) {
             return obj.name;
           };
 
-          $('.form__item--keys > .form__item__control').typeahead({
+          var parliamentIndex = new Bloodhound({
+            initialize: true,
+            remote: {
+              url: '/parliaments/suggestions?postal_code=%QUERY',
+              wildcard: '%QUERY'
+            },
+            identify: function (obj) {
+              return obj.parliament;
+            },
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('postalCodes'),
+          });
+
+          var parliamentTemplates = {
+            suggestion: function (query) {
+              var text = {
+                'deputies': Drupal.t('Would you like to search for deputies in @parliament?', {'@parliament': query.parliament}),
+                'candidates': Drupal.t('Would you like to search for candidates in @parliament?', {'@parliament': query.parliament}),
+              };
+              return '<div class="autosuggest__item"><a href="' + query.url + '">' + text[query.role] + '</a></div>';
+            }
+          }
+
+          var parliamentDisplay = function (obj) {
+            return '';
+          }
+
+          $('.form__item__control--autosuggest').typeahead({
             minLength: 2,
             highlight: true
           }, {
             name: 'politicians',
-            source: politicians,
-            display: display,
-            templates: templates
+            source: politicianIndex,
+            display: politicianDisplay,
+            templates: politicianTemplates
+          }, {
+            name: 'parliaments',
+            source: parliamentIndex,
+            display: parliamentDisplay,
+            templates: parliamentTemplates
           });
         }
       });

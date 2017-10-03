@@ -89,17 +89,6 @@ function pw_parliaments_block_list_alter(&$blocks) {
  * of the postal_code parameter from the URL and indicates whether the user
  * will be directed to the candidates or deputies search.
  *
- * Example:
- *
- * GET /parliaments/suggestions?postal_code=30159
- *
- * {
- *   30159: [
- *     {"parliament": "Bundestag", "role": "deputies"},
- *     {"parliament": "Niedersachsen", "role": "candidates"},
- *   ]
- * }
- *
  * @return string
  *   JSON object for parliament suggestions.
  */
