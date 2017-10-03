@@ -444,18 +444,11 @@ function pw_profiles_autocomplete($parliament_term, $role_name) {
         $data['picture_url'] = 'http://via.placeholder.com/100x100';
       }
       $data['politicianDatum'] = $result['fields']['field_user_fname'] . ' ' . $result['fields']['field_user_lname'];
-      if (isset($result['fields']['field_user_constituency:field_constituency_area_codes:name'])) {
-        $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:field_constituency_area_codes:name']);
-      }
-      if (isset($result['fields']['field_user_constituency:field_constituency_ac_descriptor'])) {
-        $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:field_constituency_ac_descriptor']);
-      }
       if (isset($result['fields']['field_user_constituency:name'][0])) {
         $data['constituency'] = $result['fields']['field_user_constituency:name'];
-        $data['politicianDatum'] .= ' ' . implode(' ', $result['fields']['field_user_constituency:name']);
       }
       $suggestions[] = $data;
-    };
+    }
     drupal_json_output($suggestions);
   }
   else {
