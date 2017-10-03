@@ -5,7 +5,7 @@
 
 (function ($) {
 
-   "use strict";
+  "use strict";
 
   var windowWidth = window.innerWidth,
     windowHeight = window.outerHeight,
@@ -48,8 +48,8 @@
       var later = function () {
         timeout = null;
         if (!immediate) {
-          func.apply(context, args)
-        };
+          func.apply(context, args);
+        }
       };
       var callNow = immediate && !timeout;
       clearTimeout(timeout);
@@ -114,7 +114,7 @@
    * @returns {Array}
    *   Dialogue statistics ready for D3.
    */
-  Drupal.parseDialogues = function() {
+  Drupal.parseDialogues = function () {
     var data = [];
 
     for (var key in window.dialogues) {
@@ -130,7 +130,7 @@
    * @returns {Array}
    *   Vote statistics ready for D3.
    */
-  Drupal.parseVotes = function() {
+  Drupal.parseVotes = function () {
     var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
 
     window.votes.forEach(function (v) {
@@ -146,7 +146,7 @@
    * @returns {Array}
    *   Vote statistics by party ready for D3.
    */
-  Drupal.parseResultsByParty = function() {
+  Drupal.parseResultsByParty = function () {
     var data = {};
 
     for (var party in window.resultsByParty) {
@@ -162,7 +162,7 @@
    * @returns {Array}
    *   Vote statistics ready for D3.
    */
-  Drupal.parseResultsTotal = function() {
+  Drupal.parseResultsTotal = function () {
     var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
 
     for (var party in window.resultsByParty) {
@@ -174,7 +174,7 @@
 
     return mapVotes(data);
   };
-  
+
   /**
    * Attaches header sticky behavior.
    *
@@ -260,7 +260,7 @@
         resistanceRatio: 0.5,
         nextButton: secondLevel.find('.swiper-button-next'),
         prevButton: secondLevel.find('.swiper-button-prev'),
-        onInit: function(swiper){
+        onInit: function (swiper) {
           resizeMainNavigation();
 
           swiper.update();
@@ -400,6 +400,7 @@
         $('#content').css('margin-top', contentOffset);
         setTimeout(docReadyClass, 200);
       }
+
       contentOffset();
       var windowResize = debounce(function () {
         contentOffset();
@@ -537,7 +538,7 @@
           this.hash = $(this).parents('.tabs__content').attr('id');
         });
 
-        $('.tabs__navigation a').on('click', function(event) {
+        $('.tabs__navigation a').on('click', function (event) {
           event.preventDefault();
           var link = $(this);
           var id = link[0].hash;
@@ -704,11 +705,11 @@
    */
   Drupal.behaviors.geolocate = {
     attach: function () {
-      var geolocate = function(){
+      var geolocate = function () {
         $('.form--pw-globals-politician-search-form').addClass('loading');
-        window.navigator.geolocation.getCurrentPosition(function(p){
-          $.getJSON('//nominatim.openstreetmap.org/reverse?format=json&lat='+p.coords.latitude+'&lon='+p.coords.longitude+'&zoom=18&addressdetails=1&email=admin@abgeordnetenwatch.de',
-            function(r) {
+        window.navigator.geolocation.getCurrentPosition(function (p) {
+          $.getJSON('//nominatim.openstreetmap.org/reverse?format=json&lat=' + p.coords.latitude + '&lon=' + p.coords.longitude + '&zoom=18&addressdetails=1&email=admin@abgeordnetenwatch.de',
+            function (r) {
               $('.form--pw-globals-politician-search-form .form__item__control').val(r.address.postcode);
               $('.form--pw-globals-politician-search-form').removeClass('loading');
             });
@@ -757,7 +758,6 @@
   };
 
 
-
   /**
    * Attaches the item expander behavior.
    *
@@ -770,16 +770,16 @@
       $('[data-expander]', context).once('expander', function () {
         var itemCount = $(this).data('expander-count');
         var items = $(this).find('[data-expander-item]');
-        var lastShowedItem = $(this).find('[data-expander-item]:nth-child('+ itemCount + ')');
+        var lastShowedItem = $(this).find('[data-expander-item]:nth-child(' + itemCount + ')');
         var showButton = $('<a class="btn btn--small-white">' + Drupal.t('Show more') + '</a>');
         var hideButton = $('<a class="btn btn--small-white" style="display: none;">' + Drupal.t('Show less') + '</a>');
 
 
         // Add cta
-        showButton.insertAfter(lastShowedItem).click(function() {
+        showButton.insertAfter(lastShowedItem).click(function () {
           // Show hidden elements
-          items.each(function(index) {
-            index ++;
+          items.each(function (index) {
+            index++;
             if (index > itemCount) {
               $(this).show();
             }
@@ -788,10 +788,10 @@
           hideButton.show();
         });
 
-        hideButton.appendTo($(this)).click(function() {
+        hideButton.appendTo($(this)).click(function () {
           // Hide hidden elements
-          items.each(function(index) {
-            index ++;
+          items.each(function (index) {
+            index++;
             if (index > itemCount) {
               $(this).hide();
             }
@@ -801,8 +801,8 @@
         });
 
         // Hide all items after cta
-        items.each(function(index) {
-          index ++;
+        items.each(function (index) {
+          index++;
           if (index > itemCount) {
             $(this).hide();
           }
@@ -820,7 +820,7 @@
    */
   Drupal.behaviors.verticalBar = {
     attach: function (context) {
-      $('.vertical-bar').each(function() {
+      $('.vertical-bar').each(function () {
         var value = $(this).data('value');
         $(this).find('span').css('width', value + '%');
       });
@@ -1552,7 +1552,6 @@
         }
       });
 
-
       $('.filterbar__swiper .filterbar__item--dropdown').on("click", function () {
         var index = $(this).index();
         mySwiper.slideTo(index, 300);
@@ -1563,7 +1562,6 @@
       });
     }
   };
-
 
 
   /**
@@ -1705,7 +1703,7 @@
   Drupal.behaviors.matchHeight = {
     attach: function (context) {
       $('.mh-item', context).matchHeight();
-      $('.mh-item-nr', context).matchHeight({ byRow: false });
+      $('.mh-item-nr', context).matchHeight({byRow: false});
     }
   };
 
@@ -1756,7 +1754,7 @@
         var url = $(this).attr('href');
         var ajaxUrl = this.search ? url + '&ajax=' : '?ajax=';
 
-        $(target).load(ajaxUrl  + ' ' + target + ' > *', function () {
+        $(target).load(ajaxUrl + ' ' + target + ' > *', function () {
           Drupal.attachBehaviors(target, {url: url});
           removeTileWrapperLoader();
         });
@@ -1780,7 +1778,7 @@
         // Cookie handling
         if (typeof attr !== typeof undefined && attr !== false) {
           var cookieName = $(this).parents('.modal').attr('data-modal-name');
-          $.cookie(cookieName, '1', { expires: 7 });
+          $.cookie(cookieName, '1', {expires: 7});
         }
 
         event.preventDefault();
@@ -1788,20 +1786,20 @@
 
       $('.modal-overlay').click(function () {
         var modalName = $(this).attr('data-modal-name');
-        var modal = $('.modal[data-modal-name=' + modalName +']');
+        var modal = $('.modal[data-modal-name=' + modalName + ']');
         var attr = modal.attr('data-modal-cookie');
         modal.removeClass('modal--open');
 
         // Cookie handling
         if (typeof attr !== typeof undefined && attr !== false) {
           var cookieName = modalName;
-          $.cookie(cookieName, '1', { expires: 7 });
+          $.cookie(cookieName, '1', {expires: 7});
         }
       });
 
       // Control inital modals
       if ($('[data-modal-initial]').length) {
-        $('[data-modal-initial]').each(function( index ) {
+        $('[data-modal-initial]').each(function (index) {
           var cookieName = $(this).attr('data-modal-name');
           if (!$.cookie(cookieName) == '1') {
             $('[data-modal-initial]').addClass('modal--open');
@@ -1811,4 +1809,4 @@
     }
   };
 
-} (jQuery));
+}(jQuery));
