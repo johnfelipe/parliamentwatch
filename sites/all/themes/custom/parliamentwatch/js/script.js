@@ -719,7 +719,8 @@
             name: 'parliaments',
             source: parliamentIndex,
             display: parliamentDisplay,
-            templates: parliamentTemplates
+            templates: parliamentTemplates,
+            limit: 10,
           });
         }
       });
