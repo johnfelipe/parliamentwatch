@@ -514,7 +514,7 @@
       $('.tabs', context).once('tabs', function () {
 
         // Set initial tab by checking url for hash
-        if (window.location.hash) {
+        if ($('.tabs__navigation').length && window.location.hash) {
           $('.tabs__navigation a[href=' + window.location.hash + ']').trigger("click");
         }
         // Set initial tab by checking url for hash
