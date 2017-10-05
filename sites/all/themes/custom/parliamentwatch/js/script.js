@@ -657,9 +657,6 @@
           });
 
           var politicianTemplates = {
-            notFound: function (query) {
-              return '<div class="autosuggest__item autosuggest__item--empty">Kein Ergebnisse unter "' + query.query + '" Gefunden</div>';
-            },
             suggestion: function (query) {
               return '' +
                 '<div class="autosuggest__item">' +
