@@ -80,6 +80,10 @@
     left: $space-large-mobile;
     top: $space;
   }
+  ul {
+    @include icon-list();
+    li:before { color: $darkGray; }
+  }
 }
 .messages--status {
   background-color: $success;
