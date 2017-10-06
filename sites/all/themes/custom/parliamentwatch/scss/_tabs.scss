@@ -126,6 +126,7 @@
   border-bottom: 1px solid $darkBeige;
   @include breakpoint($breakpoint-m-min) {
     display: block;
+    border-bottom: 0;
   }
   .tabs__content__content {
     display: block;
