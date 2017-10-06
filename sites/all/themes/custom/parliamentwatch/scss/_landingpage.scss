@@ -285,6 +285,7 @@
     padding-top: $space-large + $space;
     padding-bottom: $space-large + $space;
   }
+  .node-teaser > p { margin: 0; }
   h3 {
     font-size: 1em;
     padding-left: 33.3%;
@@ -310,6 +311,7 @@
     @include grid-container();
   }
 }
+.patron-teaser figure,
 .patron-teaser__image {
   position: absolute;
   top: $space-xsmall;
@@ -324,6 +326,7 @@
     @include grid-column(2);
     @include grid-push(1);
   }
+  > img,
   .patron-teaser__image__inner {
     @include image-circle(60px,60px);
     border-width: 3px;
@@ -343,6 +346,7 @@
       border-width: 5px;
     }
   }
+  figcaption,
   .patron-teaser__image__info {
     font-size: .8em;
     padding-top: $space-xsmall-mobile;
