@@ -432,6 +432,17 @@ textarea.form__item__control {
   }
 }
 
+.tt-menu {
+  .tt-dataset-parliaments {
+    .autosuggest__item {
+      &:hover,
+      &.tt-cursor {
+        background: none;
+      }
+    }
+  }
+}
+
 .tt-menu--custom {
   .autosuggest__item {
     .autosuggest__item__info {
