@@ -693,8 +693,8 @@
           var parliamentTemplates = {
             suggestion: function (query) {
               var text = {
-                'deputies': Drupal.t('Would you like to search for deputies in @parliament?', {'@parliament': query.parliament}),
-                'candidates': Drupal.t('Would you like to search for candidates in @parliament?', {'@parliament': query.parliament}),
+                'deputies': Drupal.t('Would you like to search for deputies in <span>@parliament</span>?', {'@parliament': query.parliament}),
+                'candidates': Drupal.t('Would you like to search for candidates in <span>@parliament</span>?', {'@parliament': query.parliament}),
               };
               return '<div class="autosuggest__item"><a href="' + query.url + '">' + text[query.role] + '</a></div>';
             }

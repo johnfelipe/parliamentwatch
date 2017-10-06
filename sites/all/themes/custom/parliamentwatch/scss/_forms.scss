@@ -439,6 +439,14 @@ textarea.form__item__control {
       &.tt-cursor {
         background: none;
       }
+      a {
+        color: $darkGray;
+        line-height: 1.6em;
+        display: block;
+        & > span {
+          color: $orange;
+        }
+      }
     }
   }
 }
