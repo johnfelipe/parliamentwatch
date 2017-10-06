@@ -150,7 +150,7 @@
       @include grid-container();
     }
     .well__left {
-      @include breakpoint($breakpoint-s-min) {
+      @include breakpoint($breakpoint-m-min) {
         margin-top: 0;
         margin-bottom: 0;
         padding-right: $space-large;
@@ -164,7 +164,7 @@
       border-top: 1px solid $darkBeige;
       padding-top: $space;
       @include grid-column(12);
-      @include breakpoint($breakpoint-s-min) {
+      @include breakpoint($breakpoint-m-min) {
         border-top: 0;
         padding-top: 0;
         @include grid-column(5, $neat-grid-large-gutter);
