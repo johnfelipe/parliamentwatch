@@ -48,6 +48,12 @@ p {
 
 p > a {
   font-weight: 600;
+
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 /* Headlines + Paragraphes */
