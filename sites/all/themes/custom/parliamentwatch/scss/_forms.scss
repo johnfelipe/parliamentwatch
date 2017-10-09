@@ -312,11 +312,14 @@ textarea.form__item__control {
       margin-top: -16px;
       line-height: 32px;
       position: absolute;
-      right: 10%;
+      right: 15%;
       z-index: 9;
       top: 50%;
       margin-right: $space-small;
       @include animation(spin 1s linear infinite);
+      @include breakpoint($breakpoint-xs-min) {
+        right: 10%;
+      }
     }
   }
 }
