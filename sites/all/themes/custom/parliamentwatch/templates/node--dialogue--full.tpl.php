@@ -95,7 +95,7 @@
     <h1><?php print t('Question from'); ?> <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
     <div class="question__meta tile__meta">
       <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
-      <span class="question__meta__date tile__meta__date"><?php print $date; ?></span>
+      <span class="question__meta__date tile__meta__date"><?php print format_date($node->created, $type = 'custom', $format = 'd. M. Y - H:i'); ?></span>
     </div>
   </div>
   <div class="container-small">

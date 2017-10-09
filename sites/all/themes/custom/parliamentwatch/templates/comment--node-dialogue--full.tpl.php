@@ -60,7 +60,9 @@
  */
 ?>
 
-<div class="question__answer mh-item-tile" data-mh="questionAnswer">
+
+
+<div class="question__answer">
   <p class="question__answer__author">
     <?php if (!empty(trim(render($user_picture)))): ?><span class="question__answer__author__image"><?php print render($user_picture); ?></span><?php endif; ?>
     <?php if ($comment->thread === '01/'): ?>
@@ -68,7 +70,13 @@
     <?php else: ?>
       <?php print t('Addition by <strong>@name</strong>', ['@name' => render($content['field_dialogue_sender_fullname'])]); ?>
     <?php endif; ?>
-  <span><?php print format_date($comment->created, $type = 'custom', $format = 'd.m.Y'); ?></span>
+    <span>
+      <?php print format_date($comment->created, $type = 'custom', $format = 'd. M. Y - H:i'); ?><br>
+      <small>
+        <?php print t('Response time') ?>:
+        <?php print format_interval($comment->created - $node->created); ?>
+      </small>
+    </span>
   </p>
   <?php print render($content['field_dialogue_comment_body']); ?>
   <?php if ($content['field_dialogue_is_standard_reply']['#items'][0]['value'] == 1): ?>
