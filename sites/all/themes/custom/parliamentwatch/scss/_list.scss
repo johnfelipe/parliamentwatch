@@ -100,6 +100,9 @@ li {
     padding: $space-xsmall 0;
     color: $darkGray;
     position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 20px;
     @include transition(color 300ms ease);
     &:after {
       content: '\e825';
