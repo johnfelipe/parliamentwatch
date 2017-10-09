@@ -63,6 +63,14 @@
     padding-top: $space-small;
     padding-bottom: $space-xsmall;
     border-bottom: 1px solid $gray + 20;
+    a {
+      color: $mediumGray;
+    }
+    .icon {
+      margin-left: 10px;
+      font-size: .8em;
+      color: $orange;
+    }
   }
 }
 

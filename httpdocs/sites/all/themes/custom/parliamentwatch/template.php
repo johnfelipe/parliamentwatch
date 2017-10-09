@@ -1133,6 +1133,18 @@ function parliamentwatch_profile_search_summary(&$variables) {
 }
 
 /**
+ * Override theme_tablesort_indicator()
+ */
+function parliamentwatch_tablesort_indicator($variables) {
+  if ($variables['style'] == "asc") {
+    return '<i class="icon icon-arrow-up"></i>';
+  }
+  else {
+    return '<i class="icon icon-arrow-down"></i>';
+  }
+}
+
+/**
  * Sets a form element's class attribute.
  *
  * Adds 'error' class as needed.
