@@ -52,7 +52,9 @@
   <div class="lp-header__right">
     <h2><?php print $block->subject; ?></h2>
     <?php print $content; ?>
-    <p style="display: none"><a href="#" class="link-icon" data-geolocate><i class="icon icon-map-marker"></i> <?php print t('Use my current location'); ?></a></p>
+    <?php if (isset(drupal_get_query_parameters()['geo'])): ?>
+      <p><a href="#" class="link-icon" data-geolocate><i class="icon icon-map-marker"></i> <?php print t('Use my current location'); ?></a></p>
+    <?php endif; ?>
   </div>
   <div class="lp-header__bg"></div>
 </div>
