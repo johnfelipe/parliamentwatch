@@ -507,55 +507,48 @@ function _pw_user_has_role($account, $role) {
 }
 
 /**
- * Custom: Retrieve parliament term depending on currently viewed node or user.
+ * Returns the parliament of the current context.
+ *
+ * Depending on the URL the parliament will either be the loaded menu object,
+ * a taxonomy term referenced by the loaded menu object or a configurable
+ * default.
+ *
+ * @return object
+ *   The parliament term.
  */
 function _pw_get_current_parliament_term() {
-
-  $term_parliament = &drupal_static(__FUNCTION__);
-  if (!isset($term_parliament)) {
-
-    $menu_item = menu_get_item();
-    if ($menu_item['page_callback'] == 'views_page' || $menu_item['path'] == 'profile/%/%') {
-      $terms = taxonomy_get_term_by_name(arg(1), 'parliaments');
-      if (!empty($terms)) {
-        $term_parliament = array_shift($terms);
-        return $term_parliament;
+  switch (arg(0)) {
+    case 'profile':
+      $map = menu_get_item()['original_map'];
+      $term_parliament = pw_profiles_parliament(user_revision_load($map[1], $map[3]));
+      break;
+    case 'user':
+      $term_parliament = pw_profiles_parliament(menu_get_object('user'));
+      break;
+    case 'node':
+      $node = menu_get_object();
+      if (isset($node->field_parliament[LANGUAGE_NONE][0]['tid'])) {
+        $term_parliament = taxonomy_term_load($node->field_parliament[LANGUAGE_NONE][0]['tid']);
       }
-    }
-
-    switch (arg(0)) {
-
-      // load by archived user profile
-      case 'profile':
-      case 'user':
-        $user = _pw_get_current_user();
-        if (isset($user->field_user_parliament[LANGUAGE_NONE][0]['tid'])) {
-          $term_parliament_id = $user->field_user_parliament[LANGUAGE_NONE][0]['tid'];
-          $term_parliament = taxonomy_term_load($term_parliament_id);
-        }
-        break;
-
-      // load by node
-      case 'node':
-        $node = menu_get_object();
-        if (isset($node->field_parliament[LANGUAGE_NONE][0]['tid'])) {
-          $term_parliament_id = $node->field_parliament[LANGUAGE_NONE][0]['tid'];
-          $term_parliament = taxonomy_term_load($term_parliament_id);
-        }
-        break;
-
-      // load by taxonomy
-      case 'taxonomy':
-        $taxonomy_term = menu_get_object('taxonomy_term', 2);
-        if ($taxonomy_term->vocabulary_machine_name == 'parliaments') {
-          $term_parliament = $taxonomy_term;
-        } elseif (isset($taxonomy_term->field_parliament[LANGUAGE_NONE][0]['tid'])) {
-          $term_parliament_id = $taxonomy_term->field_parliament[LANGUAGE_NONE][0]['tid'];
-          $term_parliament = taxonomy_term_load($term_parliament_id);
-        }
-
-        break;
-    }
+      break;
+    case 'taxonomy':
+      $taxonomy_term = menu_get_object('taxonomy_term', 2);
+      if ($taxonomy_term->vocabulary_machine_name == 'parliaments') {
+        $term_parliament = $taxonomy_term;
+      }
+      elseif (isset($taxonomy_term->field_parliament[LANGUAGE_NONE][0]['tid'])) {
+        $term_parliament = taxonomy_term_load($taxonomy_term->field_parliament[LANGUAGE_NONE][0]['tid']);
+      }
+      break;
+    case 'profiles':
+    case 'petitions':
+    case 'polls':
+    case 'dialogues':
+    case 'election-manifestos':
+      $term_parliament = menu_get_object('taxonomy_term', 1);
+      break;
+    default:
+      $term_parliament = taxonomy_term_load(variable_get('pw_globals_default_parliament_tid', 26909));
   }
 
   return $term_parliament;
