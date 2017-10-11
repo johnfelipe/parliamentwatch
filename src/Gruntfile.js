@@ -6,13 +6,12 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     paths: {
-      root: '../',
-      bower: 'bower_components/',
-      contrib: '<%= paths.root %>contrib/',
-      sass: '<%= paths.root %>scss/',
-      css: '<%= paths.root %>css/',
-      js: '<%= paths.root %>js/',
-      fonts: '<%= paths.root %>fonts/'
+      drupal: '../httpdocs',
+      src: '.',
+      theme: '<%= paths.drupal %>/sites/all/themes/custom/parliamentwatch',
+      sass: '<%= paths.src %>/scss',
+      css: '<%= paths.theme %>/css',
+      js: '<%= paths.theme %>/js',
     },
     cssmin: {
       options: {
@@ -21,8 +20,8 @@ module.exports = function (grunt) {
         advanced: false
       },
       theme: {
-        src: '<%= paths.css %>theme.css',
-        dest: '<%= paths.css %>theme.min.css'
+        src: '<%= paths.css %>/theme.css',
+        dest: '<%= paths.css %>/theme.min.css'
       }
     },
     sass: {
@@ -31,10 +30,10 @@ module.exports = function (grunt) {
           sourceMap: true,
           outputSourceFiles: true,
           sourceMapURL: 'theme.css.map',
-          sourceMapFilename: '<%= paths.css %>theme.css.map'
+          sourceMapFilename: '<%= paths.css %>/theme.css.map'
         },
         files: {
-          '<%= paths.css %>theme.css': '<%= paths.sass %>theme.scss'
+          '<%= paths.css %>/theme.css': '<%= paths.sass %>/theme.scss'
         }
       }
     },
@@ -46,7 +45,7 @@ module.exports = function (grunt) {
           '<%= paths.sass %>/breakpoint': 'breakpoint-sass/stylesheets',
           '<%= paths.css %>/contrib/normalize.css': 'normalize-css/normalize.css',
           '<%= paths.css %>/contrib/select2.css': 'select2/dist/css/select2.css',
-          '<%= paths.css %>/contrib/swiper.css': 'swiper/dist/css/swiper.min.css',
+          '<%= paths.css %>/contrib/swiper.css': 'swiper/dist/css/swiper.css',
           '<%= paths.js %>/contrib/typeahead.bundle.min.js': 'typeahead.js/dist/typeahead.bundle.min.js',
           '<%= paths.js %>/contrib/d3.min.js': 'd3/d3.min.js',
           '<%= paths.js %>/contrib/jquery.scrollTo.min.js': 'jquery.scrollTo/jquery.scrollTo.min.js',
