@@ -26,8 +26,8 @@ fi
 
 adduser vagrant adm
 
-chmod -R u+w /vagrant/sites/default
-cp /vagrant/provisioning/settings.php /vagrant/sites/default/
+chmod -R u+w /vagrant/httpdocs/sites/default
+cp /vagrant/provisioning/settings.php /vagrant/httpdocs/sites/default/
 
 php5enmod vagrant
 
