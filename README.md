@@ -35,6 +35,6 @@ Please follow the [coding standards](https://www.drupal.org/coding-standards) an
 
 Theme assets are managed with Grunt tasks. To build the assets initially run the following commands:
 
-    $ cd sites/all/themes/custom/parliamentwatch/build
+    $ cd src
     $ npm install
-    $ grunt build
+    $ node_modules/.bin/grunt build
