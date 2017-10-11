@@ -167,7 +167,7 @@
     }
   }
   .question__answer__author {
-    padding-bottom: $space-xsmall;
+    padding-bottom: $space;
     margin-bottom: $space-large;
     border-bottom: 1px solid $gray;
     @include grid-container();
@@ -177,7 +177,6 @@
       color: $mediumGray;
       @include breakpoint($breakpoint-s-min) {
         float: right;
-        text-align: right;
       }
     }
   }
