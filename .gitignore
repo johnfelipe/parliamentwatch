@@ -10,10 +10,10 @@ httpdocs/sites/*/*settings*.php
 salt.inc.php
 
 # Ignore paths that contain user-generated content.
-sites/*/files/*
-sites/*/files
-sites/*/private/*
-sites/sites.php
+httpdocs/sites/*/files/*
+httpdocs/sites/*/files
+httpdocs/sites/*/private/*
+httpdocs/sites/sites.php
 
 # Ignore generated theme css
 httpdocs/sites/all/themes/custom/*/css/*
@@ -27,10 +27,10 @@ httpdocs/sites/all/themes/custom/*/js/contrib/*
 /r
 
 # Do NOT ignore .htaccess rules (Drupal SA-CORE-2013-003)
-!*/.htaccess
-!sites/*/files/.htaccess
-!sites/*/private/.htaccess
-!sites/*/files/private/.htaccess
+!httpdocs/*/.htaccess
+!httpdocs/sites/*/files/.htaccess
+!httpdocs/sites/*/private/.htaccess
+!httpdocs/sites/*/files/private/.htaccess
 
 # Ignore gdata stuff
 gdata
