@@ -18,6 +18,9 @@
   > h2 {
     @include grid-column(12);
   }
+  > .tile + h2 {
+    margin-top: $space-large;
+  }
   .small-tiles + .option-title,
   .tile + .option-title {
     margin-top: $space-large;
