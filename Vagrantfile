@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
       }
   end
 
-  config.vm.define "solr", autostart: false do |solr|
+  config.vm.define "solr" do |solr|
     solr.vm.box = "debian/jessie64"
     solr.vm.hostname = "aw-solr.local"
     solr.vm.network "private_network", ip: "192.168.93.217"
