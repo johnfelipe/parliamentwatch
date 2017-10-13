@@ -59,8 +59,7 @@ Vagrant.configure(2) do |config|
         solr-jetty
       adduser vagrant adm
       cp /vagrant/provisioning/etc/default/jetty8 /etc/default/
-      cp /vagrant/sites/all/modules/contrib/search_api_solr/solr-conf/3.x/* \
-        /usr/share/solr/conf/
+      cp /vagrant/httpdocs/sites/all/modules/contrib/search_api_solr/solr-conf/3.x/* /usr/share/solr/conf/
       service jetty8 restart
     SHELL
 
