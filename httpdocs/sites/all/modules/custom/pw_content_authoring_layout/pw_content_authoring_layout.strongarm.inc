@@ -116,6 +116,14 @@ function pw_content_authoring_layout_strongarm() {
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'image_width_medium' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'image_square_small' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
       ),
     ),

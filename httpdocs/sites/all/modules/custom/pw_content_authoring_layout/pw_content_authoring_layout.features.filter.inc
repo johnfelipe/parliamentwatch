@@ -162,25 +162,32 @@ http://beta.abgeordnetenwatch.de/
         'status' => '1',
         'settings' => array(),
       ),
-      'media_filter' => array(
+      'media_filter_paragraph_fix' => array(
         'weight' => '-49',
         'status' => '1',
-        'settings' => array(),
+        'settings' => array(
+          'replace' => 0,
+        ),
       ),
-      'filter_url' => array(
+      'media_filter' => array(
         'weight' => '-48',
         'status' => '1',
-        'settings' => array(
-          'filter_url_length' => '72',
-        ),
+        'settings' => array(),
       ),
       'filter_htmlcorrector' => array(
         'weight' => '-47',
         'status' => '1',
         'settings' => array(),
       ),
+      'filter_url' => array(
+        'weight' => '-46',
+        'status' => '1',
+        'settings' => array(
+          'filter_url_length' => '72',
+        ),
+      ),
       'pw_crypt' => array(
-        'weight' => '-43',
+        'weight' => '-45',
         'status' => '1',
         'settings' => array(
           'allowed_html' => '',
@@ -189,7 +196,7 @@ http://beta.abgeordnetenwatch.de/
         ),
       ),
       'pathologic' => array(
-        'weight' => '-41',
+        'weight' => '-44',
         'status' => '1',
         'settings' => array(
           'settings_source' => 'global',
