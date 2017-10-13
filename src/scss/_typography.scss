@@ -46,9 +46,9 @@ p {
 
 /* Links in paragraphes */
 
-p > a {
-  font-weight: 600;
-  margin-bottom: -5px;
+p > a:not(.btn) {
+  font-weight: 500;
+  margin-bottom: -6px;
   text-overflow: ellipsis;
   display: inline-block;
   overflow: hidden;
@@ -97,6 +97,18 @@ a.link-calendar:before { content: '\e851'; }
 a.link-video:before { content: '\e846'; }
 a.link-sound:before { content: '\e83d'; }
 
+
+/* Horizontal line */
+
+hr {
+  clear: both;
+  margin: $space 0;
+  border: 0;
+  border-bottom: 1px solid $darkBeige;
+  @include breakpoint($breakpoint-s-min) {
+    margin: $space-large 0;
+  }
+}
 
 /* Quotes */
 

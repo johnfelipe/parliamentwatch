@@ -68,4 +68,16 @@
  * @ingroup themeable
  */
 ?>
-<figure><?php print render($content['file']); ?><?php if ($content['field_image_copyright']): ?><figcaption><?php print render($content['field_image_copyright']); ?></figcaption><?php endif; ?></figure>
+
+<?php
+// Check to see if the file has an external url for linking.
+if(!empty($content['file']['#file']->external_url)) {;?>
+  <a href="<?php print render($content['file']['#file']->external_url);?>"><?php print render($content['file']); ?></a>
+  <?php
+} else {
+  print render($content['file']);
+}
+?>
+<?php if ($content['field_image_copyright']): ?>
+  <figcaption class="figcaption-overlay"><span><?php print render($content['field_image_copyright']); ?></span></figcaption>
+<?php endif; ?>

@@ -50,14 +50,22 @@ function parliamentwatch_css_alter(&$css) {
   unset($css[drupal_get_path('module','node') . '/node.css']);
   unset($css[drupal_get_path('module','field') . '/theme/field.css']);
   unset($css[drupal_get_path('module','user') . '/user.css']);
+  unset($css[drupal_get_path('module','media_wysiwyg') . '/css/media_wysiwyg.base.css']);
 }
 
 /**
  * Implements hook_media_wysiwyg_token_to_markup().
  */
 function parliamentwatch_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
-  unset($element['content']['#type']);
+  $element['content']['#theme_wrappers'] = ['container__figure'];
+  if (!empty($tag_info['fields']['alignment'])) {
+    $element['content']['#attributes']['class'] = [drupal_html_class('figure-align--' . $tag_info['fields']['alignment'])];
+  }
+  else {
+    unset($element['content']['#attributes']['class']);
+  }
 }
+
 
 /**
  * Implements hook_page_alter().
@@ -338,10 +346,18 @@ function parliamentwatch_preprocess_comment(&$variables) {
  */
 function parliamentwatch_preprocess_field(&$variables) {
   $element = $variables['element'];
-  if($element['#bundle'] == 'pw_petition') {
+  if ($element['#bundle'] == 'pw_petition') {
     $variables['theme_hook_suggestions'][] = 'field__' . $element['#bundle'] . '__' . $element['#field_name'];
   }
   $variables['theme_hook_suggestions'][] = 'field__' . $element['#bundle'] . '__' . $element['#view_mode'];
+}
+
+/**
+ * Implements hook_preprocess_file_entity().
+ */
+function parliamentwatch_preprocess_file_entity(&$variables) {
+  $x = 0;
+
 }
 
 /**
@@ -567,6 +583,17 @@ function parliamentwatch_container__swiper($variables) {
   $output .= '</div>';
 
   return $output;
+}
+
+/**
+ * Overrides theme_container() for figure.
+ */
+function parliamentwatch_container__figure($variables) {
+  $element = $variables['element'];
+  // Ensure #attributes is set.
+  $element += ['#attributes' => []];
+
+  return '<figure' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</figure>';
 }
 
 /**

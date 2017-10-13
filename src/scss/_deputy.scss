@@ -234,10 +234,13 @@
         text-align: center;
       }
     }
-    figcaption {
-      &:before {
-        content: '©';
-      }
+    .figcaption-overlay {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding-bottom: 0;
+      &:before { bottom: 0; }
+
       &:empty {
         display: none;
       }
@@ -251,6 +254,8 @@
       margin-bottom: $space-small-mobile;
       width: 100%;
       max-width: 300px;
+      border: 0;
+      padding: 0;
     }
     @media (max-width: $breakpoint-s-max) {
       @include image-circle(130px, 130px);
@@ -313,6 +318,7 @@
         padding-bottom: $space;
         @include breakpoint($breakpoint-m-min) {
           padding-bottom: 0;
+
         }
       }
     }

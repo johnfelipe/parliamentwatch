@@ -25,14 +25,19 @@
 /* Basic content styling */
 @mixin basic-content() {
   font-size: 16px;
+  line-height: 1.5em;
   padding-bottom: $space-large;
   @include container-small();
   @include breakpoint($breakpoint-s-min) {
     font-size: 18px;
   }
+  figure {
+    margin-bottom: $space;
+  }
+  .file-image figure {
+    margin-bottom: 0;
+  }
   /* Drupal-Specific */
-
-
   p + .floatbox { margin-top: 1.8em; }
   .container {
     max-width: 900px;
@@ -40,6 +45,9 @@
   ul {
     @include icon-list();
     overflow: hidden;
+  }
+  .media_embed {
+    margin-bottom: $space;
   }
 }
 

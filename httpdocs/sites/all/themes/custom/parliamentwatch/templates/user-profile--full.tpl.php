@@ -66,15 +66,15 @@
         </div>
         <?php if (!empty($user_profile['revisions'])) { print render($user_profile['revisions']); } ?>
       </header>
-      <figure>
-        <div class="deputy__image"><?php print render($user_profile['field_user_picture']); ?></div>
-        <?php if ($is_consultable): ?>
-        <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
-        <?php endif; ?>
+      <figure class="deputy__image">
+        <?php print render($user_profile['field_user_picture']); ?>
         <?php if (!empty(trim(render($user_profile['field_user_picture_copyright'])))): ?>
-        <figcaption><?php print render($user_profile['field_user_picture_copyright']);?></figcaption>
+        <figcaption class="figcaption-overlay"><span>© <?php print render($user_profile['field_user_picture_copyright']['#items'][0]['value']);?></span></figcaption>
         <?php endif; ?>
       </figure>
+      <?php if ($is_consultable): ?>
+        <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
+      <?php endif; ?>
     </div>
     <div class="deputy__intro__content">
       <div class="hstats">
