@@ -25,7 +25,6 @@
 
 
 /* Detail */
-
 .webform {
   @include breakpoint($breakpoint-m-min) {
     @include grid-column(8, $neat-grid-no-gutter);
@@ -45,6 +44,15 @@
     @include transform(translate(0,-50%));
   }
 }
+.container-small > .webform {
+  padding-bottom: $space;
+  @include grid-column(12);
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(12);
+    padding-bottom: $space-large;
+  }
+}
+
 .webform-component-fieldset {
   border: 0;
   margin: 0 0 $space;
