@@ -85,6 +85,7 @@ figure {
       transition: transform 300ms ease 100ms;
       transform: translate(0, 35px);
       line-height: 30px;
+      padding-right: 30px;
       @include text-overflow();
     }
     &:hover {
