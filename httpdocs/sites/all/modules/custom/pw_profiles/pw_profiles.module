@@ -381,7 +381,7 @@ function pw_profiles_page($parliament_term, $role_name) {
       '#items' => _pw_profiles_constituency_selection_items($constituency_values, current_path(), drupal_get_query_parameters()),
     ];
   }
-  elseif ($response['result count'] > 0) {
+  else {
     pager_default_initialize($response['result count'], $limit);
     $politicians = pw_userarchives_politician_load_multiple(array_keys($response['results']));
     $weight = 0;
@@ -399,12 +399,6 @@ function pw_profiles_page($parliament_term, $role_name) {
     $build['user']['pager'] = [
       '#theme' => 'pager',
       '#weight' => ++$weight,
-    ];
-  }
-  else {
-    $build['user'] = [
-      '#markup' => t('Sorry, there are no results matching your query.'),
-      '#theme_wrappers' => ['container__tiles']
     ];
   }
 
