@@ -1,0 +1,26 @@
+/**
+* Fonts
+*/
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/open_sans/opensans-light-webfont.woff2') format('woff2'),
+  url('../fonts/open_sans/opensans-light-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/open_sans/opensans-semibold-webfont.woff2') format('woff2'),
+  url('../fonts/open_sans/opensans-semibold-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans Krypto';
+  src: url('../fonts/open_sans_krypto/opensans-light-krypto-webfont.woff2') format('woff2'),
+  url('../fonts/open_sans_krypto/opensans-light-krypto-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
