@@ -73,9 +73,11 @@
           <div class="qa-stats-behavior__item__info-sub"><?php print t('@percentage % answered', ['@percentage' => round($data->percentage, 2)]) ?></div>
         </div>
         <?php endforeach; ?>
+        <?php if (!empty($answer_ratio_by_party['not_in_previous_parliament'])): ?>
         <div class="qa-stats-behavior__item" data-expander-item>
           <h4><?php print t('The following parties wants to become member of the parliament:'); ?></h4>
         </div>
+        <?php endif; ?>
         <?php foreach ($answer_ratio_by_party['not_in_previous_parliament'] as $party => $data): ?>
         <div class="qa-stats-behavior__item" data-expander-item>
           <div class="qa-stats-behavior__item__party">
