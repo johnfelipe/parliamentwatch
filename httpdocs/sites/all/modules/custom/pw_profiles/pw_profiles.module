@@ -93,6 +93,10 @@ function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
         }
       }
     }
+
+    if (isset($form['field_user_list_position'][LANGUAGE_NONE]['#options'])) {
+      sort($form['field_user_list_position'][LANGUAGE_NONE]['#options']);
+    }
   }
   elseif ($form_id == 'user_revision_edit_form') {
     unset($form['field_user_external_url']);
