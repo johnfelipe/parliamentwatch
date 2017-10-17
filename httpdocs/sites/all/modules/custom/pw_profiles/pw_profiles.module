@@ -86,12 +86,10 @@ function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
       );
     }
 
-    // sort fields by parliament
-    if(isset($form['field_user_parliament'][LANGUAGE_NONE]['#default_value'][0])){
-      $parliament_tid = $form['field_user_parliament'][LANGUAGE_NONE]['#default_value'][0];
-      foreach(array('field_user_constituency', 'field_user_list') as $field_name){
-        if(isset($form[$field_name]['und']['#options'])){
-          $form[$field_name]['und']['#options'] = _pw_sort_by_parliament($form[$field_name]['und']['#options'], $parliament_tid);
+    if (isset($form['field_user_parliament'][LANGUAGE_NONE]['#default_value'][0])) {
+      foreach (['field_user_constituency', 'field_user_list'] as $field_name) {
+        if (isset($form[$field_name][LANGUAGE_NONE]['#options'])) {
+          $form[$field_name][LANGUAGE_NONE]['#options'] = _pw_profiles_filter_options($form[$field_name][LANGUAGE_NONE]['#options'], $form['#user']);
         }
       }
     }
@@ -948,4 +946,32 @@ function _pw_profiles_reject_filter(array $filters, $key, $value = NULL) {
     }
   }
   return array_filter($filters);
+}
+
+/**
+ * Returns options eligible for the given user account.
+ *
+ * @param array $options
+ *   The options.
+ * @param $account
+ *   The account object.
+ *
+ * @return array
+ *   The eligible options.
+ */
+function _pw_profiles_filter_options(array $options, $account) {
+  $eligible_terms = [];
+  $parliament = pw_profiles_parliament($account);
+
+  if (isset($parliament)) {
+    $q = new EntityFieldQuery();
+    $q->entityCondition('entity_type', 'taxonomy_term')
+      ->fieldCondition('field_parliament', 'tid', $parliament->tid);
+    $result = $q->execute();
+    if (isset($result['taxonomy_term'])) {
+      $eligible_terms = $result['taxonomy_term'];
+    }
+  }
+
+  return array_intersect_key($options, $eligible_terms);
 }

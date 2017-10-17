@@ -801,32 +801,3 @@ function _pw_array_flatten($array, $keep_key = TRUE) {
 
   return $return;
 }
-
-/**
- * sort array items by parliament
- * @param array $options
- * @param int $parliament_tid
- * @return array $options
- */
-function _pw_sort_by_parliament($options, $parliament_tid) {
-  if (!empty($parliament_tid)) {
-    $parliament = taxonomy_term_load($parliament_tid);
-    if ($parliament) {
-      $efq = new EntityFieldQuery();
-      $efq->entityCondition('entity_type', 'taxonomy_term')
-        ->fieldCondition('field_parliament', 'tid', $parliament_tid);
-      $result = $efq->execute();
-      if (isset($result['taxonomy_term'])) {
-        $tids_with_parliament = array_keys($result['taxonomy_term']);
-        foreach ($options as $tid => $val) {
-          if (in_array($tid, $tids_with_parliament)) {
-            $options = array($tid => $val . " (Parliament: " . $parliament->name . ")") + $options;
-          }
-        }
-      }
-    }
-  }
-  unset($options['_none']);
-  $options = array('_none' => t('- None -')) + $options;
-  return $options;
-}
