@@ -64,48 +64,49 @@ function pw_profiles_page_delivery_callback_alter(&$callback) {
 }
 
 /**
- * Implements hook_form_alter().
+ * Implements hook_form_FORM_ID_alter().
  */
-function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'user_profile_form') {
-    unset($form['locale']);
-    unset($form['mimemail']);
-    unset($form['overlay_control']);
-    $form['#validate'][] = 'pw_profiles_form_validate';
-    $form['account']['name']['#description'] = t('Only lowercase letters (a-z), numbers and dash are allowed.');
+function pw_profiles_form_user_profile_form_alter(&$form, &$form_state) {
+  unset($form['locale']);
+  unset($form['mimemail']);
+  unset($form['overlay_control']);
+  $form['#validate'][] = 'pw_profiles_form_validate';
+  $form['account']['name']['#description'] = t('Only lowercase letters (a-z), numbers and dash are allowed.');
 
-    // edit users UUID
-    $role_admin = user_role_load_by_name('administrator');
-    global $user;
-    if ($role_admin && user_has_role($role_admin->rid, $user)) {
-      $form['uuid'] = array(
-        '#type' => 'textfield',
-        '#title' => t('UUID'),
-        '#default_value' => $form['#user']->uuid,
-        '#required' => TRUE,
-      );
-    }
+  $role_admin = user_role_load_by_name('administrator');
+  global $user;
+  if ($role_admin && user_has_role($role_admin->rid, $user)) {
+    $form['uuid'] = array(
+      '#type' => 'textfield',
+      '#title' => t('UUID'),
+      '#default_value' => $form['#user']->uuid,
+      '#required' => TRUE,
+    );
+  }
 
-    if (isset($form['field_user_parliament'][LANGUAGE_NONE]['#default_value'][0])) {
-      foreach (['field_user_constituency', 'field_user_list'] as $field_name) {
-        if (isset($form[$field_name][LANGUAGE_NONE]['#options'])) {
-          $form[$field_name][LANGUAGE_NONE]['#options'] = _pw_profiles_filter_options($form[$field_name][LANGUAGE_NONE]['#options'], $form['#user']);
-        }
+  if (isset($form['field_user_parliament'][LANGUAGE_NONE]['#default_value'][0])) {
+    foreach (['field_user_constituency', 'field_user_list'] as $field_name) {
+      if (isset($form[$field_name][LANGUAGE_NONE]['#options'])) {
+        $form[$field_name][LANGUAGE_NONE]['#options'] = _pw_profiles_filter_options($form[$field_name][LANGUAGE_NONE]['#options'], $form['#user']);
       }
     }
+  }
 
-    if (isset($form['field_user_list_position'][LANGUAGE_NONE]['#options'])) {
-      sort($form['field_user_list_position'][LANGUAGE_NONE]['#options']);
-    }
+  if (isset($form['field_user_list_position'][LANGUAGE_NONE]['#options'])) {
+    sort($form['field_user_list_position'][LANGUAGE_NONE]['#options']);
   }
-  elseif ($form_id == 'user_revision_edit_form') {
-    unset($form['field_user_external_url']);
-    unset($form['antispam_moderator']);
-    unset($form['ckeditor']);
-    unset($form['mimemail']);
-    unset($form['overlay_control']);
-    unset($form['xmlsitemap']);
-  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pw_profiles_form_user_revision_edit_form_alter(&$form, &$form_state) {
+  unset($form['field_user_external_url']);
+  unset($form['antispam_moderator']);
+  unset($form['ckeditor']);
+  unset($form['mimemail']);
+  unset($form['overlay_control']);
+  unset($form['xmlsitemap']);
 }
 
 /**
