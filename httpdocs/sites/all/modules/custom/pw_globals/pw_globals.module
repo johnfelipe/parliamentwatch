@@ -17,11 +17,8 @@ define('PW_GLOBALS_POLITICIAN_TID', 7027);
 define('PW_GLOBALS_DEPUTY_TID', 7028);
 define('PW_GLOBALS_CANDIDATE_TID', 7029);
 
-
 /**
  * Implements hook_menu().
- *
- * @return array
  */
 function pw_globals_menu() {
   $items['admin/config/pw'] = [
@@ -750,35 +747,6 @@ function _pw_uac_add_conditions(&$query, $conditions = array()) {
   if (array_key_exists('username', $conditions)) {
     $query->condition($alias_uac . '.user_name', $conditions['username']);
   }
-}
-
-/**
- * for debugging entity metadata wrapper object
- */
-function _pw_wrapper_debug($w) {
-  $values = array();
-  foreach ($w->getPropertyInfo() as $key => $val) {
-    $values[$key] = $w->$key->value();
-  }
-  return $values;
-}
-
-/**
- * for debugging db_select query
- * @param object $query
- *   db_select query object
- * @return string
- *   Full SQL Statement.
- */
-function _pw_query_debug($query) {
-  $querystring = preg_replace('/[\{|\}]/', '', $query->__toString());
-  foreach ($query->getArguments() as $key => $item) {
-    if (!$item) {
-      $item = 'NULL';
-    }
-    $querystring = str_replace($key . ')', "'" . $item . "')", $querystring);
-  }
-  return $querystring;
 }
 
 /**
