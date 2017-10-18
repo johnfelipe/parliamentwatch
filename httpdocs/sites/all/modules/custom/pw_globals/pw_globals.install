@@ -20,6 +20,16 @@ function pw_globals_update_7100() {
 }
 
 /**
+ * Increase weight of pw_search_api.
+ */
+function pw_globals_update_7101() {
+  db_update('system')
+    ->fields(['weight' => 1])
+    ->condition('name', 'pw_search_api')
+    ->execute();
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

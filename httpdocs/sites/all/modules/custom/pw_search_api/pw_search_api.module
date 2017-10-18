@@ -7,6 +7,28 @@
 include_once 'pw_search_api.features.inc';
 
 /**
+ * Implements hook_entity_insert().
+ *
+ * Undo undesired effects of search_api_entity_insert().
+ *
+ * @see https://www.drupal.org/node/2408221
+ */
+function pw_search_api_entity_insert($entity, $type) {
+  cache_clear_all("field:$type:" . entity_id($type, $entity), 'cache_field');
+}
+
+/**
+ * Implements hook_entity_update().
+ *
+ * Undo undesired effects of search_api_entity_update().
+ *
+ * @see https://www.drupal.org/node/2408221
+ */
+function pw_search_api_entity_update($entity, $type) {
+  cache_clear_all("field:$type:" . entity_id($type, $entity), 'cache_field');
+}
+
+/**
  * Implements hook_node_presave().
  *
  * Sets sort date field depending on node type
