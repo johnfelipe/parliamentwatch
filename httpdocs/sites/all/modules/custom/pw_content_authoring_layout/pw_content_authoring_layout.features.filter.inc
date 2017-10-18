@@ -186,17 +186,13 @@ http://beta.abgeordnetenwatch.de/
           'filter_url_length' => '72',
         ),
       ),
-      'pw_crypt' => array(
-        'weight' => '-45',
+      'filter_encrypt' => array(
+        'weight' => '-44',
         'status' => '1',
-        'settings' => array(
-          'allowed_html' => '',
-          'filter_html_help' => 1,
-          'filter_html_nofollow' => 0,
-        ),
+        'settings' => array(),
       ),
       'pathologic' => array(
-        'weight' => '-44',
+        'weight' => '-43',
         'status' => '1',
         'settings' => array(
           'settings_source' => 'global',
