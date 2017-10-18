@@ -71,6 +71,9 @@ function pw_content_authoring_layout_strongarm() {
       'pw_file_portrait_ms' => array(
         'custom_settings' => TRUE,
       ),
+      'square_small' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),

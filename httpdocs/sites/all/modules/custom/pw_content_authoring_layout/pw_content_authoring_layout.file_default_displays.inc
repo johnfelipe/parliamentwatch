@@ -104,172 +104,6 @@ function pw_content_authoring_layout_file_default_displays() {
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
-  $file_display->name = 'image__image_square_small__file_field_file_default';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = '';
-  $export['image__image_square_small__file_field_file_default'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_square_small__file_field_file_download_link';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'text' => 'Download [file:name]',
-  );
-  $export['image__image_square_small__file_field_file_download_link'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_square_small__file_field_file_table';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = '';
-  $export['image__image_square_small__file_field_file_table'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_square_small__file_field_file_url_plain';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = '';
-  $export['image__image_square_small__file_field_file_url_plain'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_square_small__file_field_image';
-  $file_display->weight = 0;
-  $file_display->status = TRUE;
-  $file_display->settings = array(
-    'image_style' => 'square_small',
-    'image_link' => '',
-  );
-  $export['image__image_square_small__file_field_image'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_square_small__file_field_media_large_icon';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'image_style' => '',
-  );
-  $export['image__image_square_small__file_field_media_large_icon'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_square_small__file_field_mediaelement_audio';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'controls' => 1,
-    'width' => '300',
-    'height' => '30',
-    'download_link' => 0,
-    'download_text' => 'Herunterladen',
-  );
-  $export['image__image_square_small__file_field_mediaelement_audio'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_square_small__file_field_mediaelement_video';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'controls' => 1,
-    'width' => '640',
-    'height' => '385',
-    'download_link' => 0,
-    'download_text' => 'Herunterladen',
-  );
-  $export['image__image_square_small__file_field_mediaelement_video'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_width_medium__file_field_file_default';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = '';
-  $export['image__image_width_medium__file_field_file_default'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_width_medium__file_field_file_download_link';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'text' => 'Download [file:name]',
-  );
-  $export['image__image_width_medium__file_field_file_download_link'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_width_medium__file_field_file_table';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = '';
-  $export['image__image_width_medium__file_field_file_table'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_width_medium__file_field_file_url_plain';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = '';
-  $export['image__image_width_medium__file_field_file_url_plain'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_width_medium__file_field_image';
-  $file_display->weight = 0;
-  $file_display->status = TRUE;
-  $file_display->settings = array(
-    'image_style' => 'width_medium',
-    'image_link' => '',
-  );
-  $export['image__image_width_medium__file_field_image'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_width_medium__file_field_media_large_icon';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'image_style' => '',
-  );
-  $export['image__image_width_medium__file_field_media_large_icon'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_width_medium__file_field_mediaelement_audio';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'controls' => 1,
-    'width' => '300',
-    'height' => '30',
-    'download_link' => 0,
-    'download_text' => 'Herunterladen',
-  );
-  $export['image__image_width_medium__file_field_mediaelement_audio'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__image_width_medium__file_field_mediaelement_video';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'controls' => 1,
-    'width' => '640',
-    'height' => '385',
-    'download_link' => 0,
-    'download_text' => 'Herunterladen',
-  );
-  $export['image__image_width_medium__file_field_mediaelement_video'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
   $file_display->name = 'image__media_link__file_field_file_default';
   $file_display->weight = -49;
   $file_display->status = TRUE;
@@ -508,6 +342,172 @@ function pw_content_authoring_layout_file_default_displays() {
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
+  $file_display->name = 'image__square_medium__file_field_file_default';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__square_medium__file_field_file_default'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_medium__file_field_file_download_link';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'text' => 'Download [file:name]',
+  );
+  $export['image__square_medium__file_field_file_download_link'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_medium__file_field_file_table';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__square_medium__file_field_file_table'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_medium__file_field_file_url_plain';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__square_medium__file_field_file_url_plain'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_medium__file_field_image';
+  $file_display->weight = 0;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'image_style' => 'square_medium',
+    'image_link' => '',
+  );
+  $export['image__square_medium__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_medium__file_field_media_large_icon';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__square_medium__file_field_media_large_icon'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_medium__file_field_mediaelement_audio';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'controls' => 1,
+    'width' => '300',
+    'height' => '30',
+    'download_link' => 0,
+    'download_text' => 'Herunterladen',
+  );
+  $export['image__square_medium__file_field_mediaelement_audio'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_medium__file_field_mediaelement_video';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'controls' => 1,
+    'width' => '640',
+    'height' => '385',
+    'download_link' => 0,
+    'download_text' => 'Herunterladen',
+  );
+  $export['image__square_medium__file_field_mediaelement_video'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_small__file_field_file_default';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__square_small__file_field_file_default'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_small__file_field_file_download_link';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'text' => 'Download [file:name]',
+  );
+  $export['image__square_small__file_field_file_download_link'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_small__file_field_file_table';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__square_small__file_field_file_table'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_small__file_field_file_url_plain';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__square_small__file_field_file_url_plain'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_small__file_field_image';
+  $file_display->weight = 0;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'image_style' => 'square_small',
+    'image_link' => '',
+  );
+  $export['image__square_small__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_small__file_field_media_large_icon';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__square_small__file_field_media_large_icon'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_small__file_field_mediaelement_audio';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'controls' => 1,
+    'width' => '300',
+    'height' => '30',
+    'download_link' => 0,
+    'download_text' => 'Herunterladen',
+  );
+  $export['image__square_small__file_field_mediaelement_audio'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__square_small__file_field_mediaelement_video';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'controls' => 1,
+    'width' => '640',
+    'height' => '385',
+    'download_link' => 0,
+    'download_text' => 'Herunterladen',
+  );
+  $export['image__square_small__file_field_mediaelement_video'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
   $file_display->name = 'image__teaser__file_image';
   $file_display->weight = 5;
   $file_display->status = TRUE;
@@ -515,6 +515,172 @@ function pw_content_authoring_layout_file_default_displays() {
     'image_style' => 'medium',
   );
   $export['image__teaser__file_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_large__file_field_file_default';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__width_large__file_field_file_default'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_large__file_field_file_download_link';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'text' => 'Download [file:name]',
+  );
+  $export['image__width_large__file_field_file_download_link'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_large__file_field_file_table';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__width_large__file_field_file_table'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_large__file_field_file_url_plain';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__width_large__file_field_file_url_plain'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_large__file_field_image';
+  $file_display->weight = 0;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'image_style' => 'width_large',
+    'image_link' => '',
+  );
+  $export['image__width_large__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_large__file_field_media_large_icon';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__width_large__file_field_media_large_icon'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_large__file_field_mediaelement_audio';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'controls' => 1,
+    'width' => '300',
+    'height' => '30',
+    'download_link' => 0,
+    'download_text' => 'Herunterladen',
+  );
+  $export['image__width_large__file_field_mediaelement_audio'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_large__file_field_mediaelement_video';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'controls' => 1,
+    'width' => '640',
+    'height' => '385',
+    'download_link' => 0,
+    'download_text' => 'Herunterladen',
+  );
+  $export['image__width_large__file_field_mediaelement_video'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_medium__file_field_file_default';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__width_medium__file_field_file_default'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_medium__file_field_file_download_link';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'text' => 'Download [file:name]',
+  );
+  $export['image__width_medium__file_field_file_download_link'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_medium__file_field_file_table';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__width_medium__file_field_file_table'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_medium__file_field_file_url_plain';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__width_medium__file_field_file_url_plain'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_medium__file_field_image';
+  $file_display->weight = 0;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'image_style' => 'width_medium',
+    'image_link' => '',
+  );
+  $export['image__width_medium__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_medium__file_field_media_large_icon';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__width_medium__file_field_media_large_icon'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_medium__file_field_mediaelement_audio';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'controls' => 1,
+    'width' => '300',
+    'height' => '30',
+    'download_link' => 0,
+    'download_text' => 'Herunterladen',
+  );
+  $export['image__width_medium__file_field_mediaelement_audio'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__width_medium__file_field_mediaelement_video';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'controls' => 1,
+    'width' => '640',
+    'height' => '385',
+    'download_link' => 0,
+    'download_text' => 'Herunterladen',
+  );
+  $export['image__width_medium__file_field_mediaelement_video'] = $file_display;
 
   $file_display = new stdClass();
   $file_display->api_version = 1;

@@ -16,8 +16,6 @@ function pw_content_authoring_layout_media_wysiwyg_defaults() {
   // Restricted view modes for image files.
   $media_wysiwyg['image_preview_restrict_wysiwyg'] = FALSE;
   $media_wysiwyg['image_wysiwyg_restrict_wysiwyg'] = FALSE;
-  $media_wysiwyg['image_image_width_medium_restrict_wysiwyg'] = FALSE;
-  $media_wysiwyg['image_image_square_small_restrict_wysiwyg'] = FALSE;
   $media_wysiwyg['image_default_restrict_wysiwyg'] = FALSE;
 
   return $media_wysiwyg;
