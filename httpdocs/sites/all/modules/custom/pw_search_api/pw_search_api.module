@@ -76,21 +76,3 @@ function pw_search_api_search_api_processor_info() {
   );
   return $callbacks;
 }
-
-/**
- * Helper function to initialize the sort date for all relevant nodes,
- */
-function pw_search_api_set_sort_date() {
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', ['pw_petition'], 'IN'); //,'blogpost','page','dialogue','pw_petition'
-  $nodes = $query->execute();
-  $i = 1;
-  $ct = count($nodes['node']);
-  foreach ($nodes['node'] as $node) {
-    print('Updated Node ' . $node->nid . "\t(" . $i . ' of ' . $ct . ')' . PHP_EOL);
-    $i++;
-    $current_node = node_load($node->nid);
-    node_save($current_node);
-  }
-}
