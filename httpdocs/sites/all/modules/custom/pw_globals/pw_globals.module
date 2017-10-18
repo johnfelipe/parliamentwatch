@@ -74,6 +74,22 @@ function pw_globals_entity_info_alter(&$entity_info) {
     'label' => t('Embedded'),
     'custom settings' => FALSE,
   );
+  $entity_info['file']['view modes']['square_small'] = array(
+    'label' => t('Square small'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['square_medium'] = array(
+    'label' => t('Square medium'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['width_medium'] = array(
+    'label' => t('Width medium'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['width_large'] = array(
+    'label' => t('Width large'),
+    'custom settings' => TRUE,
+  );
 }
 
 /**
