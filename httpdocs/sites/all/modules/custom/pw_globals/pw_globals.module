@@ -175,6 +175,18 @@ function pw_globals_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_filter_info().
+ */
+function pw_globals_filter_info() {
+  $filters['filter_encrypt'] = [
+    'title' => t('Encrypt marked strings'),
+    'description' => t('Makes strings illegible unless viewed with the matching font.'),
+    'process callback' => '_pw_globals_filter_encrypt',
+  ];
+  return $filters;
+}
+
+/**
  * Page callback: Renders a page that demonstrates visual elements.
  */
 function pw_globals_test_page() {
@@ -784,4 +796,20 @@ function _pw_array_flatten($array, $keep_key = TRUE) {
   }
 
   return $return;
+}
+
+/**
+ * Encrypts content of crypt tags in the given text.
+ *
+ * @param string $text
+ *   The text.
+ *
+ * @return string
+ *   The filtered text.
+ */
+function _pw_globals_filter_encrypt($text) {
+  $callback = function ($matches) {
+    return '<span class="crypto-font">' . str_rot13($matches[1]) . '</span>';
+  };
+  return preg_replace_callback('/<crypt>(.*?)<\/crypt>/i', $callback, $text);
 }
