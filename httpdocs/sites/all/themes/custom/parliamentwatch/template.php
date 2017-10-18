@@ -311,12 +311,6 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     }
   }
 
-  if (isset($variables['field_user_list_position'])) {
-    if ($variables['field_user_list_position'][0]['tid'] == 19706) {
-      $variables['user_profile']['field_user_list_position'][0]['#markup'] = t('no information');
-    }
-  }
-
   if (isset($variables['field_user_picture'])) {
     $variables['user_profile']['field_user_picture_copyright'] = field_view_field('file', file_load($variables['field_user_picture'][0]['fid']), 'field_image_copyright', 'default');
   }
@@ -346,18 +340,7 @@ function parliamentwatch_preprocess_comment(&$variables) {
  */
 function parliamentwatch_preprocess_field(&$variables) {
   $element = $variables['element'];
-  if ($element['#bundle'] == 'pw_petition') {
-    $variables['theme_hook_suggestions'][] = 'field__' . $element['#bundle'] . '__' . $element['#field_name'];
-  }
   $variables['theme_hook_suggestions'][] = 'field__' . $element['#bundle'] . '__' . $element['#view_mode'];
-}
-
-/**
- * Implements hook_preprocess_file_entity().
- */
-function parliamentwatch_preprocess_file_entity(&$variables) {
-  $x = 0;
-
 }
 
 /**
