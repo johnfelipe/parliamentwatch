@@ -90,7 +90,7 @@
   <div class="question__question mh-item-tile" data-mh="questionTitle">
     <header class="question__question__title"><?php print render($content['body']); ?></header>
     <?php print render($title_suffix); ?>
-    <p class="question__question__author"><?php print t('By'); ?>: <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span></p>
+    <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
   </div>
   <div class="question__share tile__share">
     <div class="tile__share__trigger"><i class="icon icon-share"></i> <?php print t('share') ?></div>
