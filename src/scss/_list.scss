@@ -22,10 +22,15 @@ li {
 .dl__dt {
   padding: 0;
   margin: 0;
-  width: 40%;
-  float: left;
+  padding-top: $space-small-mobile;
+  font-weight: 500;
   @include text-overflow();
-  @include padding($space-small-mobile null);
+  @include breakpoint($breakpoint-xs-min) {
+    @include padding($space-small-mobile null);
+    width: 40%;
+    float: left;
+    font-weight: 300;
+  }
   @include breakpoint($breakpoint-m-min) {
     width: 30%;
     @include padding($space-small null);
@@ -43,9 +48,12 @@ li {
   }
 }
 .dl__dd {
-  margin: 0 0 0 40%;
-  padding-left: $space-small-mobile;
-  @include padding($space-small-mobile null);
+  margin: 0 0 $space-xsmall;
+  @include breakpoint($breakpoint-xs-min) {
+    margin: 0 0 0 40%;
+    @include padding($space-small-mobile null);
+    padding-left: $space-small-mobile;
+  }
   @include breakpoint($breakpoint-m-min) {
     margin: 0 0 0 30%;
     @include padding($space-small null);
