@@ -103,9 +103,19 @@
     </ul>
   </div>
   <?php if (empty($content['answers'])): ?>
-  <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-    <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
-  </div>
+    <div class="question__answer mh-item-tile" data-mh="questionAnswer">
+      <?php if ($view_mode != 'embedded'): ?>
+      <div class="question__answer__author">
+        <span class="question__answer__author__label"><?php print t('To') ?>:</span>
+        <?php if (!empty(trim(render($user_picture)))): ?><span class="question__answer__author__image"><?php print render($user_picture); ?></span><?php endif; ?>
+        <div class="question__answer__author_text" title="<?php print t('Go to profile of') ?> <?php print render($user_display_name); ?>">
+          <a href="<?php print render($user_url); ?>"><?php print render($user_display_name); ?></a>
+          <?php print render($user_party); ?>
+        </div>
+      </div>
+      <?php endif; ?>
+      <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
+    </div>
   <?php else: ?>
     <?php print render($content['answers']); ?>
   <?php endif; ?>

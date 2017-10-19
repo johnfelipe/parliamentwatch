@@ -149,6 +149,17 @@
   }
 }
 
+/* link gray */
+@mixin link-gray() {
+  color: $darkGray;
+  font-weight: 500;
+  will-change: color;
+  transition: color 300ms ease;
+  &:hover {
+    color: $mediumGray;
+  }
+}
+
 /* Poll icon colors */
 @mixin poll-icon-colors() {
   .icon-ok { color: $color-accepted; }
