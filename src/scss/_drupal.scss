@@ -133,6 +133,10 @@
 }
 
 /* Contextual Links */
+
+div.contextual-links-wrapper {
+  z-index: 98;
+}
 #header .contextual-links-region {
   @include grid-container();
 }
@@ -171,7 +175,6 @@
     }
   }
 }
-
 
 /* Temp */
 
