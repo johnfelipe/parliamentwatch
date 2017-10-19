@@ -37,21 +37,54 @@ function parliamentwatch_form_comment_form_alter(&$form, &$form_state) {
 /**
  * Implements hook_css_alter().
  *
- * Removes unnecessary core css files.
+ * Removes unnecessary core & contributed css files.
  */
 function parliamentwatch_css_alter(&$css) {
+  global $user;
+
   unset($css[drupal_get_path('module','system') . '/system.base.css']);
   unset($css[drupal_get_path('module','system') . '/system.menus.css']);
   unset($css[drupal_get_path('module','system') . '/system.theme.css']);
   unset($css[drupal_get_path('module','system') . '/system.messages.css']);
-  unset($css[drupal_get_path('module','filter') . '/filter.css']);
   unset($css[drupal_get_path('module','comment') . '/comment.css']);
-  unset($css[drupal_get_path('module','search') . '/search.css']);
-  unset($css[drupal_get_path('module','node') . '/node.css']);
+  unset($css[drupal_get_path('module','ckeditor') . '/css/ckeditor.css']);
+  unset($css[drupal_get_path('module','ctools') . '/css/ctools.css']);
   unset($css[drupal_get_path('module','field') . '/theme/field.css']);
-  unset($css[drupal_get_path('module','user') . '/user.css']);
+  unset($css[drupal_get_path('module','filter') . '/filter.css']);
   unset($css[drupal_get_path('module','media_wysiwyg') . '/css/media_wysiwyg.base.css']);
+  unset($css[drupal_get_path('module','node') . '/node.css']);
+  unset($css[drupal_get_path('module','jquery_update') . '/replace/ui/themes/base/minified/jquery.ui.core.css']);
+  unset($css[drupal_get_path('module','jquery_update') . '/replace/ui/themes/base/minified/jquery.ui.theme.min.css']);
+  unset($css[drupal_get_path('module','search') . '/search.css']);
+  unset($css[drupal_get_path('module','tagadelic') . '/tagadelic.css']);
+  unset($css[drupal_get_path('module','user') . '/user.css']);
+  unset($css[drupal_get_path('module','views') . '/css/views.css']);
+  unset($css[drupal_get_path('module','webform') . '/css/webform.css']);
+  unset($css[drupal_get_path('module','webform_confirm_email') . '/webform_confirm_email.css']);
+  if (!$user->uid) {
+    unset($css['misc/ui/jquery.ui.core.css']);
+    unset($css['misc/ui/jquery.ui.theme.css']);
+    unset($css[drupal_get_path('module','date') . '/date_popup/themes/datepicker.1.7.css']);
+    unset($css[drupal_get_path('module','date_api') . '/date.css']);
+    unset($css[drupal_get_path('module','overlay') . '/overlay-parent.css']);
+  }
 }
+
+/**
+ * Implements hook_js_alter().
+ *
+ * Removes unnecessary core & contributed js files.
+ */
+function parliamentwatch_js_alter(&$javascript) {
+  global $user;
+  unset($javascript['misc/form.js']);
+  unset($javascript['modules/overlay/overlay-parent.js']);
+
+  if (!$user->uid) {
+    unset($javascript['sites/all/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.core.min.js']);
+  }
+}
+
 
 /**
  * Implements hook_media_wysiwyg_token_to_markup().
@@ -329,9 +362,16 @@ function parliamentwatch_preprocess_comment(&$variables) {
 
   $variables['theme_hook_suggestions'][] = $variables['theme_hook_original'] . '__' . $elements['#view_mode'];
 
+
+  if ($elements['#bundle'] == 'comment_node_dialogue' && $elements['#view_mode'] != 'full') {
+    $account = user_load($elements['#comment']->uid);
+    $variables['user_display_name'] = _pw_get_fullname($account);
+    $variables['user_party'] = field_view_field('user', $account, 'field_user_party', ['label' => 'hidden', 'type' => 'taxonomy_term_reference_plain']);
+  }
   if ($elements['#bundle'] == 'comment_node_dialogue' && $elements['#view_mode'] == 'tile') {
     $account = user_load($elements['#comment']->uid);
     $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
+    $variables['user_url'] = url(entity_uri('user', $account)['path']);
   }
 }
 

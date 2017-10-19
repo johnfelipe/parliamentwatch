@@ -98,13 +98,21 @@
   &:before {
     content: '';
     background-color: $gray;
+    background-color: attr(data-party-color);
     width: 10px;
     height: 10px;
     display: inline-block;
     border-radius: 50%;
     @include margin(0px 5px null null);
   }
+  &.party-indicator--afd:before { background-color: #1a9fdd; }
+  &.party-indicator--cdu:before { background-color: $black; }
+  &.party-indicator--fdp:before { background-color: #feeb34; }
+  &.party-indicator--die-linke:before { background-color: #dc0d18; }
+  &.party-indicator--spd:before { background-color: #df0b25; }
+  &.party-indicator--die-grünen:before { background-color: #4a932b; }
 }
+
 
 /* share */
 
@@ -475,7 +483,18 @@
   }
 }
 
+/* Tagadelic */
 
+.tagadelic.level1 { font-size : 1em; }
+.tagadelic.level2 { font-size : 1.2em; }
+.tagadelic.level3 { font-size : 1.4em; }
+.tagadelic.level4 { font-size : 1.6em; }
+.tagadelic.level5 { font-size : 1.8em; }
+.tagadelic.level6 { font-size : 2em; }
+.tagadelic.level7 { font-size : 2.2em; }
+.tagadelic.level8 { font-size : 2.4em; }
+.tagadelic.level9 { font-size : 2.6em; }
+.tagadelic.level10 { font-size : 2.8em; }
 
 /* Burger / Close Button */
 
