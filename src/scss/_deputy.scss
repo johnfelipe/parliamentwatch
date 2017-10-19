@@ -215,6 +215,9 @@
         text-align: right;
       }
     }
+    .dl__dd p {
+      margin-bottom: 0;
+    }
   }
   .deputy__intro__sidebar {
     margin-bottom: $space-large;
