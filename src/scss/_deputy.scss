@@ -45,7 +45,10 @@
       width: 60%;
       height: 1px;
       background: $gray;
-      @include margin($space auto);
+      @include margin($space-xsmall auto);
+      @include breakpoint($breakpoint-s-min) {
+        @include margin($space auto);
+      }
     }
   }
   .hstats__item__display {

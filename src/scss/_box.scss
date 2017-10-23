@@ -263,9 +263,12 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
   }
 }
 .tile__links__item__link {
-  padding: $space-small;
+  padding: $space-small $space-xsmall;
   display: block;
   color: $gray;
+  @include breakpoint($breakpoint-s-min) {
+    padding: $space-small;
+  }
   &:hover {
     color: $darkGray;
   }

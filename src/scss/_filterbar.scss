@@ -422,10 +422,6 @@ _:-ms-fullscreen,
       margin-bottom: 0;
       line-height: 1.6em;
       float: left;
-      @include breakpoint($breakpoint-s-min) {
-        padding-top: $space-xsmall;
-        line-height: 1em;
-      }
       > span {
         display: none;
         @include breakpoint($breakpoint-s-min) {
@@ -457,6 +453,7 @@ _:-ms-fullscreen,
     .filter-summary__content--mobile {
       display: block;
       float: none;
+      padding-bottom: $space-xsmall;
       @include breakpoint($breakpoint-s-min) {
         display: none;
       }
@@ -471,9 +468,11 @@ _:-ms-fullscreen,
     position: relative;
     overflow: hidden;
     margin-right: $space-xsmall-mobile;
+    margin-bottom: -6px;
     @include transition(background 300ms ease);
     @include breakpoint($breakpoint-s-min) {
       margin-right: 0;
+      margin-bottom: -9px;
     }
     &:after {
       content:'\e808';
