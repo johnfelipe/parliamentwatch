@@ -15,7 +15,6 @@ function pw_profiles_user_default_permissions() {
     'name' => 'access overlay',
     'roles' => array(
       0 => 'Politician',
-      1 => 'anonymous user',
     ),
     'module' => 'overlay',
   );

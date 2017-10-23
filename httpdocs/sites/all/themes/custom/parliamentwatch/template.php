@@ -40,8 +40,8 @@ function parliamentwatch_form_comment_form_alter(&$form, &$form_state) {
  * Removes unnecessary core & contributed css files.
  */
 function parliamentwatch_css_alter(&$css) {
-  global $user;
-
+  unset($css['misc/ui/jquery.ui.core.css']);
+  unset($css['misc/ui/jquery.ui.theme.css']);
   unset($css[drupal_get_path('module','system') . '/system.base.css']);
   unset($css[drupal_get_path('module','system') . '/system.menus.css']);
   unset($css[drupal_get_path('module','system') . '/system.theme.css']);
@@ -61,13 +61,8 @@ function parliamentwatch_css_alter(&$css) {
   unset($css[drupal_get_path('module','views') . '/css/views.css']);
   unset($css[drupal_get_path('module','webform') . '/css/webform.css']);
   unset($css[drupal_get_path('module','webform_confirm_email') . '/webform_confirm_email.css']);
-  if (!$user->uid) {
-    unset($css['misc/ui/jquery.ui.core.css']);
-    unset($css['misc/ui/jquery.ui.theme.css']);
-    unset($css[drupal_get_path('module','date') . '/date_popup/themes/datepicker.1.7.css']);
-    unset($css[drupal_get_path('module','date_api') . '/date.css']);
-    unset($css[drupal_get_path('module','overlay') . '/overlay-parent.css']);
-  }
+  unset($css[drupal_get_path('module','date') . '/date_popup/themes/datepicker.1.7.css']);
+  unset($css[drupal_get_path('module','date_api') . '/date.css']);
 }
 
 /**
@@ -77,11 +72,7 @@ function parliamentwatch_css_alter(&$css) {
  */
 function parliamentwatch_js_alter(&$javascript) {
   unset($javascript['sites/all/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.core.min.js']);
-  if (user_is_anonymous()) {
-    unset($javascript['modules/overlay/overlay-parent.js']);
-  }
 }
-
 
 /**
  * Implements hook_media_wysiwyg_token_to_markup().
