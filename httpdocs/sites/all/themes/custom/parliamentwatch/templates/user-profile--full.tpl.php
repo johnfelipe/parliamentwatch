@@ -144,23 +144,18 @@
           <dt class="dl__dt"><?php print $user_profile['field_user_constituency']['#title']; ?></dt>
           <dd class="dl__dd">
             <p>
-              <a href="/<?php print drupal_html_class(trim($user_profile['field_user_parliament']['#children'])); ?>/profile?keys=&constituency=<?php print render($user_profile['field_user_constituency']['#items'][0]['taxonomy_term']->tid); ?>">
-                <?php print $user_profile['field_user_constituency']['#title']; ?> <?php print $user_profile['field_user_constituency']['#items'][0]['taxonomy_term']->field_constituency_nr['und'][0]['value'] ?>:
-                <?php print $user_profile['field_user_constituency'][0]['#markup']; ?>
-              </a>
+              <?php print $user_profile['field_user_constituency'][0]['#markup']; ?>
             </p>
-            <?php if (isset($user_profile['field_user_election_result'])): ?>
+            <?php if (isset($field_user_election_result)): ?>
               <p><small>
                   <?php print $user_profile['field_user_election_result']['#title']; ?>: <?php print $user_profile['field_user_election_result'][0]['#markup']; ?> %
-                  <?php if ($user_profile['field_user_constituency_won'][0]['#markup'] === '1'): ?>
-                    (<?php print t('By the constituency'); ?>)
+                  <?php if ($field_user_constituency_won[0]['value'] == 1): ?>
+                    (<?php print t('Via constituency'); ?>)
                   <?php endif; ?>
                 </small></p>
             <?php endif; ?>
-            <?php if ($user_profile['field_user_list_won'][0]['#markup'] === '1'): ?>
-              <p><small>
-                  (<?php print t('By the list'); ?>)
-                </small></p>
+            <?php if ($field_user_list_won[0]['value'] == 1): ?>
+              <p><small>(<?php print t('Via list'); ?>)</small></p>
             <?php endif; ?>
           </dd>
         <?php endif; ?>

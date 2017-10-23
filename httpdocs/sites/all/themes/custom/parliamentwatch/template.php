@@ -273,7 +273,7 @@ function parliamentwatch_preprocess_node(&$variables) {
     $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_medium']]);
   }
 
-  if ($variables['type'] == 'dialogue' && $variables['view_mode'] != 'embedded') {
+  if ($variables['type'] == 'dialogue') {
     $account = pw_dialogues_recipient_user_revision($node);
     $variables['user_display_name'] = _pw_get_fullname($account);
     $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
@@ -317,16 +317,29 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     $variables['voting_ratio'] = round(100 * $variables['user_profile']['votes_attended'] / $variables['user_profile']['votes_total'], 0);
   }
 
-  if (isset($variables['field_user_party']) && $variables['elements']['#view_mode'] == 'full') {
+  if (_pw_user_has_role($account, 'Candidate')) {
+    $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/candidates';
+  }
+  elseif (_pw_user_has_role($account, 'Deputy')) {
+    $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/deputies';
+  }
+
+  if (isset($variables['field_user_party']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
     $text = $variables['field_user_party'][0]['taxonomy_term']->name;
-    if (_pw_user_has_role($account, 'Candidate')) {
-      $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/candidates';
-    }
-    elseif (_pw_user_has_role($account, 'Deputy')) {
-      $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/deputies';
-    }
     $options = ['query' => ['party[]' => $variables['field_user_party'][0]['tid']]];
     $variables['user_profile']['field_user_party'][0]['#markup'] = l($text, $path, $options);
+
+  }
+
+  if (isset($variables['field_user_constituency']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
+    $placeholders = [
+      '@number' => $variables['field_user_constituency'][0]['taxonomy_term']->field_constituency_nr['und'][0]['value'],
+      '@title' => $variables['user_profile']['field_user_constituency'][0]['#markup']
+    ];
+    $text = t('Constituency @number: @title', $placeholders);
+    $options = ['query' => ['constituency' => $variables['field_user_constituency'][0]['tid']]];
+
+    $variables['user_profile']['field_user_constituency'][0]['#markup'] = l($text, $path, $options);
   }
 
   if (isset($variables['field_user_birthday'])) {
