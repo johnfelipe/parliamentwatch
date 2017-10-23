@@ -76,12 +76,9 @@ function parliamentwatch_css_alter(&$css) {
  * Removes unnecessary core & contributed js files.
  */
 function parliamentwatch_js_alter(&$javascript) {
-  global $user;
-  unset($javascript['misc/form.js']);
-  unset($javascript['modules/overlay/overlay-parent.js']);
-
-  if (!$user->uid) {
-    unset($javascript['sites/all/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.core.min.js']);
+  unset($javascript['sites/all/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.core.min.js']);
+  if (user_is_anonymous()) {
+    unset($javascript['modules/overlay/overlay-parent.js']);
   }
 }
 
