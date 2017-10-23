@@ -1795,34 +1795,33 @@
   };
 
   /**
-   * Attaches the AJAX filterbar behavior.
+   * Attaches the AJAX donation form behavior.
    *
    * @type {Drupal~behavior}
    *
    * @prop {Drupal~attachBehavior}
    */
-  Drupal.behaviors.petitionForm = {
+  Drupal.behaviors.dotationForm = {
     attach: function (context, settings) {
       // sets values and labels
       function pw_donation_form_multiply(){
         // retrieve values
-        var pw_amount = jQuery("input:radio[name ='submitted[fieldset_donationform_yourdonation][donation_amount]']:checked").val();
-        var pw_interval = jQuery("input:radio[name ='submitted[fieldset_donationform_yourdonation][donation_frequency]']:checked").val();
+        var pw_amount = $('input:radio[name ="submitted[fieldset_donationform_yourdonation][donation_amount]"]:checked').val();
+        var pw_interval = $('input:radio[name ="submitted[fieldset_donationform_yourdonation][donation_frequency]"]:checked').val();
 
         // when one time donation multiple by 1
         pw_interval = pw_interval == 0?1:pw_interval;
 
-        $("#edit-submitted-fieldset-donationform-yourdonation-donation-amount-1 + label").text(pw_interval * 10 + " €");
-        $("#edit-submitted-fieldset-donationform-yourdonation-donation-amount-2 + label").text(pw_interval * 20 + " €");
-        $("#edit-submitted-fieldset-donationform-yourdonation-donation-amount-3 + label").text(pw_interval * 50 + " €");
-        $("#edit-submitted-fieldset-donationform-yourdonation-donation-amount-4 + label").text(pw_interval * 100 + " €");
+        $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-1 + label').text(pw_interval * 10 + ' €');
+        $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-2 + label').text(pw_interval * 20 + ' €');
+        $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-3 + label').text(pw_interval * 50 + ' €');
+        $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-4 + label').text(pw_interval * 100 + ' €');
       }
 
       // set values and labels
-      $(".webform-component--fieldset-donationform-yourdonation--donation-amount, .webform-component--fieldset-donationform-yourdonation--donation-frequency").click(function() {
+      $('.webform-component--fieldset-donationform-yourdonation--donation-amount, .webform-component--fieldset-donationform-yourdonation--donation-frequency').click(function() {
         pw_donation_form_multiply();
       });
-
       // call the function when page is ready
       pw_donation_form_multiply();
     }
