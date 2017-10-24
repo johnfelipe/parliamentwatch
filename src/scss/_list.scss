@@ -58,6 +58,9 @@ li {
     margin: 0 0 0 30%;
     @include padding($space-small null);
   }
+  a {
+    font-weight: 500;
+  }
 }
 
 /* Icon-List */

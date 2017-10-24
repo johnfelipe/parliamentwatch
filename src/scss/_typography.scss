@@ -44,19 +44,14 @@ p {
   }
 }
 
+.rteindent1 {
+  margin-left: $space;
+}
+
 /* Links in paragraphes */
 
 p > a:not(.btn) {
   font-weight: 500;
-  margin-bottom: -7px;
-  text-overflow: ellipsis;
-  display: inline-block;
-  overflow: hidden;
-  max-width: 100%;
-  white-space: nowrap;
-  @include breakpoint($breakpoint-s-min) {
-    margin-bottom: -6px;
-  }
 }
 
 /* Headlines + Paragraphes */
