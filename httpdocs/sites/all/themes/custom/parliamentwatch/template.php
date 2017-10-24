@@ -66,15 +66,6 @@ function parliamentwatch_css_alter(&$css) {
 }
 
 /**
- * Implements hook_js_alter().
- *
- * Removes unnecessary core & contributed js files.
- */
-function parliamentwatch_js_alter(&$javascript) {
-  unset($javascript['sites/all/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.core.min.js']);
-}
-
-/**
  * Implements hook_media_wysiwyg_token_to_markup().
  */
 function parliamentwatch_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
