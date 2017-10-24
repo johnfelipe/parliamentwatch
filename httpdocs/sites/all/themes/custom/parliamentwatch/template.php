@@ -78,7 +78,6 @@ function parliamentwatch_media_wysiwyg_token_to_markup_alter(&$element, $tag_inf
   }
 }
 
-
 /**
  * Implements hook_page_alter().
  */
@@ -319,6 +318,13 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     $options = ['query' => ['constituency' => $variables['field_user_constituency'][0]['tid']]];
 
     $variables['user_profile']['field_user_constituency'][0]['#markup'] = l($text, $path, $options);
+  }
+
+  if (isset($variables['field_user_list']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
+    $text = $variables['user_profile']['field_user_list'][0]['#markup'];
+    $options = ['query' => ['list' => $variables['field_user_list'][0]['tid']]];
+
+    $variables['user_profile']['field_user_list'][0]['#markup'] = l($text, $path, $options);
   }
 
   if (isset($variables['field_user_birthday'])) {
