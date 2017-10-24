@@ -1795,6 +1795,30 @@
   };
 
   /**
+
+   * Attaches the AJAX block behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.ajaxBlock = {
+    attach: function (context, settings) {
+      $('[data-ajax-block-url]').each(function () {
+        var container = this;
+        $('.pager a, .table--sortable th a', container).click(function (event) {
+          event.preventDefault();
+          var url = $(container).data('ajax-block-url') + this.search + '&path=' + this.pathname.substr(1);
+          var target = '#' + $(container).attr('id');
+          $(container).load(url + ' ' + target + ' > *', function () {
+            Drupal.attachBehaviors(target);
+          });
+        });
+      });
+    }
+  };
+
+  /**
    * Attaches the AJAX donation form behavior.
    *
    * @type {Drupal~behavior}
