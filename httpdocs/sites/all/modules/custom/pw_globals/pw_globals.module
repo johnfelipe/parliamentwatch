@@ -39,6 +39,14 @@ function pw_globals_menu() {
     'access arguments' => ['administer site configuration'],
     'type' => MENU_CALLBACK,
   ];
+  $items['block/%block/%'] = [
+    'title' => 'Block',
+    'page callback' => 'pw_globals_block_page',
+    'page arguments' => [1],
+    'load arguments' => [2],
+    'access arguments' => ['access content'],
+    'delivery callback' => 'pw_globals_deliver_ajax_page',
+  ];
   return $items;
 }
 
@@ -217,6 +225,24 @@ function pw_globals_info_page() {
 }
 
 /**
+ * Page callback: Delivers rendered block.
+ *
+ * @param object $block
+ *   The block.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_globals_block_page($block) {
+  if (isset(drupal_get_query_parameters()['path'])) {
+    $_GET['q'] = drupal_lookup_path('source', drupal_get_query_parameters()['path']);
+    unset($_GET['path']);
+    menu_set_item(current_path(), menu_get_item($_GET['q']));
+  }
+  return _block_get_renderable_array(_block_render_blocks([$block]));
+}
+
+/**
  * Delivery callback:
  *
  * @param mixed $page_callback_result
@@ -245,7 +271,7 @@ function pw_globals_deliver_ajax_page($page_callback_result) {
 /**
  * Displays comments section of a node.
  *
- * @return
+ * @return array
  *   The block render array.
  */
 function pw_globals_comments_block() {
@@ -265,7 +291,7 @@ function pw_globals_comments_block() {
 /**
  * Displays page title.
  *
- * @return
+ * @return array
  *   The block render array.
  */
 function pw_globals_title_block() {
