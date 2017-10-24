@@ -191,6 +191,10 @@ function parliamentwatch_preprocess_block(&$variables) {
     }
   }
 
+  if ($variables['block']->module == 'pw_vote' && $variables['block']->delta == 'poll') {
+    $variables['attributes_array']['data-ajax-block-url'] = url('block/' . $variables['block']->module . '/' . $variables['block']->delta);
+  }
+
 }
 
 /**
