@@ -62,13 +62,11 @@ function pw_vote_user_view($account, $view_mode, $langcode) {
 }
 
 /**
- * pw_vote_user_allowed().
- * checks if user is allowed to enter form
+ * Checks if user is allowed to enter form
  *
  * @return int
  *   returns uid or false otherwise
  */
-
 function pw_vote_check_user_allowed() {
 
   // parameter u indicates the voting deputy
@@ -88,7 +86,6 @@ function pw_vote_check_user_allowed() {
 
   return $uid;
 }
-
 
 /**
  * Implements hook_form_alter().
@@ -197,7 +194,6 @@ function pw_vote_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-
 /**
  * Implements hook_form_validate().
  */
@@ -212,11 +208,10 @@ function pw_vote_form_validate(&$form, &$form_state, $form_id) {
   }
 }
 
-
 /**
- *  Implements hook_webform_submission_presave().
+ * Implements hook_webform_submission_presave().
  *
- *  save vote on webform submission.
+ * Saves vote on webform submission.
  */
 function pw_vote_webform_submission_insert($node, $submission) {
 
@@ -270,7 +265,6 @@ function pw_vote_webform_submission_insert($node, $submission) {
   }
 
 }
-
 
 /**
  * Implements hook_mail().
@@ -336,15 +330,16 @@ function pw_vote_mail($key, &$message, $params) {
  *  Implements hook_block_info().
  */
 function pw_vote_block_info() {
-  $blocks['voting_behavior'] = array(
-    'info' => t('Displays Voting Behavior'),
-  );
   $blocks['profile'] = [
     'info' => t('Voting behavior'),
     'cache' => DRUPAL_NO_CACHE,
   ];
   $blocks['profile_petitions'] = [
     'info' => t('Voting behavior (PetitionPlus)'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+  $blocks['poll'] = [
+    'info' => t('Voting behavior by poll'),
     'cache' => DRUPAL_NO_CACHE,
   ];
   return $blocks;
@@ -355,19 +350,17 @@ function pw_vote_block_info() {
  */
 function pw_vote_block_view($delta, $arguments = array()) {
   switch ($delta) {
-    case 'voting_behavior':
-      $node = menu_get_object();
-      $field_parliament = field_get_items('node', $node, 'field_parliament');
-      if (!empty($node) && !empty($field_parliament)) {
-        $block['content'] = pw_vote_voting_behavior($node);
-      }
-      break;
     case 'profile':
       $block = pw_vote_profile_block('poll');
       break;
     case 'profile_petitions':
       $block = pw_vote_profile_block('pw_petition');
       break;
+    case 'poll':
+      $block = pw_vote_poll_block();
+      break;
+    default:
+      return [];
   }
   return $block;
 }
@@ -423,255 +416,112 @@ function pw_vote_profile_block($type = 'poll') {
 }
 
 /**
- * pw_vote_voting_behavior().
- * @param $node
- *   related node, e.g. petition on which was voted.
- * @return string
- *   returns all themed votes related to the node,
+ * Displays voting behaviors of deputies on a poll.
+ *
+ * @return array
+ *   The block render array.
  */
-function pw_vote_voting_behavior($node) {
+function pw_vote_poll_block() {
+  $block = [];
 
-  // add javascript file
-  drupal_add_js(drupal_get_path('module', 'pw_vote') . '/pw_vote.js');
+  $node = menu_get_object();
 
-  // holds themed votes
-  $all_votes = array();
-
-  // counts votes for overview
-  $sum_votes_fractions = array();
-  $sum_votes_overview = array();
-
-  // preload default portrait
-  $portrait_info = field_info_field('field_user_picture');
-  $image = file_load($portrait_info['settings']['default_image']);
-  $portrait_default = theme('image_style', array(
-      'path' => $image->uri,
-      'style_name' => 'pw_portrait_s',
-    )
-  );
-
-  // load parliament
-  $field_parliament = field_get_items('node', $node, 'field_parliament');
-  $parliament = taxonomy_term_load($field_parliament[0]['tid']);
-
-  // collect data from base (votes, user and term ids for party, fraction and voting behaviour)
-  $query = db_select("node", "n");
-
-  // join on target politician to get uid
-  $query->addField("f_vote_user", "field_vote_user_target_id", "uid");
-  $query->join("field_revision_field_vote_user", "f_vote_user", "n.vid = f_vote_user.revision_id AND f_vote_user.bundle = 'vote'");
-
-  // join on target node
-  $query->join("field_revision_field_vote_node", "f_vote_node", "n.vid = f_vote_node.revision_id AND f_vote_node.bundle = 'vote'");
-  $query->condition("f_vote_node.field_vote_node_target_id", $node->nid);
-
-  // join on vote (yes, no, ...) to get tid and sort the result
-  $query->addField("f_vote", "field_vote_tid", "vote_tid");
-  $query->join("field_revision_field_vote", "f_vote", "n.vid = f_vote.revision_id AND f_vote.bundle = 'vote'");
-  $query->orderBy('f_vote.field_vote_tid');
-
-  // join on body to get statement
-  $query->addField("f_body", "body_value", "statement");
-  $query->leftJoin("field_revision_body", "f_body", "n.vid = f_body.revision_id AND f_body.bundle = 'vote'");
-
-  // join on meta table to get correct vid by parliament and role
-  $query->join("user_archive_cache", "ua", "f_vote_user.field_vote_user_target_id = ua.uid");
-  $query->condition("ua.user_role", "deputy");
-  $query->condition("ua.parliament_name", $parliament->name);
-
-  // join on first name
-  $query->join("field_revision_field_user_fname", "f_user_fname", "ua.vid = f_user_fname.revision_id AND f_user_fname.entity_type = 'user'");
-  $query->addField("f_user_fname", "field_user_fname_value", "firstname");
-
-  // join on last name
-  $query->addField("f_user_lname", "field_user_lname_value", "lastname");
-  $query->join("field_revision_field_user_lname", "f_user_lname", "ua.vid = f_user_lname.revision_id AND f_user_lname.entity_type = 'user'");
-
-  // join on fractions to get tid for fraction
-  $query->addField("f_user_fraction", "field_user_fraction_tid", "fraction_tid");
-  $query->join("field_revision_field_user_fraction", "f_user_fraction", "ua.vid = f_user_fraction.revision_id AND f_user_fraction.entity_type = 'user'");
-
-  // join on parties to get tid for party
-  $query->addField("f_user_party", "field_user_party_tid", "party_tid");
-  $query->join("field_revision_field_user_party", "f_user_party", "ua.vid = f_user_party.revision_id AND f_user_party.entity_type = 'user'");
-
-  // join on file tables to get politcian picture (if available)
-  $query->addField("file", "uri", "picture_uri");
-  $query->leftJoin("field_revision_field_user_picture", "f_user_picture", "ua.vid = f_user_picture.revision_id AND f_user_picture.entity_type = 'user'");
-  $query->leftJoin("file_managed", "file", "f_user_picture.field_user_picture_fid = file.fid");
-
-  // group by uid
-  $query->groupBy('ua.uid');
-
-  // get result
-  $result = $query->execute();
-
-  # _pw_query_debug($query)
-
-  // pre-fetch all terms for fractions, parties and votes
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'taxonomy_term')
-    ->entityCondition('bundle', array('fraction', 'party', 'votes'));
-  $result_terms = $query->execute();
-  $terms = taxonomy_term_load_multiple(array_keys($result_terms['taxonomy_term']));
-
-  // iterate through nodes
-  while($record = $result->fetchAssoc()) {
-
-    // prepare data
-    $fraction = $terms[$record['fraction_tid']]->name;
-    $party = $terms[$record['party_tid']]->name;
-    $vote_tid = $record['vote_tid'];
-    $vote = $terms[$vote_tid]->field_votes_label[LANGUAGE_NONE][0]['value'];
-
-    // skip if not all data is available
-    if (empty($fraction) || empty($vote) || empty($party)) {
-      continue;
-    }
-
-    // add fraction as sub array to store votes
-    elseif (!isset($all_votes[$fraction])) {
-      $all_votes[$fraction] = array();
-    }
-
-    // theme & add a single vote to fraction array
-    if ($record['picture_uri']) {
-      $portrait = theme('image_style', array(
-          'path' => $record['picture_uri'],
-          'style_name' => 'pw_portrait_s',
-        )
-      );
-    }
-    else {
-      $portrait = $portrait_default;
-    }
-    $all_votes[$fraction][] = theme('voting_behavior_single_vote', array(
-        'class_name' => $terms[$vote_tid]->name,
-        'firstname' => $record['firstname'],
-        'lastname' => $record['lastname'],
-        'party' => $party,
-        'voting_behavior' => $vote,
-        'portrait' => $portrait,
-        'statement' => $record['statement'],
-        'path_profile' => drupal_get_path_alias('user/'.$record['uid']),
-      )
-    );
-
-    // sum votes for fractions
-    if (!isset($sum_votes_fractions[$fraction])) {
-      $sum_votes_fractions[$fraction] = array();
-    }
-
-    if (!isset($sum_votes_fractions[$fraction][$vote_tid])) {
-      $sum_votes_fractions[$fraction][$vote_tid] = 0;
-    }
-    $sum_votes_fractions[$fraction][$vote_tid]++;
-
-    // sum votes for overview
-    if (!isset($sum_votes_overview[$vote_tid])) {
-      $sum_votes_overview[$vote_tid] = 0;
-    }
-    $sum_votes_overview[$vote_tid]++;
+  if (!$node || $node->type != 'poll') {
+    return $block;
   }
 
-  // sort fractions by number of votes
-  array_multisort(array_map('count', $all_votes), SORT_DESC, $all_votes);
+  $header = [
+    ['data' => ''],
+    ['data' => t('Profile'), 'field' => 'name'],
+    ['data' => t('Political faction'), 'field' => 'political_faction'],
+    ['data' => t('Constituency'), 'field' => 'constituency'],
+    ['data' => t('Voted'), 'field' => 'field_vote_tid'],
+  ];
+  $result = pw_vote_by_poll_query($node)
+    ->extend('TableSort')
+    ->extend('PagerDefault')
+    ->element(1)
+    ->orderByHeader($header)
+    ->limit(6)
+    ->execute();
+  $nids_vids = $result->fetchAllKeyed();
 
-  // build containers
-  $container_parties = array();
-  foreach ($all_votes as $fraction => $votes_fraction) {
+  if (!empty($nids_vids)) {
+    $nodes = node_load_multiple(array_keys($nids_vids));
+    $users = pw_userarchives_politician_load_multiple(array_values($nids_vids));
+    $rows = [];
 
-    // put 6 votes into one vertical containers
-    $buffer_vertical = '';
-    $buffer_fraction = '';
-    for ($i = 0; $i < sizeof($votes_fraction); $i++) {
-      $buffer_vertical .= $votes_fraction[$i];
-      if (($i + 1) % 7 == 0 || sizeof($votes_fraction) - 1 == $i) {
-        $buffer_fraction .= theme('voting_behavior_container_vertical', array(
-            'list_voting_behavior' => $buffer_vertical,
-          )
-        );
-        $buffer_vertical = '';
+    foreach ($nids_vids as $nid => $vid) {
+      switch ($nodes[$nid]->field_vote[LANGUAGE_NONE][0]['tid']) {
+        case 19667:
+          $voted = t('Voted yes') . '<i class="icon icon-ok"></i>';
+          break;
+        case 19668:
+          $voted = t('Voted no') . '<i class="icon icon-close"></i>';
+          break;
+        case 19669:
+          $voted = t('Abstained') . '<i class="icon icon-circle-o"></i>';
+          break;
+        case 10670:
+          $voted = t('Did not vote') . '<i class="icon icon-minus"></i>';
+          break;
       }
+
+      $political_faction = taxonomy_term_load($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])->name;
+      $constituency = taxonomy_term_load($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])->name;
+      $profile_picture = drupal_render(field_view_field('user', $users[$vid], 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]));
+
+      $rows[] = [
+        [
+          'data' => '<span>' . l($profile_picture, entity_uri('user', $users[$vid])['path'], ['html' => TRUE]) . '</span>',
+        ],
+        [
+          'data' => l(_pw_get_fullname($users[$vid]), entity_uri('user', $users[$vid])['path']),
+        ],
+        [
+          'data' => '<span class="party-indicator">' . $political_faction . '</span>',
+        ],
+        [
+          'data' => $constituency,
+        ],
+        [
+          'data' => $voted,
+        ],
+      ];
     }
 
-    // put vertical containers and sum votes into one fraction container
-    $container_parties[$fraction] = theme('voting_behavior_container_fraction', array(
-        'fraction' => $fraction,
-        'fraction_num_members' => format_plural(sizeof($votes_fraction), '1 Mitglied', '@count Mitglieder'),
-        'list_voting_behavior' => $buffer_fraction,
-        'list_voting_behavior_sum' => pw_vote_voting_behavior_sum_votes($sum_votes_fractions[$fraction], 'voting_behavior_sum_fraction', $fraction),
-      )
-    );
+    $block['content']['votes'] = [
+      '#theme' => 'table__poll_votes',
+      '#header' => $header,
+      '#rows' => $rows,
+      '#sticky' => FALSE,
+    ];
+    $block['content']['pager'] = [
+      '#theme' => 'pager',
+      '#element' => 1,
+      '#weight' => 100,
+    ];
   }
 
-  // put all fraction container together and add overview
-  $content = theme('voting_behavior_container_overview', array(
-      'list_voting_behavior_sum' => pw_vote_voting_behavior_sum_votes($sum_votes_overview, 'voting_behavior_sum_overview'),
-      'list_voting_behavior' => implode($container_parties),
-    )
-  );
-
-  // return
-  return $content;
+  return $block;
 }
 
 /**
- * pw_vote_voting_behavior_sum_votes().
- * @param $array_sum
- *   array with tid of votes as key and summarized votes
- * @return string
- *   returns themed overview
+ * Implements hook_theme().
  */
-function pw_vote_voting_behavior_sum_votes($array_sum, $theme_function, $fraction='Alle', $do_link=TRUE) {
-  $content = '';
-  foreach ($array_sum as $tid => $sum) {
-    $term = taxonomy_term_load($tid);
-    $label = field_get_items('taxonomy_term', $term, 'field_votes_label');
-    $content .= theme($theme_function, array(
-        'sum' => $sum,
-        'fraction' => $fraction,
-        'class_name' => $term->name,
-        'voting_behavior' => $label[0]['value'],
-        'do_link' => $do_link,
-      )
-    );
-  }
-  return $content;
-}
-
 function pw_vote_theme() {
-  return array(
-    'voting_behavior_container_overview' => array(
-      'template' => 'voting-behavior-container-overview',
-    ),
-    'voting_behavior_container_overview_fraction' => array(
-      'template' => 'voting-behavior-container-overview-fraction',
-    ),
-    'voting_behavior_container_fraction' => array(
-      'template' => 'voting-behavior-container-fraction',
-    ),
-    'voting_behavior_container_vertical' => array(
-      'template' => 'voting-behavior-container-vertical',
-    ),
-    'voting_behavior_single_vote' => array(
-      'template' => 'voting-behavior-single-vote',
-    ),
-    'voting_behavior_sum_overview' => array(
-      'template' => 'voting-behavior-sum-overview',
-    ),
-    'voting_behavior_sum_fraction' => array(
-      'template' => 'voting-behavior-sum-fraction',
-    ),
-    'mail_thank_you' => array(
+  return [
+    'mail_thank_you' => [
       'template' => 'mail-thank-you',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
- * Find and mark votes that deviate from the fractions majority opinion.
- * @param $nid: Node ID of poll or petition.
+ * Finds and mark votes that deviate from the fractions majority opinion.
+ *
+ * @param int $nid
+ *   Node ID of poll or petition.
  */
 function pw_vote_mark_deviant_votes($nid) {
   // Load poll/petition node
@@ -756,7 +606,7 @@ function pw_vote_mark_deviant_votes($nid) {
 /**
  * Returns query for all votes of the given account version.
  *
- * @param type $account
+ * @param object $account
  *   The user account (version).
  *
  * @return EntityFieldQuery
@@ -769,7 +619,6 @@ function pw_vote_by_user_revision_query($account, $node_target_type = 'poll') {
   $q->join('field_data_field_parliament', 'p', 'n.nid = p.entity_id');
   $q->join('field_data_field_vote_node', 'vn', 'n.nid = vn.entity_id');
   $q->join('node', 'n_target', 'vn.field_vote_node_target_id = n_target.nid');
-
   if($node_target_type == 'pw_petition') {
     $q->join('field_data_field_petition_end_date', 'vnd', 'vn.field_vote_node_target_id = vnd.entity_id');
     $q->addField('vnd', 'field_petition_end_date_value', 'decision_date');
@@ -783,6 +632,41 @@ function pw_vote_by_user_revision_query($account, $node_target_type = 'poll') {
   $q->condition('u.field_vote_user_target_id', $account->uid);
   $q->condition('n_target.type', $node_target_type);
   $q->condition('p.field_parliament_tid', pw_profiles_parliament($account)->tid);
+
+  return $q;
+}
+
+/**
+ * Returns query for all votes cast on the given poll.
+ *
+ * @param object $node
+ *   The poll node.
+ *
+ * @return SelectQuery
+ *   The query object.
+ */
+function pw_vote_by_poll_query($node) {
+  $q = db_select('node', 'n');
+  $q->join('field_data_field_vote_node', 'poll', 'n.nid = poll.entity_id');
+  $q->join('field_data_field_vote_user', 'user', 'n.nid = user.entity_id');
+  $q->join('field_data_field_poll_date', 'date', 'poll.field_vote_node_target_id = date.entity_id');
+  $q->join('field_data_field_vote', 'vote', 'n.nid = vote.entity_id');
+  $q->join('user_archive_cache', 'uac', 'user.field_vote_user_target_id = uac.uid');
+  $q->join('field_revision_field_user_lname', 'profile_lname', 'uac.vid = profile_lname.revision_id');
+  $q->join('field_revision_field_user_constituency', 'profile_constituency', 'uac.vid = profile_constituency.revision_id');
+  $q->join('taxonomy_term_data', 'td', 'td.tid = profile_constituency.field_user_constituency_tid');
+  $q->addExpression('uac.fraction_name', 'political_faction');
+  $q->addExpression('profile_lname.field_user_lname_value', 'name');
+  $q->addExpression('td.name', 'constituency');
+  $q->fields('n', ['nid'])
+    ->fields('uac', ['vid'])
+    ->condition('n.type', 'vote')
+    ->condition('n.status', NODE_PUBLISHED)
+    ->condition('poll.field_vote_node_target_id', $node->nid)
+    ->condition('uac.user_role', 'deputy')
+    ->condition('uac.parliament_name', pw_globals_parliament($node)->name)
+    ->condition(db_or()->condition('uac.user_joined', 'date.field_poll_date_value', '<=')->condition('uac.user_joined', NULL))
+    ->condition(db_or()->condition('uac.user_retired', 'date.field_poll_date_value', '>')->condition('uac.user_retired', NULL));
 
   return $q;
 }

@@ -308,6 +308,11 @@
   background: $white;
 }
 
+.table.table--poll-votes {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 /* Poll Charts */
 
 .poll__charts {

@@ -348,6 +348,15 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_table().
+ */
+function parliamentwatch_preprocess_table(&$variables) {
+  if ($variables['theme_hook_original'] == 'table__poll_votes') {
+    $variables['attributes'] = ['class' => ['table', 'table--poll-votes', 'table--sortable']];
+  }
+}
+
+/**
  * Implements hook_preprocess_comment().
  */
 function parliamentwatch_preprocess_comment(&$variables) {

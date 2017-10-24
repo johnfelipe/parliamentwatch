@@ -40,6 +40,24 @@ function pw_globals_update_7102() {
 }
 
 /**
+ * Configure voting behavior block for polls.
+ */
+function pw_globals_update_7103() {
+  $config = [
+    'module' => 'pw_vote',
+    'delta' => 'poll',
+    'weight' => -80,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content'],
+    'node_types' => ['poll']
+  ];
+  _pw_globals_configure_block($config);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

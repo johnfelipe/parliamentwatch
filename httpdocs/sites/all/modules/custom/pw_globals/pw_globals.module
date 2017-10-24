@@ -417,6 +417,29 @@ function pw_globals_replace_text_with_icon($element) {
   return str_replace(t('Search'), '<i class="icon icon-search"></i>', $element);
 }
 
+/*
+ * Returns parliament term associated with the given node.
+ *
+ * Politician accounts are always associated with a parliament, whether they
+ * are deputies or candidates.
+ *
+ * @param object $node
+ *   The node object.
+ *
+ * @return object
+ *   The parliament term.
+ */
+function pw_globals_parliament($node) {
+  $parliament_term = NULL;
+  $items = field_get_items('node', $node, 'field_parliament');
+
+  if ($items) {
+    $parliament_term = taxonomy_term_load($items[0]['tid']);
+  }
+
+  return $parliament_term;
+}
+
 /**
  * Returns all current parliaments.
  *
