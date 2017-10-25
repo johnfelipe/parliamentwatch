@@ -44,6 +44,10 @@
  * @ingroup themeable
  */
 ?>
-<div id="<?php print $block_html_id; ?>" class="<?php print $classes; ?>" <?php print $attributes; ?>>
-  <?php print $content; ?>
-</div>
+<section id="<?php print $block_html_id; ?>" class="poll_detail poll detail <?php print $classes; ?>" <?php print $attributes; ?>>
+  <div class="container">
+    <div class="poll_detail__table <?php print $classes; ?>">
+      <?php print $content; ?>
+    </div>
+  </div>
+</section>
