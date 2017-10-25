@@ -1816,8 +1816,10 @@
           event.preventDefault();
           var url = $(container).data('ajax-block-url') + this.search + '&path=' + this.pathname.substr(1);
           var target = '#' + $(container).attr('id');
+          addLoadingAnimation($(target));
           $(container).load(url + ' ' + target + ' > *', function () {
             Drupal.attachBehaviors(target);
+            removeLoadingAnimation($(target));
           });
         });
       });
