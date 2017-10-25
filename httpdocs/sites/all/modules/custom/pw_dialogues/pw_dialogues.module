@@ -188,7 +188,7 @@ function pw_dialogues_entity_presave($entity, $type) {
  * Implements hook_webform_submission_insert().
  */
 function pw_dialogues_webform_submission_insert($node, $submission) {
-  if ($submission->nid == 10446){ // node id of question form
+  if ($submission->nid == 10446 && variable_get('pw_modtool_api_queue_run', FALSE)){ // node id of question form
     $queue = DrupalQueue::get('pw_dialogues_questions', TRUE);
     $payload = array(
       'type' => "question",
