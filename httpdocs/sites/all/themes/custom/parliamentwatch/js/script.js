@@ -1833,7 +1833,7 @@
    *
    * @prop {Drupal~attachBehavior}
    */
-  Drupal.behaviors.dotationForm = {
+  Drupal.behaviors.donationForm = {
     attach: function (context, settings) {
       // sets values and labels
       function pw_donation_form_multiply(){
