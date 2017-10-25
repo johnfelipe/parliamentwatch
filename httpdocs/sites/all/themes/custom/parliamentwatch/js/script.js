@@ -68,17 +68,23 @@
   }
 
   /**
-   * Adds loading animation to tile-wrappers.
+   * Adds loading animation to the given element.
+   *
+   * @param {jQuery} $element
+   *   jQuery object containing the element.
    */
-  function addTileWrapperLoader() {
-    $('.tile-wrapper').addClass('tile-wrapper--loading').append('<div class="tile-wrapper__loader"><svg viewBox="0 0 65 65"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="05_filter-textsuche" transform="translate(-744.000000, -698.000000)"> <g id="Loader" transform="translate(744.000000, 698.000000)"> <g id="Group-2"> <circle id="Oval" fill="none" cx="32.5" cy="32.5" r="32.5"></circle> <g id="Group" transform="translate(28.000000, 36.500000) scale(-1, -1) translate(-28.000000, -36.500000) translate(4.000000, 12.000000)" fill="#FFFFFF"> <path d="M35.0628019,13.4372093 C31.5458937,9.66976744 26.8985507,7.28372093 22,6.78139535 L22.3768116,0 C29.1594203,0.753488372 35.4396135,3.76744186 40.0869565,8.66511628 C44.8599034,13.6883721 47.6231884,19.9674419 48,27 L41.0917874,27 C40.7149758,22.1023256 38.5797101,17.2046512 35.0628019,13.4372093 Z M19.9055118,0 L19.6535433,6.875 C13.984252,6.875 8.69291339,9.125 4.66141732,13 L0,8 C5.29133858,2.75 12.3464567,0 19.9055118,0 C20.0314961,0 20.0314961,0 19.9055118,0 Z M34,44.1807229 C35.7906977,42.7349398 37.1976744,40.8072289 38.2209302,39 L45,41.0481928 C43.4651163,43.939759 41.2906977,46.7108434 38.7325581,49 L34,44.1807229 Z M46.3030303,38 L40,35.9701493 C40.8484848,34.1791045 41.2121212,32.1492537 41.3333333,30 L48,30 C47.8787879,32.8656716 47.3939394,35.6119403 46.3030303,38 Z" id="Combined-Shape"></path> </g> <g id="Group" transform="translate(13.000000, 4.000000)" fill="#FF6C36"> <path d="M35.0628019,13.4372093 C31.5458937,9.66976744 26.8985507,7.28372093 22,6.78139535 L22.3768116,0 C29.1594203,0.753488372 35.4396135,3.76744186 40.0869565,8.66511628 C44.8599034,13.6883721 47.6231884,19.9674419 48,27 L41.0917874,27 C40.7149758,22.1023256 38.5797101,17.2046512 35.0628019,13.4372093 Z M19.9055118,0 L19.6535433,6.875 C13.984252,6.875 8.69291339,9.125 4.66141732,13 L0,8 C5.29133858,2.75 12.3464567,0 19.9055118,0 C20.0314961,0 20.0314961,0 19.9055118,0 Z M34,44.1807229 C35.7906977,42.7349398 37.1976744,40.8072289 38.2209302,39 L45,41.0481928 C43.4651163,43.939759 41.2906977,46.7108434 38.7325581,49 L34,44.1807229 Z M46.3030303,38 L40,35.9701493 C40.8484848,34.1791045 41.2121212,32.1492537 41.3333333,30 L48,30 C47.8787879,32.8656716 47.3939394,35.6119403 46.3030303,38 Z" id="Combined-Shape"></path> </g> </g> </g> </g> </g> </svg> <svg viewBox="0 0 65 65"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="05_filter-textsuche" transform="translate(-744.000000, -698.000000)"> <g id="Loader" transform="translate(744.000000, 698.000000)"> <g id="Group-4"> <circle id="Oval" fill="none" cx="32.5" cy="32.5" r="32.5"></circle> <g id="Group" transform="translate(29.000000, 34.000000) scale(-1, -1) translate(-29.000000, -34.000000) translate(13.000000, 18.000000)" fill="#FFFFFF"> <path d="M23,12.68 L28.2173913,8 C30.4347826,10.64 31.6086957,13.64 32,17 L24.826087,17 C24.4347826,15.44 23.9130435,14 23,12.68 Z M24.2926829,20 L31,20 C30.7560976,24.5 28.6829268,28.875 25.5121951,32 L21,27 C22.8292683,25.125 24.0487805,22.625 24.2926829,20 Z M0,5.125 C3.38,1.875 8.06,0 13,0 L12.61,6.875 C9.62,7 7.02,8.125 4.81,10 L0,5.125 Z M21.0116279,10 C19.3488372,8.48101266 17.1744186,7.34177215 15,6.96202532 L15.3837209,0 C19.3488372,0.506329114 23.0581395,2.40506329 26,5.18987342 L21.0116279,10 Z" id="Combined-Shape"></path> </g> <g id="Group" transform="translate(19.000000, 14.000000)" fill="#FF6C36"> <path d="M23,12.68 L28.2173913,8 C30.4347826,10.64 31.6086957,13.64 32,17 L24.826087,17 C24.4347826,15.44 23.9130435,14 23,12.68 Z M24.2926829,20 L31,20 C30.7560976,24.5 28.6829268,28.875 25.5121951,32 L21,27 C22.8292683,25.125 24.0487805,22.625 24.2926829,20 Z M0,5.125 C3.38,1.875 8.06,0 13,0 L12.61,6.875 C9.62,7 7.02,8.125 4.81,10 L0,5.125 Z M21.0116279,10 C19.3488372,8.48101266 17.1744186,7.34177215 15,6.96202532 L15.3837209,0 C19.3488372,0.506329114 23.0581395,2.40506329 26,5.18987342 L21.0116279,10 Z" id="Combined-Shape"></path> </g> </g> </g> </g> </g> </svg></div>')
+  function addLoadingAnimation($element) {
+    $element.addClass('tile-wrapper--loading').append('<div class="tile-wrapper__loader"><svg viewBox="0 0 65 65"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="05_filter-textsuche" transform="translate(-744.000000, -698.000000)"> <g id="Loader" transform="translate(744.000000, 698.000000)"> <g id="Group-2"> <circle id="Oval" fill="none" cx="32.5" cy="32.5" r="32.5"></circle> <g id="Group" transform="translate(28.000000, 36.500000) scale(-1, -1) translate(-28.000000, -36.500000) translate(4.000000, 12.000000)" fill="#FFFFFF"> <path d="M35.0628019,13.4372093 C31.5458937,9.66976744 26.8985507,7.28372093 22,6.78139535 L22.3768116,0 C29.1594203,0.753488372 35.4396135,3.76744186 40.0869565,8.66511628 C44.8599034,13.6883721 47.6231884,19.9674419 48,27 L41.0917874,27 C40.7149758,22.1023256 38.5797101,17.2046512 35.0628019,13.4372093 Z M19.9055118,0 L19.6535433,6.875 C13.984252,6.875 8.69291339,9.125 4.66141732,13 L0,8 C5.29133858,2.75 12.3464567,0 19.9055118,0 C20.0314961,0 20.0314961,0 19.9055118,0 Z M34,44.1807229 C35.7906977,42.7349398 37.1976744,40.8072289 38.2209302,39 L45,41.0481928 C43.4651163,43.939759 41.2906977,46.7108434 38.7325581,49 L34,44.1807229 Z M46.3030303,38 L40,35.9701493 C40.8484848,34.1791045 41.2121212,32.1492537 41.3333333,30 L48,30 C47.8787879,32.8656716 47.3939394,35.6119403 46.3030303,38 Z" id="Combined-Shape"></path> </g> <g id="Group" transform="translate(13.000000, 4.000000)" fill="#FF6C36"> <path d="M35.0628019,13.4372093 C31.5458937,9.66976744 26.8985507,7.28372093 22,6.78139535 L22.3768116,0 C29.1594203,0.753488372 35.4396135,3.76744186 40.0869565,8.66511628 C44.8599034,13.6883721 47.6231884,19.9674419 48,27 L41.0917874,27 C40.7149758,22.1023256 38.5797101,17.2046512 35.0628019,13.4372093 Z M19.9055118,0 L19.6535433,6.875 C13.984252,6.875 8.69291339,9.125 4.66141732,13 L0,8 C5.29133858,2.75 12.3464567,0 19.9055118,0 C20.0314961,0 20.0314961,0 19.9055118,0 Z M34,44.1807229 C35.7906977,42.7349398 37.1976744,40.8072289 38.2209302,39 L45,41.0481928 C43.4651163,43.939759 41.2906977,46.7108434 38.7325581,49 L34,44.1807229 Z M46.3030303,38 L40,35.9701493 C40.8484848,34.1791045 41.2121212,32.1492537 41.3333333,30 L48,30 C47.8787879,32.8656716 47.3939394,35.6119403 46.3030303,38 Z" id="Combined-Shape"></path> </g> </g> </g> </g> </g> </svg> <svg viewBox="0 0 65 65"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="05_filter-textsuche" transform="translate(-744.000000, -698.000000)"> <g id="Loader" transform="translate(744.000000, 698.000000)"> <g id="Group-4"> <circle id="Oval" fill="none" cx="32.5" cy="32.5" r="32.5"></circle> <g id="Group" transform="translate(29.000000, 34.000000) scale(-1, -1) translate(-29.000000, -34.000000) translate(13.000000, 18.000000)" fill="#FFFFFF"> <path d="M23,12.68 L28.2173913,8 C30.4347826,10.64 31.6086957,13.64 32,17 L24.826087,17 C24.4347826,15.44 23.9130435,14 23,12.68 Z M24.2926829,20 L31,20 C30.7560976,24.5 28.6829268,28.875 25.5121951,32 L21,27 C22.8292683,25.125 24.0487805,22.625 24.2926829,20 Z M0,5.125 C3.38,1.875 8.06,0 13,0 L12.61,6.875 C9.62,7 7.02,8.125 4.81,10 L0,5.125 Z M21.0116279,10 C19.3488372,8.48101266 17.1744186,7.34177215 15,6.96202532 L15.3837209,0 C19.3488372,0.506329114 23.0581395,2.40506329 26,5.18987342 L21.0116279,10 Z" id="Combined-Shape"></path> </g> <g id="Group" transform="translate(19.000000, 14.000000)" fill="#FF6C36"> <path d="M23,12.68 L28.2173913,8 C30.4347826,10.64 31.6086957,13.64 32,17 L24.826087,17 C24.4347826,15.44 23.9130435,14 23,12.68 Z M24.2926829,20 L31,20 C30.7560976,24.5 28.6829268,28.875 25.5121951,32 L21,27 C22.8292683,25.125 24.0487805,22.625 24.2926829,20 Z M0,5.125 C3.38,1.875 8.06,0 13,0 L12.61,6.875 C9.62,7 7.02,8.125 4.81,10 L0,5.125 Z M21.0116279,10 C19.3488372,8.48101266 17.1744186,7.34177215 15,6.96202532 L15.3837209,0 C19.3488372,0.506329114 23.0581395,2.40506329 26,5.18987342 L21.0116279,10 Z" id="Combined-Shape"></path> </g> </g> </g> </g> </g> </svg></div>')
   }
 
   /**
-   * Removes loading animation from tile-wrappers.
+   * Removes loading animation from the given element.
+   *
+   * @param {jQuery} $element
+   *   jQuery object containing the element.
    */
-  function removeTileWrapperLoader() {
-    $('.tile-wrapper').removeClass('tile-wrapper--loading');
+  function removeLoadingAnimation($element) {
+    $element.removeClass('tile-wrapper--loading');
   }
 
   /**
@@ -1767,7 +1773,7 @@
     attach: function (context, settings) {
       $('form[data-ajax-target] .form__item__control').change(function (event) {
         event.preventDefault();
-        addTileWrapperLoader();
+        addLoadingAnimation($('.tile-wrapper'));
         var path = $(this).parents('form').attr('action');
         var search = $(this).parents('form').serialize();
         var target = $(this).parents('form').data('ajax-target');
@@ -1776,19 +1782,19 @@
 
         $(target).load(ajaxUrl + ' ' + target + ' > *', function () {
           Drupal.attachBehaviors(target, {url: url});
-          removeTileWrapperLoader();
+          removeLoadingAnimation($('.tile-wrapper'));
         });
       });
       $('a[data-ajax-target]').click(function (event) {
         event.preventDefault();
-        addTileWrapperLoader();
+        addLoadingAnimation($('.tile-wrapper'));
         var target = $(this).data('ajax-target');
         var url = $(this).attr('href');
         var ajaxUrl = this.search ? url + '&ajax=' : '?ajax=';
 
         $(target).load(ajaxUrl + ' ' + target + ' > *', function () {
           Drupal.attachBehaviors(target, {url: url});
-          removeTileWrapperLoader();
+          removeLoadingAnimation($('.tile-wrapper'));
         });
       });
     }
