@@ -203,6 +203,7 @@ function pw_vote_field_default_fields() {
       'label' => 'Deviant Vote',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -492,6 +493,7 @@ function pw_vote_field_default_fields() {
               'linked' => 0,
             ),
             'links' => 0,
+            'use_content_language' => TRUE,
             'view_mode' => 'embedded',
           ),
           'type' => 'entityreference_entity_view',
@@ -501,6 +503,7 @@ function pw_vote_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
@@ -601,6 +604,7 @@ function pw_vote_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(

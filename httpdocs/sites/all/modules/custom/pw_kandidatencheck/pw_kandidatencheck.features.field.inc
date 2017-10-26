@@ -487,6 +487,7 @@ function pw_kandidatencheck_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
@@ -521,6 +522,7 @@ function pw_kandidatencheck_field_default_fields() {
               'linked' => 0,
             ),
             'links' => 0,
+            'use_content_language' => TRUE,
             'view_mode' => 'embedded',
           ),
           'type' => 'entityreference_entity_view',
@@ -608,6 +610,7 @@ function pw_kandidatencheck_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
@@ -1026,6 +1029,7 @@ function pw_kandidatencheck_field_default_fields() {
       'label' => 'Thesis Number',
       'required' => 1,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'max' => '100',
         'min' => '1',
         'prefix' => '',

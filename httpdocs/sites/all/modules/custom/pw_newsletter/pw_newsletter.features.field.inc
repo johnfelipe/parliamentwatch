@@ -663,6 +663,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'field_delimiter' => '',
             'link' => 1,
             'linked_field' => array(
@@ -684,6 +685,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'label' => 'inline',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'field_delimiter' => '',
             'link' => 1,
             'linked_field' => array(
@@ -705,6 +707,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'label' => 'inline',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'colorbox_node_classes' => '',
             'colorbox_node_height' => '600',
             'colorbox_node_link' => FALSE,
@@ -1035,6 +1038,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
             'links' => 0,
+            'use_content_language' => TRUE,
             'view_mode' => 'pw_newsletter',
           ),
           'type' => 'entityreference_entity_view',
@@ -1044,6 +1048,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'colorbox_node_classes' => '',
             'colorbox_node_height' => '600',
             'colorbox_node_link' => FALSE,
@@ -3459,6 +3464,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
             'links' => 0,
+            'use_content_language' => TRUE,
             'view_mode' => 'pw_newsletter',
           ),
           'type' => 'entityreference_entity_view',
@@ -3468,6 +3474,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'colorbox_node_classes' => '',
             'colorbox_node_height' => '600',
             'colorbox_node_link' => FALSE,
@@ -3506,6 +3513,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
               'linked' => 0,
             ),
             'links' => 0,
+            'use_content_language' => TRUE,
             'view_mode' => 'pw_newsletter',
           ),
           'type' => 'entityreference_entity_view',

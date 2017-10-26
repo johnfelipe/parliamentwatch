@@ -688,7 +688,7 @@ function pw_globals_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => '3',
+          'weight' => 3,
         ),
         'pw_newsletter' => array(
           'label' => 'above',
@@ -1490,6 +1490,7 @@ function pw_globals_field_default_fields() {
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
+        'exclude_cv' => FALSE,
         'file_directory' => 'affiliates',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -1610,6 +1611,7 @@ function pw_globals_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suche',
           'enable' => 0,
@@ -2671,6 +2673,7 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
@@ -2919,6 +2922,7 @@ function pw_globals_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suchen',
           'enable' => 0,
@@ -3437,6 +3441,7 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
+            'bypass_access' => FALSE,
             'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
@@ -3545,6 +3550,7 @@ function pw_globals_field_default_fields() {
       'label' => 'Previous parliament',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
