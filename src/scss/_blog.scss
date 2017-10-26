@@ -45,7 +45,7 @@
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    @include filter(blur(3px));
+    @include filter(blur(4px));
   }
   &:before,
   &:after {
@@ -66,7 +66,7 @@
   &:after {
     background: #494334;
     z-index: 99;
-    opacity: .6;
+    opacity: .8;
     mix-blend-mode: darken;
   }
 

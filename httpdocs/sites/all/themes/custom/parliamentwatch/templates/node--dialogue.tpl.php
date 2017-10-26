@@ -90,7 +90,7 @@
   <div class="question__question mh-item-tile" data-mh="questionTitle">
     <header class="question__question__title"><?php print render($content['body']); ?></header>
     <?php print render($title_suffix); ?>
-    <p class="question__question__author"><?php print t('By'); ?>: <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span></p>
+    <p class="question__question__author"><?php print t('By'); ?>: <?php print render($content['field_dialogue_sender_name']); ?></p>
   </div>
   <div class="question__share tile__share">
     <div class="tile__share__trigger"><i class="icon icon-share"></i> <?php print t('share') ?></div>
@@ -102,13 +102,25 @@
       <li class="tile__share__list__item tile__share__list__item--mail"><a href="mailto:?&subject=abgeordnetenwatch.de&body=<?php print drupal_encode_path(url($node_url,array('absolute'=>TRUE))); ?>" target="_blank"><i class="icon icon-mail"></i> <?php print t('E-Mail') ?></a></li>
     </ul>
   </div>
-  <?php if (empty($content['answers'])): ?>
+
   <div class="question__answer mh-item-tile" data-mh="questionAnswer">
-    <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
-  </div>
-  <?php else: ?>
+    <div class="question__answer__author">
+      <?php if ($view_mode == 'embedded'): ?>
+        Antwort von <strong><?php print render($user_display_name); ?></strong> <?php print render($user_party); ?>
+      <?php else: ?>
+        <span class="question__answer__author__label"><?php print t('To') ?>:</span>
+        <?php if (!empty(trim(render($user_picture)))): ?><span class="question__answer__author__image"><?php print render($user_picture); ?></span><?php endif; ?>
+        <div class="question__answer__author_text" title="<?php print t('Go to profile of') ?> <?php print render($user_display_name); ?>">
+          <a href="<?php print render($user_url); ?>"><?php print render($user_display_name); ?></a>
+          <?php print render($user_party); ?>
+        </div>
+      <?php endif; ?>
+    </div>
+    <?php if (empty($content['answers'])): ?>
+      <p><?php print t('The question has not yet been answered. Become a <a href="%">questioner</a> and increase the pressure on the politician to answer that question. '); ?></p>
+    <?php endif; ?>
     <?php print render($content['answers']); ?>
-  <?php endif; ?>
+  </div>
   <ul class="question__links tile__links tile__links--2">
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url ?>"><?php print t('details'); ?></a></li>
   </ul>

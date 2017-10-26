@@ -3,6 +3,6 @@ description = "Provides functionality for permitted users to send a one-time log
 package = Other
 core = 7.x
 version = "7.x-2.8+pw-20160324"
-project = "login_one_time"
+project = "pw_login_once"
 datestamp = "1418600132"
 dependencies[] = services_oauth

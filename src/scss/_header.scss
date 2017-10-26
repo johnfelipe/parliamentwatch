@@ -38,7 +38,7 @@
     padding-bottom: 1px;
     overflow: hidden;
     width: 220px;
-    height: 28px;
+    height: 30px;
     will-change: width;
     transition: width 300ms ease;
     @include breakpoint($breakpoint-xs-min) {
@@ -47,15 +47,11 @@
     }
     @include breakpoint($breakpoint-s-min) {
       width: 270px;
-      height: 34px;
-    }
-    @include breakpoint($breakpoint-l-min) {
-      width: 270px;
-      height: 34px;
+      height: 36px;
     }
     @include breakpoint($breakpoint-xl-min) {
       width: 310px;
-      height: 38px;
+      height: 41px;
     }
   }
 }
@@ -523,10 +519,10 @@
 #header.sticky {
   .header__logo {
     @include breakpoint($breakpoint-l-min) {
-      @include padding($space-small null);
+      @include padding($space-small null 0);
     }
     @include breakpoint($breakpoint-xl-min) {
-      @include padding(($space-small - 2) null);
+      @include padding(($space-small - 2) null 0);
     }
   }
   .nav--main-menu--level-1 {

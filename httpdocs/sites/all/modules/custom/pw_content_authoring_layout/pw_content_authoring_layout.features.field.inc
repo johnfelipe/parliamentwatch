@@ -93,6 +93,46 @@ function pw_content_authoring_layout_field_default_fields() {
           'type' => 'text_default',
           'weight' => '1',
         ),
+        'image_square_small' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'image_width_medium' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
         'media_link' => array(
           'label' => 'above',
           'settings' => array(),
@@ -285,6 +325,18 @@ function pw_content_authoring_layout_field_default_fields() {
           'type' => 'text_default',
           'weight' => '1',
         ),
+        'square_medium' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'square_small' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -324,6 +376,18 @@ function pw_content_authoring_layout_field_default_fields() {
           ),
           'type' => 'text_default',
           'weight' => '0',
+        ),
+        'width_large' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'width_medium' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'wysiwyg' => array(
           'label' => 'above',

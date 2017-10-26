@@ -17,11 +17,8 @@ define('PW_GLOBALS_POLITICIAN_TID', 7027);
 define('PW_GLOBALS_DEPUTY_TID', 7028);
 define('PW_GLOBALS_CANDIDATE_TID', 7029);
 
-
 /**
  * Implements hook_menu().
- *
- * @return array
  */
 function pw_globals_menu() {
   $items['admin/config/pw'] = [
@@ -76,6 +73,22 @@ function pw_globals_entity_info_alter(&$entity_info) {
   $entity_info['comment']['view modes']['embedded'] = array(
     'label' => t('Embedded'),
     'custom settings' => FALSE,
+  );
+  $entity_info['file']['view modes']['square_small'] = array(
+    'label' => t('Square small'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['square_medium'] = array(
+    'label' => t('Square medium'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['width_medium'] = array(
+    'label' => t('Width medium'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['width_large'] = array(
+    'label' => t('Width large'),
+    'custom settings' => TRUE,
   );
 }
 
@@ -159,6 +172,18 @@ function pw_globals_block_view($delta = '') {
     default:
       return [];
   }
+}
+
+/**
+ * Implements hook_filter_info().
+ */
+function pw_globals_filter_info() {
+  $filters['filter_encrypt'] = [
+    'title' => t('Encrypt marked strings'),
+    'description' => t('Makes strings illegible unless viewed with the matching font.'),
+    'process callback' => '_pw_globals_filter_encrypt',
+  ];
+  return $filters;
 }
 
 /**
@@ -753,35 +778,6 @@ function _pw_uac_add_conditions(&$query, $conditions = array()) {
 }
 
 /**
- * for debugging entity metadata wrapper object
- */
-function _pw_wrapper_debug($w) {
-  $values = array();
-  foreach ($w->getPropertyInfo() as $key => $val) {
-    $values[$key] = $w->$key->value();
-  }
-  return $values;
-}
-
-/**
- * for debugging db_select query
- * @param object $query
- *   db_select query object
- * @return string
- *   Full SQL Statement.
- */
-function _pw_query_debug($query) {
-  $querystring = preg_replace('/[\{|\}]/', '', $query->__toString());
-  foreach ($query->getArguments() as $key => $item) {
-    if (!$item) {
-      $item = 'NULL';
-    }
-    $querystring = str_replace($key . ')', "'" . $item . "')", $querystring);
-  }
-  return $querystring;
-}
-
-/**
  * flattens array
  * @param array
  * @param keep_key
@@ -803,30 +799,17 @@ function _pw_array_flatten($array, $keep_key = TRUE) {
 }
 
 /**
- * sort array items by parliament
- * @param array $options
- * @param int $parliament_tid
- * @return array $options
+ * Encrypts content of crypt tags in the given text.
+ *
+ * @param string $text
+ *   The text.
+ *
+ * @return string
+ *   The filtered text.
  */
-function _pw_sort_by_parliament($options, $parliament_tid) {
-  if (!empty($parliament_tid)) {
-    $parliament = taxonomy_term_load($parliament_tid);
-    if ($parliament) {
-      $efq = new EntityFieldQuery();
-      $efq->entityCondition('entity_type', 'taxonomy_term')
-        ->fieldCondition('field_parliament', 'tid', $parliament_tid);
-      $result = $efq->execute();
-      if (isset($result['taxonomy_term'])) {
-        $tids_with_parliament = array_keys($result['taxonomy_term']);
-        foreach ($options as $tid => $val) {
-          if (in_array($tid, $tids_with_parliament)) {
-            $options = array($tid => $val . " (Parliament: " . $parliament->name . ")") + $options;
-          }
-        }
-      }
-    }
-  }
-  unset($options['_none']);
-  $options = array('_none' => t('- None -')) + $options;
-  return $options;
+function _pw_globals_filter_encrypt($text) {
+  $callback = function ($matches) {
+    return '<span class="crypto-font">' . str_rot13($matches[1]) . '</span>';
+  };
+  return preg_replace_callback('/<crypt>(.*?)<\/crypt>/i', $callback, $text);
 }

@@ -37,26 +37,45 @@ function parliamentwatch_form_comment_form_alter(&$form, &$form_state) {
 /**
  * Implements hook_css_alter().
  *
- * Removes unnecessary core css files.
+ * Removes unnecessary core & contributed css files.
  */
 function parliamentwatch_css_alter(&$css) {
+  unset($css['misc/ui/jquery.ui.core.css']);
+  unset($css['misc/ui/jquery.ui.theme.css']);
   unset($css[drupal_get_path('module','system') . '/system.base.css']);
   unset($css[drupal_get_path('module','system') . '/system.menus.css']);
   unset($css[drupal_get_path('module','system') . '/system.theme.css']);
   unset($css[drupal_get_path('module','system') . '/system.messages.css']);
-  unset($css[drupal_get_path('module','filter') . '/filter.css']);
   unset($css[drupal_get_path('module','comment') . '/comment.css']);
-  unset($css[drupal_get_path('module','search') . '/search.css']);
-  unset($css[drupal_get_path('module','node') . '/node.css']);
+  unset($css[drupal_get_path('module','ckeditor') . '/css/ckeditor.css']);
+  unset($css[drupal_get_path('module','ctools') . '/css/ctools.css']);
   unset($css[drupal_get_path('module','field') . '/theme/field.css']);
+  unset($css[drupal_get_path('module','filter') . '/filter.css']);
+  unset($css[drupal_get_path('module','media_wysiwyg') . '/css/media_wysiwyg.base.css']);
+  unset($css[drupal_get_path('module','node') . '/node.css']);
+  unset($css[drupal_get_path('module','jquery_update') . '/replace/ui/themes/base/minified/jquery.ui.core.css']);
+  unset($css[drupal_get_path('module','jquery_update') . '/replace/ui/themes/base/minified/jquery.ui.theme.min.css']);
+  unset($css[drupal_get_path('module','search') . '/search.css']);
+  unset($css[drupal_get_path('module','tagadelic') . '/tagadelic.css']);
   unset($css[drupal_get_path('module','user') . '/user.css']);
+  unset($css[drupal_get_path('module','views') . '/css/views.css']);
+  unset($css[drupal_get_path('module','webform') . '/css/webform.css']);
+  unset($css[drupal_get_path('module','webform_confirm_email') . '/webform_confirm_email.css']);
+  unset($css[drupal_get_path('module','date') . '/date_popup/themes/datepicker.1.7.css']);
+  unset($css[drupal_get_path('module','date_api') . '/date.css']);
 }
 
 /**
  * Implements hook_media_wysiwyg_token_to_markup().
  */
 function parliamentwatch_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
-  unset($element['content']['#type']);
+  $element['content']['#theme_wrappers'] = ['container__figure'];
+  if (!empty($tag_info['fields']['alignment'])) {
+    $element['content']['#attributes']['class'] = [drupal_html_class('figure-align--' . $tag_info['fields']['alignment'])];
+  }
+  else {
+    unset($element['content']['#attributes']['class']);
+  }
 }
 
 /**
@@ -232,7 +251,7 @@ function parliamentwatch_preprocess_node(&$variables) {
     $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_medium']]);
   }
 
-  if ($variables['type'] == 'dialogue' && $variables['view_mode'] != 'embedded') {
+  if ($variables['type'] == 'dialogue') {
     $account = pw_dialogues_recipient_user_revision($node);
     $variables['user_display_name'] = _pw_get_fullname($account);
     $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
@@ -276,16 +295,36 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     $variables['voting_ratio'] = round(100 * $variables['user_profile']['votes_attended'] / $variables['user_profile']['votes_total'], 0);
   }
 
-  if (isset($variables['field_user_party']) && $variables['elements']['#view_mode'] == 'full') {
+  if (_pw_user_has_role($account, 'Candidate')) {
+    $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/candidates';
+  }
+  elseif (_pw_user_has_role($account, 'Deputy')) {
+    $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/deputies';
+  }
+
+  if (isset($variables['field_user_party']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
     $text = $variables['field_user_party'][0]['taxonomy_term']->name;
-    if (_pw_user_has_role($account, 'Candidate')) {
-      $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/candidates';
-    }
-    elseif (_pw_user_has_role($account, 'Deputy')) {
-      $path = 'profiles/' . $variables['field_user_parliament'][0]['tid'] . '/deputies';
-    }
     $options = ['query' => ['party[]' => $variables['field_user_party'][0]['tid']]];
     $variables['user_profile']['field_user_party'][0]['#markup'] = l($text, $path, $options);
+
+  }
+
+  if (isset($variables['field_user_constituency']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
+    $placeholders = [
+      '@number' => $variables['field_user_constituency'][0]['taxonomy_term']->field_constituency_nr['und'][0]['value'],
+      '@title' => $variables['user_profile']['field_user_constituency'][0]['#markup']
+    ];
+    $text = t('Constituency @number: @title', $placeholders);
+    $options = ['query' => ['constituency' => $variables['field_user_constituency'][0]['tid']]];
+
+    $variables['user_profile']['field_user_constituency'][0]['#markup'] = l($text, $path, $options);
+  }
+
+  if (isset($variables['field_user_list']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
+    $text = $variables['user_profile']['field_user_list'][0]['#markup'];
+    $options = ['query' => ['list' => $variables['field_user_list'][0]['tid']]];
+
+    $variables['user_profile']['field_user_list'][0]['#markup'] = l($text, $path, $options);
   }
 
   if (isset($variables['field_user_birthday'])) {
@@ -300,12 +339,6 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
     }
     elseif ($variables['field_user_childs'][0]['value'] == -1) {
       unset($variables['user_profile']['field_user_childs']);
-    }
-  }
-
-  if (isset($variables['field_user_list_position'])) {
-    if ($variables['field_user_list_position'][0]['tid'] == 19706) {
-      $variables['user_profile']['field_user_list_position'][0]['#markup'] = t('no information');
     }
   }
 
@@ -327,9 +360,16 @@ function parliamentwatch_preprocess_comment(&$variables) {
 
   $variables['theme_hook_suggestions'][] = $variables['theme_hook_original'] . '__' . $elements['#view_mode'];
 
+
+  if ($elements['#bundle'] == 'comment_node_dialogue' && $elements['#view_mode'] != 'full') {
+    $account = user_load($elements['#comment']->uid);
+    $variables['user_display_name'] = _pw_get_fullname($account);
+    $variables['user_party'] = field_view_field('user', $account, 'field_user_party', ['label' => 'hidden', 'type' => 'taxonomy_term_reference_plain']);
+  }
   if ($elements['#bundle'] == 'comment_node_dialogue' && $elements['#view_mode'] == 'tile') {
     $account = user_load($elements['#comment']->uid);
     $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
+    $variables['user_url'] = url(entity_uri('user', $account)['path']);
   }
 }
 
@@ -338,9 +378,6 @@ function parliamentwatch_preprocess_comment(&$variables) {
  */
 function parliamentwatch_preprocess_field(&$variables) {
   $element = $variables['element'];
-  if($element['#bundle'] == 'pw_petition') {
-    $variables['theme_hook_suggestions'][] = 'field__' . $element['#bundle'] . '__' . $element['#field_name'];
-  }
   $variables['theme_hook_suggestions'][] = 'field__' . $element['#bundle'] . '__' . $element['#view_mode'];
 }
 
@@ -567,6 +604,17 @@ function parliamentwatch_container__swiper($variables) {
   $output .= '</div>';
 
   return $output;
+}
+
+/**
+ * Overrides theme_container() for figure.
+ */
+function parliamentwatch_container__figure($variables) {
+  $element = $variables['element'];
+  // Ensure #attributes is set.
+  $element += ['#attributes' => []];
+
+  return '<figure' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</figure>';
 }
 
 /**

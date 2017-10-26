@@ -45,5 +45,5 @@
  */
 ?>
 <?php foreach ($items as $delta => $item): ?>
-  <div class="party-indicator" data-party-color="#333"><?php print render($item); ?></div>
+  <div class="party-indicator party-indicator--<?php print drupal_html_class(strip_tags(render($item))); ?>"><?php print render($item); ?></div>
 <?php endforeach; ?>

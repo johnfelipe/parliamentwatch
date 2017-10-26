@@ -541,6 +541,9 @@
 .poll__content {
   @include grid-container();
   @include padding(($space * 2) null);
+  @include breakpoint($breakpoint-m-min) {
+    @include padding(($space-large * 2) null);
+  }
 }
 .poll__content__left {
   @include grid-column(12);
@@ -549,7 +552,7 @@
   }
   ul { @include icon-list() }
   a { font-weight: 600; color: $orange; }
-  .float-left {
+  .figure-align--left {
     margin-left: 0;
     @include breakpoint(1550px) {
       margin-left: -100px

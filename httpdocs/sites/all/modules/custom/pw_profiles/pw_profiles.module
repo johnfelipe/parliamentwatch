@@ -64,46 +64,49 @@ function pw_profiles_page_delivery_callback_alter(&$callback) {
 }
 
 /**
- * Implements hook_form_alter().
+ * Implements hook_form_FORM_ID_alter().
  */
-function pw_profiles_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'user_profile_form') {
-    unset($form['locale']);
-    unset($form['mimemail']);
-    unset($form['overlay_control']);
-    $form['#validate'][] = 'pw_profiles_form_validate';
-    $form['account']['name']['#description'] = t('Only lowercase letters (a-z), numbers and dash are allowed.');
+function pw_profiles_form_user_profile_form_alter(&$form, &$form_state) {
+  unset($form['locale']);
+  unset($form['mimemail']);
+  unset($form['overlay_control']);
+  $form['#validate'][] = 'pw_profiles_form_validate';
+  $form['account']['name']['#description'] = t('Only lowercase letters (a-z), numbers and dash are allowed.');
 
-    // edit users UUID
-    $role_admin = user_role_load_by_name('administrator');
-    global $user;
-    if ($role_admin && user_has_role($role_admin->rid, $user)) {
-      $form['uuid'] = array(
-        '#type' => 'textfield',
-        '#title' => t('UUID'),
-        '#default_value' => $form['#user']->uuid,
-        '#required' => TRUE,
-      );
-    }
+  $role_admin = user_role_load_by_name('administrator');
+  global $user;
+  if ($role_admin && user_has_role($role_admin->rid, $user)) {
+    $form['uuid'] = array(
+      '#type' => 'textfield',
+      '#title' => t('UUID'),
+      '#default_value' => $form['#user']->uuid,
+      '#required' => TRUE,
+    );
+  }
 
-    // sort fields by parliament
-    if(isset($form['field_user_parliament'][LANGUAGE_NONE]['#default_value'][0])){
-      $parliament_tid = $form['field_user_parliament'][LANGUAGE_NONE]['#default_value'][0];
-      foreach(array('field_user_constituency', 'field_user_list') as $field_name){
-        if(isset($form[$field_name]['und']['#options'])){
-          $form[$field_name]['und']['#options'] = _pw_sort_by_parliament($form[$field_name]['und']['#options'], $parliament_tid);
-        }
+  if (isset($form['field_user_parliament'][LANGUAGE_NONE]['#default_value'][0])) {
+    foreach (['field_user_constituency', 'field_user_list'] as $field_name) {
+      if (isset($form[$field_name][LANGUAGE_NONE]['#options'])) {
+        $form[$field_name][LANGUAGE_NONE]['#options'] = _pw_profiles_filter_options($form[$field_name][LANGUAGE_NONE]['#options'], $form['#user']);
       }
     }
   }
-  elseif ($form_id == 'user_revision_edit_form') {
-    unset($form['field_user_external_url']);
-    unset($form['antispam_moderator']);
-    unset($form['ckeditor']);
-    unset($form['mimemail']);
-    unset($form['overlay_control']);
-    unset($form['xmlsitemap']);
+
+  if (isset($form['field_user_list_position'][LANGUAGE_NONE]['#options'])) {
+    sort($form['field_user_list_position'][LANGUAGE_NONE]['#options']);
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pw_profiles_form_user_revision_edit_form_alter(&$form, &$form_state) {
+  unset($form['field_user_external_url']);
+  unset($form['antispam_moderator']);
+  unset($form['ckeditor']);
+  unset($form['mimemail']);
+  unset($form['overlay_control']);
+  unset($form['xmlsitemap']);
 }
 
 /**
@@ -381,7 +384,7 @@ function pw_profiles_page($parliament_term, $role_name) {
       '#items' => _pw_profiles_constituency_selection_items($constituency_values, current_path(), drupal_get_query_parameters()),
     ];
   }
-  elseif ($response['result count'] > 0) {
+  else {
     pager_default_initialize($response['result count'], $limit);
     $politicians = pw_userarchives_politician_load_multiple(array_keys($response['results']));
     $weight = 0;
@@ -399,12 +402,6 @@ function pw_profiles_page($parliament_term, $role_name) {
     $build['user']['pager'] = [
       '#theme' => 'pager',
       '#weight' => ++$weight,
-    ];
-  }
-  else {
-    $build['user'] = [
-      '#markup' => t('Sorry, there are no results matching your query.'),
-      '#theme_wrappers' => ['container__tiles']
     ];
   }
 
@@ -954,4 +951,32 @@ function _pw_profiles_reject_filter(array $filters, $key, $value = NULL) {
     }
   }
   return array_filter($filters);
+}
+
+/**
+ * Returns options eligible for the given user account.
+ *
+ * @param array $options
+ *   The options.
+ * @param $account
+ *   The account object.
+ *
+ * @return array
+ *   The eligible options.
+ */
+function _pw_profiles_filter_options(array $options, $account) {
+  $eligible_terms = [];
+  $parliament = pw_profiles_parliament($account);
+
+  if (isset($parliament)) {
+    $q = new EntityFieldQuery();
+    $q->entityCondition('entity_type', 'taxonomy_term')
+      ->fieldCondition('field_parliament', 'tid', $parliament->tid);
+    $result = $q->execute();
+    if (isset($result['taxonomy_term'])) {
+      $eligible_terms = $result['taxonomy_term'];
+    }
+  }
+
+  return array_intersect_key($options, $eligible_terms);
 }

@@ -16,6 +16,10 @@
     padding-top: $space-large * 2;
   }
 }
+.tabs + .comment-wrapper {
+  border-top: 1px solid $white;
+}
+
 .comment {
   margin-bottom: $space;
   background: $white;

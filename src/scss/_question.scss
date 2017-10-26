@@ -48,11 +48,47 @@
   }
   .tile__links__item:first-child .tile__links__item__link { color: $darkGray; }
   .tile__links__item:first-child:last-child .tile__links__item__link { color: $orange; }
+
+  .question__answer__author {
+    padding-bottom: $space;
+    margin-bottom: $space;
+    margin-left: -$space-small;
+    margin-right: -$space-small;
+    padding-left: $space-small;
+    padding-right: $space-small;
+    border-bottom: 1px solid $white;
+    @include breakpoint($breakpoint-m-min) {
+      margin-left: -$space;
+      margin-right: -$space;
+      padding-left: $space;
+      padding-right: $space;
+    }
+    strong {
+      margin-right: $space-xsmall-mobile;
+      display: inline-block;
+    }
+  }
+  .question__answer__author__label {
+    margin-right: $space-xsmall;
+    display: inline-block;
+    float: left;
+  }
   .question__answer__author__image {
     @include image-circle(35px, 35px);
     border-width: 2px;
     display: inline-block;
+    float: left;
     margin: (-$space-xsmall) $space-xsmall (-$space-xsmall) 0;
+  }
+  .question__answer__author_text {
+    margin-left: 70px;
+    a {
+      margin-right: $space-xsmall-mobile;
+      @include link-gray();
+    }
+    span {
+      margin-right: $space-xsmall-mobile;
+    }
   }
   .question__answer__default_hint {
     background: $white;
@@ -63,7 +99,6 @@
     font-size: .8em;
   }
 }
-
 .question__question__title {
   @include h4();
   font-weight: 300;
@@ -88,6 +123,7 @@
   h2 {
     font-family: $font-sans-serif;
     color: $white;
+    margin-bottom: 0;
   }
   .intro__right {
     text-align: right;

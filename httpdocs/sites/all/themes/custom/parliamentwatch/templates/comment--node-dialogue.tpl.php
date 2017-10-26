@@ -59,13 +59,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="question__answer mh-item-tile" data-mh="questionAnswer">
-  <p class="question__answer__author">
-    <?php if (!empty(trim(render($user_picture)))): ?><span class="question__answer__author__image"><?php print render($user_picture); ?></span><?php endif; ?>
-    Antwort von <strong><?php print render($content['field_dialogue_sender_fullname']); ?></strong>
-  </p>
-  <?php print render($content['field_dialogue_comment_body']); ?>
-  <?php if ($content['field_dialogue_is_standard_reply']['#items'][0]['value'] == 1): ?>
-    <p class="question__answer__default_hint"><?php print t('This answer is a standardized text, which does not answer the actual question and will not be counted.'); ?></p>
-  <?php endif; ?>
-</div>
+<?php print render($content['field_dialogue_comment_body']); ?>
+<?php if ($content['field_dialogue_is_standard_reply']['#items'][0]['value'] == 1): ?>
+  <p class="question__answer__default_hint"><?php print t('This answer is a standardized text, which does not answer the actual question and will not be counted.'); ?></p>
+<?php endif; ?>
