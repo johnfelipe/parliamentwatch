@@ -109,6 +109,7 @@
   p {
     margin-bottom: $space-xsmall;
     line-height: 1.3em;
+    @include text-overflow-multi();
   }
 }
 
@@ -214,6 +215,9 @@
       @include breakpoint($breakpoint-s-min) {
         float: right;
       }
+    }
+    p {
+      @include text-overflow-multi();
     }
   }
   .question__answer__default_hint {
