@@ -79,5 +79,5 @@ if(!empty($content['file']['#file']->external_url)) {;?>
 }
 ?>
 <?php if ($content['field_image_copyright']): ?>
-  <figcaption class="figcaption-overlay"><span><?php print render($content['field_image_copyright']); ?></span></figcaption>
+  <figcaption><span><?php print render($content['field_image_copyright']); ?></span></figcaption>
 <?php endif; ?>
