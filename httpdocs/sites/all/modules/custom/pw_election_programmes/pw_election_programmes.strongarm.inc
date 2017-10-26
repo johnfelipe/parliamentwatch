@@ -160,6 +160,12 @@ function pw_election_programmes_strongarm() {
         'xmlsitemap' => array(
           'weight' => '10',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'rabbit_hole' => array(
+          'weight' => '0',
+        ),
       ),
       'display' => array(),
     ),
