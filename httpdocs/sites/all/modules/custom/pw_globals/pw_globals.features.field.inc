@@ -795,7 +795,7 @@ function pw_globals_field_default_fields() {
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => 'pw_thumbnail_70',
+            'image_style' => 'square_small',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',

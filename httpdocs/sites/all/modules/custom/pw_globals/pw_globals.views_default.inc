@@ -55,7 +55,7 @@ function pw_globals_views_default_views() {
   $handler->display->display_options['fields']['field_testimonial_portrait']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_testimonial_portrait']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_testimonial_portrait']['settings'] = array(
-    'image_style' => 'pw_thumbnail_70',
+    'image_style' => 'square_small',
     'image_link' => '',
     'linked_field' => array(
       'linked' => 0,

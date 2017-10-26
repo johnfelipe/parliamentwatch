@@ -4,7 +4,7 @@
   <table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" width="500" align="center" class="deviceWidthInner">
     <tr>
       <td width="70" style="vertical-align: top;">
-        <?php print render($content['field_testimonial_portrait']); ?>
+        <?php print theme('image_style', array('style_name' => 'square_small', 'path' => $content['field_testimonial_portrait']['#items'][0]['uri'])); ?>
       </td>
       <td width="20">&nbsp;</td>
       <td width="390" style="vertical-align: top;">

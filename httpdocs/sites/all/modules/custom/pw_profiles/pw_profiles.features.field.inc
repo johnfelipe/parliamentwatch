@@ -117,7 +117,31 @@ function pw_profiles_field_default_fields() {
           'type' => 'hidden',
           'weight' => '3',
         ),
+        'square_medium' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'square_small' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'width_large' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'width_medium' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
@@ -261,7 +285,31 @@ function pw_profiles_field_default_fields() {
           'type' => 'hidden',
           'weight' => '4',
         ),
+        'square_medium' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'square_small' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'width_large' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'width_medium' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
@@ -2504,7 +2552,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'label' => 'Liste',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(

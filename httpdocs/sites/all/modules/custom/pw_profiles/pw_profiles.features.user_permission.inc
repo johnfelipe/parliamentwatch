@@ -15,7 +15,6 @@ function pw_profiles_user_default_permissions() {
     'name' => 'access overlay',
     'roles' => array(
       0 => 'Politician',
-      1 => 'anonymous user',
     ),
     'module' => 'overlay',
   );
@@ -988,8 +987,9 @@ function pw_profiles_user_default_permissions() {
   $permissions['edit own field_user_list'] = array(
     'name' => 'edit own field_user_list',
     'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
+      0 => 'Candidate',
+      1 => 'Content Manager',
+      2 => 'administrator',
     ),
     'module' => 'field_permissions',
   );

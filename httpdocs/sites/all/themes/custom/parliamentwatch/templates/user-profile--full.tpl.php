@@ -66,15 +66,15 @@
         </div>
         <?php if (!empty($user_profile['revisions'])) { print render($user_profile['revisions']); } ?>
       </header>
-      <figure>
-        <div class="deputy__image"><?php print render($user_profile['field_user_picture']); ?></div>
-        <?php if ($is_consultable): ?>
-        <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
-        <?php endif; ?>
+      <figure class="deputy__image">
+        <?php print render($user_profile['field_user_picture']); ?>
         <?php if (!empty(trim(render($user_profile['field_user_picture_copyright'])))): ?>
-        <figcaption><?php print render($user_profile['field_user_picture_copyright']);?></figcaption>
+        <figcaption class="figcaption-overlay"><span>© <?php print render($user_profile['field_user_picture_copyright']['#items'][0]['value']);?></span></figcaption>
         <?php endif; ?>
       </figure>
+      <?php if ($is_consultable): ?>
+        <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
+      <?php endif; ?>
     </div>
     <div class="deputy__intro__content">
       <div class="hstats">
@@ -96,8 +96,7 @@
             <div class="hstats__item__label__value">
               <?php print $answers; ?>&thinsp;/&thinsp;<?php print $questions; ?>
             </div>
-            <?php print format_plural($questions, 'Answered question', 'Answered questions') ?>
-            <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-answered-questions') ?>"></i>
+            <?php print format_plural($questions, 'Answered question', 'Answered questions') ?>&nbsp;<i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-answered-questions') ?>"></i>
           </div>
         </a>
         <?php if (isset($user_profile['votes_total'])): ?>
@@ -119,8 +118,7 @@
             <div class="hstats__item__label__value">
               <?php print $user_profile['votes_attended']; ?>&thinsp;/&thinsp;<?php print $user_profile['votes_total']; ?>
             </div>
-            <?php print format_plural($user_profile['votes_attended'], 'Vote by name', 'Votes by name') ?>
-            <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-votes-by-name') ?>"></i>
+            <?php print format_plural($user_profile['votes_attended'], 'Vote by name', 'Votes by name') ?>&nbsp;<i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-votes-by-name') ?>"></i>
           </div>
         </a>
         <?php endif; ?>
@@ -142,6 +140,25 @@
           <dt class="dl__dt"><?php print $user_profile['field_user_job_skills']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_job_skills'][0]['#markup']; ?></dd>
         <?php endif; ?>
+        <?php if (isset($user_profile['field_user_constituency'])): ?>
+          <dt class="dl__dt"><?php print $user_profile['field_user_constituency']['#title']; ?></dt>
+          <dd class="dl__dd">
+            <p>
+              <?php print $user_profile['field_user_constituency'][0]['#markup']; ?>
+            </p>
+            <?php if (isset($field_user_election_result)): ?>
+              <p><small>
+                  <?php print $user_profile['field_user_election_result']['#title']; ?>: <?php print $user_profile['field_user_election_result'][0]['#markup']; ?> %
+                  <?php if ($field_user_constituency_won[0]['value'] == 1): ?>
+                    (<?php print t('Via constituency'); ?>)
+                  <?php endif; ?>
+                </small></p>
+            <?php endif; ?>
+            <?php if ($field_user_list_won[0]['value'] == 1): ?>
+              <p><small>(<?php print t('Via list'); ?>)</small></p>
+            <?php endif; ?>
+          </dd>
+        <?php endif; ?>
         <?php if (isset($user_profile['field_user_list'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_list']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_list'][0]['#markup']; ?><?php if ($user_profile['field_user_list_position']): ?>, Platz <?php print $user_profile['field_user_list_position'][0]['#markup']; ?><?php endif; ?></dd>
@@ -150,15 +167,6 @@
           <dt class="dl__dt"><?php print $user_profile['field_user_parliament']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_parliament'][0]['#markup']; ?></dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_election_result'])): ?>
-          <dt class="dl__dt"><?php print $user_profile['field_user_election_result']['#title']; ?></dt>
-          <dd class="dl__dd"><?php print $user_profile['field_user_election_result'][0]['#markup']; ?> %</dd>
-        <?php endif; ?>
-        <?php if (isset($user_profile['field_user_constituency'])): ?>
-          <dt class="dl__dt"><?php print $user_profile['field_user_constituency']['#title']; ?></dt>
-          <dd class="dl__dd"><?php print $user_profile['field_user_constituency'][0]['#markup']; ?></dd>
-        <?php endif; ?>
-
       </dl>
     </div>
 

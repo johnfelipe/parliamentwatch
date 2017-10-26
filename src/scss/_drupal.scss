@@ -133,6 +133,10 @@
 }
 
 /* Contextual Links */
+
+div.contextual-links-wrapper {
+  z-index: 98;
+}
 #header .contextual-links-region {
   @include grid-container();
 }
@@ -141,6 +145,35 @@
 
 .cke_editable {
   padding: $space-small;
+  img {
+    padding: $space-xsmall-mobile;
+    border: 1px solid $darkBeige;
+    max-width: 100%;
+    height: auto;
+  }
+  .media-wysiwyg-align-left {
+    float: left;
+    margin: 0 20px 20px 0;
+    max-width: 300px;
+  }
+  .media-wysiwyg-align-right {
+    float: right;
+    margin: 0 0 20px 20px;
+    max-width: 300px;
+  }
+
+  /* crypto font in ckedtor */
+  crypt {
+    border: 1px dashed $mediumGray;
+    padding: 0 $space-xsmall-mobile;
+
+    &:before {
+      content: '\e903';
+      color: $mediumGray;
+      font-family: 'awfont';
+      margin-right: $space-xsmall-mobile;
+    }
+  }
 }
 
 /* Temp */

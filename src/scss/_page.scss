@@ -38,6 +38,12 @@
   .content {
     @include grid-column(12);
   }
+  .float-left {
+    margin-left: 0;
+  }
+  .float-right {
+    margin-right: 0;
+  }
 }
 .node-type-page #content > .container {
   padding: 0;

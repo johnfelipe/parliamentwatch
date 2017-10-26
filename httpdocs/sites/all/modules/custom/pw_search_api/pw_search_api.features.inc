@@ -29,7 +29,7 @@ function pw_search_api_default_search_api_index() {
           "vote"
         ]
       },
-      "index_directly" : 1,
+      "index_directly" : 0,
       "cron_limit" : "50",
       "fields" : {
         "author" : { "type" : "integer", "entity_type" : "user" },

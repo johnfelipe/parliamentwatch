@@ -45,7 +45,10 @@
       width: 60%;
       height: 1px;
       background: $gray;
-      @include margin($space auto);
+      @include margin($space-xsmall auto);
+      @include breakpoint($breakpoint-s-min) {
+        @include margin($space auto);
+      }
     }
   }
   .hstats__item__display {
@@ -159,11 +162,8 @@
       }
     }
     .hstats__item--donut-digit {
-      padding-bottom: $space-small;
       width: 50%;
       float: left;
-      @include breakpoint($breakpoint-xs-min) {
-      }
       @include breakpoint($breakpoint-l-min - 100) {
         padding-bottom: 0;
         width: auto;
@@ -188,11 +188,16 @@
       }
     }
     .hstats__item__display {
-      width: 45px;
+      width: 38px;
+      @include breakpoint($breakpoint-xs-min) {
+        width: 40px;
+      }
+      @include breakpoint($breakpoint-s-min) {
+        width: 45px;
+      }
     }
     .hstats__item__label {
       padding-left: $space-xsmall;
-      padding-right: $space-xsmall;
       width:auto;
       @include breakpoint($breakpoint-xs-min) {
         padding-left: $space-small;
@@ -215,6 +220,10 @@
         text-align: right;
       }
     }
+
+    .dl__dd p {
+      margin-bottom: 0;
+    }
   }
   .deputy__intro__sidebar {
     margin-bottom: $space-large;
@@ -234,10 +243,13 @@
         text-align: center;
       }
     }
-    figcaption {
-      &:before {
-        content: '©';
-      }
+    .figcaption-overlay {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding-bottom: 0;
+      &:before { bottom: 0; }
+
       &:empty {
         display: none;
       }
@@ -251,6 +263,8 @@
       margin-bottom: $space-small-mobile;
       width: 100%;
       max-width: 300px;
+      border: 0;
+      padding: 0;
     }
     @media (max-width: $breakpoint-s-max) {
       @include image-circle(130px, 130px);
@@ -313,6 +327,7 @@
         padding-bottom: $space;
         @include breakpoint($breakpoint-m-min) {
           padding-bottom: 0;
+
         }
       }
     }

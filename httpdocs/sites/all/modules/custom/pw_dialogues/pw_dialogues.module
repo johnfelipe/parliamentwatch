@@ -450,7 +450,7 @@ function pw_dialogues_recent_block() {
     $inline_js = 'window.dialogues = ' . drupal_json_encode(pw_dialogues_topics_by_parliament($term)) . ';';
     $questions = pw_dialogues_by_parliament_query($term)->count()->execute();
     $answers = pw_dialogues_answered_questions_by_parliament($term);
-    $block['content'] = node_view_multiple($nodes, 'embedded');
+    $block['content'] = node_view_multiple($nodes, 'tile');
     $block['content']['stats'] = [
       '#theme' => 'dialogues_stats',
       '#questions' => $questions,
