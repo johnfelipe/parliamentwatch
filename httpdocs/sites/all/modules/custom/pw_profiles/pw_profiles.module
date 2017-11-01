@@ -965,7 +965,7 @@ function _pw_profiles_reject_filter(array $filters, $key, $value = NULL) {
  *   The eligible options.
  */
 function _pw_profiles_filter_options(array $options, $account) {
-  $eligible_terms = [];
+  $eligible_terms = ['_none' => NULL];
   $parliament = pw_profiles_parliament($account);
 
   if (isset($parliament)) {
@@ -974,7 +974,7 @@ function _pw_profiles_filter_options(array $options, $account) {
       ->fieldCondition('field_parliament', 'tid', $parliament->tid);
     $result = $q->execute();
     if (isset($result['taxonomy_term'])) {
-      $eligible_terms = $result['taxonomy_term'];
+      $eligible_terms += $result['taxonomy_term'];
     }
   }
 
