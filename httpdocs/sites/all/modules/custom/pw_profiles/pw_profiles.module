@@ -93,7 +93,7 @@ function pw_profiles_form_user_profile_form_alter(&$form, &$form_state) {
   }
 
   if (isset($form['field_user_list_position'][LANGUAGE_NONE]['#options'])) {
-    sort($form['field_user_list_position'][LANGUAGE_NONE]['#options']);
+    asort($form['field_user_list_position'][LANGUAGE_NONE]['#options']);
   }
 }
 
