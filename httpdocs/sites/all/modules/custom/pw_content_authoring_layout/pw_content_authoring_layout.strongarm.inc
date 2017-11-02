@@ -74,6 +74,27 @@ function pw_content_authoring_layout_strongarm() {
       'square_small' => array(
         'custom_settings' => TRUE,
       ),
+      'wysiwyg' => array(
+        'custom_settings' => TRUE,
+      ),
+      'square_medium' => array(
+        'custom_settings' => TRUE,
+      ),
+      'width_medium' => array(
+        'custom_settings' => TRUE,
+      ),
+      'width_large' => array(
+        'custom_settings' => TRUE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -124,6 +145,26 @@ function pw_content_authoring_layout_strongarm() {
             'visible' => TRUE,
           ),
           'image_square_small' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'square_small' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'square_medium' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'width_medium' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'width_large' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'wysiwyg' => array(
             'weight' => '0',
             'visible' => TRUE,
           ),
