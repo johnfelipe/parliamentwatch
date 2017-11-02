@@ -499,6 +499,73 @@ textarea {
   }
 }
 
+/* Loading overlay */
+
+.loading-overlay {
+  &:before {
+    content: '';
+    opacity: 0;
+    background: $beige;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: block;
+    z-index: 9;
+    transition: opacity 600ms ease;
+    pointer-events: none;
+  }
+  &.loading-overlay--active {
+    &:before {
+      opacity: .8;
+      pointer-events: inherit;
+    }
+    .loading-overlay__loader {
+      opacity: 1;
+    }
+  }
+}
+.loading-overlay__loader {
+  background: $white;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  padding: $space-xsmall-mobile;
+  transition: opacity 600ms ease 200ms;
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate3d(-50%, 0, 0);
+  @include breakpoint($breakpoint-s-min) {
+    top: 150px;
+  }
+  svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: center center;
+  }
+  svg:first-child {
+    animation-name: rotationCenter;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+  }
+  svg:last-child {
+    animation-name: rotationCenterDelayed;
+    animation-duration: 2s;
+    animation-delay: 0;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+  }
+}
+
 /* Tagadelic */
 
 .tagadelic.level1 { font-size : 1em; }
