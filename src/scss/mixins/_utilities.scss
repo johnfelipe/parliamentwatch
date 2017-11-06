@@ -45,6 +45,9 @@
   ul {
     @include icon-list();
     overflow: hidden;
+    li > a:not(.btn) {
+      font-weight: 500;
+    }
   }
   .media_embed {
     margin-bottom: $space;
