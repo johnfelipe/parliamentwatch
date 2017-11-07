@@ -2605,11 +2605,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
     ),
     'field_instance' => array(
       'bundle' => 'user',
-      'default_value' => array(
-        0 => array(
-          'tid' => '15610',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Wählen Sie hier Ihren Listenplatz aus.',
       'display' => array(
@@ -2641,10 +2637,12 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         ),
       ),
       'entity_type' => 'user',
+      'exclude_cv' => 0,
       'field_name' => 'field_user_list_position',
-      'label' => 'Listenposition',
+      'label' => 'Listenplatz',
       'required' => 0,
       'settings' => array(
+        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
@@ -4769,7 +4767,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
   t('Last name');
   t('Liste');
   t('Liste gewonnen');
-  t('Listenposition');
+  t('Listenplatz');
   t('Parlament');
   t('Parlament beigetreten');
   t('Parlament verlassen');

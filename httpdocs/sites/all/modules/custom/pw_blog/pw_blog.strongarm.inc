@@ -14,7 +14,7 @@ function pw_blog_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_blogpost';
-  $strongarm->value = 'edit-webform';
+  $strongarm->value = 'edit-workflow';
   $export['additional_settings__active_tab_blogpost'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -250,7 +250,9 @@ function pw_blog_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_blogpost';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    0 => 'revision',
+  );
   $export['node_options_blogpost'] = $strongarm;
 
   $strongarm = new stdClass();

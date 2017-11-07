@@ -241,11 +241,10 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['rid']['id'] = 'rid';
   $handler->display->display_options['fields']['rid']['table'] = 'users_roles';
   $handler->display->display_options['fields']['rid']['field'] = 'rid';
-  /* Feld: Benutzer: Listenposition */
+  /* Feld: Benutzer: Listenplatz */
   $handler->display->display_options['fields']['field_user_list_position']['id'] = 'field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['table'] = 'field_data_field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['field'] = 'field_user_list_position';
-  $handler->display->display_options['fields']['field_user_list_position']['label'] = 'Listenplatz';
   /* Feld: Benutzer: ‚Bearbeiten‘-Link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'users';
@@ -759,11 +758,10 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['rid']['id'] = 'rid';
   $handler->display->display_options['fields']['rid']['table'] = 'users_roles';
   $handler->display->display_options['fields']['rid']['field'] = 'rid';
-  /* Feld: Benutzer: Listenposition */
+  /* Feld: Benutzer: Listenplatz */
   $handler->display->display_options['fields']['field_user_list_position']['id'] = 'field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['table'] = 'field_data_field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['field'] = 'field_user_list_position';
-  $handler->display->display_options['fields']['field_user_list_position']['label'] = 'Listenplatz';
   /* Feld: Benutzer: ‚Bearbeiten‘-Link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'users';

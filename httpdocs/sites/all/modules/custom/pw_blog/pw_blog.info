@@ -77,4 +77,4 @@ features[variable][] = xmlsitemap_settings_node_blogpost
 features[variable][] = xmlsitemap_settings_taxonomy_term_blogcategories
 features[variable][] = xmlsitemap_settings_taxonomy_term_blogtags
 features[views_view][] = blog
-mtime = 1504090685
+mtime = 1507898755
