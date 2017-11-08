@@ -32,6 +32,9 @@
   <div class="relative entity-paragraphs-item <?php print render($content['field_pg_donate_targetgroup']); ?>">
     <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth" style="border-bottom: 1px solid #f63;">
       <tr>
+        <td colspan="3" width="100%" style="height: 20px;">&nbsp;</td>
+      </tr>
+      <tr>
         <td colspan="3" width="100%">
           <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="100%" align="center" class="deviceWidth">
             <tr>

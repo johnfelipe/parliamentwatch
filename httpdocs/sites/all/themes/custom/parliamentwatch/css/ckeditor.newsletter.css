@@ -8,3 +8,8 @@ body {
 }
 
 strong { font-weight: 800 !important; }
+.cke_editable img,
+figure img {
+  padding: 0;
+  border: 0;
+}

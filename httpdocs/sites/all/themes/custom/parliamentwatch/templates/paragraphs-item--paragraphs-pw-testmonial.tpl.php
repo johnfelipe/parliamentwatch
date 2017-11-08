@@ -26,6 +26,8 @@
  * @see template_process()
  */
 ?>
+<?php $content_link_url = $content['field_pg_content_link'][0]['#element']['url']; ?>
+
 <div class="archive_<?php print $field_show[0]['value'] ?>">
   <div class="<?php print render($content['field_pg_donate_targetgroup']); ?>">
     <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth" style="border-top: 1px solid #999; border-bottom: 1px solid #999; background: #f8f8f8; ">
@@ -40,8 +42,8 @@
         <?php print render($content['field_pg_testimonial_er']); ?>
 
         <td width="70" style="text-align: center; vertical-align: top;" class="block_td percent_td">
-          <a href="https://twitter.com/intent/tweet?text=Jetzt Fördermitglied von abgeordnetenwatch.de werden&url=<?php print render($content['field_pg_content_link']); ?>" target="_blank"><img src="<?php print $GLOBALS['base_url'] ?>/sites/all/themes/custom/parliamentwatch/images/newsletter/social-twitter.png" alt="Twitter" border="0" style="display: inline-block;"></a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=<?php print render($content['field_pg_content_link']); ?>" target="_blank"><img src="<?php print $GLOBALS['base_url'] ?>/sites/all/themes/custom/parliamentwatch/images/newsletter/social-facebook.png" alt="Facebook" border="0" style="display: inline-block;"></a>
+          <a href="https://twitter.com/intent/tweet?text=Jetzt Fördermitglied von abgeordnetenwatch.de werden&url=<?php print $content_link_url; ?>" target="_blank"><img src="<?php print $GLOBALS['base_url'] ?>/sites/all/themes/custom/parliamentwatch/images/newsletter/social-twitter.png" alt="Twitter" border="0" style="display: inline-block;"></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=<?php print $content_link_url; ?>" target="_blank"><img src="<?php print $GLOBALS['base_url'] ?>/sites/all/themes/custom/parliamentwatch/images/newsletter/social-facebook.png" alt="Facebook" border="0" style="display: inline-block;"></a>
         </td>
         <td width="10" class="block_td percent_td">&nbsp;</td>
       </tr>
@@ -51,7 +53,7 @@
           <td colspan="3" width="600">
           <?php foreach ($field_pg_content_link as $delta => $item): ?>
             <p style="font-family: Arial, Helvetica, Sans-Serif; color: #999; font-size: 15px; line-height: 21px; margin: 0; text-align: center;">
-              <a target="_blank" href="<?php print render($item); ?>" style="color: #f63; text-decoration: none; font-weight: bold;">Jetzt Spenden</a>
+              <a target="_blank" href="<?php print render($item['url']); ?>" style="color: #f63; text-decoration: none; font-weight: bold;">Jetzt Spenden</a>
             </p>
           <?php endforeach; ?>
           </td>
@@ -62,7 +64,7 @@
           <td colspan="3" width="600">
             <?php foreach ($field_pg_content_link as $delta => $item): ?>
               <p style="font-family: Arial, Helvetica, Sans-Serif; color: #999; font-size: 15px; line-height: 21px; margin: 0; text-align: center;">
-                <a target="_blank" href="<?php print render($item); ?>?recurring=1" style="color: #f63; text-decoration: none; font-weight: bold;">Jetzt Fördern</a>
+                <a target="_blank" href="<?php print render($item['url']); ?>?recurring=1" style="color: #f63; text-decoration: none; font-weight: bold;">Jetzt Fördern</a>
               </p>
             <?php endforeach; ?>
           </td>

@@ -1880,7 +1880,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'default_value' => array(
         0 => array(
           'value' => '',
-          'format' => 'managed_content',
+          'format' => 'newsletter',
         ),
       ),
       'deleted' => '0',
@@ -1921,16 +1921,16 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
       'settings' => array(
         'better_formats' => array(
           'allowed_formats' => array(
-            'copyright' => 'copyright',
-            'filtered_html' => 'filtered_html',
-            'full_html' => 'full_html',
-            'html_mail' => 'html_mail',
-            'managed_content' => 'managed_content',
+            'copyright' => 0,
+            'filtered_html' => 0,
+            'full_html' => 0,
+            'html_mail' => 0,
+            'managed_content' => 0,
             'newsletter' => 'newsletter',
-            'php_code' => 'php_code',
-            'plain_text' => 'plain_text',
+            'php_code' => 0,
+            'plain_text' => 0,
           ),
-          'allowed_formats_toggle' => 0,
+          'allowed_formats_toggle' => 1,
           'default_order_toggle' => 0,
           'default_order_wrapper' => array(
             'formats' => array(
@@ -1961,7 +1961,6 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -1978,7 +1977,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'maxlength_js_enforce' => 0,
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'maxlength_js_truncate_html' => 0,
-          'rows' => '5',
+          'rows' => '15',
         ),
         'type' => 'text_textarea',
         'weight' => '2',
