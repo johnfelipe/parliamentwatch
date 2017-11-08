@@ -215,10 +215,18 @@
 }
 
 
-.poll_detail {
+.poll__table {
   background: $beige;
   padding-top: $space-large;
   padding-bottom: $space-large;
+  @include breakpoint($breakpoint-m-min) {
+    padding-top: $space-large + $space-xsmall;
+    padding-bottom: $space-large + $space-xsmall;
+  }
+  @include breakpoint($breakpoint-l-min) {
+    padding-top: $space-large + $space;
+    padding-bottom: $space-large + $space;
+  }
   .filterbar {
     margin-bottom: $space-large;
   }
@@ -313,6 +321,10 @@
 .table.table--poll-votes {
   border-collapse: collapse;
   border-spacing: 0;
+  border-bottom: $space-small solid $beige;
+  @include breakpoint($breakpoint-s-min) {
+    border-bottom: 1px solid $darkBeige;
+  }
 }
 
 /* Poll Charts */
@@ -321,6 +333,14 @@
   padding-top: $space-large;
   padding-bottom: $space-large;
   @include container-extended($beige);
+  @include breakpoint($breakpoint-m-min) {
+    padding-top: $space-large + $space-xsmall;
+    padding-bottom: $space-large + $space-xsmall;
+  }
+  @include breakpoint($breakpoint-l-min) {
+    padding-top: $space-large + $space;
+    padding-bottom: $space-large + $space;
+  }
   .d3--bar-vertical-stacked-poll .d3-chart,
   .d3--bar-horizontal-stacked {
     @include grid-column(12);
@@ -336,8 +356,15 @@
       @include grid-column(6);
     }
   }
-
 }
+
+
+/* View-Mode Switch Behavior */
+
+.poll__table + .poll__charts {
+  display: none;
+}
+
 
 /* Poll Timeline */
 

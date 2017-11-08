@@ -502,6 +502,7 @@ textarea {
 /* Loading overlay */
 
 .loading-overlay {
+  position: relative;
   &:before {
     content: '';
     opacity: 0;

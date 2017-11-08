@@ -32,6 +32,7 @@
   float: left;
   padding-left: $space;
   @include grid-container();
+  .filterbar__item { cursor: default; }
   .filterbar__item--input {
     width: 150px;
     @include breakpoint($breakpoint-xs-min) {
@@ -375,6 +376,15 @@ _:-ms-fullscreen,
       border-right: 1px solid $darkBeige;
     }
   }
+  &.active {
+    background: $beige;
+    position: relative;
+    z-index: 9;
+    border-bottom: 1px solid $beige;
+    .filterbar__view_options__item__link {
+      color: $darkGray;
+    }
+  }
 }
 .filterbar__view_options__item__link {
   display: block;
@@ -387,15 +397,6 @@ _:-ms-fullscreen,
     width: 32px;
     display: inline-block;
     text-align: center;
-  }
-}
-.filterbar__view_options__item--active {
-  background: $beige;
-  position: relative;
-  z-index: 9;
-  border-bottom: 1px solid $beige;
-  .filterbar__view_options__item__link {
-    color: $darkGray;
   }
 }
 
@@ -502,5 +503,23 @@ _:-ms-fullscreen,
     font-size: .8em;
     text-align: right;
     color: $darkGray;
+  }
+}
+
+
+/* Filterbar temp state */
+
+.filterbar--no-filter {
+  .filterbar__view_options {
+    display: block;
+    position: relative;
+    float: right;
+    margin-right: 20px;
+    margin-bottom: -1px;
+    @include breakpoint($breakpoint-s-min) {
+      margin: 0;
+      position: absolute;
+      float: none;
+    }
   }
 }

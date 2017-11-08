@@ -25,7 +25,7 @@
   }
   tr {
     @media (max-width: $breakpoint-s-max) {
-      border-bottom: 1px solid $gray + 20;
+      border-bottom: 1px solid $darkBeige;
       display: block;
       @include grid-container();
       &:last-child {
@@ -39,7 +39,7 @@
     padding: $space-xsmall-mobile 0;
     @include breakpoint($breakpoint-s-min) {
       padding: $space-small 0;
-      border-bottom: 1px solid $gray + 20;
+      border-bottom: 1px solid $darkBeige;
     }
     @media (max-width: $breakpoint-s-max) {
       display: block;
@@ -62,7 +62,7 @@
     color: $mediumGray;
     padding-top: $space-small;
     padding-bottom: $space-xsmall;
-    border-bottom: 1px solid $gray + 20;
+    border-bottom: 1px solid $darkBeige;
     a {
       color: $mediumGray;
     }

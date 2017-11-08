@@ -44,7 +44,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="poll__charts <?php print $classes; ?>">
+<div class="poll__charts <?php print $classes; ?>" data-view-mode-element="poll__charts">
   <?php print render($title_suffix) ?>
   <?php print $content ?>
   <span class='d3 d3--bar-horizontal-stacked'

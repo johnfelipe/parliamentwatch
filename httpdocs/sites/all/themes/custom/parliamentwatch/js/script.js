@@ -1601,6 +1601,30 @@
     }
   };
 
+  /**
+   * Attaches the view-mode switch behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.viewModeSwitch = {
+    attach: function () {
+      $('[data-view-mode]').click(function (event) {
+        event.preventDefault();
+        var viewModeElement = $(this).data('view-mode');
+
+        $('[data-view-mode]').parent('li').removeClass('active');
+        $(this).parent('li').addClass('active');
+
+        console.log(viewModeElement);
+
+        $('[data-view-mode-element]').hide();
+        $('[data-view-mode-element='+ viewModeElement +']').show();
+      });
+    }
+  };
+
 
   /**
    * Attaches the read more behavior.

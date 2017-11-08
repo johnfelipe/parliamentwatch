@@ -80,7 +80,7 @@
     </div>
 
     <div class="filterbar__view_options">
-      <li class="filterbar__view_options__item filterbar__view_options__item--active">
+      <li class="filterbar__view_options__item active">
         <a href="#" class="filterbar__view_options__item__link"><i class="icon icon-th"></i></a>
       </li>
     </div>
