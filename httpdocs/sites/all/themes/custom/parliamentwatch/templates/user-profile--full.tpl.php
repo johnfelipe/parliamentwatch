@@ -77,6 +77,9 @@
       <?php endif; ?>
     </div>
     <div class="deputy__intro__content">
+      <?php if ($user_profile['field_user_retired']): ?>
+        <div class="deputy__intro__content__hint"><i class="icon icon-politician"></i> <?php print t('%name was retired on %date', array('%name' => $display_name, '%date' => drupal_html_to_text($user_profile['field_user_retired'][0]['#markup']))); ?></div>
+      <?php endif; ?>
       <div class="hstats">
         <a href="#block-pw-dialogues-profile" class="hstats__item hstats__item--donut-digit" data-localScroll>
           <div class="hstats__item__display mh-item-nr" data-mh="hstats">
@@ -166,6 +169,14 @@
         <?php if (isset($user_profile['field_user_parliament'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_parliament']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_parliament'][0]['#markup']; ?></dd>
+        <?php endif; ?>
+        <?php if (isset($user_profile['field_user_joined'])): ?>
+          <dt class="dl__dt"><?php print $user_profile['field_user_joined']['#title']; ?></dt>
+          <dd class="dl__dd"><?php print $user_profile['field_user_joined'][0]['#markup']; ?></dd>
+        <?php endif; ?>
+        <?php if (isset($user_profile['field_user_retired'])): ?>
+          <dt class="dl__dt"><?php print $user_profile['field_user_retired']['#title']; ?></dt>
+          <dd class="dl__dd"><?php print $user_profile['field_user_retired'][0]['#markup']; ?></dd>
         <?php endif; ?>
       </dl>
     </div>

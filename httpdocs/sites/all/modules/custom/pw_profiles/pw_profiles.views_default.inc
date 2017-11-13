@@ -241,7 +241,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['rid']['id'] = 'rid';
   $handler->display->display_options['fields']['rid']['table'] = 'users_roles';
   $handler->display->display_options['fields']['rid']['field'] = 'rid';
-  /* Feld: Benutzer: Listenplatz */
+  /* Feld: Benutzer: Listenposition */
   $handler->display->display_options['fields']['field_user_list_position']['id'] = 'field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['table'] = 'field_data_field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['field'] = 'field_user_list_position';
@@ -758,7 +758,7 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['rid']['id'] = 'rid';
   $handler->display->display_options['fields']['rid']['table'] = 'users_roles';
   $handler->display->display_options['fields']['rid']['field'] = 'rid';
-  /* Feld: Benutzer: Listenplatz */
+  /* Feld: Benutzer: Listenposition */
   $handler->display->display_options['fields']['field_user_list_position']['id'] = 'field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['table'] = 'field_data_field_user_list_position';
   $handler->display->display_options['fields']['field_user_list_position']['field'] = 'field_user_list_position';
@@ -1048,7 +1048,7 @@ function pw_profiles_views_default_views() {
     t('Antworten'),
     t('Ort'),
     t('Rollen'),
-    t('Listenplatz'),
+    t('Listenposition'),
     t('hidden'),
     t('Vorname'),
     t('Suche nach Vornamen.'),
