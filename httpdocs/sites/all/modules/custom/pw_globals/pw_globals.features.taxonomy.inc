@@ -89,5 +89,13 @@ function pw_globals_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => '0',
     ),
+    'topics' => array(
+      'name' => 'Topics',
+      'machine_name' => 'topics',
+      'description' => '',
+      'hierarchy' => '0',
+      'module' => 'taxonomy',
+      'weight' => '0',
+    ),
   );
 }

@@ -13,6 +13,108 @@ function pw_committees_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_committee';
+  $strongarm->value = '0';
+  $export['comment_anonymous_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_committee';
+  $strongarm->value = '1';
+  $export['comment_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_committee';
+  $strongarm->value = 1;
+  $export['comment_default_mode_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_committee';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_committee';
+  $strongarm->value = 1;
+  $export['comment_form_location_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_committee';
+  $strongarm->value = '1';
+  $export['comment_preview_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_committee';
+  $strongarm->value = 1;
+  $export['comment_subject_field_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_committee';
+  $strongarm->value = 0;
+  $export['diff_enable_revisions_page_node_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_committee';
+  $strongarm->value = 1;
+  $export['diff_show_preview_changes_node_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_committee';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__committee';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '15',
+        ),
+        'title' => array(
+          'weight' => '0',
+        ),
+        'path' => array(
+          'weight' => '14',
+        ),
+        'rabbit_hole' => array(
+          'weight' => '11',
+        ),
+        'redirect' => array(
+          'weight' => '12',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '13',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_taxonomy_term__committee';
   $strongarm->value = array(
     'view_modes' => array(
@@ -26,13 +128,25 @@ function pw_committees_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'name' => array(
           'weight' => '0',
         ),
         'description' => array(
+          'weight' => '2',
+        ),
+        'metatags' => array(
+          'weight' => '12',
+        ),
+        'rabbit_hole' => array(
           'weight' => '1',
+        ),
+        'redirect' => array(
+          'weight' => '11',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '10',
         ),
       ),
       'display' => array(
@@ -54,6 +168,57 @@ function pw_committees_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_committee';
+  $strongarm->value = '0';
+  $export['language_content_type_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_committee';
+  $strongarm->value = array();
+  $export['menu_options_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_committee';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_committee';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_committee';
+  $strongarm->value = '1';
+  $export['node_preview_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_committee';
+  $strongarm->value = 1;
+  $export['node_submitted_committee'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_committee_pattern';
+  $strongarm->value = '[node:field-parliament]/ausschuesse/[node:title] ';
+  $export['pathauto_node_committee_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_committee_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_committee_pattern'] = $strongarm;
@@ -64,6 +229,16 @@ function pw_committees_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_committee_types_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_committee_types_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_committee';
+  $strongarm->value = array(
+    'status' => '0',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_committee'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

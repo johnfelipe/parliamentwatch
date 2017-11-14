@@ -865,6 +865,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_pw_testimonial_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_pw_testimonial_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_webform_de_pattern';
   $strongarm->value = '';
   $export['pathauto_node_webform_de_pattern'] = $strongarm;
@@ -882,6 +889,13 @@ node/*/edit';
   $strongarm->name = 'pathauto_node_webform_und_pattern';
   $strongarm->value = '';
   $export['pathauto_node_webform_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_affiliates_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_affiliates_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -945,6 +959,13 @@ node/*/edit';
   $strongarm->name = 'pathauto_taxonomy_term_tags_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_tags_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_topics_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_topics_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1338,6 +1359,16 @@ node/*/edit';
     'priority' => '0.5',
   );
   $export['xmlsitemap_settings_taxonomy_term_political_roles'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_taxonomy_term_topics';
+  $strongarm->value = array(
+    'status' => '0',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_taxonomy_term_topics'] = $strongarm;
 
   return $export;
 }
