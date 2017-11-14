@@ -164,6 +164,7 @@ function pw_profiles_field_group_info() {
       11 => 'field_user_public_mail',
       12 => 'field_user_list',
       13 => 'field_user_mobile',
+      14 => 'field_user_died',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

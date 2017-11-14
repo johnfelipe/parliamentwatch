@@ -693,7 +693,7 @@ function pw_profiles_field_default_fields() {
           ),
         ),
         'type' => 'addressfield_standard',
-        'weight' => '45',
+        'weight' => '73',
       ),
     ),
   );
@@ -780,7 +780,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'computed_field',
         'settings' => array(),
         'type' => 'computed',
-        'weight' => '52',
+        'weight' => '81',
       ),
     ),
   );
@@ -882,7 +882,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'year_range' => '-70:+0',
         ),
         'type' => 'date_popup',
-        'weight' => '51',
+        'weight' => '79',
       ),
     ),
   );
@@ -960,7 +960,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '54',
+        'weight' => '83',
       ),
     ),
   );
@@ -1153,7 +1153,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '57',
+        'weight' => '86',
       ),
     ),
   );
@@ -1372,6 +1372,93 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
     ),
   );
 
+  // Exported field: 'user-user-field_user_died'.
+  $fields['user-user-field_user_died'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_user_died',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'user',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(
+            'field_delimiter' => '',
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => 49,
+        ),
+        'full' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'user',
+      'exclude_cv' => 0,
+      'field_name' => 'field_user_died',
+      'label' => 'Verstorben',
+      'required' => 0,
+      'settings' => array(
+        'exclude_cv' => FALSE,
+        'user_register_form' => 0,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '80',
+      ),
+    ),
+  );
+
   // Exported field: 'user-user-field_user_education'.
   $fields['user-user-field_user_education'] = array(
     'field_config' => array(
@@ -1503,7 +1590,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '49',
+        'weight' => '77',
       ),
     ),
   );
@@ -2278,7 +2365,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '48',
+        'weight' => '76',
       ),
     ),
   );
@@ -2579,7 +2666,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '55',
+        'weight' => '84',
       ),
     ),
   );
@@ -2668,7 +2755,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '56',
+        'weight' => '85',
       ),
     ),
   );
@@ -2965,7 +3052,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '53',
+        'weight' => '82',
       ),
     ),
   );
@@ -3101,7 +3188,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '47',
+        'weight' => '75',
       ),
     ),
   );
@@ -3414,7 +3501,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '46',
+        'weight' => '74',
       ),
     ),
   );
@@ -4019,7 +4106,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '50',
+        'weight' => '78',
       ),
     ),
   );
@@ -4140,7 +4227,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '44',
+        'weight' => '72',
       ),
     ),
   );
@@ -4824,6 +4911,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
   t('Title Text');
   t('Tragen Sie hier Ihre politischen Ziele ein. Diese werden in Ihrem Profil veröffentlicht.');
   t('Twitter');
+  t('Verstorben');
   t('Wahlkreis');
   t('Wahlkreis gewonnen');
   t('Wahlkreisergebnis');
