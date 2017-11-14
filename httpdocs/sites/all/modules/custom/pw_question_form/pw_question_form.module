@@ -37,10 +37,10 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
     // question form closed by reason
     $field_closed_by_reason = field_get_items('user', $account, 'field_user_question_form_closed');
     if (!empty($field_closed_by_reason)) {
-      $body_markup = '<div class="pw-messages warning">' . $field_closed_by_reason[0]['value'] . '</div>';
+      $body_markup = '<div class="messages messages--warning">' . $field_closed_by_reason[0]['value'] . '</div>';
     }
     elseif (!_pw_is_profile_consultable($account)) {
-      $body_markup = '<div class="pw-messages warning">Die Fragefunktion in diesem Profil wurde geschlossen.</div>';
+      $body_markup = '<div class="messages messages--warning">Die Fragefunktion in diesem Profil wurde geschlossen.</div>';
     }
 
     // show message

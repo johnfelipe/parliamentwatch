@@ -74,6 +74,14 @@
       </figure>
       <?php if ($is_consultable): ?>
         <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
+      <?php else: ?>
+        <a href="#question-form" class="btn btn--block btn--disabled" data-localScroll>Frage stellen</a>
+        <?php if (isset($user_profile['field_user_question_form_closed'])): ?>
+          <div class="deputy__intro__sidebar__hint">
+            <i class="icon icon-info"></i>
+            <?php print render($user_profile['field_user_question_form_closed']); ?>
+          </div>
+        <?php endif; ?>
       <?php endif; ?>
     </div>
     <div class="deputy__intro__content">

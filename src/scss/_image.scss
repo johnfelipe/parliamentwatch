@@ -54,6 +54,50 @@ figure {
       color: $mediumGray;
     }
   }
+  .figcaption-overlay {
+    position: absolute;
+    right: $space-xsmall-mobile;
+    left: $space-xsmall-mobile;
+    bottom: $space-xsmall-mobile;
+    overflow: hidden;
+    padding: 0;
+    @include grid-container();
+    &:before {
+      font-family: 'awfont';
+      content: '\e829';
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: 9;
+      background: $white;
+      border-radius: 4px 0 0 0;
+
+      line-height: 30px;
+      text-align: center;
+      width: 30px;
+      height: 30px;
+    }
+    span {
+      display: block;
+      background: $white;
+      padding: 1px 0 0 10px;
+      height: 30px;
+      transition: transform 300ms ease 100ms;
+      transform: translate(0, 35px);
+      line-height: 30px;
+      padding-right: 30px;
+      @include text-overflow();
+    }
+    &:hover {
+      span {
+        white-space: nowrap;
+        display: block;
+        transform: translate(0,0);
+
+      }
+    }
+  }
 }
 
 /* Old ckeditor classes */

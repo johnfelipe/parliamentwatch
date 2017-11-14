@@ -43,3 +43,8 @@
 .btn--mobile-block {
   @include button--mobile-block();
 }
+
+.btn--disabled {
+  opacity: .4;
+  pointer-events: none;
+}

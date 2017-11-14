@@ -268,6 +268,17 @@
       }
     }
   }
+  .deputy__intro__sidebar__hint {
+    padding: $space-small 0 $space-small $space;
+    font-size: .8em;
+    position: relative;
+    color: $gray;
+    .icon {
+      position: absolute;
+      left: 2px;
+      top: $space-small;
+    }
+  }
 
   .deputy__image {
     display: block;
@@ -415,8 +426,11 @@
     @include breakpoint($breakpoint-l-min) {
       margin-bottom: -($space-large * 2);
     }
-
     h2, h2 a { color: $darkGray; font-family: $font-sans-serif; }
+    .messages.messages--warning {
+      background-color: $white;
+      margin: 0;
+    }
   }
   .question-content {
     @include grid-column(12);
