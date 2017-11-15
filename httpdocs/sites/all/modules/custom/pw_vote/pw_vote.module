@@ -480,6 +480,7 @@ function pw_vote_poll_block() {
         ],
         [
           'data' => '<span class="party-indicator">' . $political_faction . '</span>',
+          'data' => '<span class="party-indicator party-indicator--' . drupal_html_class(strip_tags($political_faction)) . '">' . $political_faction . '</span>',
         ],
         [
           'data' => $constituency,

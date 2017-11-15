@@ -122,6 +122,7 @@ textarea {
     @include margin(0px 5px null null);
   }
   &.party-indicator--afd:before { background-color: #1a9fdd; }
+  &.party-indicator--cdu-csu:before,
   &.party-indicator--cdu:before,
   &.party-indicator--csu:before { background-color: $black; }
   &.party-indicator--fdp:before { background-color: #feeb34; }
