@@ -243,10 +243,11 @@ function parliamentwatch_preprocess_node(&$variables) {
       ['name' => 'Ja', 'color' => '#9fd773', 'count' => $node->result['yes']],
       ['name' => 'Nein', 'color' => '#cc6c5b', 'count' => $node->result['no']],
       ['name' => 'Enthalten', 'color' => '#e2e2e2', 'count' => $node->result['abstain']],
-      ['name' => 'Nicht abgestimmt', 'color' => '#a6a6a6', 'count' => $node->result['no-show']],
+      ['name' => 'Nicht beteiligt', 'color' => '#a6a6a6', 'count' => $node->result['no-show']],
     ];
     $variables['yays'] = $node->result['yes'];
     $variables['nays'] = $node->result['no'];
+    $variables['voterCount'] = $node->result['yes'] + $node->result['no'] + $node->result['abstain'] + $node->result['no-show'];
   }
 
   if ($variables['type'] == 'pw_kc_position') {

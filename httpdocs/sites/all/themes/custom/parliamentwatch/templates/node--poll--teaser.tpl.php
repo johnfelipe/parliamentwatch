@@ -118,5 +118,6 @@
       </div>
     </div>
   </div>
+  <div class="poll_overview__info"><i class="icon icon-info"></i> <?php print t('Voting results by a total of %count deputies.', array('%count' => $voterCount )) ?></div>
 </div>
 <?php endif; ?>
