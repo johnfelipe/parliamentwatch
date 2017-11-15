@@ -463,6 +463,7 @@ function pw_vote_poll_block() {
           $voted = t('Abstained') . '<i class="icon icon-circle-o"></i>';
           break;
         case 10670:
+        case 19670:
           $voted = t('Did not vote') . '<i class="icon icon-minus"></i>';
           break;
       }
