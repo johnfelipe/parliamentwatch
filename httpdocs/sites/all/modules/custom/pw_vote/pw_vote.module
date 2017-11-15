@@ -442,7 +442,7 @@ function pw_vote_poll_block() {
     ->extend('PagerDefault')
     ->element(1)
     ->orderByHeader($header)
-    ->limit(6)
+    ->limit(40)
     ->execute();
   $nids_vids = $result->fetchAllKeyed();
 

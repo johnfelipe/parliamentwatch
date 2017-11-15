@@ -206,14 +206,15 @@
   float: left;
   width: 75%;
   @include text-overflow();
+  line-height: 1.3em;
 }
 .poll_overview__secondary__value {
   float: right;
   width: 25%;
   font-weight: 600;
   text-align: right;
+  line-height: 1.3em;
 }
-
 
 .poll__table {
   background: $beige;
@@ -257,6 +258,7 @@
         float: none;
         padding: $space-xsmall;
         padding-left: $space;
+        width: 80px;
       }
       span {
         @include image-circle(40px, 40px);
@@ -277,6 +279,11 @@
         font-weight: 300;
         padding-top: $space-xsmall;
         padding-bottom: $space-xsmall;
+        padding-right: $space-xsmall;
+        width: 25%;
+      }
+      @include breakpoint($breakpoint-m-min) {
+        width: 30%;
       }
     }
     td:nth-child(3) {
@@ -285,6 +292,7 @@
       @include breakpoint($breakpoint-s-min) {
         margin-left: 0;
         font-size: 1em;
+        width: 15%;
       }
     }
     td:nth-child(4) {
@@ -293,6 +301,7 @@
       @include breakpoint($breakpoint-s-min) {
         margin-left: 0;
         font-size: 1em;
+        width: 30%;
       }
       .icon {
         font-size: .6em;
@@ -309,6 +318,7 @@
       @include breakpoint($breakpoint-s-min) {
         margin-left: 0;
         padding-right: $space;
+        padding-left: 0;
       }
       .icon {
         font-size: .8em;

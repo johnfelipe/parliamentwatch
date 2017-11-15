@@ -101,7 +101,7 @@
       'yes': {name: 'Ja', 'color': '#9fd773'},
       'no': {name: 'Nein', color: '#cc6c5b'},
       'abstain': {name: 'Enthalten', color: '#e2e2e2'},
-      'no-show': {name: 'Nicht abgestimmt', color: '#a6a6a6'}
+      'no-show': {name: 'Nicht beteiligt', color: '#a6a6a6'}
     };
 
     var data = [];
@@ -1156,7 +1156,7 @@
                 .attr("class", "icon icon-close")
                 .attr("style", "color:" + d.color + ";");
             }
-            if (d.name == 'Nicht abgestimmt') {
+            if (d.name == 'Nicht beteiligt') {
               iconWrapper
                 .attr("class", "icon icon-minus")
                 .attr("style", "color:" + d.color + ";");
@@ -1476,7 +1476,7 @@
             var labelWrapper = chartwrapper
               .append('div')
               .attr('class', 'd3__label_outer')
-              .html('<h3>' + key + ' <span>' + Drupal.formatPlural(totalPollCount, '1 member', '@count members') + '</span></h3>')
+              .html('<h3>' + key + ' <span>' + Drupal.formatPlural(totalPollCount, '1 deputy', '@count deputies') + '</span></h3>')
               .append("ul")
               .attr('class', 'd3__label');
 
