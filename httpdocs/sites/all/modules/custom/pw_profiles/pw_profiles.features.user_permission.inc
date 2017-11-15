@@ -101,6 +101,23 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: create field_user_data_url.
+  $permissions['create field_user_data_url'] = array(
+    'name' => 'create field_user_data_url',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'anonymous user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: create field_user_died.
+  $permissions['create field_user_died'] = array(
+    'name' => 'create field_user_died',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: create field_user_education.
   $permissions['create field_user_education'] = array(
     'name' => 'create field_user_education',
@@ -251,6 +268,13 @@ function pw_profiles_user_default_permissions() {
       0 => 'Content Manager',
       1 => 'administrator',
     ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: create field_user_mobile.
+  $permissions['create field_user_mobile'] = array(
+    'name' => 'create field_user_mobile',
+    'roles' => array(),
     'module' => 'field_permissions',
   );
 
@@ -479,6 +503,26 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: edit field_user_data_url.
+  $permissions['edit field_user_data_url'] = array(
+    'name' => 'edit field_user_data_url',
+    'roles' => array(
+      0 => 'Content Manager',
+      1 => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: edit field_user_died.
+  $permissions['edit field_user_died'] = array(
+    'name' => 'edit field_user_died',
+    'roles' => array(
+      0 => 'Content Manager',
+      1 => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: edit field_user_education.
   $permissions['edit field_user_education'] = array(
     'name' => 'edit field_user_education',
@@ -626,6 +670,13 @@ function pw_profiles_user_default_permissions() {
       0 => 'Content Manager',
       1 => 'administrator',
     ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: edit field_user_mobile.
+  $permissions['edit field_user_mobile'] = array(
+    'name' => 'edit field_user_mobile',
+    'roles' => array(),
     'module' => 'field_permissions',
   );
 
@@ -866,6 +917,26 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: edit own field_user_data_url.
+  $permissions['edit own field_user_data_url'] = array(
+    'name' => 'edit own field_user_data_url',
+    'roles' => array(
+      0 => 'Content Manager',
+      1 => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: edit own field_user_died.
+  $permissions['edit own field_user_died'] = array(
+    'name' => 'edit own field_user_died',
+    'roles' => array(
+      0 => 'Content Manager',
+      1 => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: edit own field_user_education.
   $permissions['edit own field_user_education'] = array(
     'name' => 'edit own field_user_education',
@@ -1037,6 +1108,13 @@ function pw_profiles_user_default_permissions() {
       0 => 'Content Manager',
       1 => 'administrator',
     ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: edit own field_user_mobile.
+  $permissions['edit own field_user_mobile'] = array(
+    'name' => 'edit own field_user_mobile',
+    'roles' => array(),
     'module' => 'field_permissions',
   );
 
@@ -1343,6 +1421,27 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: view field_user_data_url.
+  $permissions['view field_user_data_url'] = array(
+    'name' => 'view field_user_data_url',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: view field_user_died.
+  $permissions['view field_user_died'] = array(
+    'name' => 'view field_user_died',
+    'roles' => array(
+      0 => 'anonymous user',
+      1 => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: view field_user_education.
   $permissions['view field_user_education'] = array(
     'name' => 'view field_user_education',
@@ -1532,6 +1631,13 @@ function pw_profiles_user_default_permissions() {
       6 => 'anonymous user',
       7 => 'authenticated user',
     ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: view field_user_mobile.
+  $permissions['view field_user_mobile'] = array(
+    'name' => 'view field_user_mobile',
+    'roles' => array(),
     'module' => 'field_permissions',
   );
 
@@ -1827,6 +1933,27 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: view own field_user_data_url.
+  $permissions['view own field_user_data_url'] = array(
+    'name' => 'view own field_user_data_url',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: view own field_user_died.
+  $permissions['view own field_user_died'] = array(
+    'name' => 'view own field_user_died',
+    'roles' => array(
+      0 => 'anonymous user',
+      1 => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: view own field_user_education.
   $permissions['view own field_user_education'] = array(
     'name' => 'view own field_user_education',
@@ -1996,6 +2123,13 @@ function pw_profiles_user_default_permissions() {
       3 => 'anonymous user',
       4 => 'authenticated user',
     ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: view own field_user_mobile.
+  $permissions['view own field_user_mobile'] = array(
+    'name' => 'view own field_user_mobile',
+    'roles' => array(),
     'module' => 'field_permissions',
   );
 
