@@ -88,7 +88,8 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
     $query->condition('ur.uid', $uid);
   }
   $query->condition('role.name', array('Deputy', 'Candidate'));
-  $query->groupBy('ur.uid, u_parl.field_user_parliament_tid, role_tid.field_user_roles_for_view_mode_s_tid, fraction_tid.field_user_fraction_tid');
+  $query->groupBy('ur.uid, u_parl.field_user_parliament_tid, role_tid.field_user_roles_for_view_mode_s_tid');
+  # GROUP BY: , fraction_tid.field_user_fraction_tid
 
   // fetch all relevant vids as flat array
   $vids = $query->execute()->fetchCol();
