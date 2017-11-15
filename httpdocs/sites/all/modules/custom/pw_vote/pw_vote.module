@@ -432,7 +432,7 @@ function pw_vote_poll_block() {
 
   $header = [
     ['data' => ''],
-    ['data' => t('Profile'), 'field' => 'name'],
+    ['data' => t('Name'), 'field' => 'name'],
     ['data' => t('Political faction'), 'field' => 'political_faction'],
     ['data' => t('Constituency'), 'field' => 'constituency'],
     ['data' => t('Voted'), 'field' => 'field_vote_tid'],
@@ -462,7 +462,6 @@ function pw_vote_poll_block() {
         case 19669:
           $voted = t('Abstained') . '<i class="icon icon-circle-o"></i>';
           break;
-        case 10670:
         case 19670:
           $voted = t('Did not vote') . '<i class="icon icon-minus"></i>';
           break;
@@ -480,7 +479,6 @@ function pw_vote_poll_block() {
           'data' => l(_pw_get_fullname($users[$vid]), entity_uri('user', $users[$vid])['path']),
         ],
         [
-          'data' => '<span class="party-indicator">' . $political_faction . '</span>',
           'data' => '<span class="party-indicator party-indicator--' . drupal_html_class(strip_tags($political_faction)) . '">' . $political_faction . '</span>',
         ],
         [
