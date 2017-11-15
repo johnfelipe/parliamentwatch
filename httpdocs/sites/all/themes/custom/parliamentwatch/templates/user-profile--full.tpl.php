@@ -82,6 +82,18 @@
             <?php print render($user_profile['field_user_question_form_closed']); ?>
           </div>
         <?php endif; ?>
+        <?php if ($user_profile['field_user_died']['#items'][0]['value'] == '1' && isset($user_profile['field_user_retired'])): ?>
+          <div class="deputy__intro__sidebar__hint">
+            <i class="icon icon-info"></i>
+            <?php print t('This person died'); ?>
+          </div>
+        <?php endif; ?>
+        <?php if (isset($user_profile['field_user_retired']) && $user_profile['field_user_died']['#items'][0]['value'] == '0'): ?>
+          <div class="deputy__intro__sidebar__hint">
+            <i class="icon icon-info"></i>
+            <?php print t('This person left this parliament'); ?>
+          </div>
+        <?php endif; ?>
       <?php endif; ?>
     </div>
     <div class="deputy__intro__content">
@@ -139,6 +151,10 @@
           <dt class="dl__dt"><?php print t('Year of birth') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_birthday'][0]['#markup']; ?></dd>
         <?php endif; ?>
+        <?php if ($user_profile['field_user_died']['#items'][0]['value'] == '1' && isset($user_profile['field_user_retired'])): ?>
+          <dt class="dl__dt"><?php print $user_profile['field_user_died']['#title']; ?></dt>
+          <dd class="dl__dd"><?php print $user_profile['field_user_retired'][0]['#markup']; ?></dd>
+        <?php endif; ?>
         <?php if (!empty($user_profile['field_user_address']['#items'][0]['locality'])): ?>
           <dt class="dl__dt"><?php print t('Wohnort') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_address']['#items'][0]['locality']; ?></dd>
@@ -159,11 +175,11 @@
             </p>
             <?php if (isset($field_user_election_result)): ?>
               <p><small>
-                  <?php print $user_profile['field_user_election_result']['#title']; ?>: <?php print $user_profile['field_user_election_result'][0]['#markup']; ?> %
-                  <?php if ($field_user_constituency_won[0]['value'] == 1): ?>
-                    (<?php print t('Via constituency'); ?>)
-                  <?php endif; ?>
-                </small></p>
+                <?php print $user_profile['field_user_election_result']['#title']; ?>: <?php print $user_profile['field_user_election_result'][0]['#markup']; ?> %
+                <?php if ($field_user_constituency_won[0]['value'] == 1): ?>
+                  (<?php print t('Via constituency'); ?>)
+                <?php endif; ?>
+              </small></p>
             <?php endif; ?>
             <?php if ($field_user_list_won[0]['value'] == 1): ?>
               <p><small>(<?php print t('Via list'); ?>)</small></p>
@@ -176,15 +192,16 @@
         <?php endif; ?>
         <?php if (isset($user_profile['field_user_parliament'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_parliament']['#title']; ?></dt>
-          <dd class="dl__dd"><?php print $user_profile['field_user_parliament'][0]['#markup']; ?></dd>
+          <dd class="dl__dd">
+            <?php print $user_profile['field_user_parliament'][0]['#markup']; ?>
+            <?php if (isset($user_profile['field_user_retired']) && $user_profile['field_user_died']['#items'][0]['value'] == '0'): ?>
+              <p><small><?php print t('Retired on %date', array('%date' => drupal_html_to_text($user_profile['field_user_retired'][0]['#markup']))); ?></small></p>
+            <?php endif; ?>
+          </dd>
         <?php endif; ?>
         <?php if (isset($user_profile['field_user_joined'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_joined']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_joined'][0]['#markup']; ?></dd>
-        <?php endif; ?>
-        <?php if (isset($user_profile['field_user_retired'])): ?>
-          <dt class="dl__dt"><?php print $user_profile['field_user_retired']['#title']; ?></dt>
-          <dd class="dl__dd"><?php print $user_profile['field_user_retired'][0]['#markup']; ?></dd>
         <?php endif; ?>
       </dl>
     </div>
