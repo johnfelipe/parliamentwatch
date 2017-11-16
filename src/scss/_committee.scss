@@ -1,0 +1,87 @@
+/**
+* Committee
+*/
+
+
+/* Committee-Listenansicht */
+
+.committee.tile {
+  @include grid-column(12);
+  margin-bottom: $space;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(6);
+    margin-bottom: $space-large;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(4);
+  }
+  @include breakpoint($breakpoint-l-min) {
+    @include grid-column(3);
+  }
+  .tile__title {
+    border: 0;
+    padding-bottom: $space;
+    position: relative;
+    h1 {
+      padding-top: $space;
+      padding-bottom: $space;
+      text-align: center;
+      @include h3();
+      margin-bottom: 0;
+    }
+    p {
+      font-size: .8em;
+      color: $darkGray;
+      text-align: center;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%,0);
+      width: 50%;
+      border-bottom: 1px solid $gray;
+    }
+  }
+
+  .commmittee_stats {
+    @include grid-container();
+    padding: $space 0 $space-small 0;
+    .commmittee_stats__item {
+      @include grid-column(6, $neat-grid-no-gutter);
+      @include grid-container();
+      text-align: center;
+    }
+    .commmittee_stats__item__value {
+      display: inline-block;
+      font-size: 1.4em;
+    }
+    .commmittee_stats__item__label {
+      padding-left: $space-xsmall-mobile;
+      font-size: .8em;
+      display: inline-block;
+      color: $gray;
+      position: relative;
+      top: -2px;
+    }
+  }
+}
+
+/* Group Badges */
+
+.tile-wrapper__badge--committee_chairman .tile:before {
+  content: 'Vorsitz';
+}
+.tile-wrapper__badge--committee_vice_chairman .tile:before {
+  content: 'Stellv. Vorsitz';
+}
+.tile-wrapper__badge--committee_spokesman .tile:before {
+  content: 'Sprecher';
+}
+.tile-wrapper__badge--committee_members .tile:before {
+  content: 'Mitglied';
+}
+.tile-wrapper__badge--committee_alt_members .tile:before {
+  content: 'Stellv. Mitglied';
+}

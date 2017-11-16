@@ -573,3 +573,24 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     }
   }
 }
+
+
+/* Tile Wrapper with css-badges */
+
+.tile-wrapper__badge {
+  .tile {
+    position: relative;
+    &:before {
+      content: '';
+      font-size: .8em;
+
+      position: absolute;
+      right: $space;
+      top: -3px;
+      padding: ($space-xsmall-mobile + 3) $space-xsmall $space-xsmall-mobile;
+
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.1);
+      background: $white;
+    }
+  }
+}

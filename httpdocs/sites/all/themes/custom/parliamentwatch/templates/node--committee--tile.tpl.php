@@ -80,40 +80,29 @@
  * @ingroup themeable
  */
 ?>
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> committee detail clearfix"<?php print $attributes; ?>>
+<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> committee tile clearfix"<?php print $attributes; ?>>
+  <div class="tile__image">
+    <?php print render($content['field_teaser_image']); ?>
+  </div>
+  <header class="tile__title mh-item">
+    <h1<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h1>
+    <?php print render($content['body']); ?>
+    <?php print render($title_suffix); ?>
+  </header>
 
-  <div class="intro intro--committee">
-    <h1><?php print render($title); ?></h1>
-    <div class="intro__left">
-      <?php print render($content['body']); ?>
+  <div class="commmittee_stats">
+    <div class="commmittee_stats__item">
+      <div class="commmittee_stats__item__value"><?php print count($content['field_committee_members']['#items']); ?></div>
+      <div class="commmittee_stats__item__label"><?php print t('Member') ?></div>
     </div>
-    <div class="intro__right">
-      <?php if (!empty($content['field_teaser_image'])): ?>
-        <figure>
-          <?php print render($content['field_teaser_image']); ?>
-          <?php if (!empty($content['field_teaser_image']['#items'][0]['field_image_copyright'][LANGUAGE_NONE][0]['value'])): ?>
-            <figcaption><?php print $content['field_teaser_image']['#items'][0]['field_image_copyright'][LANGUAGE_NONE][0]['value'] ?></figcaption>
-          <?php endif; ?>
-        </figure>
-      <?php endif; ?>
+    <div class="commmittee_stats__item">
+      <div class="commmittee_stats__item__value"><?php print count($content['field_committee_alt_members']['#items']); ?></div>
+      <div class="commmittee_stats__item__label"><?php print t('Substitute member') ?></div>
     </div>
   </div>
 
-  <div class="tile-wrapper">
-    <?php if (!empty($content['field_committee_chairman'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_chairman"><?php print render($content['field_committee_chairman']); ?></span>
-    <?php endif; ?>
-    <?php if (!empty($content['field_committee_vice_chairman'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_vice_chairman"><?php print render($content['field_committee_vice_chairman']); ?></span>
-    <?php endif; ?>
-    <?php if (!empty($content['field_committee_spokesman'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_spokesman"><?php print render($content['field_committee_spokesman']); ?></span>
-    <?php endif; ?>
-    <?php if (!empty($content['field_committee_members'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_members"><?php print render($content['field_committee_members']); ?></span>
-    <?php endif; ?>
-    <?php if (!empty($content['field_committee_alt_members'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_alt_members"><?php print render($content['field_committee_alt_members']); ?></span>
-    <?php endif; ?>
-  </div>
+
+  <ul class="tile__links tile__links--2">
+    <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url; ?>"><?php print t('read more'); ?></a></li>
+  </ul>
 </article>
