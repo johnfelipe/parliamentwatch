@@ -91,19 +91,21 @@
     </tbody>
   </table>
   <div id="body_style" style="padding:10px">
-    <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth">
-      <?php if ($content['body']): ?>
-      <tr>
-        <td width="600">
-          <?php print render($content['body']); ?>
-        </td>
-      </tr>
-      <?php endif; ?>
-      <tr>
-        <td width="600">
-          <?php print render($content['field_newsletter_paragraph']); ?>
-        </td>
-      </tr>
-    </table>
+    <div id="piwik-campaign" data-value="<?php print trim(render($content['field_piwik_campaign'])); ?>">
+      <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" width="600" align="center" class="deviceWidth">
+        <?php if ($content['body']): ?>
+        <tr>
+          <td width="600">
+            <?php print render($content['body']); ?>
+          </td>
+        </tr>
+        <?php endif; ?>
+        <tr>
+          <td width="600">
+            <?php print render($content['field_newsletter_paragraph']); ?>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
