@@ -93,7 +93,7 @@ function pw_committees_field_default_fields() {
         ),
         'tile' => array(
           'label' => 'hidden',
-          'module' => 'text',
+          'module' => 'smart_trim',
           'settings' => array(
             'field_delimiter' => '',
             'linked_field' => array(
@@ -107,8 +107,19 @@ function pw_committees_field_default_fields() {
               'destination' => '',
               'linked' => 0,
             ),
+            'more_link' => '0',
+            'more_text' => 'Read more',
+            'summary_handler' => 'full',
+            'trim_length' => '150',
+            'trim_link' => '0',
+            'trim_options' => array(
+              'text' => 0,
+            ),
+            'trim_preserve_tags' => '',
+            'trim_suffix' => '...',
+            'trim_type' => 'chars',
           ),
-          'type' => 'text_default',
+          'type' => 'smart_trim_format',
           'weight' => '0',
         ),
       ),
@@ -675,7 +686,7 @@ function pw_committees_field_default_fields() {
       'description' => 'URL to the external source, e.g. the parliaments committe page.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'link',
           'settings' => array(
             'field_delimiter' => '',
@@ -733,24 +744,23 @@ function pw_committees_field_default_fields() {
           'configurable_class' => 0,
           'configurable_title' => 0,
           'rel' => '',
-          'target' => 'default',
+          'target' => '_blank',
           'title' => '',
         ),
         'display' => array(
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suchen',
           'enable' => 0,
           'profile' => '',
         ),
         'rel_remove' => 'default',
-        'title' => 'optional',
+        'title' => 'value',
         'title_label_use_field_label' => 0,
         'title_maxlength' => '128',
-        'title_value' => '',
+        'title_value' => 'Weitere Informationen zum Ausschuss "[current-page:title]" auf bundestag.de',
         'url' => 0,
         'user_register_form' => FALSE,
         'validate_url' => 1,
@@ -1069,12 +1079,12 @@ function pw_committees_field_default_fields() {
           'weight' => 0,
         ),
         'tile' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'field_delimiter' => '',
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'width_medium',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
