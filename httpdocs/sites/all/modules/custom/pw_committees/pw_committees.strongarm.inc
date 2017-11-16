@@ -152,59 +152,6 @@ function pw_committees_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_taxonomy_term__committee';
-  $strongarm->value = array(
-    'view_modes' => array(
-      'full' => array(
-        'custom_settings' => TRUE,
-      ),
-      'token' => array(
-        'custom_settings' => FALSE,
-      ),
-    ),
-    'extra_fields' => array(
-      'form' => array(
-        'path' => array(
-          'weight' => '3',
-        ),
-        'name' => array(
-          'weight' => '0',
-        ),
-        'description' => array(
-          'weight' => '2',
-        ),
-        'metatags' => array(
-          'weight' => '12',
-        ),
-        'rabbit_hole' => array(
-          'weight' => '1',
-        ),
-        'redirect' => array(
-          'weight' => '11',
-        ),
-        'xmlsitemap' => array(
-          'weight' => '10',
-        ),
-      ),
-      'display' => array(
-        'description' => array(
-          'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
-          ),
-          'full' => array(
-            'weight' => '1',
-            'visible' => TRUE,
-          ),
-        ),
-      ),
-    ),
-  );
-  $export['field_bundle_settings_taxonomy_term__committee'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_committee';
   $strongarm->value = '0';
   $export['language_content_type_committee'] = $strongarm;
@@ -256,46 +203,12 @@ function pw_committees_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_committee_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_committee_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_committee_types_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_committee_types_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_committee';
   $strongarm->value = array(
     'status' => '0',
     'priority' => '0.5',
   );
   $export['xmlsitemap_settings_node_committee'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'xmlsitemap_settings_taxonomy_term_committee';
-  $strongarm->value = array(
-    'status' => '0',
-    'priority' => '0.5',
-  );
-  $export['xmlsitemap_settings_taxonomy_term_committee'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'xmlsitemap_settings_taxonomy_term_committee_types';
-  $strongarm->value = array(
-    'status' => '0',
-    'priority' => '0.5',
-  );
-  $export['xmlsitemap_settings_taxonomy_term_committee_types'] = $strongarm;
 
   return $export;
 }

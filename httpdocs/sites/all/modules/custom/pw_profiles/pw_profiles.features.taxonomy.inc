@@ -9,22 +9,6 @@
  */
 function pw_profiles_taxonomy_default_vocabularies() {
   return array(
-    'committee' => array(
-      'name' => 'Committee',
-      'machine_name' => 'committee',
-      'description' => '',
-      'hierarchy' => '0',
-      'module' => 'taxonomy',
-      'weight' => '0',
-    ),
-    'committee_types' => array(
-      'name' => 'Committee Types',
-      'machine_name' => 'committee_types',
-      'description' => 'types of committees for tagging committees',
-      'hierarchy' => '0',
-      'module' => 'taxonomy',
-      'weight' => '0',
-    ),
     'list_position' => array(
       'name' => 'List Position',
       'machine_name' => 'list_position',

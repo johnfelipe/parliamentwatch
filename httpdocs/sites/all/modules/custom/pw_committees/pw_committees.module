@@ -10,12 +10,6 @@ include_once 'pw_committees.features.inc';
  * Implements hook_menu().
  */
 function pw_committees_menu() {
-  $items['committees'] = [
-    'title' => 'Committees',
-    'page callback' => 'pw_committees_page',
-    'access arguments' => ['access content'],
-    'type' => MENU_CALLBACK,
-  ];
   $items['committees/%taxonomy_term'] = [
     'title' => 'Committees',
     'page arguments' => [1],

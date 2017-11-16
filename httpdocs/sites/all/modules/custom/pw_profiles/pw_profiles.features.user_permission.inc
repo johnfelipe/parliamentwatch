@@ -71,16 +71,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: create field_user_commitee.
-  $permissions['create field_user_commitee'] = array(
-    'name' => 'create field_user_commitee',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'anonymous user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: create field_user_constituency.
   $permissions['create field_user_constituency'] = array(
     'name' => 'create field_user_constituency',
@@ -466,16 +456,6 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: edit field_user_childs.
   $permissions['edit field_user_childs'] = array(
     'name' => 'edit field_user_childs',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit field_user_commitee.
-  $permissions['edit field_user_commitee'] = array(
-    'name' => 'edit field_user_commitee',
     'roles' => array(
       0 => 'Content Manager',
       1 => 'administrator',
@@ -880,16 +860,6 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: edit own field_user_childs.
   $permissions['edit own field_user_childs'] = array(
     'name' => 'edit own field_user_childs',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_user_commitee.
-  $permissions['edit own field_user_commitee'] = array(
-    'name' => 'edit own field_user_commitee',
     'roles' => array(
       0 => 'Content Manager',
       1 => 'administrator',
@@ -1369,22 +1339,6 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: view field_user_childs.
   $permissions['view field_user_childs'] = array(
     'name' => 'view field_user_childs',
-    'roles' => array(
-      0 => 'Candidate',
-      1 => 'Content Manager',
-      2 => 'Deputy',
-      3 => 'Politician',
-      4 => 'Premium User',
-      5 => 'administrator',
-      6 => 'anonymous user',
-      7 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view field_user_commitee.
-  $permissions['view field_user_commitee'] = array(
-    'name' => 'view field_user_commitee',
     'roles' => array(
       0 => 'Candidate',
       1 => 'Content Manager',
@@ -1887,19 +1841,6 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: view own field_user_childs.
   $permissions['view own field_user_childs'] = array(
     'name' => 'view own field_user_childs',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'Premium User',
-      2 => 'administrator',
-      3 => 'anonymous user',
-      4 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_user_commitee.
-  $permissions['view own field_user_commitee'] = array(
-    'name' => 'view own field_user_commitee',
     'roles' => array(
       0 => 'Content Manager',
       1 => 'Premium User',
