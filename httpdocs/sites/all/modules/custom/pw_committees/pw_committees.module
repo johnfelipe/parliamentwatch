@@ -34,11 +34,12 @@ function pw_committees_node_view($node, $view_mode, $langcode) {
 /**
  * Page callback: Displays a listing of committees.
  */
-function pw_committees_page($parliament_term = NULL) {
+function pw_committees_page($parliament_term) {
   $build = [];
 
   $result = pw_committees_base_query()
     ->propertyOrderBy('created', 'DESC')
+    ->fieldCondition('field_parliament', 'tid', $parliament_term->tid)
     ->pager(12)
     ->execute();
 
