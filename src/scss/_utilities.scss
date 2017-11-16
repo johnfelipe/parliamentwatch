@@ -299,7 +299,9 @@ textarea {
     }
   }
   h1 + .intro__left,
-  h1 + .intro__left + .intro__right {
+  h1 + .intro__left + .intro__right,
+  h1 + .intro__right,
+  h1 + .intro__right + .intro__left {
     padding-top: $space;
   }
   .intro__full {
@@ -334,7 +336,6 @@ textarea {
     @include breakpoint($breakpoint-s-min) {
       @include grid-column(5, $neat-grid-rtl);
       margin-bottom: 0;
-
     }
     @include breakpoint($breakpoint-m-min) {
       @include grid-column(4, $neat-grid-rtl);

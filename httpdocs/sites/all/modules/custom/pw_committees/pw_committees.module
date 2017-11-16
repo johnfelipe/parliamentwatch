@@ -5,3 +5,73 @@
  */
 
 include_once 'pw_committees.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function pw_committees_menu() {
+  $items['committees'] = [
+    'title' => 'Committees',
+    'page callback' => 'pw_committees_page',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  $items['committees/%taxonomy_term'] = [
+    'title' => 'Committees',
+    'page arguments' => [1],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  return $items;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function pw_committees_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'committee' && node_is_page($node)) {
+    $parliament_tid = $node->field_parliament[LANGUAGE_NONE][0]['tid'];
+    menu_tree_set_path('main-menu', "committees/$parliament_tid");
+  }
+}
+
+
+/**
+ * Page callback: Displays a listing of committees.
+ */
+function pw_committees_page($parliament_term = NULL) {
+  $build = [];
+
+  $result = pw_committees_base_query()
+    ->propertyOrderBy('created', 'DESC')
+    ->pager(12)
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+
+    $build = node_view_multiple($nodes, 'tile');
+    $build['#theme_wrappers'] = ['container__tiles'];
+    $build['pager'] = [
+      '#theme' => 'pager',
+      '#weight' => 5,
+    ];
+  }
+
+  return $build;
+}
+
+/**
+ * Returns a query for fetching published nodes of type poll.
+ *
+ * @return EntityFieldQuery
+ *   The query object.
+ */
+function pw_committees_base_query() {
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'committee');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+
+  return $q;
+}

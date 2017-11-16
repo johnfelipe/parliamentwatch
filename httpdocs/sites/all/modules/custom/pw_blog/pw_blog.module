@@ -88,7 +88,7 @@ function pw_blog_page() {
 }
 
 /**
- * Displays related bog posts.
+ * Displays related blog posts.
  *
  * @return array
  *   The block render array.
@@ -125,7 +125,7 @@ function pw_blog_related_blogposts_block() {
 }
 
 /**
- * Displays related bog posts.
+ * Displays recent blog posts.
  *
  * @return array
  *   The block render array.
