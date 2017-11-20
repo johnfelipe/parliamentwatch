@@ -143,8 +143,8 @@ function pw_committees_profile_block() {
   $block['content'] = array();
   foreach($memberships as $role => $membership) {
     $content = node_view_multiple($membership, 'embedded');
-    $content['#prefix'] = '<ul class="tile committee-list mh-item"><h4>'.t($role).'</h4>';
-    $content['#suffix'] = '</ul>';
+    $content['#prefix'] = '<div class="tile committee-list mh-item"><h4>'.t($role).'</h4><ul>';
+    $content['#suffix'] = '</ul></div>';
     $block['content'][] = $content;
   }
 
