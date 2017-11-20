@@ -310,8 +310,8 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   if (isset($variables['field_user_party']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
     $text = $variables['field_user_party'][0]['taxonomy_term']->name;
     $options = ['query' => ['party[]' => $variables['field_user_party'][0]['tid']]];
-    $variables['user_profile']['field_user_party'][0]['#markup'] = l($text, $path, $options);
 
+    $variables['user_profile']['field_user_party'][0]['#markup'] = l($text, $path, $options);
   }
 
   if (isset($variables['field_user_constituency']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
@@ -327,7 +327,7 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
 
   if (isset($variables['field_user_list']) && $variables['elements']['#view_mode'] == 'full' && isset($path)) {
     $text = $variables['user_profile']['field_user_list'][0]['#markup'];
-    $options = ['query' => ['list' => $variables['field_user_list'][0]['tid']]];
+    $options = array('query' => array('list' => $variables['field_user_list'][0]['tid'], 'party['. $variables['field_user_party'][0]['tid'] .']' => $variables['field_user_party'][0]['tid']));
 
     $variables['user_profile']['field_user_list'][0]['#markup'] = l($text, $path, $options);
   }
@@ -335,6 +335,7 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
   if (isset($variables['field_user_birthday'])) {
     $timezone = new DateTimeZone($variables['field_user_birthday'][0]['timezone']);
     $date = new DateTime($variables['field_user_birthday'][0]['value'], $timezone);
+
     $variables['field_user_birthday'][0]['iso_8601'] = $date->format(DateTime::ISO8601);
   }
 
