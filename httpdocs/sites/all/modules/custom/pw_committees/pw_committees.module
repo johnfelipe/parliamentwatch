@@ -37,14 +37,13 @@ function pw_committees_node_view($node, $view_mode, $langcode) {
 function pw_committees_page($parliament_term) {
   $build = [];
 
-  $result = pw_committees_base_query()
-    ->propertyOrderBy('title')
-    ->fieldCondition('field_parliament', 'tid', $parliament_term->tid)
-    ->pager(12)
-    ->execute();
+  $q = pw_committees_base_query();
+  $q->condition('f_parl.field_parliament_tid', $parliament_term->tid);
+  $q->orderBy('n.title');
+  $nids = $q->execute()->fetchCol();
 
-  if (!empty($result['node'])) {
-    $nodes = node_load_multiple(array_keys($result['node']));
+  if (!empty($nids)) {
+    $nodes = node_load_multiple($nids);
 
     $build = node_view_multiple($nodes, 'tile');
     $build['#theme_wrappers'] = ['container__tiles'];
@@ -107,18 +106,24 @@ function pw_committees_profile_block() {
     return $block;
   }
 
-  $field_parliament = field_get_items('user', $account, 'field_user_parliament');
+  $field_user_parliament = field_get_items('user', $account, 'field_user_parliament');
 
-  $nids = pw_committees_base_query()
-    ->fieldCondition('field_parliament', 'tid', $field_parliament[0]['tid'])
-    ->propertyOrderBy('title')
-    ->execute();
+  $q = pw_committees_base_query();
+  $q->condition('f_parl.field_parliament_tid', $field_user_parliament[0]['tid']);
+  $or = db_or();
+  $or->condition('f_chair.field_committee_chairman_target_id', $account->uid);
+  $or->condition('f_vice.field_committee_vice_chairman_target_id', $account->uid);
+  $or->condition('f_members.field_committee_members_target_id', $account->uid);
+  $or->condition('f_alt_members.field_committee_alt_members_target_id', $account->uid);
+  $q->condition($or);
+  $q->orderBy('n.title');
+  $nids = $q->execute()->fetchCol();
 
-  if(empty($nids['node'])) {
+  if(empty($nids)) {
     return $block;
   }
 
-  $nodes = node_load_multiple(array_keys($nids['node']));
+  $nodes = node_load_multiple($nids);
 
   $membership_fields = array('Chairman' =>'field_committee_chairman', 'Vice-Chairman' => 'field_committee_vice_chairman', 'Member' => 'field_committee_members', 'Alternate member' => 'field_committee_alt_members');
   $memberships = array();
@@ -134,6 +139,7 @@ function pw_committees_profile_block() {
           else {
             $memberships[$role_name][$nid] = $node;
           }
+          break 2;
         }
       }
     }
@@ -155,14 +161,18 @@ function pw_committees_profile_block() {
 /**
  * Returns a query for fetching published nodes of type poll.
  *
- * @return EntityFieldQuery
+ * @return SelectQuery
  *   The query object.
  */
 function pw_committees_base_query() {
-  $q = new EntityFieldQuery();
-  $q->entityCondition('entity_type', 'node');
-  $q->entityCondition('bundle', 'committee');
-  $q->propertyCondition('status', NODE_PUBLISHED);
-
+  $q = db_select('node', 'n');
+  $q->fields('n');
+  $q->join('field_data_field_parliament', 'f_parl', "f_parl.entity_type = 'node' AND f_parl.entity_id = n.nid");
+  $q->leftJoin('field_data_field_committee_chairman', 'f_chair', "f_chair.entity_type = 'node' AND f_chair.entity_id = n.nid");
+  $q->leftJoin('field_data_field_committee_vice_chairman', 'f_vice', "f_vice.entity_type = 'node' AND f_vice.entity_id = n.nid");
+  $q->leftJoin('field_data_field_committee_members', 'f_members', "f_members.entity_type = 'node' AND f_members.entity_id = n.nid");
+  $q->leftJoin('field_data_field_committee_alt_members', 'f_alt_members', "f_alt_members.entity_type = 'node' AND f_alt_members.entity_id = n.nid");
+  $q->condition('n.type', 'committee');
+  $q->condition('n.status', NODE_PUBLISHED);
   return $q;
 }
