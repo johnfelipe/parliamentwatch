@@ -76,24 +76,24 @@
         <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
       <?php else: ?>
         <a href="#question-form" class="btn btn--block btn--disabled" data-localScroll>Frage stellen</a>
-        <?php if (isset($user_profile['field_user_question_form_closed'])): ?>
+
+        <?php if (isset($user_profile['field_user_question_form_closed']) || isset($user_profile['field_user_retired'])): ?>
           <div class="deputy__intro__sidebar__hint">
             <i class="icon icon-info"></i>
-            <?php print render($user_profile['field_user_question_form_closed']); ?>
+            <?php if ($user_profile['field_user_died']['#items'][0]['value'] == '1' && isset($user_profile['field_user_retired'])): ?>
+              <?php print t('This person died'); ?>
+            <?php endif; ?>
+
+            <?php if (isset($user_profile['field_user_retired']) && $user_profile['field_user_died']['#items'][0]['value'] == '0'): ?>
+              <?php print t('This person left this parliament'); ?>
+            <?php endif; ?>
+
+            <?php if (isset($user_profile['field_user_question_form_closed'])): ?>
+              <?php print render($user_profile['field_user_question_form_closed']); ?>
+            <?php endif; ?>
           </div>
         <?php endif; ?>
-        <?php if ($user_profile['field_user_died']['#items'][0]['value'] == '1' && isset($user_profile['field_user_retired'])): ?>
-          <div class="deputy__intro__sidebar__hint">
-            <i class="icon icon-info"></i>
-            <?php print t('This person died'); ?>
-          </div>
-        <?php endif; ?>
-        <?php if (isset($user_profile['field_user_retired']) && $user_profile['field_user_died']['#items'][0]['value'] == '0'): ?>
-          <div class="deputy__intro__sidebar__hint">
-            <i class="icon icon-info"></i>
-            <?php print t('This person left this parliament'); ?>
-          </div>
-        <?php endif; ?>
+
       <?php endif; ?>
     </div>
     <div class="deputy__intro__content">
@@ -179,10 +179,10 @@
                 <?php if ($field_user_constituency_won[0]['value'] == 1): ?>
                   (<?php print t('Via constituency'); ?>)
                 <?php endif; ?>
+                <?php if ($field_user_list_won[0]['value'] == 1): ?>
+                  (<?php print t('Via list'); ?>)
+                <?php endif; ?>
               </small></p>
-            <?php endif; ?>
-            <?php if ($field_user_list_won[0]['value'] == 1): ?>
-              <p><small>(<?php print t('Via list'); ?>)</small></p>
             <?php endif; ?>
           </dd>
         <?php endif; ?>

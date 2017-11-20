@@ -188,6 +188,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
 .tile__links__item {
   margin: 0;
   border-right: 1px solid $gray;
+  white-space: nowrap;
   &:last-child {
     border-right: 0;
     .tile__links__item__link {
