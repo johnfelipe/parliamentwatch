@@ -50,9 +50,7 @@
     <?php print render($title_suffix) ?>
   </div>
   <div class="tabs__content__content">
-    <ul class="tile committee-list">
-      <?php print $content; ?>
-    </ul>
+    <?php print $content; ?>
   </div>
 </section>
 

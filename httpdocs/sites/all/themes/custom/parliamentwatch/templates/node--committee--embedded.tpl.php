@@ -82,6 +82,5 @@
 ?>
 <li class="<?php print $classes; ?> committee-list__item clearfix"<?php print $attributes; ?>>
   <a href="<?php print render($node_url); ?>"><?php print render($title); ?></a>
-  <small>Lorem ipsum dolor</small>
   <?php print render($title_suffix); ?>
 </li>

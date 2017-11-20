@@ -90,11 +90,12 @@
   @include icon-list-underlined();
   @include grid-column(12);
   padding: $space;
+  margin-bottom: $space;
   &:last-child {
     padding: $space;
+    margin-bottom: 0;
   }
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(6);
   }
-  li small { display: block; }
 }
