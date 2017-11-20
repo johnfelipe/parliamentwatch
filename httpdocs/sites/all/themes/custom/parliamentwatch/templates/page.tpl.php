@@ -127,7 +127,7 @@
           <li class="footer__maincol__col__nav__item"><?php print l(t('Candidates'), 'profiles/26909/candidates', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Election manifestos'), 'election-manifestos/26909', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Electoral law'), 'node/7752', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-        </ul><br />
+        </ul>
         <strong><i class="icon icon-bundestag"></i> Bundestag 2013-2017</strong>
         <ul class="footer__maincol__col__nav">
           <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profiles/16283/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>

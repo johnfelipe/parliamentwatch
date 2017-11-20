@@ -63,6 +63,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  & + strong {
+    margin-top: $space-large;
+  }
 }
 .footer__maincol__col__nav__item {
   padding-left: $space;
