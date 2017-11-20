@@ -142,7 +142,9 @@ function pw_committees_profile_block() {
   $block['subject'] = t('Committees');
   $block['content'] = array();
   foreach($memberships as $role => $membership) {
-    $block['content'][] = node_view_multiple($membership, 'embedded');
+    $content = node_view_multiple($membership, 'embedded');
+    $content['#prefix'] = '<div>'.t($role).'</div>';
+    $block['content'][] = $content;
   }
 
   return $block;
