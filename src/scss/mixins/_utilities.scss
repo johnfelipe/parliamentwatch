@@ -135,6 +135,30 @@
   }
 }
 
+/* Icon-List underlined */
+@mixin icon-list-underlined() {
+  @include icon-list();
+  li {
+    border-bottom: 1px solid $beige;
+    margin: 0;
+    padding-top: $space-xsmall;
+    padding-bottom: $space-xsmall;
+    &:first-child {
+      padding-top: 0;
+      &:before {
+        top: 0;
+      }
+    }
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    &:before {
+      top: $space-xsmall;
+    }
+  }
+}
+
 /* Icon-List */
 @mixin inline-list() {
   list-style: none;

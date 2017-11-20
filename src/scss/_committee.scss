@@ -69,7 +69,6 @@
 }
 
 /* Group Badges */
-
 .tile-wrapper__badge--committee_chairman .tile:before {
   content: 'Vorsitz';
 }
@@ -84,4 +83,18 @@
 }
 .tile-wrapper__badge--committee_alt_members .tile:before {
   content: 'Stellv. Mitglied';
+}
+
+/* Embedded committees on profile-page */
+.committee-list.tile {
+  @include icon-list-underlined();
+  @include grid-column(12);
+  padding: $space;
+  &:last-child {
+    padding: $space;
+  }
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(6);
+  }
+  li small { display: block; }
 }
