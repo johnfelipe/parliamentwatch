@@ -24,7 +24,7 @@ function pw_committees_menu() {
  * Implements hook_preprocess_page().
  */
 function pw_committees_preprocess_node(&$variables) {
-  if (isset($variables['node']) && $variables['node']->type == 'committee') {
+  if (isset($variables['node']) && $variables['node']->type == 'committee' && $variables['view_mode'] == 'full') {
     $variables['politicians'] = pw_committee_members_block();
   }
 }
