@@ -197,6 +197,9 @@
         <strong>&nbsp;</strong>
         <ul class="footer__maincol__col__nav">
           <li class="footer__maincol__col__nav__item">
+            <?php print l(t('Newsletter'), 'node/10380', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
+          </li>
+          <li class="footer__maincol__col__nav__item">
             <?php print l(t('Support the project'), 'node/10508', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
           </li>
           <li class="footer__maincol__col__nav__item">
