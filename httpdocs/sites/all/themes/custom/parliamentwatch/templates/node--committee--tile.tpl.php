@@ -92,11 +92,11 @@
   <div class="commmittee_stats">
     <div class="commmittee_stats__item">
       <div class="commmittee_stats__item__value"><?php print count($content['field_committee_members']['#items']); ?></div>
-      <div class="commmittee_stats__item__label"><?php print t('Member') ?></div>
+      <div class="commmittee_stats__item__label"><?php print t('members') ?></div>
     </div>
     <div class="commmittee_stats__item">
       <div class="commmittee_stats__item__value"><?php print count($content['field_committee_alt_members']['#items']); ?></div>
-      <div class="commmittee_stats__item__label"><?php print t('Substitute member') ?></div>
+      <div class="commmittee_stats__item__label"><?php print t('alternate members') ?></div>
     </div>
   </div>
   <ul class="tile__links tile__links--2">
