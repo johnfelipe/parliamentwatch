@@ -105,20 +105,20 @@
   </div>
 
   <div class="tile-wrapper">
-    <?php if (!empty($content['field_committee_chairman'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_chairman"><?php print render($content['field_committee_chairman']); ?></span>
+    <?php if (!empty($politicians['field_committee_chairman'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_chairman"><?php print render($politicians['field_committee_chairman']); ?></span>
     <?php endif; ?>
-    <?php if (!empty($content['field_committee_vice_chairman'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_vice_chairman"><?php print render($content['field_committee_vice_chairman']); ?></span>
+    <?php if (!empty($politicians['field_committee_vice_chairman'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_vice_chairman"><?php print render($politicians['field_committee_vice_chairman']); ?></span>
     <?php endif; ?>
-    <?php if (!empty($content['field_committee_spokesman'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_spokesman"><?php print render($content['field_committee_spokesman']); ?></span>
+    <?php if (!empty($politicians['field_committee_spokesman'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_spokesman"><?php print render($politicians['field_committee_spokesman']); ?></span>
     <?php endif; ?>
-    <?php if (!empty($content['field_committee_members'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_members"><?php print render($content['field_committee_members']); ?></span>
+    <?php if (!empty($politicians['field_committee_members'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_members"><?php print render($politicians['field_committee_members']); ?></span>
     <?php endif; ?>
-    <?php if (!empty($content['field_committee_alt_members'])): ?>
-      <span class="tile-wrapper__badge tile-wrapper__badge--committee_alt_members"><?php print render($content['field_committee_alt_members']); ?></span>
+    <?php if (!empty($politicians['field_committee_alt_members'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_alt_members"><?php print render($politicians['field_committee_alt_members']); ?></span>
     <?php endif; ?>
   </div>
 </article>

@@ -21,6 +21,15 @@ function pw_committees_menu() {
 }
 
 /**
+ * Implements hook_preprocess_page().
+ */
+function pw_committees_preprocess_node(&$variables) {
+  if (isset($variables['node']) && $variables['node']->type == 'committee') {
+    $variables['politicians'] = pw_committee_members_block();
+  }
+}
+
+/**
  * Implements hook_node_view().
  */
 function pw_committees_node_view($node, $view_mode, $langcode) {
@@ -173,39 +182,40 @@ function pw_committees_profile_block() {
  */
 function pw_committee_members_block() {
 
-  $block = [];
-
-  if(menu_get_object()->type != 'committee') {
-    return $block;
-  }
+  $build = [];
 
   $field_parliament = field_get_items('node', menu_get_object(), 'field_parliament');
 
-  foreach(pw_committees_get_membership_config() as $role_name => $field_name) {
-    $memberships = field_get_items('node', menu_get_object(), $field_name);
-    if(!empty($memberships)) {
-      $uids = array_map(function($item) { return $item['target_id']; }, $memberships);
+  if (menu_get_object()->type != 'committee' || empty($field_parliament)) {
+    return $build;
+  }
+
+  $parliament = taxonomy_term_load($field_parliament[0]['tid']);
+
+  foreach (pw_committees_get_membership_config() as $role_name => $field_name) {
+    $user_references = field_get_items('node', menu_get_object(), $field_name);
+    if (!empty($user_references)) {
+      $uids = array_map(function($item) { return $item['target_id']; }, $user_references);
       $query = db_select('user_archive_cache', 'uac');
       $query->fields('uac', array('vid'));
       _pw_uac_add_conditions($query, array(
-          'parliament' => taxonomy_term_load($field_parliament[0]['tid'])->name,
+          'parliament' => $parliament->name,
           'uid' => $uids,
           )
       );
+      $query->orderBy('number_of_answers', 'DESC');
+      $query->orderBy('number_of_questions', 'DESC');
       $vids = $query->execute()->fetchCol();
       $politicians = pw_userarchives_politician_load_multiple($vids);
       $weight = 0;
       foreach ($politicians as $vid => $politician) {
-        $block['content'][$field_name][$vid] = user_view($politician, 'tile');
-        $block['content'][$field_name][$vid]['#weight'] = ++$weight;
+        $build[$field_name][$vid] = user_view($politician, 'tile');
+        $build[$field_name][$vid]['#weight'] = ++$weight;
       }
     }
   }
 
-  $block['content']['#theme_wrappers'] = ['container__tiles'];
-  $block['#theme_wrappers'] = ['container'];
-
-  return $block;
+  return $build;
 }
 
 
