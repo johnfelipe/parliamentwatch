@@ -144,8 +144,8 @@ function pw_committees_profile_block() {
   $membership_fields = pw_committees_get_membership_config();
   $memberships = [];
 
-  foreach($nodes as $nid => $node) {
-    foreach($membership_fields as $role_name => $field_name) {
+  foreach($membership_fields as $role_name => $field_name) {
+    foreach($nodes as $nid => $node) {
       $field_values = field_get_items('node', $node, $field_name);
       foreach($field_values as $field_value) {
         if($field_value['target_id'] == $account->uid) {
