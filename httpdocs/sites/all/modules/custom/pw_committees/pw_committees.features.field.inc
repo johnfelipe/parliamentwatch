@@ -197,25 +197,8 @@ function pw_committees_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'entityreference',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-            'links' => 1,
-            'use_content_language' => 1,
-            'view_mode' => 'tile',
-          ),
-          'type' => 'entityreference_entity_view',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '7',
         ),
         'teaser' => array(
@@ -323,25 +306,8 @@ function pw_committees_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'entityreference',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-            'links' => 1,
-            'use_content_language' => 1,
-            'view_mode' => 'tile',
-          ),
-          'type' => 'entityreference_entity_view',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '2',
         ),
         'teaser' => array(
@@ -448,25 +414,8 @@ function pw_committees_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'entityreference',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-            'links' => 1,
-            'use_content_language' => 1,
-            'view_mode' => 'tile',
-          ),
-          'type' => 'entityreference_entity_view',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '6',
         ),
         'teaser' => array(
@@ -573,25 +522,8 @@ function pw_committees_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'entityreference',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-            'links' => 1,
-            'use_content_language' => 1,
-            'view_mode' => 'tile',
-          ),
-          'type' => 'entityreference_entity_view',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '4',
         ),
         'teaser' => array(
@@ -751,6 +683,7 @@ function pw_committees_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suchen',
           'enable' => 0,
@@ -828,25 +761,8 @@ function pw_committees_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'entityreference',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-            'links' => 1,
-            'use_content_language' => 1,
-            'view_mode' => 'tile',
-          ),
-          'type' => 'entityreference_entity_view',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '3',
         ),
         'teaser' => array(
