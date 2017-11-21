@@ -65,6 +65,10 @@ function pw_committees_block_info() {
     'info' => t('Profile Commmittees'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['committee_members'] = [
+    'info' => t('Committee members'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -76,6 +80,9 @@ function pw_committees_block_view($delta, $arguments = array()) {
   switch ($delta) {
     case 'profile_committees':
       $block = pw_committees_profile_block();
+      break;
+    case 'committee_members':
+      $block = pw_committee_members_block();
       break;
     default:
       return [];
@@ -125,8 +132,8 @@ function pw_committees_profile_block() {
 
   $nodes = node_load_multiple($nids);
 
-  $membership_fields = array('Chairman' =>'field_committee_chairman', 'Vice-Chairman' => 'field_committee_vice_chairman', 'Member' => 'field_committee_members', 'Alternate member' => 'field_committee_alt_members');
-  $memberships = array();
+  $membership_fields = pw_committees_get_membership_config();
+  $memberships = [];
 
   foreach($nodes as $nid => $node) {
     foreach($membership_fields as $role_name => $field_name) {
@@ -134,7 +141,7 @@ function pw_committees_profile_block() {
       foreach($field_values as $field_value) {
         if($field_value['target_id'] == $account->uid) {
           if(!array_key_exists($role_name, $memberships)) {
-            $memberships[$role_name] = array($nid => $node);
+            $memberships[$role_name] = [$nid => $node];
           }
           else {
             $memberships[$role_name][$nid] = $node;
@@ -146,7 +153,7 @@ function pw_committees_profile_block() {
   }
 
   $block['subject'] = t('Committees');
-  $block['content'] = array();
+  $block['content'] = [];
   foreach($memberships as $role => $membership) {
     $content = node_view_multiple($membership, 'embedded');
     $content['#prefix'] = '<div class="tile committee-list mh-item"><h4>'.t($role).'</h4><ul>';
@@ -159,7 +166,62 @@ function pw_committees_profile_block() {
 
 
 /**
- * Returns a query for fetching published nodes of type poll.
+ * Displays members section on committee page.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_committee_members_block() {
+
+  $block = [];
+
+  if(menu_get_object()->type != 'committee') {
+    return $block;
+  }
+
+  $field_parliament = field_get_items('node', menu_get_object(), 'field_parliament');
+
+  foreach(pw_committees_get_membership_config() as $role_name => $field_name) {
+    $memberships = field_get_items('node', menu_get_object(), $field_name);
+    if(!empty($memberships)) {
+      $uids = array_map(function($item) { return $item['target_id']; }, $memberships);
+      $query = db_select('user_archive_cache', 'uac');
+      $query->fields('uac', array('vid'));
+      _pw_uac_add_conditions($query, array(
+          'parliament' => taxonomy_term_load($field_parliament[0]['tid'])->name,
+          'uid' => $uids,
+          )
+      );
+      $vids = $query->execute()->fetchCol();
+      $politicians = pw_userarchives_politician_load_multiple($vids);
+      $weight = 0;
+      foreach ($politicians as $vid => $politician) {
+        $block['content'][$field_name][$vid] = user_view($politician, 'tile');
+        $block['content'][$field_name][$vid]['#weight'] = ++$weight;
+      }
+    }
+  }
+
+  $block['content']['#theme_wrappers'] = ['container__tiles'];
+  $block['#theme_wrappers'] = ['container'];
+
+  return $block;
+}
+
+
+/**
+ * Returns an array of fields with roles as keys.
+ *
+ * @return array
+ *   The membership array.
+ */
+function pw_committees_get_membership_config() {
+  return ['Chairman' =>'field_committee_chairman', 'Vice-Chairman' => 'field_committee_vice_chairman', 'Member' => 'field_committee_members', 'Alternate member' => 'field_committee_alt_members'];
+}
+
+
+/**
+ * Returns a query for fetching published nodes of type committee.
  *
  * @return SelectQuery
  *   The query object.

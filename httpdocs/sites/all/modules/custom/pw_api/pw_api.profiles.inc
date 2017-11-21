@@ -36,13 +36,13 @@ function pw_api_profile($username, $parliament=FALSE) {
     }
 
     // load user revision
-      $query = db_select('user_archive_cache', 'uac');
-      $query->fields('uac', array('uid', 'vid'));
-      _pw_uac_add_conditions($query, array(
-          'parliament' => $parliament,
-          'username' => $username,
-          )
-      );
+    $query = db_select('user_archive_cache', 'uac');
+    $query->fields('uac', array('uid', 'vid'));
+    _pw_uac_add_conditions($query, array(
+        'parliament' => $parliament,
+        'username' => $username,
+        )
+    );
     $query->orderBy("uac.user_role = 'deputy'", 'DESC');
     $result = $query->execute()->fetchAssoc();
     $user = user_revision_load($result['uid'], $result['vid']);
