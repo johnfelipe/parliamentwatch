@@ -89,7 +89,11 @@ function pw_api_polls($parliament) {
   }
   $parliament_term = array_pop($parliament_term);
 
-   // query for all nodes of type poll
+  // query for all terms from taxonomy topics
+  $vocabulary = taxonomy_vocabulary_machine_name_load('topics');
+  $terms_topics = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
+
+  // query for all nodes of type poll
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
   ->entityCondition('bundle', 'poll')
@@ -103,12 +107,25 @@ function pw_api_polls($parliament) {
     foreach(array_keys($result_nodes['node']) as $target_node_id){
 
       $node = node_load($target_node_id);
+
+      // meta information
       $polls['poll_'.$target_node_id] = array();
+      $polls['poll_'.$target_node_id]['meta'] = array();
+      $polls['poll_'.$target_node_id]['meta']['uuid'] = $node->uuid;
+      $polls['poll_'.$target_node_id]['meta']['edited'] = date('Y-m-d H:i', $node->changed);
+      $topics = field_get_items('node', $node, 'field_topics');
+      $polls['poll_'.$target_node_id]['meta']['topics'] = array();
+      foreach ($topics as $topic) {
+        $polls['poll_'.$target_node_id]['meta']['topics']['topic_'.$topic['tid']] = $terms_topics[$topic['tid']]->name;
+      }
+      $polls['poll_'.$target_node_id]['meta']['url'] = url('node/' . $node->nid, array('absolute' => TRUE));
       $polls['poll_'.$target_node_id]['title'] = $node->title;
-      $polls['poll_'.$target_node_id]['uuid'] = $node->uuid;
       $date_field = field_get_items('node', $node, 'field_poll_date');
       $poll_date = substr($date_field[0]['value'], 0, 10);
       $polls['poll_'.$target_node_id]['date'] = $poll_date;
+      $polls['poll_'.$target_node_id]['summary'] = trim(strip_tags($body[0]['summary']));
+      $body = field_get_items('node', $node, 'body');
+      $polls['poll_'.$target_node_id]['summary'] = trim(strip_tags($body[0]['summary']));
       $status = field_get_items('node', $node, 'field_voted');
       if($status[0]['value'] == '1'){
         $polls['poll_'.$target_node_id]['status'] = 'abgestimmt';
