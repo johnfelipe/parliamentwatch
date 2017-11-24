@@ -127,10 +127,9 @@ function pw_committees_profile_block() {
   $q = pw_committees_base_query();
   $q->condition('f_parl.field_parliament_tid', $field_user_parliament[0]['tid']);
   $or = db_or();
-  $or->condition('f_chair.field_committee_chairman_target_id', $account->uid);
-  $or->condition('f_vice.field_committee_vice_chairman_target_id', $account->uid);
-  $or->condition('f_members.field_committee_members_target_id', $account->uid);
-  $or->condition('f_alt_members.field_committee_alt_members_target_id', $account->uid);
+  foreach (pw_committees_get_membership_config() as $field_name) {
+    $or->condition($field_name.'.'.$field_name.'_target_id', $account->uid);
+  }
   $q->condition($or);
   $q->orderBy('n.title');
   $nids = $q->execute()->fetchCol();
@@ -140,21 +139,13 @@ function pw_committees_profile_block() {
   }
 
   $nodes = node_load_multiple($nids);
-
-  $membership_fields = pw_committees_get_membership_config();
   $memberships = [];
-
-  foreach($membership_fields as $role_name => $field_name) {
-    foreach($nodes as $nid => $node) {
+  foreach (pw_committees_get_membership_config() as $role_name => $field_name) {
+    foreach ($nodes as $nid => $node) {
       $field_values = field_get_items('node', $node, $field_name);
-      foreach($field_values as $field_value) {
+      foreach ($field_values as $field_value) {
         if($field_value['target_id'] == $account->uid) {
-          if(!array_key_exists($role_name, $memberships)) {
-            $memberships[$role_name] = [$nid => $node];
-          }
-          else {
-            $memberships[$role_name][$nid] = $node;
-          }
+          $memberships[$role_name][$nid] = $node;
           break 2;
         }
       }
@@ -163,7 +154,7 @@ function pw_committees_profile_block() {
 
   $block['subject'] = t('Committees');
   $block['content'] = [];
-  foreach($memberships as $role => $membership) {
+  foreach ($memberships as $role => $membership) {
     $content = node_view_multiple($membership, 'embedded');
     $content['#prefix'] = '<div class="tile committee-list mh-item"><h4>'.t($role).'</h4><ul>';
     $content['#suffix'] = '</ul></div>';
@@ -240,10 +231,9 @@ function pw_committees_base_query() {
   $q = db_select('node', 'n');
   $q->fields('n');
   $q->join('field_data_field_parliament', 'f_parl', "f_parl.entity_type = 'node' AND f_parl.entity_id = n.nid");
-  $q->leftJoin('field_data_field_committee_chairman', 'f_chair', "f_chair.entity_type = 'node' AND f_chair.entity_id = n.nid");
-  $q->leftJoin('field_data_field_committee_vice_chairman', 'f_vice', "f_vice.entity_type = 'node' AND f_vice.entity_id = n.nid");
-  $q->leftJoin('field_data_field_committee_members', 'f_members', "f_members.entity_type = 'node' AND f_members.entity_id = n.nid");
-  $q->leftJoin('field_data_field_committee_alt_members', 'f_alt_members', "f_alt_members.entity_type = 'node' AND f_alt_members.entity_id = n.nid");
+  foreach (pw_committees_get_membership_config() as $field_name) {
+    $q->leftJoin('field_data_'.$field_name, $field_name, $field_name.".entity_type = 'node' AND ".$field_name.".entity_id = n.nid");
+  }
   $q->condition('n.type', 'committee');
   $q->condition('n.status', NODE_PUBLISHED);
   return $q;
