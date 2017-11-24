@@ -25,7 +25,7 @@ function pw_committees_menu() {
  */
 function pw_committees_preprocess_node(&$variables) {
   if (isset($variables['node']) && $variables['node']->type == 'committee' && $variables['view_mode'] == 'full') {
-    $variables['politicians'] = pw_committee_members_block();
+    $variables['politicians'] = pw_committees_members_block();
   }
 }
 
@@ -91,7 +91,7 @@ function pw_committees_block_view($delta, $arguments = array()) {
       $block = pw_committees_profile_block();
       break;
     case 'committee_members':
-      $block = pw_committee_members_block();
+      $block = pw_committees_members_block();
       break;
     default:
       return [];
@@ -122,6 +122,29 @@ function pw_committees_profile_block() {
     return $block;
   }
 
+  $block['subject'] = t('Committees');
+  $block['content'] = [];
+  foreach (pw_committees_get_memberships($account) as $role => $membership) {
+    $content = node_view_multiple($membership, 'embedded');
+    $content['#prefix'] = '<div class="tile committee-list mh-item"><h4>'.t($role).'</h4><ul>';
+    $content['#suffix'] = '</ul></div>';
+    $block['content'][] = $content;
+  }
+
+  return $block;
+}
+
+
+/**
+ * Returns an array of memberships for an user account with role as key.
+ *
+ * @return array
+ *   The memberships array.
+ */
+function pw_committees_get_memberships($account) {
+
+  $memberships = [];
+
   $field_user_parliament = field_get_items('user', $account, 'field_user_parliament');
 
   $q = pw_committees_base_query();
@@ -139,7 +162,6 @@ function pw_committees_profile_block() {
   }
 
   $nodes = node_load_multiple($nids);
-  $memberships = [];
   foreach (pw_committees_get_membership_config() as $role_name => $field_name) {
     foreach ($nodes as $nid => $node) {
       $field_values = field_get_items('node', $node, $field_name);
@@ -152,16 +174,7 @@ function pw_committees_profile_block() {
     }
   }
 
-  $block['subject'] = t('Committees');
-  $block['content'] = [];
-  foreach ($memberships as $role => $membership) {
-    $content = node_view_multiple($membership, 'embedded');
-    $content['#prefix'] = '<div class="tile committee-list mh-item"><h4>'.t($role).'</h4><ul>';
-    $content['#suffix'] = '</ul></div>';
-    $block['content'][] = $content;
-  }
-
-  return $block;
+  return $memberships;
 }
 
 
@@ -171,7 +184,7 @@ function pw_committees_profile_block() {
  * @return array
  *   The block render array.
  */
-function pw_committee_members_block() {
+function pw_committees_members_block() {
 
   $build = [];
 
@@ -214,7 +227,7 @@ function pw_committee_members_block() {
  * Returns an array of fields with roles as keys.
  *
  * @return array
- *   The membership array.
+ *   The membership config array.
  */
 function pw_committees_get_membership_config() {
   return ['Chairman' =>'field_committee_chairman', 'Vice-Chairman' => 'field_committee_vice_chairman', 'Member' => 'field_committee_members', 'Alternate member' => 'field_committee_alt_members'];

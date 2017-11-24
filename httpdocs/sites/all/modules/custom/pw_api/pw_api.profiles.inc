@@ -260,6 +260,14 @@ function pw_api_user_to_array($user, $activities = array()) {
 
     // add committees
     $profile['committees'] = array();
+    foreach (pw_committees_get_memberships($user) as $role => $memberships) {
+      foreach ($memberships as $membership) {
+        $profile['committees']['committee_'.$membership->nid] = array();
+        $profile['committees']['committee_'.$membership->nid]['name'] = $membership->title;
+        $profile['committees']['committee_'.$membership->nid]['uuid'] = $membership->uuid;
+        $profile['committees']['committee_'.$membership->nid]['role'] = $role;
+      }
+    }
 
     // add votes
     if(in_array('votes', $activities)){
