@@ -1285,6 +1285,9 @@ $display_output = rtrim($display_output);',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_dialogue_topic',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
@@ -3037,6 +3040,9 @@ $display_output = rtrim($display_output);',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_dialogue_topic',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
@@ -3221,8 +3227,9 @@ $display_output = rtrim($display_output);',
         ),
       ),
       'entity_type' => 'node',
+      'exclude_cv' => 0,
       'field_name' => 'field_dialogue_topic',
-      'label' => 'Topic',
+      'label' => 'Dialogue Topic',
       'required' => 0,
       'settings' => array(
         'exclude_cv' => FALSE,
@@ -3622,6 +3629,7 @@ $display_output = rtrim($display_output);',
   t('Body');
   t('Comment Body');
   t('Dialogue ID');
+  t('Dialogue Topic');
   t('Documents');
   t('Message ID');
   t('Message type');
