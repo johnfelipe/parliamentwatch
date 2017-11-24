@@ -57,7 +57,7 @@ function pw_api_profile($username, $parliament=FALSE) {
     return MENU_NOT_FOUND;
   }
 
-  $profile = array('profile' => pw_api_user_to_array($user, array('votes', 'dialogues')));
+  $profile = array('profile' => pw_api_user_to_array($user, array('votes', 'dialogues', 'sidejobs')));
 
   return $profile;
 }
@@ -269,6 +269,35 @@ function pw_api_user_to_array($user, $activities = array()) {
       }
     }
 
+    // add sidejobs
+    if(in_array('sidejobs', $activities)){
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'sidejob')
+        ->fieldCondition('field_parliament', 'tid', $w_user->field_user_parliament->tid->value())
+        ->fieldCondition('field_politician', 'target_id', $w_user->uid->value())
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->fieldOrderBy('field_sidejob_date_start', 'value', 'DESC');
+      $result = $query->execute();
+
+      $profile['sidejobs'] = array();
+      if(isset($result['node'])){
+
+        $nodes = node_load_multiple(array_keys($result['node']));
+
+        foreach ($nodes as $node) {
+          pw_sidejobs_compute_total_incomes($node);
+          $w_sidejob = entity_metadata_wrapper('node', $node);
+          $profile['sidejobs']['sidejob_'.$node->nid] = array();
+          $profile['sidejobs']['sidejob_'.$node->nid]['uuid'] = $node->uuid;
+          $profile['sidejobs']['sidejob_'.$node->nid]['organization'] = $w_sidejob->field_sidejob_organization->label();
+          $profile['sidejobs']['sidejob_'.$node->nid]['job'] = $w_sidejob->field_job->label();
+          $profile['sidejobs']['sidejob_'.$node->nid]['income']['min'] = $w_sidejob->field_sidejob_income_min->value();
+          $profile['sidejobs']['sidejob_'.$node->nid]['income']['max'] = $w_sidejob->field_sidejob_income_max->value();
+        }
+      }
+    }
+
     // add votes
     if(in_array('votes', $activities)){
       $query = new EntityFieldQuery();
@@ -313,19 +342,6 @@ function pw_api_user_to_array($user, $activities = array()) {
             $profile['votes'][$type.'_'.$record->nid]['date'] = date("Y-m-d", $record->created);
             $profile['votes'][$type.'_'.$record->nid]['vote'] = $record->vote_label;
             $profile['votes'][$type.'_'.$record->nid]['url'] = url('node/'.$record->nid, array('absolute' => TRUE));
-
-            // load categories
-            $categories = db_select('field_data_field_blogpost_categories','bc');
-            $categories->join('taxonomy_term_data','ct', "bc.field_blogpost_categories_tid = ct.tid");
-            $categories->fields('ct', array('tid', 'name'));
-            $categories->condition('bc.entity_id', $record->nid);
-            $categories->condition('bc.entity_type', 'node');
-            $cr = $categories->execute();
-            $blogtags = array();
-            while ($category = $cr->fetchObject()){
-                $blogtags["tag_".$category->tid] = $category->name;
-            }
-            $profile['votes'][$type.'_'.$record->nid]['blogtags'] = $blogtags;
           }
         }
       }
