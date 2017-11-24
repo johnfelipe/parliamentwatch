@@ -99,7 +99,7 @@ print $data->field_field_user_lname[0][\'raw\'][\'value\'].\', \'.$data->field_f
 ?>';
   $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
   $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
-  /* Sortierkriterien: Benutzer: Parliament (field_user_parliament) */
+  /* Sortierkriterien: Benutzer: Parlament (field_user_parliament) */
   $handler->display->display_options['sorts']['field_user_parliament_tid']['id'] = 'field_user_parliament_tid';
   $handler->display->display_options['sorts']['field_user_parliament_tid']['table'] = 'field_data_field_user_parliament';
   $handler->display->display_options['sorts']['field_user_parliament_tid']['field'] = 'field_user_parliament_tid';

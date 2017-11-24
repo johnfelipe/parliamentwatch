@@ -105,16 +105,16 @@ function pw_sidejobs_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '20',
-        ),
-        'redirect' => array(
-          'weight' => '19',
-        ),
-        'xmlsitemap' => array(
           'weight' => '21',
         ),
-        'metatags' => array(
+        'redirect' => array(
+          'weight' => '20',
+        ),
+        'xmlsitemap' => array(
           'weight' => '22',
+        ),
+        'metatags' => array(
+          'weight' => '23',
         ),
         'rabbit_hole' => array(
           'weight' => '0',
