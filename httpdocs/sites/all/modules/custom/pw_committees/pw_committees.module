@@ -71,7 +71,7 @@ function pw_committees_page($parliament_term) {
  */
 function pw_committees_block_info() {
   $blocks['profile_committees'] = [
-    'info' => t('Profile Commmittees'),
+    'info' => t('Profile Committees'),
     'cache' => DRUPAL_NO_CACHE,
   ];
   $blocks['committee_members'] = [
