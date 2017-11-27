@@ -262,9 +262,8 @@ function pw_api_user_to_array($user, $activities = array()) {
     $profile['committees'] = array();
     foreach (pw_committees_get_memberships($user) as $role => $memberships) {
       foreach ($memberships as $membership) {
-        $profile['committees']['committee_'.$membership->nid] = array();
-        $profile['committees']['committee_'.$membership->nid]['name'] = $membership->title;
         $profile['committees']['committee_'.$membership->nid]['uuid'] = $membership->uuid;
+        $profile['committees']['committee_'.$membership->nid]['name'] = $membership->title;
         $profile['committees']['committee_'.$membership->nid]['role'] = $role;
       }
     }
@@ -284,16 +283,25 @@ function pw_api_user_to_array($user, $activities = array()) {
       if(isset($result['node'])){
 
         $nodes = node_load_multiple(array_keys($result['node']));
+        $interval_mapping = array(0 => 'once', 1 => 'monthly', 12 => 'yearly');
 
         foreach ($nodes as $node) {
-          pw_sidejobs_compute_total_incomes($node);
           $w_sidejob = entity_metadata_wrapper('node', $node);
           $profile['sidejobs']['sidejob_'.$node->nid] = array();
           $profile['sidejobs']['sidejob_'.$node->nid]['uuid'] = $node->uuid;
           $profile['sidejobs']['sidejob_'.$node->nid]['organization'] = $w_sidejob->field_sidejob_organization->label();
           $profile['sidejobs']['sidejob_'.$node->nid]['job'] = $w_sidejob->field_job->label();
-          $profile['sidejobs']['sidejob_'.$node->nid]['income']['min'] = $w_sidejob->field_sidejob_income_min->value();
-          $profile['sidejobs']['sidejob_'.$node->nid]['income']['max'] = $w_sidejob->field_sidejob_income_max->value();
+
+          // compute income
+          $computed_income = pw_sidejobs_compute_incomes_beta($node);
+          $profile['sidejobs']['sidejob_'.$node->nid]['income'] = $computed_income;
+          $profile['sidejobs']['sidejob_'.$node->nid]['income']['classification'] = $w_sidejob->field_sidejob_classification->value();
+          if (!empty($w_sidejob->field_sidejob_income_interval->value())) {
+            $profile['sidejobs']['sidejob_'.$node->nid]['income']['interval'] = t($interval_mapping[$w_sidejob->field_sidejob_income_interval->value()]);
+          }
+          else {
+
+          }
         }
       }
     }
@@ -336,9 +344,8 @@ function pw_api_user_to_array($user, $activities = array()) {
         while($record = $result->fetchObject()){
           if(in_array($record->type, $types_allowed)){
             $type = str_replace('pw_', '', $record->type);
-            $profile['votes'][$type.'_'.$record->nid] = array();
-            $profile['votes'][$type.'_'.$record->nid]['title'] = $record->title;
             $profile['votes'][$type.'_'.$record->nid]['uuid'] = $record->uuid;
+            $profile['votes'][$type.'_'.$record->nid]['title'] = $record->title;
             $profile['votes'][$type.'_'.$record->nid]['date'] = date("Y-m-d", $record->created);
             $profile['votes'][$type.'_'.$record->nid]['vote'] = $record->vote_label;
             $profile['votes'][$type.'_'.$record->nid]['url'] = url('node/'.$record->nid, array('absolute' => TRUE));
