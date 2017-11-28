@@ -100,7 +100,8 @@ function pw_api_polls($parliament) {
 
   if(isset($result_nodes['node'])){
     foreach(array_keys($result_nodes['node']) as $target_node_id){
-      $polls += pw_api_poll($target_node_id);
+      $poll = pw_api_poll($target_node_id);
+      $polls['poll_'.$target_node_id] = $poll['poll'];
     }
   }
 
@@ -159,7 +160,7 @@ function pw_api_poll($poll_nid) {
   }
   $poll['url'] = url('node/'.$node->nid, array('absolute' => TRUE));
 
-  return array('poll_'.$node->nid => $poll);
+  return array('poll' => $poll);
 }
 
 function pw_api_add_votes($parliament_term, $target_node_id, $vote_date){
