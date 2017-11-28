@@ -70,6 +70,22 @@ function pw_api_menu() {
     $items[$key] = $item;
   }
 
+  // add poll hooks
+  foreach (array('xml', 'json') as $file_type) {
+
+    // add poll
+    $key = 'api/poll/%/poll.'.$file_type;
+    $item = array(
+      'page callback' => 'pw_api_poll',
+      'page arguments' => array(2),
+      'access callback' => TRUE,
+      'delivery callback' => 'pw_api_deliver_'.$file_type,
+      'type' => MENU_CALLBACK,
+      'file' => 'pw_api.votes.inc',
+      );
+    $items[$key] = $item;
+  }
+
   // add profile hooks
   foreach (array('xml', 'json') as $file_type) {
     $key = 'api/profile/%/profile.'.$file_type;
@@ -195,6 +211,31 @@ function pw_api_json_array_rebuild(&$items){
         $items[$key] = array_values($value);
       }
       pw_api_json_array_rebuild($value);
+    }
+  }
+}
+
+/**
+ * Shorten all names in json array.
+ *
+ * @param array $items
+ */
+
+function pw_api_shorten_names(&$items){
+  $keys = array_keys($items);
+  foreach ($keys as $key) {
+    if (is_array($items[$key])) {
+      pw_api_shorten_names($items[$key]);
+    }
+    if (!is_numeric($key)){
+      for ($i = 2; !isset($newkey) || isset($items[$newkey]); $i++) {
+        if (strlen($key) == $i) {
+          break;
+        }
+        $newkey = substr($key, 0, $i);
+      }
+      $items[$newkey] = $items[$key];
+      unset($items[$key]);
     }
   }
 }
