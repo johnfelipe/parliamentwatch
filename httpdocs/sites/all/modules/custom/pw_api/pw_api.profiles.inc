@@ -239,6 +239,12 @@ function pw_api_user_to_array($user, $activities = array()) {
       $profile['parliament']['retired'] = format_date($w_user->field_user_retired->value(), 'custom', 'Y-m-d');
     }
 
+    // add political roles
+    $profile['roles'] = array();
+    foreach ($w_user->field_user_political_roles->value() as $role) {
+      $profile['roles']['role_'.$role->tid] = $role->name;
+    }
+
     // add constituency
     $profile['constituency'] = array();
     if(sizeof($w_user->field_user_constituency) > 0){
