@@ -288,7 +288,11 @@ function pw_api_user_to_array($user, $activities = array()) {
         foreach ($nodes as $node) {
           $w_sidejob = entity_metadata_wrapper('node', $node);
           $profile['sidejobs']['sidejob_'.$node->nid] = array();
-          $profile['sidejobs']['sidejob_'.$node->nid]['uuid'] = $node->uuid;
+          $profile['sidejobs']['sidejob_'.$node->nid]['meta']['uuid'] = $node->uuid;
+          $profile['sidejobs']['sidejob_'.$node->nid]['meta']['topics'] = array();
+          foreach ($w_sidejob->field_topics->value() as $topic) {
+            $profile['sidejobs']['sidejob_'.$node->nid]['meta']['topics']['topic_'.$topic->tid] = $topic->name;
+          }
           $profile['sidejobs']['sidejob_'.$node->nid]['organization'] = $w_sidejob->field_sidejob_organization->label();
           $profile['sidejobs']['sidejob_'.$node->nid]['job'] = $w_sidejob->field_job->label();
 
@@ -300,7 +304,7 @@ function pw_api_user_to_array($user, $activities = array()) {
             $profile['sidejobs']['sidejob_'.$node->nid]['income']['interval'] = t($interval_mapping[$w_sidejob->field_sidejob_income_interval->value()]);
           }
           else {
-
+            $profile['sidejobs']['sidejob_'.$node->nid]['income']['interval'] = t('once');
           }
         }
       }
