@@ -63,7 +63,7 @@ function pw_seo_metatag_export_default() {
         'value' => '',
       ),
       'canonical' => array(
-        'value' => '[current-page:url:absolute]',
+        'value' => 'https://www.abgeordnetenwatch.de/[current-page:url:path]',
       ),
       'shortlink' => array(
         'value' => '[current-page:url:unaliased]',
