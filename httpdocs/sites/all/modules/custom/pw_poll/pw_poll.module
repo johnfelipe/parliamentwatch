@@ -309,6 +309,9 @@ function pw_poll_base_query() {
  *
  * @param array
  *   The poll nodes.
+ *
+ * @return array
+ *   The results keyed by nid.
  */
 function pw_poll_results($nodes) {
   $results = [];
