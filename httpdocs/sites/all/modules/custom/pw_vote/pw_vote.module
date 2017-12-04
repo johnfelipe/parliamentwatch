@@ -431,11 +431,11 @@ function pw_vote_poll_block() {
   }
 
   $header = [
-    ['data' => ''],
+    [''],
     ['data' => t('Name'), 'field' => 'name'],
     ['data' => t('Political faction'), 'field' => 'political_faction'],
     ['data' => t('Constituency'), 'field' => 'constituency'],
-    ['data' => t('Voted'), 'field' => 'field_vote_tid'],
+    ['data' => t('Voted'), 'field' => 'field_vote_tid', 'sort' => 'asc'],
   ];
   $result = pw_vote_by_poll_query($node)
     ->extend('TableSort')
