@@ -467,13 +467,18 @@ function pw_vote_poll_block() {
           break;
       }
 
+      $profile_picture = field_view_field('user', $users[$vid], 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
       $political_faction = taxonomy_term_load($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])->name;
-      $constituency = taxonomy_term_load($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])->name;
-      $profile_picture = drupal_render(field_view_field('user', $users[$vid], 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]));
+      if (isset($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])) {
+        $constituency = taxonomy_term_load($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])->name;
+      }
+      else {
+        $constituency = '';
+      }
 
       $rows[] = [
         [
-          'data' => '<span>' . l($profile_picture, entity_uri('user', $users[$vid])['path'], ['html' => TRUE]) . '</span>',
+          'data' => '<span>' . l(drupal_render($profile_picture), entity_uri('user', $users[$vid])['path'], ['html' => TRUE]) . '</span>',
         ],
         [
           'data' => l(_pw_get_fullname($users[$vid]), entity_uri('user', $users[$vid])['path']),
@@ -653,8 +658,8 @@ function pw_vote_by_poll_query($node) {
   $q->join('field_data_field_vote', 'vote', 'n.nid = vote.entity_id');
   $q->join('user_archive_cache', 'uac', 'user.field_vote_user_target_id = uac.uid');
   $q->join('field_revision_field_user_lname', 'profile_lname', 'uac.vid = profile_lname.revision_id');
-  $q->join('field_revision_field_user_constituency', 'profile_constituency', 'uac.vid = profile_constituency.revision_id');
-  $q->join('taxonomy_term_data', 'td', 'td.tid = profile_constituency.field_user_constituency_tid');
+  $q->leftJoin('field_revision_field_user_constituency', 'profile_constituency', 'uac.vid = profile_constituency.revision_id');
+  $q->leftJoin('taxonomy_term_data', 'td', 'td.tid = profile_constituency.field_user_constituency_tid');
   $q->addExpression('uac.fraction_name', 'political_faction');
   $q->addExpression('profile_lname.field_user_lname_value', 'name');
   $q->addExpression('td.name', 'constituency');
