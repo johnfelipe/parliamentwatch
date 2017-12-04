@@ -130,10 +130,11 @@ function pw_parliaments_suggestions() {
 /**
  * Displays parliament pages, leaving other term pages to the default callback.
  */
-function pw_parliaments_taxonomy_term_page($term) {
+function pw_parliaments_taxonomy_term_page($term)
+{
   if ($term->vocabulary_machine_name == 'parliaments') {
     if (pw_parliaments_is_funded($term)) {
-      // Ensure side effects of taxonomy_term_view like generation of metatags
+      // Ensure side effects of taxonomy_term_view like generation of meta tags
       // are triggered.
       taxonomy_term_view($term);
       return '';
@@ -142,28 +143,32 @@ function pw_parliaments_taxonomy_term_page($term) {
       return taxonomy_term_view($term);
     }
   }
+  elseif (in_array($term->vocabulary_machine_name, ['blogcategories', 'topics'])) {
+    $build = taxonomy_term_view($term);
+    $nids = taxonomy_select_nodes($term->tid, TRUE, variable_get('default_nodes_main', 12));
 
-  $build = taxonomy_term_view($term);
-  $nids = taxonomy_select_nodes($term->tid, TRUE, variable_get('default_nodes_main', 12));
+    if ($nids) {
+      $nodes = node_load_multiple($nids);
+      $build = node_view_multiple($nodes, 'tile');
+      $build['#theme_wrappers'] = ['container__tiles'];
+      $build['pager'] = [
+        '#theme' => 'pager',
+        '#weight' => 5,
+      ];
+    }
+    else {
+      $build['no_content'] = [
+        '#prefix' => '<p>',
+        '#markup' => t('There is currently no content classified with this term.'),
+        '#suffix' => '</p>',
+      ];
+    }
 
-  if ($nids) {
-    $nodes = node_load_multiple($nids);
-    $build = node_view_multiple($nodes, 'tile');
-    $build['#theme_wrappers'] = ['container__tiles'];
-    $build['pager'] = [
-      '#theme' => 'pager',
-      '#weight' => 5,
-    ];
+    return $build;
   }
   else {
-    $build['no_content'] = [
-      '#prefix' => '<p>',
-      '#markup' => t('There is currently no content classified with this term.'),
-      '#suffix' => '</p>',
-    ];
+    return MENU_NOT_FOUND;
   }
-
-  return $build;
 }
 
 /**
