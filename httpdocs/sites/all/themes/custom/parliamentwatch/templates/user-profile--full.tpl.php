@@ -147,11 +147,11 @@
         <?php endif; ?>
       </div>
       <dl class="dl">
-        <?php if (isset($user_profile['field_user_birthday'])): ?>
+        <?php if (!empty($user_profile['field_user_birthday'])): ?>
           <dt class="dl__dt"><?php print t('Year of birth') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_birthday'][0]['#markup']; ?></dd>
         <?php endif; ?>
-        <?php if ($user_profile['field_user_died']['#items'][0]['value'] == '1' && isset($user_profile['field_user_retired'])): ?>
+        <?php if ($user_profile['field_user_died']['#items'][0]['value'] == '1' && !empty($user_profile['field_user_retired'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_died']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_retired'][0]['#markup']; ?></dd>
         <?php endif; ?>
@@ -159,15 +159,15 @@
           <dt class="dl__dt"><?php print t('Wohnort') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_address']['#items'][0]['locality']; ?></dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_education'])): ?>
+        <?php if (!empty($user_profile['field_user_education'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_education']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_education'][0]['#markup']; ?></dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_job_skills'])): ?>
+        <?php if (!empty($user_profile['field_user_job_skills'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_job_skills']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_job_skills'][0]['#markup']; ?></dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_constituency'])): ?>
+        <?php if (!empty($user_profile['field_user_constituency'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_constituency']['#title']; ?></dt>
           <dd class="dl__dd">
             <p>
@@ -186,20 +186,20 @@
             <?php endif; ?>
           </dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_list'])): ?>
+        <?php if (!empty($user_profile['field_user_list'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_list']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_list'][0]['#markup']; ?><?php if ($user_profile['field_user_list_position']): ?>, Platz <?php print $user_profile['field_user_list_position'][0]['#markup']; ?><?php endif; ?></dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_parliament'])): ?>
+        <?php if (!empty($user_profile['field_user_parliament'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_parliament']['#title']; ?></dt>
           <dd class="dl__dd">
             <?php print $user_profile['field_user_parliament'][0]['#markup']; ?>
-            <?php if (isset($user_profile['field_user_retired']) && $user_profile['field_user_died']['#items'][0]['value'] == '0'): ?>
+            <?php if (!empty($user_profile['field_user_retired']) && $user_profile['field_user_died']['#items'][0]['value'] == '0'): ?>
               <p><small><?php print t('Retired on %date', array('%date' => drupal_html_to_text($user_profile['field_user_retired'][0]['#markup']))); ?></small></p>
             <?php endif; ?>
           </dd>
         <?php endif; ?>
-        <?php if (isset($user_profile['field_user_joined'])): ?>
+        <?php if (!empty($user_profile['field_user_joined'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_joined']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_joined'][0]['#markup']; ?></dd>
         <?php endif; ?>
@@ -207,7 +207,7 @@
     </div>
 
     <div class="deputy__intro__blocks">
-      <?php if (isset($user_profile['candidate_match'])): ?>
+      <?php if (!empty($user_profile['candidate_match'])): ?>
         <div class="deputy__candidate_check swiper-container">
           <div class="deputy__candidate_check__header">
             <div class="deputy__candidate_check__header__logo">
@@ -229,7 +229,7 @@
         </div>
       <?php endif; ?>
 
-      <?php if (isset($user_profile['field_user_political_goals'])): ?>
+      <?php if (!empty($user_profile['field_user_political_goals'])): ?>
         <div class="deputy__goal readmore">
           <h3>
             <?php print t('Political goals of @full_name', ['@full_name' => render($display_name)]); ?>
@@ -248,7 +248,7 @@
         </div>
       <?php endif; ?>
 
-      <?php if (isset($field_user_twitter_account)): ?>
+      <?php if (!empty($field_user_twitter_account)): ?>
         <div class="deputy__twitter">
           <?php if (isset($field_user_twitter_account)): ?>
             <a class="twitter-timeline" data-height="300" data-link-color=“#f46b3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
@@ -261,7 +261,7 @@
         </div>
       <?php endif; ?>
 
-      <?php if (isset($user_profile['field_user_about'])): ?>
+      <?php if (!empty($user_profile['field_user_about'])): ?>
         <div class="deputy__about readmore">
           <h3>
             <?php print t('About @full_name', ['@full_name' => render($display_name)]); ?>
@@ -274,7 +274,7 @@
         </div>
       <?php endif; ?>
 
-      <?php if (isset($user_profile['field_user_links_more'])): ?>
+      <?php if (!empty($user_profile['field_user_links_more'])): ?>
         <div class="deputy__custom-links">
           <h2><?php print t('Links of @full_name', ['@full_name' => render($user_profile['field_user_fname']) . ' ' . render($user_profile['field_user_lname'])]); ?></h2>
           <?php print render($user_profile['field_user_links_more']); ?>
