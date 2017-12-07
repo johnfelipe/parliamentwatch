@@ -23,14 +23,19 @@
     @include transform(translate(-50%,-60%));
   }
 }
-
 .modal__content {
   padding: $space;
   @include breakpoint($breakpoint-s-min) {
     padding: $space-large;
   }
 }
-
+.modal__content__title {
+  padding-right: $space-large;
+  @include breakpoint($breakpoint-m-min) {
+    @include grid-column(12);
+    margin-bottom: $space-large;
+  }
+}
 .modal__footer {
   padding: $space;
   background: $brightGray;
@@ -42,7 +47,6 @@
     margin-top: $space-large;
   }
 }
-
 .modal__close {
   position: absolute;
   right: $space;
@@ -122,6 +126,55 @@
     }
   }
   .modal__footer {
+    @media (max-width: $breakpoint-m-max) {
+      text-align: center;
+    }
+    .btn {
+      border: 1px solid $gray;
+      background: none;
+      color: $mediumGray;
+      @include breakpoint($breakpoint-m-min) {
+        float: right;
+      }
+    }
+    p {
+      color: $mediumGray;
+      @include breakpoint($breakpoint-m-min) {
+        float: left;
+        padding-top: $space-xsmall;
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+/**
+* Modal for newsletter
+*/
+
+.modal--newsletter {
+  max-width: 780px;
+  .modal__content {
+    @include breakpoint($breakpoint-m-min) {
+      @include grid-container();
+      @include grid-collapse();
+    }
+    .modal--newsletter__left {
+      padding-bottom: $space;
+      @include breakpoint($breakpoint-m-min) {
+        @include grid-column(6);
+        padding-bottom: 0;
+        padding-right: 40px;
+      }
+    }
+    .modal--newsletter__right {
+      @include breakpoint($breakpoint-m-min) {
+        @include grid-column(6);
+      }
+    }
+  }
+  .modal__footer {
+    margin-top: 0;
     @media (max-width: $breakpoint-m-max) {
       text-align: center;
     }

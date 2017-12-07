@@ -1887,41 +1887,53 @@
    */
   Drupal.behaviors.modal = {
     attach: function () {
-      $('[data-modal-close]').click(function (event) {
-        var attr = $(this).parents('.modal').attr('data-modal-cookie');
-        $('.modal__close').parents('.modal').removeClass('modal--open');
+      $(function() {
 
-        // Cookie handling
-        if (typeof attr !== typeof undefined && attr !== false) {
-          var cookieName = $(this).parents('.modal').attr('data-modal-name');
-          $.cookie(cookieName, '1', {expires: 7});
+        if (!$.cookie('clickCount')) {
+          $.cookie('clickCount', 1, { path: '/' });
+          var clickCount = parseInt($.cookie('clickCount'), 10);
+          clickCount++;
+        } else {
+          var clickCount = parseInt($.cookie('clickCount'), 10);
+          clickCount++;
+          $.cookie('clickCount', clickCount, { path: '/' });
         }
 
-        event.preventDefault();
-      });
+        $('[data-modal-close]').click(function (event) {
+          var attr = $(this).parents('.modal').attr('data-modal-cookie');
+          var cookieExpires = $(this).parents('.modal').attr('data-modal-cookie-expires');
+          $('.modal__close').parents('.modal').removeClass('modal--open');
 
-      $('.modal-overlay').click(function () {
-        var modalName = $(this).attr('data-modal-name');
-        var modal = $('.modal[data-modal-name=' + modalName + ']');
-        var attr = modal.attr('data-modal-cookie');
-        modal.removeClass('modal--open');
+          if (typeof attr !== typeof undefined && attr !== false) {
+            var cookieName = $(this).parents('.modal').attr('data-modal-name');
+            console.log(cookieExpires);
+            $.cookie(cookieName, '1', {expires: 7, path: '/'});
+          }
+          event.preventDefault();
+        });
 
-        // Cookie handling
-        if (typeof attr !== typeof undefined && attr !== false) {
-          var cookieName = modalName;
-          $.cookie(cookieName, '1', {expires: 7});
-        }
-      });
-
-      // Control inital modals
-      if ($('[data-modal-initial]').length) {
-        $('[data-modal-initial]').each(function (index) {
-          var cookieName = $(this).attr('data-modal-name');
-          if (!$.cookie(cookieName) == '1') {
-            $('[data-modal-initial]').addClass('modal--open');
+        $('.modal-overlay').click(function () {
+          var modalName = $(this).attr('data-modal-name');
+          var modal = $('.modal[data-modal-name=' + modalName + ']');
+          var attr = modal.attr('data-modal-cookie');
+          modal.removeClass('modal--open');
+          if (typeof attr !== typeof undefined && attr !== false) {
+            var cookieName = modalName;
+            $.cookie(cookieName, '1', {expires: 7, path: '/'});
           }
         });
-      }
+
+        // Control inital modals
+        if ($('[data-modal-initial]').length) {
+          $('[data-modal-initial]').each(function (index) {
+            var cookieName = $(this).attr('data-modal-name');
+            var clicksToShow = $(this).attr('data-modal-clicksToShow');
+            if (!$.cookie(cookieName) == '1' && clickCount >= clicksToShow) {
+              $('[data-modal-initial]').addClass('modal--open');
+            }
+          });
+        }
+      });
     }
   };
 

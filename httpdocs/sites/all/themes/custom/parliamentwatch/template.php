@@ -103,7 +103,7 @@ function parliamentwatch_page_alter(&$page) {
  * Implements hook_preprocess_page().
  */
 function parliamentwatch_preprocess_page(&$variables) {
-  if ($variables['is_front'] && $GLOBALS['theme_key'] == 'parliamentwatch') {
+  if ($GLOBALS['theme_key'] == 'parliamentwatch') {
     drupal_add_library('system', 'jquery.cookie');
   }
 }

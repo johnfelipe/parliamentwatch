@@ -11,6 +11,8 @@
   display: inline-block;
   font-family: $font-sans-serif;
   cursor: pointer;
+  border-radius: 0;
+  font-weight: 300;
   @include transition(color 300ms ease, background-color 300ms ease);
   &:hover {
     color: $background-color;
