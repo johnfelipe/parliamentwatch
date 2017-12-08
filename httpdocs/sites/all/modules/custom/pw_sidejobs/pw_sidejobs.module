@@ -425,7 +425,7 @@ function pw_sidejobs_compute_incomes_beta($node, $compute_total=TRUE) {
     return $computed_income;
   }
 
-  $date_start_latest = 0;
+  $date_start_latest = FALSE;
   $dates_start = array();
   $date_end_earlist = date('Y-m-d 00:00:00');
   $dates_end = array();
