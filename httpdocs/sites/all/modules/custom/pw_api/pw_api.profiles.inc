@@ -281,8 +281,7 @@ function pw_api_user_to_array($user, $activities = array()) {
         ->entityCondition('bundle', 'sidejob')
         ->fieldCondition('field_parliament', 'tid', $w_user->field_user_parliament->tid->value())
         ->fieldCondition('field_politician', 'target_id', $w_user->uid->value())
-        ->propertyCondition('status', NODE_PUBLISHED)
-        ->fieldOrderBy('field_sidejob_date_start', 'value', 'DESC');
+        ->propertyCondition('status', NODE_PUBLISHED);
       $result = $query->execute();
 
       $profile['sidejobs'] = array();
