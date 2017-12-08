@@ -242,7 +242,7 @@
     <?php endif; ?>
   </footer>
 
-  <?php if ($is_front && $GLOBALS['theme_key'] === 'parliamentwatch'): ?>
+  <?php if ($GLOBALS['theme_key'] === 'parliamentwatch'): ?>
     <div class="modal modal--newsletter" data-modal-initial data-modal-cookie data-modal-cookie-expires="7" data-modal-clicksToShow="3" data-modal-name="modal_newsletter">
       <div class="modal__content">
         <button class="modal__close" data-modal-close><i class="icon icon-close"></i></button>
