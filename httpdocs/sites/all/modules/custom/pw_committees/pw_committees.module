@@ -158,7 +158,7 @@ function pw_committees_get_memberships($account) {
   $nids = $q->execute()->fetchCol();
 
   if(empty($nids)) {
-    return $block;
+    return $memberships;
   }
 
   $nodes = node_load_multiple($nids);
