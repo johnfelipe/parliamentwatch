@@ -58,6 +58,15 @@ function pw_globals_update_7103() {
 }
 
 /**
+ * Enable Localization update.
+ */
+function pw_globals_update_7104() {
+  module_enable(['l10n_update']);
+  variable_set('l10n_update_import_mode', 2);
+  variable_set('l10n_update_check_mode', 2);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
