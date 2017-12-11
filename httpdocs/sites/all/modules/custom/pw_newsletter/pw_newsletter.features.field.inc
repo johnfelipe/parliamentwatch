@@ -1499,14 +1499,13 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 0,
-        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 1,
           'profile' => 'managed_content',
         ),
         'rel_remove' => 'default',
-        'title' => 'required',
+        'title' => 'optional',
         'title_label_use_field_label' => 0,
         'title_maxlength' => '128',
         'title_value' => '',
@@ -1961,6 +1960,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
