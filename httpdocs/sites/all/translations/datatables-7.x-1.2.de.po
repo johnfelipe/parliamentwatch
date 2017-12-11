@@ -1,0 +1,20 @@
+# German translation of DataTables (7.x-1.2)
+# Copyright (c) 2013 by the German translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DataTables (7.x-1.2)\n"
+"POT-Creation-Date: 2013-03-03 00:30+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Views"
+msgstr "Ansichten"
+msgid "Not found"
+msgstr "Nicht gefunden"
+msgid "Save State"
+msgstr "Status speichern"
