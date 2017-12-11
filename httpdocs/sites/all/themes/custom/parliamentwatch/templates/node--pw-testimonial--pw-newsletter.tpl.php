@@ -1,9 +1,22 @@
 <?php print render($title_suffix); ?>
 
+<td width="500" class="block_td percent_td visible_mobile">
+  <table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" width="500" align="center" class="deviceWidthInner">
+    <tr>
+      <td width="500" style="vertical-align: top; text-align: center;">
+        <?php print theme('image_style', array('style_name' => 'square_small', 'path' => $content['field_testimonial_portrait']['#items'][0]['uri'])); ?>
+      </td>
+    <tr>
+      <td colspan="4" width="600" style="height: 10px; font-size: 10px;">&nbsp;</td>
+    </tr>
+  </table>
+</td>
+
+
 <td width="500" class="block_td percent_td">
   <table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" width="500" align="center" class="deviceWidthInner">
     <tr>
-      <td width="70" style="vertical-align: top;">
+      <td width="70" style="vertical-align: top;" class="hidden_mobile">
         <?php print theme('image_style', array('style_name' => 'square_small', 'path' => $content['field_testimonial_portrait']['#items'][0]['uri'])); ?>
       </td>
       <td width="20">&nbsp;</td>
