@@ -410,13 +410,11 @@
   }
   .question-form {
     padding: $space-large 0;
-    margin-top: $space-large;
     border-top: 1px solid $white;
     color: $darkGray;
     @include container-extended($brightOrange);
     @include grid-container();
     @include breakpoint($breakpoint-s-min) {
-      margin-top: $space-large * 2;
       padding-top: ($space-large * 2);
       padding-bottom: ($space-large * 2);
     }
@@ -478,6 +476,12 @@
   .tabs__content__content {
     padding-left: 0;
     padding-right: 0;
+    .qa-stats {
+      padding-bottom: $space-large;
+      @include breakpoint($breakpoint-s-min) {
+        padding-bottom: ($space-large * 2);
+      }
+    }
     .tab-qa-stats + .question {
       @include container();
     }
