@@ -40,6 +40,15 @@ function pw_globals_user_default_permissions() {
     'module' => 'webform',
   );
 
+  // Exported permission: admin tfa settings.
+  $permissions['admin tfa settings'] = array(
+    'name' => 'admin tfa settings',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'tfa',
+  );
+
   // Exported permission: administer rh_node.
   $permissions['administer rh_node'] = array(
     'name' => 'administer rh_node',
@@ -211,6 +220,15 @@ function pw_globals_user_default_permissions() {
       0 => 'administrator',
     ),
     'module' => 'rabbit_hole',
+  );
+
+  // Exported permission: setup own tfa.
+  $permissions['setup own tfa'] = array(
+    'name' => 'setup own tfa',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'tfa_basic',
   );
 
   return $permissions;
