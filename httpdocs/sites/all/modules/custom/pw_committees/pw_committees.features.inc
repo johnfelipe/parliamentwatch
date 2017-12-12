@@ -27,7 +27,7 @@ function pw_committees_views_api() {
 function pw_committees_node_info() {
   $items = array(
     'committee' => array(
-      'name' => t('Committee'),
+      'name' => t('Ausschuss'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
