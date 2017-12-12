@@ -1061,6 +1061,69 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'tfa_basic_cookie_domain';
+  $strongarm->value = '.localhost';
+  $export['tfa_basic_cookie_domain'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'tfa_basic_help_text';
+  $strongarm->value = 'Contact support to reset your access';
+  $export['tfa_basic_help_text'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'tfa_basic_roles_require';
+  $strongarm->value = array(
+    2 => 0,
+    30037204 => 0,
+    51622513 => 0,
+    181527986 => 0,
+    140336230 => 0,
+    185431326 => 0,
+    178386088 => 0,
+    29859578 => 0,
+    127500594 => 0,
+  );
+  $export['tfa_basic_roles_require'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'tfa_enabled';
+  $strongarm->value = 1;
+  $export['tfa_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'tfa_fallback_plugins';
+  $strongarm->value = array(
+    -999 => 'tfa_basic_totp',
+  );
+  $export['tfa_fallback_plugins'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'tfa_login_plugins';
+  $strongarm->value = array(
+    0 => 'tfa_basic_trusted_browser',
+  );
+  $export['tfa_login_plugins'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'tfa_validate_plugin';
+  $strongarm->value = 'tfa_basic_totp';
+  $export['tfa_validate_plugin'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'user_revision_by_default';
   $strongarm->value = 1;
   $export['user_revision_by_default'] = $strongarm;
