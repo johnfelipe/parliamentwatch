@@ -151,7 +151,7 @@ function pw_dialogues_node_view($node, $view_mode) {
       $node->content['answers'] = comment_view_multiple($comments, $node, $view_mode);
     }
     else {
-      $node->content['answers'] = comment_view_multiple(array_slice($comments, 0, 1), $node, $view_mode);
+      $node->content['answers'] = comment_view_multiple(array_slice($comments, 0, 1, TRUE), $node, $view_mode);
     }
   }
 

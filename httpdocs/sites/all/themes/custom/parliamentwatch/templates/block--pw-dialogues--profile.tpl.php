@@ -53,7 +53,9 @@
     <?php endif; ?>
   </div>
   <div class="tabs__content__content">
+    <?php if (isset($block->overview_url)): ?>
     <a href="<?php print $block->overview_url; ?>" class="btn btn--white btn--mobile-block">Alle Fragen in der Übersicht</a>
+    <?php endif; ?>
     <?php print $content; ?>
   </div>
 </section>

@@ -78,6 +78,6 @@ if(!empty($content['file']['#file']->external_url)) {;?>
   print render($content['file']);
 }
 ?>
-<?php if ($content['field_image_copyright']): ?>
+<?php if (isset($content['field_image_copyright'])): ?>
   <figcaption><span><?php print render($content['field_image_copyright']); ?></span></figcaption>
 <?php endif; ?>
