@@ -73,7 +73,7 @@
   <ul class="deputy__links tile__links tile__links--2">
     <?php if ($is_consultable): ?>
     <li class="tile__links__item">
-      <a class="tile__links__item__link" href="<?php print $user_url ?>#question-form"><?php print t('Ask now') ?></a>
+      <a class="tile__links__item__link" href="<?php print $user_url ?>#question-form-anchor"><?php print t('Ask now') ?></a>
     </li>
     <?php endif; ?>
     <li class="tile__links__item">

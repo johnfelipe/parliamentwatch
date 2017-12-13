@@ -73,9 +73,9 @@
         <?php endif; ?>
       </figure>
       <?php if ($is_consultable): ?>
-        <a href="#question-form" class="btn btn--block" data-localScroll>Frage stellen</a>
+        <a href="#question-form-anchor" class="btn btn--block" data-localScroll>Frage stellen</a>
       <?php else: ?>
-        <a href="#question-form" class="btn btn--block btn--disabled" data-localScroll>Frage stellen</a>
+        <a href="#question-form-anchor" class="btn btn--block btn--disabled" data-localScroll>Frage stellen</a>
 
         <?php if (isset($user_profile['field_user_question_form_closed']) || isset($user_profile['field_user_retired'])): ?>
           <div class="deputy__intro__sidebar__hint">
