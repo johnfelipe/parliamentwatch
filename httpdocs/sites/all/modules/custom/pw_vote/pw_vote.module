@@ -468,7 +468,12 @@ function pw_vote_poll_block() {
       }
 
       $profile_picture = field_view_field('user', $users[$vid], 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
-      $political_faction = taxonomy_term_load($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])->name;
+      if (isset($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])) {
+        $political_faction = taxonomy_term_load($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])->name;
+      }
+      else {
+        $political_faction = '';
+      }
       if (isset($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])) {
         $constituency = taxonomy_term_load($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])->name;
       }

@@ -97,7 +97,7 @@
       <?php endif; ?>
     </div>
     <div class="deputy__intro__content">
-      <?php if ($user_profile['_field_user_retired']): ?>
+      <?php if (isset($user_profile['field_user_retired'])): ?>
         <div class="deputy__intro__content__hint"><i class="icon icon-politician"></i> <?php print t('%name was retired on %date', array('%name' => $display_name, '%date' => drupal_html_to_text($user_profile['field_user_retired'][0]['#markup']))); ?></div>
       <?php endif; ?>
       <div class="hstats">
@@ -151,7 +151,7 @@
           <dt class="dl__dt"><?php print t('Year of birth') ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_birthday'][0]['#markup']; ?></dd>
         <?php endif; ?>
-        <?php if ($user_profile['field_user_died']['#items'][0]['value'] == '1' && !empty($user_profile['field_user_retired'])): ?>
+        <?php if (isset($field_user_died[0]['value']) && $field_user_died[0]['value'] == '1' && !empty($user_profile['field_user_retired'])): ?>
           <dt class="dl__dt"><?php print $user_profile['field_user_died']['#title']; ?></dt>
           <dd class="dl__dd"><?php print $user_profile['field_user_retired'][0]['#markup']; ?></dd>
         <?php endif; ?>
