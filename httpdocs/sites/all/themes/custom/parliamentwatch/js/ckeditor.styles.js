@@ -121,3 +121,20 @@ if(typeof(CKEDITOR) !== 'undefined') {
         ]
     });
 }
+
+CKEDITOR.on('instanceReady', function (ev) {
+
+  ev.editor.dataProcessor.htmlFilter.addRules( {
+    elements : {
+      a : function( element ) {
+        // Add class to anchor a-tags.
+        var attr = element.attributes;
+
+        if (attr['data-cke-saved-href'] == null) {
+          element.attributes.class = 'local-anchor';
+        }
+      }
+    }
+  });
+
+});

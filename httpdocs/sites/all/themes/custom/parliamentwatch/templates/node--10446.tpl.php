@@ -80,6 +80,9 @@
  * @ingroup themeable
  */
 ?>
+
+<a id="question-form-anchor" class="local-anchor"></a>
+
 <div id="question-form" class="question-form">
   <div class="question-content">
     <h2><?php print t('Ask question') ?></h2>
