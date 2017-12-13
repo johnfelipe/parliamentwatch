@@ -6,6 +6,7 @@ apt-get update
 apt-get -y upgrade
 apt-get -y install \
 	drush \
+	gettext \
 	git \
 	libapache2-mod-php5 \
 	mysql-server \
