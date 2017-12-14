@@ -949,12 +949,10 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:10' => 'gender',
           'xpathparser:11' => 'firstname',
           'xpathparser:12' => 'lastname',
-          'xpathparser:13' => 'publicmail',
           'xpathparser:14' => 'phone',
           'xpathparser:15' => 'county',
           'xpathparser:16' => 'residence',
-          'xpathparser:17' => 'postalcode',
-          'xpathparser:18' => 'childs',
+          'xpathparser:18' => 'children',
           'xpathparser:19' => 'marriagestatus',
           'xpathparser:20' => 'education',
           'xpathparser:21' => 'profession',
@@ -969,7 +967,6 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:30' => 'picturecopyright',
           'xpathparser:31' => 'txtabout',
           'xpathparser:32' => 'twitteraccount',
-          'xpathparser:33' => 'externalurl',
           'xpathparser:34' => 'facebookurl',
           'xpathparser:35' => 'systemroles',
           'xpathparser:36' => 'list',
@@ -991,11 +988,9 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:10' => 0,
           'xpathparser:11' => 0,
           'xpathparser:12' => 0,
-          'xpathparser:13' => 0,
           'xpathparser:14' => 0,
           'xpathparser:15' => 0,
           'xpathparser:16' => 0,
-          'xpathparser:17' => 0,
           'xpathparser:18' => 0,
           'xpathparser:19' => 0,
           'xpathparser:20' => 0,
@@ -1011,7 +1006,6 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:30' => 0,
           'xpathparser:31' => 0,
           'xpathparser:32' => 0,
-          'xpathparser:33' => 0,
           'xpathparser:34' => 0,
           'xpathparser:35' => 0,
           'xpathparser:36' => 0,
@@ -1039,11 +1033,9 @@ function pw_gdata_importer_feeds_importer_default() {
             'xpathparser:10' => 0,
             'xpathparser:11' => 0,
             'xpathparser:12' => 0,
-            'xpathparser:13' => 0,
             'xpathparser:14' => 0,
             'xpathparser:15' => 0,
             'xpathparser:16' => 0,
-            'xpathparser:17' => 0,
             'xpathparser:18' => 0,
             'xpathparser:19' => 0,
             'xpathparser:20' => 0,
@@ -1059,7 +1051,6 @@ function pw_gdata_importer_feeds_importer_default() {
             'xpathparser:30' => 0,
             'xpathparser:31' => 0,
             'xpathparser:32' => 0,
-            'xpathparser:33' => 0,
             'xpathparser:34' => 0,
             'xpathparser:35' => 0,
             'xpathparser:36' => 0,
@@ -1150,201 +1141,184 @@ function pw_gdata_importer_feeds_importer_default() {
             'language' => 'und',
           ),
           10 => array(
-            'source' => 'xpathparser:13',
-            'target' => 'field_user_public_mail',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          11 => array(
             'source' => 'xpathparser:14',
             'target' => 'field_user_phone',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          12 => array(
+          11 => array(
             'source' => 'Blank source 1',
             'target' => 'field_user_address:country',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          13 => array(
+          12 => array(
             'source' => 'xpathparser:15',
             'target' => 'field_user_address:administrative_area',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          14 => array(
+          13 => array(
             'source' => 'xpathparser:16',
             'target' => 'field_user_address:locality',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          15 => array(
-            'source' => 'xpathparser:17',
-            'target' => 'field_user_address:postal_code',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          16 => array(
+          14 => array(
             'source' => 'xpathparser:18',
             'target' => 'field_user_childs',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          17 => array(
+          15 => array(
             'source' => 'xpathparser:19',
             'target' => 'field_user_marriage_status',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          18 => array(
+          16 => array(
             'source' => 'xpathparser:20',
             'target' => 'field_user_education',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          19 => array(
+          17 => array(
             'source' => 'xpathparser:21',
             'target' => 'field_user_job_skills',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          20 => array(
+          18 => array(
             'source' => 'xpathparser:22',
             'target' => 'field_user_political_roles',
             'term_search' => '0',
             'autocreate' => 1,
             'language' => 'und',
           ),
-          21 => array(
+          19 => array(
             'source' => 'xpathparser:23',
             'target' => 'field_user_political_goals',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          22 => array(
+          20 => array(
             'source' => 'xpathparser:24',
             'target' => 'field_user_party',
             'term_search' => '0',
             'autocreate' => 0,
             'language' => 'und',
           ),
-          23 => array(
+          21 => array(
             'source' => 'xpathparser:25',
             'target' => 'field_user_parliament',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          24 => array(
+          22 => array(
             'source' => 'xpathparser:26',
             'target' => 'field_user_constituency',
             'term_search' => '1',
             'autocreate' => 0,
             'language' => 'und',
           ),
-          25 => array(
+          23 => array(
             'source' => 'xpathparser:27',
             'target' => 'field_user_list_position',
             'term_search' => '0',
             'autocreate' => 1,
             'language' => 'und',
           ),
-          26 => array(
+          24 => array(
             'source' => 'xpathparser:28',
             'target' => 'field_user_election_result',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          27 => array(
+          25 => array(
             'source' => 'xpathparser:29',
             'target' => 'field_user_picture',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          28 => array(
+          26 => array(
             'source' => 'xpathparser:30',
             'target' => 'field_user_picture_copyright',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          29 => array(
+          27 => array(
             'source' => 'xpathparser:31',
             'target' => 'field_user_about',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          30 => array(
+          28 => array(
             'source' => 'xpathparser:32',
             'target' => 'field_user_twitter_account',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          31 => array(
-            'source' => 'xpathparser:33',
-            'target' => 'field_user_external_url:url',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          32 => array(
+          29 => array(
             'source' => 'xpathparser:34',
             'target' => 'field_user_links_more:url',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          33 => array(
+          30 => array(
             'source' => 'xpathparser:35',
             'target' => 'field_user_roles_for_view_mode_s',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          34 => array(
+          31 => array(
             'source' => 'xpathparser:36',
             'target' => 'field_user_list',
             'term_search' => '1',
             'autocreate' => 0,
             'language' => 'und',
           ),
-          35 => array(
+          32 => array(
             'source' => 'Blank source 2',
             'target' => 'name',
             'unique' => 1,
             'language' => 'und',
           ),
-          36 => array(
+          33 => array(
             'source' => 'xpathparser:37',
             'target' => 'field_user_fraction',
             'term_search' => '0',
             'autocreate' => 1,
             'language' => 'und',
           ),
-          37 => array(
+          34 => array(
             'source' => 'xpathparser:40',
             'target' => 'field_user_joined:start',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          38 => array(
+          35 => array(
             'source' => 'xpathparser:41',
             'target' => 'field_user_retired:start',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          39 => array(
+          36 => array(
             'source' => 'xpathparser:42',
             'target' => 'field_user_constituency_won',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          40 => array(
+          37 => array(
             'source' => 'xpathparser:43',
             'target' => 'field_user_list_won',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          41 => array(
+          38 => array(
             'source' => 'xpathparser:44',
             'target' => 'field_user_mobile',
             'unique' => FALSE,
+            'language' => 'und',
           ),
         ),
         'update_existing' => '2',
