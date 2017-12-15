@@ -1,10 +1,10 @@
-# German translation of Media (7.x-2.13)
+# German translation of Media (7.x-2.14)
 # Copyright (c) 2017 by the German translation team
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Media (7.x-2.13)\n"
-"POT-Creation-Date: 2017-10-19 16:44+0000\n"
+"Project-Id-Version: Media (7.x-2.14)\n"
+"POT-Creation-Date: 2017-12-12 12:43+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -12,6 +12,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
+msgid "Title"
+msgstr "Titel"
 msgid "Submit"
 msgstr "Absenden"
 msgid "Operations"
@@ -114,6 +116,8 @@ msgid "Allowed file types"
 msgstr "Zulässige Dateierweiterungen"
 msgid "!name field is required."
 msgstr "Das Feld „!name” ist erforderlich."
+msgid "Alternate text"
+msgstr "Alternativtext"
 msgid "Apply"
 msgstr "Anwenden"
 msgid "Select"
