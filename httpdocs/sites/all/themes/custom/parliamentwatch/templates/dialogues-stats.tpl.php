@@ -70,7 +70,7 @@
             <?php endif; ?>
           </div>
           <div class="vertical-bar" data-value="<?php print $data->percentage; ?>"><span></span></div>
-          <div class="qa-stats-behavior__item__info"><?php print format_plural($data->count_questions, '@count_answers of 1 question answered (@percentage %)', '@count_answers of @count questions answered (@percentage %)', ['@count_answers' => $data->count_answers, '@percentage' => round($data->percentage, 2)]); ?></div>
+          <div class="qa-stats-behavior__item__info"><?php print format_plural($data->count_questions, '@count_answers of 1 question answered (@percentage %)', '@count_answers of @count questions answered (@percentage %)', ['@count_answers' => $data->count_answers, '@percentage' => number_format($data->percentage, 2, ',', '')]); ?></div>
           <div class="qa-stats-behavior__item__info-sub"><?php print t('@percentage % answered', ['@percentage' => round($data->percentage, 2)]) ?></div>
         </div>
         <?php endforeach; ?>
@@ -89,7 +89,7 @@
             <?php endif; ?>
           </div>
           <div class="vertical-bar" data-value="<?php print $data->percentage; ?>"><span></span></div>
-          <div class="qa-stats-behavior__item__info"><?php print format_plural($data->count_questions, '@count_answers of 1 question answered (@percentage %)', '@count_answers of @count questions answered (@percentage %)', ['@count_answers' => $data->count_answers, '@percentage' => round($data->percentage, 2)]); ?></div>
+          <div class="qa-stats-behavior__item__info"><?php print format_plural($data->count_questions, '@count_answers of 1 question answered (@percentage %)', '@count_answers of @count questions answered (@percentage %)', ['@count_answers' => $data->count_answers, '@percentage' => number_format($data->percentage, 2, ',', '')]); ?></div>
           <div class="qa-stats-behavior__item__info-sub"><?php print t('@percentage % answered', ['@percentage' => round($data->percentage, 2)]) ?></div>
         </div>
         <?php endforeach; ?>
