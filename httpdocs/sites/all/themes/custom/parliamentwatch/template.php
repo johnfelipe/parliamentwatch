@@ -148,7 +148,7 @@ function parliamentwatch_preprocess_block(&$variables) {
     $config = $variables['elements']['#config'];
     $variables['theme_hook_suggestions'][] = strtr('block__' . $config['menu_name'] . '__level-' . $config['level'], '-', '_');
 
-    if ($config['menu_name'] == 'main-menu' && $config['level'] == 2) {
+    if ($config['menu_name'] == 'main-menu' && $config['level'] == 3) {
       $active_path = menu_tree_get_path('main-menu');
 
       if ($active_path) {
@@ -158,8 +158,8 @@ function parliamentwatch_preprocess_block(&$variables) {
       }
       else {
         $trail = menu_get_active_trail();
-        $text = $trail[1]['link_title'];
-        $path = $trail[1]['link_path'];
+        $text = $trail[2]['link_title'];
+        $path = $trail[2]['link_path'];
       }
 
       $variables['title_suffix']['indicator'] = [
