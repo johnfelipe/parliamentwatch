@@ -18,36 +18,52 @@ function pw_newsletter_filter_default_formats() {
     'status' => '1',
     'weight' => '0',
     'filters' => array(
-      'media_filter' => array(
+      'filter_autop' => array(
         'weight' => '-50',
         'status' => '1',
         'settings' => array(),
       ),
-      'filter_autop' => array(
+      'media_filter_paragraph_fix' => array(
         'weight' => '-49',
         'status' => '1',
-        'settings' => array(),
+        'settings' => array(
+          'replace' => 0,
+        ),
       ),
-      'filter_url' => array(
+      'media_filter' => array(
         'weight' => '-48',
         'status' => '1',
-        'settings' => array(
-          'filter_url_length' => '72',
-        ),
+        'settings' => array(),
       ),
       'filter_htmlcorrector' => array(
         'weight' => '-47',
         'status' => '1',
         'settings' => array(),
       ),
-      'pathologic' => array(
+      'filter_url' => array(
         'weight' => '-46',
+        'status' => '1',
+        'settings' => array(
+          'filter_url_length' => '72',
+        ),
+      ),
+      'pathologic' => array(
+        'weight' => '-45',
         'status' => '1',
         'settings' => array(
           'settings_source' => 'global',
           'local_paths' => '',
           'protocol_style' => 'full',
+          'local_settings' => array(
+            'protocol_style' => 'full',
+            'local_paths' => '',
+          ),
         ),
+      ),
+      'filter_encrypt' => array(
+        'weight' => '-39',
+        'status' => '1',
+        'settings' => array(),
       ),
     ),
   );

@@ -99,24 +99,6 @@ if(typeof(CKEDITOR) !== 'undefined') {
                 '<li>List item 3</li>' +
                 '</ul>' +
                 '</div>'
-            },
-            {
-                title: 'Image container with ©opyright',
-                image: 'template_default_3.gif',
-                description: 'A container with an image and a subline floating to the left.',
-                html: '<div class="file-image float-left">' +
-                '<img src="/sites/all/modules/contrib/ckeditor/ckeditor/plugins/templates/templates/images/template_default_3.gif">' +
-                '<div class="copyright">©opyright</div>' +
-                '</div>'
-            },
-            {
-                title: 'Image container with ©opyright',
-                image: 'template_default_4.gif',
-                description: 'A container with an image and a subline floating to the right.',
-                html: '<div class="file-image float-right">' +
-                '<img src="/sites/all/modules/contrib/ckeditor/ckeditor/plugins/templates/templates/images/template_default_4.gif">' +
-                '<div class="copyright">©opyright</div>' +
-                '</div>'
             }
         ]
     });
@@ -131,7 +113,7 @@ CKEDITOR.on('instanceReady', function (ev) {
         var attr = element.attributes;
 
         if (attr['data-cke-saved-href'] == null) {
-          element.attributes.class = 'local-anchor';
+          element.attributes.class = 'local-anchor ';
         }
       }
     }

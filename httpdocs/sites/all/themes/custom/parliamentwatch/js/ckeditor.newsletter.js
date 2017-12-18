@@ -54,7 +54,7 @@ if(typeof(CKEDITOR) !== 'undefined') {
                 title: 'Image container with ©opyright',
                 image: 'template_default_3.gif',
                 description: 'A container with an image and a subline floating to the left.',
-                html: '<div style="float: left; padding-right: 20px; padding-bottom: 10px;"><div style="padding: 5px; border: 1px solid #dfdbd2;"><img src="/sites/all/modules/contrib/ckeditor/ckeditor/plugins/templates/templates/images/template_default_3.gif"></div><div class="copyright" style="font-family: Arial, Helvetica, Sans-Serif; font-size: 10px; color: #aaa;">©opyright</div></div>'
+                html: '<div style="float: left; padding-right: 20px; padding-bottom: 10px;"><img src="/sites/all/modules/contrib/ckeditor/ckeditor/plugins/templates/templates/images/template_default_3.gif"><div class="copyright" style="font-family: Arial, Helvetica, Sans-Serif; font-size: 10px; color: #aaa;">©opyright</div></div>'
                 +'<p style="font-family: Arial, Helvetica, Sans-Serif; color: #4d4d4d; font-size: 15px; line-height: 21px; margin: 0 0 10px;"></p>'
             },
             {
