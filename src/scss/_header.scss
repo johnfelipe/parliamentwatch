@@ -288,7 +288,7 @@
   }
 }
 
-.nav--main-menu--level-2 {
+.nav--main-menu--level-3 {
   @include breakpoint($breakpoint-m-min) {
     position: relative;
     z-index: 97;
@@ -542,7 +542,7 @@
       @include padding($space $space);
     }
   }
-  .nav--main-menu--level-2 {
+  .nav--main-menu--level-3 {
     .nav__item__link {
       @include breakpoint($breakpoint-l-min) {
         @include padding($space ($space-large*0.65));

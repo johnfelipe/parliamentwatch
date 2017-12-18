@@ -78,6 +78,34 @@ function pw_globals_update_7105() {
 }
 
 /**
+ * Reorganise main menu.
+ */
+function pw_globals_update_7106() {
+  $links = menu_load_links('main-menu');
+  $filter_parliament_links = function ($item) {
+    $exclude = ['blog', 'info', 'user'];
+    return $item['plid'] == 0 && !in_array($item['link_path'], $exclude);
+  };
+  $parliament_links = array_filter($links, $filter_parliament_links);
+
+  foreach ($parliament_links as $link) {
+    $plid = $link['mlid'];
+    $filter = function ($item) use ($plid) {
+      return $item['plid'] == $plid;
+    };
+    $children = array_filter($links, $filter);
+    $mlid = _pw_globals_menu_link_add($link['link_path'], $link['link_title'], 0, 'main-menu', $link['mlid']);
+
+    foreach ($children as $child) {
+      $child['plid'] = $mlid;
+      menu_link_save($child);
+    }
+  }
+
+  variable_set('menu_block_3_level', 3);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
