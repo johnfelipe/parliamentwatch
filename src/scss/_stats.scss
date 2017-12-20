@@ -117,16 +117,6 @@
     float: right;
   }
 }
-.qa-stats-behavior__item__info-sub {
-  font-size: .8em;
-  text-align: right;
-  @include breakpoint($breakpoint-xs-min) {
-    display: inline-block;
-    float: right;
-    padding-top: $space-xsmall-mobile + 1;
-    margin-right: $space-xsmall;
-  }
-}
 
 /* Question and answers statistics*/
 
