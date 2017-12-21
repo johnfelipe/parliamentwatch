@@ -8,7 +8,6 @@ project = pw_content_authoring_layout
 dependencies[] = better_formats
 dependencies[] = ckeditor
 dependencies[] = ctools
-dependencies[] = customfilter
 dependencies[] = features
 dependencies[] = file_entity
 dependencies[] = image
