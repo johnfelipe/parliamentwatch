@@ -34,7 +34,6 @@
     padding:  $space-xsmall $space-small 0;
   }
 }
-
 .comment__submitted {
   border-bottom: 1px solid $gray;
   margin-bottom: $space-small;
@@ -46,6 +45,9 @@
     padding: $space-small-mobile $space-small;
     @include grid-column(11, $neat-grid-no-gutter);
   }
+}
+.comment__submitted__date {
+  color: $gray;
 }
 .comment__permalink {
   color: $gray;
