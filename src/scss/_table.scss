@@ -110,22 +110,23 @@
   th[data-sort] {
     cursor: pointer;
     &:after {
-      content: '\e847 \e848';
+      content: '';
       font-family: 'awfont';
       display: inline-block;
       margin-left: $space-xsmall-mobile;
+      font-size: .8em;
+      color: #f46b3b;
+    }
+    &.sorting-desc {
+      &:after {
+        content: '\e847';
+      }
+    }
+    &.sorting-asc {
+      &:after {
+        content: '\e848';
+      }
     }
   }
-  .sorting-desc {
-    &:after {
-      content: '\e847';
-      font-family: 'awfont';
-    }
-  }
-  .sorting-asc {
-    &:after {
-      content: '\e848';
-      font-family: 'awfont';
-    }
-  }
+
 }

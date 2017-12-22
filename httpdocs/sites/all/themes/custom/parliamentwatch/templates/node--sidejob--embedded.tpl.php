@@ -95,6 +95,7 @@
   </td>
   <td class="sidejob-overview__item__date" data-sort-value="<?php print $field_sidejob_date_start[0]['value']; ?>">
     <?php print render($content['field_sidejob_date_start']); ?>
+    <?php if (!empty($content['field_sidejob_date_start']) && !empty($content['field_sidejob_date_end'])): ?> &ndash; <?php endif; ?>
     <?php print render($content['field_sidejob_date_end']); ?>
   </td>
   <td class="sidejob-overview__item__level" data-sort-value="<?php print $field_sidejob_income_max_total[0]['value'] ?: 0; ?>">

@@ -52,7 +52,7 @@
     </div>
     <div class="tabs__content__content">
       <div class="sidejob-overview">
-        <span class="d3 d3--bars-secondary-income data-d3-secondary-income"></span>
+        <span class="d3 d3--bars-secondary-income" data-d3-secondary-income></span>
         <div class="table-wrapper">
           <table cellpadding="0" cellspacing="0" class="table table--sortable table--secondary-income">
             <thead>

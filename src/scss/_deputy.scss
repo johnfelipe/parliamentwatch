@@ -689,9 +689,7 @@ $abstimmverhalten-node-item-width: 18px;
 
 .sidejob-overview {
   @include box-padded-large($white);
-  .table {
-    margin-top: $space-large * 2;
-  }
+  @include grid-column(12);
   tbody .sidejob-overview__item__customer { font-weight: 500; }
   .sidejob-overview__item__level {
     text-align: right;
@@ -711,6 +709,16 @@ $abstimmverhalten-node-item-width: 18px;
     @media (max-width: $breakpoint-s-max) {
       float: left;
       width: 70%;
+    }
+  }
+  .sidejob-overview__item__activity {
+    @media (min-width: $breakpoint-s-min) {
+      padding-right: $space-xsmall-mobile;
+    }
+  }
+  .sidejob-overview__item__city {
+    @media (min-width: $breakpoint-s-min) {
+      padding-right: $space-xsmall-mobile;
     }
   }
   .sidejob-overview__item__date {
