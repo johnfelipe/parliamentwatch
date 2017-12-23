@@ -38,13 +38,18 @@ function pw_content_authoring_layout_filter_default_formats() {
     'status' => '1',
     'weight' => '-9',
     'filters' => array(
+      'filter_autop' => array(
+        'weight' => '-50',
+        'status' => '1',
+        'settings' => array(),
+      ),
       'filter_htmlcorrector' => array(
-        'weight' => '-46',
+        'weight' => '-49',
         'status' => '1',
         'settings' => array(),
       ),
       'filter_html' => array(
-        'weight' => '-45',
+        'weight' => '-48',
         'status' => '1',
         'settings' => array(
           'allowed_html' => '<p><br><a><em> <strong><ul> <ol> <li> <dl> <dt> <dd><span><!-- --><crypt>',
@@ -52,38 +57,33 @@ function pw_content_authoring_layout_filter_default_formats() {
           'filter_html_nofollow' => 0,
         ),
       ),
+      'filter_encrypt' => array(
+        'weight' => '-47',
+        'status' => '1',
+        'settings' => array(),
+      ),
       'filter_url' => array(
-        'weight' => '-44',
+        'weight' => '-46',
         'status' => '1',
         'settings' => array(
           'filter_url_length' => '72',
         ),
       ),
       'pathologic' => array(
-        'weight' => '-41',
+        'weight' => '-45',
         'status' => '1',
         'settings' => array(
           'settings_source' => 'global',
-          'local_paths' => 'https://live.de.parliamentwatch.org/
+          'local_paths' => '',
+          'protocol_style' => 'full',
+          'local_settings' => array(
+            'protocol_style' => 'path',
+            'local_paths' => 'https://live.de.parliamentwatch.org/
 https://beta.abgeordnetenwatch.de/
 http://live.de.parliamentwatch.org/
 http://beta.abgeordnetenwatch.de/
 /',
-          'protocol_style' => 'path',
-        ),
-      ),
-      'filter_autop' => array(
-        'weight' => '-40',
-        'status' => '1',
-        'settings' => array(),
-      ),
-      'pw_crypt' => array(
-        'weight' => '-38',
-        'status' => '1',
-        'settings' => array(
-          'allowed_html' => '',
-          'filter_html_help' => 1,
-          'filter_html_nofollow' => 0,
+          ),
         ),
       ),
     ),
@@ -98,52 +98,52 @@ http://beta.abgeordnetenwatch.de/
     'weight' => '-8',
     'filters' => array(
       'php_code' => array(
-        'weight' => '-47',
+        'weight' => '-50',
         'status' => '1',
         'settings' => array(),
       ),
       'filter_autop' => array(
-        'weight' => '-46',
+        'weight' => '-49',
         'status' => '1',
         'settings' => array(),
       ),
       'media_filter' => array(
-        'weight' => '-45',
+        'weight' => '-48',
         'status' => '1',
         'settings' => array(),
       ),
       'filter_htmlcorrector' => array(
-        'weight' => '-42',
+        'weight' => '-47',
         'status' => '1',
         'settings' => array(),
       ),
-      'pw_crypt' => array(
-        'weight' => '0',
+      'filter_encrypt' => array(
+        'weight' => '-44',
         'status' => '1',
-        'settings' => array(
-          'allowed_html' => '',
-          'filter_html_help' => 1,
-          'filter_html_nofollow' => 0,
-        ),
+        'settings' => array(),
       ),
       'filter_url' => array(
-        'weight' => '0',
+        'weight' => '-43',
         'status' => '1',
         'settings' => array(
           'filter_url_length' => '72',
         ),
       ),
       'pathologic' => array(
-        'weight' => '50',
+        'weight' => '-40',
         'status' => '1',
         'settings' => array(
           'settings_source' => 'global',
-          'local_paths' => 'https://live.de.parliamentwatch.org/
+          'local_paths' => '',
+          'protocol_style' => 'full',
+          'local_settings' => array(
+            'protocol_style' => 'full',
+            'local_paths' => 'https://live.de.parliamentwatch.org/
 https://beta.abgeordnetenwatch.de/
 http://live.de.parliamentwatch.org/
 http://beta.abgeordnetenwatch.de/
 /',
-          'protocol_style' => 'full',
+          ),
         ),
       ),
     ),
@@ -179,20 +179,20 @@ http://beta.abgeordnetenwatch.de/
         'status' => '1',
         'settings' => array(),
       ),
-      'filter_url' => array(
+      'filter_encrypt' => array(
         'weight' => '-46',
+        'status' => '1',
+        'settings' => array(),
+      ),
+      'filter_url' => array(
+        'weight' => '-45',
         'status' => '1',
         'settings' => array(
           'filter_url_length' => '72',
         ),
       ),
-      'filter_encrypt' => array(
-        'weight' => '-44',
-        'status' => '1',
-        'settings' => array(),
-      ),
       'pathologic' => array(
-        'weight' => '-43',
+        'weight' => '-44',
         'status' => '1',
         'settings' => array(
           'settings_source' => 'global',
