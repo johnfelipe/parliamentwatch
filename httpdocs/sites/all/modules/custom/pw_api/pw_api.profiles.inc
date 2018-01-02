@@ -102,11 +102,11 @@ function pw_api_profiles($parliament, $file_type) {
 
   $result = $query->execute()->fetchCol(1);
   $parameters = drupal_get_query_parameters();
-  $activities = isset($parameters['activities'])?array($parameters['activities']):array();
+  $subsets = isset($parameters['subsets'])?array($parameters['subsets']):array();
 
   $profiles = array();
   foreach (pw_userarchives_politician_load_multiple($result) as $user) {
-    $profiles['profile_'.$user->uid] = pw_api_user_to_array($user, $activities);
+    $profiles['profile_'.$user->uid] = pw_api_user_to_array($user, $subsets);
   }
 
   $contributer = [];
@@ -116,13 +116,13 @@ function pw_api_profiles($parliament, $file_type) {
     $contributer[] = $field_value['value'];
   }
 
-  $activities = ['votes', 'dialogues', 'sidejobs'];
+  $subsets = ['votes', 'dialogues', 'sidejobs'];
 
   // add meta data and return
-  return pw_api_meta_data($profiles, 'profiles', $activities, $contributer);
+  return pw_api_meta_data($profiles, 'profiles', $subsets, $contributer);
 }
 
-function pw_api_user_to_array($user, $activities = array()) {
+function pw_api_user_to_array($user, $subsets = array()) {
 
   $profile = array();
 
@@ -271,7 +271,7 @@ function pw_api_user_to_array($user, $activities = array()) {
     }
 
     // add sidejobs
-    if(in_array('sidejobs', $activities)){
+    if(in_array('sidejobs', $subsets)){
       $query = new EntityFieldQuery();
       $query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'sidejob')
@@ -312,7 +312,7 @@ function pw_api_user_to_array($user, $activities = array()) {
     }
 
     // add votes
-    if(in_array('votes', $activities)){
+    if(in_array('votes', $subsets)){
       $query = new EntityFieldQuery();
       $query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'vote')
@@ -360,7 +360,7 @@ function pw_api_user_to_array($user, $activities = array()) {
     }
 
     // add data from user_archive_cache meta table
-    if(in_array('dialogues', $activities)){
+    if(in_array('dialogues', $subsets)){
       $result = db_query("SELECT number_of_questions, number_of_answers FROM user_archive_cache WHERE vid = :vid", array(':vid' => $w_user->vid->value()))->fetchAssoc();
       $profile['questions'] = array();
 

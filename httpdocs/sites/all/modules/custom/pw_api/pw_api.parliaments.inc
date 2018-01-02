@@ -54,10 +54,9 @@ function pw_api_parliaments() {
       $parliament['dates']['election'] = strlen($field_election[0]['value']) > 0?substr($field_election[0]['value'], 0, 10):'';
 
       // add sub datasets
-      $basepath = 'api/parliament';
       $dataset_types = ['deputies', 'candidates', 'constituencies', 'polls', 'committees'];
       $path_types = ['name' => strtolower($term->name), 'uuid' => $term->uuid];
-      $parliament['datasets'] = pw_api_urls_datasets($basepath, $dataset_types, $path_types);
+      $parliament['datasets'] = pw_api_urls_datasets($dataset_types, $path_types);
 
       // add to array
       $parliaments['parliament_'.$tid] = $parliament;

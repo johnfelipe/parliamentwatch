@@ -87,6 +87,38 @@ function pw_api_menu() {
     $items[$key] = $item;
   }
 
+  // add committees hooks
+  foreach (array('xml', 'json') as $file_type) {
+
+    // add committee
+    $key = 'api/parliament/%/committees.'.$file_type;
+    $item = array(
+      'page callback' => 'pw_api_committees',
+      'page arguments' => array(2),
+      'access callback' => TRUE,
+      'delivery callback' => 'pw_api_deliver_'.$file_type,
+      'type' => MENU_CALLBACK,
+      'file' => 'pw_api.committees.inc',
+      );
+    $items[$key] = $item;
+  }
+
+  // add committee hooks
+  foreach (array('xml', 'json') as $file_type) {
+
+    // add committee
+    $key = 'api/parliament/%/committee/%/committee.'.$file_type;
+    $item = array(
+      'page callback' => 'pw_api_committee',
+      'page arguments' => array(2, 4),
+      'access callback' => TRUE,
+      'delivery callback' => 'pw_api_deliver_'.$file_type,
+      'type' => MENU_CALLBACK,
+      'file' => 'pw_api.committees.inc',
+      );
+    $items[$key] = $item;
+  }
+
   // add profile hooks
   foreach (array('xml', 'json') as $file_type) {
     $key = 'api/profile/%/profile.'.$file_type;
@@ -163,7 +195,6 @@ function pw_api_deliver_xml($page_result) {
     drupal_add_http_header('Status', '404 Not Found');
   }
   else {
-    $pathinfo = pathinfo(current_path());
     $writer = new XmlWriter();
     $writer->openUri('php://output');
     $writer->setIndent(TRUE);
@@ -276,16 +307,26 @@ function pw_api_deliver_json($page_result) {
  * @param array $dataset_types
  *   e.g. deputies, constituencies
  * @param array $path_types
- *   usually uuid, name
+ *   usually uuid and name
+ * @param array $path_types_parliaments
+ *   for deeper paths e.g. single profiles. usually uuid and name.
  * @return array $datasets
  *   array with all urls to sub datasets
  */
 
-function pw_api_urls_datasets($basepath, $dataset_types, $path_types) {
+function pw_api_urls_datasets($dataset_types, $path_types, $path_types_parliaments = []) {
+  $basepath = 'api/parliament';
   $pathinfo = pathinfo(current_path());
   foreach ($dataset_types as $dataset_type) {
     foreach ($path_types as $path_type => $path_type_value) {
-      $datasets[$dataset_type]['by-'.$path_type] = url($basepath.'/'.$path_type_value.'/'.$dataset_type.'.'.$pathinfo['extension'], ['absolute' => TRUE]);
+      if (!empty($path_types_parliaments)) {
+        $path = $basepath.'/'.strtolower($path_types_parliaments[$path_type]).'/'.$dataset_type;
+      }
+      else {
+        $path = $basepath;
+      }
+      $path .= '/'.$path_type_value.'/'.$dataset_type.'.'.$pathinfo['extension'];
+      $datasets[$dataset_type]['by-'.$path_type] = url($path, ['absolute' => TRUE]);
     }
   }
   return $datasets;
@@ -304,10 +345,10 @@ function pw_api_urls_datasets($basepath, $dataset_types, $path_types) {
  *   modified dataset
  */
 
-function pw_api_meta_data($dataset, $dataset_name = FALSE, $activities = [], $contributer = []) {
-  for ($i=0; $i < sizeof($activities); $i++) {
-    $activities['value_'.$i] = $activities[$i];
-    unset($activities[$i]);
+function pw_api_meta_data($dataset, $dataset_name = FALSE, $subsets = [], $contributer = []) {
+  for ($i=0; $i < sizeof($subsets); $i++) {
+    $subsets['value_'.$i] = url(current_path(), ['absolute' => TRUE]).'?subsets='.$subsets[$i];
+    unset($subsets[$i]);
   }
   for ($i=0; $i < sizeof($contributer); $i++) {
     $contributer['name_'.$i] = $contributer[$i];
@@ -318,9 +359,29 @@ function pw_api_meta_data($dataset, $dataset_name = FALSE, $activities = [], $co
     $dataset_name = $pathinfo['filename'];
   }
   if($pathinfo['extension'] == 'json'){
-    return ['meta' => ['contributer' => $contributer, 'activities' => $activities], $dataset_name => $dataset];
+    return [
+      'meta' => [
+          'license' => [
+            'name' => 'Open Database License (ODbL) v1.0',
+            'url' => 'https://opendatacommons.org/licenses/odbl/1.0/'
+          ],
+          'contributer' => $contributer,
+          'subsets' => $subsets,
+        ],
+        $dataset_name => $dataset
+      ];
   }
   else{
-    return [$dataset_name => ['meta' => ['contributer' => $contributer, 'activities' => $activities]] + $dataset];
+    return [
+      $dataset_name => [
+        'meta' => [
+          'license' => [
+            'name' => 'Open Database License (ODbL) v1.0',
+            'url' => 'https://opendatacommons.org/licenses/odbl/1.0/'
+          ],
+          'contributer' => $contributer,
+          'subsets' => $subsets
+        ]
+      ] + $dataset];
   }
 }
