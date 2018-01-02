@@ -27,6 +27,7 @@ function pw_api_menu() {
     $key = 'api/parliaments.'.$file_type;
     $item = array(
       'page callback' => 'pw_api_parliaments',
+      'page arguments' => array($file_type),
       'access callback' => TRUE,
       'delivery callback' => 'pw_api_deliver_'.$file_type,
       'type' => MENU_CALLBACK,
@@ -40,7 +41,7 @@ function pw_api_menu() {
     $key = 'api/parliament/%/constituencies.'.$file_type;
     $item = array(
       'page callback' => 'pw_api_constituencies',
-      'page arguments' => array(2),
+      'page arguments' => array(2, $file_type),
       'access callback' => TRUE,
       'delivery callback' => 'pw_api_deliver_'.$file_type,
       'type' => MENU_CALLBACK,
@@ -56,7 +57,7 @@ function pw_api_menu() {
     $key = 'api/parliament/%/petitions.'.$file_type;
     $item = array(
       'page callback' => 'pw_api_petitions',
-      'page arguments' => array(2),
+      'page arguments' => array(2, $file_type),
       'access callback' => TRUE,
       'delivery callback' => 'pw_api_deliver_'.$file_type,
       'type' => MENU_CALLBACK,
@@ -77,7 +78,7 @@ function pw_api_menu() {
     $key = 'api/poll/%/poll.'.$file_type;
     $item = array(
       'page callback' => 'pw_api_poll',
-      'page arguments' => array(2),
+      'page arguments' => array(2, $file_type),
       'access callback' => TRUE,
       'delivery callback' => 'pw_api_deliver_'.$file_type,
       'type' => MENU_CALLBACK,
@@ -91,7 +92,7 @@ function pw_api_menu() {
     $key = 'api/profile/%/profile.'.$file_type;
     $item = array(
       'page callback' => 'pw_api_profile',
-      'page arguments' => array(2),
+      'page arguments' => array(2, $file_type),
       'access callback' => TRUE,
       'delivery callback' => 'pw_api_deliver_'.$file_type,
       'type' => MENU_CALLBACK,
@@ -101,7 +102,7 @@ function pw_api_menu() {
 
     // add another path for this call
     $key = 'api/parliament/%/profile/%/profile.'.$file_type;
-    $item['page arguments'] = array(4, 2);
+    $item['page arguments'] = array(4, 2, $file_type);
     $items[$key] = $item;
   }
 
@@ -134,6 +135,7 @@ function pw_api_menu() {
   return $items;
 }
 
+
 /**
  * Implements hook_menu().
  *
@@ -147,6 +149,7 @@ function pw_api_permission() {
       ),
     );
 }
+
 
 /**
  * Delivery callback; returns XML.
@@ -215,6 +218,7 @@ function pw_api_json_array_rebuild(&$items){
   }
 }
 
+
 /**
  * Shorten all names in json array.
  *
@@ -263,35 +267,60 @@ function pw_api_deliver_json($page_result) {
   }
 }
 
-/**
- * Delivery callback; returns CSV.
- *
- * @param array $page_result
- */
-function pw_api_deliver_csv($page_result) {
-  drupal_add_http_header('Content-type', 'text/csv; charset=utf8');
 
-  if (is_int($page_result)) {
-    switch ($page_result) {
-      case MENU_NOT_FOUND:
-      drupal_add_http_header('Status', '404 Not Found');
-      break;
+/**
+ * Builds urls to sub datasets.
+ *
+ * @param string $basepath
+ *   api basepath
+ * @param array $dataset_types
+ *   e.g. deputies, constituencies
+ * @param array $path_types
+ *   usually uuid, name
+ * @return array $datasets
+ *   array with all urls to sub datasets
+ */
+
+function pw_api_urls_datasets($basepath, $dataset_types, $path_types) {
+  $pathinfo = pathinfo(current_path());
+  foreach ($dataset_types as $dataset_type) {
+    foreach ($path_types as $path_type => $path_type_value) {
+      $datasets[$dataset_type]['by-'.$path_type] = url($basepath.'/'.$path_type_value.'/'.$dataset_type.'.'.$pathinfo['extension'], ['absolute' => TRUE]);
     }
-  } else {
-    $handle = fopen('php://output', 'w');
-    foreach ($page_result as $item) {
-      $fields = array(
-        $item['uuid'],
-        $item['gender'],
-        $item['name'],
-        $item['first_name'],
-        $item['last_name'],
-        $item['party'],
-        $item['constituency']['uuid'],
-        $item['constituency']['name'],
-        $item['constituency']['number'],
-        );
-      fputcsv($handle, $fields);
-    }
+  }
+  return $datasets;
+}
+
+
+/**
+ * Sets meta data
+ * @param array $dataset
+ *   dataset
+ * @param string $dataset_name
+ *   name of the root element
+ * @param string $contributer
+ *   if exists: data contributer
+ * @return array
+ *   modified dataset
+ */
+
+function pw_api_meta_data($dataset, $dataset_name = FALSE, $activities = [], $contributer = []) {
+  for ($i=0; $i < sizeof($activities); $i++) {
+    $activities['value_'.$i] = $activities[$i];
+    unset($activities[$i]);
+  }
+  for ($i=0; $i < sizeof($contributer); $i++) {
+    $contributer['name_'.$i] = $contributer[$i];
+    unset($contributer[$i]);
+  }
+  $pathinfo = pathinfo(current_path());
+  if(!$dataset_name) {
+    $dataset_name = $pathinfo['filename'];
+  }
+  if($pathinfo['extension'] == 'json'){
+    return ['meta' => ['contributer' => $contributer, 'activities' => $activities], $dataset_name => $dataset];
+  }
+  else{
+    return [$dataset_name => ['meta' => ['contributer' => $contributer, 'activities' => $activities]] + $dataset];
   }
 }

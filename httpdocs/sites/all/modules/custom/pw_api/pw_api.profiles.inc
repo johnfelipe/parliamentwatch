@@ -109,21 +109,17 @@ function pw_api_profiles($parliament, $file_type) {
     $profiles['profile_'.$user->uid] = pw_api_user_to_array($user, $activities);
   }
 
-  $contributer = array();
+  $contributer = [];
   $field_contributer = field_get_items('taxonomy_term', reset($parliament_terms), 'field_contributer');
   $i = 0;
   foreach ($field_contributer as $field_value) {
-    $contributer['name_'.++$i] = $field_value['value'];
+    $contributer[] = $field_value['value'];
   }
 
-  if($file_type == 'json'){
-    $return_array = array('contributer' => $contributer, 'profiles' => $profiles);
-  }
-  else{
-    $return_array = array('profiles' => array('contributer' => $contributer) + $profiles);
-  }
+  $activities = ['votes', 'dialogues', 'sidejobs'];
 
-  return $return_array;
+  // add meta data and return
+  return pw_api_meta_data($profiles, 'profiles', $activities, $contributer);
 }
 
 function pw_api_user_to_array($user, $activities = array()) {

@@ -14,8 +14,6 @@
 
 function pw_api_parliaments() {
 
-  $parliaments = array();
-
   $parliaments_voc = taxonomy_vocabulary_machine_name_load('parliaments');
 
   // query for all terms
@@ -32,7 +30,8 @@ function pw_api_parliaments() {
       // add name & uuid
       $parliament = array();
       $parliament['name'] = $term->name;
-      $parliament['uuid'] = $term->uuid;
+
+      $parliament['meta']['uuid'] = $term->uuid;
 
       // find & add valid dates
       $field_valid = field_get_items('taxonomy_term', $term, 'field_parliament_valid');
@@ -54,13 +53,17 @@ function pw_api_parliaments() {
       $field_election = field_get_items('taxonomy_term', $term, 'field_parliament_election');
       $parliament['dates']['election'] = strlen($field_election[0]['value']) > 0?substr($field_election[0]['value'], 0, 10):'';
 
+      // add sub datasets
+      $basepath = 'api/parliament';
+      $dataset_types = ['deputies', 'candidates', 'constituencies', 'polls', 'committees'];
+      $path_types = ['name' => strtolower($term->name), 'uuid' => $term->uuid];
+      $parliament['datasets'] = pw_api_urls_datasets($basepath, $dataset_types, $path_types);
+
       // add to array
       $parliaments['parliament_'.$tid] = $parliament;
     }
   }
 
-// wrap into parliaments root element
-  $parliaments = array('parliaments' => $parliaments);
-
-  return $parliaments;
+  // add meta data and return
+  return pw_api_meta_data($parliaments);
 }
