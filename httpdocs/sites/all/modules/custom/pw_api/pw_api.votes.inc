@@ -82,12 +82,11 @@ function pw_api_polls($parliament) {
 
     // translate uuid into parliament name
   if(preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i', $parliament, $uuid)){
-    $parliament_term = entity_uuid_load('taxonomy_term', $uuid);
+    $parliament_term = array_pop(entity_uuid_load('taxonomy_term', $uuid));
   }
   else{
-    $parliament_term = taxonomy_get_term_by_name($parliament, 'parliaments');
+    $parliament_term = array_pop(taxonomy_get_term_by_name($parliament, 'parliaments'));
   }
-  $parliament_term = array_pop($parliament_term);
 
   // query for all nodes of type poll
   $query = new EntityFieldQuery();
@@ -129,14 +128,13 @@ function pw_api_poll($poll_nid) {
   $topics = field_get_items('node', $node, 'field_topics');
   $poll['meta']['topics'] = array();
   foreach ($topics as $topic) {
-    #$poll['meta']['topics']['topic_'.$topic['tid']] = $terms_topics[$topic['tid']]->name;
+    $poll['meta']['topics']['topic_'.$topic['tid']] = $terms_topics[$topic['tid']]->name;
   }
   $poll['meta']['url'] = url('node/' . $node->nid, array('absolute' => TRUE));
   $poll['title'] = $node->title;
   $date_field = field_get_items('node', $node, 'field_poll_date');
   $poll_date = substr($date_field[0]['value'], 0, 10);
   $poll['date'] = $poll_date;
-  $poll['summary'] = trim(strip_tags($body[0]['summary']));
   $body = field_get_items('node', $node, 'body');
   $poll['summary'] = trim(strip_tags($body[0]['summary']));
   $status = field_get_items('node', $node, 'field_voted');
@@ -158,7 +156,6 @@ function pw_api_poll($poll_nid) {
     $poll['status'] = $poll_date > date('Y-m-d')?t('pending'):t('unknown');
     $poll['votes'] = '';
   }
-  $poll['url'] = url('node/'.$node->nid, array('absolute' => TRUE));
 
   return array('poll' => $poll);
 }
@@ -229,6 +226,11 @@ function pw_api_add_votes($parliament_term, $target_node_id, $vote_date){
     $query->leftJoin('taxonomy_term_data', 'constituency_term', "u_constituency.field_user_constituency_tid = constituency_term.tid");
     $query->addField('constituency_term', 'name', 'constituency');
 
+    // join to retrieve list
+    $query->leftJoin('field_revision_field_user_list', 'u_list', "uac.vid = u_list.revision_id");
+    $query->leftJoin('taxonomy_term_data', 'list_term', "u_list.field_user_list_tid = list_term.tid");
+    $query->addField('list_term', 'name', 'list');
+
     // sort
     $query->orderBy('u_lname.field_user_lname_value');
     $query->orderBy('u_fname.field_user_fname_value');
@@ -239,11 +241,12 @@ function pw_api_add_votes($parliament_term, $target_node_id, $vote_date){
     // fetch and write results
     while($record = $result->fetchObject()){
       $vote = array();
-      $vote['name'] = trim($record->degree.' '.$record->first_name.' '.$record->last_name);
+      $vote['fullname'] = trim($record->degree.' '.$record->first_name.' '.$record->last_name);
       $vote['uuid'] = $record->uuid;
       $vote['party'] = $record->party;
       $vote['fraction'] = $record->fraction;
       $vote['constituency'] = $record->constituency;
+      $vote['list'] = $record->list;
       $vote['vote'] = $record->vote_label;
       $votes['deputy_'.$record->vid] = $vote;
     }
