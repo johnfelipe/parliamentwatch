@@ -154,14 +154,17 @@ function pw_api_menu() {
     $items['api/parliament/%/candidates.'.$file_type] = $items[$key];
   }
 
-  // add hooks for authorized api based on public api
-  foreach ($items as $key => $item) {
-    if(preg_match('/(api\/.*)(\.\w{3,4})$/', $key, $m)){
-      $key_authorizied = $m[1].'-authorized'.$m[2];
-      $items[$key_authorizied] = $item;
-      $items[$key_authorizied]['access arguments'] = array('access authorized api');
-      unset($items[$key_authorizied]['access callback']);
-    }
+  // add topics hooks
+  foreach (array('xml', 'json') as $file_type) {
+    $key = 'api/topics.'.$file_type;
+    $item = array(
+      'page callback' => 'pw_api_topics',
+      'access callback' => TRUE,
+      'delivery callback' => 'pw_api_deliver_'.$file_type,
+      'type' => MENU_CALLBACK,
+      'file' => 'pw_api.topics.inc',
+      );
+    $items[$key] = $item;
   }
 
   return $items;
