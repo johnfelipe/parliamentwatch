@@ -50,7 +50,7 @@ function pw_api_menu() {
     $items[$key] = $item;
   }
 
-  // add votes hooks
+  // add petitions / polls hooks
   foreach (array('xml', 'json') as $file_type) {
 
     // add petitions
@@ -75,10 +75,10 @@ function pw_api_menu() {
   foreach (array('xml', 'json') as $file_type) {
 
     // add poll
-    $key = 'api/poll/%/poll.'.$file_type;
+    $key = 'api/parliament/%/poll/%/poll.'.$file_type;
     $item = array(
       'page callback' => 'pw_api_poll',
-      'page arguments' => array(2, $file_type),
+      'page arguments' => array(2, 4),
       'access callback' => TRUE,
       'delivery callback' => 'pw_api_deliver_'.$file_type,
       'type' => MENU_CALLBACK,

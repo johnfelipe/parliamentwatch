@@ -8,6 +8,8 @@
 
 /**
  *
+ * @param $parliament
+ *    Can be parliament name or term uuid.
  * @return array $votes
  *   All votes to petitions as array.
  */
@@ -18,12 +20,11 @@ function pw_api_petitions($parliament) {
 
   // translate uuid into parliament name
   if(preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i', $parliament, $uuid)){
-    $parliament_term = entity_uuid_load('taxonomy_term', $uuid);
+    $parliament_term = array_pop(entity_uuid_load('taxonomy_term', $uuid));
   }
   else{
-    $parliament_term = taxonomy_get_term_by_name($parliament, 'parliaments');
+    $parliament_term = array_pop(taxonomy_get_term_by_name($parliament, 'parliaments'));
   }
-  $parliament_term = array_pop($parliament_term);
 
    // query for all nodes of type petition
   $query = new EntityFieldQuery();
@@ -72,6 +73,8 @@ function pw_api_petitions($parliament) {
 
 /**
  *
+ * @param $parliament
+ *    Can be parliament name or term uuid.
  * @return array $votes
  *   All votes to polls as array.
  */
@@ -88,6 +91,9 @@ function pw_api_polls($parliament) {
     $parliament_term = array_pop(taxonomy_get_term_by_name($parliament, 'parliaments'));
   }
 
+  $parameters = drupal_get_query_parameters();
+  $subsets = isset($parameters['subsets'])?[$parameters['subsets']]:[];
+
   // query for all nodes of type poll
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
@@ -99,23 +105,63 @@ function pw_api_polls($parliament) {
 
   if(isset($result_nodes['node'])){
     foreach(array_keys($result_nodes['node']) as $target_node_id){
-      $poll = pw_api_poll($target_node_id);
+      $poll = pw_api_poll($parliament_term, $target_node_id, $subsets);
       $polls['poll_'.$target_node_id] = $poll['poll'];
     }
   }
 
-  return array('polls' => $polls);
+  $subsets = ['votes'];
+
+  // add meta data and return
+  return pw_api_meta_data($polls, 'polls', $subsets);
 }
 
-function pw_api_poll($poll_nid) {
 
-  if(preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i', $poll_nid, $uuid)){
-    $poll_nid = array_pop(entity_get_id_by_uuid('node', $uuid));
+/**
+ *
+ * @param $parliament
+ *    Can be parliament name, term uuid or term object.
+ * @param $poll
+ *    Can be name, nid or node uuid
+ * @return array $poll
+ *   All data of a single poll with stats and votes.
+ */
+
+function pw_api_poll($parliament, $poll, $subsets = ['votes']) {
+
+  // translate uuid into parliament name
+  if (is_object($parliament)) {
+    $parliament_term = $parliament;
   }
-  $node = node_load($poll_nid);
+  elseif (preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i', $parliament, $uuid)){
+    $parliament_term = array_pop(entity_uuid_load('taxonomy_term', $uuid));
+  }
+  else {
+    $parliament_term = array_pop(taxonomy_get_term_by_name($parliament, 'parliaments'));
+  }
 
-  $field_parliament = field_get_items('node', $node, 'field_parliament');
-  $parliament_term = taxonomy_term_load($field_parliament[0]['tid']);
+  // translate uuid into poll
+  if (preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i', $poll, $uuid)) {
+    $nid = entity_get_id_by_uuid('node', [$uuid]);
+    $node = node_load(array_pop($nid));
+  }
+  elseif (is_int($poll)) {
+    $node = node_load($poll);
+  }
+  else {
+
+     // query for polls by poll name and parliament
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'poll')
+    ->fieldCondition('field_parliament', 'tid', $parliament_term->tid)
+    ->propertyCondition('title', $poll)
+    ->propertyCondition('status', NODE_PUBLISHED);
+    $result = $query->execute();
+    if ($result['node']) {
+      $node = node_load(key($result['node']));
+    }
+  }
 
   $vocabulary = taxonomy_vocabulary_machine_name_load('topics');
   $terms_topics = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
@@ -131,6 +177,21 @@ function pw_api_poll($poll_nid) {
     $poll['meta']['topics']['topic_'.$topic['tid']] = $terms_topics[$topic['tid']]->name;
   }
   $poll['meta']['url'] = url('node/' . $node->nid, array('absolute' => TRUE));
+
+  // add sub datasets
+  $pathinfo = pathinfo(current_path());
+  if ($pathinfo['filename'] == 'polls') {
+    $dataset_types = ['poll'];
+    $path_types_parliaments = ['name' => strtolower($parliament_term->name), 'uuid' => $parliament_term->uuid];
+    $path_types = ['name' => strtolower($node->title), 'uuid' => $node->uuid];
+    $poll['meta']['datasets'] = pw_api_urls_datasets($dataset_types, $path_types, $path_types_parliaments);
+  }
+  else {
+    $dataset_types = ['polls'];
+    $path_types = ['name' => strtolower($parliament_term->name), 'uuid' => $parliament_term->uuid];
+    $poll['meta']['datasets'] = pw_api_urls_datasets($dataset_types, $path_types);
+  }
+
   $poll['title'] = $node->title;
   $date_field = field_get_items('node', $node, 'field_poll_date');
   $poll_date = substr($date_field[0]['value'], 0, 10);
@@ -150,15 +211,29 @@ function pw_api_poll($poll_nid) {
     }
     ksort($stats);
     $poll['stats'] = $stats;
-    $poll['votes'] = $votes;
+    if (in_array('votes', $subsets)) {
+      $poll['votes'] = $votes;
+    }
   }
   else{
     $poll['status'] = $poll_date > date('Y-m-d')?t('pending'):t('unknown');
-    $poll['votes'] = '';
   }
 
   return array('poll' => $poll);
 }
+
+
+/**
+ *
+ * @param object $parliament_term
+ *    Parliament as term.
+ * @param int $target_node_id
+ *    Id of node on which was voted.
+ * @param date $vote_date
+ *    Important to query for right user revisions.
+ * @return array $poll
+ *   All data of a single poll with stats and votes.
+ */
 
 function pw_api_add_votes($parliament_term, $target_node_id, $vote_date){
 
