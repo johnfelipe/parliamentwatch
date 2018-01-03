@@ -46,7 +46,7 @@ function pw_api_committees($parliament) {
   }
 
   // add meta data and return
-  return pw_api_meta_data($committees, 'committees', ['members'], $contributer);
+  return pw_api_meta_data($committees, 'committees', ['members']);
 }
 
 

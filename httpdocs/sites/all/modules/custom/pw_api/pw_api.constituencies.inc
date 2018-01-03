@@ -87,10 +87,8 @@ function pw_api_constituencies($parliament) {
   // sort array by constituency number
   uasort($constituencies, "pw_api_compare_constituency_number");
 
-  // wrap into constituencies root element
-  $constituencies = array('constituencies' => $constituencies);
-
-  return $constituencies;
+  // add meta data and return
+  return pw_api_meta_data($constituencies, 'constituencies');
 }
 
 /**
