@@ -200,16 +200,28 @@ function pw_api_poll($parliament, $poll, $subsets = ['votes']) {
   $poll['summary'] = trim(strip_tags($body[0]['summary']));
   $status = field_get_items('node', $node, 'field_voted');
   if($status[0]['value'] == '1'){
-    $poll['status'] = 'abgestimmt';
+    $poll['status'] = t('voted');
 
     // add voting behaviour
     $votes = pw_api_add_votes($parliament_term, $node->nid, $poll_date);
-    $stats = array();
+    $stats = ['total' => []];
     foreach($votes as $vote){
-      $key = $vote['vote'];
-      $stats[$key] = key_exists($key, $stats)?$stats[$key]+1:1;
+      $key_vote = $vote['vote'];
+      $key_fraction = $vote['party'];
+      if (!key_exists($key_vote, $stats['total'])) {
+        $stats['total'][$key_vote] = 1;
+      }
+      else {
+        $stats['total'][$key_vote]++;
+      }
+      if (!key_exists($key_fraction, $stats)) {
+        $stats[$key_fraction] = [$key_vote => 1];
+      }
+      else {
+        $stats[$key_fraction][$key_vote]++;
+      }
     }
-    ksort($stats);
+    #ksort($stats);
     $poll['stats'] = $stats;
     if (in_array('votes', $subsets)) {
       $poll['votes'] = $votes;
@@ -307,6 +319,8 @@ function pw_api_add_votes($parliament_term, $target_node_id, $vote_date){
     $query->addField('list_term', 'name', 'list');
 
     // sort
+    $query->orderBy('party');
+    $query->orderBy('vote_label');
     $query->orderBy('u_lname.field_user_lname_value');
     $query->orderBy('u_fname.field_user_fname_value');
 
