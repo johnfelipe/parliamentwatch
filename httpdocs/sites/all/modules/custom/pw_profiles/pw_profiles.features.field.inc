@@ -585,11 +585,11 @@ function pw_profiles_field_default_fields() {
             'public' => 'public',
           ),
           'allowed_types' => array(
-            'image' => 'image',
-            'video' => 0,
-            0 => 0,
             'audio' => 0,
             'default' => 0,
+            0 => 0,
+            'image' => 'image',
+            'video' => 0,
           ),
           'browser_plugins' => array(
             'library' => 0,
@@ -3219,7 +3219,11 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
     ),
     'field_instance' => array(
       'bundle' => 'user',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'tid' => '16733',
+        ),
+      ),
       'deleted' => '0',
       'description' => 'Wählen Sie hier Ihren Listenplatz aus.',
       'display' => array(
@@ -3255,7 +3259,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'label' => 'Listenposition',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(

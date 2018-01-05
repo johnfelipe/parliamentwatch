@@ -217,20 +217,6 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['field_user_constituency']['table'] = 'field_data_field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['field'] = 'field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['delta_offset'] = '0';
-  /* Feld: Benutzer: Ausschüsse */
-  $handler->display->display_options['fields']['field_user_commitee']['id'] = 'field_user_commitee';
-  $handler->display->display_options['fields']['field_user_commitee']['table'] = 'field_data_field_user_commitee';
-  $handler->display->display_options['fields']['field_user_commitee']['field'] = 'field_user_commitee';
-  /* Feld: Beschädigte/fehlende Behandlungsroutine */
-  $handler->display->display_options['fields']['field_user_questions_get']['id'] = 'field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['table'] = 'field_data_field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['field'] = 'field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['label'] = 'Fragen';
-  /* Feld: Beschädigte/fehlende Behandlungsroutine */
-  $handler->display->display_options['fields']['field_user_answers_give']['id'] = 'field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['label'] = 'Antworten';
   /* Feld: Benutzer: Adresse - Ort (z.B. Stadt) */
   $handler->display->display_options['fields']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['fields']['field_user_address_locality']['table'] = 'field_data_field_user_address';
@@ -419,27 +405,6 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_constituency_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_constituency_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_constituency_tid']['vocabulary'] = 'constituency';
-  /* Filterkriterium: Benutzer: Ausschüsse (field_user_commitee) */
-  $handler->display->display_options['filters']['field_user_commitee_tid']['id'] = 'field_user_commitee_tid';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['table'] = 'field_data_field_user_commitee';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['field'] = 'field_user_commitee_tid';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['operator_id'] = 'field_user_commitee_tid_op';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['label'] = 'Ausschuss';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['description'] = 'Suche nach Ausschüssen.';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['operator'] = 'field_user_commitee_tid_op';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['identifier'] = 'field_user_commitee_tid';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    51622513 => 0,
-    181527986 => 0,
-    140336230 => 0,
-    185431326 => 0,
-    178386088 => 0,
-  );
-  $handler->display->display_options['filters']['field_user_commitee_tid']['vocabulary'] = 'committee';
   /* Filterkriterium: Benutzer: Adresse - Ort (z.B. Stadt) */
   $handler->display->display_options['filters']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['filters']['field_user_address_locality']['table'] = 'field_data_field_user_address';
@@ -475,9 +440,6 @@ function pw_profiles_views_default_views() {
     'field_user_party' => 'field_user_party',
     'field_user_parliament' => 'field_user_parliament',
     'field_user_constituency' => 'field_user_constituency',
-    'field_user_commitee' => 'field_user_commitee',
-    'field_user_questions_get' => 'field_user_questions_get',
-    'field_user_answers_give' => 'field_user_answers_give',
     'field_user_address_locality' => 'field_user_address_locality',
     'rid' => 'rid',
     'field_user_list_position' => 'field_user_list_position',
@@ -492,13 +454,11 @@ function pw_profiles_views_default_views() {
     'field_user_parliament' => 'field_user_parliament',
     'edit_node' => 'edit_node',
     'field_user_constituency' => 0,
-    'field_user_commitee' => 0,
-    'field_user_questions_get' => 0,
-    'field_user_answers_give' => 0,
     'field_user_address_locality' => 0,
     'rid' => 0,
     'field_user_list_position' => 0,
   );
+  $handler->display->display_options['filters']['dynamic-field']['checkboxes'] = 1;
   /* Filterkriterium: Benutzer: Dynamic Field Politicians Edit */
   $handler->display->display_options['filters']['dynamic-field_1']['id'] = 'dynamic-field_1';
   $handler->display->display_options['filters']['dynamic-field_1']['table'] = 'users';
@@ -729,21 +689,6 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['fields']['field_user_constituency']['table'] = 'field_data_field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['field'] = 'field_user_constituency';
   $handler->display->display_options['fields']['field_user_constituency']['delta_offset'] = '0';
-  /* Feld: Benutzer: Ausschüsse */
-  $handler->display->display_options['fields']['field_user_commitee']['id'] = 'field_user_commitee';
-  $handler->display->display_options['fields']['field_user_commitee']['table'] = 'field_data_field_user_commitee';
-  $handler->display->display_options['fields']['field_user_commitee']['field'] = 'field_user_commitee';
-  $handler->display->display_options['fields']['field_user_commitee']['label'] = 'Ausschuss';
-  /* Feld: Beschädigte/fehlende Behandlungsroutine */
-  $handler->display->display_options['fields']['field_user_questions_get']['id'] = 'field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['table'] = 'field_data_field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['field'] = 'field_user_questions_get';
-  $handler->display->display_options['fields']['field_user_questions_get']['label'] = 'Fragen';
-  /* Feld: Beschädigte/fehlende Behandlungsroutine */
-  $handler->display->display_options['fields']['field_user_answers_give']['id'] = 'field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['table'] = 'field_data_field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['field'] = 'field_user_answers_give';
-  $handler->display->display_options['fields']['field_user_answers_give']['label'] = 'Antworten';
   /* Feld: Benutzer: Adresse - Ort (z.B. Stadt) */
   $handler->display->display_options['fields']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['fields']['field_user_address_locality']['table'] = 'field_data_field_user_address';
@@ -915,27 +860,6 @@ function pw_profiles_views_default_views() {
   $handler->display->display_options['filters']['field_user_constituency_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_user_constituency_tid']['type'] = 'textfield';
   $handler->display->display_options['filters']['field_user_constituency_tid']['vocabulary'] = 'constituency';
-  /* Filterkriterium: Benutzer: Ausschüsse (field_user_commitee) */
-  $handler->display->display_options['filters']['field_user_commitee_tid']['id'] = 'field_user_commitee_tid';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['table'] = 'field_data_field_user_commitee';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['field'] = 'field_user_commitee_tid';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['operator_id'] = 'field_user_commitee_tid_op';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['label'] = 'Ausschuss';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['description'] = 'Suche nach Ausschüssen.';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['operator'] = 'field_user_commitee_tid_op';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['identifier'] = 'field_user_commitee_tid';
-  $handler->display->display_options['filters']['field_user_commitee_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    51622513 => 0,
-    181527986 => 0,
-    140336230 => 0,
-    185431326 => 0,
-    178386088 => 0,
-  );
-  $handler->display->display_options['filters']['field_user_commitee_tid']['vocabulary'] = 'committee';
   /* Filterkriterium: Benutzer: Adresse - Ort (z.B. Stadt) */
   $handler->display->display_options['filters']['field_user_address_locality']['id'] = 'field_user_address_locality';
   $handler->display->display_options['filters']['field_user_address_locality']['table'] = 'field_data_field_user_address';
@@ -982,9 +906,6 @@ function pw_profiles_views_default_views() {
     'field_user_party' => 'field_user_party',
     'field_user_parliament' => 'field_user_parliament',
     'field_user_constituency' => 'field_user_constituency',
-    'field_user_commitee' => 'field_user_commitee',
-    'field_user_questions_get' => 'field_user_questions_get',
-    'field_user_answers_give' => 'field_user_answers_give',
     'field_user_address_locality' => 'field_user_address_locality',
     'rid' => 'rid',
     'field_user_list_position' => 'field_user_list_position',
@@ -999,13 +920,11 @@ function pw_profiles_views_default_views() {
     'field_user_parliament' => 'field_user_parliament',
     'edit_node' => 'edit_node',
     'field_user_constituency' => 0,
-    'field_user_commitee' => 0,
-    'field_user_questions_get' => 0,
-    'field_user_answers_give' => 0,
     'field_user_address_locality' => 0,
     'rid' => 0,
     'field_user_list_position' => 0,
   );
+  $handler->display->display_options['filters']['dynamic-field']['checkboxes'] = 1;
   $handler->display->display_options['path'] = 'admin/people/politicians';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Politicians';
@@ -1035,9 +954,6 @@ function pw_profiles_views_default_views() {
     t('Partei'),
     t('Parlament'),
     t('Wahlkreis'),
-    t('Ausschüsse'),
-    t('Fragen'),
-    t('Antworten'),
     t('Ort'),
     t('Rollen'),
     t('Listenposition'),
@@ -1050,8 +966,6 @@ function pw_profiles_views_default_views() {
     t('Suche nach Parteien.'),
     t('Suche nach Parlamenten.'),
     t('Suche nach Wahlkreisen.'),
-    t('Ausschuss'),
-    t('Suche nach Ausschüssen.'),
     t('Wohnort'),
     t('Suche nach Wohnorten.'),
     t('Dynamic Fields'),
