@@ -362,7 +362,7 @@ function pw_sidejobs_to_array($node) {
  * @return array
  *   The array of min and max income and total min and max income.
  */
-function pw_sidejobs_compute_incomes_beta($node, $compute_total=TRUE) {
+function pw_sidejobs_compute_incomes($node, $compute_total=TRUE) {
 
   $computed_income = ['min' => NULL, 'max' => NULL, 'date' => NULL];
   if ($node->type != 'sidejob') {
@@ -438,49 +438,57 @@ function pw_sidejobs_compute_incomes_beta($node, $compute_total=TRUE) {
     array_push($dates_end, $field_date_end[0]['value']);
   }
 
-  $field_politician = field_get_items('node', $node, 'field_politician');
-  if ($field_politician[0]['target_id']){
-    $user = user_load($field_politician[0]['target_id']);
+  $field_parliament = field_get_items('node', $node, 'field_parliament');
+  if ($field_parliament) {
+    $parliament = taxonomy_term_load($field_parliament[0]['tid']);
+    $field_politician = field_get_items('node', $node, 'field_politician');
+    if ($field_politician[0]['target_id']){
 
-    $field_user_joined = field_get_items('user', $user, 'field_user_joined');
-    $field_user_retired = field_get_items('user', $user, 'field_user_retired');
-    if ($field_user_joined !== FALSE) {
-      array_push($dates_start, $field_user_joined[0]['value']);
-    }
-    if ($field_user_retired !== FALSE) {
-      array_push($dates_end, $field_user_retired[0]['value']);
-    }
+      $query = db_select('user_archive_cache', 'uac');
+      $query ->fields('uac', array('uid', 'vid'))
+             ->isNotNull('fraction_name');
+      $date = null;
+      _pw_uac_add_conditions($query, array(
+          'parliament' => $parliament->name,
+          'roles' => 'deputy',
+          'uid' => $field_politician[0]['target_id'],
+        )
+      );
+      $uac_result = $query->execute()->fetchAssoc();
+      $user = user_revision_load($uac_result['uid'], $uac_result['vid']);
 
-    $field_user_parliament = field_get_items('user', $user, 'field_user_parliament');
-    if ($field_user_parliament) {
-      $parliament = taxonomy_term_load($field_user_parliament[0]['tid']);
+      $field_user_joined = field_get_items('user', $user, 'field_user_joined');
+      $field_user_retired = field_get_items('user', $user, 'field_user_retired');
+      if ($field_user_joined !== FALSE) {
+        array_push($dates_start, $field_user_joined[0]['value']);
+      }
+      if ($field_user_retired !== FALSE) {
+        array_push($dates_end, $field_user_retired[0]['value']);
+      }
+
+
       $field_parliament_valid = field_get_items('taxonomy_term', $parliament, 'field_parliament_valid');
       $found_valid = FALSE;
       $parliament_latest_end_date = FALSE;
       foreach($field_parliament_valid as $parliament_valid){
-        if (_pw_is_between_dates($parliament_valid)) {
-          $found_valid = TRUE;
-          array_push($dates_start, $parliament_valid['value']);
-        }
-        else {
-          $parliament_latest_end_date = $parliament_valid;
-        }
+        array_push($dates_start, $parliament_valid['value']);
+        $parliament_latest_end_date = $parliament_valid;
       }
-      if (!$found_valid && $parliament_latest_end_date) {
+      if ($parliament_latest_end_date) {
         array_push($dates_end, $parliament_latest_end_date['value2']);
       }
-    }
-  }
-
-  foreach ($dates_start as $date_start) {
-    if ($date_start > $date_start_latest) {
-      $date_start_latest = $date_start;
     }
   }
 
   foreach ($dates_end as $date_end){
     if ($date_end < $date_end_earlist) {
       $date_end_earlist = $date_end;
+    }
+  }
+
+  foreach ($dates_start as $date_start) {
+    if ($date_start > $date_start_latest && $date_start < $date_end_earlist) {
+      $date_start_latest = $date_start;
     }
   }
 
