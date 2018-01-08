@@ -2844,7 +2844,7 @@ $entity_field[0][\'value\'] = $result;',
     'field_instance' => array(
       'bundle' => 'pw_petition',
       'deleted' => '0',
-      'description' => 'The image must have a minimum resolution of <strong>950 x 500 pixels</strong>.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -2931,9 +2931,10 @@ $entity_field[0][\'value\'] = $result;',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
         'max_resolution' => '',
-        'min_resolution' => '950x500',
+        'min_resolution' => '',
         'title_field' => 0,
         'user_register_form' => FALSE,
+        'wysiwyg_insert' => 0,
       ),
       'widget' => array(
         'active' => 1,
@@ -2987,7 +2988,6 @@ $entity_field[0][\'value\'] = $result;',
   t('Text Passed Parliament');
   t('Text Sent Parliament');
   t('Text while collecting donations.');
-  t('The image must have a minimum resolution of <strong>950 x 500 pixels</strong>.');
   t('Welcome Message');
   t('Welcome message which will be shown to deputies when the are about to enter their position and statement.');
   t('e.g. change.org');
