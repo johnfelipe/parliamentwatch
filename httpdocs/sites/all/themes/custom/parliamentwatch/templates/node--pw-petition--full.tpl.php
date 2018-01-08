@@ -100,7 +100,12 @@
   <?php if ($field_petition_status[0]['value'] == 'open_for_signings'): ?>
   <div class="petition__intro sidebar-container">
     <div class="petition__sidebar sidebar">
-      <?php print render($content['field_teaser_image']); ?>
+      <figure class="petition__image">
+        <?php print render($content['field_teaser_image']); ?>
+        <?php if (!empty(trim(render($content['field_teaser_image_copyright'])))): ?>
+          <figcaption><span>© <?php print render($content['field_teaser_image_copyright']['#items'][0]['value']);?></span></figcaption>
+        <?php endif; ?>
+      </figure>
       <div class="petition__sidebar__stats">
         <span class="d3 d3--bar-horizontal"
               data-bar-horizontal
