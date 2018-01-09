@@ -877,9 +877,11 @@ function _pw_array_flatten($array, $keep_key = TRUE) {
  */
 function _pw_globals_filter_encrypt($text) {
   $callback = function ($matches) {
-    return '<span class="crypto-font">' . str_rot13($matches[1]) . '</span>';
+    $match = empty($matches[4])?$matches[2]:$matches[4];
+    return '<span class="crypto-font">' . str_rot13($match) . '</span>';
   };
-  return preg_replace_callback('/<crypt>(.*?)<\/crypt>/i', $callback, $text);
+  $pattern = ['(<crypt>(.*?)<\/crypt>)', '(&lt;crypt&gt;(.*?)&lt;\/crypt&gt;)'];
+  return preg_replace_callback('/'.implode('|', $pattern).'/i', $callback, $text);
 }
 
 /**
