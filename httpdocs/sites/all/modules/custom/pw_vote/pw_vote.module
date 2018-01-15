@@ -22,6 +22,19 @@ function pw_vote_menu() {
 }
 
 /**
+ * Implements hook_search_api_alter_callback_info().
+ */
+function pw_vote_search_api_alter_callback_info() {
+  $callbacks['vote_search_alter_callback'] = [
+    'name' => t('Politician reference fields'),
+    'description' => t('Adds fields of the related user revision to the indexed data.'),
+    'class' => 'VoteSearchAlterCallback',
+    'weight' => 100,
+  ];
+  return $callbacks;
+}
+
+/**
  * Implements hook_node_load().
  *
  * Pre-loads polls associated with the given votes to prevent loading them

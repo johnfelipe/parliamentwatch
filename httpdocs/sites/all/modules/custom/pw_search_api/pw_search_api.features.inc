@@ -683,7 +683,7 @@ function pw_search_api_default_search_api_index() {
     "read_only" : "0"
   }');
   $items['politician_archive_index'] = entity_import('search_api_index', '{
-    "name" : "Politician Archive Index",
+    "name" : "Politician archive index",
     "machine_name" : "politician_archive_index",
     "description" : null,
     "server" : "solr",
@@ -833,6 +833,112 @@ function pw_search_api_default_search_api_index() {
             "excerpt_length" : "256",
             "exclude_fields" : [],
             "highlight" : "always"
+          }
+        }
+      }
+    },
+    "enabled" : "1",
+    "read_only" : "0"
+  }');
+  $items['vote_index'] = entity_import('search_api_index', '{
+    "name" : "Vote index",
+    "machine_name" : "vote_index",
+    "description" : null,
+    "server" : "solr",
+    "item_type" : "node",
+    "options" : {
+      "datasource" : { "bundles" : [ "vote" ] },
+      "index_directly" : 0,
+      "cron_limit" : "50",
+      "fields" : {
+        "field_deviant_vote" : { "type" : "boolean" },
+        "field_vote" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_vote_node" : { "type" : "integer", "entity_type" : "node" },
+        "field_vote_user" : { "type" : "integer", "entity_type" : "user" },
+        "field_voted" : { "type" : "boolean" },
+        "nid" : { "type" : "integer" },
+        "politician_constituency_area_codes" : { "type" : "list\\u003Ctext\\u003E" },
+        "politician_constituency_name" : { "type" : "string" },
+        "politician_fname" : { "type" : "string" },
+        "politician_full_name" : { "type" : "text" },
+        "politician_lname" : { "type" : "string" },
+        "politician_picture_uri" : { "type" : "uri" },
+        "politician_political_faction" : { "type" : "string" },
+        "politician_uri" : { "type" : "uri" },
+        "search_api_language" : { "type" : "string" },
+        "uuid" : { "type" : "string" }
+      },
+      "data_alter_callbacks" : {
+        "search_api_alter_bundle_filter" : {
+          "status" : 0,
+          "weight" : "-50",
+          "settings" : { "default" : "1", "bundles" : [] }
+        },
+        "search_api_alter_node_access" : { "status" : 0, "weight" : "-49", "settings" : [] },
+        "search_api_alter_node_status" : { "status" : 0, "weight" : "-48", "settings" : [] },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "-47", "settings" : { "fields" : [] } },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "-46", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "-45", "settings" : [] },
+        "vote_search_alter_callback" : { "status" : 1, "weight" : "-44", "settings" : [] },
+        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "-43", "settings" : [] },
+        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "-42", "settings" : [] }
+      },
+      "processors" : {
+        "add_leading_zero" : {
+          "status" : 1,
+          "weight" : "-1",
+          "settings" : { "fields" : { "politician_constituency_area_codes" : true } }
+        },
+        "search_api_case_ignore" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : { "fields" : { "uuid" : true } }
+        },
+        "search_api_html_filter" : {
+          "status" : 0,
+          "weight" : "10",
+          "settings" : {
+            "fields" : { "uuid" : true },
+            "title" : 0,
+            "alt" : 1,
+            "tags" : "h1 = 5\\r\\nh2 = 3\\r\\nh3 = 2\\r\\nstrong = 2\\r\\nb = 2\\r\\nem = 1.5\\r\\nu = 1.5"
+          }
+        },
+        "search_api_transliteration" : {
+          "status" : 0,
+          "weight" : "15",
+          "settings" : { "fields" : { "uuid" : true } }
+        },
+        "search_api_tokenizer" : {
+          "status" : 0,
+          "weight" : "20",
+          "settings" : { "fields" : [], "spaces" : "[^[:alnum:]]", "ignorable" : "[\\u0027]" }
+        },
+        "search_api_stopwords" : {
+          "status" : 0,
+          "weight" : "30",
+          "settings" : {
+            "fields" : { "uuid" : true },
+            "file" : "",
+            "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"
+          }
+        },
+        "search_api_porter_stemmer" : {
+          "status" : 0,
+          "weight" : "35",
+          "settings" : { "fields" : { "uuid" : true }, "exceptions" : "texan=texa" }
+        },
+        "search_api_highlighting" : {
+          "status" : 0,
+          "weight" : "40",
+          "settings" : {
+            "prefix" : "\\u003Cstrong\\u003E",
+            "suffix" : "\\u003C\\/strong\\u003E",
+            "excerpt" : 1,
+            "excerpt_length" : "256",
+            "exclude_fields" : [],
+            "highlight" : "always",
+            "highlight_partial" : 0
           }
         }
       }
