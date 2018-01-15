@@ -40,16 +40,14 @@
         <?php for ($i = 1; $i < count($children); $i++): ?>
         <?php if (!in_array($children[$i], ['submit', 'form_id', 'form_build_id', 'form_token'])): ?>
         <?php
-          $dropdown = FALSE;
-          if ($form[$children[$i]]['#type'] == 'select') {
+          if ($form[$children[$i]]['#dropdown']) {
+            $classes = 'filterbar__item--dropdown dropdown';
+          }
+          elseif ($form[$children[$i]]['#type'] == 'select') {
             $classes = 'filterbar__item--select';
           }
-          elseif ($form[$children[$i]]['#type'] == 'checkboxes' && count($form[$children[$i]]['#options']) < 3) {
+          elseif ($form[$children[$i]]['#type'] == 'checkboxes') {
             $classes = 'filterbar__item--checkbox';
-          }
-          else {
-            $classes = 'filterbar__item--dropdown dropdown';
-            $dropdown = TRUE;
           }
 
           if (!empty($form[$children[$i]]['#default_value'])) {
@@ -57,7 +55,7 @@
           }
         ?>
         <div class="filterbar__item <?php print $classes; ?>">
-          <?php if ($dropdown): ?>
+          <?php if ($form[$children[$i]]['#dropdown']): ?>
           <div class="dropdown__trigger">
             <?php print $form[$children[$i]]['#title'] ?>
             <?php if (!empty($form[$children[$i]]['#default_value'])): ?>
