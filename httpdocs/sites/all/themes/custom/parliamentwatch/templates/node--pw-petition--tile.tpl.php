@@ -84,17 +84,7 @@
   <div class="tile__image">
     <?php print render($content['field_teaser_image']); ?>
   </div>
-  <div class="petition__state_indicator
-    <?php if (trim($field_petition_status[0]['value']) == 'open_for_signings'): ?> petition__state_indicator--state-1 <?php endif; ?>
-    <?php if (trim($field_petition_status[0]['value']) == 'collecting_donations'): ?> petition__state_indicator--state-1 <?php endif; ?>
-    <?php if (trim($field_petition_status[0]['value']) == 'survey_in_progress'): ?> petition__state_indicator--state-2 <?php endif; ?>
-    <?php if (trim($field_petition_status[0]['value']) == 'asking_parliament'): ?> petition__state_indicator--state-2 <?php endif; ?>
-    <?php if (trim($field_petition_status[0]['value']) == 'passed_parliament'): ?> petition__state_indicator--state-3 <?php endif; ?>
-  ">
-    <div class="petition__state_indicator__item"><i class="icon icon-signing"></i></div>
-    <div class="petition__state_indicator__item"><i class="icon icon-microphone"></i></div>
-    <div class="petition__state_indicator__item"><i class="icon icon-politician"></i></div>
-  </div>
+
   <?php if ($field_petition_partner): ?>
   <div class="tile__flag"><?php print render($field_petition_partner[0]['value']); ?></div>
   <?php endif; ?>

@@ -143,7 +143,7 @@ function pw_parliaments_taxonomy_term_page($term)
       return taxonomy_term_view($term);
     }
   }
-  elseif (in_array($term->vocabulary_machine_name, ['blogcategories', 'topics'])) {
+  elseif (in_array($term->vocabulary_machine_name, ['blogcategories', 'blogtags', 'topics'])) {
     $build = taxonomy_term_view($term);
     $nids = taxonomy_select_nodes($term->tid, TRUE, variable_get('default_nodes_main', 12));
 

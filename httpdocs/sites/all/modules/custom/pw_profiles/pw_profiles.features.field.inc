@@ -3219,7 +3219,11 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
     ),
     'field_instance' => array(
       'bundle' => 'user',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'tid' => '16733',
+        ),
+      ),
       'deleted' => '0',
       'description' => 'Wählen Sie hier Ihren Listenplatz aus.',
       'display' => array(
@@ -3255,7 +3259,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
       'label' => 'Listenposition',
       'required' => 0,
       'settings' => array(
-        'exclude_cv' => FALSE,
         'user_register_form' => 0,
       ),
       'widget' => array(
