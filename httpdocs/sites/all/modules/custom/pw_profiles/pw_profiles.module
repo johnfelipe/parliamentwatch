@@ -417,6 +417,7 @@ function pw_profiles_page($parliament_term, $role_name) {
   }
 
   $build['filters'] = drupal_get_form('pw_profiles_filters_form', $parliament_term, $response['search_api_facets'], isset($build['user']));
+  $build['filters']['#theme_wrappers'][] = 'container__filterbar';
   $build['filters']['#weight'] = -5;
   $build['#theme_wrappers'] = ['container'];
   $build['#attributes'] = ['id' => 'ajax'];

@@ -635,6 +635,27 @@ function parliamentwatch_container__figure($variables) {
 }
 
 /**
+ * Overrides theme_container() for filterbar.
+ */
+function parliamentwatch_container__filterbar($variables) {
+  $element = $variables['element'];
+  // Ensure #attributes is set.
+  $element += ['#attributes' => []];
+  $element['#attributes']['class'][] = 'filterbar';
+
+  $output = '<div ' . drupal_attributes($element['#attributes']) . '>';
+  $output .= '<div class="filterbar__inner">' . $element['#children'];
+  $output .= '<ul class="filterbar__view_options">';
+  $output .= '<li class="filterbar__view_options__item active">';
+  $output .= '<a href="#" class="filterbar__view_options__item__link"><i class="icon icon-th"></i></a>';
+  $output .= '</li></ul>';
+  $output .= '</div></div>';
+  $output .= '<div class="filterbar-placeholder"></div>';
+
+  return $output;
+}
+
+/**
  * Overrides theme_pager().
  */
 function parliamentwatch_pager($variables) {
