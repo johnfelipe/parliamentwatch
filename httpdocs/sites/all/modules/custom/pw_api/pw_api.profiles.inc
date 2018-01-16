@@ -144,7 +144,7 @@ function pw_api_user_to_array($user, $subsets = array()) {
 
     // fetch stats into meta
     $query = db_select('user_archive_cache', 'uac');
-    $query->fields('uac', array('number_of_questions', 'number_of_answers', 'actual_profile'));
+    $query->fields('uac', array('number_of_questions', 'number_of_answers', 'number_of_standard_replies', 'actual_profile'));
     _pw_uac_add_conditions($query, array(
         'vid' => $user->vid,
       )
@@ -152,6 +152,7 @@ function pw_api_user_to_array($user, $subsets = array()) {
     $result = $query->execute()->fetchAssoc();
     $profile['meta']['questions'] = (int) $result['number_of_questions'];
     $profile['meta']['answers'] = (int) $result['number_of_answers'];
+    $profile['meta']['standard_replies'] = (int) $result['number_of_standard_replies'];
 
     // publish roles for authorized users
     if(user_access('access authorized api')){

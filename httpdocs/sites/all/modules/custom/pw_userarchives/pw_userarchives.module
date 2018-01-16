@@ -157,6 +157,9 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   $query->leftJoin("field_data_field_dialogue_is_standard_reply", "standard_reply", "standard_reply.entity_type = 'comment' AND standard_reply.entity_id = c.cid");
   $query->addExpression("IFNULL(COUNT(DISTINCT c.nid), 0) - IFNULL(SUM(standard_reply.field_dialogue_is_standard_reply_value), 0)", "number_of_answers");
 
+  // get number of standard replies
+  $query->addExpression("IFNULL(SUM(standard_reply.field_dialogue_is_standard_reply_value), 0)", "number_of_standard_replies");
+
   // join users to get actual profile
   $query->leftJoin("users", "u", "ur.vid = u.vid");
   $query->groupBy('ur.vid');
@@ -168,10 +171,12 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   // need fields for comparison in having clause
   $query->addField("uac", "number_of_questions", "uac_number_of_questions");
   $query->addField("uac", "number_of_answers", "uac_number_of_answers");
+  $query->addField("uac", "number_of_standard_replies", "uac_number_of_standard_replies");
 
   $query->having('(ISNULL(uac.number_of_questions)
           OR uac_number_of_questions != number_of_questions
-          OR uac_number_of_answers != number_of_answers)');
+          OR uac_number_of_answers != number_of_answers
+          OR uac_number_of_standard_replies != number_of_standard_replies)');
 
   // nothing to update
   if (empty($query) || $query->execute()->rowCount() == 0) {
@@ -186,6 +191,7 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   $fields = array_merge(array_keys($query->getFields()), array_keys($query->getExpressions()));
   unset($fields[array_search('uac_number_of_questions', $fields)]);
   unset($fields[array_search('uac_number_of_answers', $fields)]);
+  unset($fields[array_search('uac_number_of_standard_replies', $fields)]);
   sort($fields);
 
   foreach ($result as $row) {
@@ -198,6 +204,7 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
 
     unset($row['uac_number_of_questions']);
     unset($row['uac_number_of_answers']);
+    unset($row['uac_number_of_standard_replies']);
     ksort($row);
 
     db_insert('user_archive_cache')

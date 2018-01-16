@@ -169,3 +169,11 @@ function pw_userarchives_update_7106() {
     ->fields(['weight' => $weight])
     ->execute();
 }
+
+/**
+ * Adds further column number_of_standard_replies
+ */
+function pw_userarchives_update_7107() {
+  db_add_field('user_archive_cache', 'number_of_standard_replies', array('type' => 'int', 'not null' => FALSE, 'description' => 'Number of standard replies.'));
+  db_add_index('user_archive_cache', 'number_of_standard_replies', array('number_of_standard_replies'));
+}
