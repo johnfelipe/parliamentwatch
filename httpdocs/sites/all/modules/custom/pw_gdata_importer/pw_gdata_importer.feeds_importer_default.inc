@@ -46,6 +46,7 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:11' => 'members/schriftf',
           'xpathparser:12' => 'members/stellvschriftf',
           'xpathparser:13' => 'members/beratmitglied',
+          'xpathparser:14' => 'topics',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
@@ -62,6 +63,7 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:11' => 0,
           'xpathparser:12' => 0,
           'xpathparser:13' => 0,
+          'xpathparser:14' => 0,
         ),
         'context' => '//row',
         'exp' => array(
@@ -84,6 +86,7 @@ function pw_gdata_importer_feeds_importer_default() {
             'xpathparser:11' => 0,
             'xpathparser:12' => 0,
             'xpathparser:13' => 0,
+            'xpathparser:14' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -179,6 +182,11 @@ function pw_gdata_importer_feeds_importer_default() {
             'target' => 'field_committee_advisory_members:uuid',
             'unique' => FALSE,
             'language' => 'und',
+          ),
+          14 => array(
+            'source' => 'xpathparser:14',
+            'target' => 'field_topics',
+            'unique' => FALSE,
           ),
         ),
         'insert_new' => '1',

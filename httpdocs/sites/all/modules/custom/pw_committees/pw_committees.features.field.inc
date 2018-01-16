@@ -193,7 +193,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -301,7 +301,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -409,7 +409,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -517,7 +517,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -626,7 +626,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -734,7 +734,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -842,7 +842,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -950,7 +950,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -1189,7 +1189,7 @@ function pw_committees_field_default_fields() {
       'bundle' => 'committee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -1614,6 +1614,7 @@ function pw_committees_field_default_fields() {
   t('Alternate Members');
   t('Alternate Secretaries');
   t('Alternate Spokesman');
+  t('Bitte nur Abgeordnete aus dem gleichen Parlament auswählen.');
   t('Body');
   t('Chairman');
   t('Committee URL');
