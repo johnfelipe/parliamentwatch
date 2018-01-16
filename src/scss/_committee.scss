@@ -78,11 +78,23 @@
 .tile-wrapper__badge--committee_spokesman .tile:before {
   content: 'Sprecher';
 }
+.tile-wrapper__badge--committee_alt_spokesman .tile:before {
+  content: 'Stellv. Sprecher';
+}
 .tile-wrapper__badge--committee_members .tile:before {
   content: 'Mitglied';
 }
 .tile-wrapper__badge--committee_alt_members .tile:before {
   content: 'Stellv. Mitglied';
+}
+.tile-wrapper__badge--committee_secretaries .tile:before {
+  content: 'Schriftführer';
+}
+.tile-wrapper__badge--committee_alt_secretaries .tile:before {
+  content: 'Stellv. Schriftführer';
+}
+.tile-wrapper__badge--committee_advisory_members .tile:before {
+  content: 'Beratendes Mitglied';
 }
 
 /* Embedded committees on profile-page */

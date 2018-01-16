@@ -230,7 +230,17 @@ function pw_committees_members_block() {
  *   The membership config array.
  */
 function pw_committees_get_membership_config() {
-  return ['Chairman' =>'field_committee_chairman', 'Vice-Chairman' => 'field_committee_vice_chairman', 'Member' => 'field_committee_members', 'Alternate member' => 'field_committee_alt_members'];
+  return [
+    'Chairman' =>'field_committee_chairman',
+    'Vice-Chairman' => 'field_committee_vice_chairman',
+    'Spokesman' => 'field_committee_spokesman',
+    'Alternate spokesman' => 'field_committee_alt_spokesman',
+    'Member' => 'field_committee_members',
+    'Alternate member' => 'field_committee_alt_members',
+    'Secretary' => 'field_committee_secretaries',
+    'Alternate secretary' => 'field_committee_alt_secretaries',
+    'Advisory member' => 'field_committee_advisory_members',
+  ];
 }
 
 
