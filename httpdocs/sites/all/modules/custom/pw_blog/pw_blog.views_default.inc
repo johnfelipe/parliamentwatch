@@ -55,7 +55,7 @@ function pw_blog_views_default_views() {
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
-  /* Beziehung: Inhalt: Taxonomy terms on node */
+  /* Beziehung: Inhalt: Taxonomie-Begriffe des Beitrags */
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
   $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
@@ -234,7 +234,7 @@ function pw_blog_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = 'delete blogpost';
-  /* Feld: Global: Contextual Links */
+  /* Feld: Global: Kontextlinks */
   $handler->display->display_options['fields']['contextual_links']['id'] = 'contextual_links';
   $handler->display->display_options['fields']['contextual_links']['table'] = 'views';
   $handler->display->display_options['fields']['contextual_links']['field'] = 'contextual_links';
@@ -256,7 +256,7 @@ function pw_blog_views_default_views() {
     'field_blogpost_blogtags' => 0,
     'comment_count' => 0,
   );
-  /* Sortierkriterien: Inhalt: Datum */
+  /* Sortierkriterien: Inhalt: Beitragsdatum */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';

@@ -160,7 +160,7 @@ function pw_blog_strongarm() {
           'weight' => '10',
         ),
         'rabbit_hole' => array(
-          'weight' => '1',
+          'weight' => '12',
         ),
       ),
       'display' => array(
