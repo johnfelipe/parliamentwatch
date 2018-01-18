@@ -161,9 +161,9 @@ function parliamentwatch_preprocess_block(&$variables) {
         $text = $trail[2]['link_title'];
         $path = $trail[2]['link_path'];
       }
-
       $variables['title_suffix']['indicator'] = [
-        '#markup' => l($text, $path, ['attributes' => ['class' => ['header__subnav__indicator']]])
+        // '#markup' => '<div class="header__subnav__archive"><span>' . l($text, $path, ['attributes' => ['class' => ['header__subnav__archive__indicator']]]) . '</span><ul class="header__subnav__archive__list"><li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 &ndash; 2017</a></li><li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 &ndash; 2017</a></li><li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 &ndash; 2017</a></li></ul></div>'
+        '#markup' => '<div class="header__subnav__archive"><span><span class="header__subnav__archive__indicator">Bundestag <span>2013 &ndash; 2017</span></span></span><ul class="header__subnav__archive__list"><li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 &ndash; 2017</a></li><li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 &ndash; 2017</a></li><li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 &ndash; 2017</a></li></ul></div>'
       ];
     }
   }

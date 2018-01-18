@@ -268,7 +268,6 @@
         prevButton: secondLevel.find('.swiper-button-prev'),
         onInit: function (swiper) {
           resizeMainNavigation();
-
           swiper.update();
           swiper.slideTo(activeMenuItem);
         }
@@ -276,10 +275,12 @@
 
       function resizeMainNavigation() {
         var secondLevel = $('.header__bottom nav');
+        var indicator = $('.header__subnav__archive');
 
-        var subnavOffset = $('.header__subnav__indicator').outerWidth();
+        // var subnavHeight = $('#header .nav--main-menu--level-3 .nav__item').outerHeight();
+        var subnavOffset = indicator.outerWidth() + 1;
         var wrapperPadding = parseInt($('.header__bottom__inner').css('padding-left'), 10);
-        var indicatorPadding = parseInt($('.header__subnav__indicator').css('padding-left'), 10);
+        var indicatorPadding = parseInt(indicator.css('padding-left'), 10);
 
         if (wrapperPadding > 0) {
           var subnavOffsetValue = subnavOffset - indicatorPadding;
@@ -288,6 +289,7 @@
         }
         secondLevel.css('padding-left', subnavOffsetValue + 'px');
         secondLevel.css('padding-right', '30px');
+        // indicator.css('height', subnavHeight + 'px');
       }
 
       var windowResize = debounce(function () {
@@ -296,6 +298,53 @@
 
       // Event-Listener
       window.addEventListener('resize', windowResize);
+    }
+  };
+
+
+  /**
+   * Attaches the archive indicator behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   *   Triggers the Sidebar.
+   */
+
+  Drupal.behaviors.archiveIndicator = {
+    attach: function (context) {
+      $('.header__subnav__archive').click(function () {
+        $(this).toggleClass('header__subnav__archive--open')
+      });
+    }
+  };
+
+  /**
+   * Attaches the archive indicator tooltip behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   *   Triggers the Sidebar.
+   */
+
+  Drupal.behaviors.archiveIndicatorHint = {
+    attach: function (context) {
+      if (!$.cookie('archiveHint')) {
+        // add hint (initially hidden)
+        $('.header__bottom__inner').append('<div class="header__subnav__archive-hint"><p><strong>Jetzt Neu!</strong> Wechsel hier zwischen den verfügbaren Wahlperioden.</p><i class="icon icon-close"></i></div>');
+
+        // show hint
+        setTimeout(function () {
+          $('.header__subnav__archive-hint').addClass('header__subnav__archive-hint--in');
+        }, 200);
+
+        // close hint
+        $('.header__subnav__archive-hint .icon-close').click(function () {
+          $('.header__subnav__archive-hint').removeClass('header__subnav__archive-hint--in');
+          $.cookie('archiveHint', 1, {expires: 999, path: '/' });
+        });
+      }
     }
   };
 
@@ -397,6 +446,7 @@
           subNavHeight = $('.header__subnav').height(),
           headerHeight = $('#header').height(),
           contentOffset = 0;
+        var lastScrollTop = 0, delta = 2;
 
         if (windowWidth >= breakpointLMin) {
           contentOffset = headerHeight - 1;
@@ -406,7 +456,6 @@
         $('#content').css('margin-top', contentOffset);
         setTimeout(docReadyClass, 200);
       }
-
       contentOffset();
       var windowResize = debounce(function () {
         contentOffset();
