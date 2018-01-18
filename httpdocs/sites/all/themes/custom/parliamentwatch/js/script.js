@@ -615,7 +615,7 @@
 
         // Set initial tab by checking url for hash
         if ($('.tabs__navigation').length && window.location.hash) {
-          $('.tabs__navigation a[href=' + window.location.hash + ']').trigger("click");
+          $('.tabs__navigation a[href=' + window.location.hash + ']').trigger('click');
         }
         // Set initial tab by checking url for hash
         if (history.pushState) {
@@ -1592,18 +1592,19 @@
    */
   Drupal.behaviors.viewModeSwitch = {
     attach: function () {
-      $('[data-view-mode]').click(function (event) {
+      $('.filterbar__view_options__item__link').click(function (event) {
         event.preventDefault();
-        var viewModeElement = $(this).data('view-mode');
 
-        $('[data-view-mode]').parent('li').removeClass('active');
+        $('.filterbar__view_options__item__link').parent('li').removeClass('active');
         $(this).parent('li').addClass('active');
-
-        console.log(viewModeElement);
-
-        $('[data-view-mode-element]').hide();
-        $('[data-view-mode-element='+ viewModeElement +']').show();
+        $('.view-mode').hide();
+        $(this.hash).show();
       });
+
+      // Set initial tab by checking url for hash
+      if (window.location.hash) {
+        $('.filterbar__view_options__item__link[href=' + window.location.hash + ']').trigger('click');
+      }
     }
   };
 
@@ -1815,6 +1816,7 @@
     attach: function (context, settings) {
       $('[data-ajax-block-url]').each(function () {
         var container = this;
+        $(container).addClass('loading-overlay')
         $('.pager a, .table--sortable th a', container).click(function (event) {
           event.preventDefault();
           var url = $(container).data('ajax-block-url') + this.search + '&path=' + this.pathname.substr(1);

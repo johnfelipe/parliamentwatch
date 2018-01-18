@@ -44,7 +44,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="poll__charts <?php print $classes; ?>" data-view-mode-element="poll__charts">
+<section id="<?php print $block_html_id; ?>" class="poll__charts view-mode <?php print $classes; ?>" <?php print $attributes; ?>>
   <?php print render($title_suffix) ?>
   <?php print $content ?>
   <span class='d3 d3--bar-horizontal-stacked'
@@ -58,4 +58,4 @@
         data-bar-vertical-stacked-poll
         data-data='parseResultsByParty'>
   </span>
-</div>
+</section>
