@@ -34,15 +34,6 @@
       color: $darkGray;
       text-align: center;
     }
-    &:after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: translate(-50%,0);
-      width: 50%;
-      border-bottom: 1px solid $gray;
-    }
   }
 
   .commmittee_stats {

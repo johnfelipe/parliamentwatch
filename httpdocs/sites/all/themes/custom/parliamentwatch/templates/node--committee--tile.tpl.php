@@ -89,16 +89,6 @@
     <?php print render($content['body']); ?>
     <?php print render($title_suffix); ?>
   </header>
-  <div class="commmittee_stats">
-    <div class="commmittee_stats__item">
-      <div class="commmittee_stats__item__value"><?php print count($content['field_committee_members']['#items']); ?></div>
-      <div class="commmittee_stats__item__label"><?php print t('members') ?></div>
-    </div>
-    <div class="commmittee_stats__item">
-      <div class="commmittee_stats__item__value"><?php print count($content['field_committee_alt_members']['#items']); ?></div>
-      <div class="commmittee_stats__item__label"><?php print t('alternate members') ?></div>
-    </div>
-  </div>
   <ul class="tile__links tile__links--2">
     <li class="tile__links__item"><a class="tile__links__item__link" href="<?php print $node_url; ?>"><?php print t('read more'); ?></a></li>
   </ul>
