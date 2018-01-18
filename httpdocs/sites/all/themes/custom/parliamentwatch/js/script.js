@@ -1709,6 +1709,7 @@
    */
   Drupal.behaviors.ajaxFilterbar = {
     attach: function (context, settings) {
+      $('.tile-wrapper').addClass('loading-overlay');
       $('form[data-ajax-target] .form__item__control').change(function (event) {
         event.preventDefault();
         addLoadingAnimation($('.tile-wrapper'));
