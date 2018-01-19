@@ -736,33 +736,6 @@
             return obj.name;
           };
 
-          var parliamentIndex = new Bloodhound({
-            initialize: true,
-            remote: {
-              url: '/parliaments/suggestions?postal_code=%QUERY',
-              wildcard: '%QUERY'
-            },
-            identify: function (obj) {
-              return obj.parliament;
-            },
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('postalCodes'),
-          });
-
-          var parliamentTemplates = {
-            suggestion: function (query) {
-              var text = {
-                'deputies': Drupal.t('Would you like to search for deputies in <span>@parliament</span>?', {'@parliament': query.parliament}),
-                'candidates': Drupal.t('Would you like to search for candidates in <span>@parliament</span>?', {'@parliament': query.parliament}),
-              };
-              return '<div class="autosuggest__item"><a href="' + query.url + '">' + text[query.role] + '</a></div>';
-            }
-          }
-
-          var parliamentDisplay = function (obj) {
-            return '';
-          }
-
           $('.form__item__control--autosuggest').typeahead({
             minLength: 2,
             highlight: true
@@ -771,12 +744,6 @@
             source: politicianIndex,
             display: politicianDisplay,
             templates: politicianTemplates
-          }, {
-            name: 'parliaments',
-            source: parliamentIndex,
-            display: parliamentDisplay,
-            templates: parliamentTemplates,
-            limit: 10,
           });
         }
       });
