@@ -102,7 +102,7 @@ function pw_sidejobs_load($account) {
     $nodes = node_load_multiple(array_keys($result['node']));
   }
   else {
-    $nodes = array();
+    $nodes = [];
   }
 
   return $nodes;
@@ -138,9 +138,9 @@ function pw_sidejobs_by_user_revision_query($account) {
  * @return array
  *   The array of min and max income and total min and max income.
  */
-function pw_sidejobs_compute_incomes($node, $compute_total=TRUE) {
-
+function pw_sidejobs_compute_incomes($node, $compute_total = TRUE) {
   $computed_income = ['min' => NULL, 'max' => NULL, 'date' => NULL];
+
   if ($node->type != 'sidejob') {
     return FALSE;
   }
@@ -151,47 +151,47 @@ function pw_sidejobs_compute_incomes($node, $compute_total=TRUE) {
   }
 
   // @TODO: classification for different parliaments
-  switch(intval($field_classification[0]['value'])){
+  switch (intval($field_classification[0]['value'])) {
     case 1:
-    $computed_income['min'] = 1000;
-    $computed_income['max'] = 3500;
-    break;
+      $computed_income['min'] = 1000;
+      $computed_income['max'] = 3500;
+      break;
     case 2:
-    $computed_income['min'] = 3500;
-    $computed_income['max'] = 7000;
-    break;
+      $computed_income['min'] = 3500;
+      $computed_income['max'] = 7000;
+      break;
     case 3:
-    $computed_income['min'] = 7000;
-    $computed_income['max'] = 15000;
-    break;
+      $computed_income['min'] = 7000;
+      $computed_income['max'] = 15000;
+      break;
     case 4:
-    $computed_income['min'] = 15000;
-    $computed_income['max'] = 30000;
-    break;
+      $computed_income['min'] = 15000;
+      $computed_income['max'] = 30000;
+      break;
     case 5:
-    $computed_income['min'] = 30000;
-    $computed_income['max'] = 50000;
-    break;
+      $computed_income['min'] = 30000;
+      $computed_income['max'] = 50000;
+      break;
     case 6:
-    $computed_income['min'] = 50000;
-    $computed_income['max'] = 75000;
-    break;
+      $computed_income['min'] = 50000;
+      $computed_income['max'] = 75000;
+      break;
     case 7:
-    $computed_income['min'] = 75000;
-    $computed_income['max'] = 100000;
-    break;
+      $computed_income['min'] = 75000;
+      $computed_income['max'] = 100000;
+      break;
     case 8:
-    $computed_income['min'] = 100000;
-    $computed_income['max'] = 150000;
-    break;
+      $computed_income['min'] = 100000;
+      $computed_income['max'] = 150000;
+      break;
     case 9:
-    $computed_income['min'] = 150000;
-    $computed_income['max'] = 250000;
-    break;
+      $computed_income['min'] = 150000;
+      $computed_income['max'] = 250000;
+      break;
     case 10:
-    $computed_income['min'] = 250000;
-    $computed_income['max'] = 250000;
-    break;
+      $computed_income['min'] = 250000;
+      $computed_income['max'] = 250000;
+      break;
   }
 
   $field_interval = field_get_items('node', $node, 'field_sidejob_income_interval');
@@ -246,7 +246,7 @@ function pw_sidejobs_compute_incomes($node, $compute_total=TRUE) {
       $field_parliament_valid = field_get_items('taxonomy_term', $parliament, 'field_parliament_valid');
       $found_valid = FALSE;
       $parliament_latest_end_date = FALSE;
-      foreach($field_parliament_valid as $parliament_valid){
+      foreach ($field_parliament_valid as $parliament_valid) {
         array_push($dates_start, $parliament_valid['value']);
         $parliament_latest_end_date = $parliament_valid;
       }
@@ -256,7 +256,7 @@ function pw_sidejobs_compute_incomes($node, $compute_total=TRUE) {
     }
   }
 
-  foreach ($dates_end as $date_end){
+  foreach ($dates_end as $date_end) {
     if ($date_end < $date_end_earlist) {
       $date_end_earlist = $date_end;
     }
