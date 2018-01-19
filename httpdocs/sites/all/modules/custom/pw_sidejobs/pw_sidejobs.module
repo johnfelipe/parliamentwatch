@@ -138,7 +138,7 @@ function pw_sidejobs_by_user_revision_query($account) {
  * @return array
  *   The array of min and max income and total min and max income.
  */
-function pw_sidejobs_compute_incomes($node, $compute_total = TRUE) {
+function pw_sidejobs_compute_incomes($node) {
   $computed_income = ['min' => NULL, 'max' => NULL, 'date' => NULL];
 
   if ($node->type != 'sidejob') {
@@ -244,7 +244,6 @@ function pw_sidejobs_compute_incomes($node, $compute_total = TRUE) {
 
 
       $field_parliament_valid = field_get_items('taxonomy_term', $parliament, 'field_parliament_valid');
-      $found_valid = FALSE;
       $parliament_latest_end_date = FALSE;
       foreach ($field_parliament_valid as $parliament_valid) {
         array_push($dates_start, $parliament_valid['value']);
