@@ -751,7 +751,7 @@
   };
 
   /**
-   * Attaches the autosuggest behavior to form inputs.
+   * Attaches the geolocate behavior to the politician search form.
    *
    * @type {Drupal~behavior}
    *

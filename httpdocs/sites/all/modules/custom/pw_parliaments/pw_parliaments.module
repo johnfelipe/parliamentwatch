@@ -46,7 +46,7 @@ function pw_parliaments_taxonomy_term_update($term) {
 }
 
 /**
- * Implements hook_taxonomy_term_view_alter().
+ * Implements hook_menu_alter().
  */
 function pw_parliaments_menu_alter(&$items) {
   $items['taxonomy/term/%taxonomy_term']['page callback'] = 'pw_parliaments_taxonomy_term_page';
