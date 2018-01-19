@@ -106,6 +106,16 @@ function pw_globals_update_7106() {
 }
 
 /**
+ * Delete income fields.
+ */
+function pw_globals_update_7107() {
+  field_delete_field('field_sidejob_income_max');
+  field_delete_field('field_sidejob_income_max_total');
+  field_delete_field('field_sidejob_income_min');
+  field_delete_field('field_sidejob_income_min_total');
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
