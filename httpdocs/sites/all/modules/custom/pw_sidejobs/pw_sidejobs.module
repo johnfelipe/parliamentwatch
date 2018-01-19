@@ -26,15 +26,6 @@ function pw_sidejobs_cron(){
   }
 }
 
-/*
- * Implements hook_node_presave()
- */
-function pw_sidejobs_node_presave($node){
-  if($node->type == 'sidejob'){
-    pw_sidejobs_compute_total_incomes($node);
-  }
-}
-
 /**
  * Implements hook_block_info().
  */
@@ -82,167 +73,12 @@ function pw_sidejobs_profile_block() {
 
   if (!empty($result['node'])) {
     $nodes = node_load_multiple(array_keys($result['node']));
-    $inline_js = 'window.sidejobs = ' . drupal_json_encode(array_map('pw_sidejobs_to_array', array_values($nodes))) . ';';
     $block['subject'] = t('Sideline jobs');
     $block['content'] = node_view_multiple($nodes, 'embedded');
-    $block['content']['#attached']['js'][$inline_js] = [
-      'scope' => 'footer',
-      'type' => 'inline',
-    ];
   }
 
   return $block;
 }
-
-/**
- * Computes total income for the given sideline job.
- *
- * The algorithm takes into account the start and end date of the sideline
- * job and the legislative period.
- *
- * @param object $node
- *   The sidejob node
- */
-function pw_sidejobs_compute_total_incomes($node) {
-
-  if ($node->type != 'sidejob') {
-    return FALSE;
-  }
-
-  // Clear income fields from zero values
-  if (empty($node->field_sidejob_income_min['und'][0]['value'])) {
-    unset($node->field_sidejob_income_min['und'][0]);
-    unset($node->field_sidejob_income_min_total['und'][0]);
-  }
-  if (empty($node->field_sidejob_income_max['und'][0]['value'])) {
-    unset($node->field_sidejob_income_max['und'][0]);
-    unset($node->field_sidejob_income_max_total['und'][0]);
-  }
-
-  $field_income_min = field_get_items('node', $node, 'field_sidejob_income_min');
-  $field_income_max = field_get_items('node', $node, 'field_sidejob_income_max');
-  $field_interval = field_get_items('node', $node, 'field_sidejob_income_interval');
-
-  // If interval is set to earned once, then only set total values to their
-  // related min and max values.
-  if ($field_interval[0]['value'] == 0) {
-    $node->field_sidejob_income_min_total['und'][0]['value'] = $field_income_min[0]['value'];
-    $node->field_sidejob_income_max_total['und'][0]['value'] = $field_income_max[0]['value'];
-  }
-  // Otherwise try to find the beginning and ending of sidejob (or legislative
-  // period or user join/retire date).
-  elseif (!empty($field_income_min[0]['value']) || !empty($field_income_max[0]['value'])) {
-
-    $date_start_latest = 0;
-    $dates_start = array();
-    $date_end_earlist = date('Y-m-d 00:00:00');
-    $dates_end = array();
-
-    $field_date_start = field_get_items('node', $node, 'field_sidejob_date_start');
-    $field_date_end = field_get_items('node', $node, 'field_sidejob_date_end');
-    if ($field_date_start !== FALSE) {
-      array_push($dates_start, $field_date_start[0]['value']);
-    }
-    if ($field_date_end !== FALSE) {
-      array_push($dates_end, $field_date_end[0]['value']);
-    }
-
-    $field_politician = field_get_items('node', $node, 'field_politician');
-    $uid = $field_politician[0]['target_id'];
-    if ($uid){
-      $user = user_load($uid);
-
-      $field_user_joined = field_get_items('user', $user, 'field_user_joined');
-      $field_user_retired = field_get_items('user', $user, 'field_user_retired');
-      if ($field_user_joined !== FALSE) {
-        array_push($dates_start, $field_user_joined[0]['value']);
-      }
-      if ($field_user_retired !== FALSE) {
-        array_push($dates_end, $field_user_retired[0]['value']);
-      }
-
-      $field_user_parliament = field_get_items('user', $user, 'field_user_parliament');
-      if ($field_user_parliament) {
-        $parliament = taxonomy_term_load($field_user_parliament[0]['tid']);
-        $field_parliament_valid = field_get_items('taxonomy_term', $parliament, 'field_parliament_valid');
-        $found_valid = FALSE;
-        $parliament_latest_end_date = FALSE;
-        foreach($field_parliament_valid as $parliament_valid){
-          if (_pw_is_between_dates($parliament_valid)) {
-            $found_valid = TRUE;
-            array_push($dates_start, $parliament_valid['value']);
-          }
-          else {
-            $parliament_latest_end_date = $parliament_valid;
-          }
-        }
-        if (!$found_valid && $parliament_latest_end_date) {
-          array_push($dates_end, $parliament_latest_end_date['value2']);
-        }
-      }
-    }
-
-    foreach ($dates_start as $date_start) {
-      if ($date_start > $date_start_latest) {
-        $date_start_latest = $date_start;
-      }
-    }
-
-    foreach ($dates_end as $date_end){
-      if ($date_end < $date_end_earlist) {
-        $date_end_earlist = $date_end;
-      }
-    }
-
-    $d1 = new DateTime($date_start_latest);
-    $d2 = new DateTime($date_end_earlist);
-    $datetime_diff = $d1->diff($d2);
-    $multiplicator = $field_interval[0]['value'] == 12 ? $datetime_diff->y : $datetime_diff->y * 12 + $datetime_diff->m;
-
-    // Set total incomes based on min and max incomes and the multiplicator
-    // (by years or months) otherwise unset total values.
-    if (!empty($field_income_min[0]['value'])) {
-      $node->field_sidejob_income_min_total['und'][0]['value'] = $field_income_min[0]['value'] * $multiplicator;
-    }
-    else {
-      unset($node->field_sidejob_income_min_total['und'][0]);
-    }
-    if (empty($field_income_max[0]['value'])) {
-      $node->field_sidejob_income_max_total['und'][0]['value'] = $field_income_max[0]['value'] * $multiplicator;
-    }
-    else {
-      unset($node->field_sidejob_income_max_total['und'][0]);
-    }
-  }
-}
-
-/**
- * Returns the total min and max income for the given sideline job.
- *
- * @param object $node
- *   The sidejob node.
- *
- * @return array
- *   The income range.
- */
-function pw_sidejobs_total_income_range($node) {
-  $range = [0, 0];
-
-  $income_min_total = field_get_items('node', $node, 'field_sidejob_income_min_total');
-
-  if (!empty($income_min_total)) {
-    $range[0] = $income_min_total[0]['value'];
-  }
-
-  $income_max_total = field_get_items('node', $node, 'field_sidejob_income_max_total');
-
-  if (!empty($income_max_total)) {
-    $range[1] = $income_max_total[0]['value'];
-  }
-
-  return $range;
-}
-
 
 /**
  * Returns all sideline jobs of the given account.
@@ -292,66 +128,6 @@ function pw_sidejobs_by_user_revision_query($account) {
 
   return $q;
 }
-
-/**
- * Returns the accumulated total min and max income from sideline jobs.
- *
- * @param object account
- *   The user entity.
- *
- * @return array
- *   The accumulated min and max income
- */
-function pw_sidejobs_accumulated_total_income_range($account) {
-  $initial = [0, 0];
-
-  $result = pw_sidejobs_by_user_revision_query($account)->execute();
-
-  if (!empty($result['node'])) {
-    $nodes = node_load_multiple(array_keys($result['node']));
-  }
-  else {
-    $nodes = [];
-  }
-
-  $callback = function ($carry, $item) {
-    $range = pw_sidejobs_total_income_range($item);
-    return [$carry[0] + $range[0], $carry[1] + $range[1]];
-  };
-
-  return array_reduce($nodes, $callback, $initial);
-}
-
-/**
- * Returns array representation of sideline job for serialization.
- *
- * @param object $node
- *   The sidejob node.
- *
- * @return array
- *   The array representation.
- */
-function pw_sidejobs_to_array($node) {
-  $data = [
-    'id' => $node->nid,
-    'customer' => isset($node->field_sidejob_organization[LANGUAGE_NONE][0]['taxonomy_term']) ? check_plain($node->field_sidejob_organization[LANGUAGE_NONE][0]['taxonomy_term']->name) : NULL,
-    'activity' => isset($node->field_job[LANGUAGE_NONE][0]['taxonomy_term']) ? check_plain($node->field_job[LANGUAGE_NONE][0]['taxonomy_term']->name) : NULL,
-    'city' => isset($node->field_sidejob_address[LANGUAGE_NONE][0]['locality']) ? check_plain($node->field_sidejob_address[LANGUAGE_NONE][0]['locality']) : NULL,
-    'dateFrom' => isset($node->field_sidejob_date_start[LANGUAGE_NONE][0]['value']) ? $node->field_sidejob_date_start[LANGUAGE_NONE][0]['value'] : NULL,
-    'dateTo' => isset($node->field_sidejob_date_end[LANGUAGE_NONE][0]['value']) ? $node->field_sidejob_date_end[LANGUAGE_NONE][0]['value'] : NULL,
-    'income' => [
-      'level' => isset($node->field_sidejob_classification[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_classification[LANGUAGE_NONE][0]['value'] : NULL,
-      'repetition' => isset($node->field_sidejob_income_interval[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_interval[LANGUAGE_NONE][0]['value'] : NULL,
-      'valueMin' => isset($node->field_sidejob_income_min[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_min[LANGUAGE_NONE][0]['value'] : NULL,
-      'valueMax' => isset($node->field_sidejob_income_max[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_max[LANGUAGE_NONE][0]['value'] : NULL,
-      'totalValueMin' => isset($node->field_sidejob_income_min_total[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_min_total[LANGUAGE_NONE][0]['value'] : NULL,
-      'totalValueMax' => isset($node->field_sidejob_income_max_total[LANGUAGE_NONE][0]['value']) ? (int) $node->field_sidejob_income_max_total[LANGUAGE_NONE][0]['value'] : NULL,
-    ]
-  ];
-
-  return $data;
-}
-
 
 /**
  * Returns array of min and max income reflecting the given income classification
