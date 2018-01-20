@@ -116,6 +116,24 @@ function pw_globals_update_7107() {
 }
 
 /**
+ * Enable sideline jobs block on profiles.
+ */
+function pw_globals_update_7108() {
+  $config = [
+    'module' => 'pw_sidejobs',
+    'delta' => 'profile',
+    'weight' => -72,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => "profile/*",
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content_tabs'],
+    'user_roles' => ['Politician']
+  ];
+  _pw_globals_configure_block($config);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
