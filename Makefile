@@ -7,7 +7,8 @@ TRANSLATABLE=$(addprefix $(MODULES)/,\
 	pw_petitions/pw_petitions.module \
 	pw_poll/pw_poll.module \
 	pw_profiles/pw_profiles.module \
-	pw_question_form/pw_question_form.module)\
+	pw_question_form/pw_question_form.module \
+	pw_sidejobs/pw_sidejobs.module)\
 	$(THEMES)/parliamentwatch/js/script.js \
 	$(THEMES)/parliamentwatch/template.php \
 	$(wildcard $(THEMES)/parliamentwatch/templates/*.tpl.php)
