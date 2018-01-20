@@ -63,3 +63,85 @@ function pw_parliaments_block_list_alter(&$blocks) {
     }
   }
 }
+
+/**
+ * Returns the previous iteration of the given parliament
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return object
+ *   The previous iteration of the given parliament.
+ */
+function pw_parliaments_previous($term) {
+  $items = field_get_items('taxonomy_term', $term, 'field_parliament_previous');
+
+  if ($items) {
+    return taxonomy_term_load($items[0]['tid']);
+  }
+}
+
+/**
+ * Returns the next iteration of the given parliament.
+ *
+ * @param $term
+ *   The parliament term
+ *
+ * @return object
+ *   The next iteration of the given parliament.
+ */
+function pw_parliaments_next($term) {
+  $tid = db_select('field_data_field_parliament_previous', 'prev')
+    ->fields('prev', ['entity_id'])
+    ->condition('prev.field_parliament_previous_tid', $term->tid)
+    ->execute()
+    ->fetchField();
+
+  if ($tid) {
+    return taxonomy_term_load($tid);
+  }
+}
+
+/**
+ * Returns all preceding iterations of the given parliament.
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return array
+ *   The previous parliaments.
+ */
+function pw_parliaments_predecessors($term) {
+  $predecessors = [];
+
+  $previous = pw_parliaments_previous($term);
+
+  if (isset($previous)) {
+    $predecessors = pw_parliaments_predecessors($previous);
+    $predecessors[] = $previous;
+  }
+
+  return $predecessors;
+}
+
+/**
+ * Returns all succeeding iterations of the given parliament.
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return array
+ *   The succeeding parliaments.
+ */
+function pw_parliaments_successors($term) {
+  $successors = [];
+
+  $next = pw_parliaments_next($term);
+
+  if (isset($next)) {
+    $successors = pw_parliaments_successors($next);
+    $successors[] = $next;
+  }
+
+  return array_reverse($successors);
+}
