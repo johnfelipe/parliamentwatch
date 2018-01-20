@@ -130,6 +130,181 @@ function pw_sidejobs_by_user_revision_query($account) {
 }
 
 /**
+ * Returns the interval at which the income for the given sidejob is received.
+ *
+ * @param $node
+ *   The node of type sidejob.
+ *
+ * @return int
+ *   The interval at which the income is received.
+ */
+function pw_sidejobs_interval($node) {
+  $items = field_get_items('node', $node, 'field_sidejob_income_interval');
+
+  if ($items) {
+    $interval = $items[0]['value'];
+  }
+  else {
+    $interval = 0;
+  }
+
+  return $interval;
+}
+
+/**
+ * Returns the classification of the given sideline job.
+ *
+ * @param $node
+ *   The node of type sidejob.
+ *
+ * @return int
+ *   The classification.
+ */
+function pw_sidejobs_classification($node) {
+  $items = field_get_items('node', $node, 'field_sidejob_classification');
+
+  if ($items) {
+    $classification = $items[0]['value'];
+  }
+  else {
+    $classification = 0;
+  }
+
+  return $classification;
+}
+
+/**
+ * Returns the range of income accumulated with the given sideline job.
+ *
+ * If the income range cannot be computed an empty array is returned.
+ *
+ * @param $node
+ *   The node of type sidejob.
+ *
+ * @return array
+ *   An array with the minimum and maximum income.
+ */
+function pw_sidejobs_income_range($node) {
+  $income_range = pw_sidejobs_base_income_range(pw_sidejobs_classification($node));
+  $multiplier = pw_sidejobs_multiplier(pw_sidejobs_interval($node), pw_sidejobs_datetime_range($node));
+  return array_filter(array_map(function ($value) use ($multiplier) { return $value * $multiplier; }, $income_range));
+}
+
+/**
+ * Returns the income range for the given classification of a sideline job.
+ *
+ * @param int $classification
+ *   The classification of a sideline job.
+ *
+ * @return array
+ *   An array with the minimum and maximum income.
+ */
+function pw_sidejobs_base_income_range($classification) {
+  switch ($classification) {
+    case 1:
+      return [1000, 3500];
+    case 2:
+      return [3500, 7000];
+    case 3:
+      return [7000, 15000];
+    case 4:
+      return [15000, 30000];
+    case 5:
+      return [30000, 50000];
+    case 6:
+      return [50000, 75000];
+    case 7:
+      return [75000, 100000];
+    case 8:
+      return [100000, 150000];
+    case 9:
+      return [150000, 250000];
+    case 10:
+      return [250000, 250000];
+    default:
+      return [];
+  }
+}
+
+/**
+ * Returns the applicable start and end date for the given sideline job.
+ *
+ * @param $node
+ *   The node of type sidejob.
+ *
+ * @return DateTime[]
+ *   An array with the start and end date.
+ */
+function pw_sidejobs_datetime_range($node) {
+  $dates_start = [];
+  $dates_end = [date('Y-m-d 00:00:00')];
+
+  $field_parliament_valid = field_get_items('taxonomy_term', pw_globals_parliament($node), 'field_parliament_valid');
+  array_push($dates_start, end($field_parliament_valid)['value']);
+  array_push($dates_end, end($field_parliament_valid)['value2']);
+
+  $field_date_start = field_get_items('node', $node, 'field_sidejob_date_start');
+  if ($field_date_start !== FALSE) {
+    array_push($dates_start, $field_date_start[0]['value']);
+  }
+
+  $field_date_end = field_get_items('node', $node, 'field_sidejob_date_end');
+  if ($field_date_end !== FALSE) {
+    array_push($dates_end, $field_date_end[0]['value']);
+  }
+
+  $politician = pw_globals_politician($node);
+
+  $field_user_joined = field_get_items('user', $politician, 'field_user_joined');
+  if ($field_user_joined !== FALSE) {
+    array_push($dates_start, $field_user_joined[0]['value']);
+  }
+
+  $field_user_retired = field_get_items('user', $politician, 'field_user_retired');
+  if ($field_user_retired !== FALSE) {
+    array_push($dates_end, $field_user_retired[0]['value']);
+  }
+
+  return [
+    new DateTime(max(array_filter($dates_start))),
+    new DateTime(min(array_filter($dates_end))),
+  ];
+}
+
+/**
+ * Returns the multiplier for the given sideline job.
+ *
+ * This number is used to calculate the accumulated income for the applicable
+ * date range.
+ *
+ * @param $node
+ *   The node of type sidejob.
+ *
+ * @return int
+ *   The multiplier.
+ */
+function pw_sidejobs_multiplier($interval, $datetime_range) {
+  if ($interval == 0) {
+    return 1;
+  }
+
+  if ($datetime_range[0] > $datetime_range[1]) {
+    return 0;
+  }
+
+  $datetime_diff = $datetime_range[0]->diff($datetime_range[1]);
+
+  if ($interval == 12) {
+    $multiplier = $datetime_diff->y;
+  }
+  else {
+    $multiplier = $datetime_diff->y * 12 + $datetime_diff->m;
+  }
+
+  return (int) $multiplier;
+}
+
+/**
  * Returns array of min and max income reflecting the given income classification
  *
  * @param object $node
@@ -145,53 +320,10 @@ function pw_sidejobs_compute_incomes($node) {
     return FALSE;
   }
 
-  $field_classification = field_get_items('node', $node, 'field_sidejob_classification');
-  if (intval($field_classification[0]['value']) == 0) {
-    return FALSE;
-  }
+  $computed_income = pw_sidejobs_base_income_range($node);
 
-  // @TODO: classification for different parliaments
-  switch (intval($field_classification[0]['value'])) {
-    case 1:
-      $computed_income['min'] = 1000;
-      $computed_income['max'] = 3500;
-      break;
-    case 2:
-      $computed_income['min'] = 3500;
-      $computed_income['max'] = 7000;
-      break;
-    case 3:
-      $computed_income['min'] = 7000;
-      $computed_income['max'] = 15000;
-      break;
-    case 4:
-      $computed_income['min'] = 15000;
-      $computed_income['max'] = 30000;
-      break;
-    case 5:
-      $computed_income['min'] = 30000;
-      $computed_income['max'] = 50000;
-      break;
-    case 6:
-      $computed_income['min'] = 50000;
-      $computed_income['max'] = 75000;
-      break;
-    case 7:
-      $computed_income['min'] = 75000;
-      $computed_income['max'] = 100000;
-      break;
-    case 8:
-      $computed_income['min'] = 100000;
-      $computed_income['max'] = 150000;
-      break;
-    case 9:
-      $computed_income['min'] = 150000;
-      $computed_income['max'] = 250000;
-      break;
-    case 10:
-      $computed_income['min'] = 250000;
-      $computed_income['max'] = 250000;
-      break;
+  if (empty($computed_income)) {
+    return FALSE;
   }
 
   $field_interval = field_get_items('node', $node, 'field_sidejob_income_interval');
