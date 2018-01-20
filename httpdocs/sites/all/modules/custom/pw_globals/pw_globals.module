@@ -460,11 +460,8 @@ function pw_globals_replace_text_with_icon($element) {
   return str_replace(t('Search'), '<i class="icon icon-search"></i>', $element);
 }
 
-/*
- * Returns parliament term associated with the given node.
- *
- * Politician accounts are always associated with a parliament, whether they
- * are deputies or candidates.
+/**
+ * Returns the parliament term associated with the given node.
  *
  * @param object $node
  *   The node object.
