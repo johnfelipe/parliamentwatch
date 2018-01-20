@@ -58,6 +58,8 @@ function pw_globals_menu() {
  */
 function pw_globals_menu_alter(&$items) {
   $items['admin/content/antispam']['page arguments'] = ['nodes'];
+  $items['taxonomy/term/%taxonomy_term']['page callback'] = 'pw_globals_taxonomy_term_page';
+  unset($items['taxonomy/term/%taxonomy_term_load']['file']);
 }
 
 /**
@@ -239,6 +241,51 @@ function pw_globals_info_page() {
   }
 
   return $build;
+}
+
+/**
+ * Page callback: Displays taxonomy term pages.
+ *
+ * Displays terms of selected vocabularies and hides the remainder.
+ */
+function pw_globals_taxonomy_term_page($term) {
+  if ($term->vocabulary_machine_name == 'parliaments') {
+    if (pw_globals_parliament_is_funded($term)) {
+      // Ensure side effects of taxonomy_term_view like generation of meta tags
+      // are triggered.
+      taxonomy_term_view($term);
+      return '';
+    }
+    else {
+      return taxonomy_term_view($term);
+    }
+  }
+  elseif (in_array($term->vocabulary_machine_name, ['blogcategories', 'blogtags', 'topics'])) {
+    $build = taxonomy_term_view($term);
+    $nids = taxonomy_select_nodes($term->tid, TRUE, variable_get('default_nodes_main', 12));
+
+    if ($nids) {
+      $nodes = node_load_multiple($nids);
+      $build = node_view_multiple($nodes, 'tile');
+      $build['#theme_wrappers'] = ['container__tiles'];
+      $build['pager'] = [
+        '#theme' => 'pager',
+        '#weight' => 5,
+      ];
+    }
+    else {
+      $build['no_content'] = [
+        '#prefix' => '<p>',
+        '#markup' => t('There is currently no content classified with this term.'),
+        '#suffix' => '</p>',
+      ];
+    }
+
+    return $build;
+  }
+  else {
+    return MENU_NOT_FOUND;
+  }
 }
 
 /**
@@ -478,6 +525,29 @@ function pw_globals_parliament($node) {
   }
 
   return $parliament_term;
+}
+
+/**
+ * Returns TRUE if the given parliament is funded, FALSE otherwise.
+ *
+ * If the given term is not a parliament term returns NULL.
+ *
+ * @param object $term
+ *   The parliament term.
+ *
+ * @return bool
+ *   TRUE if the given parliament is funded, FALSE otherwise
+ */
+function pw_globals_parliament_is_funded($term) {
+  if ($term->vocabulary_machine_name != 'parliaments') {
+    return NULL;
+  }
+  elseif (empty($term->description)) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
 }
 
 /**

@@ -46,14 +46,6 @@ function pw_parliaments_taxonomy_term_update($term) {
 }
 
 /**
- * Implements hook_menu_alter().
- */
-function pw_parliaments_menu_alter(&$items) {
-  $items['taxonomy/term/%taxonomy_term']['page callback'] = 'pw_parliaments_taxonomy_term_page';
-  unset($items['taxonomy/term/%taxonomy_term_load']['file']);
-}
-
-/**
  * Implements hook_block_list_alter().
  *
  * Removes title block from taxonomy term pages of funded parliaments.
@@ -61,7 +53,7 @@ function pw_parliaments_menu_alter(&$items) {
 function pw_parliaments_block_list_alter(&$blocks) {
   $term = menu_get_object('taxonomy_term', 2);
 
-  if (!isset($term) || !pw_parliaments_is_funded($term)) {
+  if (!isset($term) || !pw_globals_parliament_is_funded($term)) {
     return;
   }
 
@@ -69,72 +61,5 @@ function pw_parliaments_block_list_alter(&$blocks) {
     if ($block->module == 'pw_globals' && $block->delta == 'title') {
       unset($blocks[$key]);
     }
-  }
-}
-
-/**
- * Displays parliament pages, leaving other term pages to the default callback.
- */
-function pw_parliaments_taxonomy_term_page($term)
-{
-  if ($term->vocabulary_machine_name == 'parliaments') {
-    if (pw_parliaments_is_funded($term)) {
-      // Ensure side effects of taxonomy_term_view like generation of meta tags
-      // are triggered.
-      taxonomy_term_view($term);
-      return '';
-    }
-    else {
-      return taxonomy_term_view($term);
-    }
-  }
-  elseif (in_array($term->vocabulary_machine_name, ['blogcategories', 'blogtags', 'topics'])) {
-    $build = taxonomy_term_view($term);
-    $nids = taxonomy_select_nodes($term->tid, TRUE, variable_get('default_nodes_main', 12));
-
-    if ($nids) {
-      $nodes = node_load_multiple($nids);
-      $build = node_view_multiple($nodes, 'tile');
-      $build['#theme_wrappers'] = ['container__tiles'];
-      $build['pager'] = [
-        '#theme' => 'pager',
-        '#weight' => 5,
-      ];
-    }
-    else {
-      $build['no_content'] = [
-        '#prefix' => '<p>',
-        '#markup' => t('There is currently no content classified with this term.'),
-        '#suffix' => '</p>',
-      ];
-    }
-
-    return $build;
-  }
-  else {
-    return MENU_NOT_FOUND;
-  }
-}
-
-/**
- * Returns TRUE if the given parliament is funded, FALSE otherwise.
- *
- * If the given term is not a parliament term returns NULL.
- *
- * @param object $term
- *   The parliament term.
- *
- * @return bool
- *   TRUE if the given parliament is funded, FALSE otherwise
- */
-function pw_parliaments_is_funded($term) {
-  if ($term->vocabulary_machine_name != 'parliaments') {
-    return NULL;
-  }
-  elseif (empty($term->description)) {
-    return TRUE;
-  }
-  else {
-    return FALSE;
   }
 }
