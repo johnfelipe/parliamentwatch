@@ -500,6 +500,37 @@ function pw_globals_current_parliaments() {
 }
 
 /**
+ * Returns revision of user object associated with the given node.
+ *
+ * @param $node
+ *   The node object.
+ *
+ * @return object
+ *   The user (revision) object.
+ */
+function pw_globals_politician($node) {
+  $politician = NULL;
+  $items = field_get_items('node', $node, 'field_politician');
+
+  if ($items) {
+    $query = db_select('user_archive_cache', 'uac')
+      ->fields('uac', ['uid', 'vid']);
+
+    _pw_uac_add_conditions($query, array(
+        'parliament' => pw_globals_parliament($node)->name,
+        'roles' => 'deputy',
+        'uid' => $node->field_politician[LANGUAGE_NONE][0]['target_id'],
+      )
+    );
+
+    $result = $query->execute()->fetchAssoc();
+    $politician = user_revision_load($result['uid'], $result['vid']);
+  }
+
+  return $politician;
+}
+
+/**
  * Returns the role condition for the politician search.
  *
  * If the current parliament is past the election and the current date is after
