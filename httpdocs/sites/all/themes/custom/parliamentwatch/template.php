@@ -267,7 +267,13 @@ function parliamentwatch_preprocess_node(&$variables) {
     $income_range = pw_sidejobs_income_range($node);
 
     if (isset($variables['field_sidejob_date_start'][0]['value'])) {
-      $variables['content']['field_sidejob_date'] = format_date(strtotime($variables['field_sidejob_date_start'][0]['value']), 'custom', 'd.m.Y');
+      $date_start = strtotime($variables['field_sidejob_date_start'][0]['value']);
+      if (date('m', $date_start) == '01' && date('d', $date_start) == '01') {
+        $variables['content']['field_sidejob_date'] = date('Y', $date_start);
+      }
+      else {
+        $variables['content']['field_sidejob_date'] = format_date($date_start, 'custom', 'd.m.Y');
+      }
     }
 
     if (isset($variable['field_sidejob_date_end'][0]['value'])) {
