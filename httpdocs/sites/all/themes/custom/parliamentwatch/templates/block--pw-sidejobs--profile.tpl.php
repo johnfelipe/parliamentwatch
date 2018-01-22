@@ -69,5 +69,6 @@
         </table>
       </div>
     </div>
+    <p>Die Dokumentation der Nebeneinkünfte wird gefördert durch die Otto Brenner Stiftung <img src="/<?php print drupal_get_path('theme', 'parliamentwatch'); ?>/images/obs-logo.jpg" alt="Logo der Otto Brenner Stiftung"></p>
   </div>
 </section>
