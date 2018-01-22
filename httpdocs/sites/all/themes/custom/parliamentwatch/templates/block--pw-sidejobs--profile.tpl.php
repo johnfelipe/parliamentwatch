@@ -45,30 +45,28 @@
  */
 ?>
 <section id="<?php print $block_html_id; ?>" class="<?php print $classes; ?>">
-  <div class="container">
-    <div class="tabs__content__title">
-      <h2><a href="#<?php print $block_html_id; ?>"><?php print $block->subject; ?></a></h2>
-      <?php print render($title_suffix) ?>
-    </div>
-    <div class="tabs__content__content">
-      <div class="sidejob-overview">
-        <span class="d3 d3--bars-secondary-income" data-d3-secondary-income></span>
-        <div class="table-wrapper">
-          <table cellpadding="0" cellspacing="0" class="table table--sortable table--secondary-income">
-            <thead>
-              <tr>
-                <th class="sidejob-overview__item__customer" data-sort="string"><?php print t('Customer') ?></th>
-                <th class="sidejob-overview__item__activity" data-sort="string"><?php print t('Activity') ?></th>
-                <th class="sidejob-overview__item__city" data-sort="string"><?php print t('City') ?></th>
-                <th class="sidejob-overview__item__date" data-sort="string"><?php print t('Date') ?></th>
-                <th class="sidejob-overview__item__level" data-sort="int"><?php print t('Income level') ?></th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php print $content; ?>
-            </tbody>
-          </table>
-        </div>
+  <div class="tabs__content__title">
+    <h2><a href="#<?php print $block_html_id; ?>"><?php print $block->subject; ?></a></h2>
+    <?php print render($title_suffix) ?>
+  </div>
+  <div class="tabs__content__content">
+    <div class="sidejob-overview">
+      <span class="d3 d3--bars-secondary-income" data-d3-secondary-income></span>
+      <div class="table-wrapper">
+        <table cellpadding="0" cellspacing="0" class="table table--sortable table--secondary-income">
+          <thead>
+            <tr>
+              <th class="sidejob-overview__item__customer" data-sort="string"><?php print t('Customer') ?></th>
+              <th class="sidejob-overview__item__activity" data-sort="string"><?php print t('Activity') ?></th>
+              <th class="sidejob-overview__item__city" data-sort="string"><?php print t('City') ?></th>
+              <th class="sidejob-overview__item__date" data-sort="string"><?php print t('Date') ?></th>
+              <th class="sidejob-overview__item__level" data-sort="int"><?php print t('Income level') ?></th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php print $content; ?>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
