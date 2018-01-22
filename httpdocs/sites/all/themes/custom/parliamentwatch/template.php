@@ -153,16 +153,17 @@ function parliamentwatch_preprocess_block(&$variables) {
 
       if ($active_path) {
         $parliament_term = menu_get_item($active_path)['map'][1];
-        $text = $parliament_term->name;
-        $path = entity_uri('taxonomy_term', $parliament_term)['path'];
       }
       else {
-        $trail = menu_get_active_trail();
-        $text = $trail[2]['link_title'];
-        $path = $trail[2]['link_path'];
+        $parliament_term = menu_get_item()['page_arguments'][0];
       }
+
+      $predecessors = pw_parliaments_predecessors($parliament_term);
+      $successors = pw_parliaments_successors($parliament_term);
+
       $variables['title_suffix']['indicator'] = [
-        '#markup' => l($text, $path, ['attributes' => ['class' => ['header__subnav__indicator']]])
+        '#theme' => 'item_list__archive_dropdown',
+        '#items' => array_reverse(array_merge($predecessors, $successors, [$parliament_term])),
       ];
     }
   }
@@ -765,6 +766,38 @@ function parliamentwatch_item_list__constituency_selection(&$variables) {
     }
     $output .= "</div>";
   }
+  return $output;
+}
+
+/**
+ * Overrides theme_item_list() for archive dropdown.
+ */
+function parliamentwatch_item_list__archive_dropdown(&$variables) {
+  $output = '';
+  $items = $variables['items'];
+  $pattern = '/(\w+) (\d{4}-\d{4})/';
+  $replacement = '\1<span>\2</span>';
+
+  if (!empty($items)) {
+    $first = array_shift($items);
+
+    $output = '<div class="header__subnav__archive dropdown dropdown--hover">';
+    $output .= '<span>';
+    $output .= l(preg_replace($pattern, $replacement, $first->name), entity_uri('taxonomy_term', $first)['path'], ['html' => TRUE, 'attributes' => ['class' => ['header__subnav__archive__indicator']]]);
+    $output .= '</span>';
+    $output .= '<ul class="header__subnav__archive__list dropdown__list">';
+
+    $link_options = ['html' => TRUE, 'attributes' => ['class' => ['header__subnav__archive__list__item__link']]];
+
+    foreach ($items as $item) {
+      $output .= '<li class="header__subnav__archive__list__item">';
+      $output .= l($item->name, entity_uri('taxonomy_term', $item)['path'], $link_options);
+      $output .= "</li>\n";
+    }
+
+    $output .= "</div>";
+  }
+
   return $output;
 }
 
