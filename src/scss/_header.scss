@@ -8,7 +8,7 @@
   background: $beige;
   border-bottom: 1px solid $darkBeige;
   width: 100%;
-  z-index: 99;
+  z-index: 9999;
   @include breakpoint($breakpoint-l-min) {
     position: fixed;
   }
@@ -301,6 +301,7 @@
     @include margin(0);
   }
   .nav__item {
+    display: inline-block;
     &:nth-child(1) .nav__item__link:before {
       content: '\e84d';
     }
@@ -384,10 +385,13 @@
 
 /* Subnavigation with swiper integration */
 
-.header__bottom .swiper-container-horizontal {
+.header__bottom nav {
   width: auto;
   position: relative;
   @include grid-container();
+  &.swiper-container-horizontal {
+    
+  }
   .nav {
     width: 100%;
     height: 100%;
@@ -480,36 +484,192 @@
   }
 }
 
-/* Indicator */
-.header__subnav__indicator {
-  clear: both;
-  float: left;
-  color: $gray;
-  line-height: $space;
-  font-size: 1.2em;
-  font-family: $font-serif;
+/* Archive */
+
+.header__subnav__archive {
+  @include clearfix();
+  cursor: pointer;
+  vertical-align: middle;
   border-right: 1px solid $darkBeige;
+  padding-left: $space;
+  padding-right: $space + 5;
+  background: $white;
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 9;
-  background: $white;
-  will-change: padding;
-  transition: padding 300ms ease;
-  @include padding($space-small $space);
+  z-index: 99;
+  display: table;
+  height: 50px;
+  will-change: height;
+  transition: height 300ms ease;
   @include breakpoint($breakpoint-xs-min) {
-    font-size: 1.4em;
-    @include padding($space);
-  }
-  @include breakpoint($breakpoint-m-min) {
-    font-size: 24px;
+    height: 60px;
   }
   @include breakpoint($breakpoint-l-min) {
-    @include padding($space-large $space);
+    height: 80px;
+  }
+  &:before {
+    content: '\e847';
+    font-family: awfont;
+    font-size: 8px;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    margin-top: -5px;
+    color: $mediumGray;
+    @include breakpoint($breakpoint-s-min) {
+      right: 10px;
+    }
+  }
+  > span {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  @include breakpoint($breakpoint-s-min) {
+    padding-right: $space-large;
+  }
+  @media (min-width: 1363px) {
+    padding-left: $space;
   }
 
-  a {
-    text-decoration: none;
+  .header__subnav__archive__list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    border-top: 1px solid $darkBeige;
+    left: 0;
+    z-index: 9;
+    background: #fff;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 8px 10px rgba(0,0,0,.1);
+    min-width: 320px;
+  }
+  .header__subnav__archive__list__item {
+    border-bottom: 1px solid $brightGray;
+    margin: 0;
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+  .header__subnav__archive__list__item__link {
+    padding: 15px;
+    display: block;
+    color: $gray;
+    &:hover {
+      color: $darkGray;
+    }
+  }
+
+  &.header__subnav__archive--open {
+    .header__subnav__archive__list {
+      display: block;
+    }
+    &:before {
+      transform: rotate(-180deg);
+    }
+  }
+}
+
+.header__subnav__archive-hint {
+  background: $orangeBG;
+  max-width: 360px;
+
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: calc(100% + 10px);
+  border-radius: 4px;
+  padding: 15px 45px 15px 15px;
+  z-index: 99;
+  box-shadow: 0 3px 10px 0 rgba(0,0,0,.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity ease 800ms, transform ease 400ms, box-shadow ease 800ms 200ms;
+  transform: translate3d(0,20%,0);
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 8px 6px 8px;
+    border-color: transparent transparent $orangeBG transparent;
+    position: absolute;
+    left: 40px;
+    bottom: 100%;
+    @include breakpoint($breakpoint-m-min) {
+      left: 55px;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      left: 65px;
+    }
+  }
+  p {
+    color: $white;
+    margin-bottom: 0;
+  }
+  &.header__subnav__archive-hint--in {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0,0,0);
+    box-shadow: 0 8px 15px 0 rgba(0,0,0,.15);
+  }
+
+  .icon-close {
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    color: $white;
+    font-size: 13px;
+    cursor: pointer;
+  }
+}
+.header__subnav__archive-hint-overlay {
+  background: rgba(0,0,0,.3);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 999;
+  transition: opacity ease 800ms;
+  &.header__subnav__archive-hint-overlay--in {
+    opacity: 1;
+  }
+}
+
+
+/* Indicator */
+
+.header__subnav__archive__indicator {
+  color: $mediumGray;
+  line-height: $space;
+  font-size: 1.1em;
+  font-family: $font-serif;
+  background: $white;
+  text-decoration: none;
+  @include breakpoint($breakpoint-xs-min) {
+    font-size: 16px;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    font-size: 21px;
+  }
+  @include breakpoint($breakpoint-l-min) {
+    font-size: 26px;
+  }
+  span {
+    display: block;
+    font-size: 10px;
+    line-height: 10px;
+    color: $gray;
+    @include breakpoint($breakpoint-l-min) {
+      font-size: 12px;
+      line-height: 14px;
+    }
   }
 }
 
@@ -537,16 +697,16 @@
       }
     }
   }
-  .header__subnav__indicator {
-    @include breakpoint($breakpoint-l-min) {
-      @include padding($space $space);
-    }
-  }
   .nav--main-menu--level-3 {
     .nav__item__link {
       @include breakpoint($breakpoint-l-min) {
         @include padding($space ($space-large*0.65));
       }
+    }
+  }
+  .header__subnav__archive {
+    @include breakpoint($breakpoint-l-min) {
+      height: 60px;
     }
   }
 }
