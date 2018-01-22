@@ -43,7 +43,9 @@ Theme assets are managed with Grunt tasks. To build the assets initially run the
 
 Translations for contributed and custom modules are managed with [Localization update](https://drupal.org/project/l10n_update). To update translations for contributed modules update the translations in your development environment with `drush l10n-update` and commit the changes. On the live environment updates will only be sourced from the files in sites/all/translations. Translations for custom modules and themes are all stored in the PO file for PW Globals. To update translations for custom modules and themes:
 
-1. Extract translatable strings with `make general.pot`
-1. Update the PO file for PW Globals with `msgmerge -U -N httpdocs/sites/all/translations/pw_globals-<version>.de.po general.pot`
+    $ drush en potx
+    $ cd /vagrant/
+    $ make general.pot
+    $ msgmerge -U -N httpdocs/sites/all/translations/pw_globals-<version>.de.po general.pot
 
 When the version of PW Globals changes the PO file needs to be renamed accordingly.
