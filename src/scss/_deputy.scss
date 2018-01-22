@@ -725,7 +725,28 @@ $abstimmverhalten-node-item-width: 18px;
       div { color: $white; }
     }
   }
+  & + p {
+    padding-top: $space-large;
+    text-align: right;
+    @include grid-column(12);
+    @include grid-container();
+    > span {
+      margin-right: 80px;
+      display: block;
+      font-size: .8em;
+      line-height: 1.6em;
+      @media (min-width: $breakpoint-xs-min) {
+        line-height: 60px;
+      }
+    }
+    > img {
+      display: block;
+      max-width: 60px;
+      float: right;
+    }
+  }
 }
+
 .table--secondary-income {
   tbody tr {
     &:hover {
