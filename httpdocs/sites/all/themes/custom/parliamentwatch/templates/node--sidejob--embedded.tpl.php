@@ -96,11 +96,13 @@
   <td class="sidejob-overview__item__date" data-sort-value="<?php print $field_sidejob_date_start[0]['value']; ?>">
     <?php print render($content['field_sidejob_date']); ?>
   </td>
-  <td class="sidejob-overview__item__level" data-sort-value="<?php print $field_sidejob_income_max_total[0]['value'] ?: 0; ?>">
-    <?php print $income_range ?>
-    <span>
-      <?php print t('level'); ?> <?php print render($content['field_sidejob_classification']); ?>
-    </span>
-    <small><?php print render($content['field_sidejob_income_interval']); ?></small>
+  <td class="sidejob-overview__item__level" data-sort-value="<?php print $field_sidejob_classification[0]['value'] ?: 0; ?>">
+    <?php if (!empty($income_range)): ?>
+      <?php print $income_range ?>
+      <span>
+        <?php print t('level'); ?> <?php print render($content['field_sidejob_classification']); ?>
+      </span>
+      <small><?php print render($content['field_sidejob_income_interval']); ?></small>
+    <?php endif; ?>
   </td>
 </tr>
