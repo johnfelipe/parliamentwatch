@@ -779,22 +779,20 @@ function parliamentwatch_item_list__archive_dropdown(&$variables) {
   $replacement = '\1<span>\2</span>';
 
   if (!empty($items)) {
-    $first = array_shift($items);
+    $first = $items[0];
 
     $output = '<div class="header__subnav__archive dropdown dropdown--hover">';
     $output .= '<span>';
-    $output .= l(preg_replace($pattern, $replacement, $first->name), entity_uri('taxonomy_term', $first)['path'], ['html' => TRUE, 'attributes' => ['class' => ['header__subnav__archive__indicator']]]);
+    $output .= '<span class="header__subnav__archive__indicator">' . preg_replace($pattern, $replacement, $first->name) . '</span>';
     $output .= '</span>';
     $output .= '<ul class="header__subnav__archive__list dropdown__list">';
 
     $link_options = ['html' => TRUE, 'attributes' => ['class' => ['header__subnav__archive__list__item__link']]];
-
     foreach ($items as $item) {
       $output .= '<li class="header__subnav__archive__list__item">';
       $output .= l($item->name, entity_uri('taxonomy_term', $item)['path'], $link_options);
       $output .= "</li>\n";
     }
-
     $output .= "</div>";
   }
 

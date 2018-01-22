@@ -693,16 +693,20 @@
   line-height: $space;
   font-size: 1.1em;
   font-family: $font-serif;
-  background: $white;
+  background: transparent;
   text-decoration: none;
+  will-change: font-size;
+  transition: font-size 200ms ease;
   @include breakpoint($breakpoint-xs-min) {
     font-size: 16px;
   }
   @include breakpoint($breakpoint-m-min) {
-    font-size: 21px;
+    font-size: 19px;
+    line-height: 18px;
   }
   @include breakpoint($breakpoint-l-min) {
-    font-size: 26px;
+    font-size: 20px;
+    line-height: 20px;
   }
   span {
     display: block;
