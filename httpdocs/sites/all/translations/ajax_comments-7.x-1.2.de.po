@@ -1,10 +1,10 @@
 # German translation of AJAX Comments (7.x-1.2)
-# Copyright (c) 2015 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: AJAX Comments (7.x-1.2)\n"
-"POT-Creation-Date: 2015-03-25 05:38+0000\n"
+"POT-Creation-Date: 2018-01-19 23:33+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr "Abbrechen"
 msgid "Content types"
 msgstr "Inhaltstypen"
 msgid "Add new comment"
-msgstr "Neuen Kommentar schreiben"
+msgstr "Neuen Kommentar hinzufügen"
 msgid "The comment and all its replies have been deleted."
 msgstr "Der Kommentar und all seine Antworten wurden gelöscht."
 msgid "Text to display"

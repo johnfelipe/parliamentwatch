@@ -1,10 +1,10 @@
 # German translation of Field Group (7.x-1.5)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Field Group (7.x-1.5)\n"
-"POT-Creation-Date: 2017-01-11 20:38+0000\n"
+"POT-Creation-Date: 2018-01-01 19:53+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -124,3 +124,7 @@ msgid "Header 2"
 msgstr "Kopfzeile 2"
 msgid "Select source view mode or form"
 msgstr "Ansichtsmodus-Quelle oder Formular auswählen"
+msgid "Clone fieldgroups from selected view mode to the current display"
+msgstr ""
+"Die Feldgruppen aus dem ausgewählten Ansichtsmodus in die aktuelle "
+"Anzeige duplizieren."

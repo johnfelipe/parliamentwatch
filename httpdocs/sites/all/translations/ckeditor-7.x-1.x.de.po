@@ -1,10 +1,10 @@
-# German translation of CKEditor - WYSIWYG HTML editor (7.x-1.17)
-# Copyright (c) 2017 by the German translation team
+# German translation of CKEditor - WYSIWYG HTML editor (7.x-1.18)
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: CKEditor - WYSIWYG HTML editor (7.x-1.17)\n"
-"POT-Creation-Date: 2017-09-30 00:49+0000\n"
+"Project-Id-Version: CKEditor - WYSIWYG HTML editor (7.x-1.18)\n"
+"POT-Creation-Date: 2018-01-02 03:23+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -413,6 +413,8 @@ msgid ""
 msgstr ""
 "Einen Namen für dieses Profil eingeben. Dieser Name ist nur innerhalb "
 "der CKEditor-Administrationsseite sichtbar."
+msgid "Show the disable/enable rich text editor toggle"
+msgstr "Link zum (de)aktivieren des graphischen Editors anzeigen"
 msgid "User interface color"
 msgstr "Farbe für die Benutzerschnittstelle."
 msgid "Currently used buttons"
@@ -597,6 +599,8 @@ msgid ""
 msgstr ""
 "Semikolon-separierte Liste von HTML-Schriftart-Formaten.\r\n"
 "Erlaubte Werte sind !allowed_values"
+msgid "Load !ckeditor_config_js from the theme path"
+msgstr "!ckeditor_config_js aus dem Theme-Pfad laden"
 msgid "CKEditor documentation"
 msgstr "CKEditor-Dokumentation"
 msgid "ckeditor.com"
