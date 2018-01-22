@@ -275,9 +275,12 @@
 
       function resizeMainNavigation() {
         var secondLevel = $('.header__bottom nav');
-        var indicator = $('.header__subnav__archive');
+        if ($('.header__subnav__indicator').length > 0) {
+          var indicator = $('.header__subnav__indicator');
+        } else {
+          var indicator = $('.header__subnav__archive');
+        }
 
-        // var subnavHeight = $('#header .nav--main-menu--level-3 .nav__item').outerHeight();
         var subnavOffset = indicator.outerWidth() + 1;
         var wrapperPadding = parseInt($('.header__bottom__inner').css('padding-left'), 10);
         var indicatorPadding = parseInt(indicator.css('padding-left'), 10);
@@ -287,6 +290,7 @@
         } else {
           var subnavOffsetValue = subnavOffset;
         }
+
         secondLevel.css('padding-left', subnavOffsetValue + 'px');
         secondLevel.css('padding-right', '30px');
         // indicator.css('height', subnavHeight + 'px');

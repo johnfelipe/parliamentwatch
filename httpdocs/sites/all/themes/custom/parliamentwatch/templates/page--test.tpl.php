@@ -88,15 +88,40 @@
       <?php print render($page['header_top']); ?>
 
     </div>
-    <?php if ($page['header_bottom']): ?>
-      <div class="header__bottom">
-        <?php print render($page['header_bottom']); ?>
+
+
+    <div class="header__bottom">
+      <div class="header__bottom__inner">
+        <div class="header__subnav__archive dropdown dropdown--hover">
+          <span><span class="header__subnav__archive__indicator">Bundestag <span>2013 – 2017</span></span></span>
+          <ul class="header__subnav__archive__list dropdown__list">
+            <li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 – 2017</a></li>
+            <li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 – 2017</a></li>
+            <li class="header__subnav__archive__list__item"><a href="#" class="header__subnav__archive__list__item__link">Bundestag 2013 – 2017</a></li>
+          </ul>
+        </div>
+        <nav class="contextual-links-region swiper-container-horizontal">
+          <ul class="nav nav--main-menu nav--main-menu--level-3">
+            <li class="nav__item"><a href="/bundestag/profile" title="" class="nav__item__link">Abgeordnete</a></li>
+            <li class="nav__item"><a href="/bundestag/abstimmungen" title="" class="nav__item__link">Abstimmungen</a></li>
+            <li class="nav__item"><a href="/bundestag/wahlprogramme" title="" class="nav__item__link">Wahlprogramme</a></li>
+            <li class="nav__item"><a href="/bundestag/wahlrecht-2017" title="" class="nav__item__link">Wahlrecht</a></li>
+          </ul>
+        </nav>
       </div>
-    <?php endif; ?>
+    </div>
+
   </header>
   <?php print $messages; ?>
+
+
+
   <main id="content">
     <a id="main-content"></a>
+
+
+
+
 
     <br><br><br><br><br>
 

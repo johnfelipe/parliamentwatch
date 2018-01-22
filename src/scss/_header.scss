@@ -486,6 +486,42 @@
 
 /* Archive */
 
+.header__subnav__indicator {
+  clear: both;
+  float: left;
+  color: #aaa;
+  line-height: 20px;
+  font-size: 1.2em;
+  font-family: Georgia,Cambria,"Times New Roman",Times,serif;
+  border-right: 1px solid #dfdbd2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  background: #fff;
+  will-change: padding;
+  transition: padding .3s ease;
+  padding: 15px 20px;
+
+
+  @include breakpoint($breakpoint-xs-min) {
+    font-size: 1.4em;
+    padding: 20px;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    font-size: 24px;
+  }
+  @include breakpoint($breakpoint-l-min) {
+    padding: 30px 20px;
+  }
+}
+
+#header.sticky .header__subnav__indicator {
+  @include breakpoint($breakpoint-l-min) {
+    padding: 20px;
+  }
+}
+
 .header__subnav__archive {
   @include clearfix();
   cursor: pointer;
@@ -534,7 +570,6 @@
   }
 
   .header__subnav__archive__list {
-    display: none;
     position: absolute;
     top: 100%;
     border-top: 1px solid $darkBeige;
