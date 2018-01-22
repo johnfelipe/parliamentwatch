@@ -305,24 +305,6 @@
     }
   };
 
-
-  /**
-   * Attaches the archive indicator behavior.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~attachBehavior}
-   *   Triggers the Sidebar.
-   */
-
-  Drupal.behaviors.archiveIndicator = {
-    attach: function (context) {
-      $('.header__subnav__archive').click(function () {
-        $(this).toggleClass('header__subnav__archive--open')
-      });
-    }
-  };
-
   /**
    * Attaches the archive indicator tooltip behavior.
    *
@@ -335,19 +317,24 @@
   Drupal.behaviors.archiveIndicatorHint = {
     attach: function (context) {
       if (!$.cookie('archiveHint')) {
-        // add hint (initially hidden)
-        $('<div class="header__subnav__archive-hint"><p>' + Drupal.t("<strong>Now</strong> you can switch between the legislatures.") + '</p><i class="icon icon-close"></i></div>').insertAfter('.header__subnav__archive');
+        var d = new Date();
+        var month = d.getMonth()+1;
 
-        // show hint
-        setTimeout(function () {
-          $('.header__subnav__archive-hint').addClass('header__subnav__archive-hint--in');
-        }, 200);
+        if (month < 3) {
+          // add hint (initially hidden)
+          $('<div class="header__subnav__archive-hint"><p>' + Drupal.t("<strong>Now</strong> you can switch between the legislatures.") + '</p><i class="icon icon-close"></i></div>').insertAfter('.header__subnav__archive');
 
-        // close hint
-        $('.header__subnav__archive-hint .icon-close').click(function () {
-          $('.header__subnav__archive-hint').removeClass('header__subnav__archive-hint--in');
-          $.cookie('archiveHint', 1, {expires: 999, path: '/' });
-        });
+          // show hint
+          setTimeout(function () {
+            $('.header__subnav__archive-hint').addClass('header__subnav__archive-hint--in');
+          }, 200);
+
+          // close hint
+          $('.header__subnav__archive-hint .icon-close').click(function () {
+            $('.header__subnav__archive-hint').removeClass('header__subnav__archive-hint--in');
+            $.cookie('archiveHint', 1, {expires: 40, path: '/' });
+          });
+        }
       }
     }
   };
