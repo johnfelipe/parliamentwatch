@@ -225,19 +225,6 @@
       margin-bottom: 0;
     }
   }
-  .deputy__intro__content__hint {
-    background: $orangeBG;
-    color: $white;
-    padding: $space-small;
-    margin: 0 0 $space 0;
-    .icon {
-      margin-right: $space-xsmall;
-      font-size: 1.1em;
-    }
-    em {
-      font-style: normal;
-    }
-  }
   .deputy__intro__sidebar {
     margin-bottom: $space-large;
     @include grid-column(12, $neat-grid-rtl);

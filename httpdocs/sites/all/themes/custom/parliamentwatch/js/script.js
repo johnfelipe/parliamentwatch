@@ -336,7 +336,7 @@
     attach: function (context) {
       if (!$.cookie('archiveHint')) {
         // add hint (initially hidden)
-        $('.header__bottom__inner').append('<div class="header__subnav__archive-hint"><p><strong>Jetzt Neu!</strong> Wechsel hier zwischen den verfügbaren Wahlperioden.</p><i class="icon icon-close"></i></div>');
+        $('<div class="header__subnav__archive-hint"><p>' + Drupal.t("<strong>Now</strong> you can switch between the legislatures.") + '</p><i class="icon icon-close"></i></div>').insertAfter('.header__subnav__archive');
 
         // show hint
         setTimeout(function () {

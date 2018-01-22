@@ -97,9 +97,6 @@
       <?php endif; ?>
     </div>
     <div class="deputy__intro__content">
-      <?php if (isset($user_profile['field_user_retired'])): ?>
-        <div class="deputy__intro__content__hint"><i class="icon icon-politician"></i> <?php print t('%name was retired on %date', array('%name' => $display_name, '%date' => drupal_html_to_text($user_profile['field_user_retired'][0]['#markup']))); ?></div>
-      <?php endif; ?>
       <div class="hstats">
         <a href="#block-pw-dialogues-profile" class="hstats__item hstats__item--donut-digit" data-localScroll>
           <div class="hstats__item__display mh-item-nr" data-mh="hstats">

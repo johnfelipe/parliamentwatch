@@ -651,7 +651,6 @@
     transform: translate3d(0,0,0);
     box-shadow: 0 8px 15px 0 rgba(0,0,0,.15);
   }
-
   .icon-close {
     position: absolute;
     right: 15px;
@@ -661,6 +660,15 @@
     cursor: pointer;
   }
 }
+
+
+
+.header__subnav__archive.dropdown--open + .header__subnav__archive-hint {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+
 .header__subnav__archive-hint-overlay {
   background: rgba(0,0,0,.3);
 
