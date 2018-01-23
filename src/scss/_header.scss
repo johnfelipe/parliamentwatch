@@ -302,24 +302,28 @@
   }
   .nav__item {
     display: inline-block;
-    &:nth-child(1) .nav__item__link:before {
+    .nav__item__link--abgeordnete:before {
       content: '\e84d';
     }
-    &:nth-child(2) .nav__item__link:before {
+    .nav__item__link--abstimmungen:before {
       content: '\e836';
     }
-    &:nth-child(3) .nav__item__link:before {
-      content: '\e835';
-    }
-    &:nth-child(4) .nav__item__link:before {
+    .nav__item__link--petitionen:before {
       content: '\e83c';
     }
-    &:nth-child(5) .nav__item__link:before {
+    .nav__item__link--wahlrecht:before {
       content: '\e829';
     }
-    &:nth-child(6) .nav__item__link:before {
-      content: '\e822';
+    .nav__item__link--wahlprogramme:before {
+      content: '\e900';
+      font-size: 1.1em;
     }
+    // &:nth-child(3) .nav__item__link:before {
+    //   content: '\e835';
+    // }
+    // &:nth-child(6) .nav__item__link:before {
+    //   content: '\e822';
+    // }
   }
   .nav__item__link {
     font-family: $font-serif;
@@ -343,6 +347,9 @@
       margin-right: 4px;
       width: $space-large;
       text-align: center;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
   }
 

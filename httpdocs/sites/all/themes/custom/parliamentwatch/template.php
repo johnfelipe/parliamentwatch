@@ -517,6 +517,7 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
   else {
     $element['#attributes']['class'] = ['nav__item'];
     $element['#localized_options']['attributes']['class'][] = 'nav__item__link';
+    $element['#localized_options']['attributes']['class'][] = 'nav__item__link--' . drupal_html_class($element['#title']);
 
     if (in_array('active-trail', $element['#localized_options']['attributes']['class'])) {
       $element['#attributes']['class'][] = 'nav__item--active';
