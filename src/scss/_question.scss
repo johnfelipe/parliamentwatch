@@ -40,6 +40,10 @@
         left: $space;
       }
     }
+    p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
   .question__links {
     margin-top: 0;
