@@ -298,15 +298,24 @@ function pw_api_user_to_array($user, $subsets = array()) {
           $profile['sidejobs']['sidejob_'.$node->nid]['organization'] = $w_sidejob->field_sidejob_organization->label();
           $profile['sidejobs']['sidejob_'.$node->nid]['job'] = $w_sidejob->field_job->label();
 
-          // compute income
-          $computed_income = pw_sidejobs_compute_incomes($node);
-          $profile['sidejobs']['sidejob_'.$node->nid]['income'] = $computed_income;
-          $profile['sidejobs']['sidejob_'.$node->nid]['income']['classification'] = $w_sidejob->field_sidejob_classification->value();
-          if (!empty($w_sidejob->field_sidejob_income_interval->value())) {
-            $profile['sidejobs']['sidejob_'.$node->nid]['income']['interval'] = t($interval_mapping[$w_sidejob->field_sidejob_income_interval->value()]);
-          }
-          else {
-            $profile['sidejobs']['sidejob_'.$node->nid]['income']['interval'] = t('once');
+          $computed_income = pw_sidejobs_income_range($node);
+          if (!empty($computed_income)) {
+            $profile['sidejobs']['sidejob_' . $node->nid]['income']['total_min'] = $computed_income[0];
+            $profile['sidejobs']['sidejob_' . $node->nid]['income']['total_max'] = $computed_income[1];
+            $date_range = pw_sidejobs_date($node);
+            if (count($date_range) == 2) {
+              $profile['sidejobs']['sidejob_' . $node->nid]['income']['date']['start'] = $date_range[0]->format('Y-m-d');
+              $profile['sidejobs']['sidejob_' . $node->nid]['income']['date']['end'] = $date_range[1]->format('Y-m-d');
+            }
+            else {
+              $profile['sidejobs']['sidejob_' . $node->nid]['income']['date'] = $date_range[0]->format('Y-m-d');
+            }
+            $profile['sidejobs']['sidejob_' . $node->nid]['income']['classification'] = $w_sidejob->field_sidejob_classification->value();
+            if (!empty($w_sidejob->field_sidejob_income_interval->value())) {
+              $profile['sidejobs']['sidejob_' . $node->nid]['income']['interval'] = t($interval_mapping[$w_sidejob->field_sidejob_income_interval->value()]);
+            } else {
+              $profile['sidejobs']['sidejob_' . $node->nid]['income']['interval'] = t('once');
+            }
           }
         }
       }
