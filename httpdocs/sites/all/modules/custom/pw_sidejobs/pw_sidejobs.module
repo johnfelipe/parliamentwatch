@@ -186,7 +186,7 @@ function pw_sidejobs_classification($node) {
  */
 function pw_sidejobs_income_range($node) {
   $income_range = pw_sidejobs_base_income_range(pw_sidejobs_classification($node));
-  $multiplier = pw_sidejobs_multiplier(pw_sidejobs_interval($node), pw_sidejobs_datetime_range($node));
+  $multiplier = pw_sidejobs_multiplier(pw_sidejobs_interval($node), pw_sidejobs_date($node));
   return array_filter(array_map(function ($value) use ($multiplier) { return $value * $multiplier; }, $income_range));
 }
 
@@ -227,15 +227,15 @@ function pw_sidejobs_base_income_range($classification) {
 }
 
 /**
- * Returns the applicable start and end date for the given sideline job.
+ * Returns the date or period for the given sideline job.
  *
  * @param $node
  *   The node of type sidejob.
  *
  * @return DateTime[]
- *   An array with the start and end date.
+ *   An array with one or two DateTime objects.
  */
-function pw_sidejobs_datetime_range($node) {
+function pw_sidejobs_date($node) {
   $dates_start = [];
   $dates_end = [date('Y-m-d 00:00:00')];
 
