@@ -280,22 +280,24 @@ function pw_sidejobs_date($node) {
  * This number is used to calculate the accumulated income for the applicable
  * date range.
  *
- * @param $node
- *   The node of type sidejob.
+ * @param int $interval
+ *   The interval at which income is received.
+ * @param DateTime[] $date
+ *   The date or period in which the income is received.
  *
  * @return int
  *   The multiplier.
  */
-function pw_sidejobs_multiplier($interval, $datetime_range) {
+function pw_sidejobs_multiplier($interval, $date) {
   if ($interval == 0) {
     return 1;
   }
 
-  if ($datetime_range[0] > $datetime_range[1]) {
+  if ($date[0] > $date[1]) {
     return 0;
   }
 
-  $datetime_diff = $datetime_range[0]->diff($datetime_range[1]);
+  $datetime_diff = $date[0]->diff($date[1]);
 
   if ($interval == 12) {
     $multiplier = $datetime_diff->y;
