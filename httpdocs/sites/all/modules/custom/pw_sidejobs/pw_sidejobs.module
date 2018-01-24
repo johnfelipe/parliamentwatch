@@ -98,7 +98,6 @@ function pw_sidejobs_profile_block() {
   }
 
   $result = pw_sidejobs_by_user_revision_query($account)
-    ->fieldOrderBy('field_sidejob_classification', 'value', 'DESC')
     ->execute();
 
   if (!empty($result['node'])) {
