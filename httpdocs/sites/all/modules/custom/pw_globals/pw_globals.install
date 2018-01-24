@@ -127,8 +127,7 @@ function pw_globals_update_7108() {
     'pages' => "profile/*",
     'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
     'title' => '<none>',
-    'regions' => ['parliamentwatch' => 'content_tabs'],
-    'user_roles' => ['Politician']
+    'regions' => ['parliamentwatch' => 'content_tabs']
   ];
   _pw_globals_configure_block($config);
 }
