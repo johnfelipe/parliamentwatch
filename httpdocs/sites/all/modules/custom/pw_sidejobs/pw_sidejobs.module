@@ -265,10 +265,13 @@ function pw_sidejobs_datetime_range($node) {
     array_push($dates_end, $field_user_retired[0]['value']);
   }
 
-  return [
-    new DateTime(max(array_filter($dates_start))),
-    new DateTime(min(array_filter($dates_end))),
-  ];
+  $date[] = new DateTime(max(array_filter($dates_start)));
+
+  if (pw_sidejobs_interval($node) > 0) {
+    $date[] = new DateTime(min(array_filter($dates_end)));
+  }
+
+  return $date;
 }
 
 /**
