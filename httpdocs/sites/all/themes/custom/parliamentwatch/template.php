@@ -256,13 +256,6 @@ function parliamentwatch_preprocess_node(&$variables) {
     $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_medium']]);
   }
 
-  if ($variables['type'] == 'dialogue') {
-    $account = pw_dialogues_recipient_user_revision($node);
-    $variables['user_display_name'] = _pw_get_fullname($account);
-    $variables['user_picture'] = field_view_field('user', $account, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
-    $variables['user_party'] = field_view_field('user', $account, 'field_user_party', ['label' => 'hidden', 'type' => 'taxonomy_term_reference_plain']);
-    $variables['user_url'] = url(entity_uri('user', $account)['path']);
-  }
 }
 
 /**

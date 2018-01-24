@@ -144,6 +144,12 @@ function pw_dialogues_node_view($node, $view_mode) {
     return;
   }
 
+  $recipient = pw_dialogues_recipient_user_revision($node);
+  $node->content['user_display_name'] = _pw_get_fullname($recipient);
+  $node->content['user_picture'] = field_view_field('user', $recipient, 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
+  $node->content['user_party'] = field_view_field('user', $recipient, 'field_user_party', ['label' => 'hidden', 'type' => 'taxonomy_term_reference_plain']);
+  $node->content['user_url'] = url(entity_uri('user', $recipient)['path']);
+
   $comments = pw_dialogues_answers($node);
 
   if ($comments) {
