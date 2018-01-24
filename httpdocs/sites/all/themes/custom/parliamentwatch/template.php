@@ -263,33 +263,6 @@ function parliamentwatch_preprocess_node(&$variables) {
     $variables['user_party'] = field_view_field('user', $account, 'field_user_party', ['label' => 'hidden', 'type' => 'taxonomy_term_reference_plain']);
     $variables['user_url'] = url(entity_uri('user', $account)['path']);
   }
-
-  if ($variables['type'] == 'sidejob') {
-    $income_range = pw_sidejobs_income_range($node);
-
-    if (isset($variables['field_sidejob_date_start'][0]['value'])) {
-      $date_start = strtotime($variables['field_sidejob_date_start'][0]['value']);
-      if (date('m', $date_start) == '01' && date('d', $date_start) == '01') {
-        $variables['content']['field_sidejob_date'] = date('Y', $date_start);
-      }
-      else {
-        $variables['content']['field_sidejob_date'] = format_date($date_start, 'custom', 'd.m.Y');
-      }
-    }
-
-    if (isset($variable['field_sidejob_date_end'][0]['value'])) {
-      $variables['content']['field_sidejob_date'] .= '—' . format_date(strtotime($variables['field_sidejob_date_end'][0]['value']), 'custom', 'd.m.Y');
-    }
-
-    if (!empty($income_range)) {
-      $min = number_format($income_range[0], '0', ',', '.');
-      $max = number_format($income_range[1], '0', ',', '.');
-      $variables['income_range'] = $min . '–' . $max . ' €';
-    }
-    else {
-      $variables['income_range'] = '';
-    }
-  }
 }
 
 /**
