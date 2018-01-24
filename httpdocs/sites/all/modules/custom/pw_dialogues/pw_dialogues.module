@@ -882,20 +882,23 @@ function pw_dialogues_party_ratios_by_parliament($term) {
  *   The account version.
  */
 function pw_dialogues_recipient_user_revision($node) {
+  $recipient = NULL;
   $uid = $node->field_dialogue_recipient[LANGUAGE_NONE][0]['target_id'];
-  $tid = $node->field_parliament[LANGUAGE_NONE][0]['tid'];
   $before_election = $node->field_dialogue_before_election[LANGUAGE_NONE][0]['value'];
 
-  foreach (pw_profiles_archived_revisions(user_load($uid)) as $account) {
-    if ($account->field_user_parliament[LANGUAGE_NONE][0]['tid'] == $tid) {
-      if ($before_election && _pw_user_has_role($account, 'Candidate')) {
-        return user_revision_load($uid, $account->vid);
-      }
-      elseif (!$before_election && _pw_user_has_role($account, 'Deputy')) {
-        return user_revision_load($uid, $account->vid);
-      }
-    }
+  $result = db_select('user_archive_cache', 'uac')
+    ->fields('uac', ['uid', 'vid'])
+    ->condition('uid', $uid)
+    ->condition('parliament_name', pw_globals_parliament($node)->name)
+    ->condition('user_role', $before_election ? 'candidate' : 'deputy')
+    ->execute()
+    ->fetchAssoc();
+
+  if (!empty($result)) {
+    $recipient = user_revision_load($result['uid'], $result['vid']);
   }
+
+  return $recipient;
 }
 
 /**
