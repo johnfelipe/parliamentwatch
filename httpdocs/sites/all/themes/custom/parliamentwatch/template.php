@@ -472,14 +472,14 @@ function parliamentwatch_filter_tips_more_info() {
 /**
  * Overrides theme_menu_tree() for main menu.
  */
-function parliamentwatch_menu_tree__main_menu(&$variables) {
+function parliamentwatch_menu_tree__main_menu($variables) {
   return $variables['tree'];
 }
 
 /**
  * Overrides theme_menu_link() for main menu.
  */
-function parliamentwatch_menu_link__main_menu(array $variables) {
+function parliamentwatch_menu_link__main_menu($variables) {
   $element = $variables['element'];
   $sub_menu = '';
   $prefix = '';
@@ -532,7 +532,7 @@ function parliamentwatch_menu_link__main_menu(array $variables) {
 /**
  * Overrides theme_menu_local_tasks() for local task tab-navigation.
  */
-function parliamentwatch_menu_local_tasks(&$variables) {
+function parliamentwatch_menu_local_tasks($variables) {
   $output = '';
 
   if (!empty($variables['primary'])) {
@@ -553,8 +553,8 @@ function parliamentwatch_menu_local_tasks(&$variables) {
 /**
  * Overrides theme_disable_messages_status_messages() for local task tab-navigation.
  */
-function parliamentwatch_disable_messages_status_messages($vars) {
-  $messages = $vars['messages'];
+function parliamentwatch_disable_messages_status_messages($variables) {
+  $messages = $variables['messages'];
   $output = '';
   $status_heading = array(
     'status' => t('Status message'),
@@ -691,7 +691,7 @@ function parliamentwatch_pager($variables) {
 /**
  * Overrides theme_item_list().
  */
-function parliamentwatch_item_list(&$variables) {
+function parliamentwatch_item_list($variables) {
   $items = $variables['items'];
   $type = $variables['type'];
   $attributes = $variables['attributes'];
@@ -735,7 +735,7 @@ function parliamentwatch_item_list(&$variables) {
 /**
  * Overrides theme_item_list() for constituency selection.
  */
-function parliamentwatch_item_list__constituency_selection(&$variables) {
+function parliamentwatch_item_list__constituency_selection($variables) {
   $items = $variables['items'];
   $attributes = $variables['attributes'];
 
@@ -773,7 +773,7 @@ function parliamentwatch_item_list__constituency_selection(&$variables) {
 /**
  * Overrides theme_item_list() for archive dropdown.
  */
-function parliamentwatch_item_list__archive_dropdown(&$variables) {
+function parliamentwatch_item_list__archive_dropdown($variables) {
   $output = '';
   $items = $variables['items'];
   $pattern = '/(\w+) (\d{4}-\d{4})/';
@@ -1053,7 +1053,7 @@ function parliamentwatch_button($variables) {
 /**
  * Overrides theme_profile_search_summary().
  */
-function parliamentwatch_profile_search_summary(&$variables) {
+function parliamentwatch_profile_search_summary($variables) {
   $output = '';
   $facets = $variables['response']['search_api_facets'];
   $link_options = [

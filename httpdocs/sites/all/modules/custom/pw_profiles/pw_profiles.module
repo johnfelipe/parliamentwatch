@@ -826,7 +826,7 @@ function _pw_profiles_is_postal_code_search($parameters) {
  *   - role_name
  *   - filters
  */
-function theme_profile_search_summary(&$variables) {
+function theme_profile_search_summary($variables) {
   $output = '';
   $facets = $variables['response']['search_api_facets'];
   $link_options = ['attributes' => ['data-ajax-target' => '#ajax']];
