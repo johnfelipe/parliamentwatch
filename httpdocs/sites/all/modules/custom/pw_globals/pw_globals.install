@@ -133,6 +133,30 @@ function pw_globals_update_7108() {
 }
 
 /**
+ * Configure testimonial block.
+ */
+function pw_globals_update_7109() {
+  $config = [
+    'module' => 'pw_globals',
+    'delta' => 'testimonial',
+    'weight' => -63,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'taxonomy/term/*',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content', 'blank' => 'content']
+  ];
+  _pw_globals_configure_block($config);
+}
+
+/**
+ * Remove old testimonial block.
+ */
+function pw_globals_update_7110() {
+  _pw_globals_delete_blocks([164]);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

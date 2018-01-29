@@ -383,6 +383,7 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
       float: left;
       width: auto;
       padding-top: 0;
+      padding-bottom: 0;
       @include breakpoint($breakpoint-s-min) {
         width: 75%;
         margin: 0;

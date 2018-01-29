@@ -171,6 +171,10 @@ function pw_globals_block_info() {
     'info' => 'Parliament patron teaser',
     'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
   ];
+  $blocks['testimonial'] = [
+    'info' => 'Testimonial teaser',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+  ];
   return $blocks;
 }
 
@@ -189,6 +193,8 @@ function pw_globals_block_view($delta = '') {
       return pw_globals_politician_search_form_block();
     case 'parliament_patron':
       return pw_globals_parliament_patron_block();
+    case 'testimonial':
+      return pw_globals_testimonial_block();
     default:
       return [];
   }
@@ -455,6 +461,22 @@ function pw_globals_parliament_patron_block() {
 
   $block['content'] = node_view(node_load($term->field_parliament_patron[LANGUAGE_NONE][0]['target_id']), 'teaser');
 
+  return $block;
+}
+
+/**
+ * Displays testimonial teaser for landing pages.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_globals_testimonial_block() {
+  $block = [];
+  $type = 'pw_testimonial';
+  $nodes = node_load_multiple([], ['type' => $type, 'promote' => NODE_PROMOTED, 'status' => NODE_PUBLISHED]);
+  if (!empty($nodes)) {
+    $block['content'] = node_view(reset($nodes),'full');
+  }
   return $block;
 }
 

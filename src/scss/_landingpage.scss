@@ -374,6 +374,139 @@
 
 
 
+
+.testimonial {
+  @include grid-container();
+  @include container();
+  position: relative;
+  padding-top: $space;
+  padding-bottom: $space;
+  border-bottom: 1px solid $darkBeige;
+  @include breakpoint($breakpoint-s-min) {
+    padding-top: $space-large;
+    padding-bottom: $space-large;
+  }
+  @include breakpoint($breakpoint-xl-min) {
+    padding-top: $space-large + $space;
+    padding-bottom: $space-large + $space;
+  }
+  .testimonial__btn {
+    @include grid-column(12);
+    clear: both;
+    @include breakpoint($breakpoint-xs-min) {
+      @include grid-column(9);
+      @include grid-push(3);
+    }
+  }
+  > .btn--mobile-block {
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: calc(100% - 40px);
+    @include breakpoint($breakpoint-xs-min) {
+      display: none;
+    }
+  }
+}
+.testimonial__image {
+  position: absolute;
+  top: 18px;
+  @include breakpoint($breakpoint-s-min) {
+    top: 25px;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    top: 50%;
+    transform: translate3d(0,-50%,0);
+  }
+  .testimonial__image__inner {
+    @include image-circle(60px,60px);
+    border-width: 3px;
+    display: inline-block;
+    margin-left: 20px;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 80px;
+      height: 80px;
+    }
+    @include breakpoint($breakpoint-s-min) {
+      width: 120px;
+      height: 120px;
+      border-width: 4px;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      width: 130px;
+      height: 130px;
+      border-width: 5px;
+      margin-left: 100px;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      margin-left: 150px;
+    }
+  }
+  .testimonial__image__info {
+    font-size: .8em;
+    padding-top: $space-xsmall-mobile;
+  }
+}
+
+.testimonial__content {
+  margin-left: 95px;
+  margin-right: 20px;
+  @include breakpoint($breakpoint-xs-min) {
+    margin-left: 120px;
+  }
+  @include breakpoint($breakpoint-s-min) {
+    margin-left: 180px;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    margin-left: 260px;
+    margin-right: 180px;
+    position: relative;
+  }
+  @include breakpoint($breakpoint-l-min) {
+    margin-left: 330px;
+    margin-right: 200px;
+  }
+  blockquote {
+    margin-bottom: $space-xsmall;
+    font-size: 0.94em;
+    @include breakpoint($breakpoint-s-min) {
+      font-size: 1.2em;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      font-size: 1.3em;
+    }
+    p {
+      display: inline;
+    }
+  }
+  blockquote + p {
+    margin-bottom: 0;
+    font-size: 0.8em;
+    @include breakpoint($breakpoint-s-min) {
+      font-size: 1em;
+    }
+  }
+
+  .btn {
+    display: none;
+    @include breakpoint($breakpoint-xs-min) {
+      margin-top: 15px;
+      display: inline-block;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      margin-top: 0;
+      position: absolute;
+      right: -160px;
+      top: 0;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      right: -180px;
+    }
+  }
+}
+
+
+
 .lp-teaser {
   @include grid-container();
   @include container();
