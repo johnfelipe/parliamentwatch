@@ -302,6 +302,9 @@ function pw_api_user_to_array($user, $subsets = array()) {
           if (!empty($computed_income)) {
             $profile['sidejobs']['sidejob_' . $node->nid]['income']['total_min'] = $computed_income[0];
             $profile['sidejobs']['sidejob_' . $node->nid]['income']['total_max'] = $computed_income[1];
+          }
+
+          if ($w_sidejob->field_sidejob_classification->value()) {
             $date_range = pw_sidejobs_date($node);
             if (count($date_range) == 2) {
               $profile['sidejobs']['sidejob_' . $node->nid]['income']['date']['start'] = $date_range[0]->format('Y-m-d');

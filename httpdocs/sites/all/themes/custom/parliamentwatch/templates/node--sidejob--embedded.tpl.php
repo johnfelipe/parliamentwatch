@@ -99,6 +99,8 @@
   <td class="sidejob-overview__item__level" data-sort-value="<?php print $field_sidejob_classification[0]['value'] ?: 0; ?>">
     <?php if (!empty($content['income_range'])): ?>
       <?php print render($content['income_range']); ?>
+    <?php endif; ?>
+    <?php if (isset($field_sidejob_classification[0]['value'])): ?>
       <span>
         <?php print t('level'); ?> <?php print render($content['field_sidejob_classification']); ?>
       </span>
