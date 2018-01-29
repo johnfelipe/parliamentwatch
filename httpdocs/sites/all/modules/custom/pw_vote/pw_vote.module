@@ -674,9 +674,7 @@ function pw_vote_by_poll_query($node) {
     ->condition('n.status', NODE_PUBLISHED)
     ->condition('poll.field_vote_node_target_id', $node->nid)
     ->condition('uac.user_role', 'deputy')
-    ->condition('uac.parliament_name', pw_globals_parliament($node)->name)
-    ->condition(db_or()->condition('uac.user_joined', 'date.field_poll_date_value', '<=')->condition('uac.user_joined', NULL))
-    ->condition(db_or()->condition('uac.user_retired', 'date.field_poll_date_value', '>')->condition('uac.user_retired', NULL));
+    ->condition('uac.parliament_name', pw_globals_parliament($node)->name);
 
   return $q;
 }
