@@ -163,7 +163,7 @@ function parliamentwatch_preprocess_block(&$variables) {
 
       $variables['title_suffix']['indicator'] = [
         '#theme' => 'item_list__archive_dropdown',
-        '#items' => array_reverse(array_merge($predecessors, $successors, [$parliament_term])),
+        '#items' => array_reverse(array_merge($predecessors, [$parliament_term], $successors, [$parliament_term])),
       ];
     }
   }
@@ -746,7 +746,7 @@ function parliamentwatch_item_list__archive_dropdown($variables) {
   $replacement = '\1<span>\2</span>';
 
   if (!empty($items)) {
-    $first = $items[0];
+    $first = array_shift($items);
 
     $output = '<div class="header__subnav__archive dropdown dropdown--hover">';
     $output .= '<span>';
@@ -756,9 +756,15 @@ function parliamentwatch_item_list__archive_dropdown($variables) {
 
     $link_options = ['html' => TRUE, 'attributes' => ['class' => ['header__subnav__archive__list__item__link']]];
     foreach ($items as $item) {
-      $output .= '<li class="header__subnav__archive__list__item">';
+      if ($first->name == $item->name) {
+        $output .= '<li class="header__subnav__archive__list__item header__subnav__archive__list__item--active">';
+      }
+      else {
+        $output .= '<li class="header__subnav__archive__list__item">';
+      }
       $output .= l($item->name, entity_uri('taxonomy_term', $item)['path'], $link_options);
       $output .= "</li>\n";
+
     }
     $output .= "</div>";
   }
