@@ -81,9 +81,12 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="poll tile <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="tile__image">
+  <figure class="tile__image">
     <?php print render($content['field_teaser_image']); ?>
-  </div>
+    <?php if (!empty(trim(render($content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value'])))): ?>
+      <figcaption class="figcaption-overlay"><span>©&nbsp;<?php print $content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value']; ?></span></figcaption>
+    <?php endif; ?>
+  </figure>
   <div class="tile__date"><?php print render($content['field_poll_date']); ?></div>
   <?php if (isset($result)): ?>
   <div class="tile__pollchart">

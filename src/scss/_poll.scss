@@ -16,6 +16,20 @@
   @include breakpoint($breakpoint-m-min) {
     @include grid-column(4);
   }
+
+  .tile__image .figcaption-overlay {
+    width: auto;
+    display: block;
+    left: 50%;
+    right: 0;
+    span {
+      padding-left: 65px;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
   .tile__pollchart {
     padding-top: $space;
     padding-bottom: $space;

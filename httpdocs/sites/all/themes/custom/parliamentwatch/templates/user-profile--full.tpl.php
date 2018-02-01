@@ -69,7 +69,7 @@
       <figure class="deputy__image">
         <?php print render($user_profile['field_user_picture']); ?>
         <?php if (!empty(trim(render($user_profile['field_user_picture_copyright'])))): ?>
-        <figcaption class="figcaption-overlay"><span>© <?php print render($user_profile['field_user_picture_copyright']['#items'][0]['value']);?></span></figcaption>
+        <figcaption class="figcaption-overlay"><span>©&nbsp;<?php print render($user_profile['field_user_picture_copyright']['#items'][0]['value']);?></span></figcaption>
         <?php endif; ?>
       </figure>
       <?php if ($is_consultable): ?>

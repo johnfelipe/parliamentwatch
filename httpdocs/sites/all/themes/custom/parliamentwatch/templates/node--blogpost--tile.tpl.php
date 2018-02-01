@@ -84,7 +84,7 @@
   <figure class="tile__image">
     <?php print render($content['field_teaser_image']); ?>
     <?php if (!empty(trim(render($content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value'])))): ?>
-      <figcaption class="figcaption-overlay"><span>© <?php print $content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value']; ?></span></figcaption>
+      <figcaption class="figcaption-overlay"><span>©&nbsp;<?php print $content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value']; ?></span></figcaption>
     <?php endif; ?>
   </figure>
   <header class="tile__title tile__title--date mh-item">
