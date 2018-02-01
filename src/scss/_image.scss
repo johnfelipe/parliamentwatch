@@ -84,8 +84,10 @@ figure {
     span {
       background: $white;
       padding: 1px 35px 0 10px;
+
+      will-change: transform;
       transition: transform 300ms ease 100ms;
-      transform: translate(0, 100%);
+      transform: translate3d(0, 100%,0);
       line-height: 18px;
       min-height: 30px;
 
@@ -95,7 +97,7 @@ figure {
     }
     &:hover {
       span {
-        transform: translate(0,0);
+        transform: translate(0,0,0);
       }
     }
   }

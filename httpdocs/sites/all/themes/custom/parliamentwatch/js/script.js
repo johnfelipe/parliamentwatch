@@ -500,6 +500,25 @@
   };
 
   /**
+   * Attaches the figcaption-overlay behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.figcaptionOverlay = {
+    attach: function (context) {
+      $('.figcaption-overlay-trigger', context).once('figcaptionOverlay', function () {
+        $(this).hover(function () {
+          $(this).parents('.tile').find('.figcaption-overlay').toggleClass('figcaption-overlay--open');
+        });
+      });
+    }
+  };
+
+
+
+  /**
    * Attaches the newsletter widget behavior.
    *
    * @type {Drupal~behavior}
