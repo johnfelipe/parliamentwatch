@@ -416,6 +416,18 @@
       background-color: $white;
       margin: 0;
     }
+    .form-type-checkbox .form__item__control,
+    .form__item--checkbox .form__item__control {
+      border-color: $darkGray;
+    }
+    .form-type-checkbox .form__item__control:checked,
+    .form__item--checkbox .form__item__control:checked {
+      border-color: $orange;
+    }
+    .webform-component--option-privacy {
+      padding-top: $space-small;
+      padding-bottom: $space;
+    }
   }
   .question-content {
     @include grid-column(12);
