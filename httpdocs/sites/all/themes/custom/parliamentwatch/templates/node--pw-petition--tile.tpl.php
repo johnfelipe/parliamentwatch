@@ -81,9 +81,12 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="petition tile <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="tile__image">
+  <figure class="tile__image">
     <?php print render($content['field_teaser_image']); ?>
-  </div>
+    <?php if (!empty(trim(render($content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value'])))): ?>
+      <figcaption class="figcaption-overlay"><span>©&nbsp;<?php print $content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value']; ?></span></figcaption>
+    <?php endif; ?>
+  </figure>
 
   <?php if ($field_petition_partner): ?>
   <div class="tile__flag"><?php print render($field_petition_partner[0]['value']); ?></div>
