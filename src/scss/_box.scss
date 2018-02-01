@@ -130,6 +130,16 @@ h3.tile__title { padding-bottom: $space; @include text-overflow-multi(); }
     max-width: none;
     width: 100%;
     display: block;
+    padding: 0;
+    border: 0;
+  }
+  .figcaption-overlay {
+    right: 0;
+    left: 0;
+    bottom: 0;
+    a {
+      display: inline;
+    }
   }
   &:first-child {
     @include box-inset-top();
