@@ -80,14 +80,11 @@
         <?php if (isset($user_profile['field_user_question_form_closed']) || isset($user_profile['field_user_retired'])): ?>
           <div class="deputy__intro__sidebar__hint">
             <i class="icon icon-info"></i>
-            <?php if ($user_profile['field_user_died']['#items'][0]['value'] == '1' && isset($user_profile['field_user_retired'])): ?>
+            <?php if (isset($field_user_died[0]['value']) && $field_user_died[0]['value'] == '1'): ?>
               <?php print t('This person died'); ?>
-            <?php endif; ?>
-
-            <?php if (isset($user_profile['field_user_retired']) && $user_profile['field_user_died']['#items'][0]['value'] == '0'): ?>
+            <?php elseif (isset($field_user_retired)): ?>
               <?php print t('This person left this parliament'); ?>
             <?php endif; ?>
-
             <?php if (isset($user_profile['field_user_question_form_closed'])): ?>
               <?php print render($user_profile['field_user_question_form_closed']); ?>
             <?php endif; ?>
@@ -191,7 +188,7 @@
           <dt class="dl__dt"><?php print $user_profile['field_user_parliament']['#title']; ?></dt>
           <dd class="dl__dd">
             <?php print $user_profile['field_user_parliament'][0]['#markup']; ?>
-            <?php if (!empty($user_profile['field_user_retired']) && $user_profile['field_user_died']['#items'][0]['value'] == '0'): ?>
+            <?php if (!empty($user_profile['field_user_retired']) && !isset($field_user_died['value'][0]) || $field_user_died['value'][0] == '0'): ?>
               <p><small><?php print t('Retired on %date', array('%date' => drupal_html_to_text($user_profile['field_user_retired'][0]['#markup']))); ?></small></p>
             <?php endif; ?>
           </dd>
