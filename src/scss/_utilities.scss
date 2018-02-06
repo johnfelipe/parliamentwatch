@@ -371,7 +371,7 @@ textarea {
     width: 32px;
     height: 32px;
     text-align: center;
-    background: transparent;
+    background: $white;
     border: 1px solid $darkBeige;
     margin: 0;
     padding: 0;
@@ -385,9 +385,12 @@ textarea {
     @include breakpoint($breakpoint-s-min) {
       display: inline-block;
       margin: 0 2px;
+      line-height: 40px;
+      width: 42px;
+      height: 42px;
     }
     &:hover {
-      background: $darkBeige;
+      background: $beige;
     }
     a {
       color: $darkGray;
@@ -395,11 +398,13 @@ textarea {
       width: 30px;
       height: 30px;
       cursor: pointer;
+      @include breakpoint($breakpoint-s-min) {
+        width: 40px;
+        height: 40px;
+      }
     }
-
-
     &.pager__item--current {
-      background: $darkBeige;
+      background: $beige;
       cursor: default;
       display: inline-block;
     }
@@ -462,11 +467,9 @@ textarea {
 
     &.pager__item--ellipsis {
       &:hover {
-        background: transparent;
+        background: $white;
       }
     }
-
-
     &.pager__item--previous {
       &:before {
         content: '\e804';
