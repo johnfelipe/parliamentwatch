@@ -364,29 +364,130 @@ textarea {
   list-style: none;
   padding: $space 0;
   margin: 0;
-  a {
-    color: $darkGray;
-  }
-}
-
-/* Pager: Single pager */
-
-.pager__next {
   text-align: center;
   position: relative;
-  margin: 0;
-  a {
-    padding-bottom: $space;
-    display: inline-block;
-    &:after {
-      content: '\e847';
-      font-family: 'awfont';
-      font-size: .7em;
+  .pager__item {
+    display: none;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    background: transparent;
+    border: 1px solid $darkBeige;
+    margin: 0;
+    padding: 0;
+    cursor: default;
+    border-radius: 50%;
+    font-size: 13px;
+    line-height: 30px;
+    overflow: hidden;
+    will-change: background;
+    transition: background 300ms ease;
+    @include breakpoint($breakpoint-s-min) {
+      display: inline-block;
+      margin: 0 2px;
+    }
+    &:hover {
+      background: $darkBeige;
+    }
+    a {
+      color: $darkGray;
+      display: block;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
 
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      @include transform(translate(-50%,0));
+
+    &.pager__item--current {
+      background: $darkBeige;
+      cursor: default;
+      display: inline-block;
+    }
+
+    // Only icon
+
+    &.pager__item--next,
+    &.pager__item--last,
+    &.pager__item--first,
+    &.pager__item--previous {
+      position: relative;
+      display: inline-block;
+      &:before {
+        content: '';
+        font-family: 'awfont';
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        display: block;
+        color: $mediumGray;
+        font-size: 9px;
+      }
+      a {
+        text-indent: 110%;
+        white-space: nowrap;
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    &.pager__item--first,
+    &.pager__item--previous {
+      @media(max-width: $breakpoint-s-max) {
+        position: absolute;
+        left: $space-small;
+        top: $space;
+      }
+    }
+    &.pager__item--previous {
+      @media(max-width: $breakpoint-s-max) {
+        left: 55px;
+      }
+    }
+
+    &.pager__item--next,
+    &.pager__item--last {
+      @media(max-width: $breakpoint-s-max) {
+        position: absolute;
+        right: $space-small;
+        top: $space;
+      }
+    }
+    &.pager__item--next {
+      @media(max-width: $breakpoint-s-max) {
+        right: 55px;
+      }
+    }
+
+    &.pager__item--ellipsis {
+      &:hover {
+        background: transparent;
+      }
+    }
+
+
+    &.pager__item--previous {
+      &:before {
+        content: '\e804';
+      }
+    }
+    &.pager__item--next {
+      &:before {
+        content: '\e805';
+      }
+    }
+    &.pager__item--first {
+      letter-spacing: -1px;
+      &:before {
+        content: '\e804 \e804';
+      }
+    }
+    &.pager__item--last {
+      letter-spacing: -1px;
+      &:before {
+        content: '\e805 \e805';
+      }
     }
   }
 }

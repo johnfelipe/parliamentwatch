@@ -33,6 +33,11 @@
   .filterbar {
     margin-bottom: $space-large;
   }
+
+  .pager {
+    padding-left: $space-small;
+    padding-right: $space-small;
+  }
 }
 .tile-wrapper--qa {
   background: $orangeBG;
