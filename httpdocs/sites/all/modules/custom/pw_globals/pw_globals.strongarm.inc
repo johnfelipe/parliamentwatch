@@ -588,6 +588,9 @@ node/*/edit';
       'tabular' => array(
         'custom_settings' => FALSE,
       ),
+      'timeline' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
