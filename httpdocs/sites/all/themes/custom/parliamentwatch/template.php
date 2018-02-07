@@ -91,10 +91,16 @@ function parliamentwatch_page_alter(&$page) {
     $has_filters = isset($page['content']['system_main']['filters']);
     $is_blog_or_petition_or_dialogue_page_or_poll_page_or_committee_page = menu_get_object('node') ? in_array(menu_get_object('node')->type, ['blogpost', 'dialogue', 'pw_petition', 'poll', 'committee']) : FALSE;
     $is_profile_page = in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show']);
+    $is_comment_reply_page = menu_get_item()['page_callback'] == 'comment_reply';
 
-    if (!$has_container && !$has_filters && !$is_blog_or_petition_or_dialogue_page_or_poll_page_or_committee_page && !$is_profile_page) {
+    if (!$has_container && !$has_filters && !$is_blog_or_petition_or_dialogue_page_or_poll_page_or_committee_page && !$is_profile_page && !$is_comment_reply_page) {
       $page['content']['system_main']['#prefix'] = '<div class="container">';
       $page['content']['system_main']['#suffix'] = '</div>';
+    }
+
+    if ($is_comment_reply_page) {
+      $page['content']['system_main']['comment_form']['#prefix'] = '<div class="container">';
+      $page['content']['system_main']['comment_form']['#suffix'] = '</div>';
     }
   }
 }
