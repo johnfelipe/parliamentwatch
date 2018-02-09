@@ -81,18 +81,18 @@
  */
 ?>
 <div class="question full <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="question__profile_teaser" href="<?php print $user_url; ?>">
+  <div class="question__profile_teaser" href="<?php print $content['user_url']; ?>">
     <div class="question__profile_teaser__inner">
       <div class="question__profile_teaser__inner__image">
-        <?php print render($user_picture); ?>
+        <?php print render($content['user_picture']); ?>
       </div>
       <div class="question__profile_teaser__inner__content">
-        <span class="question__profile_teaser__inner__content__name"><?php print render($user_display_name); ?></span>
-        <?php print render($user_party); ?>
-        <a href="<?php print render($user_url); ?>" class="btn btn--small btn--mobile-block"><?php print t('Open profile'); ?></a>
+        <span class="question__profile_teaser__inner__content__name"><?php print render($content['user_display_name']); ?></span>
+        <?php print render($content['user_party']); ?>
+        <a href="<?php print render($content['user_url']); ?>" class="btn btn--small btn--mobile-block"><?php print t('Open profile'); ?></a>
       </div>
     </div>
-    <h1><?php print t('Question from'); ?> <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span> <?php print t('to'); ?> <?php print render($user_display_name); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
+    <h1><?php print t('Question from'); ?> <span class="robots-nocontent"><?php print render($content['field_dialogue_sender_name']); ?></span> <?php print t('to'); ?> <?php print render($content['user_display_name']); ?><?php if (!empty($content['field_dialogue_topic'])): ?> <?php print t('regarding'); ?> <?php print render($content['field_dialogue_topic']); ?><?php endif; ?></h1>
     <div class="question__meta tile__meta">
       <a href="#" class="quesion__meta__tag tile__meta__tag">#<?php print render($content['field_dialogue_topic']); ?></a>
       <span class="question__meta__date tile__meta__date"><?php print format_date($node->created, $type = 'custom', $format = 'd. M. Y - H:i'); ?></span>
@@ -102,7 +102,7 @@
     <div class="question__question mh-item-tile" data-mh="questionTitle">
       <div class="question__question__title"><?php print render($content['body']); ?></div>
       <?php print render($title_suffix); ?>
-      <p class="question__question__author"><?php print t('By'); ?>: <span class="robots-nocontent"><!--noindex--><!--googleoff: index--><?php print render($content['field_dialogue_sender_name']); ?><!--googleon: index--><!--/noindex--></span></p>
+      <p class="question__question__author"><?php print t('By'); ?>: <span class="robots-nocontent"><?php print render($content['field_dialogue_sender_name']); ?></span></p>
       <?php if (!empty($content['field_dialogue_annotation'])): ?>
         <div class="question__annotation">
           <h3><?php print t("Editor's note") ?></h3>
