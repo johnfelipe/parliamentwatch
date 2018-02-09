@@ -109,7 +109,7 @@
         Antwort von <strong><?php print render($content['user_display_name']); ?></strong> <?php print render($content['user_party']); ?>
       <?php else: ?>
         <span class="question__answer__author__label"><?php print t('To') ?>:</span>
-        <?php if (!empty(trim(render($content['user_picture'])))): ?><span class="question__answer__author__image"><?php print render($contnt['user_picture']); ?></span><?php endif; ?>
+        <?php if (!empty(trim(render($content['user_picture'])))): ?><span class="question__answer__author__image"><?php print render($content['user_picture']); ?></span><?php endif; ?>
         <div class="question__answer__author_text" title="<?php print t('Go to profile of') ?> <?php print render($content['user_display_name']); ?>">
           <a href="<?php print render($content['user_url']); ?>"><?php print render($content['user_display_name']); ?></a>
           <?php print render($content['user_party']); ?>
