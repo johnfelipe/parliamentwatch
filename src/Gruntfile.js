@@ -55,7 +55,8 @@ module.exports = function (grunt) {
           '<%= paths.js %>/contrib/swiper.jquery.min.js': 'swiper/dist/js/swiper.jquery.min.js',
           '<%= paths.js %>/contrib/maps/swiper.jquery.min.js.map': 'swiper/dist/js/maps/swiper.jquery.min.js.map',
           '<%= paths.js %>/contrib/select2.min.js': 'select2/dist/js/select2.min.js',
-          '<%= paths.js %>/contrib/jquery.matchHeight-min.js': 'matchHeight/dist/jquery.matchHeight-min.js'
+          '<%= paths.js %>/contrib/jquery.matchHeight-min.js': 'matchHeight/dist/jquery.matchHeight-min.js',
+          '<%= paths.js %>/contrib/jquery.dynatable.js': 'dynatable/jquery.dynatable.js'
         }
       }
     },
