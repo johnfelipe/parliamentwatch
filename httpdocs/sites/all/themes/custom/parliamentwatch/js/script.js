@@ -1916,4 +1916,131 @@
     }
   };
 
+  /**
+   * Attaches votes table behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.votesTable = {
+    attach: function (context, settings) {
+      var create = function(obj, settings) {
+        return function () {
+          var pageLinks = '<ul id="' + 'dynatable-pagination-links-' + obj.element.id + '" class="' + settings.inputs.paginationClass + '">',
+            pageLinkClass = settings.inputs.paginationLinkClass,
+            activePageClass = settings.inputs.paginationActiveClass,
+            disabledPageClass = settings.inputs.paginationDisabledClass,
+            pages = Math.ceil(settings.dataset.queryRecordCount / settings.dataset.perPage),
+            page = settings.dataset.page,
+            breaks = [
+              settings.inputs.paginationGap[0],
+              settings.dataset.page - settings.inputs.paginationGap[1],
+              settings.dataset.page + settings.inputs.paginationGap[2],
+              (pages + 1) - settings.inputs.paginationGap[3]
+            ];
+
+          for (var i = 1; i <= pages; i++) {
+            if ((i > breaks[0] && i < breaks[1]) || (i > breaks[2] && i < breaks[3])) {
+              // skip to next iteration in loop
+              continue;
+            } else {
+              var li = obj.paginationLinks.buildLink(i, i, pageLinkClass, page == i, activePageClass),
+                breakIndex,
+                nextBreak;
+
+              // If i is not between one of the following
+              // (1 + (settings.paginationGap[0]))
+              // (page - settings.paginationGap[1])
+              // (page + settings.paginationGap[2])
+              // (pages - settings.paginationGap[3])
+              breakIndex = $.inArray(i, breaks);
+              nextBreak = breaks[breakIndex + 1];
+              if (breakIndex > 0 && i !== 1 && nextBreak && nextBreak > (i + 1)) {
+                var ellip = '<li class="pager__item pager__item--ellipsis">&hellip;</li>';
+                li = breakIndex < 2 ? ellip + li : li + ellip;
+              }
+
+              if (settings.inputs.paginationPrev && i === 1 && page !== 1) {
+                var prevLi = obj.paginationLinks.buildLink(page - 1, settings.inputs.paginationPrev, pageLinkClass + ' ' + settings.inputs.paginationPrevClass, page === 1, disabledPageClass);
+                li = prevLi + li;
+              }
+              if (settings.inputs.paginationNext && i === pages && page !== pages) {
+                var nextLi = obj.paginationLinks.buildLink(page + 1, settings.inputs.paginationNext, pageLinkClass + ' ' + settings.inputs.paginationNextClass, page === pages, disabledPageClass);
+                li += nextLi;
+              }
+
+              pageLinks += li;
+            }
+          }
+
+          pageLinks += '</ul>';
+
+          // only bind page handler to non-active and non-disabled page links
+          var selector = '#dynatable-pagination-links-' + obj.element.id + ' .' + pageLinkClass + ':not(.' + activePageClass + ',.' + disabledPageClass + ') > a';
+          // kill any existing delegated-bindings so they don't stack up
+          $(document).undelegate(selector, 'click.dynatable');
+          $(document).delegate(selector, 'click.dynatable', function (e) {
+            var $this = $(this);
+            $this.closest(settings.inputs.paginationClass).find('.' + activePageClass).removeClass(activePageClass);
+            $this.addClass(activePageClass);
+
+            obj.paginationPage.set($this.data('dynatable-page'));
+            obj.process();
+            e.preventDefault();
+          });
+
+          return pageLinks;
+        }
+      };
+      var buildLink = function(page, label, linkClass, conditional, conditionalClass) {
+        var link = '<a data-dynatable-page="' + page + '"',
+          li = '<li class="' + linkClass;
+
+        if (conditional) {
+          li += ' ' + conditionalClass;
+        }
+
+        link += '">' + label + '</a>';
+        li += '">' + link + '</li>';
+
+        return li;
+      };
+      var germanStringCompare = function (a, b, attr, direction) {
+        var comparison = a[attr].localeCompare(b[attr], 'de');
+        return direction > 0 ? comparison : -comparison;
+      };
+      $('.table--poll-votes').bind('dynatable:init', function (event, dynatable) {
+        dynatable.paginationLinks.create = create(dynatable, dynatable.settings)
+        dynatable.paginationLinks.buildLink = buildLink;
+        dynatable.sorts.add('field_vote', 1);
+        dynatable.sorts.functions['germanString'] = germanStringSort;
+      }).dynatable({
+        features: {
+          perPageSelect: false,
+          recordCount: false,
+          search: false,
+        },
+        dataset: {
+          perPageDefault: 10,
+          records: window.votes,
+          sortTypes: {
+            politician_lname: 'germanString'
+          }
+        },
+        inputs: {
+          paginationClass: 'pager',
+          paginationLinkClass: 'pager__item',
+          paginationPrevClass: 'pager__item--previous',
+          paginationNextClass: 'pager__item--next',
+          paginationActiveClass: 'pager__item--current',
+          paginationDisabledClass: 'pager__item--disabled',
+          paginationPrev: Drupal.t('previous'),
+          paginationNext: Drupal.t('next'),
+          paginationGap: [1,2,2,1]
+        }
+      });
+    }
+  }
+
 }(jQuery));

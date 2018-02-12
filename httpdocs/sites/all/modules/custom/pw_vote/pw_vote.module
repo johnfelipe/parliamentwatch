@@ -443,86 +443,61 @@ function pw_vote_poll_block() {
     return $block;
   }
 
-  $header = [
-    [''],
-    ['data' => t('Name'), 'field' => 'name'],
-    ['data' => t('Political faction'), 'field' => 'political_faction'],
-    ['data' => t('Constituency'), 'field' => 'constituency'],
-    ['data' => t('Voted'), 'field' => 'field_vote_tid', 'sort' => 'asc'],
-  ];
-  $result = pw_vote_by_poll_query($node)
-    ->extend('TableSort')
-    ->extend('PagerDefault')
-    ->element(1)
-    ->orderByHeader($header)
-    ->limit(40)
-    ->execute();
-  $nids_vids = $result->fetchAllKeyed();
+  $response = pw_vote_by_poll_search($node)->execute();
 
-  if (!empty($nids_vids)) {
-    $nodes = node_load_multiple(array_keys($nids_vids));
-    $users = pw_userarchives_politician_load_multiple(array_values($nids_vids));
-    $rows = [];
+  if ($response['result count'] > 0) {
+    $map = function ($item) {
+      $voted_dict = [
+        19667 => t('Voted yes') . '<i class="icon icon-ok"></i>',
+        19668 => t('Voted no') . '<i class="icon icon-close"></i>',
+        19669 => t('Abstained') . '<i class="icon icon-circle-o"></i>',
+        19670 => t('Did not vote') . '<i class="icon icon-minus"></i>',
+      ];
 
-    foreach ($nids_vids as $nid => $vid) {
-      switch ($nodes[$nid]->field_vote[LANGUAGE_NONE][0]['tid']) {
-        case 19667:
-          $voted = t('Voted yes') . '<i class="icon icon-ok"></i>';
-          break;
-        case 19668:
-          $voted = t('Voted no') . '<i class="icon icon-close"></i>';
-          break;
-        case 19669:
-          $voted = t('Abstained') . '<i class="icon icon-circle-o"></i>';
-          break;
-        case 19670:
-          $voted = t('Did not vote') . '<i class="icon icon-minus"></i>';
-          break;
-      }
-
-      $profile_picture = field_view_field('user', $users[$vid], 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
-      if (isset($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])) {
-        $political_faction = taxonomy_term_load($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])->name;
+      $profile_picture = theme('image_style', ['path' => $item['fields']['politician_picture_uri'], 'style_name' => 'square_small']);
+      if (isset($item['fields']['politician_political_faction'])) {
+        $political_faction = $item['fields']['politician_political_faction'];
       }
       else {
         $political_faction = '';
       }
-      if (isset($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])) {
-        $constituency = taxonomy_term_load($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])->name;
+      if (isset($item['fields']['politician_constituency_name'])) {
+        $constituency = $item['fields']['politician_constituency_name'];
       }
       else {
         $constituency = '';
       }
 
-      $rows[] = [
-        [
-          'data' => '<span>' . l(drupal_render($profile_picture), entity_uri('user', $users[$vid])['path'], ['html' => TRUE]) . '</span>',
-        ],
-        [
-          'data' => l(_pw_get_fullname($users[$vid]), entity_uri('user', $users[$vid])['path']),
-        ],
-        [
-          'data' => '<span class="party-indicator party-indicator--' . drupal_html_class(strip_tags($political_faction)) . '">' . $political_faction . '</span>',
-        ],
-        [
-          'data' => $constituency,
-        ],
-        [
-          'data' => $voted,
-        ],
+      return [
+        'politician_picture' => '<span>' . l($profile_picture, $item['fields']['politician_uri'], ['html' => TRUE]) . '</span>',
+        'politician_full_name' => l($item['fields']['politician_full_name'][0], $item['fields']['politician_uri']),
+        'politician_lname' => $item['fields']['politician_lname'],
+        'politician_political_faction' => $political_faction,
+        'politician_constituency_name' => $constituency,
+        'field_vote' => $voted_dict[$item['fields']['field_vote']],
       ];
-    }
+    };
+    $inline_js = 'window.votes = ' . drupal_json_encode(array_map($map, array_values($response['results'])));
 
-    $block['content']['votes'] = [
+    $block['content'] = [
       '#theme' => 'table__poll_votes',
-      '#header' => $header,
-      '#rows' => $rows,
+      '#header' => [
+        ['data' => '', 'data-dynatable-column' => 'politician_picture'],
+        ['data' => t('Name'), 'data-dynatable-column' => 'politician_full_name', 'data-dynatable-sorts' => 'politician_lname'],
+        ['data' => t('Political faction'), 'data-dynatable-column' => 'politician_political_faction'],
+        ['data' => t('Constituency'), 'data-dynatable-column' => 'politician_constituency_name'],
+        ['data' => t('Voted'), 'data-dynatable-column' => 'field_vote'],
+      ],
+      '#rows' => [[]],
       '#sticky' => FALSE,
-    ];
-    $block['content']['pager'] = [
-      '#theme' => 'pager',
-      '#element' => 1,
-      '#weight' => 100,
+      '#attached' => [
+        'js' => [
+          $inline_js => [
+            'scope' => 'footer',
+            'type' => 'inline',
+          ],
+        ],
+      ],
     ];
   }
 
@@ -660,36 +635,19 @@ function pw_vote_by_user_revision_query($account, $node_target_type = 'poll') {
 }
 
 /**
- * Returns query for all votes cast on the given poll.
+ * Returns search query for all votes cast on the given poll.
  *
  * @param object $node
  *   The poll node.
  *
- * @return SelectQuery
- *   The query object.
+ * @param array $headers
+ *   The table headers.
+ *
+ * @return SearchApiQuery
+ *   The search query.
  */
-function pw_vote_by_poll_query($node) {
-  $q = db_select('node', 'n');
-  $q->join('field_data_field_vote_node', 'poll', 'n.nid = poll.entity_id');
-  $q->join('field_data_field_vote_user', 'user', 'n.nid = user.entity_id');
-  $q->join('field_data_field_poll_date', 'date', 'poll.field_vote_node_target_id = date.entity_id');
-  $q->join('field_data_field_vote', 'vote', 'n.nid = vote.entity_id');
-  $q->join('user_archive_cache', 'uac', 'user.field_vote_user_target_id = uac.uid');
-  $q->join('field_revision_field_user_lname', 'profile_lname', 'uac.vid = profile_lname.revision_id');
-  $q->leftJoin('field_revision_field_user_constituency', 'profile_constituency', 'uac.vid = profile_constituency.revision_id');
-  $q->leftJoin('taxonomy_term_data', 'td', 'td.tid = profile_constituency.field_user_constituency_tid');
-  $q->addExpression('uac.fraction_name', 'political_faction');
-  $q->addExpression('profile_lname.field_user_lname_value', 'name');
-  $q->addExpression('td.name', 'constituency');
-  $q->fields('n', ['nid'])
-    ->fields('uac', ['vid'])
-    ->condition('n.type', 'vote')
-    ->condition('n.status', NODE_PUBLISHED)
-    ->condition('poll.field_vote_node_target_id', $node->nid)
-    ->condition('uac.user_role', 'deputy')
-    ->condition('uac.parliament_name', pw_globals_parliament($node)->name);
-
-  return $q;
+function pw_vote_by_poll_search($node) {
+  return search_api_query('vote_index')->condition('field_vote_node', $node->nid);
 }
 
 /**

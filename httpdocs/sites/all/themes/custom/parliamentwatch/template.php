@@ -360,6 +360,7 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
 function parliamentwatch_preprocess_table(&$variables) {
   if ($variables['theme_hook_original'] == 'table__poll_votes') {
     $variables['attributes'] = ['class' => ['table', 'table--poll-votes', 'table--sortable']];
+    drupal_add_js(path_to_theme() . '/js/contrib/jquery.dynatable.js');
   }
 }
 
