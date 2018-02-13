@@ -95,6 +95,8 @@
         <?php print render($content['field_pw_kc_vote_reference']); ?>
       </span>
     </div>
-    <?php print render($content['body']); ?>
+    <?php if ($content['body']): ?>
+      <blockquote><?php print render($content['body']); ?></blockquote>
+    <?php endif; ?>
   </div>
 </div>

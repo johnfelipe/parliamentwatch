@@ -1003,6 +1003,12 @@ $abstimmverhalten-node-item-width: 18px;
   @include breakpoint($breakpoint-m-min) {
     padding: $space-large 250px $space-large 300px;
   }
+  blockquote {
+    font-size: 1em;
+    &:before {
+      font-size: 3.5em;
+    }
+  }
 }
 .deputy__candidate_check__item__position__info {
   padding: 0 0 $space-xsmall 0;

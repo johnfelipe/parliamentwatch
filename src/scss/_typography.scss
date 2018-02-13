@@ -118,18 +118,20 @@ blockquote {
   font-style: italic;
   font-size: 1.3em;
   line-height: 1.5em;
-  quotes: "\201C""\201D""\2018""\2019";
+  quotes: none;
   @include breakpoint($breakpoint-s-min) {
     font-size: 1.4em;
     line-height: 1.6em;
   }
   &:before {
     color: $gray;
-    content: open-quote;
+    content: '\201C';
     font-size: 3.5em;
     line-height: 0.1em;
     margin-right: 0.25em;
     vertical-align: -0.4em;
+    font-family: $font-serif;
+
     @include breakpoint($breakpoint-s-min) {
       font-size: 4em;
     }
