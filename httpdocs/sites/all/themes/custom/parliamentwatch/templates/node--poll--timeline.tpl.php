@@ -87,7 +87,8 @@
     <?php if (isset($result)): ?>
     <i class="icon icon-<?php print ($yays > $nays) ? 'ok' : 'close' ?>"></i>
     <?php endif ;?>
-    <?php print $title; ?>
+    <a href="<?php print $node_url ?>"><?php print $title; ?></a>
+    <a href="<?php print $node_url ?>" class="poll__timeline__item__poll__title__link"><?php print t('Go to poll'); ?></a>
   </span>
   <?php if (isset($result)): ?>
   <span class="poll__timeline__item__poll__result">

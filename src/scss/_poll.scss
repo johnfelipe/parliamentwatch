@@ -541,6 +541,10 @@
     @include transform(translate(0,-50%));
   }
 }
+.poll__timeline__item__poll__title__link {
+  display: none;
+  padding: 5px 0;
+}
 .poll__timeline__item__poll__result {
   display: none;
 }
@@ -578,6 +582,9 @@
     .icon {
       display: none;
     }
+  }
+  .poll__timeline__item__poll__title__link {
+    display: block;
   }
   .poll__timeline__item__poll__result {
     display: block;
