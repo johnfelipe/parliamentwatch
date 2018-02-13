@@ -490,8 +490,9 @@
     attach: function (context) {
       $('[data-tooltip-content]', context).once('tooltip', function () {
         $(this).hover(function () {
-          var tooltipContent = $(this).attr('data-tooltip-content');
-          $(this).append('<div class="tooltip">' + tooltipContent + '</div>');
+          var tooltipContent = $(this).attr('data-tooltip-content'),
+              tooltipPlacement = $(this).attr('data-tooltip-placement');
+          $(this).append('<div class="tooltip tooltip--' + tooltipPlacement + '">' + tooltipContent + '</div>');
         }, function () {
           $(this).find('.tooltip').remove();
         });
@@ -1603,9 +1604,9 @@
    */
   Drupal.behaviors.candidateCheck = {
     attach: function (context) {
-      $('.deputy__candidate_check', context).once('candidateCheck', function () {
-        var candidateCheckSwiper = $(this);
-        var mySwiper = new Swiper('.deputy__candidate_check', {
+      $('.deputy__candidate_check .swiper-container', context).once('candidateCheck', function () {
+        var candidateCheckSwiper = $(this).parents('.deputy__candidate_check');
+        var mySwiper = new Swiper('.deputy__candidate_check .swiper-container', {
           speed: 400,
           slidesPerView: 1,
           autoHeight: 1,
@@ -1617,10 +1618,6 @@
             return Drupal.t('Proposition') + ' <span class="' + currentClassName + '"></span> ' +
               Drupal.t('of') +
               ' <span class="' + totalClassName + '"></span>';
-          },
-          onInit: function (swiper) {
-          },
-          onAfterResize: function (swiper) {
           }
         });
       });

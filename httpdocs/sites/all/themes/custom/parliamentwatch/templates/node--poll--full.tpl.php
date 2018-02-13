@@ -94,7 +94,7 @@
     <div class="poll__content__right sidebar">
       <?php if (!empty($content['field_blogpost_categories'])): ?>
       <div class="sidebar__box">
-        <h3 class="sidebar__box__headline"><?php print t('Tags'); ?> <i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-poll-tags') ?>"></i></h3>
+        <h3 class="sidebar__box__headline"><?php print t('Tags'); ?> <i class="icon icon-info" data-tooltip-placement="top" data-tooltip-content="<?php print t('tooltip-poll-tags') ?>"></i></h3>
         <div class="sidebar__box__tag_list">
           <?php print render($content['field_blogpost_categories']); ?>
         </div>

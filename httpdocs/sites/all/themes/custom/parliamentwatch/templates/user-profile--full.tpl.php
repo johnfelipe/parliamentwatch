@@ -113,7 +113,7 @@
             <div class="hstats__item__label__value">
               <?php print $answers; ?>&thinsp;/&thinsp;<?php print $questions; ?>
             </div>
-            <?php print format_plural($questions, 'Answered question', 'Answered questions') ?>&nbsp;<i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-answered-questions') ?>"></i>
+            <?php print format_plural($questions, 'Answered question', 'Answered questions') ?>&nbsp;<i class="icon icon-info" data-tooltip-placement="top" data-tooltip-content="<?php print t('tooltip-profil-answered-questions') ?>"></i>
           </div>
         </a>
         <?php if (isset($user_profile['votes_total'])): ?>
@@ -135,7 +135,7 @@
             <div class="hstats__item__label__value">
               <?php print $user_profile['votes_attended']; ?>&thinsp;/&thinsp;<?php print $user_profile['votes_total']; ?>
             </div>
-            <?php print format_plural($user_profile['votes_attended'], 'Vote by name', 'Votes by name') ?>&nbsp;<i class="icon icon-info" data-tooltip-content="<?php print t('tooltip-profil-votes-by-name') ?>"></i>
+            <?php print format_plural($user_profile['votes_attended'], 'Vote by name', 'Votes by name') ?>&nbsp;<i class="icon icon-info" data-tooltip-placement="top" data-tooltip-content="<?php print t('tooltip-profil-votes-by-name') ?>"></i>
           </div>
         </a>
         <?php endif; ?>
@@ -202,7 +202,7 @@
 
     <div class="deputy__intro__blocks">
       <?php if (!empty($user_profile['candidate_match'])): ?>
-        <div class="deputy__candidate_check swiper-container">
+        <div class="deputy__candidate_check">
           <div class="deputy__candidate_check__header">
             <div class="deputy__candidate_check__header__logo">
               <div class="svg-container">
@@ -210,9 +210,14 @@
               </div>
             </div>
             <h3 class="deputy__candidate_check__header__parliament"><?php print $user_profile['field_user_parliament'][0]['#markup']; ?></h3>
+            <span class="deputy__candidate_check__header__info" data-tooltip-placement="right" data-tooltip-content="<?php print t('Beim Kandidaten-Check können alle Kandidierenden zu relevanten Themen Position beziehen und diese begründen. Machen auch Sie den Kandidaten-Check und prüfen Sie, mit welchen Ihrer Direktkandidierenden Sie am ehesten übereinstimmen! Klicken Sie dazu auf <strong>Zum Kandidaten-Check</strong>'); ?>">
+              <i class="icon icon-info"></i>
+            </span>
           </div>
-          <div class="deputy__candidate_check__inner swiper-wrapper">
-            <?php print render($user_profile['candidate_match']); ?>
+          <div class="swiper-container">
+            <div class="deputy__candidate_check__inner swiper-wrapper">
+              <?php print render($user_profile['candidate_match']); ?>
+            </div>
           </div>
           <div class="swiper-pagination"></div>
           <div class="swiper-button-prev"></div>
