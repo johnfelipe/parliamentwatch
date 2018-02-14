@@ -212,6 +212,16 @@ function pw_vote_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pw_vote_form_pw_vote_poll_filters_form_alter(&$form, &$form_state) {
+  $form['form_build_id']['#access'] = FALSE;
+  $form['form_token']['#access'] = FALSE;
+  $form['form_id']['#access'] = FALSE;
+}
+
+
+/**
  * Implements hook_form_validate().
  */
 function pw_vote_form_validate(&$form, &$form_state, $form_id) {
@@ -359,6 +369,10 @@ function pw_vote_block_info() {
     'info' => t('Voting behavior by poll'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['poll_filters'] = [
+    'info' => t('Voting behavior by poll filters'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -428,8 +442,23 @@ function pw_vote_by_poll_json($node) {
     ];
   };
 
-  $response = pw_vote_by_poll_search($node)->execute();
+  $q = pw_vote_by_poll_search($node);
+
+  if (isset(drupal_get_query_parameters()['keys'])) {
+    $q->keys(drupal_get_query_parameters()['keys']);
+  }
+
+  if (is_array(drupal_get_query_parameters()['field_vote'])) {
+    $f = new SearchApiQueryFilter('OR', ['facet:field_vote']);
+    foreach (drupal_get_query_parameters()['field_vote'] as $value) {
+      $f->condition('field_vote', $value);
+    }
+    $q->filter($f);
+  }
+
+  $response = $q->execute();
   $output = [
+    'facets' => $response['search_api_facets'],
     'queryRecordCount' => $response['result count'],
     'records' => array_map($map, array_values($response['results'])),
   ];
@@ -527,6 +556,68 @@ function pw_vote_poll_block() {
   }
 
   return $block;
+}
+
+/**
+ * Displays filters for voting behaviors of deputies on a poll.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_vote_poll_filters_block() {
+  $block = [];
+
+  $node = menu_get_object();
+
+  if (!$node || $node->type != 'poll') {
+    return $block;
+  }
+
+  $block['content'] = drupal_get_form('pw_vote_poll_filters');
+
+  return $block;
+}
+
+/**
+ * Form constructor for the vote filters form on poll pages.
+ */
+function pw_vote_poll_filters($form, &$form_state) {
+  $parameters = drupal_get_query_parameters();
+
+  $form['#method'] = 'get';
+  $form['#action'] = url(current_path());
+  $form['#theme'] = 'filterbar';
+
+  $form['keys'] = [
+    '#type' => 'textfield',
+    '#title' => t('Search'),
+    '#title_display' => 'invisible',
+    '#default_value' => isset($parameters['keys']) ? $parameters['keys'] : '',
+    '#attributes' => ['placeholder' => t('Name')],
+  ];
+
+  $vote_options = [
+    19667 => t('Yes'),
+    19668 => t('No'),
+    19669 => t('Abstained'),
+    19670 => t('Did not vote'),
+  ];
+
+  $form['field_vote'] = [
+    '#type' => 'checkboxes',
+    '#title' => t('Voting behavior'),
+    '#title_display' => 'invisible',
+    '#options' => $vote_options,
+    '#default_value' => empty($parameters['field_vote']) ? '' : $parameters['field_vote'],
+    '#dropdown' => FALSE,
+  ];
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Filter votes'),
+  );
+
+  return $form;
 }
 
 /**
@@ -672,7 +763,17 @@ function pw_vote_by_user_revision_query($account, $node_target_type = 'poll') {
  *   The search query.
  */
 function pw_vote_by_poll_search($node) {
-  return search_api_query('vote_index')->condition('field_vote_node', $node->nid);
+  $facets = [
+    'field_vote' => [
+      'field' => 'field_vote',
+      'limit' => -1,
+      'min_count' => 1,
+      'missing' => TRUE,
+      'operator' => 'or'
+    ]
+  ];
+  return search_api_query('vote_index', ['search_api_facets' => $facets])
+    ->condition('field_vote_node', $node->nid);
 }
 
 /**
