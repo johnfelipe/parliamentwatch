@@ -47,5 +47,7 @@ Translations for contributed and custom modules are managed with [Localization u
     $ cd /vagrant/
     $ make general.pot
     $ msgmerge -U -N httpdocs/sites/all/translations/pw_globals-<version>.de.po general.pot
+    $ drush l10n-update-refresh
+    $ drush l10n-update
 
 When the version of PW Globals changes the PO file needs to be renamed accordingly.
