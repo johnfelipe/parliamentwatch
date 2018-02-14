@@ -187,6 +187,25 @@ function pw_globals_update_7112() {
 }
 
 /**
+ * Replace custom filterbar block for voting behavior with dynamic one.
+ */
+function pw_globals_update_7113() {
+  _pw_globals_delete_blocks([189]);
+  $config = [
+    'module' => 'pw_vote',
+    'delta' => 'poll_filters',
+    'weight' => -75,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => 'eu/abstimmungen/*',
+    'cache' => DRUPAL_NO_CACHE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content'],
+    'node_types' => ['poll']
+  ];
+  _pw_globals_configure_block($config);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
