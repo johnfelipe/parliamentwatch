@@ -178,7 +178,7 @@ function pw_poll_timeline_block() {
     $nodes_by_day[$key]['#date'] = $key;
   }
 
-  $block['subject'] = t('Poll on a timeline');
+  $block['subject'] = t('All polls of this parliament');
   $block['content'] = $nodes_by_day;
 
   return $block;

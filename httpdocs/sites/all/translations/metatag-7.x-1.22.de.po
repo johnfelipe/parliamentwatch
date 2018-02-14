@@ -1,10 +1,10 @@
 # German translation of Metatag (7.x-1.22)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Metatag (7.x-1.22)\n"
-"POT-Creation-Date: 2017-07-03 19:44+0000\n"
+"POT-Creation-Date: 2018-02-03 14:08+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -388,6 +388,8 @@ msgid "Inherits meta tags from: @parents"
 msgstr "Meta-Tags vererben aus: @parents"
 msgid "Viewport"
 msgstr "Viewport"
+msgid "Pinterest"
+msgstr "Pinterest"
 msgid "Tokens related to views."
 msgstr "Token mit Bezug auf Views."
 msgid "The human-readable name of the view."

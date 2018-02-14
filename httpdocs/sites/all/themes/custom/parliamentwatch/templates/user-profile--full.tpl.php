@@ -210,7 +210,7 @@
               </div>
             </div>
             <h3 class="deputy__candidate_check__header__parliament"><?php print $user_profile['field_user_parliament'][0]['#markup']; ?></h3>
-            <span class="deputy__candidate_check__header__info" data-tooltip-placement="right" data-tooltip-content="<?php print t('Beim Kandidaten-Check können alle Kandidierenden zu relevanten Themen Position beziehen und diese begründen. Machen auch Sie den Kandidaten-Check und prüfen Sie, mit welchen Ihrer Direktkandidierenden Sie am ehesten übereinstimmen! Klicken Sie dazu auf <strong>Zum Kandidaten-Check</strong>'); ?>">
+            <span class="deputy__candidate_check__header__info" data-tooltip-placement="right" data-tooltip-content="<?php print t('At the Kandidaten-Check all candidates can take position on relevant topics and justify them. Make the candidate check and check which of your direct candidates are closest to you! To do this, click on <strong>to Kandidaten-Check</strong>'); ?>">
               <i class="icon icon-info"></i>
             </span>
           </div>

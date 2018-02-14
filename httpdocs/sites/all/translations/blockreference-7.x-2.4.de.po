@@ -1,10 +1,10 @@
 # German translation of Block reference (7.x-2.4)
-# Copyright (c) 2016 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Block reference (7.x-2.4)\n"
-"POT-Creation-Date: 2016-08-02 14:14+0000\n"
+"POT-Creation-Date: 2018-01-28 09:03+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 msgid "Label"
-msgstr "Beschriftung"
+msgstr "Bezeichnung"
 msgid "Fields"
 msgstr "Felder"
 msgid "configure block"

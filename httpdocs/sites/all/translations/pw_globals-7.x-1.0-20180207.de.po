@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-02-13 21:41+0100\n"
+"POT-Creation-Date: 2018-02-13 22:31+0100\n"
 "PO-Revision-Date: 2017-12-11 09:27+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -235,8 +235,8 @@ msgid "Poll charts"
 msgstr "Grafiken Abstimmung"
 
 #: sites/all/modules/custom/pw_poll/pw_poll.module:181
-msgid "Poll on a timeline"
-msgstr "Abstimmung auf einer Zeitleiste"
+msgid "All polls of this parliament"
+msgstr "Alle Abstimmungen des Parlamentes"
 
 #: sites/all/modules/custom/pw_poll/pw_poll.module:260
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:455
@@ -1119,11 +1119,15 @@ msgstr "Abstimmungsverhalten von insgesamt %count Abgeordneten."
 msgid "@count comments"
 msgstr "@count Kommentare"
 
-#: sites/all/themes/custom/parliamentwatch/templates/node--poll--timeline.tpl.php:94
+#: sites/all/themes/custom/parliamentwatch/templates/node--poll--timeline.tpl.php:91
+msgid "Go to poll"
+msgstr "Zur Abstimmung"
+
+#: sites/all/themes/custom/parliamentwatch/templates/node--poll--timeline.tpl.php:95
 msgid "Yes"
 msgstr "Ja"
 
-#: sites/all/themes/custom/parliamentwatch/templates/node--poll--timeline.tpl.php:95
+#: sites/all/themes/custom/parliamentwatch/templates/node--poll--timeline.tpl.php:96
 msgid "No"
 msgstr "Nein"
 
@@ -1457,9 +1461,9 @@ msgid ""
 "candidates are closest to you! To do this, click on <strong>to Kandidaten-"
 "Check</strong>"
 msgstr ""
-"Beim Kandidaten-Check können alle Kandidierenden zu relevanten Themen"
-"Position beziehen und diese begründen. Machen auch Sie den Kandidaten-Check"
-"und prüfen Sie, mit welchen Ihrer Direktkandidierenden Sie am ehesten "
+"Beim Kandidaten-Check können alle Kandidierenden zu relevanten "
+"ThemenPosition beziehen und diese begründen. Machen auch Sie den Kandidaten-"
+"Checkund prüfen Sie, mit welchen Ihrer Direktkandidierenden Sie am ehesten "
 "übereinstimmen! Klicken Sie dazu auf <strong>Zum Kandidaten-Check</strong>"
 
 #: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:226
@@ -1531,6 +1535,9 @@ msgid "Question"
 msgid_plural "Questions"
 msgstr[0] "Frage"
 msgstr[1] "Fragen"
+
+#~ msgid "Poll on a timeline"
+#~ msgstr "Abstimmung auf einer Zeitleiste"
 
 #~ msgid "next ›"
 #~ msgstr "Weiter"
