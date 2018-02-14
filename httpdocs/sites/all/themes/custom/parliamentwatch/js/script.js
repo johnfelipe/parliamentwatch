@@ -2010,35 +2010,42 @@
         var comparison = a[attr].localeCompare(b[attr], 'de');
         return direction > 0 ? comparison : -comparison;
       };
-      $('.table--poll-votes').bind('dynatable:init', function (event, dynatable) {
-        dynatable.paginationLinks.create = create(dynatable, dynatable.settings)
-        dynatable.paginationLinks.buildLink = buildLink;
-        dynatable.sorts.add('field_vote', 1);
-        dynatable.sorts.functions['germanString'] = germanStringSort;
-      }).dynatable({
-        features: {
-          perPageSelect: false,
-          recordCount: false,
-          search: false,
-        },
-        dataset: {
-          perPageDefault: 10,
-          records: window.votes,
-          sortTypes: {
-            politician_lname: 'germanString'
+      var voteMatch = function (record, queryValue) {
+        return record.field_vote == queryValue;
+      };
+      var url = '/votes/' + settings.pw_vote.node;
+
+      $.ajax(url).done(function (data) {
+        $('.table--poll-votes').bind('dynatable:init', function (event, dynatable) {
+          dynatable.paginationLinks.create = create(dynatable, dynatable.settings)
+          dynatable.paginationLinks.buildLink = buildLink;
+          dynatable.sorts.add('field_vote', 1);
+          dynatable.sorts.functions['germanString'] = germanStringCompare;
+        }).dynatable({
+          features: {
+            perPageSelect: false,
+            recordCount: false,
+            search: false,
+          },
+          dataset: {
+            perPageDefault: 10,
+            records: data.records,
+            sortTypes: {
+              politician_lname: 'germanString'
+            }
+          },
+          inputs: {
+            paginationClass: 'pager',
+            paginationLinkClass: 'pager__item',
+            paginationPrevClass: 'pager__item--previous',
+            paginationNextClass: 'pager__item--next',
+            paginationActiveClass: 'pager__item--current',
+            paginationDisabledClass: 'pager__item--disabled',
+            paginationPrev: Drupal.t('previous'),
+            paginationNext: Drupal.t('next'),
+            paginationGap: [1,2,2,1],
           }
-        },
-        inputs: {
-          paginationClass: 'pager',
-          paginationLinkClass: 'pager__item',
-          paginationPrevClass: 'pager__item--previous',
-          paginationNextClass: 'pager__item--next',
-          paginationActiveClass: 'pager__item--current',
-          paginationDisabledClass: 'pager__item--disabled',
-          paginationPrev: Drupal.t('previous'),
-          paginationNext: Drupal.t('next'),
-          paginationGap: [1,2,2,1]
-        }
+        })
       });
     }
   }

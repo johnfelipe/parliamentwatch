@@ -10,14 +10,18 @@ include_once 'pw_vote.features.inc';
  * Implements hook_menu().
  */
 function pw_vote_menu() {
-  $items = array();
-  $items['admin/config/pw/vote'] = array(
+  $items['admin/config/pw/vote'] = [
     'title' => 'PW Vote',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('pw_vote_generate_votes_form'),
     'access arguments' => array('administer site configuration'),
     'file' => 'pw_vote.admin.inc',
-  );
+  ];
+  $items['votes/%node'] = [
+    'page callback' => 'pw_vote_by_poll_json',
+    'page arguments' => [1],
+    'access arguments' => ['access content'],
+  ];
   return $items;
 }
 
@@ -372,10 +376,64 @@ function pw_vote_block_view($delta, $arguments = array()) {
     case 'poll':
       $block = pw_vote_poll_block();
       break;
+    case 'poll_filters':
+      $block = pw_vote_poll_filters_block();
+      break;
     default:
       return [];
   }
   return $block;
+}
+
+/**
+ * Page callback: Delivers JSON representation of votes cast on a poll.
+ *
+ * @param $node
+ *   The node of type poll.
+ */
+function pw_vote_by_poll_json($node) {
+  if ($node->type != 'poll') {
+    return MENU_NOT_FOUND;
+  }
+
+  $map = function ($item) {
+    $voted_dict = [
+      19667 => t('Voted yes') . '<i class="icon icon-ok"></i>',
+      19668 => t('Voted no') . '<i class="icon icon-close"></i>',
+      19669 => t('Abstained') . '<i class="icon icon-circle-o"></i>',
+      19670 => t('Did not vote') . '<i class="icon icon-minus"></i>',
+    ];
+
+    $profile_picture = theme('image_style', ['path' => $item['fields']['politician_picture_uri'], 'style_name' => 'square_small']);
+    if (isset($item['fields']['politician_political_faction'])) {
+      $political_faction = $item['fields']['politician_political_faction'];
+    }
+    else {
+      $political_faction = '';
+    }
+    if (isset($item['fields']['politician_constituency_name'])) {
+      $constituency = $item['fields']['politician_constituency_name'];
+    }
+    else {
+      $constituency = '';
+    }
+
+    return [
+      'politician_picture' => '<span>' . l($profile_picture, $item['fields']['politician_uri'], ['html' => TRUE]) . '</span>',
+      'politician_full_name' => l($item['fields']['politician_full_name'][0], $item['fields']['politician_uri']),
+      'politician_lname' => $item['fields']['politician_lname'],
+      'politician_political_faction' => $political_faction,
+      'politician_constituency_name' => $constituency,
+      'field_vote' => $voted_dict[$item['fields']['field_vote']],
+    ];
+  };
+
+  $response = pw_vote_by_poll_search($node)->execute();
+  $output = [
+    'queryRecordCount' => $response['result count'],
+    'records' => array_map($map, array_values($response['results'])),
+  ];
+  drupal_json_output($output);
 }
 
 /**
@@ -446,39 +504,6 @@ function pw_vote_poll_block() {
   $response = pw_vote_by_poll_search($node)->execute();
 
   if ($response['result count'] > 0) {
-    $map = function ($item) {
-      $voted_dict = [
-        19667 => t('Voted yes') . '<i class="icon icon-ok"></i>',
-        19668 => t('Voted no') . '<i class="icon icon-close"></i>',
-        19669 => t('Abstained') . '<i class="icon icon-circle-o"></i>',
-        19670 => t('Did not vote') . '<i class="icon icon-minus"></i>',
-      ];
-
-      $profile_picture = theme('image_style', ['path' => $item['fields']['politician_picture_uri'], 'style_name' => 'square_small']);
-      if (isset($item['fields']['politician_political_faction'])) {
-        $political_faction = $item['fields']['politician_political_faction'];
-      }
-      else {
-        $political_faction = '';
-      }
-      if (isset($item['fields']['politician_constituency_name'])) {
-        $constituency = $item['fields']['politician_constituency_name'];
-      }
-      else {
-        $constituency = '';
-      }
-
-      return [
-        'politician_picture' => '<span>' . l($profile_picture, $item['fields']['politician_uri'], ['html' => TRUE]) . '</span>',
-        'politician_full_name' => l($item['fields']['politician_full_name'][0], $item['fields']['politician_uri']),
-        'politician_lname' => $item['fields']['politician_lname'],
-        'politician_political_faction' => $political_faction,
-        'politician_constituency_name' => $constituency,
-        'field_vote' => $voted_dict[$item['fields']['field_vote']],
-      ];
-    };
-    $inline_js = 'window.votes = ' . drupal_json_encode(array_map($map, array_values($response['results'])));
-
     $block['content'] = [
       '#theme' => 'table__poll_votes',
       '#header' => [
@@ -492,9 +517,9 @@ function pw_vote_poll_block() {
       '#sticky' => FALSE,
       '#attached' => [
         'js' => [
-          $inline_js => [
-            'scope' => 'footer',
-            'type' => 'inline',
+          0 => [
+            'data' => ['pw_vote' => ['node' => $node->nid]],
+            'type' => 'setting'
           ],
         ],
       ],
