@@ -529,10 +529,13 @@
   display: block;
   font-size: .9em;
   font-weight: 300;
-  color: $darkGray;
   padding-left: $space-large;
   position: relative;
   @include text-overflow();
+  > a {
+    color: $darkGray;
+    pointer-events: none;
+  }
   .icon {
     font-size: .8em;
     position: absolute;
@@ -540,10 +543,12 @@
     top: 50%;
     @include transform(translate(0,-50%));
   }
-}
-.poll__timeline__item__poll__title__link {
-  display: none;
-  padding: 5px 0;
+  .poll__timeline__item__poll__title__link {
+    display: none;
+    padding: 5px 0;
+    color: $orange;
+    cursor: pointer;
+  }
 }
 .poll__timeline__item__poll__result {
   display: none;
@@ -582,9 +587,17 @@
     .icon {
       display: none;
     }
-  }
-  .poll__timeline__item__poll__title__link {
-    display: block;
+    > a {
+      pointer-events: auto;
+    }
+    .poll__timeline__item__poll__title__link {
+      display: block;
+      pointer-events: auto;
+      &:hover {
+        color: $darkOrange;
+        cursor: pointer;
+      }
+    }
   }
   .poll__timeline__item__poll__result {
     display: block;
