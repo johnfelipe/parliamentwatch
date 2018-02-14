@@ -48,7 +48,7 @@
 <section id="<?php print $block_html_id; ?>" class="poll__table loading-overlay <?php print $classes; ?>" data-view-mode-element="poll__table" <?php print $attributes; ?>>
   <div class="container">
     <?php print render($title_suffix) ?>
-    <div class="poll_detail__table <?php print $classes; ?>">
+    <div class="poll_detail__table">
       <?php print $content; ?>
     </div>
   </div>
