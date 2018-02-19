@@ -2071,61 +2071,64 @@
    */
   Drupal.behaviors.votesTable = {
     attach: function (context, settings) {
-      var url = '/votes/' + settings.pw_vote.node;
-
-      $('.poll_detail__table').addClass('loading-overlay');
-      $.ajax(url).done(function (data) {
-        $('.table--poll-votes').bind('dynatable:init', function (event, dynatable) {
-          var PaginationLinks = Drupal.dynatable.PaginationLinks(dynatable, dynatable.settings);
-          dynatable.paginationLinks.create = PaginationLinks.create;
-          dynatable.paginationLinks.buildLink = PaginationLinks.buildLink;
-          var Sorts = Drupal.dynatable.Sorts(dynatable, dynatable.settings);
-          dynatable.sorts.functions.string = Sorts.functions.string;
-          dynatable.sorts.add('field_vote', 1);
-          var SortsHeaders = Drupal.dynatable.SortsHeaders(dynatable, dynatable.settings);
-          dynatable.sortsHeaders.appendArrowUp = SortsHeaders.appendArrowUp;
-          dynatable.sortsHeaders.appendArrowDown = SortsHeaders.appendArrowDown;
-          dynatable.sortsHeaders.toggleSort = SortsHeaders.toggleSort;
-        }).dynatable({
-          features: {
-            perPageSelect: false,
-            recordCount: false,
-            search: false,
-          },
-          dataset: {
-            perPageDefault: 10,
-            records: data.records
-          },
-          inputs: {
-            paginationClass: 'pager',
-            paginationLinkClass: 'pager__item',
-            paginationPrevClass: 'pager__item--previous',
-            paginationNextClass: 'pager__item--next',
-            paginationActiveClass: 'pager__item--current',
-            paginationDisabledClass: 'pager__item--disabled',
-            paginationPrev: Drupal.t('previous'),
-            paginationNext: Drupal.t('next'),
-            paginationGap: [1,2,2,1],
-          }
-        })
-      });
-
-      $('.form--pw-vote-poll-filters input').change(function (event) {
-        $(this.form).submit();
-      });
-
-      $('.form--pw-vote-poll-filters').submit(function (event) {
-        event.preventDefault();
-        addLoadingAnimation($('.poll_detail__table'));
-        $.ajax(url + '?' + $(this).serialize()).done(function (data) {
-          var dynatable = $('.table--poll-votes').data('dynatable');
-          dynatable.records.updateFromJson(data);
-          dynatable.records.init();
-          dynatable.paginationPage.set(1);
-          dynatable.process();
-          removeLoadingAnimation($('.poll_detail__table'));
+      if (settings.pw_vote.node) {
+        var url = '/votes/' + settings.pw_vote.node;
+        $('.poll_detail__table').addClass('loading-overlay');
+        $.ajax(url).done(function (data) {
+          $('.table--poll-votes').bind('dynatable:init', function (event, dynatable) {
+            var PaginationLinks = Drupal.dynatable.PaginationLinks(dynatable, dynatable.settings);
+            dynatable.paginationLinks.create = PaginationLinks.create;
+            dynatable.paginationLinks.buildLink = PaginationLinks.buildLink;
+            var Sorts = Drupal.dynatable.Sorts(dynatable, dynatable.settings);
+            dynatable.sorts.functions.string = Sorts.functions.string;
+            if (Object.values(dynatable.settings.dataset.sorts).length == 0) {
+              dynatable.sorts.add('field_vote', 1);
+            }
+            var SortsHeaders = Drupal.dynatable.SortsHeaders(dynatable, dynatable.settings);
+            dynatable.sortsHeaders.appendArrowUp = SortsHeaders.appendArrowUp;
+            dynatable.sortsHeaders.appendArrowDown = SortsHeaders.appendArrowDown;
+            dynatable.sortsHeaders.toggleSort = SortsHeaders.toggleSort;
+          }).dynatable({
+            features: {
+              perPageSelect: false,
+              recordCount: false,
+              search: false,
+            },
+            dataset: {
+              perPageDefault: 10,
+              records: data.records
+            },
+            inputs: {
+              paginationClass: 'pager',
+              paginationLinkClass: 'pager__item',
+              paginationPrevClass: 'pager__item--previous',
+              paginationNextClass: 'pager__item--next',
+              paginationActiveClass: 'pager__item--current',
+              paginationDisabledClass: 'pager__item--disabled',
+              paginationPrev: Drupal.t('previous'),
+              paginationNext: Drupal.t('next'),
+              paginationGap: [1, 2, 2, 1],
+            }
+          })
         });
-      });
+
+        $('.form--pw-vote-poll-filters input').change(function (event) {
+          $(this.form).submit();
+        });
+
+        $('.form--pw-vote-poll-filters').submit(function (event) {
+          event.preventDefault();
+          addLoadingAnimation($('.poll_detail__table'));
+          $.ajax(url + '?' + $(this).serialize()).done(function (data) {
+            var dynatable = $('.table--poll-votes').data('dynatable');
+            dynatable.records.updateFromJson(data);
+            dynatable.records.init();
+            dynatable.paginationPage.set(1);
+            dynatable.process();
+            removeLoadingAnimation($('.poll_detail__table'));
+          });
+        });
+      }
     }
   }
 
