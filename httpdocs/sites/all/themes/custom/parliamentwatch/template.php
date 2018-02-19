@@ -155,22 +155,24 @@ function parliamentwatch_preprocess_block(&$variables) {
     $variables['theme_hook_suggestions'][] = strtr('block__' . $config['menu_name'] . '__level-' . $config['level'], '-', '_');
 
     if ($config['menu_name'] == 'main-menu' && $config['level'] == 3) {
-      $active_path = menu_tree_get_path('main-menu');
+      $trail = menu_get_active_trail();
 
-      if ($active_path) {
-        $parliament_term = menu_get_item($active_path)['map'][1];
+      if (isset($trail[2]) && $trail[2]['menu_name'] == 'main-menu') {
+        $parliament_term = menu_get_item($trail[2]['link_path'])['map'][2];
       }
-      else {
-        $parliament_term = menu_get_item()['page_arguments'][0];
+      elseif (menu_tree_get_path('main-menu')) {
+        $parliament_term = menu_get_item(menu_tree_get_path('main-menu'))['map'][1];
       }
 
-      $predecessors = pw_parliaments_predecessors($parliament_term);
-      $successors = pw_parliaments_successors($parliament_term);
+      if (isset($parliament_term)) {
+        $predecessors = pw_parliaments_predecessors($parliament_term);
+        $successors = pw_parliaments_successors($parliament_term);
 
-      $variables['title_suffix']['indicator'] = [
-        '#theme' => 'item_list__archive_dropdown',
-        '#items' => array_reverse(array_merge($predecessors, [$parliament_term], $successors, [$parliament_term])),
-      ];
+        $variables['title_suffix']['indicator'] = [
+          '#theme' => 'item_list__archive_dropdown',
+          '#items' => array_reverse(array_merge($predecessors, [$parliament_term], $successors, [$parliament_term])),
+        ];
+      }
     }
   }
 
