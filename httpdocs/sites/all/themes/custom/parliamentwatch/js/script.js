@@ -1735,20 +1735,46 @@
    * @prop {Drupal~attachBehavior}
    */
   Drupal.behaviors.viewModeSwitch = {
-    attach: function () {
-      $('.filterbar__view_options__item__link').click(function (event) {
-        event.preventDefault();
+    attach: function (context) {
+      $('.filterbar__view_options', context).once('view-mode', function () {
+        // Set initial tab by checking url for hash
+        if (window.location.hash) {
+          $('.filterbar__view_options__item__link[href="' + window.location.hash + '"]').trigger('click');
+        }
 
-        $('.filterbar__view_options__item__link').parent('li').removeClass('active');
-        $(this).parent('li').addClass('active');
-        $('.view-mode').hide();
-        $(this.hash).show();
+        if (history.pushState) {
+          $(window).on('popstate', function (event) {
+            if ($('.filterbar__view_options__item__link[href="' + this.location.hash + '"]').length > 0) {
+              // Set nav-item classes
+              $('.filterbar__view_options__item__link').parent('li').removeClass('active');
+              $('.filterbar__view_options__item__link[href="' + this.location.hash + '"]').parents('li').addClass('active');
+
+              // Toggle view mode visibility
+              $('.view-mode').hide();
+              $(this.location.hash).show();
+            }
+          });
+        }
+
+        $('.filterbar__view_options__item__link').on('click', function (event) {
+          event.preventDefault();
+
+          // add hash-value of the clicked link-element to url
+          if (history.pushState) {
+            history.pushState(this.hash, null, this.hash);
+          }
+
+          if ($('.filterbar__view_options__item__link[href="' + this.hash + '"]').length > 0) {
+            // Set nav-item classes
+            $('.filterbar__view_options__item__link').parent('li').removeClass('active');
+            $('.filterbar__view_options__item__link[href="' + this.hash + '"]').parents('li').addClass('active');
+
+            // Toggle view mode visibility
+            $('.view-mode').hide();
+            $(this.hash).show();
+          }
+        });
       });
-
-      // Set initial tab by checking url for hash
-      if (window.location.hash) {
-        $('.filterbar__view_options__item__link[href=' + window.location.hash + ']').trigger('click');
-      }
     }
   };
 
