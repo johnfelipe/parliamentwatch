@@ -1749,9 +1749,11 @@
       };
 
       $('.filterbar__view_options', context).once('view-mode', function () {
-        // Set initial tab by checking url for hash
         if (window.location.hash) {
           $('.filterbar__view_options__item__link[href="' + window.location.hash + '"]').trigger('click');
+        } else if (history.replaceState) {
+          var defaultViewMode = $('.active .filterbar__view_options__item__link').first().attr('href');
+          history.replaceState(defaultViewMode, null, defaultViewMode);
         }
 
         if (history.pushState) {
