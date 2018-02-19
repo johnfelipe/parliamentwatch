@@ -87,8 +87,8 @@
       <figcaption class="figcaption-overlay"><span>©&nbsp;<?php print $content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value']; ?></span></figcaption>
     <?php endif; ?>
   </figure>
-  <header class="tile__title mh-item">
-    <h1<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h1>
+  <header class="tile__title mh-item-nr">
+    <h1 class="mh-item"><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h1>
     <?php print render($content['body']); ?>
     <?php print render($title_suffix); ?>
   </header>
