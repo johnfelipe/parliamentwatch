@@ -1736,6 +1736,18 @@
    */
   Drupal.behaviors.viewModeSwitch = {
     attach: function (context) {
+      var switchViewMode = function (hash) {
+        if ($('.filterbar__view_options__item__link[href="' + hash + '"]').length > 0) {
+          // Set nav-item classes
+          $('.filterbar__view_options__item__link').parent('li').removeClass('active');
+          $('.filterbar__view_options__item__link[href="' + hash + '"]').parents('li').addClass('active');
+
+          // Toggle view mode visibility
+          $('.view-mode').hide();
+          $(hash).show();
+        }
+      };
+
       $('.filterbar__view_options', context).once('view-mode', function () {
         // Set initial tab by checking url for hash
         if (window.location.hash) {
@@ -1744,15 +1756,7 @@
 
         if (history.pushState) {
           $(window).on('popstate', function (event) {
-            if ($('.filterbar__view_options__item__link[href="' + this.location.hash + '"]').length > 0) {
-              // Set nav-item classes
-              $('.filterbar__view_options__item__link').parent('li').removeClass('active');
-              $('.filterbar__view_options__item__link[href="' + this.location.hash + '"]').parents('li').addClass('active');
-
-              // Toggle view mode visibility
-              $('.view-mode').hide();
-              $(this.location.hash).show();
-            }
+            switchViewMode(this.location.hash);
           });
         }
 
@@ -1764,15 +1768,7 @@
             history.pushState(this.hash, null, this.hash);
           }
 
-          if ($('.filterbar__view_options__item__link[href="' + this.hash + '"]').length > 0) {
-            // Set nav-item classes
-            $('.filterbar__view_options__item__link').parent('li').removeClass('active');
-            $('.filterbar__view_options__item__link[href="' + this.hash + '"]').parents('li').addClass('active');
-
-            // Toggle view mode visibility
-            $('.view-mode').hide();
-            $(this.hash).show();
-          }
+          switchViewMode(this.hash);
         });
       });
     }
