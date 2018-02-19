@@ -1,10 +1,10 @@
 # German translation of Administration menu (7.x-3.0-rc5)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Administration menu (7.x-3.0-rc5)\n"
-"POT-Creation-Date: 2017-09-30 01:09+0000\n"
+"POT-Creation-Date: 2018-02-19 05:44+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr "Startseite"
 msgid "Development"
 msgstr "Entwicklung"
 msgid "Administration"
-msgstr "Verwaltung"
+msgstr "Administration"
 msgid "Search"
 msgstr "Suche"
 msgid "None"

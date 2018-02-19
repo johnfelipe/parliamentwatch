@@ -1,10 +1,10 @@
 # German translation of Better Exposed Filters (7.x-3.4)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Better Exposed Filters (7.x-3.4)\n"
-"POT-Creation-Date: 2017-06-15 04:14+0000\n"
+"POT-Creation-Date: 2018-02-15 20:58+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr ""
 "Auswahlknöpfen für exponierten Ansichten-Filter"
 msgid "Select any filter and click on Apply to see results"
 msgstr ""
-"Wählen Sie eine beliebige Filter und klicken Sie auf Anwenden, um "
+"Wählen Sie einen beliebigen Filter und klicken Sie auf Anwenden, um "
 "Ergebnisse zu sehen"
 msgid "Text on demand"
 msgstr "Text für ‚auf Anfrage‘"
