@@ -276,6 +276,54 @@
           }
         }
       }
+    },
+    SortsHeaders: function (obj, settings) {
+      return {
+        appendArrowUp: function ($link) {
+          this.removeArrow($link);
+          $link.append('<i class="dynatable-arrow icon icon-arrow-up"></i>');
+        },
+
+        appendArrowDown: function ($link) {
+          this.removeArrow($link);
+          $link.append('<i class="dynatable-arrow icon icon-arrow-down"></i>');
+        },
+
+        toggleSort: function (e, $link, column) {
+          var sortedByColumn = this.sortedByColumn($link, column),
+            value = this.sortedByColumnValue(column);
+          // Clear existing sorts unless this is a multisort event
+          if (!settings.inputs.multisort || !obj.utility.anyMatch(e, settings.inputs.multisort, function (evt, key) {
+              return e[key];
+            })) {
+            this.removeAllArrows();
+            obj.sorts.clear();
+          }
+
+          // If sorts for this column are already set
+          if (sortedByColumn) {
+            // If ascending, then make descending
+            if (value == 1) {
+              for (var i = 0, len = column.sorts.length; i < len; i++) {
+                obj.sorts.add(column.sorts[i], -1);
+              }
+              this.appendArrowDown($link);
+              // If descending, then make ascending
+            } else {
+              for (var i = 0, len = column.sorts.length; i < len; i++) {
+                obj.sorts.add(column.sorts[i], 1);
+              }
+              this.appendArrowUp($link);
+            }
+            // Otherwise, if not already set, set to ascending
+          } else {
+            for (var i = 0, len = column.sorts.length; i < len; i++) {
+              obj.sorts.add(column.sorts[i], 1);
+            }
+            this.appendArrowUp($link);
+          }
+        }
+      }
     }
   };
 
@@ -2034,6 +2082,10 @@
           var Sorts = Drupal.dynatable.Sorts(dynatable, dynatable.settings);
           dynatable.sorts.functions.string = Sorts.functions.string;
           dynatable.sorts.add('field_vote', 1);
+          var SortsHeaders = Drupal.dynatable.SortsHeaders(dynatable, dynatable.settings);
+          dynatable.sortsHeaders.appendArrowUp = SortsHeaders.appendArrowUp;
+          dynatable.sortsHeaders.appendArrowDown = SortsHeaders.appendArrowDown;
+          dynatable.sortsHeaders.toggleSort = SortsHeaders.toggleSort;
         }).dynatable({
           features: {
             perPageSelect: false,
