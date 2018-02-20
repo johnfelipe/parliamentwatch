@@ -95,7 +95,7 @@
     <p class="testimonial__content__name">
       <?php print render($content['field_testimonial_fullname']); ?>
     </p>
-    <a href="/ueber-uns/spendenformular?recurring=1&pk_campaign=4000Foerderer&pk_kwd=Header" class="btn"><?php print t('Jetzt fördern') ?></a>
+    <a href="/ueber-uns/spendenformular?recurring=1&pk_campaign=Testimonial-<?php print drupal_html_class(trim(render($content['field_testimonial_fullname']))); ?>&pk_kwd=Landing-Page" class="btn"><?php print t('Jetzt fördern') ?></a>
   </div>
-  <a href="/ueber-uns/spendenformular?recurring=1&pk_campaign=4000Foerderer&pk_kwd=Header" class="btn btn--mobile-block"><?php print t('Jetzt spenden') ?></a>
+  <a href="/ueber-uns/spendenformular?recurring=1&pk_campaign=Testimonial-<?php print drupal_html_class(trim(render($content['field_testimonial_fullname']))); ?>&pk_kwd=Landing-Page" class="btn btn--mobile-block"><?php print t('Jetzt spenden') ?></a>
 </div>
