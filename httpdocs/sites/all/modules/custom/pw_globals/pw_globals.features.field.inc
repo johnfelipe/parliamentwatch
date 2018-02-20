@@ -688,7 +688,7 @@ function pw_globals_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => 3,
+          'weight' => '3',
         ),
         'pw_newsletter' => array(
           'label' => 'above',
@@ -772,7 +772,7 @@ function pw_globals_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'field_delimiter' => '',
-            'image_link' => 'content',
+            'image_link' => '',
             'image_style' => 'square_small',
             'linked_field' => array(
               'advanced' => array(
