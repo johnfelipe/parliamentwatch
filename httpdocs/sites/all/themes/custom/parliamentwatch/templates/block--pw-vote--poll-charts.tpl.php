@@ -44,17 +44,17 @@
  * @ingroup themeable
  */
 ?>
-<div class="filterbar filterbar--disabled">
-  <div class="filterbar__inner">
-    <?php print render($title_suffix); ?>
-    <?php print $content; ?>
-    <ul class="filterbar__view_options">
-      <li class="filterbar__view_options__item active">
-        <a href="#block-pw-vote-poll-charts" class="filterbar__view_options__item__link"><i class="icon icon-bar-chart"></i></a>
-      </li>
-      <li class="filterbar__view_options__item">
-        <a href="#block-pw-vote-poll" class="filterbar__view_options__item__link"><i class="icon icon-th-list"></i></a>
-      </li>
-    </ul>
-  </div>
-</div>
+<section id="<?php print $block_html_id; ?>" class="poll__charts view-mode <?php print $classes; ?>" <?php print $attributes; ?>>
+  <?php print render($title_suffix) ?>
+  <span class="d3 d3--bar-horizontal-stacked"
+        data-bar-horizontal-stacked
+        data-label-total-before="<?php print t('Poll result by') ?>"
+        data-label-total-after="<?php print t('Members') ?>"
+        data-url="<?php print $content; ?>">
+  </span>
+
+  <span class="d3 d3--bar-vertical-stacked-poll"
+        data-bar-vertical-stacked-poll
+        data-url="<?php print $content; ?>">
+  </span>
+</section>

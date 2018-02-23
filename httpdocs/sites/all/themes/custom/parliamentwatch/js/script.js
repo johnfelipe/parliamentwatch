@@ -93,7 +93,7 @@
    * @param {Object} votes
    *   Vote statistics to map to D3 data.
    *
-   * @returns {Object}
+   * @returns {Array}
    *   Vote statistics ready for D3.
    */
   function mapVotes(votes) {
@@ -149,15 +149,47 @@
   /**
    * Returns votes statistics by party ready for D3.
    *
-   * @returns {Array}
+   * @param {Array}
+   *   Vote details.
+   *
+   * @returns {Object}
    *   Vote statistics by party ready for D3.
    */
-  Drupal.parseResultsByParty = function () {
+  Drupal.parseResultsByFaction = function (votes) {
     var data = {};
+    var count = {};
+    var factions = votes.reduce(function (accumulator, currentValue) {
+      if (accumulator.indexOf(currentValue['politician_political_faction']) > -1) {
+        return accumulator;
+      } else {
+        return accumulator.concat([currentValue['politician_political_faction']]);
+      }
+    }, []);
 
-    for (var party in window.resultsByParty) {
-      data[party] = mapVotes(window.resultsByParty[party]);
-    }
+    factions.forEach(function (item) {
+      count[item] = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
+    });
+
+    votes.forEach(function (item) {
+      switch (item['field_vote']) {
+        case 19667:
+          count[item['politician_political_faction']]['yes']++;
+          break;
+        case 19668:
+          count[item['politician_political_faction']]['no']++;
+          break;
+        case 19669:
+          count[item['politician_political_faction']]['abstain']++;
+          break;
+        case 19670:
+          count[item['politician_political_faction']]['no-show']++;
+          break;
+      }
+    });
+
+    factions.forEach(function (item) {
+      data[item] = mapVotes(count[item]);
+    });
 
     return data;
   };
@@ -165,18 +197,31 @@
   /**
    * Returns vote statistics suitable for D3.
    *
+   * @param {Array}
+   *   Number of votes by category.
+   *
    * @returns {Array}
    *   Vote statistics ready for D3.
    */
-  Drupal.parseResultsTotal = function () {
+  Drupal.parseResultsTotal = function (voteCount) {
     var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
 
-    for (var party in window.resultsByParty) {
-      data['yes'] += window.resultsByParty[party]['yes'];
-      data['no'] += window.resultsByParty[party]['no'];
-      data['abstain'] += window.resultsByParty[party]['abstain'];
-      data['no-show'] += window.resultsByParty[party]['no-show'];
-    }
+    voteCount.forEach(function (item) {
+      switch (item.filter) {
+        case '"19667"':
+          data['yes'] = item.count;
+          break;
+        case '"19668"':
+          data['no'] = item.count;
+          break;
+        case '"19669"':
+          data['abstain'] = item.count;
+          break;
+        case '"19670"':
+          data['no-show'] = item.count;
+          break;
+      }
+    });
 
     return mapVotes(data);
   };
@@ -1509,17 +1554,17 @@
     attach: function (context) {
       $('[data-bar-horizontal-stacked]', context).once('d3BarHorizontalStacked', function () {
         var wrapper = $(this)[0];
-        var dataset = Drupal[wrapper.getAttribute('data-data')]();
         var barWrapper = d3.select(wrapper)
           .append('div')
           .attr('class', 'd3-bars');
 
-        (function (data) {
+        d3.json(wrapper.dataset.url, function (error, response) {
+          var data = Drupal.parseResultsTotal(response.facets['field_vote']);
           var totalPollCount = d3.sum(data, function (d) {
             return d.count;
           });
-          var totalLabelBefore = wrapper.getAttribute('data-label-total-before');
-          var totalLabelAfter = wrapper.getAttribute('data-label-total-after');
+          var totalLabelBefore = wrapper.dataset.labelTotalBefore;
+          var totalLabelAfter = wrapper.dataset.labelTotalAfter;
 
           barWrapper.selectAll("div")
             .data(data)
@@ -1557,7 +1602,7 @@
               return 'background-color:' + d.color;
             });
 
-        })(dataset || []);
+        });
       });
     }
   };
@@ -1573,9 +1618,9 @@
     attach: function (context) {
       $('[data-bar-vertical-stacked-poll]', context).once('d3BarVerticalStackedPoll', function () {
         var wrapper = $(this)[0];
-        var dataset = Drupal[wrapper.getAttribute('data-data')]();
 
-        (function (data) {
+        d3.json(wrapper.dataset.url, function (error, response) {
+          var data = Drupal.parseResultsByFaction(response.records);
           for (var key in data) {
 
             var obj = data[key];
@@ -1622,7 +1667,7 @@
                 return 'background-color:' + o.color;
               });
           }
-        })(dataset || []);
+        });
       });
     }
   };

@@ -373,6 +373,10 @@ function pw_vote_block_info() {
     'info' => t('Voting behavior by poll filters'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['poll_charts'] = [
+    'info' => t('Voting behavior by poll charts'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -392,6 +396,9 @@ function pw_vote_block_view($delta, $arguments = array()) {
       break;
     case 'poll_filters':
       $block = pw_vote_poll_filters_block();
+      break;
+    case 'poll_charts':
+      $block = pw_vote_poll_charts_block();
       break;
     default:
       return [];
@@ -576,6 +583,26 @@ function pw_vote_poll_filters_block() {
 
   $facets = pw_vote_by_poll_search($node)->execute()['search_api_facets'];
   $block['content'] = drupal_get_form('pw_vote_poll_filters', $facets);
+
+  return $block;
+}
+
+/**
+ * Displays charts for polls.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_vote_poll_charts_block() {
+  $block = [];
+  $node = menu_get_object();
+
+  if (!$node || $node->type != 'poll') {
+    return $block;
+  }
+
+  $block['subject'] = t('Poll charts');
+  $block['content'] = url('votes/' . $node->nid);
 
   return $block;
 }
