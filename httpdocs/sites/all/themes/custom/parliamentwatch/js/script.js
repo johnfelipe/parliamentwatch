@@ -220,12 +220,14 @@
               }
 
               if (settings.inputs.paginationPrev && i === 1 && page !== 1) {
+                var firstLi = obj.paginationLinks.buildLink(1, settings.inputs.paginationPrev, pageLinkClass + ' ' + settings.inputs.paginationFirstClass, page === 1, disabledPageClass);
                 var prevLi = obj.paginationLinks.buildLink(page - 1, settings.inputs.paginationPrev, pageLinkClass + ' ' + settings.inputs.paginationPrevClass, page === 1, disabledPageClass);
-                li = prevLi + li;
+                li = firstLi + prevLi + li;
               }
               if (settings.inputs.paginationNext && i === pages && page !== pages) {
                 var nextLi = obj.paginationLinks.buildLink(page + 1, settings.inputs.paginationNext, pageLinkClass + ' ' + settings.inputs.paginationNextClass, page === pages, disabledPageClass);
-                li += nextLi;
+                var lastLi = obj.paginationLinks.buildLink(pages, settings.inputs.paginationNext, pageLinkClass + ' ' + settings.inputs.paginationLastClass, page === pages, disabledPageClass);
+                li += nextLi + lastLi;
               }
 
               pageLinks += li;
@@ -761,7 +763,7 @@
         if ($('.tabs__navigation').length && window.location.hash) {
           $('.tabs__navigation a[href=' + window.location.hash + ']').trigger('click');
         }
-        // Set initial tab by checking url for hash
+
         if (history.pushState) {
           $(window).on('popstate', function (event) {
             var hashValue = window.location.hash;
@@ -2125,8 +2127,10 @@
             inputs: {
               paginationClass: 'pager',
               paginationLinkClass: 'pager__item',
+              paginationFirstClass: 'pager__item--first',
               paginationPrevClass: 'pager__item--previous',
               paginationNextClass: 'pager__item--next',
+              paginationLastClass: 'pager__item--last',
               paginationActiveClass: 'pager__item--current',
               paginationDisabledClass: 'pager__item--disabled',
               paginationPrev: Drupal.t('previous'),
