@@ -438,7 +438,8 @@ function pw_vote_by_poll_json($node) {
       'politician_lname' => $item['fields']['politician_lname'],
       'politician_political_faction' => $political_faction,
       'politician_constituency_name' => $constituency,
-      'field_vote' => $voted_dict[$item['fields']['field_vote']],
+      'field_vote' => $item['fields']['field_vote'],
+      'field_vote_display' => $voted_dict[$item['fields']['field_vote']],
     ];
   };
 
@@ -541,7 +542,7 @@ function pw_vote_poll_block() {
       ['data' => t('Name'), 'data-dynatable-column' => 'politician_full_name', 'data-dynatable-sorts' => 'politician_lname'],
       ['data' => t('Political faction'), 'data-dynatable-column' => 'politician_political_faction'],
       ['data' => t('Constituency'), 'data-dynatable-column' => 'politician_constituency_name'],
-      ['data' => t('Voted'), 'data-dynatable-column' => 'field_vote'],
+      ['data' => t('Voted'), 'data-dynatable-column' => 'field_vote_display'],
     ],
     '#rows' => [[]],
     '#sticky' => FALSE,
