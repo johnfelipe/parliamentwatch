@@ -44,7 +44,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="filterbar">
+<div class="filterbar filterbar--disabled">
   <div class="filterbar__inner">
     <?php print render($title_suffix); ?>
     <?php print $content; ?>

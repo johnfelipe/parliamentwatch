@@ -45,7 +45,7 @@
  */
 ?>
 
-<section id="<?php print $block_html_id; ?>" class="poll__table view-mode <?php print $classes; ?>" <?php print $attributes; ?>>
+<section id="<?php print $block_html_id; ?>" class="poll__table view-mode view-mode--has-filters <?php print $classes; ?>" <?php print $attributes; ?>>
   <div class="container">
     <?php print render($title_suffix) ?>
     <div class="poll_detail__table">

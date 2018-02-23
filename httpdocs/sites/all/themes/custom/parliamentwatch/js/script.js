@@ -1747,6 +1747,12 @@
           // Toggle view mode visibility
           $('.view-mode').hide();
           $(hash).show();
+
+          if ($(hash).hasClass('view-mode--has-filters')) {
+            $('.filterbar').removeClass('filterbar--disabled');
+          } else {
+            $('.filterbar').addClass('filterbar--disabled');
+          }
         }
       };
 
