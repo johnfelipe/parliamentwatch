@@ -198,11 +198,6 @@ function parliamentwatch_preprocess_block(&$variables) {
       $variables['classes_array'][] = drupal_html_class('title--' . menu_get_object('node')->type);
     }
   }
-
-  if ($variables['block']->module == 'pw_vote' && $variables['block']->delta == 'poll') {
-    $variables['attributes_array']['data-ajax-block-url'] = url('block/' . $variables['block']->module . '/' . $variables['block']->delta);
-  }
-
 }
 
 /**
