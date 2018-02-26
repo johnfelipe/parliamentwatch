@@ -600,7 +600,7 @@
           });
         }
 
-        $('.tabs__content__content .pager__next a').each(function () {
+        $('.tabs__content__content .pager__item a').each(function () {
           this.hash = $(this).parents('.tabs__content').attr('id');
         });
 
