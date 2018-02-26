@@ -601,7 +601,7 @@
         }
 
         $('.tabs__content__content .pager__item a').each(function () {
-          this.hash = $(this).parents('.tabs__content').attr('id');
+          $(this).prop('hash', $(this).parents('.tabs__content').attr('id'));
         });
 
         $('.tabs__navigation a').on('click', function (event) {
