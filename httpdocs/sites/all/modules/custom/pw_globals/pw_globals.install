@@ -165,6 +165,27 @@ function pw_globals_update_7111() {
   }
 }
 
+/*
+ * Disable obsolete modules.
+ */
+function pw_globals_update_7112() {
+  $modules = [
+    'better_exposed_filters',
+    'datatables',
+    'editableviews',
+    'field_delimiter',
+    'hide_submit',
+    'views_content_cache',
+    'views_dynamic_fields',
+    'views_field_view',
+    'views_fieldsets',
+    'views_load_more',
+    'views_php',
+    'views_sort_null_field',
+  ];
+  module_disable($modules);
+}
+
 /**
  * Adds a new menu block.
  *
