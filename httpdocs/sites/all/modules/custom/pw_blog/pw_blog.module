@@ -104,14 +104,14 @@ function pw_blog_related_blogposts_block() {
     'subject' => t('Related blog posts'),
   ];
 
-  $items = field_get_items('node', $node, 'field_blogpost_categories');
+  $items = field_get_items('node', $node, 'field_topics');
 
   if (empty($items)) {
     return;
   }
 
   $result = pw_blog_base_query()
-    ->fieldCondition('field_blogpost_categories', 'tid', array_column($items, 'tid'), 'IN')
+    ->fieldCondition('field_topics', 'tid', array_column($items, 'tid'), 'IN')
     ->propertyCondition('nid', $node->nid, '<>')
     ->propertyOrderBy('created', 'DESC')
     ->range(0, 3)
