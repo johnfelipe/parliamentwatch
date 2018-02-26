@@ -140,126 +140,6 @@ function pw_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-pw_petition-field_blogpost_categories'.
-  $fields['node-pw_petition-field_blogpost_categories'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_blogpost_categories',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'blogcategories',
-            'parent' => '0',
-          ),
-        ),
-        'options_list_callback' => NULL,
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'pw_petition',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-          ),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '11',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'shs',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked' => FALSE,
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-          ),
-          'type' => 'shs_default',
-          'weight' => '10',
-        ),
-        'search_result' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'ds_extras_field_template' => '',
-      'entity_type' => 'node',
-      'exclude_cv' => 0,
-      'field_name' => 'field_blogpost_categories',
-      'label' => 'Blog Kategorie',
-      'required' => 0,
-      'settings' => array(
-        'exclude_cv' => FALSE,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
-        'type' => 'options_buttons',
-        'weight' => '5',
-      ),
-    ),
-  );
-
   // Exported field: 'node-pw_petition-field_donation_amount'.
   $fields['node-pw_petition-field_donation_amount'] = array(
     'field_config' => array(
@@ -2927,6 +2807,7 @@ $entity_field[0][\'value\'] = $result;',
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
+        'exclude_cv' => FALSE,
         'file_directory' => 'petitions',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -2967,7 +2848,6 @@ $entity_field[0][\'value\'] = $result;',
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Blog Kategorie');
   t('Body');
   t('Donation Amount');
   t('Donation Progress');

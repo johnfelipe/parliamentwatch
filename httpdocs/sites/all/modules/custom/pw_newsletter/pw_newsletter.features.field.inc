@@ -197,135 +197,6 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
     ),
   );
 
-  // Exported field: 'node-newsletter-field_blogpost_categories'.
-  $fields['node-newsletter-field_blogpost_categories'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_blogpost_categories',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'blogcategories',
-            'parent' => '0',
-          ),
-        ),
-        'options_list_callback' => NULL,
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'newsletter',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Bitte wählen Sie die Kategorien, welche die Themen im Newsletter bestmöglich beschreiben. Zur Verfügung stehen die selben Kategorien, die z.B. auch Blogartikeln, Abstimmungen und Petitionen zugeordnet werden.',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'taxonomy',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-          ),
-          'type' => 'taxonomy_term_reference_plain',
-          'weight' => '3',
-        ),
-        'search_result' => array(
-          'label' => 'inline',
-          'module' => 'taxonomy',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-          ),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '3',
-        ),
-        'teaser' => array(
-          'label' => 'inline',
-          'module' => 'taxonomy',
-          'settings' => array(
-            'field_delimiter' => '',
-            'linked_field' => array(
-              'advanced' => array(
-                'class' => '',
-                'rel' => '',
-                'target' => '',
-                'text' => '',
-                'title' => '',
-              ),
-              'destination' => '',
-              'linked' => 0,
-            ),
-            'taxonomy_term_link' => 1,
-            'taxonomy_term_separator' => ', ',
-          ),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '4',
-        ),
-      ),
-      'ds_extras_field_template' => '',
-      'entity_type' => 'node',
-      'exclude_cv' => 0,
-      'field_name' => 'field_blogpost_categories',
-      'label' => 'Themen',
-      'required' => 0,
-      'settings' => array(
-        'exclude_cv' => FALSE,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
-        'type' => 'options_buttons',
-        'weight' => '7',
-      ),
-    ),
-  );
-
   // Exported field: 'node-newsletter-field_newsletter_paragraph'.
   $fields['node-newsletter-field_newsletter_paragraph'] = array(
     'field_config' => array(
@@ -1499,6 +1370,7 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 0,
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 1,
@@ -3632,7 +3504,6 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
   t('Abschnitt');
   t('Bild');
   t('Bitte keine Leer-, Sonderzeichen oder Umlaute verwenden.');
-  t('Bitte wählen Sie die Kategorien, welche die Themen im Newsletter bestmöglich beschreiben. Zur Verfügung stehen die selben Kategorien, die z.B. auch Blogartikeln, Abstimmungen und Petitionen zugeordnet werden.');
   t('Blogartikel');
   t('Body');
   t('Der Text der Zusammenfassung wird auf der Webseite auf der Übersicht des Archivs verwendet.
@@ -3649,7 +3520,6 @@ Der Body enthält die Einleitung des Newsletters für Mail und Webseite. Das Tex
   t('Piwik Campaign');
   t('Teaser image');
   t('Testimonial');
-  t('Themen');
   t('Titel');
   t('Titel klein');
   t('Vorkommende Politiker');
