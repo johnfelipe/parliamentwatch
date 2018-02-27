@@ -23,6 +23,7 @@
   padding: $space-xsmall;
   font-family: $font-sans-serif;
   font-weight: 300;
+  outline: 0;
   @include placeholder {
     color: $gray;
   }
@@ -148,6 +149,7 @@
 
 textarea.form__item__control {
   min-height: 200px;
+  resize: vertical;
 }
 .form__item--textarea {
   .form__item__label {
@@ -166,13 +168,30 @@ textarea.form__item__control {
 }
 
 
-
-
 .form__item--multi {
   @include grid-container();
   @include grid-collapse();
 }
 
+
+/* Countdown */
+
+.webform-component-countdown {
+  padding-top: $space;
+  .form__item__label + div {
+    position: absolute;
+    bottom: calc(100% - #{$space});
+    right: 0;
+    display: inline-block;
+    background: #fff;
+    padding: 2px 8px;
+    height: $space;
+    border: 1px solid #aaa;
+    border-bottom: 0;
+    margin-bottom: -1px;
+    font-size: .9em;
+  }
+}
 
 /* Select2 Elements */
 

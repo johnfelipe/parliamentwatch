@@ -699,7 +699,7 @@ textarea {
 
 /* Burger / Close Button */
 
-$button-size : 22px;
+$button-size : 30px;
 $transition-length: .3s;
 
 .lines-button {
@@ -712,10 +712,11 @@ $transition-length: .3s;
   outline: none;
   transition: .3s;
 }
+
 @mixin line() {
   display: inline-block;
-  width: $button-size;
-  height: $button-size/10;
+  width: $button-size - 4;
+  height: 2px;
   background-color: $gray;
   @include transition($transition-length);
 }
@@ -730,8 +731,8 @@ $transition-length: .3s;
     @include transform-origin($button-size/14 center);
     @include line();
   }
-  &:before { top: $button-size/3.5; }
-  &:after { top: -$button-size/3.5; }
+  &:before { top: $button-size/4; }
+  &:after { top: -$button-size/4; }
 }
 .lines-button.x.lines-button-close .lines {
     background-color: transparent;
