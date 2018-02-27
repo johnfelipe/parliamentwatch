@@ -40,6 +40,11 @@
   }
 }
 
+.tooltip--popover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 // tooltip alignments
 
 .tooltip--top {

@@ -27,6 +27,9 @@
   }
   .deputy__image {
     @include margin(null auto $space);
+    max-width: 130px;
+  }
+  .deputy__image__inner {
     @include image-circle(130px, 130px);
     img {
       padding: 0;
@@ -34,58 +37,15 @@
       border: 0;
     }
   }
-  .figcaption-overlay {
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    text-align: center;
-    padding: 0;
-    span {
-      padding: 10px;
-      max-width: 120px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      font-size: 0.9em;
-      line-height: 1.4em;
-    }
-    &:before {
-      content: none;
-    }
-    &:hover {
-      span {
-        transform: translate3d(0,100%,0);
-      }
-    }
-    &.figcaption-overlay--open {
-      span {
-        transform: translate3d(0,0,0);
-      }
-    }
-  }
-  .figcaption-overlay-trigger {
-    position: absolute;
-    left: 50%;
-    top: 130px;
-    padding: 5px;
-    display: inline-block;
-    margin-left: 50px;
-    z-index: 9;
-    font-size: .8em;
-    color: $gray;
-    &:before {
-      font-family: awfont;
-      content: '\e829';
-      display: inline-block;
-      text-align: center;
-    }
-  }
+
 
 
   .deputy__title {
     text-align: center;
     @include h3();
+    a {
+      color: $darkGray;
+    }
   }
   .hstats {
     margin-bottom: $space;
@@ -325,20 +285,34 @@
 
   .deputy__image {
     display: block;
-    img {
-      display: block;
-      margin-bottom: $space-small-mobile;
-      width: 100%;
-      max-width: 300px;
-      border: 0;
-      padding: 0;
-    }
+
+  }
+  .deputy__image__inner {
     @media (max-width: $breakpoint-s-max) {
       @include image-circle(130px, 130px);
       margin: 0 auto $space auto;
     }
+    img {
+      display: block;
+      max-width: 300px;
+      border: 0;
+      padding: 0;
+      @media (max-width: $breakpoint-s-max) {
+        position: absolute;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        transform: none;
+      }
+      @media (min-width: $breakpoint-s-min) {
+        margin-bottom: $space-small-mobile;
+      }
+    }
   }
-
   .share {
     border-bottom: 0;
     margin-top: $space-large;

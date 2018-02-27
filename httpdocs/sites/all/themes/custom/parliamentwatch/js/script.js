@@ -501,6 +501,36 @@
   };
 
   /**
+   * Attaches the popover behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+
+  function popover() {
+    $('[data-popover-content]').toggle(function () {
+      var tooltipContent = $(this).attr('data-popover-content'),
+        tooltipPlacement = $(this).attr('data-popover-placement');
+      $(this).append('<div class="tooltip tooltip--popover tooltip--' + tooltipPlacement + '">' + tooltipContent + '</div>');
+      $('.tooltip--popover a').click(function (event) {
+        event.stopImmediatePropagation();
+      });
+    }, function () {
+      $(this).find('.tooltip').remove();
+    });
+  }
+
+  Drupal.behaviors.popover = {
+    attach: function (context) {
+      $('[data-popover-content]', context).once('popover', function (event) {
+        popover();
+      });
+    }
+  };
+
+
+  /**
    * Attaches the figcaption-overlay behavior.
    *
    * @type {Drupal~behavior}
@@ -796,11 +826,18 @@
     attach: function () {
       function viewDeputyDetail() {
         windowWidth = window.innerWidth;
+        var caption = $('.deputy.detail .deputy__image figcaption');
+        var captionContent = $('.deputy.detail .deputy__image figcaption span').html();
 
         if (windowWidth >= breakpointSMin) {
           $('.deputy__intro__sidebar header').prependTo('.deputy__intro__content');
+          caption.removeClass().addClass('figcaption-overlay').find('span').removeClass();
+          caption.removeAttr('data-popover-content');
         } else {
           $('.deputy__intro__content header').prependTo('.deputy__intro__sidebar');
+          caption.removeClass().addClass('figcaption-ext').find('span').addClass('sr-only');
+          caption.attr('data-popover-content', captionContent);
+          popover();
         }
 
         /*

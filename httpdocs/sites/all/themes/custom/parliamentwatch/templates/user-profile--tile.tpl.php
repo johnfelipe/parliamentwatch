@@ -39,16 +39,14 @@
 
 <div class="deputy tile"<?php print $attributes; ?>>
   <figure class="deputy__image">
-    <?php print render($user_profile['field_user_picture']); ?>
+    <a href="<?php print $user_url ?>" class="deputy__image__inner">
+      <?php print render($user_profile['field_user_picture']); ?>
+    </a>
     <?php if (!empty(trim(render($user_profile['field_user_picture_copyright'])))): ?>
-      <figcaption class="figcaption-overlay"><span>©&nbsp;<?php print render($user_profile['field_user_picture_copyright']['#items'][0]['value']);?></span></figcaption>
+      <figcaption class="figcaption-ext" data-popover-content="©&nbsp;<?php print htmlspecialchars(render($user_profile['field_user_picture_copyright']['#items'][0]['value']));?>" data-popover-placement="top"><span class="sr-only">©&nbsp;<?php print render($user_profile['field_user_picture_copyright']['#items'][0]['value']);?></span></figcaption>
     <?php endif; ?>
   </figure>
-  <?php if (!empty(trim(render($user_profile['field_user_picture_copyright'])))): ?>
-  <span class="figcaption-overlay-trigger"></span>
-  <?php endif; ?>
-
-  <h2 class="deputy__title mh-item"><?php print $display_name; ?></h2>
+  <h2 class="deputy__title mh-item"><a href="<?php print $user_url ?>"><?php print $display_name; ?></a></h2>
   <div class="deputy__party-indicator"><?php print render($user_profile['field_user_party']); ?></div>
   <div class="deputy__stats hstats hstats--2">
     <div class="hstats__item hstats__item--digit">
