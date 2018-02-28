@@ -92,8 +92,10 @@ function pw_question_form_form_alter(&$form, &$form_state, $form_id) {
  */
 function pw_question_form_form_validate($form_id, $form_values) {
 
+  $question = preg_replace('/\r\n/', '\n', $form_values['values']['submitted']['question']);
+
   // check if question has less than 2000 chars
-  if (drupal_strlen($form_values['values']['submitted']['question']) > 2000) {
+  if ($question > 2000) {
     form_set_error('question', 'Ihre Frage hat mehr als die zulässigen 2000 Zeichen.');
   }
 
