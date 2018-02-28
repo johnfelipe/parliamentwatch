@@ -96,6 +96,16 @@ function pw_profiles_form_user_profile_form_alter(&$form, &$form_state) {
     asort($form['field_user_list_position'][LANGUAGE_NONE]['#options']);
     unset($form['field_user_list_position'][LANGUAGE_NONE]['#options']['_none']);
   }
+
+  if (_pw_user_has_role($form_state['user'], 'Politician')) {
+    $form['qa_hint'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Answer questions'),
+      '#description' => t('Questions are sent to you via email and can only be answered via email.'),
+      '#attributes' => ['style' => 'border: solid 3px #ed541d'],
+      '#weight' => $form['#groups']['group_user_personal_data']->weight - 0.5,
+    ];
+  }
 }
 
 /**
