@@ -307,13 +307,13 @@ function pw_seo_metatag_export_default() {
         'value' => '',
       ),
       'twitter:card' => array(
-        'value' => 'summary',
+        'value' => 'summary_large_image',
       ),
       'twitter:site' => array(
-        'value' => '',
+        'value' => '@a_watch',
       ),
       'twitter:site:id' => array(
-        'value' => '',
+        'value' => '35142791',
       ),
       'twitter:creator' => array(
         'value' => '',
@@ -328,10 +328,10 @@ function pw_seo_metatag_export_default() {
         'value' => '[current-page:title]',
       ),
       'twitter:description' => array(
-        'value' => '',
+        'value' => '[site:slogan]',
       ),
       'twitter:image' => array(
-        'value' => '',
+        'value' => '[site:url]sites/all/themes/custom/parliamentwatch/images/share/aw_share_image_default.jpg',
       ),
       'twitter:image:width' => array(
         'value' => '',
@@ -606,11 +606,8 @@ function pw_seo_metatag_export_default() {
       'twitter:image' => array(
         'value' => '[node:field-teaser-image:file:url]',
       ),
-      'twitter:image:width' => array(
-        'value' => '280',
-      ),
-      'twitter:image:height' => array(
-        'value' => '187',
+      'twitter:image:alt' => array(
+        'value' => '[node:field-teaser-image:alt]',
       ),
     ),
   );
@@ -697,9 +694,6 @@ function pw_seo_metatag_export_default() {
     'instance' => 'node:press_release',
     'disabled' => FALSE,
     'config' => array(
-      'title' => array(
-        'value' => '[site:name] | [node:title]',
-      ),
       'abstract' => array(
         'value' => '[node:summary]',
       ),
@@ -767,7 +761,7 @@ function pw_seo_metatag_export_default() {
         'value' => '[term:description]',
       ),
       'twitter:title' => array(
-        'value' => '[term:name]',
+        'value' => '[site:name] | [term:name]',
       ),
       'twitter:description' => array(
         'value' => '[term:description]',
