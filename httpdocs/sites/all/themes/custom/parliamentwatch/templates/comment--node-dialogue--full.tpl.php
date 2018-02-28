@@ -62,7 +62,7 @@
 
 
 
-<div class="question__answer">
+<div id="comment-<?php print $comment->cid; ?> class="question__answer">
   <p class="question__answer__author">
     <?php if (!empty(trim(render($user_picture)))): ?><span class="question__answer__author__image"><?php print render($user_picture); ?></span><?php endif; ?>
     <?php if ($comment->thread === '01/'): ?>

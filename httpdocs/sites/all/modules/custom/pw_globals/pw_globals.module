@@ -113,6 +113,16 @@ function pw_globals_entity_info_alter(&$entity_info) {
 }
 
 /**
+ * Implements hook_comment_view_alter().
+ *
+ * Removes the anchor link from the build array. We set the id attribute on
+ * the comment container element itself.
+ */
+function pw_globals_comment_view_alter(&$build) {
+  unset($build['#prefix']);
+}
+
+/**
  * Implements hook_form_alter().
  */
 function pw_globals_form_alter(&$form, &$form_state, $form_id) {
