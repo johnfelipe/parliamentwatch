@@ -39,7 +39,15 @@
   @include grid-container();
   @include breakpoint($breakpoint-m-min) {
     @include padding($space-large null);
-    display: none;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+
     border-bottom: 0;
   }
   @include breakpoint($breakpoint-l-min) {
@@ -125,8 +133,12 @@
 .tabs__content--active {
   border-bottom: 1px solid $darkBeige;
   @include breakpoint($breakpoint-m-min) {
-    display: block;
+    position: static;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
     border-bottom: 0;
+    height: auto;
   }
   .tabs__content__content {
     display: block;

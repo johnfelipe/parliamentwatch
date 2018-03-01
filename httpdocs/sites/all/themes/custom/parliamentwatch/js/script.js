@@ -473,6 +473,12 @@
               top: scrollOffset
             }
           });
+
+          // trigger possible tab-elements
+
+          if ($('.tabs__navigation').length) {
+            $('.tabs__navigation a[href=' + hrefValue + ']').trigger("click");
+          }
           event.preventDefault();
         });
       });
