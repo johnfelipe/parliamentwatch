@@ -128,10 +128,10 @@
           <li class="footer__maincol__col__nav__item"><?php print l(t('Election manifestos'), 'election-manifestos/26909', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Electoral law'), 'node/7752', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
         </ul>
-        <strong><i class="icon icon-bundestag"></i> Bundestag 2017 &ndash; 2022</strong>
+        <strong><i class="icon icon-bundestag"></i> Bundestag 2017 &ndash; 2021</strong>
         <ul class="footer__maincol__col__nav">
           <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profiles/26909/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Polls'), 'polls/26909', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
+          <li class="footer__maincol__col__nav__item"><?php print l(t('Votings'), 'polls/26909', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
           <li class="footer__maincol__col__nav__item"><?php print l(t('Petitions'), 'petitions/26909', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
         </ul>
       </div>
@@ -190,6 +190,9 @@
           </li>
           <li class="footer__maincol__col__nav__item">
             <?php print l(t('Contact'), 'node/6578', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
+          </li>
+          <li class="footer__maincol__col__nav__item">
+            <?php print l(t('More Information in English'), 'node/7756', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
           </li>
         </ul>
       </div>

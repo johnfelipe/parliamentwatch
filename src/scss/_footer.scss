@@ -87,15 +87,15 @@
     font-size: .6em;
     position: absolute;
     left: 5px;
-    top: 50%;
-    @include transform(translate(0, -50%));
+    top: 0px;
   }
 }
 .footer__maincol__col__nav__item__link {
   color: $brightGray - 80;
   display: block;
   text-decoration: none;
-  @include transition(color 300ms ease);
+  will-change: color;
+  transition: color 300ms ease;
   &.active,
   &:hover {
     color: $brightGray;
@@ -129,7 +129,9 @@
   margin: $space-xsmall $space;
   opacity: .6;
   position: relative;
-  @include transition(opacity 300ms);
+
+  will-change: opacity;
+  transition: opacity 300ms ease;
   @include breakpoint($breakpoint-s-min) {
     margin: $space;
   }
