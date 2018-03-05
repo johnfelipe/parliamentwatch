@@ -121,11 +121,11 @@ class VoteSearchAlterCallback extends SearchApiAbstractAlterCallback {
 
     $q = db_select('user_archive_cache', 'uac');
     $q->fields('uac', ['vid'])
+      ->orderBy('uac.timestamp', 'DESC')
       ->condition('uac.uid', $uid)
       ->condition('uac.user_role', 'deputy')
       ->condition('uac.parliament_name', $parliament->name)
-      ->condition(db_or()->condition('uac.user_joined', $poll->field_poll_date[LANGUAGE_NONE][0]['value'], '<=')->condition('uac.user_joined', NULL))
-      ->condition(db_or()->condition('uac.user_retired', $poll->field_poll_date[LANGUAGE_NONE][0]['value'], '>')->condition('uac.user_retired', NULL));
+      ->condition('uac.timestamp', $poll->field_poll_date[LANGUAGE_NONE][0]['value'], '<');
 
     return user_revision_load($uid, $q->execute()->fetchField());
   }
