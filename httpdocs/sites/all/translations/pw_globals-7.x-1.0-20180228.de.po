@@ -268,7 +268,7 @@ msgstr ""
 "diese per E-Mail an Ihre hier hinterlegte Adresse zu. Bitte beantworten Sie "
 "einfach diese E-Mail. Es gibt keine Möglichkeit, die Frage hier im Profil zu "
 "beantworten. Ihnen liegt die E-Mail nicht mehr vor? Bitte melden Sie sich "
-"bei uns: Tel.: 030 - 2574 2081 oder Mail: service@abgeordnetenwatch.de"
+"bei uns: Tel.: 030 - 2574 2081 oder Mail: <a href=\"mailto:service@abgeordnetenwatch.de\">service@abgeordnetenwatch.de</a>."
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:147
 msgid "Please enter a valid UUID."
