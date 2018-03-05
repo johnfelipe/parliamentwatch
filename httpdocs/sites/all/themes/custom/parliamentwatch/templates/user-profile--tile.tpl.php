@@ -43,7 +43,7 @@
       <?php print render($user_profile['field_user_picture']); ?>
     </a>
     <?php if (!empty(trim(render($user_profile['field_user_picture_copyright'])))): ?>
-      <figcaption class="figcaption-ext" data-popover-content="©&nbsp;<?php print htmlspecialchars(render($user_profile['field_user_picture_copyright']['#items'][0]['value']));?>" data-popover-placement="top"><span class="sr-only">©&nbsp;<?php print render($user_profile['field_user_picture_copyright']['#items'][0]['value']);?></span></figcaption>
+      <figcaption class="figcaption-ext" data-popover-small data-popover-content="©&nbsp;<?php print htmlspecialchars(render($user_profile['field_user_picture_copyright']['#items'][0]['value']));?>" data-popover-placement="top"><span class="sr-only">©&nbsp;<?php print render($user_profile['field_user_picture_copyright']['#items'][0]['value']);?></span></figcaption>
     <?php endif; ?>
   </figure>
   <h2 class="deputy__title mh-item"><a href="<?php print $user_url ?>"><?php print $display_name; ?></a></h2>

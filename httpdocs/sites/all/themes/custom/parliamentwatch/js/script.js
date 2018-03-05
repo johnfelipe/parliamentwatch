@@ -529,9 +529,7 @@
 
   Drupal.behaviors.popover = {
     attach: function (context) {
-      $('[data-popover-content]', context).once('popover', function (event) {
-        popover();
-      });
+      popover();
     }
   };
 

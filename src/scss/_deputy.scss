@@ -15,7 +15,6 @@
 .deputy.tile {
   @include margin( null null $space);
   @include grid-column(12);
-  position: relative;
   @include breakpoint($breakpoint-xs-min) {
     @include grid-column(6);
   }
