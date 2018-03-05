@@ -22,6 +22,7 @@ httpdocs/sites/all/themes/custom/*/js/contrib/*
 
 # Ignore receipts path
 httpdocs/r
+httpdocs/parser
 
 # Do NOT ignore .htaccess rules (Drupal SA-CORE-2013-003)
 !httpdocs/*/.htaccess
