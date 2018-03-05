@@ -815,11 +815,14 @@ function pw_seo_metatag_export_default() {
       'profile:username' => array(
         'value' => '[user:name]',
       ),
+      'twitter:card' => array(
+        'value' => 'summary',
+      ),
       'twitter:title' => array(
         'value' => '[site:name] | Profil von [user:field-user-title] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
       'twitter:image' => array(
-        'value' => 'field_user_picture:square_medium]',
+        'value' => '[user:field_user_picture:square_medium]',
       ),
     ),
   );
