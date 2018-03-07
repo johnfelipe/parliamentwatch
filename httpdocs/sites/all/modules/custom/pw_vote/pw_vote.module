@@ -448,6 +448,10 @@ function pw_vote_by_poll_json($node) {
     $q->keys(drupal_get_query_parameters()['keys']);
   }
 
+  if (isset(drupal_get_query_parameters()['political_faction'])) {
+    $q->condition('politician_political_faction', drupal_get_query_parameters()['political_faction']);
+  }
+
   if (is_array(drupal_get_query_parameters()['field_vote'])) {
     $f = new SearchApiQueryFilter('OR', ['facet:field_vote']);
     foreach (drupal_get_query_parameters()['field_vote'] as $value) {
@@ -569,7 +573,8 @@ function pw_vote_poll_filters_block() {
     return $block;
   }
 
-  $block['content'] = drupal_get_form('pw_vote_poll_filters');
+  $facets = pw_vote_by_poll_search($node)->execute()['search_api_facets'];
+  $block['content'] = drupal_get_form('pw_vote_poll_filters', $facets);
 
   return $block;
 }
@@ -577,7 +582,7 @@ function pw_vote_poll_filters_block() {
 /**
  * Form constructor for the vote filters form on poll pages.
  */
-function pw_vote_poll_filters($form, &$form_state) {
+function pw_vote_poll_filters($form, &$form_state, $facets) {
   $parameters = drupal_get_query_parameters();
 
   $form['#method'] = 'get';
@@ -590,6 +595,17 @@ function pw_vote_poll_filters($form, &$form_state) {
     '#title_display' => 'invisible',
     '#default_value' => isset($parameters['keys']) ? $parameters['keys'] : '',
     '#attributes' => ['placeholder' => t('Name')],
+  ];
+
+  $political_faction_options = _pw_profiles_facet_values($facets['politician_political_faction']);
+
+  $form['political_faction'] = [
+    '#type' => 'select',
+    '#title' => t('Political faction'),
+    '#title_display' => 'invisible',
+    '#options' => ['' => t('All')] + array_combine($political_faction_options, $political_faction_options),
+    '#default_value' => empty($parameters['field_vote']) ? '' : $parameters['field_vote'],
+    '#dropdown' => FALSE,
   ];
 
   $vote_options = [
@@ -752,24 +768,27 @@ function pw_vote_by_user_revision_query($account, $node_target_type = 'poll') {
  * @param object $node
  *   The poll node.
  *
- * @param array $headers
- *   The table headers.
- *
  * @return SearchApiQuery
  *   The search query.
  */
 function pw_vote_by_poll_search($node) {
-  $facets = [
-    'field_vote' => [
-      'field' => 'field_vote',
-      'limit' => -1,
-      'min_count' => 1,
-      'missing' => TRUE,
-      'operator' => 'or'
-    ]
-  ];
+  $facets = pw_vote_by_poll_search_facets();
   return search_api_query('vote_index', ['search_api_facets' => $facets])
     ->condition('field_vote_node', $node->nid);
+}
+
+/**
+ * Returns list of facets for the voting behavior search.
+ *
+ * @return array
+ *   An associative array to be used as facets option for a query.
+ */
+function pw_vote_by_poll_search_facets() {
+  $common = ['limit' => -1, 'min_count' => 1, 'missing' => TRUE, 'operator' => 'or'];
+  return [
+    'field_vote' => ['field' => 'field_vote'] + $common,
+    'politician_political_faction' => ['field' => 'politician_political_faction'] + $common,
+  ];
 }
 
 /**

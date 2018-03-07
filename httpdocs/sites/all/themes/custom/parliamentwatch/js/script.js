@@ -2146,7 +2146,7 @@
           })
         });
 
-        $('.form--pw-vote-poll-filters input').change(function (event) {
+        $('.form--pw-vote-poll-filters .form__item__control').change(function (event) {
           $(this.form).submit();
         });
 
