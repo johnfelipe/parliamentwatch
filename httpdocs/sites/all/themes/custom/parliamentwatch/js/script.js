@@ -803,32 +803,6 @@
   Drupal.behaviors.tabs = {
     attach: function (context) {
       $('.tabs', context).once('tabs', function () {
-
-        // Set initial tab by checking url for hash
-        if ($('.tabs__navigation').length && window.location.hash) {
-          $('.tabs__navigation a[href=' + window.location.hash + ']').trigger('click');
-        }
-
-        if (history.pushState) {
-          $(window).on('popstate', function (event) {
-            var hashValue = window.location.hash;
-
-            if ($('.nav__item__link[href="' + hashValue + '"]').length > 0) {
-              // Set nav-item classes
-              $('.tabs').find('.nav__item').removeClass('nav__item--active');
-              $('.nav__item__link[href="' + hashValue + '"]').parents('.nav__item').addClass('nav__item--active');
-
-              // Set tab-content classes
-              $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
-              $(hashValue).addClass('tabs__content--active');
-            }
-          });
-        }
-
-        $('.tabs__content__content .pager__item a').each(function () {
-          $(this).prop('hash', $(this).parents('.tabs__content').attr('id'));
-        });
-
         $('.tabs__navigation a').on('click', function (event) {
           event.preventDefault();
           var link = $(this);
@@ -847,6 +821,31 @@
           $(id).addClass('tabs__content--active');
 
           Drupal.attachBehaviors(link.parents('.tabs').find('.swiper-container--tile'));
+        });
+
+        if (history.pushState) {
+          $(window).on('popstate', function (event) {
+            var hashValue = window.location.hash;
+
+            if ($('.nav__item__link[href="' + hashValue + '"]').length > 0) {
+              // Set nav-item classes
+              $('.tabs').find('.nav__item').removeClass('nav__item--active');
+              $('.nav__item__link[href="' + hashValue + '"]').parents('.nav__item').addClass('nav__item--active');
+
+              // Set tab-content classes
+              $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
+              $(hashValue).addClass('tabs__content--active');
+            }
+          });
+        }
+
+        // Set initial tab by checking url for hash
+        if ($('.tabs__navigation').length && window.location.hash) {
+          $('.tabs__navigation a[href=' + window.location.hash + ']').trigger('click');
+        }
+
+        $('.tabs__content__content .pager__item a').each(function () {
+          $(this).prop('hash', $(this).parents('.tabs__content').attr('id'));
         });
       });
     }
@@ -1802,19 +1801,6 @@
       };
 
       $('.filterbar__view_options', context).once('view-mode', function () {
-        if (window.location.hash) {
-          $('.filterbar__view_options__item__link[href="' + window.location.hash + '"]').trigger('click');
-        } else if (history.replaceState) {
-          var defaultViewMode = $('.active .filterbar__view_options__item__link').first().attr('href');
-          history.replaceState(defaultViewMode, null, defaultViewMode);
-        }
-
-        if (history.pushState) {
-          $(window).on('popstate', function (event) {
-            switchViewMode(this.location.hash);
-          });
-        }
-
         $('.filterbar__view_options__item__link').on('click', function (event) {
           event.preventDefault();
 
@@ -1825,6 +1811,19 @@
 
           switchViewMode(this.hash);
         });
+
+        if (history.pushState) {
+          $(window).on('popstate', function (event) {
+            switchViewMode(this.location.hash);
+          });
+        }
+
+        if (window.location.hash) {
+          $('.filterbar__view_options__item__link[href="' + window.location.hash + '"]').trigger('click');
+        } else if (history.replaceState) {
+          var defaultViewMode = $('.active .filterbar__view_options__item__link').first().attr('href');
+          history.replaceState(defaultViewMode, null, defaultViewMode);
+        }
       });
     }
   };
