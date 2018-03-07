@@ -530,30 +530,26 @@ function pw_vote_poll_block() {
     return $block;
   }
 
-  $response = pw_vote_by_poll_search($node)->execute();
-
-  if ($response['result count'] > 0) {
-    $block['content'] = [
-      '#theme' => 'table__poll_votes',
-      '#header' => [
-        ['data' => '', 'data-dynatable-column' => 'politician_picture'],
-        ['data' => t('Name'), 'data-dynatable-column' => 'politician_full_name', 'data-dynatable-sorts' => 'politician_lname'],
-        ['data' => t('Political faction'), 'data-dynatable-column' => 'politician_political_faction'],
-        ['data' => t('Constituency'), 'data-dynatable-column' => 'politician_constituency_name'],
-        ['data' => t('Voted'), 'data-dynatable-column' => 'field_vote'],
-      ],
-      '#rows' => [[]],
-      '#sticky' => FALSE,
-      '#attached' => [
-        'js' => [
-          0 => [
-            'data' => ['pw_vote' => ['node' => $node->nid]],
-            'type' => 'setting'
-          ],
+  $block['content'] = [
+    '#theme' => 'table__poll_votes',
+    '#header' => [
+      ['data' => '', 'data-dynatable-column' => 'politician_picture'],
+      ['data' => t('Name'), 'data-dynatable-column' => 'politician_full_name', 'data-dynatable-sorts' => 'politician_lname'],
+      ['data' => t('Political faction'), 'data-dynatable-column' => 'politician_political_faction'],
+      ['data' => t('Constituency'), 'data-dynatable-column' => 'politician_constituency_name'],
+      ['data' => t('Voted'), 'data-dynatable-column' => 'field_vote'],
+    ],
+    '#rows' => [[]],
+    '#sticky' => FALSE,
+    '#attached' => [
+      'js' => [
+        0 => [
+          'data' => ['pw_vote' => ['node' => $node->nid]],
+          'type' => 'setting'
         ],
       ],
-    ];
-  }
+    ],
+  ];
 
   return $block;
 }
