@@ -162,13 +162,6 @@
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
-          <h4 class="sidebar__box__accordion__item__title">Flattr</h4>
-          <div class="sidebar__box__accordion__item__content">
-            <p>Sie können uns auch "flattrn".</p>
-            <iframe src="https://api.flattr.com/button/view/?uid=abgeordnetenwatch.de&amp;url=https://www.abgeordnetenwatch.de&amp;title=www.abgeordnetenwatch.de&amp;description=www.abgeordnetenwatch.de&amp;category=text&amp;language=de_DE" style="width:80px; height:62px;" allowtransparency="true" frameborder="0" scrolling="no" class="float-left"></iframe>
-          </div>
-        </div>
-        <div class="sidebar__box__accordion__item">
           <h4 class="sidebar__box__accordion__item__title">Spenden per Post</h4>
           <div class="sidebar__box__accordion__item__content">
             <p>Alternativ zu einer Online-Spende können Sie auch einen Antrag herunterladen (PDF), ausdrucken und uns per Post oder Fax senden.</p>
