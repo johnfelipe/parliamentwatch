@@ -171,7 +171,7 @@ function pw_api_user_to_array($user, $subsets = array()) {
     $profile['meta']['url'] = url($path, array('absolute' => TRUE));
 
     $profile['personal'] = array();
-    $profile['personal']['degree'] = $w_user->field_user_title->value();
+    $profile['personal']['degree'] = $w_user->field_user_prefix->value();
     $profile['personal']['first_name'] = $w_user->field_user_fname->value();
     $profile['personal']['last_name'] = $w_user->field_user_lname->value();
     $profile['personal']['gender'] = $w_user->field_user_gender->value();

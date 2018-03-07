@@ -165,7 +165,7 @@ function pw_globals_update_7111() {
   }
 }
 
-/*
+/**
  * Disable obsolete modules.
  */
 function pw_globals_update_7112() {
@@ -221,6 +221,31 @@ function pw_globals_update_7114() {
     'node_types' => ['poll']
   ];
   _pw_globals_configure_block($config);
+}
+
+/**
+ * Replace field_user_title with field_user_prefix.
+ */
+function pw_globals_update_7115() {
+  $common_fields = [
+    'entity_type',
+    'bundle',
+    'entity_id',
+    'revision_id',
+    'language',
+    'delta',
+  ];
+  $source_fields = array_merge($common_fields, ['field_user_title_value']);
+  $target_fields = array_merge($common_fields, ['field_user_prefix_value']);
+  db_insert('field_data_field_user_prefix')
+    ->fields($target_fields)
+    ->from(db_select('field_data_field_user_title', 't')->fields('t', $source_fields))
+    ->execute();
+  db_insert('field_revision_field_user_prefix')
+    ->fields($target_fields)
+    ->from(db_select('field_revision_field_user_title', 't')->fields('t', $source_fields))
+    ->execute();
+  field_delete_field('field_user_title');
 }
 
 /**

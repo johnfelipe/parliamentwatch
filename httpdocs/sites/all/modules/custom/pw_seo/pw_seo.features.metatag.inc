@@ -618,7 +618,7 @@ function pw_seo_metatag_export_default() {
     'disabled' => FALSE,
     'config' => array(
       'title' => array(
-        'value' => '[site:name] | Frage an [node:field-dialogue-recipient:field_user_title] [node:field-dialogue-recipient:field_user_fname] [node:field-dialogue-recipient:field_user_lname] bezüglich [node:field-dialogue-topic] - [node:field_parliament]',
+        'value' => '[site:name] | Frage an [node:field-dialogue-recipient:field_user_prefix] [node:field-dialogue-recipient:field_user_fname] [node:field-dialogue-recipient:field_user_lname] bezüglich [node:field-dialogue-topic] - [node:field_parliament]',
       ),
       'abstract' => array(
         'value' => '[node:summary]',
@@ -644,10 +644,10 @@ function pw_seo_metatag_export_default() {
         'value' => 'Person',
       ),
       'itemprop:name' => array(
-        'value' => '[site:name] | Frage an [node:field-dialogue-recipient:field_user_title] [node:field-dialogue-recipient:field_user_fname] [node:field-dialogue-recipient:field_user_lname] - [node:field_parliament]',
+        'value' => '[site:name] | Frage an [node:field-dialogue-recipient:field_user_prefix] [node:field-dialogue-recipient:field_user_fname] [node:field-dialogue-recipient:field_user_lname] - [node:field_parliament]',
       ),
       'og:title' => array(
-        'value' => '[site:name] | Frage an [node:field-dialogue-recipient:field_user_title] [node:field-dialogue-recipient:field_user_fname] [node:field-dialogue-recipient:field_user_lname] bezüglich [node:field-dialogue-topic] - [node:field_parliament]',
+        'value' => '[site:name] | Frage an [node:field-dialogue-recipient:field_user_prefix] [node:field-dialogue-recipient:field_user_fname] [node:field-dialogue-recipient:field_user_lname] bezüglich [node:field-dialogue-topic] - [node:field_parliament]',
       ),
       'og:see_also' => array(
         'value' => 'https://www.abgeordnetenwatch.de/profile/[node:field-dialogue-recipient]',
@@ -659,7 +659,7 @@ function pw_seo_metatag_export_default() {
         'value' => 'de_DE',
       ),
       'twitter:title' => array(
-        'value' => '[site:name] | Frage an [node:field-dialogue-recipient:field_user_title] [node:field-dialogue-recipient:field_user_fname] [node:field-dialogue-recipient:field_user_lname] bezüglich [node:field-dialogue-topic] - [node:field_parliament]',
+        'value' => '[site:name] | Frage an [node:field-dialogue-recipient:field_user_prefix] [node:field-dialogue-recipient:field_user_fname] [node:field-dialogue-recipient:field_user_lname] bezüglich [node:field-dialogue-topic] - [node:field_parliament]',
       ),
       'twitter:image' => array(
         'value' => '[node:field-dialogue-recipient:field_user_picture:square_medium]',

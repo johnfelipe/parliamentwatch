@@ -81,7 +81,7 @@ function pw_mailtokens_tokens($type, $tokens,
  * Generates a full name token including title (if available).
  */
 function pw_mailtokens_fullname($account) {
-  $title = $account->field_user_title[LANGUAGE_NONE][0]['value'];
+  $title = $account->field_user_prefix[LANGUAGE_NONE][0]['value'];
   $fname = $account->field_user_fname[LANGUAGE_NONE][0]['value'];
   $lname = $account->field_user_lname[LANGUAGE_NONE][0]['value'];
   $fullname = '';

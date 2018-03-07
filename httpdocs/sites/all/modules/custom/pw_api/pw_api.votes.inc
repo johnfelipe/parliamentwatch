@@ -300,8 +300,8 @@ function pw_api_add_votes($parliament_term, $target_node_id, $vote_date){
     $query->addField('u_lname', 'field_user_lname_value', 'last_name');
 
     // join to retrieve title name
-    $query->leftJoin('field_revision_field_user_title', 'u_degree', "uac.vid = u_degree.revision_id");
-    $query->addField('u_degree', 'field_user_title_value', 'degree');
+    $query->leftJoin('field_revision_field_user_prefix', 'u_degree', "uac.vid = u_degree.revision_id");
+    $query->addField('u_degree', 'field_user_prefix_value', 'degree');
 
     // join to retrieve party
     $query->join('field_revision_field_user_party', 'u_party', "uac.vid = u_party.revision_id");

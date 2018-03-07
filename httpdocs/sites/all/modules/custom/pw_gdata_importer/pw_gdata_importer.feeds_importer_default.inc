@@ -1160,7 +1160,7 @@ function pw_gdata_importer_feeds_importer_default() {
           ),
           4 => array(
             'source' => 'xpathparser:7',
-            'target' => 'field_user_title',
+            'target' => 'field_user_prefix',
             'unique' => FALSE,
             'language' => 'und',
           ),
