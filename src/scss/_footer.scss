@@ -87,7 +87,10 @@
     font-size: .6em;
     position: absolute;
     left: 5px;
-    top: 0px;
+    top: 8px;
+    @include breakpoint($breakpoint-s-min) {
+      top: 0;
+    }
   }
 }
 .footer__maincol__col__nav__item__link {
