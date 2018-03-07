@@ -520,6 +520,7 @@ function pw_vote_profile_block($type = 'poll') {
     $block['content'] = node_view_multiple($nodes, 'embedded');
     $block['content']['pager'] = [
       '#theme' => 'pager',
+      '#element' => PagerDefault::$maxElement - 1,
       '#weight' => 100,
     ];
   }
