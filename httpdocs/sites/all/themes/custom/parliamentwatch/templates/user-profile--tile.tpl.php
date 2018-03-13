@@ -62,7 +62,7 @@
               data-percentage="<?php print $answer_ratio; ?>"
               data-track-width="10"
               data-track-colour="ccc"
-              data-fill-colour="f46b3b"
+              data-fill-colour="f26a3b"
               data-text-colour="444"
               data-stroke-colour="FFFFFF"
               data-stroke-spacing="2">

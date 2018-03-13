@@ -104,7 +104,7 @@
                   data-percentage="<?php print $answer_ratio ?>"
                   data-track-width="10"
                   data-track-colour="ccc"
-                  data-fill-colour="f46b3b"
+                  data-fill-colour="f26a3b"
                   data-text-colour="444"
                   data-stroke-colour="FFFFFF"
                   data-stroke-spacing="2">
@@ -126,7 +126,7 @@
                   data-percentage="<?php print $voting_ratio; ?>"
                   data-track-width="10"
                   data-track-colour="ccc"
-                  data-fill-colour="f46b3b"
+                  data-fill-colour="f26a3b"
                   data-text-colour="444"
                   data-stroke-colour="FFFFFF"
                   data-stroke-spacing="2">
@@ -252,7 +252,7 @@
       <?php if (!empty($field_user_twitter_account)): ?>
         <div class="deputy__twitter">
           <?php if (isset($field_user_twitter_account)): ?>
-            <a class="twitter-timeline" data-height="300" data-link-color=“#f46b3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
+            <a class="twitter-timeline" data-height="300" data-link-color=“#f26a3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
           <?php else: ?>
             <div class="deputy__twitter__empty">
               <h3><?php print t('Twitter'); ?></h3>

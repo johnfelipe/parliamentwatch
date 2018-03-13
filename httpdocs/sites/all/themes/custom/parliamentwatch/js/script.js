@@ -23,7 +23,7 @@
     breakpointLMax = breakpointLMin - 1,
 
     beige = '#f3efe6',
-    orange = '#f46b3b';
+    orange = '#f26a3b';
 
   var iterateTime = 200;
   var isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
