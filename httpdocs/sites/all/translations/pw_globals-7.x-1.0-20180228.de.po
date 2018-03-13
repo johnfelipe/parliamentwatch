@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-03-13 13:41+0100\n"
+"POT-Creation-Date: 2018-03-13 13:59+0100\n"
 "PO-Revision-Date: 2017-12-11 09:27+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1365,7 +1365,7 @@ msgid "Newsletter subscription"
 msgstr "Newsletter anfordern"
 
 #: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:139
-msgid " More Information in English"
+msgid "More Information in English"
 msgstr ""
 
 #: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:146
