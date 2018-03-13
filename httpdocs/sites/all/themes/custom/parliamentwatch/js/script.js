@@ -995,7 +995,7 @@
         window.navigator.geolocation.getCurrentPosition(function (p) {
           if (window.location.search.match(/geo/) ) {
             var accuracy = p.coords.accuracy;
-            $('[data-geolocate]').append(' ' + accuracy)
+            $('[data-geolocate]').append(' (Genauigkeit: ' + accuracy + 'm)')
           }
           $.getJSON('//nominatim.openstreetmap.org/reverse?format=json&lat=' + p.coords.latitude + '&lon=' + p.coords.longitude + '&zoom=18&addressdetails=1&email=admin@abgeordnetenwatch.de',
             function (r) {
