@@ -200,7 +200,7 @@ function pw_dialogues_webform_submission_insert($node, $submission) {
       'type' => "question",
       'recipient_id_e' => TRUE,
       'recipient_id' => $submission->data[18][0],
-      'text' => $submission->data[13][0],
+      'text' => $submission->data[25][0],
       'topic' => $submission->data[12][0],
       'summary' => null,
       'context' => $submission->data[19][0],
