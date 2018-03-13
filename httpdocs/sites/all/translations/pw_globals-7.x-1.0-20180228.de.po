@@ -819,7 +819,7 @@ msgstr "Ergänzung von <strong>@name</strong>"
 
 #: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:73
 msgid "Response time"
-msgstr "Dauer zur eingetroffenen Antwort"
+msgstr "Dauer bis zur Antwort"
 
 #: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:80
 #: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue.tpl.php:65
