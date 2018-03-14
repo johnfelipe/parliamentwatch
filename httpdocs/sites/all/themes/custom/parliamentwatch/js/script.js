@@ -2147,7 +2147,7 @@
    */
   Drupal.behaviors.votesTable = {
     attach: function (context, settings) {
-      if (settings.pw_vote.node) {
+      if (settings.pw_vote && settings.pw_vote.node) {
         var url = '/votes/' + settings.pw_vote.node;
         $('.poll_detail__table').addClass('loading-overlay');
         $.ajax(url).done(function (data) {
