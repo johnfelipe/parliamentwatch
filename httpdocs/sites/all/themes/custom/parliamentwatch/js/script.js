@@ -513,7 +513,7 @@
         var d = new Date();
         var month = d.getMonth()+1;
 
-        if (month < 3) {
+        if (month < 10) {
           // add hint (initially hidden)
           $('<div class="header__subnav__archive-hint"><p>' + Drupal.t("<strong>Now</strong> you can switch between the legislatures.") + '</p><i class="icon icon-close"></i></div>').insertAfter('.header__subnav__archive');
 
