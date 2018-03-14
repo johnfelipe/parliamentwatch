@@ -33,7 +33,7 @@ msgstr "Blog"
 
 #: sites/all/modules/custom/pw_dialogues/pw_dialogues.module:63;499
 msgid "Questions and answers"
-msgstr "Fragen und Anworten"
+msgstr "Fragen und Antworten"
 
 #: sites/all/modules/custom/pw_dialogues/pw_dialogues.module:67
 msgid "Recent questions and answers (in parliament)"
