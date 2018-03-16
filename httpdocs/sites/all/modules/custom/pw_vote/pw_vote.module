@@ -622,12 +622,19 @@ function pw_vote_poll_filters($form, &$form_state, $facets) {
   $form['#action'] = url(current_path());
   $form['#theme'] = 'filterbar';
 
+  if (strpos($parliament->name, 'EU') === 0) {
+    $keys_placeholder = t('Enter a locality or name');
+  }
+  else {
+    $keys_placeholder = t('Enter a postal code, locality or name');
+  }
+
   $form['keys'] = [
     '#type' => 'textfield',
     '#title' => t('Search'),
     '#title_display' => 'invisible',
     '#default_value' => isset($parameters['keys']) ? $parameters['keys'] : '',
-    '#attributes' => ['placeholder' => t('Name')],
+    '#attributes' => ['placeholder' => $keys_placeholder],
   ];
 
   $political_faction_options = _pw_profiles_facet_values($facets['politician_political_faction']);
