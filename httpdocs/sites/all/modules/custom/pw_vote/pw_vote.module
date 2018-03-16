@@ -457,7 +457,11 @@ function pw_vote_by_poll_json($node) {
   }
 
   if (isset(drupal_get_query_parameters()['political_faction'])) {
-    $q->condition('politician_political_faction', drupal_get_query_parameters()['political_faction']);
+    $f = new SearchApiQueryFilter('OR', ['facet:politician_political_faction']);
+    foreach (drupal_get_query_parameters()['political_faction'] as $value) {
+      $f->condition('politician_political_faction', $value);
+    }
+    $q->filter($f);
   }
 
   if (is_array(drupal_get_query_parameters()['field_vote'])) {
@@ -629,12 +633,12 @@ function pw_vote_poll_filters($form, &$form_state, $facets) {
   $political_faction_options = _pw_profiles_facet_values($facets['politician_political_faction']);
 
   $form['political_faction'] = [
-    '#type' => 'select',
+    '#type' => 'checkboxes',
     '#title' => t('Political faction'),
     '#title_display' => 'invisible',
-    '#options' => ['' => t('All')] + array_combine($political_faction_options, $political_faction_options),
+    '#options' => array_combine($political_faction_options, $political_faction_options),
     '#default_value' => empty($parameters['field_vote']) ? '' : $parameters['field_vote'],
-    '#dropdown' => FALSE,
+    '#dropdown' => TRUE,
   ];
 
   $vote_options = [
