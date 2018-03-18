@@ -125,7 +125,7 @@ class VoteSearchAlterCallback extends SearchApiAbstractAlterCallback {
       ->condition('uac.uid', $uid)
       ->condition('uac.user_role', 'deputy')
       ->condition('uac.parliament_name', $parliament->name)
-      ->condition('uac.timestamp', $poll->field_poll_date[LANGUAGE_NONE][0]['value'], '<');
+      ->condition('uac.timestamp', strtotime($poll->field_poll_date[LANGUAGE_NONE][0]['value']), '<');
 
     return user_revision_load($uid, $q->execute()->fetchField());
   }
