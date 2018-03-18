@@ -237,13 +237,14 @@ function pw_globals_update_7115() {
   ];
   $source_fields = array_merge($common_fields, ['field_user_title_value']);
   $target_fields = array_merge($common_fields, ['field_user_prefix_value']);
+  $allowed_values = array_values(field_info_field('field_user_prefix')['settings']['allowed_values']);
   db_insert('field_data_field_user_prefix')
     ->fields($target_fields)
-    ->from(db_select('field_data_field_user_title', 't')->fields('t', $source_fields))
+    ->from(db_select('field_data_field_user_title', 't')->fields('t', $source_fields)->condition('field_user_title_value', $allowed_values))
     ->execute();
   db_insert('field_revision_field_user_prefix')
     ->fields($target_fields)
-    ->from(db_select('field_revision_field_user_title', 't')->fields('t', $source_fields))
+    ->from(db_select('field_revision_field_user_title', 't')->fields('t', $source_fields)->condition('field_user_title_value', $allowed_values))
     ->execute();
   field_delete_field('field_user_title');
 }
