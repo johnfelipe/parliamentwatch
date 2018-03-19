@@ -775,7 +775,7 @@ function pw_seo_metatag_export_default() {
     'disabled' => FALSE,
     'config' => array(
       'title' => array(
-        'value' => '[site:name] | Profil von [user:field-user-title] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
+        'value' => '[site:name] | Profil von [user:field-user-prefix] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
       'robots' => array(
         'value' => array(
@@ -798,16 +798,16 @@ function pw_seo_metatag_export_default() {
         'value' => 'Person',
       ),
       'itemprop:name' => array(
-        'value' => '[site:name] | Profil von [user:field-user-title] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
+        'value' => '[site:name] | Profil von [user:field-user-prefix] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
       'og:type' => array(
         'value' => 'profile',
       ),
       'og:title' => array(
-        'value' => '[site:name] | Profil von [user:field-user-title] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
+        'value' => '[site:name] | Profil von [user:field-user-prefix] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
       'og:description' => array(
-        'value' => '[site:name] | Profil von [user:field-user-title] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
+        'value' => '[site:name] | Profil von [user:field-user-prefix] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
       'og:image' => array(
         'value' => '[user:field_user_picture:square_medium]',
@@ -819,7 +819,7 @@ function pw_seo_metatag_export_default() {
         'value' => 'summary',
       ),
       'twitter:title' => array(
-        'value' => '[site:name] | Profil von [user:field-user-title] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
+        'value' => '[site:name] | Profil von [user:field-user-prefix] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
       'twitter:image' => array(
         'value' => '[user:field_user_picture:square_medium]',
