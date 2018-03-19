@@ -233,8 +233,8 @@ function pw_committees_get_membership_config() {
   return [
     'Chairman' =>'field_committee_chairman',
     'Vice-Chairman' => 'field_committee_vice_chairman',
-    'Obmann' => 'field_committee_foreman',
-    'Obfrau' => 'field_committee_forewoman',
+    'Foreman' => 'field_committee_foreman',
+    'Forewoman' => 'field_committee_forewoman',
     'Spokesman' => 'field_committee_spokesman',
     'Spokeswoman' => 'field_committee_spokeswoman',
     'Alternate spokesman' => 'field_committee_alt_spokesman',
