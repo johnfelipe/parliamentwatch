@@ -11,28 +11,50 @@ li {
 
 /* Definition List */
 
-.dl {
+dl {
   padding: 0;
   margin: 0;
+  dt {
+
+    @include paragraph();
+    padding: 0;
+    margin: 0;
+    @include breakpoint($breakpoint-xs-min) {
+      width: 40%;
+      float: left;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      width: 30%;
+    }
+  }
+  dd {
+    @include paragraph();
+    padding: 0;
+    margin: 0;
+    @include breakpoint($breakpoint-xs-min) {
+      margin: 0 0 0 40%;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      margin: 0 0 0 30%;
+    }
+  }
+}
+
+.dl {
   border-bottom: 1px solid $gray;
   position: relative;
   @include paragraph();
 }
 
 .dl__dt {
-  padding: 0;
-  margin: 0;
   padding-top: $space-small-mobile;
   font-weight: 500;
   @include text-overflow();
   @include breakpoint($breakpoint-xs-min) {
     @include padding($space-small-mobile null);
-    width: 40%;
-    float: left;
     font-weight: 300;
   }
   @include breakpoint($breakpoint-m-min) {
-    width: 30%;
     @include padding($space-small null);
   }
   &:after {
@@ -47,15 +69,14 @@ li {
     }
   }
 }
+
 .dl__dd {
-  margin: 0 0 $space-xsmall;
+  margin: $space-xsmall-mobile 0;
   @include breakpoint($breakpoint-xs-min) {
-    margin: 0 0 0 40%;
     @include padding($space-small-mobile null);
     padding-left: $space-small-mobile;
   }
   @include breakpoint($breakpoint-m-min) {
-    margin: 0 0 0 30%;
     @include padding($space-small null);
   }
   a {

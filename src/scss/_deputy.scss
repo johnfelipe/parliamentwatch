@@ -166,6 +166,9 @@
     /* Intro - Stats */
     .hstats {
       border-top: 1px solid $gray;
+      @include breakpoint($breakpoint-s-min) {
+        margin-bottom: $space-xsmall;
+      }
     }
     .hstats__item {
       &:first-child {
