@@ -21,7 +21,7 @@ function pw_profiles_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Managed Content',
-    'weight' => '13',
+    'weight' => '12',
     'children' => array(
       0 => 'field_user_gender',
       1 => 'field_user_question_form_closed',
@@ -49,7 +49,7 @@ function pw_profiles_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Premium',
-    'weight' => '11',
+    'weight' => '10',
     'children' => array(),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -74,7 +74,7 @@ function pw_profiles_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Admin Settings',
-    'weight' => '15',
+    'weight' => '14',
     'children' => array(
       0 => 'field_user_external_url',
       1 => 'field_user_roles_for_view_mode_s',
@@ -110,7 +110,7 @@ function pw_profiles_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Political Affiliation',
-    'weight' => '10',
+    'weight' => '9',
     'children' => array(
       0 => 'field_user_parliament',
       1 => 'field_user_party',
@@ -147,7 +147,7 @@ function pw_profiles_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Personal Data',
-    'weight' => '9',
+    'weight' => '8',
     'children' => array(
       0 => 'field_user_birthday',
       1 => 'field_user_childs',
@@ -217,7 +217,7 @@ function pw_profiles_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Premium Fields',
-    'weight' => '12',
+    'weight' => '11',
     'children' => array(
       0 => 'group_user_premium',
     ),
@@ -327,7 +327,7 @@ function pw_profiles_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Profile picture',
-    'weight' => '18',
+    'weight' => '17',
     'children' => array(),
     'format_type' => 'tab',
     'format_settings' => array(

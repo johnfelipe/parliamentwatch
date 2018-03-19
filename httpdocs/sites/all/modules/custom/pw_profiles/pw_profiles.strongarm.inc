@@ -69,10 +69,10 @@ function pw_profiles_strongarm() {
           'weight' => '18',
         ),
         'masquerade' => array(
-          'weight' => '17',
+          'weight' => '16',
         ),
         'metatags' => array(
-          'weight' => '16',
+          'weight' => '15',
         ),
       ),
       'display' => array(
