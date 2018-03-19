@@ -365,7 +365,7 @@ function pw_committees_field_default_fields() {
   $fields['node-committee-field_committee_alt_sec_female'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_committee_alt_sec_female',
@@ -688,7 +688,7 @@ function pw_committees_field_default_fields() {
   $fields['node-committee-field_committee_alt_spokeswoman'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_committee_alt_spokeswoman',
@@ -904,7 +904,7 @@ function pw_committees_field_default_fields() {
   $fields['node-committee-field_committee_eligible_members'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_committee_eligible_members',
@@ -1011,7 +1011,7 @@ function pw_committees_field_default_fields() {
   $fields['node-committee-field_committee_foreman'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_committee_foreman',
@@ -1118,7 +1118,7 @@ function pw_committees_field_default_fields() {
   $fields['node-committee-field_committee_forewoman'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_committee_forewoman',
@@ -1333,7 +1333,7 @@ function pw_committees_field_default_fields() {
   $fields['node-committee-field_committee_sec_female'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_committee_sec_female',
@@ -1656,7 +1656,7 @@ function pw_committees_field_default_fields() {
   $fields['node-committee-field_committee_spokeswoman'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_committee_spokeswoman',
