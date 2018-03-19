@@ -233,12 +233,19 @@ function pw_committees_get_membership_config() {
   return [
     'Chairman' =>'field_committee_chairman',
     'Vice-Chairman' => 'field_committee_vice_chairman',
+    'Obmann' => 'field_committee_foreman',
+    'Obfrau' => 'field_committee_forewoman',
     'Spokesman' => 'field_committee_spokesman',
+    'Spokeswoman' => 'field_committee_spokeswoman',
     'Alternate spokesman' => 'field_committee_alt_spokesman',
+    'Alternate spokeswoman' => 'field_committee_alt_spokeswoman',
     'Member' => 'field_committee_members',
     'Alternate member' => 'field_committee_alt_members',
-    'Secretary' => 'field_committee_secretaries',
-    'Alternate secretary' => 'field_committee_alt_secretaries',
+    'Secretary (male)' => 'field_committee_secretaries',
+    'Secretary (female)' => 'field_committee_sec_female',
+    'Alternate secretary (male)' => 'field_committee_alt_secretaries',
+    'Alternate secretary (female)' => 'field_committee_alt_sec_female',
+    'Eligible member' => 'field_committee_eligible_members',
     'Advisory member' => 'field_committee_advisory_members',
   ];
 }
