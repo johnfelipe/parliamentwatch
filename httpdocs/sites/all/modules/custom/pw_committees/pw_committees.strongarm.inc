@@ -126,22 +126,22 @@ function pw_committees_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '19',
+          'weight' => '27',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '18',
+          'weight' => '26',
         ),
         'rabbit_hole' => array(
-          'weight' => '15',
+          'weight' => '23',
         ),
         'redirect' => array(
-          'weight' => '16',
+          'weight' => '24',
         ),
         'xmlsitemap' => array(
-          'weight' => '17',
+          'weight' => '25',
         ),
       ),
       'display' => array(),
