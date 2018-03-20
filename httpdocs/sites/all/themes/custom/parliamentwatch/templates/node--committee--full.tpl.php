@@ -111,11 +111,23 @@
     <?php if (!empty($politicians['field_committee_vice_chairman'])): ?>
       <span class="tile-wrapper__badge tile-wrapper__badge--committee_vice_chairman"><?php print render($politicians['field_committee_vice_chairman']); ?></span>
     <?php endif; ?>
+    <?php if (!empty($politicians['field_committee_forewoman'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_forewoman"><?php print render($politicians['field_committee_forewoman']); ?></span>
+    <?php endif; ?>
+    <?php if (!empty($politicians['field_committee_foreman'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_foreman"><?php print render($politicians['field_committee_foreman']); ?></span>
+    <?php endif; ?>
     <?php if (!empty($politicians['field_committee_spokesman'])): ?>
       <span class="tile-wrapper__badge tile-wrapper__badge--committee_spokesman"><?php print render($politicians['field_committee_spokesman']); ?></span>
     <?php endif; ?>
+    <?php if (!empty($politicians['field_committee_spokeswoman'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_spokeswoman"><?php print render($politicians['field_committee_spokeswoman']); ?></span>
+    <?php endif; ?>
     <?php if (!empty($politicians['field_committee_alt_spokesman'])): ?>
       <span class="tile-wrapper__badge tile-wrapper__badge--committee_alt_spokesman"><?php print render($politicians['field_committee_alt_spokesman']); ?></span>
+    <?php endif; ?>
+    <?php if (!empty($politicians['field_committee_alt_spokeswoman'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_alt_spokeswoman"><?php print render($politicians['field_committee_alt_spokeswoman']); ?></span>
     <?php endif; ?>
     <?php if (!empty($politicians['field_committee_members'])): ?>
       <span class="tile-wrapper__badge tile-wrapper__badge--committee_members"><?php print render($politicians['field_committee_members']); ?></span>
@@ -123,11 +135,20 @@
     <?php if (!empty($politicians['field_committee_alt_members'])): ?>
       <span class="tile-wrapper__badge tile-wrapper__badge--committee_alt_members"><?php print render($politicians['field_committee_alt_members']); ?></span>
     <?php endif; ?>
+    <?php if (!empty($politicians['field_committee_sec_female'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_sec_female"><?php print render($politicians['field_committee_sec_female']); ?></span>
+    <?php endif; ?>
     <?php if (!empty($politicians['field_committee_secretaries'])): ?>
       <span class="tile-wrapper__badge tile-wrapper__badge--committee_secretaries"><?php print render($politicians['field_committee_secretaries']); ?></span>
     <?php endif; ?>
+    <?php if (!empty($politicians['field_committee_alt_sec_female'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_alt_sec_female"><?php print render($politicians['field_committee_alt_sec_female']); ?></span>
+    <?php endif; ?>
     <?php if (!empty($politicians['field_committee_alt_secretaries'])): ?>
       <span class="tile-wrapper__badge tile-wrapper__badge--committee_alt_secretaries"><?php print render($politicians['field_committee_alt_secretaries']); ?></span>
+    <?php endif; ?>
+    <?php if (!empty($politicians['field_committee_eligible_members'])): ?>
+      <span class="tile-wrapper__badge tile-wrapper__badge--committee_eligible_members"><?php print render($politicians['field_committee_eligible_members']); ?></span>
     <?php endif; ?>
     <?php if (!empty($politicians['field_committee_advisory_members'])): ?>
       <span class="tile-wrapper__badge tile-wrapper__badge--committee_advisory_members"><?php print render($politicians['field_committee_advisory_members']); ?></span>

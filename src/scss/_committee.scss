@@ -66,11 +66,23 @@
 .tile-wrapper__badge--committee_vice_chairman .tile:before {
   content: 'Stellv. Vorsitz';
 }
+.tile-wrapper__badge--committee_foreman .tile:before {
+  content: 'Obmann';
+}
+.tile-wrapper__badge--committee_forewoman .tile:before {
+  content: 'Obfrau';
+}
 .tile-wrapper__badge--committee_spokesman .tile:before {
   content: 'Sprecher';
 }
+.tile-wrapper__badge--committee_spokeswoman .tile:before {
+  content: 'Sprecherin';
+}
 .tile-wrapper__badge--committee_alt_spokesman .tile:before {
   content: 'Stellv. Sprecher';
+}
+.tile-wrapper__badge--committee_alt_spokeswoman .tile:before {
+  content: 'Stellv. Sprecherin';
 }
 .tile-wrapper__badge--committee_members .tile:before {
   content: 'Mitglied';
@@ -81,11 +93,20 @@
 .tile-wrapper__badge--committee_secretaries .tile:before {
   content: 'Schriftführer';
 }
+.tile-wrapper__badge--committee_sec_female .tile:before {
+  content: 'Schriftführerin';
+}
 .tile-wrapper__badge--committee_alt_secretaries .tile:before {
   content: 'Stellv. Schriftführer';
 }
+.tile-wrapper__badge--committee_alt_sec_female .tile:before {
+  content: 'Stellv. Schriftführerin';
+}
 .tile-wrapper__badge--committee_advisory_members .tile:before {
   content: 'Beratendes Mitglied';
+}
+.tile-wrapper__badge--committee_eligible_members .tile:before {
+  content: 'Mitwirkungsberechtigtes Mitglied';
 }
 
 /* Embedded committees on profile-page */

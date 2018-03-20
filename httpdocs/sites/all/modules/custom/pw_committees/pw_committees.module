@@ -203,7 +203,7 @@ function pw_committees_members_block() {
       $query = db_select('user_archive_cache', 'uac');
       $query->fields('uac', array('vid'));
       _pw_uac_add_conditions($query, array(
-          'parliament' => $parliament->name,
+          #'parliament' => $parliament->name,
           'uid' => $uids,
           )
       );
@@ -212,6 +212,7 @@ function pw_committees_members_block() {
       $vids = $query->execute()->fetchCol();
       $politicians = pw_userarchives_politician_load_multiple($vids);
       $weight = 0;
+          dpm($role_name." - ".sizeof($politicians));
       foreach ($politicians as $vid => $politician) {
         $build[$field_name][$vid] = user_view($politician, 'tile');
         $build[$field_name][$vid]['#weight'] = ++$weight;
