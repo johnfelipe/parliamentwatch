@@ -133,6 +133,9 @@
             <?php print l(t('Contact'), 'node/6578', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
           </li>
           <li class="footer__maincol__col__nav__item">
+            <?php print l(t('Data protection'), 'node/10006', ['html' => TRUE, 'attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
+          </li>
+          <li class="footer__maincol__col__nav__item">
             <?php print l(t('Newsletter subscription'), 'node/10380', ['html' => TRUE, 'attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
           </li>
           <li class="footer__maincol__col__nav__item">
