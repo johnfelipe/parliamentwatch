@@ -509,24 +509,25 @@ function pw_profiles_parliament($account) {
 }
 
 /**
- * Load all archived revisions of the given account.
+ * Load earlier (or later) revisions of the given account.
  *
  * @param object $account
  *   The account object.
  *
- * @param string $direction
- *   The order direction (ascending by default).
+ * @param bool $earlier
+ *   Whether earlier or later revisions should be returned.
  *
  * @return array
  *   An array of user (revision) objects.
  */
-function pw_profiles_archived_revisions($account, $direction = 'ASC') {
+function pw_profiles_archived_revisions($account, $earlier = TRUE) {
   $revisions = [];
 
   $result = db_select('user_archive_cache', 'uac')
     ->fields('uac', ['vid'])
     ->condition('uid', $account->uid)
-    ->orderBy('vid', $direction)
+    ->condition('vid', $account->vid, $earlier ? '<' : '>')
+    ->orderBy('vid', 'DESC')
     ->execute();
 
   foreach ($result->fetchCol() as $vid) {
@@ -799,7 +800,9 @@ function _pw_profiles_constituency_selection_items(array $constituency_values, $
 function _pw_profiles_revision_dropdown($account) {
   $items = [];
 
-  foreach (pw_profiles_archived_revisions($account, 'DESC') as $revision) {
+  $revisions = array_merge([$account], pw_profiles_archived_revisions($account, FALSE), pw_profiles_archived_revisions($account, TRUE));
+
+  foreach ($revisions as $revision) {
     if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($revision->roles))) {
       $text = pw_profiles_parliament($revision)->name;
     }
