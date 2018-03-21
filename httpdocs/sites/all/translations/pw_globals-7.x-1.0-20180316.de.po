@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-03-13 13:59+0100\n"
+"POT-Creation-Date: 2018-03-20 20:40+0100\n"
 "PO-Revision-Date: 2017-12-11 09:27+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -433,9 +433,7 @@ msgstr "Nebentätigkeiten"
 
 #: sites/all/themes/custom/parliamentwatch/js/script.js:0
 msgid "<strong>Now</strong> you can switch between the legislatures."
-msgstr ""
-"<strong>Jetzt neu!</strong> Wechseln Sie zwischen den verfügbaren "
-"Wahlperioden."
+msgstr "Wechseln Sie zwischen den verfügbaren Wahlperioden."
 
 #: sites/all/themes/custom/parliamentwatch/js/script.js:0
 msgid "Ask"
@@ -446,7 +444,7 @@ msgid "Show more"
 msgstr "Weitere anzeigen"
 
 #: sites/all/themes/custom/parliamentwatch/js/script.js:0
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:242;273
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:255;286
 msgid "Show less"
 msgstr "Weniger anzeigen"
 
@@ -891,13 +889,13 @@ msgstr "Zur Übersicht"
 
 #: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:21;52
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:81;1538
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:80;159
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:80;162
 msgid "Back to home"
 msgstr "Zurück zur Homepage"
 
 #: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:46
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1531
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:146
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:149
 msgid "Logo of Spiegel Online"
 msgstr "Logo Spiegel Online"
 
@@ -908,13 +906,13 @@ msgstr "Logo Süddeutsche"
 
 #: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:48
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1533
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:148
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:151
 msgid "Logo of Welt-Online"
 msgstr "Logo Welt Online"
 
 #: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:49
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1534
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:149
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:152
 msgid "Logo of T-Online"
 msgstr "Logo T-Online"
 
@@ -944,6 +942,7 @@ msgstr ""
 "werde ich darüber von einem Moderator informiert."
 
 #: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:103
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:136
 msgid "Data protection"
 msgstr "Datenschutz"
 
@@ -964,12 +963,12 @@ msgid "More information"
 msgstr "Weitere Informationen"
 
 #: sites/all/themes/custom/parliamentwatch/templates/node--blogpost--full.tpl.php:125
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:183
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:186
 msgid "Stay informed with the parliamentwatch Newsletter"
 msgstr "Bleiben Sie auf dem Laufenden mit unserem Newsletter"
 
 #: sites/all/themes/custom/parliamentwatch/templates/node--blogpost--full.tpl.php:126
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:185
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:188
 msgid ""
 "Description for the newsletter registration form, embedded in a blog article"
 msgstr ""
@@ -977,7 +976,7 @@ msgstr ""
 "Nebeneinkünften, Parteispenden und Lobbyismus"
 
 #: sites/all/themes/custom/parliamentwatch/templates/node--blogpost--full.tpl.php:132;134
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:192;194
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:195;197
 msgid "E-mail adresse"
 msgstr "E-Mail-Adresse"
 
@@ -1360,87 +1359,91 @@ msgstr ""
 msgid "Contact"
 msgstr "Kontakt"
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:136
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:139
 msgid "Newsletter subscription"
 msgstr "Newsletter anfordern"
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:139
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:142
 msgid "More Information in English"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:146
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:149
 msgid "Go to website of Spiegel Online"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:147
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:150
 msgid "Go to website of Tagesspiegel"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:147
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:150
 msgid "Logo of Tagesspiegel"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:148
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:151
 msgid "Go to website of WELT-Online"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:149
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:152
 msgid "Go to website of T-Online"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:150
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:153
 msgid "Show all"
 msgstr "Alle anzeigen"
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:204
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:207
 msgid "Go further for the content of abgeordnetenwatch.de"
 msgstr "Zurückkehren zum Inhalt von abgeordnetenwatch.de"
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:205
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:208
 msgid "Close"
 msgstr "Schließen"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:86
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:68
+msgid "Switch here between the profiles of the politician."
+msgstr "Hier zwischen den Profilen des Politikers wechseln."
+
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:99
 msgid "This person died"
 msgstr "Diese Person ist verstorben"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:88
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:101
 msgid "This person left this parliament"
 msgstr "Diese Person hat dieses Parlament verlassen"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:118
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:131
 msgid "tooltip-profil-answered-questions"
 msgstr ""
 "Hier werden die beantworteten Fragen angezeigt sowie die Gesamtzahl der "
 "Fragen."
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:140
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:153
 msgid "tooltip-profil-votes-by-name"
 msgstr ""
 "Anzahl der von abgeordnetenwatch.de dokumentierten Abstimmungen sowie die "
 "Abstimmungen mit Beteiligung des/der Abgeordneten."
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:147
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:160
 msgid "Year of birth"
 msgstr "Jahrgang"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:155
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:168
 msgid "Wohnort"
 msgstr "Wohnort"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:176
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:189
 msgid "Via constituency"
 msgstr "eingezogen über den Wahlkreis"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:179
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:192
 msgid "Via list"
 msgstr "eingezogen über Liste"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:194
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:207
 msgid "Retired on %date"
 msgstr "Ausgeschieden am %date"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:215
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:228
 msgid ""
 "At the Kandidaten-Check all candidates can take position on relevant topics "
 "and justify them. Make the candidate check and check which of your direct "
@@ -1452,57 +1455,57 @@ msgstr ""
 "und prüfen Sie, mit welchen Ihrer Direktkandidierenden Sie am ehesten "
 "übereinstimmen! Klicken Sie dazu auf <strong>Zum Kandidaten-Check</strong>"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:228
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:241
 msgid "Go to candidate check"
 msgstr "Zum Kandidatencheck"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:236
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:249
 msgid "Political goals of @full_name"
 msgstr "Die politischen Ziele von @full_name"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:241;272
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:254;285
 msgid "Read more"
 msgstr "weiterlesen"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:246
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:259
 msgid "did not saved a political goal yet."
 msgstr "Bisher keine politischen Ziele hinterlegt"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:258
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:271
 msgid "Twitter"
 msgstr "Twitter"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:259
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:272
 msgid "did not saved a twitter account yet."
 msgstr "Bisher kein Twitter-Account hinterlegt"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:268
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:281
 msgid "About @full_name"
 msgstr "Über @full_name"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:280
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:293
 msgid "Links of @full_name"
 msgstr "Weiterführende Links von @full_name"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:286
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:299
 msgid "Image gallery of @full_name"
 msgstr "Bilder-Galerie von @full_name"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:295
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:308
 msgid "Share this deputy"
 msgstr "Dieses Profil teilen"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:313
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:326
 msgid "Take a look at this deputy:"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:118
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:131
 msgid "Answered question"
 msgid_plural "Answered questions"
 msgstr[0] "Beantwortete Frage"
 msgstr[1] "Beantwortete Fragen"
 
-#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:140
+#: sites/all/themes/custom/parliamentwatch/templates/user-profile--full.tpl.php:153
 msgid "Vote by name"
 msgid_plural "Votes by name"
 msgstr[0] "Namentliche Abstimmung"
