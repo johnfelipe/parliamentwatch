@@ -164,8 +164,8 @@
         <div class="sidebar__box__accordion__item">
           <h4 class="sidebar__box__accordion__item__title">Spenden per Post</h4>
           <div class="sidebar__box__accordion__item__content">
-            <p>Alternativ zu einer Online-Spende können Sie auch einen Antrag herunterladen (PDF), ausdrucken und uns per Post oder Fax senden.</p>
-            <a href="#" class="link-icon"><i class="icon icon-arrow-right"></i> Spendenformular herunterladen</a>
+            <p>Alternativ zu einer Online-Spende können Sie auch einen Antrag herunterladen (<a href="/sites/abgeordnetenwatch.de/files/spendenformular_print.pdf" target="_blank">PDF</a>), ausdrucken und uns per Post oder Fax senden.</p>
+            <a href="/sites/abgeordnetenwatch.de/files/spendenformular_print.pdf" class="link-icon" target="_blank"><i class="icon icon-arrow-right"></i> Spendenformular herunterladen</a>
           </div>
         </div>
         <div class="sidebar__box__accordion__item">
