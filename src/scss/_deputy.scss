@@ -117,21 +117,35 @@
   }
   header {
     position: relative;
+    .dropdown--default,
     .select2 {
       margin-bottom: $space-large;
       @include breakpoint($breakpoint-s-min) {
         position: absolute;
         right: 0;
         top: 0;
-        max-width: 200px;
+        width: 200px;
+        width: 200px;
         display: block;
         margin-bottom: 0;
       }
       @include breakpoint($breakpoint-m-min) {
-        max-width: 250px;
+        width: 250px;
       }
       @include breakpoint($breakpoint-l-min) {
-        max-width: 320px;
+        width: 320px;
+      }
+    }
+    .feature-hint {
+      right: 0;
+      top: calc(100% + 10px);;
+      left: auto;
+      @include breakpoint($breakpoint-s-min) {
+        top: 46px;
+      }
+      &:before {
+        left: auto;
+        right: 55px;
       }
     }
   }

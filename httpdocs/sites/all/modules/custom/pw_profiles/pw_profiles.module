@@ -244,13 +244,12 @@ function pw_profiles_user_update(&$edit, $account, $category) {
  */
 function pw_profiles_user_view($account, $view_mode, $langcode) {
   if ($view_mode == 'full' && _pw_user_has_role($account, 'Politician')) {
-    $options = _pw_profiles_revision_switcher_options($account);
+    $items = _pw_profiles_revision_dropdown($account);
 
-    if (!empty($options)) {
+    if (!empty($items)) {
       $account->content['revisions'] = [
-        '#theme' => 'select',
-        '#options' => $options,
-        '#value' => url(current_path()),
+        '#theme' => 'item_list__politician_dropdown',
+        '#items' => $items
       ];
     }
 
@@ -797,8 +796,8 @@ function _pw_profiles_constituency_selection_items(array $constituency_values, $
  * @return array
  *   An array with URLs as keys and labels for the legislative terms as values.
  */
-function _pw_profiles_revision_switcher_options($account) {
-  $options = [];
+function _pw_profiles_revision_dropdown($account) {
+  $items = [];
 
   foreach (pw_profiles_archived_revisions($account, 'DESC') as $revision) {
     if (in_array(PW_GLOBALS_DEPUTY_RID, array_keys($revision->roles))) {
@@ -807,9 +806,9 @@ function _pw_profiles_revision_switcher_options($account) {
     else {
       $text = preg_replace('/\-\d+\s*$/', '', pw_profiles_parliament($revision)->name) . ' (Wahlen)';
     }
-    $options[url(entity_uri('user', $revision)['path'])] = $text;
+    $items[] = ['path' => url(entity_uri('user', $revision)['path']), 'title' => $text];
   }
-  return $options;
+  return $items;
 }
 
 /**

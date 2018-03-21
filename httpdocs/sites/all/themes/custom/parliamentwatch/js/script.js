@@ -525,13 +525,48 @@
           // close hint
           $('.header__subnav__archive-hint .icon-close').click(function () {
             $('.header__subnav__archive-hint').removeClass('header__subnav__archive-hint--in');
-            $.cookie('archiveHint', 1, {expires: 40, path: '/' });
+            $.cookie('archiveHint', 1, {expires: 100, path: '/' });
           });
         }
       }
     }
   };
 
+  /**
+   * Attaches the feature hint behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   *   Triggers the Sidebar.
+   */
+
+  Drupal.behaviors.featureHint = {
+    attach: function (context) {
+
+      $('[data-feature-hint-content]').each(function( index ) {
+
+        var hintID = $(this).attr('data-feature-hint-id');
+        var hintContent = $(this).attr('data-feature-hint-content');
+
+        if (!$.cookie('featureHint-'+ hintID)) {
+
+          // add hint (initially hidden)
+          $('<div class="feature-hint"><p>' + hintContent + '</p><i class="icon icon-close"></i></div>').insertAfter($(this));
+
+          // show hint
+          setTimeout(function () {
+            $('.feature-hint').addClass('feature-hint--in');
+          }, 200);
+          // close hint
+          $('.feature-hint .icon-close').click(function () {
+            $('.feature-hint').removeClass('feature-hint--in');
+            $.cookie('featureHint-'+ hintID, 1, {expires: 100, path: '/' });
+          });
+        }
+      });
+    }
+  };
 
   /**
    * Attaches the mobile navigation-trigger behavior.

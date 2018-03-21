@@ -882,6 +882,39 @@ function parliamentwatch_item_list__archive_dropdown($variables) {
 }
 
 /**
+ * Overrides theme_item_list() for archive dropdown.
+ */
+function parliamentwatch_item_list__politician_dropdown($variables) {
+  $output = '';
+  $items = $variables['items'];
+
+  if (!empty($items)) {
+    $first = array_shift($items);
+
+    $output = '<div class="dropdown dropdown--default dropdown--hover" data-feature-hint-id="profile-archive-history" data-feature-hint-content="' . t("Switch here between the profiles of the politician.") . '">';
+    $output .= '<span>' . check_plain($first['title']) . '</span>';
+    $output .= '<ul class="dropdown__list">';
+
+    $link_options = ['html' => TRUE];
+    foreach ($items as $item) {
+      if ($first['title'] == $item['title']) {
+        $output .= '<li class="active">';
+      }
+      else {
+        $output .= '<li>';
+      }
+      $output .= l($item['title'], $item['path']);
+      $output .= "</li>\n";
+
+    }
+    $output .= "</div>";
+  }
+
+  return $output;
+}
+
+
+/**
  * Overrides theme_form().
  */
 function parliamentwatch_form($variables) {
