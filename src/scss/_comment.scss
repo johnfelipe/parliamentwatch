@@ -15,6 +15,11 @@
   @include breakpoint($breakpoint-xs-min) {
     padding-top: $space-large * 2;
   }
+  > a,
+  .indented > a {
+    clear: both;
+    display: block;
+  }
 }
 .tabs + .comment-wrapper {
   border-top: 1px solid $white;
