@@ -59,7 +59,7 @@
  * @ingroup themeable
  */
 ?>
-<div id="comment-<?php print $comment->cid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="comment__submitted">
     <h3><?php print $comment->name; ?> <span class="comment__submitted__date"><?php print t('posted on') ?> <?php print format_date($comment->created, 'date_and_time'); ?></span></h3>
     <a href="#comment-<?php print render($comment->cid); ?>" class="comment__permalink"><i class="icon icon-link"></i></a>
