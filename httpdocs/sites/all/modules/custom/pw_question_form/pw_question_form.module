@@ -115,7 +115,7 @@ function pw_question_form_preprocess_node(&$variables) {
   if ($variables['nid'] == '10446' && $variables['type'] == 'webform') {
     $currentUser = _pw_get_current_user();
     if ($currentUser) {
-      $pw_question_form_form_title = isset($currentUser->field_user_title['und'][0]['value']) ? $currentUser->field_user_title['und'][0]['value'] . " " : "";
+      $pw_question_form_form_title = isset($currentUser->field_user_prefix['und'][0]['value']) ? $currentUser->field_user_prefix['und'][0]['value'] . " " : "";
       $pw_question_form_form_title .= $currentUser->field_user_fname['und'][0]['value'] . " " . $currentUser->field_user_lname['und'][0]['value'];
       $variables['title'] = "Ihre Frage an $pw_question_form_form_title stellen";
     }

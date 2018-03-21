@@ -23,7 +23,7 @@
     breakpointLMax = breakpointLMin - 1,
 
     beige = '#f3efe6',
-    orange = '#f46b3b';
+    orange = '#f26a3b';
 
   var iterateTime = 200;
   var isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
@@ -93,7 +93,7 @@
    * @param {Object} votes
    *   Vote statistics to map to D3 data.
    *
-   * @returns {Object}
+   * @returns {Array}
    *   Vote statistics ready for D3.
    */
   function mapVotes(votes) {
@@ -149,15 +149,47 @@
   /**
    * Returns votes statistics by party ready for D3.
    *
-   * @returns {Array}
+   * @param {Array}
+   *   Vote details.
+   *
+   * @returns {Object}
    *   Vote statistics by party ready for D3.
    */
-  Drupal.parseResultsByParty = function () {
+  Drupal.parseResultsByFaction = function (votes) {
     var data = {};
+    var count = {};
+    var factions = votes.reduce(function (accumulator, currentValue) {
+      if (accumulator.indexOf(currentValue['politician_political_faction']) > -1) {
+        return accumulator;
+      } else {
+        return accumulator.concat([currentValue['politician_political_faction']]);
+      }
+    }, []);
 
-    for (var party in window.resultsByParty) {
-      data[party] = mapVotes(window.resultsByParty[party]);
-    }
+    factions.forEach(function (item) {
+      count[item] = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
+    });
+
+    votes.forEach(function (item) {
+      switch (item['field_vote']) {
+        case 19667:
+          count[item['politician_political_faction']]['yes']++;
+          break;
+        case 19668:
+          count[item['politician_political_faction']]['no']++;
+          break;
+        case 19669:
+          count[item['politician_political_faction']]['abstain']++;
+          break;
+        case 19670:
+          count[item['politician_political_faction']]['no-show']++;
+          break;
+      }
+    });
+
+    factions.forEach(function (item) {
+      data[item] = mapVotes(count[item]);
+    });
 
     return data;
   };
@@ -165,20 +197,181 @@
   /**
    * Returns vote statistics suitable for D3.
    *
+   * @param {Array}
+   *   Number of votes by category.
+   *
    * @returns {Array}
    *   Vote statistics ready for D3.
    */
-  Drupal.parseResultsTotal = function () {
+  Drupal.parseResultsTotal = function (voteCount) {
     var data = {'yes': 0, 'no': 0, 'abstain': 0, 'no-show': 0};
 
-    for (var party in window.resultsByParty) {
-      data['yes'] += window.resultsByParty[party]['yes'];
-      data['no'] += window.resultsByParty[party]['no'];
-      data['abstain'] += window.resultsByParty[party]['abstain'];
-      data['no-show'] += window.resultsByParty[party]['no-show'];
-    }
+    voteCount.forEach(function (item) {
+      switch (item.filter) {
+        case '"19667"':
+          data['yes'] = item.count;
+          break;
+        case '"19668"':
+          data['no'] = item.count;
+          break;
+        case '"19669"':
+          data['abstain'] = item.count;
+          break;
+        case '"19670"':
+          data['no-show'] = item.count;
+          break;
+      }
+    });
 
     return mapVotes(data);
+  };
+
+  Drupal.dynatable = {
+    PaginationLinks: function (obj, settings) {
+      return {
+        create: function () {
+          var pageLinks = '<ul id="' + 'dynatable-pagination-links-' + obj.element.id + '" class="' + settings.inputs.paginationClass + '">',
+            pageLinkClass = settings.inputs.paginationLinkClass,
+            activePageClass = settings.inputs.paginationActiveClass,
+            disabledPageClass = settings.inputs.paginationDisabledClass,
+            pages = Math.ceil(settings.dataset.queryRecordCount / settings.dataset.perPage),
+            page = settings.dataset.page,
+            breaks = [
+              settings.inputs.paginationGap[0],
+              settings.dataset.page - settings.inputs.paginationGap[1],
+              settings.dataset.page + settings.inputs.paginationGap[2],
+              (pages + 1) - settings.inputs.paginationGap[3]
+            ];
+
+          for (var i = 1; i <= pages; i++) {
+            if ((i > breaks[0] && i < breaks[1]) || (i > breaks[2] && i < breaks[3])) {
+              // skip to next iteration in loop
+              continue;
+            } else {
+              var li = obj.paginationLinks.buildLink(i, i, pageLinkClass, page == i, activePageClass),
+                breakIndex,
+                nextBreak;
+
+              // If i is not between one of the following
+              // (1 + (settings.paginationGap[0]))
+              // (page - settings.paginationGap[1])
+              // (page + settings.paginationGap[2])
+              // (pages - settings.paginationGap[3])
+              breakIndex = $.inArray(i, breaks);
+              nextBreak = breaks[breakIndex + 1];
+              if (breakIndex > 0 && i !== 1 && nextBreak && nextBreak > (i + 1)) {
+                var ellip = '<li class="pager__item pager__item--ellipsis">&hellip;</li>';
+                li = breakIndex < 2 ? ellip + li : li + ellip;
+              }
+
+              if (settings.inputs.paginationPrev && i === 1 && page !== 1) {
+                var firstLi = obj.paginationLinks.buildLink(1, settings.inputs.paginationPrev, pageLinkClass + ' ' + settings.inputs.paginationFirstClass, page === 1, disabledPageClass);
+                var prevLi = obj.paginationLinks.buildLink(page - 1, settings.inputs.paginationPrev, pageLinkClass + ' ' + settings.inputs.paginationPrevClass, page === 1, disabledPageClass);
+                li = firstLi + prevLi + li;
+              }
+              if (settings.inputs.paginationNext && i === pages && page !== pages) {
+                var nextLi = obj.paginationLinks.buildLink(page + 1, settings.inputs.paginationNext, pageLinkClass + ' ' + settings.inputs.paginationNextClass, page === pages, disabledPageClass);
+                var lastLi = obj.paginationLinks.buildLink(pages, settings.inputs.paginationNext, pageLinkClass + ' ' + settings.inputs.paginationLastClass, page === pages, disabledPageClass);
+                li += nextLi + lastLi;
+              }
+
+              pageLinks += li;
+            }
+          }
+
+          pageLinks += '</ul>';
+
+          // only bind page handler to non-active and non-disabled page links
+          var selector = '#dynatable-pagination-links-' + obj.element.id + ' .' + pageLinkClass + ':not(.' + activePageClass + ',.' + disabledPageClass + ') > a';
+          // kill any existing delegated-bindings so they don't stack up
+          $(document).undelegate(selector, 'click.dynatable');
+          $(document).delegate(selector, 'click.dynatable', function (e) {
+            var $this = $(this);
+            $this.closest(settings.inputs.paginationClass).find('.' + activePageClass).removeClass(activePageClass);
+            $this.addClass(activePageClass);
+
+            obj.paginationPage.set($this.data('dynatable-page'));
+            obj.process();
+            e.preventDefault();
+          });
+
+          return pageLinks;
+        },
+        buildLink: function (page, label, linkClass, conditional, conditionalClass) {
+          var link = '<a data-dynatable-page="' + page + '"',
+            li = '<li class="' + linkClass;
+
+          if (conditional) {
+            li += ' ' + conditionalClass;
+          }
+
+          link += '">' + label + '</a>';
+          li += '">' + link + '</li>';
+
+          return li;
+        }
+      }
+    },
+    Sorts: function (obj, settings) {
+      return {
+        functions: {
+          string: function (a, b, attr, direction) {
+            var aAttr = (a['dynatable-sortable-text'] && a['dynatable-sortable-text'][attr]) ? a['dynatable-sortable-text'][attr] : a[attr];
+            var bAttr = (b['dynatable-sortable-text'] && b['dynatable-sortable-text'][attr]) ? b['dynatable-sortable-text'][attr] : b[attr];
+            var comparison = aAttr.toLocaleLowerCase().localeCompare(bAttr.toLocaleLowerCase(), 'de');
+            return direction > 0 ? comparison : -comparison;
+          }
+        }
+      }
+    },
+    SortsHeaders: function (obj, settings) {
+      return {
+        appendArrowUp: function ($link) {
+          this.removeArrow($link);
+          $link.append('<i class="dynatable-arrow icon icon-arrow-up"></i>');
+        },
+
+        appendArrowDown: function ($link) {
+          this.removeArrow($link);
+          $link.append('<i class="dynatable-arrow icon icon-arrow-down"></i>');
+        },
+
+        toggleSort: function (e, $link, column) {
+          var sortedByColumn = this.sortedByColumn($link, column),
+            value = this.sortedByColumnValue(column);
+          // Clear existing sorts unless this is a multisort event
+          if (!settings.inputs.multisort || !obj.utility.anyMatch(e, settings.inputs.multisort, function (evt, key) {
+              return e[key];
+            })) {
+            this.removeAllArrows();
+            obj.sorts.clear();
+          }
+
+          // If sorts for this column are already set
+          if (sortedByColumn) {
+            // If ascending, then make descending
+            if (value == 1) {
+              for (var i = 0, len = column.sorts.length; i < len; i++) {
+                obj.sorts.add(column.sorts[i], -1);
+              }
+              this.appendArrowDown($link);
+              // If descending, then make ascending
+            } else {
+              for (var i = 0, len = column.sorts.length; i < len; i++) {
+                obj.sorts.add(column.sorts[i], 1);
+              }
+              this.appendArrowUp($link);
+            }
+            // Otherwise, if not already set, set to ascending
+          } else {
+            for (var i = 0, len = column.sorts.length; i < len; i++) {
+              obj.sorts.add(column.sorts[i], 1);
+            }
+            this.appendArrowUp($link);
+          }
+        }
+      }
+    }
   };
 
   /**
@@ -320,7 +513,7 @@
         var d = new Date();
         var month = d.getMonth()+1;
 
-        if (month < 3) {
+        if (month < 10) {
           // add hint (initially hidden)
           $('<div class="header__subnav__archive-hint"><p>' + Drupal.t("<strong>Now</strong> you can switch between the legislatures.") + '</p><i class="icon icon-close"></i></div>').insertAfter('.header__subnav__archive');
 
@@ -551,8 +744,6 @@
     }
   };
 
-
-
   /**
    * Attaches the newsletter widget behavior.
    *
@@ -612,32 +803,6 @@
   Drupal.behaviors.tabs = {
     attach: function (context) {
       $('.tabs', context).once('tabs', function () {
-
-        // Set initial tab by checking url for hash
-        if ($('.tabs__navigation').length && window.location.hash) {
-          $('.tabs__navigation a[href=' + window.location.hash + ']').trigger("click");
-        }
-        // Set initial tab by checking url for hash
-        if (history.pushState) {
-          $(window).on('popstate', function (event) {
-            var hashValue = window.location.hash;
-
-            if ($('.nav__item__link[href="' + hashValue + '"]').length > 0) {
-              // Set nav-item classes
-              $('.tabs').find('.nav__item').removeClass('nav__item--active');
-              $('.nav__item__link[href="' + hashValue + '"]').parents('.nav__item').addClass('nav__item--active');
-
-              // Set tab-content classes
-              $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
-              $(hashValue).addClass('tabs__content--active');
-            }
-          });
-        }
-
-        $('.tabs__content__content .pager__item a').each(function () {
-          $(this).prop('hash', $(this).parents('.tabs__content').attr('id'));
-        });
-
         $('.tabs__navigation a').on('click', function (event) {
           event.preventDefault();
           var link = $(this);
@@ -656,6 +821,31 @@
           $(id).addClass('tabs__content--active');
 
           Drupal.attachBehaviors(link.parents('.tabs').find('.swiper-container--tile'));
+        });
+
+        if (history.pushState) {
+          $(window).on('popstate', function (event) {
+            var hashValue = window.location.hash;
+
+            if ($('.nav__item__link[href="' + hashValue + '"]').length > 0) {
+              // Set nav-item classes
+              $('.tabs').find('.nav__item').removeClass('nav__item--active');
+              $('.nav__item__link[href="' + hashValue + '"]').parents('.nav__item').addClass('nav__item--active');
+
+              // Set tab-content classes
+              $('.tabs').find('.tabs__content').removeClass('tabs__content--active');
+              $(hashValue).addClass('tabs__content--active');
+            }
+          });
+        }
+
+        // Set initial tab by checking url for hash
+        if ($('.tabs__navigation').length && window.location.hash) {
+          $('.tabs__navigation a[href=' + window.location.hash + ']').trigger('click');
+        }
+
+        $('.tabs__content__content .pager__item a').each(function () {
+          $(this).prop('hash', $(this).parents('.tabs__content').attr('id'));
         });
       });
     }
@@ -790,34 +980,6 @@
       });
     }
   };
-
-  /**
-   * Attaches the geolocate behavior to the politician search form.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~attachBehavior}
-   */
-  Drupal.behaviors.geolocate = {
-    attach: function () {
-      var geolocate = function () {
-        $('.form--pw-globals-politician-search-form').addClass('loading');
-        window.navigator.geolocation.getCurrentPosition(function (p) {
-          if (window.location.search.match(/geo/) ) {
-            var accuracy = p.coords.accuracy;
-            $('[data-geolocate]').append(' ' + accuracy)
-          }
-          $.getJSON('//nominatim.openstreetmap.org/reverse?format=json&lat=' + p.coords.latitude + '&lon=' + p.coords.longitude + '&zoom=18&addressdetails=1&email=admin@abgeordnetenwatch.de',
-            function (r) {
-              $('.form--pw-globals-politician-search-form .form__item__control').val(r.address.postcode);
-              $('.form--pw-globals-politician-search-form').removeClass('loading');
-            });
-        });
-      };
-      $('[data-geolocate]').click(geolocate);
-    }
-  };
-
 
   /**
    * Attaches the deputy detail behavior to deputy detail views.
@@ -1363,17 +1525,17 @@
     attach: function (context) {
       $('[data-bar-horizontal-stacked]', context).once('d3BarHorizontalStacked', function () {
         var wrapper = $(this)[0];
-        var dataset = Drupal[wrapper.getAttribute('data-data')]();
         var barWrapper = d3.select(wrapper)
           .append('div')
           .attr('class', 'd3-bars');
 
-        (function (data) {
+        d3.json(wrapper.dataset.url, function (error, response) {
+          var data = Drupal.parseResultsTotal(response.facets['field_vote']);
           var totalPollCount = d3.sum(data, function (d) {
             return d.count;
           });
-          var totalLabelBefore = wrapper.getAttribute('data-label-total-before');
-          var totalLabelAfter = wrapper.getAttribute('data-label-total-after');
+          var totalLabelBefore = wrapper.dataset.labelTotalBefore;
+          var totalLabelAfter = wrapper.dataset.labelTotalAfter;
 
           barWrapper.selectAll("div")
             .data(data)
@@ -1411,7 +1573,7 @@
               return 'background-color:' + d.color;
             });
 
-        })(dataset || []);
+        });
       });
     }
   };
@@ -1427,9 +1589,9 @@
     attach: function (context) {
       $('[data-bar-vertical-stacked-poll]', context).once('d3BarVerticalStackedPoll', function () {
         var wrapper = $(this)[0];
-        var dataset = Drupal[wrapper.getAttribute('data-data')]();
 
-        (function (data) {
+        d3.json(wrapper.dataset.url, function (error, response) {
+          var data = Drupal.parseResultsByFaction(response.records);
           for (var key in data) {
 
             var obj = data[key];
@@ -1476,7 +1638,7 @@
                 return 'background-color:' + o.color;
               });
           }
-        })(dataset || []);
+        });
       });
     }
   };
@@ -1591,18 +1753,49 @@
    * @prop {Drupal~attachBehavior}
    */
   Drupal.behaviors.viewModeSwitch = {
-    attach: function () {
-      $('[data-view-mode]').click(function (event) {
-        event.preventDefault();
-        var viewModeElement = $(this).data('view-mode');
+    attach: function (context) {
+      var switchViewMode = function (hash) {
+        if ($('.filterbar__view_options__item__link[href="' + hash + '"]').length > 0) {
+          // Set nav-item classes
+          $('.filterbar__view_options__item__link').parent('li').removeClass('active');
+          $('.filterbar__view_options__item__link[href="' + hash + '"]').parents('li').addClass('active');
 
-        $('[data-view-mode]').parent('li').removeClass('active');
-        $(this).parent('li').addClass('active');
+          // Toggle view mode visibility
+          $('.view-mode').hide();
+          $(hash).show();
 
-        console.log(viewModeElement);
+          if ($(hash).hasClass('view-mode--has-filters')) {
+            $('.filterbar').removeClass('filterbar--disabled');
+          } else {
+            $('.filterbar').addClass('filterbar--disabled');
+          }
+        }
+      };
 
-        $('[data-view-mode-element]').hide();
-        $('[data-view-mode-element='+ viewModeElement +']').show();
+      $('.filterbar__view_options', context).once('view-mode', function () {
+        $('.filterbar__view_options__item__link').on('click', function (event) {
+          event.preventDefault();
+
+          // add hash-value of the clicked link-element to url
+          if (history.pushState) {
+            history.pushState(this.hash, null, this.hash);
+          }
+
+          switchViewMode(this.hash);
+        });
+
+        if (history.pushState) {
+          $(window).on('popstate', function (event) {
+            switchViewMode(this.location.hash);
+          });
+        }
+
+        if (window.location.hash) {
+          $('.filterbar__view_options__item__link[href="' + window.location.hash + '"]').trigger('click');
+        } else if (history.replaceState) {
+          var defaultViewMode = $('.active .filterbar__view_options__item__link').first().attr('href');
+          history.replaceState(defaultViewMode, null, defaultViewMode);
+        }
       });
     }
   };
@@ -1815,6 +2008,7 @@
     attach: function (context, settings) {
       $('[data-ajax-block-url]').each(function () {
         var container = this;
+        $(container).addClass('loading-overlay')
         $('.pager a, .table--sortable th a', container).click(function (event) {
           event.preventDefault();
           var url = $(container).data('ajax-block-url') + this.search + '&path=' + this.pathname.substr(1);
@@ -1915,5 +2109,77 @@
       });
     }
   };
+
+  /**
+   * Attaches votes table behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.votesTable = {
+    attach: function (context, settings) {
+      if (settings.pw_vote && settings.pw_vote.node) {
+        var url = '/votes/' + settings.pw_vote.node;
+        $('.poll_detail__table').addClass('loading-overlay');
+        $.ajax(url).done(function (data) {
+          $('.table--poll-votes').bind('dynatable:init', function (event, dynatable) {
+            var PaginationLinks = Drupal.dynatable.PaginationLinks(dynatable, dynatable.settings);
+            dynatable.paginationLinks.create = PaginationLinks.create;
+            dynatable.paginationLinks.buildLink = PaginationLinks.buildLink;
+            var Sorts = Drupal.dynatable.Sorts(dynatable, dynatable.settings);
+            dynatable.sorts.functions.string = Sorts.functions.string;
+            if (Object.values(dynatable.settings.dataset.sorts).length == 0) {
+              dynatable.sorts.add('field_vote', 1);
+            }
+            var SortsHeaders = Drupal.dynatable.SortsHeaders(dynatable, dynatable.settings);
+            dynatable.sortsHeaders.appendArrowUp = SortsHeaders.appendArrowUp;
+            dynatable.sortsHeaders.appendArrowDown = SortsHeaders.appendArrowDown;
+            dynatable.sortsHeaders.toggleSort = SortsHeaders.toggleSort;
+          }).dynatable({
+            features: {
+              perPageSelect: false,
+              recordCount: false,
+              search: false,
+            },
+            dataset: {
+              perPageDefault: 10,
+              records: data.records
+            },
+            inputs: {
+              paginationClass: 'pager',
+              paginationLinkClass: 'pager__item',
+              paginationFirstClass: 'pager__item--first',
+              paginationPrevClass: 'pager__item--previous',
+              paginationNextClass: 'pager__item--next',
+              paginationLastClass: 'pager__item--last',
+              paginationActiveClass: 'pager__item--current',
+              paginationDisabledClass: 'pager__item--disabled',
+              paginationPrev: Drupal.t('previous'),
+              paginationNext: Drupal.t('next'),
+              paginationGap: [1, 2, 2, 1],
+            }
+          })
+        });
+
+        $('.form--pw-vote-poll-filters .form__item__control').change(function (event) {
+          $(this.form).submit();
+        });
+
+        $('.form--pw-vote-poll-filters').submit(function (event) {
+          event.preventDefault();
+          addLoadingAnimation($('.poll_detail__table'));
+          $.ajax(url + '?' + $(this).serialize()).done(function (data) {
+            var dynatable = $('.table--poll-votes').data('dynatable');
+            dynatable.records.updateFromJson(data);
+            dynatable.records.init();
+            dynatable.paginationPage.set(1);
+            dynatable.process();
+            removeLoadingAnimation($('.poll_detail__table'));
+          });
+        });
+      }
+    }
+  }
 
 }(jQuery));

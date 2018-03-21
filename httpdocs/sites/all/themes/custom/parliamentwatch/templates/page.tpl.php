@@ -122,97 +122,21 @@
   <footer id="footer">
     <div class="footer__maincol">
       <div class="footer__maincol__col">
-        <strong><i class="icon icon-bundestag"></i> Bundestagswahl 2017</strong>
         <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Candidates'), 'profiles/26909/candidates', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Election manifestos'), 'election-manifestos/26909', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Electoral law'), 'node/7752', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-        </ul>
-        <strong><i class="icon icon-bundestag"></i> Bundestag 2017 &ndash; 2021</strong>
-        <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profiles/26909/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Votings'), 'polls/26909', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Petitions'), 'petitions/26909', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-        </ul>
-      </div>
-      <div class="footer__maincol__col">
-        <strong><i class="icon icon-de"></i> Landtage</strong>
-        <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l('Baden-Württemberg', 'baden-wuerttemberg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Bayern', 'bayern', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Berlin', 'berlin', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Brandenburg', 'brandenburg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Bremen', 'bremen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Hamburg', 'hamburg', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Hessen', 'hessen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Mecklenburg-Vorpommern', 'mecklenburg-vorpommern', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-        </ul>
-      </div>
-      <div class="footer__maincol__col">
-        <strong>&nbsp;</strong>
-        <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l('Niedersachsen', 'niedersachsen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Nordrhein-Westfalen', 'nordrhein-westfalen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Rheinland-Pfalz', 'rheinland-pfalz', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Saarland', 'saarland', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Sachsen', 'sachsen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Sachsen-Anhalt', 'sachsen-anhalt', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Schleswig-Holstein', 'schleswig-holstein', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l('Thüringen', 'thueringen', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-        </ul>
-      </div>
-      <div class="footer__maincol__col">
-        <strong><i class="icon icon-eu"></i> EU</strong>
-        <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Deputies'), 'profiles/16117/deputies', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Polls'), 'polls/16117', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Petitions'), 'petitions/16117', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-          <li class="footer__maincol__col__nav__item"><?php print l(t('Electoral law'), 'node/7754', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?></li>
-        </ul>
-      </div>
-      <div class="footer__maincol__col">
-        <strong><i class="icon icon-logo-aw"></i> Über uns</strong>
-        <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('About us'), 'node/7760', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('Board of trustees'), 'node/7735', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('Moderation codex'), 'node/7734', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('Financing'), 'node/7757', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
           <li class="footer__maincol__col__nav__item">
             <?php print l(t('Imprint'), 'node/7732', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('Contact'), 'node/6578', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('More Information in English'), 'node/7756', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__maincol__col">
-        <strong>&nbsp;</strong>
-        <ul class="footer__maincol__col__nav">
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('Newsletter'), 'node/10380', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('Support the project'), 'node/10508', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
-          </li>
-          <li class="footer__maincol__col__nav__item">
-            <?php print l(t('Get info material'), 'node/7747', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
           </li>
           <li class="footer__maincol__col__nav__item">
             <?php print l(t('Jobs'), 'node/7748', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
           </li>
           <li class="footer__maincol__col__nav__item">
-            <?php print l(t('Privacy'), 'node/10006', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
+            <?php print l(t('Contact'), 'node/6578', ['attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
+          </li>
+          <li class="footer__maincol__col__nav__item">
+            <?php print l(t('Newsletter subscription'), 'node/10380', ['html' => TRUE, 'attributes' => ['class' => ['footer__maincol__col__nav__item__link']]]); ?>
+          </li>
+          <li class="footer__maincol__col__nav__item">
+            <?php print l('<i class="icon icon-info"></i>' . t('More Information in English'), 'node/7756', ['html' => TRUE, 'attributes' => ['class' => ['footer__maincol__col__nav__item__link'], 'hreflang' => 'en']]); ?>
           </li>
         </ul>
       </div>

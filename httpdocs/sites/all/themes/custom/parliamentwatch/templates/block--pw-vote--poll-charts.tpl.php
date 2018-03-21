@@ -44,18 +44,17 @@
  * @ingroup themeable
  */
 ?>
-<div class="poll__charts <?php print $classes; ?>" data-view-mode-element="poll__charts">
+<section id="<?php print $block_html_id; ?>" class="poll__charts view-mode <?php print $classes; ?>" <?php print $attributes; ?>>
   <?php print render($title_suffix) ?>
-  <?php print $content ?>
-  <span class='d3 d3--bar-horizontal-stacked'
-    data-bar-horizontal-stacked
-    data-label-total-before="<?php print t('Poll result by') ?>"
-    data-label-total-after="<?php print t('Members') ?>"
-    data-data='parseResultsTotal'>
+  <span class="d3 d3--bar-horizontal-stacked"
+        data-bar-horizontal-stacked
+        data-label-total-before="<?php print t('Poll result by') ?>"
+        data-label-total-after="<?php print t('Members') ?>"
+        data-url="<?php print $content; ?>">
   </span>
 
-  <span class='d3 d3--bar-vertical-stacked-poll'
+  <span class="d3 d3--bar-vertical-stacked-poll"
         data-bar-vertical-stacked-poll
-        data-data='parseResultsByParty'>
+        data-url="<?php print $content; ?>">
   </span>
-</div>
+</section>

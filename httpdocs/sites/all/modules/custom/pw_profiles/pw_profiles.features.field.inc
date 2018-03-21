@@ -4433,6 +4433,87 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
     ),
   );
 
+  // Exported field: 'user-user-field_user_prefix'.
+  $fields['user-user-field_user_prefix'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_user_prefix',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Dr.' => 'Dr.',
+          'Dr. h.c.' => 'Dr. h.c.',
+          'Prof. Dr.' => 'Prof. Dr.',
+          'Prof. Dr. h.c.' => 'Prof. Dr. h.c.',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'user',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'list_default',
+          'weight' => 50,
+        ),
+        'full' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'user',
+      'field_name' => 'field_user_prefix',
+      'label' => 'Titel',
+      'required' => 0,
+      'settings' => array(
+        'exclude_cv' => FALSE,
+        'user_register_form' => 0,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported field: 'user-user-field_user_pseudonym'.
   $fields['user-user-field_user_pseudonym'] = array(
     'field_config' => array(
@@ -4976,123 +5057,6 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
     ),
   );
 
-  // Exported field: 'user-user-field_user_title'.
-  $fields['user-user-field_user_title'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_title',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '0',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '34',
-        ),
-      ),
-      'entity_type' => 'user',
-      'field_name' => 'field_user_title',
-      'label' => 'Title',
-      'required' => 0,
-      'settings' => array(
-        'better_formats' => array(
-          'allowed_formats' => array(
-            'copyright' => 0,
-            'filtered_html' => 'filtered_html',
-            'full_html' => 'full_html',
-            'html_mail' => 'html_mail',
-            'managed_content' => 'managed_content',
-            'php_code' => 'php_code',
-            'plain_text' => 'plain_text',
-          ),
-          'allowed_formats_toggle' => 0,
-          'default_order_toggle' => 0,
-          'default_order_wrapper' => array(
-            'formats' => array(
-              'copyright' => array(
-                'weight' => '0',
-              ),
-              'filtered_html' => array(
-                'weight' => '-9',
-              ),
-              'full_html' => array(
-                'weight' => '-8',
-              ),
-              'html_mail' => array(
-                'weight' => '0',
-              ),
-              'managed_content' => array(
-                'weight' => '-10',
-              ),
-              'php_code' => array(
-                'weight' => '-6',
-              ),
-              'plain_text' => array(
-                'weight' => '-7',
-              ),
-            ),
-          ),
-        ),
-        'exclude_cv' => FALSE,
-        'linkit' => array(
-          'button_text' => 'Search',
-          'enable' => 0,
-          'profile' => '',
-        ),
-        'text_processing' => '0',
-        'user_register_form' => 0,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'maxlength_js' => 0,
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-          'size' => '25',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '1',
-      ),
-    ),
-  );
-
   // Exported field: 'user-user-field_user_twitter_account'.
   $fields['user-user-field_user_twitter_account'] = array(
     'field_config' => array(
@@ -5353,7 +5317,7 @@ if(isset($entity->field_user_birthday[LANGUAGE_NONE][0][\'value\'])){
   t('Spokesman');
   t('Telefon');
   t('Telefon (mobil)');
-  t('Title');
+  t('Titel');
   t('Title Text');
   t('Tragen Sie hier Ihre politischen Ziele ein. Diese werden in Ihrem Profil veröffentlicht.');
   t('Twitter');

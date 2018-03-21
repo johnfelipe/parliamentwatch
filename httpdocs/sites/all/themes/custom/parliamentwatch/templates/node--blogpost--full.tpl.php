@@ -100,7 +100,7 @@
       <?php endif; ?>
     </div>
     <div class="blog__submitted__tags">
-      <?php print render($content['field_blogpost_blogtags']); ?>
+      <?php print render($content['field_topics']); ?>
       <?php print render($content['field_blogpost_categories']); ?>
     </div>
   </div>

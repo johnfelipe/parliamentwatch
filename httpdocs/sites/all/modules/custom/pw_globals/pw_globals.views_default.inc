@@ -112,7 +112,7 @@ function pw_globals_views_default_views() {
       ),
     ),
   );
-  /* Sortierkriterien: Inhalt: Datum */
+  /* Sortierkriterien: Inhalt: Beitragsdatum */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';

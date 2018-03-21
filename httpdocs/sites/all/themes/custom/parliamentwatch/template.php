@@ -198,11 +198,6 @@ function parliamentwatch_preprocess_block(&$variables) {
       $variables['classes_array'][] = drupal_html_class('title--' . menu_get_object('node')->type);
     }
   }
-
-  if ($variables['block']->module == 'pw_vote' && $variables['block']->delta == 'poll') {
-    $variables['attributes_array']['data-ajax-block-url'] = url('block/' . $variables['block']->module . '/' . $variables['block']->delta);
-  }
-
 }
 
 /**
@@ -360,6 +355,7 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
 function parliamentwatch_preprocess_table(&$variables) {
   if ($variables['theme_hook_original'] == 'table__poll_votes') {
     $variables['attributes'] = ['class' => ['table', 'table--poll-votes', 'table--sortable']];
+    drupal_add_js(path_to_theme() . '/js/contrib/jquery.dynatable.js');
   }
 }
 
@@ -632,6 +628,27 @@ function parliamentwatch_container__figure($variables) {
   $element += ['#attributes' => []];
 
   return '<figure' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</figure>';
+}
+
+/**
+ * Overrides theme_container() for filterbar.
+ */
+function parliamentwatch_container__filterbar($variables) {
+  $element = $variables['element'];
+  // Ensure #attributes is set.
+  $element += ['#attributes' => []];
+  $element['#attributes']['class'][] = 'filterbar';
+
+  $output = '<div ' . drupal_attributes($element['#attributes']) . '>';
+  $output .= '<div class="filterbar__inner">' . $element['#children'];
+  $output .= '<ul class="filterbar__view_options">';
+  $output .= '<li class="filterbar__view_options__item active">';
+  $output .= '<a href="#" class="filterbar__view_options__item__link"><i class="icon icon-th"></i></a>';
+  $output .= '</li></ul>';
+  $output .= '</div></div>';
+  $output .= '<div class="filterbar-placeholder"></div>';
+
+  return $output;
 }
 
 /**

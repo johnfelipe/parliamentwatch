@@ -333,6 +333,16 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: create field_user_prefix.
+  $permissions['create field_user_prefix'] = array(
+    'name' => 'create field_user_prefix',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'anonymous user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: create field_user_pseudonym.
   $permissions['create field_user_pseudonym'] = array(
     'name' => 'create field_user_pseudonym',
@@ -370,13 +380,6 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: create field_user_roles_for_view_mode_s.
   $permissions['create field_user_roles_for_view_mode_s'] = array(
     'name' => 'create field_user_roles_for_view_mode_s',
-    'roles' => array(),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: create field_user_title.
-  $permissions['create field_user_title'] = array(
-    'name' => 'create field_user_title',
     'roles' => array(),
     'module' => 'field_permissions',
   );
@@ -733,6 +736,16 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: edit field_user_prefix.
+  $permissions['edit field_user_prefix'] = array(
+    'name' => 'edit field_user_prefix',
+    'roles' => array(
+      0 => 'Content Manager',
+      1 => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: edit field_user_pseudonym.
   $permissions['edit field_user_pseudonym'] = array(
     'name' => 'edit field_user_pseudonym',
@@ -775,16 +788,6 @@ function pw_profiles_user_default_permissions() {
     'name' => 'edit field_user_roles_for_view_mode_s',
     'roles' => array(
       0 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit field_user_title.
-  $permissions['edit field_user_title'] = array(
-    'name' => 'edit field_user_title',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -1172,6 +1175,15 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: edit own field_user_prefix.
+  $permissions['edit own field_user_prefix'] = array(
+    'name' => 'edit own field_user_prefix',
+    'roles' => array(
+      0 => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: edit own field_user_pseudonym.
   $permissions['edit own field_user_pseudonym'] = array(
     'name' => 'edit own field_user_pseudonym',
@@ -1214,15 +1226,6 @@ function pw_profiles_user_default_permissions() {
     'name' => 'edit own field_user_roles_for_view_mode_s',
     'roles' => array(
       0 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_user_title.
-  $permissions['edit own field_user_title'] = array(
-    'name' => 'edit own field_user_title',
-    'roles' => array(
-      0 => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1699,6 +1702,16 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: view field_user_prefix.
+  $permissions['view field_user_prefix'] = array(
+    'name' => 'view field_user_prefix',
+    'roles' => array(
+      0 => 'anonymous user',
+      1 => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: view field_user_pseudonym.
   $permissions['view field_user_pseudonym'] = array(
     'name' => 'view field_user_pseudonym',
@@ -1743,16 +1756,6 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: view field_user_roles_for_view_mode_s.
   $permissions['view field_user_roles_for_view_mode_s'] = array(
     'name' => 'view field_user_roles_for_view_mode_s',
-    'roles' => array(
-      0 => 'anonymous user',
-      1 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view field_user_title.
-  $permissions['view field_user_title'] = array(
-    'name' => 'view field_user_title',
     'roles' => array(
       0 => 'anonymous user',
       1 => 'authenticated user',
@@ -2172,6 +2175,16 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: view own field_user_prefix.
+  $permissions['view own field_user_prefix'] = array(
+    'name' => 'view own field_user_prefix',
+    'roles' => array(
+      0 => 'anonymous user',
+      1 => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: view own field_user_pseudonym.
   $permissions['view own field_user_pseudonym'] = array(
     'name' => 'view own field_user_pseudonym',
@@ -2216,18 +2229,6 @@ function pw_profiles_user_default_permissions() {
   $permissions['view own field_user_roles_for_view_mode_s'] = array(
     'name' => 'view own field_user_roles_for_view_mode_s',
     'roles' => array(),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_user_title.
-  $permissions['view own field_user_title'] = array(
-    'name' => 'view own field_user_title',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-      2 => 'anonymous user',
-      3 => 'authenticated user',
-    ),
     'module' => 'field_permissions',
   );
 

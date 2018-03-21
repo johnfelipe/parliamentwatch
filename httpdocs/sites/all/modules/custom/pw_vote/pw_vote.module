@@ -10,15 +10,32 @@ include_once 'pw_vote.features.inc';
  * Implements hook_menu().
  */
 function pw_vote_menu() {
-  $items = array();
-  $items['admin/config/pw/vote'] = array(
+  $items['admin/config/pw/vote'] = [
     'title' => 'PW Vote',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('pw_vote_generate_votes_form'),
     'access arguments' => array('administer site configuration'),
     'file' => 'pw_vote.admin.inc',
-  );
+  ];
+  $items['votes/%node'] = [
+    'page callback' => 'pw_vote_by_poll_json',
+    'page arguments' => [1],
+    'access arguments' => ['access content'],
+  ];
   return $items;
+}
+
+/**
+ * Implements hook_search_api_alter_callback_info().
+ */
+function pw_vote_search_api_alter_callback_info() {
+  $callbacks['vote_search_alter_callback'] = [
+    'name' => t('Politician reference fields'),
+    'description' => t('Adds fields of the related user revision to the indexed data.'),
+    'class' => 'VoteSearchAlterCallback',
+    'weight' => 100,
+  ];
+  return $callbacks;
 }
 
 /**
@@ -195,6 +212,16 @@ function pw_vote_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pw_vote_form_pw_vote_poll_filters_form_alter(&$form, &$form_state) {
+  $form['form_build_id']['#access'] = FALSE;
+  $form['form_token']['#access'] = FALSE;
+  $form['form_id']['#access'] = FALSE;
+}
+
+
+/**
  * Implements hook_form_validate().
  */
 function pw_vote_form_validate(&$form, &$form_state, $form_id) {
@@ -342,6 +369,14 @@ function pw_vote_block_info() {
     'info' => t('Voting behavior by poll'),
     'cache' => DRUPAL_NO_CACHE,
   ];
+  $blocks['poll_filters'] = [
+    'info' => t('Voting behavior by poll filters'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+  $blocks['poll_charts'] = [
+    'info' => t('Voting behavior by poll charts'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
   return $blocks;
 }
 
@@ -359,10 +394,91 @@ function pw_vote_block_view($delta, $arguments = array()) {
     case 'poll':
       $block = pw_vote_poll_block();
       break;
+    case 'poll_filters':
+      $block = pw_vote_poll_filters_block();
+      break;
+    case 'poll_charts':
+      $block = pw_vote_poll_charts_block();
+      break;
     default:
       return [];
   }
   return $block;
+}
+
+/**
+ * Page callback: Delivers JSON representation of votes cast on a poll.
+ *
+ * @param $node
+ *   The node of type poll.
+ */
+function pw_vote_by_poll_json($node) {
+  if ($node->type != 'poll') {
+    return MENU_NOT_FOUND;
+  }
+
+  $map = function ($item) {
+    $voted_dict = [
+      19667 => t('Voted yes') . '<i class="icon icon-ok"></i>',
+      19668 => t('Voted no') . '<i class="icon icon-close"></i>',
+      19669 => t('Abstained') . '<i class="icon icon-circle-o"></i>',
+      19670 => t('Did not vote') . '<i class="icon icon-minus"></i>',
+    ];
+
+    $profile_picture = theme('image_style', ['path' => $item['fields']['politician_picture_uri'], 'style_name' => 'square_small']);
+    if (isset($item['fields']['politician_political_faction'])) {
+      $political_faction = $item['fields']['politician_political_faction'];
+    }
+    else {
+      $political_faction = '';
+    }
+    if (isset($item['fields']['politician_constituency_name'])) {
+      $constituency = $item['fields']['politician_constituency_name'];
+    }
+    else {
+      $constituency = '';
+    }
+
+    return [
+      'politician_picture' => '<span>' . l($profile_picture, $item['fields']['politician_uri'], ['html' => TRUE]) . '</span>',
+      'politician_full_name' => l($item['fields']['politician_full_name'][0], $item['fields']['politician_uri']),
+      'politician_lname' => $item['fields']['politician_lname'],
+      'politician_political_faction' => $political_faction,
+      'politician_constituency_name' => $constituency,
+      'field_vote' => $item['fields']['field_vote'],
+      'field_vote_display' => $voted_dict[$item['fields']['field_vote']],
+    ];
+  };
+
+  $q = pw_vote_by_poll_search($node);
+
+  if (isset(drupal_get_query_parameters()['keys'])) {
+    $q->keys(drupal_get_query_parameters()['keys']);
+  }
+
+  if (isset(drupal_get_query_parameters()['political_faction'])) {
+    $f = new SearchApiQueryFilter('OR', ['facet:politician_political_faction']);
+    foreach (drupal_get_query_parameters()['political_faction'] as $value) {
+      $f->condition('politician_political_faction', $value);
+    }
+    $q->filter($f);
+  }
+
+  if (is_array(drupal_get_query_parameters()['field_vote'])) {
+    $f = new SearchApiQueryFilter('OR', ['facet:field_vote']);
+    foreach (drupal_get_query_parameters()['field_vote'] as $value) {
+      $f->condition('field_vote', $value);
+    }
+    $q->filter($f);
+  }
+
+  $response = $q->execute();
+  $output = [
+    'facets' => $response['search_api_facets'],
+    'queryRecordCount' => $response['result count'],
+    'records' => array_map($map, array_values($response['results'])),
+  ];
+  drupal_json_output($output);
 }
 
 /**
@@ -408,6 +524,7 @@ function pw_vote_profile_block($type = 'poll') {
     $block['content'] = node_view_multiple($nodes, 'embedded');
     $block['content']['pager'] = [
       '#theme' => 'pager',
+      '#element' => PagerDefault::$maxElement - 1,
       '#weight' => 100,
     ];
   }
@@ -430,90 +547,129 @@ function pw_vote_poll_block() {
     return $block;
   }
 
-  $header = [
-    [''],
-    ['data' => t('Name'), 'field' => 'name'],
-    ['data' => t('Political faction'), 'field' => 'political_faction'],
-    ['data' => t('Constituency'), 'field' => 'constituency'],
-    ['data' => t('Voted'), 'field' => 'field_vote_tid', 'sort' => 'asc'],
+  $block['content'] = [
+    '#theme' => 'table__poll_votes',
+    '#header' => [
+      ['data' => '', 'data-dynatable-column' => 'politician_picture'],
+      ['data' => t('Name'), 'data-dynatable-column' => 'politician_full_name', 'data-dynatable-sorts' => 'politician_lname'],
+      ['data' => t('Political faction'), 'data-dynatable-column' => 'politician_political_faction'],
+      ['data' => t('Constituency'), 'data-dynatable-column' => 'politician_constituency_name'],
+      ['data' => t('Voted'), 'data-dynatable-column' => 'field_vote_display'],
+    ],
+    '#rows' => [[]],
+    '#sticky' => FALSE,
+    '#attached' => [
+      'js' => [
+        0 => [
+          'data' => ['pw_vote' => ['node' => $node->nid]],
+          'type' => 'setting'
+        ],
+      ],
+    ],
   ];
-  $result = pw_vote_by_poll_query($node)
-    ->extend('TableSort')
-    ->extend('PagerDefault')
-    ->element(1)
-    ->orderByHeader($header)
-    ->limit(40)
-    ->execute();
-  $nids_vids = $result->fetchAllKeyed();
-
-  if (!empty($nids_vids)) {
-    $nodes = node_load_multiple(array_keys($nids_vids));
-    $users = pw_userarchives_politician_load_multiple(array_values($nids_vids));
-    $rows = [];
-
-    foreach ($nids_vids as $nid => $vid) {
-      switch ($nodes[$nid]->field_vote[LANGUAGE_NONE][0]['tid']) {
-        case 19667:
-          $voted = t('Voted yes') . '<i class="icon icon-ok"></i>';
-          break;
-        case 19668:
-          $voted = t('Voted no') . '<i class="icon icon-close"></i>';
-          break;
-        case 19669:
-          $voted = t('Abstained') . '<i class="icon icon-circle-o"></i>';
-          break;
-        case 19670:
-          $voted = t('Did not vote') . '<i class="icon icon-minus"></i>';
-          break;
-      }
-
-      $profile_picture = field_view_field('user', $users[$vid], 'field_user_picture', ['label' => 'hidden', 'settings' => ['image_style' => 'square_small']]);
-      if (isset($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])) {
-        $political_faction = taxonomy_term_load($users[$vid]->field_user_fraction[LANGUAGE_NONE][0]['tid'])->name;
-      }
-      else {
-        $political_faction = '';
-      }
-      if (isset($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])) {
-        $constituency = taxonomy_term_load($users[$vid]->field_user_constituency[LANGUAGE_NONE][0]['tid'])->name;
-      }
-      else {
-        $constituency = '';
-      }
-
-      $rows[] = [
-        [
-          'data' => '<span>' . l(drupal_render($profile_picture), entity_uri('user', $users[$vid])['path'], ['html' => TRUE]) . '</span>',
-        ],
-        [
-          'data' => l(_pw_get_fullname($users[$vid]), entity_uri('user', $users[$vid])['path']),
-        ],
-        [
-          'data' => '<span class="party-indicator party-indicator--' . drupal_html_class(strip_tags($political_faction)) . '">' . $political_faction . '</span>',
-        ],
-        [
-          'data' => $constituency,
-        ],
-        [
-          'data' => $voted,
-        ],
-      ];
-    }
-
-    $block['content']['votes'] = [
-      '#theme' => 'table__poll_votes',
-      '#header' => $header,
-      '#rows' => $rows,
-      '#sticky' => FALSE,
-    ];
-    $block['content']['pager'] = [
-      '#theme' => 'pager',
-      '#element' => 1,
-      '#weight' => 100,
-    ];
-  }
 
   return $block;
+}
+
+/**
+ * Displays filters for voting behaviors of deputies on a poll.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_vote_poll_filters_block() {
+  $block = [];
+
+  $node = menu_get_object();
+
+  if (!$node || $node->type != 'poll') {
+    return $block;
+  }
+
+  $facets = pw_vote_by_poll_search($node)->execute()['search_api_facets'];
+  $block['content'] = drupal_get_form('pw_vote_poll_filters', $facets);
+
+  return $block;
+}
+
+/**
+ * Displays charts for polls.
+ *
+ * @return array
+ *   The block render array.
+ */
+function pw_vote_poll_charts_block() {
+  $block = [];
+  $node = menu_get_object();
+
+  if (!$node || $node->type != 'poll') {
+    return $block;
+  }
+
+  $block['subject'] = t('Poll charts');
+  $block['content'] = url('votes/' . $node->nid);
+
+  return $block;
+}
+
+/**
+ * Form constructor for the vote filters form on poll pages.
+ */
+function pw_vote_poll_filters($form, &$form_state, $facets) {
+  $parameters = drupal_get_query_parameters();
+
+  $form['#method'] = 'get';
+  $form['#action'] = url(current_path());
+  $form['#theme'] = 'filterbar';
+
+  if (strpos($parliament->name, 'EU') === 0) {
+    $keys_placeholder = t('Enter a locality or name');
+  }
+  else {
+    $keys_placeholder = t('Enter a postal code, locality or name');
+  }
+
+  $form['keys'] = [
+    '#type' => 'textfield',
+    '#title' => t('Search'),
+    '#title_display' => 'invisible',
+    '#default_value' => isset($parameters['keys']) ? $parameters['keys'] : '',
+    '#attributes' => ['placeholder' => $keys_placeholder],
+  ];
+
+  $political_faction_options = _pw_profiles_facet_values($facets['politician_political_faction']);
+
+  $form['political_faction'] = [
+    '#type' => 'checkboxes',
+    '#title' => t('Political faction'),
+    '#title_display' => 'invisible',
+    '#options' => array_combine($political_faction_options, $political_faction_options),
+    '#default_value' => empty($parameters['field_vote']) ? '' : $parameters['field_vote'],
+    '#dropdown' => TRUE,
+  ];
+
+  $vote_options = [
+    19667 => t('Yes'),
+    19668 => t('No'),
+    19669 => t('Abstained'),
+    19670 => t('Did not vote'),
+  ];
+
+  $form['field_vote'] = [
+    '#type' => 'checkboxes',
+    '#title' => t('Voting behavior'),
+    '#title_display' => 'invisible',
+    '#options' => $vote_options,
+    '#default_value' => empty($parameters['field_vote']) ? '' : $parameters['field_vote'],
+    '#dropdown' => FALSE,
+  ];
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Filter votes'),
+  );
+
+  return $form;
 }
 
 /**
@@ -647,36 +803,32 @@ function pw_vote_by_user_revision_query($account, $node_target_type = 'poll') {
 }
 
 /**
- * Returns query for all votes cast on the given poll.
+ * Returns search query for all votes cast on the given poll.
  *
  * @param object $node
  *   The poll node.
  *
- * @return SelectQuery
- *   The query object.
+ * @return SearchApiQuery
+ *   The search query.
  */
-function pw_vote_by_poll_query($node) {
-  $q = db_select('node', 'n');
-  $q->join('field_data_field_vote_node', 'poll', 'n.nid = poll.entity_id');
-  $q->join('field_data_field_vote_user', 'user', 'n.nid = user.entity_id');
-  $q->join('field_data_field_poll_date', 'date', 'poll.field_vote_node_target_id = date.entity_id');
-  $q->join('field_data_field_vote', 'vote', 'n.nid = vote.entity_id');
-  $q->join('user_archive_cache', 'uac', 'user.field_vote_user_target_id = uac.uid');
-  $q->join('field_revision_field_user_lname', 'profile_lname', 'uac.vid = profile_lname.revision_id');
-  $q->leftJoin('field_revision_field_user_constituency', 'profile_constituency', 'uac.vid = profile_constituency.revision_id');
-  $q->leftJoin('taxonomy_term_data', 'td', 'td.tid = profile_constituency.field_user_constituency_tid');
-  $q->addExpression('uac.fraction_name', 'political_faction');
-  $q->addExpression('profile_lname.field_user_lname_value', 'name');
-  $q->addExpression('td.name', 'constituency');
-  $q->fields('n', ['nid'])
-    ->fields('uac', ['vid'])
-    ->condition('n.type', 'vote')
-    ->condition('n.status', NODE_PUBLISHED)
-    ->condition('poll.field_vote_node_target_id', $node->nid)
-    ->condition('uac.user_role', 'deputy')
-    ->condition('uac.parliament_name', pw_globals_parliament($node)->name);
+function pw_vote_by_poll_search($node) {
+  $facets = pw_vote_by_poll_search_facets();
+  return search_api_query('vote_index', ['search_api_facets' => $facets])
+    ->condition('field_vote_node', $node->nid);
+}
 
-  return $q;
+/**
+ * Returns list of facets for the voting behavior search.
+ *
+ * @return array
+ *   An associative array to be used as facets option for a query.
+ */
+function pw_vote_by_poll_search_facets() {
+  $common = ['limit' => -1, 'min_count' => 1, 'missing' => TRUE, 'operator' => 'or'];
+  return [
+    'field_vote' => ['field' => 'field_vote'] + $common,
+    'politician_political_faction' => ['field' => 'politician_political_faction'] + $common,
+  ];
 }
 
 /**

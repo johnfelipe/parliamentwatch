@@ -44,12 +44,17 @@
  * @ingroup themeable
  */
 ?>
-
-<section id="<?php print $block_html_id; ?>" class="poll__table view-mode view-mode--has-filters <?php print $classes; ?>" <?php print $attributes; ?>>
-  <div class="container">
-    <?php print render($title_suffix) ?>
-    <div class="poll_detail__table">
-      <?php print $content; ?>
-    </div>
+<div class="filterbar filterbar--disabled">
+  <div class="filterbar__inner">
+    <?php print render($title_suffix); ?>
+    <?php print $content; ?>
+    <ul class="filterbar__view_options">
+      <li class="filterbar__view_options__item active">
+        <a href="#block-pw-vote-poll-charts" class="filterbar__view_options__item__link"><i class="icon icon-bar-chart"></i></a>
+      </li>
+      <li class="filterbar__view_options__item">
+        <a href="#block-pw-vote-poll" class="filterbar__view_options__item__link"><i class="icon icon-th-list"></i></a>
+      </li>
+    </ul>
   </div>
-</section>
+</div>

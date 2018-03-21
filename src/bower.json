@@ -1,23 +1,24 @@
 {
-    "name": "parliamentwatch",
-    "version": "1.0.0",
-    "description": "Asset generation for parliamentwatch drupal-theme",
-    "keywords": [],
-    "homepage": "http://www.abgeordnetenwatch.de",
-    "private": true,
-    "dependencies": {
-        "bourbon": "4.3.x",
-        "neat": "2.0.x",
-        "breakpoint-sass": "2.x.x",
-        "normalize-css": "5.0.x",
-        "matchHeight": "0.7.x",
-        "select2": "4.0.x",
-        "jquery.scrollTo": "2.1.x",
-        "sticky-kit": "1.1.x",
-        "jquery-hoverintent": "1.8.x",
-        "jquery-stupid-table": "1.0.x",
-        "swiper": "3.4.x",
-        "typeahead.js": "0.11.x",
-        "d3": "4.8.x"
-    }
+  "name": "parliamentwatch",
+  "version": "1.0.0",
+  "description": "Asset generation for parliamentwatch drupal-theme",
+  "keywords": [],
+  "homepage": "http://www.abgeordnetenwatch.de",
+  "private": true,
+  "dependencies": {
+    "bourbon": "4.3.x",
+    "neat": "2.0.x",
+    "breakpoint-sass": "2.x.x",
+    "normalize-css": "5.0.x",
+    "matchHeight": "0.7.x",
+    "select2": "4.0.x",
+    "jquery.scrollTo": "2.1.x",
+    "sticky-kit": "1.1.x",
+    "jquery-hoverintent": "1.8.x",
+    "jquery-stupid-table": "1.0.x",
+    "swiper": "3.4.x",
+    "typeahead.js": "0.11.x",
+    "d3": "4.8.x",
+    "dynatable": "0.3.1"
+  }
 }

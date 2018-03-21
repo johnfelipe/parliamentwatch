@@ -165,7 +165,7 @@ function pw_globals_update_7111() {
   }
 }
 
-/*
+/**
  * Disable obsolete modules.
  */
 function pw_globals_update_7112() {
@@ -184,6 +184,69 @@ function pw_globals_update_7112() {
     'views_sort_null_field',
   ];
   module_disable($modules);
+}
+
+/**
+ * Replace custom filterbar block for voting behavior with dynamic one.
+ */
+function pw_globals_update_7113() {
+  _pw_globals_delete_blocks([189]);
+  $config = [
+    'module' => 'pw_vote',
+    'delta' => 'poll_filters',
+    'weight' => -75,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => 'eu/abstimmungen/*',
+    'cache' => DRUPAL_NO_CACHE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content'],
+    'node_types' => ['poll']
+  ];
+  _pw_globals_configure_block($config);
+}
+
+/**
+ * Configure new poll charts block.
+ */
+function pw_globals_update_7114() {
+  $config = [
+    'module' => 'pw_vote',
+    'delta' => 'poll_charts',
+    'weight' => -74,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => 'eu/abstimmungen/*',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+    'title' => '<none>',
+    'regions' => ['parliamentwatch' => 'content'],
+    'node_types' => ['poll']
+  ];
+  _pw_globals_configure_block($config);
+}
+
+/**
+ * Replace field_user_title with field_user_prefix.
+ */
+function pw_globals_update_7115() {
+  $common_fields = [
+    'entity_type',
+    'bundle',
+    'entity_id',
+    'revision_id',
+    'language',
+    'delta',
+  ];
+  $source_fields = array_merge($common_fields, ['field_user_title_value']);
+  $target_fields = array_merge($common_fields, ['field_user_prefix_value']);
+  $allowed_values = array_values(field_info_field('field_user_prefix')['settings']['allowed_values']);
+  db_insert('field_data_field_user_prefix')
+    ->fields($target_fields)
+    ->from(db_select('field_data_field_user_title', 't')->fields('t', $source_fields)->condition('field_user_title_value', $allowed_values))
+    ->execute();
+  db_insert('field_revision_field_user_prefix')
+    ->fields($target_fields)
+    ->from(db_select('field_revision_field_user_title', 't')->fields('t', $source_fields)->condition('field_user_title_value', $allowed_values))
+    ->execute();
+  field_delete_field('field_user_title');
 }
 
 /**

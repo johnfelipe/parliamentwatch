@@ -417,6 +417,7 @@ function pw_profiles_page($parliament_term, $role_name) {
   }
 
   $build['filters'] = drupal_get_form('pw_profiles_filters_form', $parliament_term, $response['search_api_facets'], isset($build['user']));
+  $build['filters']['#theme_wrappers'][] = 'container__filterbar';
   $build['filters']['#weight'] = -5;
   $build['#theme_wrappers'] = ['container'];
   $build['#attributes'] = ['id' => 'ajax'];
@@ -584,6 +585,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
         '#title_display' => 'invisible',
         '#options' => ['' => t('All')] + _pw_profiles_options($list_values),
         '#default_value' => empty($parameters['list']) ? '' : $parameters['list'],
+        '#dropdown' => TRUE,
       );
     }
     if (count($list_position_values) > 1 && !pw_profiles_filter_disabled('field_user_list_position_tid', $parliament)) {
@@ -593,6 +595,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
         '#title_display' => 'invisible',
         '#options' => ['' => t('All')] + _pw_profiles_options($list_position_values),
         '#default_value' => empty($parameters['list_position']) ? '' : $parameters['list_position'],
+        '#dropdown' => TRUE,
       );
     }
     if (count($party_values) > 1) {
@@ -603,6 +606,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
         '#options' => _pw_profiles_options($party_values),
         '#multiple' => TRUE,
         '#default_value' => empty($parameters['party']) ? [] : $parameters['party'],
+        '#dropdown' => TRUE,
       );
     }
     if (count($gender_options) > 1) {
@@ -612,6 +616,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
         '#title_display' => 'invisible',
         '#options' => $gender_options,
         '#default_value' => empty($parameters['gender']) ? [] : $parameters['gender'],
+        '#dropdown' => FALSE,
       );
     }
   }
