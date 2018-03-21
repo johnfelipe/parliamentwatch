@@ -157,18 +157,17 @@ function pw_committees_get_memberships($account) {
   $q->orderBy('n.title');
   $nids = $q->execute()->fetchCol();
 
-  if(empty($nids)) {
+  if (empty($nids)) {
     return $memberships;
   }
 
-  $nodes = node_load_multiple($nids);
   foreach (pw_committees_get_membership_config() as $role_name => $field_name) {
-    foreach ($nodes as $nid => $node) {
+    foreach (node_load_multiple($nids) as $nid => $node) {
       $field_values = field_get_items('node', $node, $field_name);
       foreach ($field_values as $field_value) {
-        if($field_value['target_id'] == $account->uid) {
+        if ($field_value['target_id'] == $account->uid) {
           $memberships[$role_name][$nid] = $node;
-          break 2;
+          break;
         }
       }
     }
