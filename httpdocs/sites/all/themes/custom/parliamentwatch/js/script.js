@@ -98,10 +98,10 @@
    */
   function mapVotes(votes) {
     var map = {
-      'yes': {name: 'Ja', 'color': '#9fd773'},
-      'no': {name: 'Nein', color: '#cc6c5b'},
-      'abstain': {name: 'Enthalten', color: '#e2e2e2'},
-      'no-show': {name: 'Nicht beteiligt', color: '#a6a6a6'}
+      'yes': {name: 'Ja', color: '#9fd773', vote_id: 19667},
+      'no': {name: 'Nein', color: '#cc6c5b', vote_id: 19668},
+      'abstain': {name: 'Enthalten', color: '#e2e2e2', vote_id: 19669},
+      'no-show': {name: 'Nicht beteiligt', color: '#a6a6a6', vote_id: 19670}
     };
 
     var data = [];
@@ -1574,11 +1574,14 @@
 
           barWrapper.selectAll("div")
             .data(data)
-            .enter().append("div")
+            .enter().append("a")
             .attr("class", "d3-bars__item")
             .attr("style", function (d) {
               var value = 100 / totalPollCount * d.count;
               return 'width:' + value + '%; background-color:' + d.color + ';';
+            })
+            .attr("href", function (o) {
+              return window.location.pathname + '?sorts[field_vote]=1&field_vote=' + o.vote_id +'#block-pw-vote-poll' + Drupal.t('Show all') + '</a>';
             });
 
           // Define Total-Label
@@ -1599,8 +1602,12 @@
             .enter()
             .append('li')
             .attr('class', 'd3__label__item')
-            .html(function (d) {
-              return d.count + ' ' + d.name;
+            .append('a')
+            .attr("href", function (o) {
+              return window.location.pathname + '?sorts[field_vote]=1&field_vote=' + o.vote_id +'#block-pw-vote-poll' + Drupal.t('Show all') + '</a>';
+            })
+            .html(function (o) {
+              return o.count + ' ' + o.name;
             })
             .insert("span", ":first-child")
             .attr('class', 'd3__label__item__indicator')
@@ -1644,11 +1651,14 @@
               .selectAll("div")
               .data(obj)
               .enter()
-              .append("div")
+              .append("a")
               .attr("class", "d3-bars__item")
               .attr("style", function (d) {
                 var value = 100 / totalPollCount * d.count;
                 return 'height:' + value + '%; background-color:' + d.color + ';';
+              })
+              .attr("href", function (o) {
+                return window.location.pathname + '?sorts[field_vote]=1&political_faction=' + key + '&field_vote=' + o.vote_id +'#block-pw-vote-poll' + Drupal.t('Show all') + '</a>';
               });
 
             // Define Labels
@@ -1664,6 +1674,10 @@
               .enter()
               .append('li')
               .attr('class', 'd3__label__item')
+              .append('a')
+              .attr("href", function (o) {
+                return window.location.pathname + '?sorts[field_vote]=1&political_faction=' + key + '&field_vote=' + o.vote_id +'#block-pw-vote-poll' + Drupal.t('Show all') + '</a>';
+              })
               .html(function (o) {
                 return o.count + ' ' + o.name;
               })

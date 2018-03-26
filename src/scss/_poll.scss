@@ -390,6 +390,9 @@
     @include breakpoint($breakpoint-m-min) {
       @include grid-column(6);
     }
+    .d3__label__item {
+      @include clearfix;
+    }
   }
 }
 
