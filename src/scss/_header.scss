@@ -5,6 +5,7 @@
 */
 
 #header {
+  position: relative;
   background: $beige;
   border-bottom: 1px solid $darkBeige;
   width: 100%;
@@ -601,11 +602,12 @@
     &.header__subnav__archive__list__item--active {
       a {
         color: $darkGray;
+        background: $brightGray;
 
         position: relative;
         padding-right: 40px;
         &:before {
-          content: 'Aktiv';
+          content: '';
           position: absolute;
           display: inline-block;
           font-size: 11px;
