@@ -71,6 +71,9 @@
   &:hover {
     color: $brightGray;
   }
+  > .icon {
+    margin-right: 5px;
+  }
 }
 
 .footer__mediapartner {
