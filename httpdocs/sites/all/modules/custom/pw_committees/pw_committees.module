@@ -161,10 +161,12 @@ function pw_committees_get_memberships($account) {
   foreach (pw_committees_get_membership_config() as $role_name => $field_name) {
     foreach (node_load_multiple($nids) as $nid => $node) {
       $field_values = field_get_items('node', $node, $field_name);
-      foreach ($field_values as $field_value) {
-        if ($field_value['target_id'] == $account->uid) {
-          $memberships[$role_name][$nid] = $node;
-          break;
+      if (is_array($field_values)) {
+        foreach ($field_values as $field_value) {
+          if ($field_value['target_id'] == $account->uid) {
+            $memberships[$role_name][$nid] = $node;
+            break;
+          }
         }
       }
     }
