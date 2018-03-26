@@ -1581,7 +1581,7 @@
               return 'width:' + value + '%; background-color:' + d.color + ';';
             })
             .attr("href", function (o) {
-              return window.location.pathname + '?sorts[field_vote]=1&field_vote=' + o.vote_id +'#block-pw-vote-poll' + Drupal.t('Show all') + '</a>';
+              return window.location.pathname + '?sorts[field_vote]=1&field_vote=' + o.vote_id +'#block-pw-vote-poll';
             });
 
           // Define Total-Label
@@ -1604,7 +1604,7 @@
             .attr('class', 'd3__label__item')
             .append('a')
             .attr("href", function (o) {
-              return window.location.pathname + '?sorts[field_vote]=1&field_vote=' + o.vote_id +'#block-pw-vote-poll' + Drupal.t('Show all') + '</a>';
+              return window.location.pathname + '?sorts[field_vote]=1&field_vote=' + o.vote_id +'#block-pw-vote-poll';
             })
             .html(function (o) {
               return o.count + ' ' + o.name;
@@ -1658,7 +1658,7 @@
                 return 'height:' + value + '%; background-color:' + d.color + ';';
               })
               .attr("href", function (o) {
-                return window.location.pathname + '?sorts[field_vote]=1&political_faction=' + key + '&field_vote=' + o.vote_id +'#block-pw-vote-poll' + Drupal.t('Show all') + '</a>';
+                return window.location.pathname + '?sorts[field_vote]=1&political_faction=' + key + '&field_vote=' + o.vote_id +'#block-pw-vote-poll';
               });
 
             // Define Labels
@@ -1676,7 +1676,7 @@
               .attr('class', 'd3__label__item')
               .append('a')
               .attr("href", function (o) {
-                return window.location.pathname + '?sorts[field_vote]=1&political_faction=' + key + '&field_vote=' + o.vote_id +'#block-pw-vote-poll' + Drupal.t('Show all') + '</a>';
+                return window.location.pathname + '?sorts[field_vote]=1&political_faction=' + key + '&field_vote=' + o.vote_id +'#block-pw-vote-poll';
               })
               .html(function (o) {
                 return o.count + ' ' + o.name;
