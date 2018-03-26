@@ -146,14 +146,11 @@ function pw_committees_get_memberships($account) {
   $memberships = [];
 
   $field_user_parliament = field_get_items('user', $account, 'field_user_parliament');
-
   $q = pw_committees_base_query();
   $q->condition('f_parl.field_parliament_tid', $field_user_parliament[0]['tid']);
-  $or = db_or();
   foreach (pw_committees_get_membership_config() as $field_name) {
-    $or->condition($field_name.'.'.$field_name.'_target_id', $account->uid);
+    $q->leftJoin('field_data_'.$field_name, $field_name, $field_name.".entity_type = 'node' AND ".$field_name.".entity_id = n.nid AND ".$field_name.".".$field_name."_target_id = ".$account->uid);
   }
-  $q->condition($or);
   $q->orderBy('n.title');
   $nids = $q->execute()->fetchCol();
 
@@ -260,9 +257,6 @@ function pw_committees_base_query() {
   $q = db_select('node', 'n');
   $q->fields('n');
   $q->join('field_data_field_parliament', 'f_parl', "f_parl.entity_type = 'node' AND f_parl.entity_id = n.nid");
-  foreach (pw_committees_get_membership_config() as $field_name) {
-    $q->leftJoin('field_data_'.$field_name, $field_name, $field_name.".entity_type = 'node' AND ".$field_name.".entity_id = n.nid");
-  }
   $q->condition('n.type', 'committee');
   $q->condition('n.status', NODE_PUBLISHED);
   return $q;
