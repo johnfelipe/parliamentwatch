@@ -250,6 +250,24 @@ function pw_globals_update_7115() {
 }
 
 /**
+ * Copy data from field_user_picture_copyright to field_image_copyright.
+ */
+function pw_globals_update_7116() {
+  $sql = 'INSERT INTO {field_data_field_image_copyright} '
+    . 'SELECT :entity_type AS entity_type, :bundle AS bundle, fupc.deleted, '
+    . 'fup.field_user_picture_fid AS entity_id, '
+    . 'fup.field_user_picture_fid AS revision_id, fupc.language, fupc.delta, '
+    . 'fupc.field_user_picture_copyright_value AS field_image_copyright_value, '
+    . 'fupc.field_user_picture_copyright_format AS field_image_copyright_format '
+    . 'FROM {field_data_field_user_picture fup} '
+    . 'JOIN {field_data_field_user_picture_copyright} fupc USING(entity_id) '
+    . 'ON DUPLICATE KEY UPDATE '
+    . 'field_image_copyright_value = fupc.field_user_picture_copyright_value, '
+    . 'field_image_copyright_format = fupc.field_user_picture_copyright_format';
+  db_query($sql, [':entity_type' => 'file', ':bundle' => 'image']);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
