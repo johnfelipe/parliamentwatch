@@ -2166,7 +2166,7 @@
   Drupal.behaviors.votesTable = {
     attach: function (context, settings) {
       if (settings.pw_vote && settings.pw_vote.node) {
-        var url = '/votes/' + settings.pw_vote.node;
+        var url = '/votes/' + settings.pw_vote.node + window.location.search;
         $('.poll_detail__table').addClass('loading-overlay');
         $.ajax(url).done(function (data) {
           $('.table--poll-votes').bind('dynatable:init', function (event, dynatable) {
