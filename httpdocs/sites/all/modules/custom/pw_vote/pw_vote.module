@@ -644,7 +644,7 @@ function pw_vote_poll_filters($form, &$form_state, $facets) {
     '#title' => t('Political faction'),
     '#title_display' => 'invisible',
     '#options' => array_combine($political_faction_options, $political_faction_options),
-    '#default_value' => empty($parameters['field_vote']) ? '' : $parameters['field_vote'],
+    '#default_value' => empty($parameters['political_faction']) ? '' : $parameters['political_faction'],
     '#dropdown' => TRUE,
   ];
 
