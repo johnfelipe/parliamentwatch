@@ -170,7 +170,6 @@
   }
 
   /* Intro - Content */
-
   .deputy__intro__content {
     @include grid-column(12, $neat-grid-rtl);
     @include breakpoint($breakpoint-s-min) {
@@ -474,6 +473,35 @@
       padding-top: $space-small;
       padding-bottom: $space;
     }
+
+    .form-type-checkbox,
+    .form__item--checkbox {
+      margin-bottom: 0;
+      position: relative;
+      .form__item__label {
+        display: block;
+        margin-left: $space;
+      }
+      .form__item__control {
+        &:checked {
+          &:after {
+            content: '';
+            font-family: awfont;
+            font-size: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            line-height: 9px;
+            text-align: center;
+            color: $white;
+          }
+        }
+      }
+    }
+
+
   }
   .question-content {
     @include grid-column(12);
