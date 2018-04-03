@@ -40,7 +40,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        @include transform(translate(-50%,-80%));
+        transform: translate(-50%,-80%);
       }
     }
   }
@@ -71,7 +71,7 @@
     right: -$space-xsmall;
     top: 50%;
     color: $gray;
-    @include transform(translate(0,-50%));
+    transform: translate(0,-50%);
   }
   .icon {
     color: $orange;
@@ -103,7 +103,7 @@
       bottom: 0;
       border-right: 1px solid $gray;
 
-      @include transform(translate(0,0));
+      transform: translate(0,0);
     }
   }
   &:last-child {
@@ -137,7 +137,7 @@
       font-size: 1.4em;
       border-radius: 50%;
       padding: $space-xsmall;
-      @include transform(translate(-50%,-50%));
+      transform: translate(-50%,-50%);
     }
     span { display: none; }
     &:after { content: none; }
@@ -178,7 +178,7 @@
     top: -$space-small;
     background: $white;
     border-radius: 50%;
-    @include transform(translate(-50%,0));
+    transform: translate(-50%,0);
   }
 }
 .petition__state_indicator__item {
@@ -218,7 +218,7 @@
     top: -7px;
     left: 50%;
     margin: 0;
-    @include transform(translate(-50%,0));
+    transform: translate(-50%,0);
     @include breakpoint($breakpoint-xl-min) {
       width: 64px;
       height: 64px;
@@ -245,7 +245,7 @@
     top: -7px;
     left: 50%;
     margin: 0;
-    @include transform(translate(-50%,0));
+    transform: translate(-50%,0);
     @include breakpoint($breakpoint-xl-min) {
       width: 64px;
       height: 64px;
@@ -277,7 +277,7 @@
     top: -7px;
     left: 50%;
     margin: 0;
-    @include transform(translate(-50%,0));
+    transform: translate(-50%,0);
     @include breakpoint($breakpoint-xl-min) {
       width: 64px;
       height: 64px;
@@ -343,7 +343,7 @@
     width: ($space-large + $space-small);
     text-align: center;
     color: $gray;
-    @include transform(translate(0,-50%));
+    transform: translate(0,-50%);
   }
   .icon-ok {
     color: $color-accepted;
