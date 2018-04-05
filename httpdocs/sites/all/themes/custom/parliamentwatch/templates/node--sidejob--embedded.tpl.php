@@ -83,6 +83,7 @@
 <tr class="sidejob-overview__item <?php print $classes; ?>"<?php print $attributes; ?> data-sidejobid="<?php print $node->nid; ?>">
   <td class="sidejob-overview__item__customer" data-sort-value="<?php print trim(render($content['field_sidejob_organization'])); ?>">
     <?php print render($content['field_sidejob_organization']); ?>
+    <small><?php print render($content['field_sidejob_address']); ?></small>
     <?php
     // Contextual Links
     print render($title_suffix); ?>
@@ -90,21 +91,20 @@
   <td class="sidejob-overview__item__activity" data-sort-value="<?php print trim(render($content['field_job'])); ?>">
     <?php print render($content['field_job']); ?>
   </td>
-  <td class="sidejob-overview__item__city" data-sort-value="<?php print trim(render($content['field_sidejob_address'])); ?>">
-    <?php print render($content['field_sidejob_address']); ?>
-  </td>
   <td class="sidejob-overview__item__date" data-sort-value="<?php print $field_sidejob_date_start[0]['value']; ?>">
     <?php print render($content['field_sidejob_date']); ?>
   </td>
   <td class="sidejob-overview__item__level" data-sort-value="<?php print $field_sidejob_classification[0]['value'] ?: 0; ?>">
-    <?php if (!empty($content['income_range'])): ?>
-      <?php print render($content['income_range']); ?>
-    <?php endif; ?>
     <?php if (isset($field_sidejob_classification[0]['value'])): ?>
       <span>
         <?php print t('level'); ?> <?php print render($content['field_sidejob_classification']); ?>
       </span>
-      <small><?php print render($content['field_sidejob_income_interval']); ?></small>
+      <small><?php print render($content['base_income_range']); ?> | <?php print render($content['field_sidejob_income_interval']); ?></small>
+    <?php endif; ?>
+  </td>
+  <td class="sidejob-overview__item__total" data-sort-value="<?php print $content['income_range']; ?>">
+    <?php if (!empty($content['income_range'])): ?>
+      <?php print render($content['income_range']); ?>
     <?php endif; ?>
   </td>
 </tr>
