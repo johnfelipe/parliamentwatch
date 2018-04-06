@@ -267,6 +267,39 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
       menu_tree_set_path('main-menu', "profiles/$parliament_tid/candidates");
     }
   }
+
+  if (isset($account->content['field_user_constituency'])) {
+    if (strpos(pw_profiles_parliament($account)->name, 'Bayern') === 0) {
+      $account->content['field_user_constituency']['#title'] = t('Constituency', [], ['context' => 'Bayern']);
+    }
+  }
+
+  if (isset($account->content['field_user_election_result'])) {
+    if (strpos(pw_profiles_parliament($account)->name, 'Bayern') === 0) {
+      $constituency_context = 'Bayern';
+      $list_context = '';
+    }
+    elseif (strpos(pw_profiles_parliament($account)->name, 'Baden-Württemberg') === 0) {
+      $constituency_context = '';
+      $list_context = 'Baden-Württemberg';
+    }
+    else {
+      $constituency_context = '';
+      $list_context = '';
+    }
+
+    $account->content['field_user_election_result'][0]['#title'] = t('Constituency result', [], ['context' => $constituency_context]);
+
+    if ($account->content['field_user_constituency_won']['#items'][0]['value'] == 1) {
+      $account->content['field_user_election_result'][0]['#markup'] = t('@result % (via constituency)', ['@result' => $account->content['field_user_election_result']['#items'][0]['value']], ['context' => $constituency_context]);
+    }
+    elseif ($account->content['field_user_list_won']['#items'][0]['value'] == 1) {
+      $account->content['field_user_election_result'][0]['#markup'] = t('@result % (via list)', ['@result' => $account->content['field_user_election_result']['#items'][0]['value']], ['context' => $list_context]);
+    }
+    else {
+      $account->content['field_user_election_result'][0]['#markup'] = t('@result %', ['@result' => $account->content['field_user_election_result']['#items'][0]['value']]);
+    }
+  }
 }
 
 /**
@@ -298,6 +331,7 @@ function pw_profiles_theme() {
         'response' => NULL,
         'filters' => NULL,
         'role_name' => NULL,
+        'parliament' => NULL,
       ],
     ],
   ];
@@ -408,6 +442,7 @@ function pw_profiles_page($parliament_term, $role_name) {
       '#response' => $response,
       '#role_name' => $role_name,
       '#filters' => drupal_get_query_parameters(),
+      '#parliament' => $parliament_term,
     ];
     $build['user']['pager'] = [
       '#theme' => 'pager',
@@ -569,9 +604,15 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
     '#attributes' => ['placeholder' => $keys_placeholder],
   ];
   if (count($constituency_values) > 1) {
+    if (strpos($parliament->name, 'Bayern') === 0) {
+      $title = t('Constituency', [], ['context' => 'Bayern']);
+    }
+    else {
+      $title = t('Constituency', [], ['context' => '']);
+    }
     $form['constituency'] = array(
       '#type' => 'select',
-      '#title' => isset($parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value']) ? $parliament->field_parliament_constit_rename[LANGUAGE_NONE][0]['value'] : t('Constituency'),
+      '#title' => $title,
       '#title_display' => 'invisible',
       '#options' => ['' => t('All')] + _pw_profiles_options($constituency_values),
       '#default_value' => empty($parameters['constituency']) ? '' : $parameters['constituency'],
@@ -998,3 +1039,10 @@ function _pw_profiles_filter_options(array $options, $account) {
 
   return array_intersect_key($options, $eligible_terms);
 }
+
+t('Constituency result', [], ['context' => '']);
+t('Constituency result', [], ['context' => 'Bayern']);
+t('@result % (via constituency)', ['@result' => 0], ['context' => '']);
+t('@result % (via constituency)', ['@result' => 0], ['context' => 'Bayern']);
+t('@result % (via list)', ['@result' => 0], ['context' => '']);
+t('@result % (via list)', ['@result' => 0], ['context' => 'Baden-Württemberg']);

@@ -170,15 +170,12 @@
               <?php print $user_profile['field_user_constituency'][0]['#markup']; ?>
             </p>
             <?php if (isset($field_user_election_result)): ?>
-              <p><small>
-                <?php print $user_profile['field_user_election_result']['#title']; ?>: <?php print $user_profile['field_user_election_result'][0]['#markup']; ?> %
-                <?php if ($field_user_constituency_won[0]['value'] == 1): ?>
-                  (<?php print t('Via constituency'); ?>)
-                <?php endif; ?>
-                <?php if ($field_user_list_won[0]['value'] == 1): ?>
-                  (<?php print t('Via list'); ?>)
-                <?php endif; ?>
-              </small></p>
+              <p>
+                <small>
+                  <?php print $user_profile['field_user_election_result'][0]['#title']; ?>:
+                  <?php print $user_profile['field_user_election_result'][0]['#markup']; ?>
+                </small>
+              </p>
             <?php endif; ?>
           </dd>
         <?php endif; ?>

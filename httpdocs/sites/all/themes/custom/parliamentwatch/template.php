@@ -315,9 +315,13 @@ function parliamentwatch_preprocess_user_profile(&$variables) {
       '@number' => $variables['field_user_constituency'][0]['taxonomy_term']->field_constituency_nr['und'][0]['value'],
       '@title' => $variables['user_profile']['field_user_constituency'][0]['#markup']
     ];
-    $text = t('Constituency @number: @title', $placeholders);
+    if (strpos(pw_profiles_parliament($account)->name, 'Bayern') === 0) {
+      $text = t('Constituency @number: @title', $placeholders, ['context' => 'Bayern']);
+    }
+    else {
+      $text = t('Constituency @number: @title', $placeholders, ['context' => '']);
+    }
     $options = ['query' => ['constituency' => $variables['field_user_constituency'][0]['tid']]];
-
     $variables['user_profile']['field_user_constituency'][0]['#markup'] = l($text, $path, $options);
   }
 
@@ -1192,14 +1196,21 @@ function parliamentwatch_profile_search_summary($variables) {
     $options['!parties'] = "<span>$parties_text</span>";
   }
 
+  if (strpos($variables['parliament']->name, 'Bayern') === 0) {
+    $constituency_context = 'Bayern';
+  }
+  else {
+    $constituency_context = '';
+  }
+
   if (!empty($variables['filters']['constituency'])) {
     $constituencies_count = 1;
-    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies');
+    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies', [], ['context' => $constituency_context]);
     $options['!constituencies'] = l($constituencies_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'constituency')]);
   }
   else {
     $constituencies_count = count(_pw_profiles_facet_values($facets['field_user_constituency']));
-    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies');
+    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies', [], ['context' => $constituency_context]);
     $options['!constituencies'] = "<span>$constituencies_text</span>";
   }
 
@@ -1345,3 +1356,5 @@ t('Candidate', [], ['context' => 'female']);
 t('Candidate', [], ['context' => 'male']);
 t('Deputy', [], ['context' => 'female']);
 t('Deputy', [], ['context' => 'male']);
+format_plural(0, '1 constituency', '@count constituencies', [], ['context' => '']);
+format_plural(0, '1 constituency', '@count constituencies', [], ['context' => 'Bayern']);
