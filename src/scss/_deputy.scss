@@ -763,19 +763,18 @@ $abstimmverhalten-node-item-width: 18px;
 .sidejob-overview {
   @include box-padded-large($white);
   @include grid-column(12);
-  tbody .sidejob-overview__item__customer { font-weight: 500; }
-  .sidejob-overview__item__level {
-    text-align: right;
-    padding-left: $space-large;
-    white-space: nowrap;
-    span {
-      font-weight: 500;
-      border-left: 2px solid $gray;
-      display: inline-block;
-      padding-left: 5px;
-      margin-left: 3px;
-    }
+  tbody
+  .sidejob-overview__item__customer {
+    font-weight: 500;
     small {
+      color: $mediumGray;
+      display: block;
+    }
+  }
+  .sidejob-overview__item__level {
+    padding-left: $space-large;
+    small {
+      white-space: nowrap;
       color: $mediumGray;
       display: block;
     }
@@ -788,10 +787,9 @@ $abstimmverhalten-node-item-width: 18px;
     @media (min-width: $breakpoint-s-min) {
       padding-right: $space-xsmall-mobile;
     }
-  }
-  .sidejob-overview__item__city {
-    @media (min-width: $breakpoint-s-min) {
-      padding-right: $space-xsmall-mobile;
+    small {
+      color: $mediumGray;
+      display: block;
     }
   }
   .sidejob-overview__item__date {
@@ -799,6 +797,10 @@ $abstimmverhalten-node-item-width: 18px;
       float: left;
       width: 30%;
     }
+  }
+  .sidejob-overview__item__total {
+    white-space: nowrap;
+    padding-left: $space-large;
   }
   .sidejob-overview__item--active {
     background: $orangeBG;
