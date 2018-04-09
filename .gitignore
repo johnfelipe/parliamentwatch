@@ -58,6 +58,7 @@ googleb9537432b2dce52c.html
 # Ignore folders containing Javascript libraries
 bower_components/
 node_modules/
+src/package-lock.json
 
 # Ignore translation templates
 *.pot
