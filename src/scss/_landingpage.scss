@@ -135,6 +135,18 @@
       display: block;
     }
   }
+
+  .form {
+    & + p {
+      font-size: .8em;
+      padding: $space-xsmall 0 $space-xsmall-mobile 0;
+      @include breakpoint($breakpoint-s-min) {
+        font-size: .9em;
+        padding: $space-xsmall 10% $space-xsmall-mobile $space;
+      }
+    }
+  }
+
 }
 .lp-header__bg {
   @include grid-container();
