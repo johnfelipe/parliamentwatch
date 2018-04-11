@@ -422,17 +422,21 @@ function pw_globals_politician_search_form_block() {
   $block = [];
   $term = menu_get_object('taxonomy_term', 2);
 
+  $block['term_id'] = $term->tid;
+  $block['term_name'] = $term->name;
+
   if (!$term || $term->vocabulary_machine_name != 'parliaments' || !empty($term->description)) {
     return $block;
   }
 
   if (_pw_globals_politician_search_role_condition($term) == 'deputies') {
-    $block['subject'] = t('Find your <span>deputy</span>');
+    $block['subject'] = t('Find your <span>deputy</span> in the Bundestag', array(), array('context' => $term->name));
   }
   else {
-    $block['subject'] = t('Find your <span>candidate</span>');
+    $block['subject'] = t('Find your <span>deputy</span> in the Bundestag', array(), array('context' => $term->name));
   }
   $block['content'] = drupal_get_form('pw_globals_politician_search_form', $term);
+
 
   return $block;
 }

@@ -52,6 +52,7 @@
   <div class="lp-header__right">
     <h2><?php print $block->subject; ?></h2>
     <?php print $content; ?>
+    <p><?php print t('Ask your questions to your deputies and find out about voting results and committee memberships.'); ?></p>
     <?php if (isset(drupal_get_query_parameters()['geo'])): ?>
       <p><a href="#" class="link-icon" data-geolocate><i class="icon icon-map-marker"></i> <?php print t('Use my current location'); ?></a></p>
     <?php endif; ?>
