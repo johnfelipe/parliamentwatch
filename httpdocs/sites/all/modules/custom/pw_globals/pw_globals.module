@@ -159,10 +159,6 @@ function pw_globals_block_info() {
     'info' => t('Title'),
     'cache' => DRUPAL_NO_CACHE,
   ];
-  $blocks['term_switcher'] = [
-    'info' => 'Legislative term switcher',
-    'cache' => DRUPAL_NO_CACHE,
-  ];
   $blocks['politician_search_form'] = [
     'info' => 'Politician search form',
     'cache' => DRUPAL_NO_CACHE,
@@ -187,8 +183,6 @@ function pw_globals_block_view($delta = '') {
       return pw_globals_comments_block();
     case 'title':
       return pw_globals_title_block();
-    case 'term_switcher':
-      return pw_globals_term_switcher_block();
     case 'politician_search_form':
       return pw_globals_politician_search_form_block();
     case 'parliament_patron':
@@ -369,45 +363,6 @@ function pw_globals_title_block() {
     'subject' => t('Title'),
     'content' => drupal_get_title(),
   ];
-
-  return $block;
-}
-
-/**
- * Displays an element for switching between legislative terms.
- *
- * @return array
- *   The block render array.
- */
-function pw_globals_term_switcher_block() {
-  $block = [];
-  $term = menu_get_object('taxonomy_term');
-  $map = menu_get_item()['map'];
-
-  if (!$term) {
-    return $block;
-  }
-
-  $q = new EntityFieldQuery();
-  $q->entityCondition('entity_type', 'taxonomy_term');
-  $q->entityCondition('bundle', 'parliaments');
-  $q->propertyCondition('name', strtok($term->name, ' ') . '%', 'LIKE');
-  $q->propertyCondition('tid', $term->tid, '<>');
-  $q->propertyOrderBy('name', 'DESC');
-  $result = $q->execute();
-
-  if (!empty($result['taxonomy_term'])) {
-    $options[url("$map[0]/$term->tid")] = $term->name;
-
-    foreach (taxonomy_term_load_multiple(array_keys($result['taxonomy_term'])) as $t) {
-      $options[url("$map[0]/$t->tid")] = $t->name;
-    }
-
-    $block['content'] = [
-      '#theme' => 'select',
-      '#options' => $options,
-    ];
-  }
 
   return $block;
 }
