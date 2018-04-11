@@ -790,34 +790,6 @@ function _pw_get_current_user() {
 }
 
 /**
- * Custom: Retrieve parliament tag from node by nid.
- */
-function _pw_get_parliament_term_tid_by_nid($nid) {
-
-  $selected_node = node_load($nid);
-  $node_type = $selected_node->type;
-
-  switch ($node_type) {
-
-    case 'sidejob':
-      $tid = $selected_node->field_parliament[LANGUAGE_NONE][0]['tid'];
-      return $tid;
-      break;
-
-    case 'committee_membership':
-      $tid = $selected_node->field_parliament[LANGUAGE_NONE][0]['tid'];
-      return $tid;
-      break;
-
-    case 'speech':
-      $tid = $selected_node->field_parliament[LANGUAGE_NONE][0]['tid'];
-      return $tid;
-      break;
-  }
-  return FALSE;
-}
-
-/**
  * Custom: Map items of a webform submission to their components..
  */
 function _pw_webform_get_keyed_fields($webform_node, $submission) {
