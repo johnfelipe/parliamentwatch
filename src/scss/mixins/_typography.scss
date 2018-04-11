@@ -30,6 +30,10 @@
 @mixin paragraph() {
   font-size: 1em;
   line-height: 1.5em;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
   @include margin(0 null $space-small);
 }
 
