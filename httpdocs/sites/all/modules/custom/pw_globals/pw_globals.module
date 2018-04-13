@@ -728,6 +728,8 @@ function _pw_user_has_role($account, $role) {
  *
  * @return object
  *   The parliament term.
+ *
+ * @deprecated
  */
 function _pw_get_current_parliament_term() {
   switch (arg(0)) {
@@ -769,6 +771,8 @@ function _pw_get_current_parliament_term() {
 
 /**
  * Custom: check if parliament is active or not.
+ *
+ * @deprecated
  */
 function _pw_is_parliament_active($parliament = FALSE) {
 
@@ -811,6 +815,8 @@ function _pw_is_between_dates($date_field, $timestamp = FALSE) {
 
 /**
  * Custom: Retrieve user depending on user or archived user is viewed.
+ *
+ * @deprecated
  */
 function _pw_get_current_user() {
   switch (arg(0)) {
@@ -861,6 +867,8 @@ function _pw_webform_get_keyed_fields($webform_node, $submission) {
 
 /**
  * Custom: Send Debug Mail.
+ *
+ * @deprecated
  */
 function _pw_send_debug_mail($subject, $body) {
   mail('debug@abgeordnetenwatch.de', $subject, print_r($body, true) . "\n\n############################\n\n" . print_r(debug_backtrace(), 1));
