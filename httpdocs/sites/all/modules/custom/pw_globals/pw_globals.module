@@ -52,12 +52,8 @@ function pw_globals_menu() {
 
 /**
  * Implements hook_menu_alter().
- *
- * This prevents views from setting a wrong page argument. Apparently views
- * manipulates the menu entries of children of paths it controls.
  */
 function pw_globals_menu_alter(&$items) {
-  $items['admin/content/antispam']['page arguments'] = ['nodes'];
   $items['taxonomy/term/%taxonomy_term']['page callback'] = 'pw_globals_taxonomy_term_page';
   unset($items['taxonomy/term/%taxonomy_term_load']['file']);
 }
