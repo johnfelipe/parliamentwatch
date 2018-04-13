@@ -531,7 +531,7 @@ msgstr "Sie sind eingeloggt als"
 
 #: sites/all/themes/custom/parliamentwatch/template.php:33
 msgid "Add comment"
-msgstr "Kommentar schreiben"
+msgstr "Kommentar absenden"
 
 #: sites/all/themes/custom/parliamentwatch/template.php:241
 msgid "Submitted by !username on !datetime"
@@ -688,7 +688,7 @@ msgstr[0] ""
 "<span>Kandidierenden aus</span> !parties <span>und</span> !constituencies"
 msgstr[1] ""
 "<span>Sie sehen @count</span> <a href=\"@url\" class=\"@class\" data-ajax-"
-"target=\"@data-ajax-target\">weibliche oder männliche</a> "
+"target=\"@data-ajax-target\">weibliche und männliche</a> "
 "<span>Kandidierende aus</span> !parties <span>und</span> !constituencies"
 
 #: sites/all/themes/custom/parliamentwatch/template.php:1234
