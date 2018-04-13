@@ -148,6 +148,15 @@ function pw_globals_form_pw_globals_politician_search_form_alter(&$form, &$form_
 }
 
 /**
+ * Implements hook_comment_presave().
+ */
+function pw_globals_comment_presave($comment) {
+  if (pw_globals_comment_is_spam($comment, $_SERVER)) {
+    $comment->status = COMMENT_NOT_PUBLISHED;
+  }
+}
+
+/**
  * Implements hook_block_info().
  */
 function pw_globals_block_info() {
@@ -572,6 +581,48 @@ function pw_globals_politician($node) {
   }
 
   return $politician;
+}
+
+/**
+ * Returns TRUE if the submission is considered spam, FALSE otherwise.
+ *
+ * @param string $content_type
+ *   Node or comment.
+ * @param object $content
+ *   The node or comment.
+ *
+ * @return bool
+ *   TRUE if the submission is considered spam, FALSE otherwise.
+ */
+function pw_globals_comment_is_spam($comment, $server_vars) {
+  if (!variable_get('pw_globals_antispam_enabled', TRUE)) {
+    return FALSE;
+  }
+
+  $node = node_load($comment->nid);
+
+  if (in_array($node->type, variable_get('pw_globals_antispam_exclude'))) {
+    return FALSE;
+  }
+
+  $api_key = variable_get('pw_globals_antispam_api_key', '');
+
+  if (empty($api_key)) {
+    return FALSE;
+  }
+
+  $is_test = variable_get('pw_globals_antispam_is_test', FALSE);
+  $url = "https://$api_key.rest.akismet.com/1.1/comment-check";
+  $data = http_build_query(_pw_globals_antispam_prepare_comment_data($comment, $server_vars, $is_test));
+  $headers = ['Content-Type' => 'application/x-www-form-urlencoded'];
+  $response = drupal_http_request($url, ['method' => 'POST', 'headers' => $headers, 'data' => $data]);
+
+  if (isset($response->error)) {
+    watchdog('pw_globals', 'Checking a comment for spam failed: @error.', ['@error' => $response->error], WATCHDOG_WARNING);
+    return FALSE;
+  }
+
+  return ($response->data == 'true') ? TRUE : FALSE;
 }
 
 /**
@@ -1096,4 +1147,63 @@ function _pw_globals_url_parse_partial_links($match) {
   $caption = check_plain(_filter_url_trim($match[$i]));
   $match[$i] = check_plain($match[$i]);
   return '<a href="http://' . $match[$i] . '">' . $caption . '</a>';
+}
+
+/**
+ * Prepare comment data for AntiSpam requests.
+ *
+ * @param object $comment
+ *   The comment object.
+ * @param array $server_vars
+ *   The PHP server variables.
+ * @param bool $is_test
+ *   Whether this is for a test request or not.
+ *
+ * @return array
+ *   The data for the AntiSpam request.
+ */
+function _pw_globals_antispam_prepare_comment_data($comment, $server_vars, $is_test = FALSE) {
+  $comment_data = [
+    'blog' => url('<front>', ['absolute' => TRUE]),
+    'blog_charset' => 'UTF-8',
+    'blog_lang' => 'de',
+    'comment_author' => $comment->name,
+    'comment_author_email' => $comment->mail,
+    'comment_author_url' => $comment->homepage,
+    'comment_content' => render($comment->comment_body[$comment->language][0]['value']),
+    'comment_type' => 'comment',
+    'is_test' => (int) $is_test,
+    'permalink' => url('node/'. $comment->nid, ['fragment' => 'comment-'. $comment->cid]),
+    'referrer' => $server_vars['HTTP_REFERER'],
+    'user_ip' => (!empty($comment->hostname) ? $comment->hostname : ip_address()),
+    'user_agent' => $server_vars['HTTP_USER_AGENT'],
+  ];
+
+  $safe_to_send = [
+    'CONTENT_LENGTH',
+    'CONTENT_TYPE',
+    'HTTP_ACCEPT',
+    'HTTP_ACCEPT_CHARSET',
+    'HTTP_ACCEPT_ENCODING',
+    'HTTP_ACCEPT_LANGUAGE',
+    'HTTP_REFERER',
+    'HTTP_USER_AGENT',
+    'REMOTE_ADDR',
+    'REMOTE_PORT',
+    'SCRIPT_URI',
+    'SCRIPT_URL',
+    'SERVER_ADDR',
+    'SERVER_NAME',
+    'REQUEST_METHOD',
+    'REQUEST_URI',
+    'SCRIPT_NAME'
+  ];
+
+  foreach ($server_vars as $key => $value) {
+    if (in_array($key, $safe_to_send)) {
+      $comment_data[$key] = $value;
+    }
+  }
+
+  return $comment_data;
 }

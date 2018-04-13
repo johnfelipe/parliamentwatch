@@ -6,6 +6,17 @@
  */
 
 /**
+ * Implements hook_uninstall().
+ */
+function pw_globals_uninstall() {
+  variable_del('pw_globals_antispam_api_key');
+  variable_del('pw_globals_antispam_enabled');
+  variable_get('pw_globals_antispam_exclude');
+  variable_del('pw_globals_antispam_is_test');
+}
+
+
+/**
  * Disable obsolete modules.
  */
 function pw_globals_update_7100() {
