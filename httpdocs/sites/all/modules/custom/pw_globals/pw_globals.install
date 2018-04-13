@@ -279,6 +279,18 @@ function pw_globals_update_7116() {
 }
 
 /**
+ * Disable obsolete modules.
+ */
+function pw_globals_update_7117() {
+  variable_set('pw_globals_antispam_api_key', variable_get('antispam_wpapikey'));
+  $modules = [
+    'antispam',
+    'tagadelic',
+  ];
+  module_disable($modules);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

@@ -5,7 +5,6 @@ package = Features
 php = 5.2.4
 version = 7.x-1.0-20180316
 project = pw_globals
-dependencies[] = antispam
 dependencies[] = date
 dependencies[] = entityreference
 dependencies[] = features
