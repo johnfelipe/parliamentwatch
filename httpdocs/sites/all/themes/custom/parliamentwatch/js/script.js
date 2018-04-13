@@ -2228,4 +2228,22 @@
     }
   }
 
+  /**
+   * Attaches behavior preventing multiple form submissions.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.preventMultiPost = {
+    attach: function (context) {
+      $('form', context).once('preventMultiPost', function () {
+        var $form = $(this);
+        $form.submit(function (event) {
+          $('[type="submit"]', $form).prop('disabled', true);
+        });
+      })
+    }
+  }
+
 }(jQuery));
