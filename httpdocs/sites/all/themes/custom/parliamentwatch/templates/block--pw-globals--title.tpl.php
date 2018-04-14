@@ -44,4 +44,4 @@
  * @ingroup themeable
  */
 ?>
-<h1 classes="<?php print $classes; ?>"><?php print $content ?></h1>
+<h1 class="<?php print $classes; ?>"><?php print $content ?></h1>
