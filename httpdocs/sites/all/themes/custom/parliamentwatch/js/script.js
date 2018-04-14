@@ -693,7 +693,7 @@
   Drupal.behaviors.initLocalScroll = {
     attach: function (context) {
       $('[data-localScroll]', context).once('initLocalScroll', function () {
-        $(this).on("click", function (event) {
+        $(this).on('click', function (event) {
           var hrefValue = $(this).attr('href');
           var scrollOffset = $('#header').height() * -1;
           $(window).scrollTo($(hrefValue), 800, {
@@ -705,8 +705,13 @@
           // trigger possible tab-elements
 
           if ($('.tabs__navigation').length) {
-            $('.tabs__navigation a[href=' + hrefValue + ']').trigger("click");
+            $('.tabs__navigation a[href=' + hrefValue + ']').trigger('click');
           }
+
+          if (hrefValue == '#question-form-anchor') {
+            $('.tabs__navigation a[href="#block-pw-dialogues-profile"]').trigger('click');
+          }
+
           event.preventDefault();
         });
       });
