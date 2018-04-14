@@ -1575,21 +1575,21 @@
           var totalLabelBefore = wrapper.dataset.labelTotalBefore;
           var totalLabelAfter = wrapper.dataset.labelTotalAfter;
 
-          barWrapper.selectAll("div")
+          barWrapper.selectAll('div')
             .data(data)
-            .enter().append("a")
-            .attr("class", "d3-bars__item")
-            .attr("style", function (d) {
+            .enter().append('a')
+            .attr('class', 'd3-bars__item')
+            .attr('style', function (d) {
               var value = 100 / totalPollCount * d.count;
               return 'width:' + value + '%; background-color:' + d.color + ';';
             })
-            .attr("href", function (o) {
+            .attr('href', function (o) {
               return window.location.pathname + encodeURI('?sorts[field_vote]=1&field_vote[]=' + o.vote_id +'#block-pw-vote-poll');
             });
 
           // Define Total-Label
           var totalLabelWrapper = d3.select(wrapper)
-            .append("p")
+            .append('p')
             .attr('class', 'd3__total-label')
             .html(function (d) {
               return totalLabelBefore + ' ' + totalPollCount + ' ' + totalLabelAfter;
@@ -1597,7 +1597,7 @@
 
           // Define Labels
           var labelWrapper = d3.select(wrapper)
-            .append("ul")
+            .append('ul')
             .attr('class', 'd3__label d3__label--inline');
 
           var labelItem = labelWrapper.selectAll('li')
@@ -1612,7 +1612,7 @@
             .html(function (o) {
               return o.count + ' ' + o.name;
             })
-            .insert("span", ":first-child")
+            .insert('span', ':first-child')
             .attr('class', 'd3__label__item__indicator')
             .attr('style', function (d) {
               return 'background-color:' + d.color;
@@ -1651,16 +1651,16 @@
             var barWrapper = chartwrapper
               .append('div')
               .attr('class', 'd3-bars')
-              .selectAll("div")
+              .selectAll('div')
               .data(obj)
               .enter()
-              .append("a")
-              .attr("class", "d3-bars__item")
-              .attr("style", function (d) {
+              .append('a')
+              .attr('class', 'd3-bars__item')
+              .attr('style', function (d) {
                 var value = 100 / totalPollCount * d.count;
                 return 'height:' + value + '%; background-color:' + d.color + ';';
               })
-              .attr("href", function (o) {
+              .attr('href', function (o) {
                 return window.location.pathname + encodeURI('?sorts[field_vote]=1&political_faction[]=' + key + '&field_vote[]=' + o.vote_id +'#block-pw-vote-poll');
               });
 
@@ -1669,7 +1669,7 @@
               .append('div')
               .attr('class', 'd3__label_outer')
               .html('<h3>' + key + ' <span>' + Drupal.formatPlural(totalPollCount, '1 deputy', '@count deputies') + '</span></h3>')
-              .append("ul")
+              .append('ul')
               .attr('class', 'd3__label');
 
             var labelItem = labelWrapper.selectAll('li')
@@ -1678,13 +1678,13 @@
               .append('li')
               .attr('class', 'd3__label__item')
               .append('a')
-              .attr("href", function (o) {
+              .attr('href', function (o) {
                 return window.location.pathname + encodeURI('?sorts[field_vote]=1&political_faction[]=' + key + '&field_vote[]=' + o.vote_id +'#block-pw-vote-poll');
               })
               .html(function (o) {
                 return o.count + ' ' + o.name;
               })
-              .insert("span", ":first-child")
+              .insert('span', ':first-child')
               .attr('class', 'd3__label__item__indicator')
               .attr('style', function (o) {
                 return 'background-color:' + o.color;
