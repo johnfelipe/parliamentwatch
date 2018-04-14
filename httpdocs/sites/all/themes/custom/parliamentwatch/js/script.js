@@ -1584,7 +1584,11 @@
               return 'width:' + value + '%; background-color:' + d.color + ';';
             })
             .attr('href', function (o) {
-              return window.location.pathname + encodeURI('?sorts[field_vote]=1&field_vote[]=' + o.vote_id +'#block-pw-vote-poll');
+              if (o.count > 0) {
+                return window.location.pathname + encodeURI('?sorts[field_vote]=1&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
+              } else {
+                return null;
+              }
             });
 
           // Define Total-Label
@@ -1606,8 +1610,12 @@
             .append('li')
             .attr('class', 'd3__label__item')
             .append('a')
-            .attr("href", function (o) {
-              return window.location.pathname + encodeURI('?sorts[field_vote]=1&field_vote[]=' + o.vote_id +'#block-pw-vote-poll');
+            .attr('href', function (o) {
+              if (o.count > 0) {
+                return window.location.pathname + encodeURI('?sorts[field_vote]=1&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
+              } else {
+                return null;
+              }
             })
             .html(function (o) {
               return o.count + ' ' + o.name;
@@ -1661,7 +1669,11 @@
                 return 'height:' + value + '%; background-color:' + d.color + ';';
               })
               .attr('href', function (o) {
-                return window.location.pathname + encodeURI('?sorts[field_vote]=1&political_faction[]=' + key + '&field_vote[]=' + o.vote_id +'#block-pw-vote-poll');
+                if (o.count > 0) {
+                  return window.location.pathname + encodeURI('?sorts[field_vote]=1&political_faction[]=' + key + '&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
+                } else {
+                  return null;
+                }
               });
 
             // Define Labels
@@ -1679,7 +1691,11 @@
               .attr('class', 'd3__label__item')
               .append('a')
               .attr('href', function (o) {
-                return window.location.pathname + encodeURI('?sorts[field_vote]=1&political_faction[]=' + key + '&field_vote[]=' + o.vote_id +'#block-pw-vote-poll');
+                if (o.count > 0) {
+                  return window.location.pathname + encodeURI('?sorts[field_vote]=1&political_faction[]=' + key + '&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
+                } else {
+                  return null;
+                }
               })
               .html(function (o) {
                 return o.count + ' ' + o.name;
