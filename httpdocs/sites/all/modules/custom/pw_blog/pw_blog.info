@@ -13,7 +13,6 @@ dependencies[] = pw_globals
 dependencies[] = pw_search_api
 dependencies[] = smart_trim
 dependencies[] = strongarm
-dependencies[] = tagadelic
 dependencies[] = taxonomy
 dependencies[] = textformatter
 dependencies[] = views
