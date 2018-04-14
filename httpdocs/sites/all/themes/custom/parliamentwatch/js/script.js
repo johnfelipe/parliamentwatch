@@ -1585,7 +1585,7 @@
             })
             .attr('href', function (o) {
               if (o.count > 0) {
-                return window.location.pathname + encodeURI('?sorts[field_vote]=1&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
+                return window.location.pathname + encodeURI('?field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
               } else {
                 return null;
               }
@@ -1612,7 +1612,7 @@
             .append('a')
             .attr('href', function (o) {
               if (o.count > 0) {
-                return window.location.pathname + encodeURI('?sorts[field_vote]=1&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
+                return window.location.pathname + encodeURI('?field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
               } else {
                 return null;
               }
@@ -1670,7 +1670,7 @@
               })
               .attr('href', function (o) {
                 if (o.count > 0) {
-                  return window.location.pathname + encodeURI('?sorts[field_vote]=1&political_faction[]=' + key + '&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
+                  return window.location.pathname + encodeURI('?political_faction[]=' + key + '&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
                 } else {
                   return null;
                 }
@@ -1692,7 +1692,7 @@
               .append('a')
               .attr('href', function (o) {
                 if (o.count > 0) {
-                  return window.location.pathname + encodeURI('?sorts[field_vote]=1&political_faction[]=' + key + '&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
+                  return window.location.pathname + encodeURI('?political_faction[]=' + key + '&field_vote[]=' + o.vote_id + '#block-pw-vote-poll');
                 } else {
                   return null;
                 }
@@ -2204,6 +2204,7 @@
           }).dynatable({
             features: {
               perPageSelect: false,
+              pushState: false,
               recordCount: false,
               search: false,
             },
