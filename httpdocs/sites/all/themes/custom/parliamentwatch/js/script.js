@@ -739,14 +739,6 @@
     }
   };
 
-  /**
-   * Attaches the popover behavior.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~attachBehavior}
-   */
-
   function popover() {
     $('[data-popover-content]').toggle(function () {
       var tooltipContent = $(this).attr('data-popover-content'),
@@ -760,12 +752,18 @@
     });
   }
 
+  /**
+   * Attaches the popover behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
   Drupal.behaviors.popover = {
     attach: function (context) {
       popover();
     }
   };
-
 
   /**
    * Attaches the figcaption-overlay behavior.
