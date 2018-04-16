@@ -613,7 +613,7 @@ function pw_globals_comment_is_spam($comment, $server_vars) {
   $url = "https://$api_key.rest.akismet.com/1.1/comment-check";
   $data = http_build_query(_pw_globals_antispam_prepare_comment_data($comment, $server_vars, $is_test));
   $headers = ['Content-Type' => 'application/x-www-form-urlencoded'];
-  $response = drupal_http_request($url, ['method' => 'POST', 'headers' => $headers, 'data' => $data]);
+  $response = drupal_http_request($url, ['method' => 'POST', 'headers' => $headers, 'data' => $data, 'timeout' => 5.0]);
 
   if (isset($response->error)) {
     watchdog('pw_globals', 'Checking a comment for spam failed: @error.', ['@error' => $response->error], WATCHDOG_WARNING);
