@@ -565,12 +565,21 @@ function pw_dialogues_do_import_questions($source) {
 /**
  * Imports answers from the given source.
  *
+ * In order to avoid checking the answers for spam the user is switched to
+ * the site administrator account for the duration of the import. See @link
+ * https://www.drupal.org/docs/7/security/safely-impersonating-another-user.
+ *
  * @param string $source
  *   The URL of the mod-tool.
  *
  * @return boolean
  */
 function pw_dialogues_do_import_answers($source) {
+  $original_user = $GLOBALS['user'];
+  $old_state = drupal_save_session();
+  drupal_save_session(FALSE);
+  $GLOBALS['user'] = user_load(1);
+
   $message_feed = feeds_source('dialogue_message_importer');
   $message_feed->addConfig(array(
     'FeedsHTTPFetcher' => array(
@@ -580,6 +589,9 @@ function pw_dialogues_do_import_answers($source) {
   while (FEEDS_BATCH_COMPLETE != $message_feed->import()) {
     ;
   }
+
+  $GLOBALS['user'] = $original_user;
+  drupal_save_session($old_state);
 
   watchdog('dialogue_message_importer', 'answers imported from @source', ['@source' => $source]);
 
