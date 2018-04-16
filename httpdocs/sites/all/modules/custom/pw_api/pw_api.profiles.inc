@@ -297,6 +297,7 @@ function pw_api_user_to_array($user, $subsets = array()) {
           }
           $profile['sidejobs']['sidejob_'.$node->nid]['organization'] = $w_sidejob->field_sidejob_organization->label();
           $profile['sidejobs']['sidejob_'.$node->nid]['job'] = $w_sidejob->field_job->label();
+          $profile['sidejobs']['sidejob_'.$node->nid]['job_category'] = $w_sidejob->field_sidejob_job_category->label();
 
           $computed_income = pw_sidejobs_income_range($node);
           if (!empty($computed_income)) {

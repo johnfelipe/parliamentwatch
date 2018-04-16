@@ -292,6 +292,28 @@ function pw_globals_update_7117() {
 }
 
 /**
+ * Add terms to job categories.
+ */
+function pw_globals_update_7118() {
+  $names = [
+    'Funktionen in Unternehmen',
+    'Funktionen in Körperschaften und Anstalten des öffentlichen Rechts',
+    'Funktionen in Vereinen, Verbänden und Stiftungen',
+    'Beteiligung an Kapital- oder Personengesellschaften',
+    'Spenden/Zuwendungen für politische Tätigkeit',
+    'Vereinbarungen über künftige Tätigkeiten oder Vermögensvorteile',
+  ];
+
+  foreach ($names as $weight => $name) {
+    $term = new stdClass();
+    $term->name = $name;
+    $term->vid = taxonomy_vocabulary_machine_name_load('job_categories')->vid;
+    $term->weight = $weight;
+    taxonomy_term_save($term);
+  }
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block

@@ -105,16 +105,16 @@ function pw_sidejobs_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '21',
+          'weight' => '18',
         ),
         'redirect' => array(
-          'weight' => '20',
+          'weight' => '17',
         ),
         'xmlsitemap' => array(
-          'weight' => '22',
+          'weight' => '19',
         ),
         'metatags' => array(
-          'weight' => '23',
+          'weight' => '20',
         ),
         'rabbit_hole' => array(
           'weight' => '0',
@@ -224,6 +224,16 @@ function pw_sidejobs_strongarm() {
   $strongarm->name = 'rh_node_redirect_sidejob';
   $strongarm->value = 'profile/[node:field_politician]';
   $export['rh_node_redirect_sidejob'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_taxonomy_term_job_categories';
+  $strongarm->value = array(
+    'status' => '0',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_taxonomy_term_job_categories'] = $strongarm;
 
   return $export;
 }

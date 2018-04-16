@@ -9,6 +9,14 @@
  */
 function pw_sidejobs_taxonomy_default_vocabularies() {
   return array(
+    'job_categories' => array(
+      'name' => 'Job categories',
+      'machine_name' => 'job_categories',
+      'description' => '',
+      'hierarchy' => '0',
+      'module' => 'taxonomy',
+      'weight' => '0',
+    ),
     'sidejob_jobs' => array(
       'name' => 'Sidejob Jobs',
       'machine_name' => 'sidejob_jobs',

@@ -87,18 +87,12 @@ function pw_sidejobs_views_default_views() {
   $handler->display->display_options['fields']['field_user_parliament']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_user_parliament']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_user_parliament']['delta_offset'] = '0';
-  /* Feld: Global: PHP */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
   $handler->display->display_options['fields']['php']['field'] = 'php';
   $handler->display->display_options['fields']['php']['label'] = '';
   $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php 
-print $data->field_field_user_lname[0][\'raw\'][\'value\'].\', \'.$data->field_field_user_fname[0][\'raw\'][\'value\'].\' (\'.$data->field_field_user_party[0][\'rendered\'][\'#markup\'].\')\';
-?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Sortierkriterien: Benutzer: Parlament (field_user_parliament) */
   $handler->display->display_options['sorts']['field_user_parliament_tid']['id'] = 'field_user_parliament_tid';
   $handler->display->display_options['sorts']['field_user_parliament_tid']['table'] = 'field_data_field_user_parliament';
