@@ -279,16 +279,12 @@ function pw_globals_update_7116() {
 }
 
 /**
- * Disable obsolete modules.
+ * Switch antispam detection to PW Globals.
  */
 function pw_globals_update_7117() {
   variable_set('pw_globals_antispam_api_key', variable_get('antispam_wpapikey'));
   variable_set('pw_globals_antispam_exclude', ['dialogue']);
-  $modules = [
-    'antispam',
-    'tagadelic',
-  ];
-  module_disable($modules);
+  variable_set('antispam_connection_enabled', 0);
 }
 
 /**
