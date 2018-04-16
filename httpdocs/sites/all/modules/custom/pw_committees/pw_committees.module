@@ -40,6 +40,15 @@ function pw_committees_node_view($node, $view_mode, $langcode) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Removes committees of other parliaments from field options.
+ */
+function pw_committees_form_poll_node_form_alter(&$form, &$form_state) {
+  $form['field_poll_committees'][LANGUAGE_NONE]['#options'] = _pw_committees_filter_options($form['field_poll_committees'][LANGUAGE_NONE]['#options'], $form_state['node']);
+}
+
+/**
  *  Implements hook_block_info().
  */
 function pw_committees_block_info() {
@@ -130,7 +139,6 @@ function pw_committees_profile_block() {
 
   return $block;
 }
-
 
 /**
  * Returns an array of memberships for an user account with role as key.
@@ -259,4 +267,32 @@ function pw_committees_base_query() {
   $q->condition('n.type', 'committee');
   $q->condition('n.status', NODE_PUBLISHED);
   return $q;
+}
+
+/**
+ * Returns options eligible for the given user account.
+ *
+ * @param array $options
+ *   The options.
+ * @param $account
+ *   The node object.
+ *
+ * @return array
+ *   The eligible options.
+ */
+function _pw_committees_filter_options(array $options, $node) {
+  $eligible_nodes = ['_none' => NULL];
+  $parliament = pw_globals_parliament($node);
+
+  if (isset($parliament)) {
+    $q = new EntityFieldQuery();
+    $q->entityCondition('entity_type', 'node')
+      ->fieldCondition('field_parliament', 'tid', $parliament->tid);
+    $result = $q->execute();
+    if (isset($result['node'])) {
+      $eligible_nodes += $result['node'];
+    }
+  }
+
+  return array_intersect_key($options, $eligible_nodes);
 }
