@@ -618,7 +618,7 @@ function pw_globals_comment_is_spam($comment, $server_vars) {
     return TRUE;
   }
 
-  return ($response->data == 'true') ? TRUE : FALSE;
+  return ($response->data == 'false') ? FALSE : TRUE;
 }
 
 /**
