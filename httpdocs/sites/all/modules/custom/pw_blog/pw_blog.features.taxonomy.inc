@@ -17,13 +17,5 @@ function pw_blog_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => '0',
     ),
-    'blogtags' => array(
-      'name' => 'Blogtags',
-      'machine_name' => 'blogtags',
-      'description' => 'Tags in the Blog',
-      'hierarchy' => '0',
-      'module' => 'taxonomy',
-      'weight' => '0',
-    ),
   );
 }

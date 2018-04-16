@@ -307,13 +307,6 @@ function pw_blog_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_blogtags_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_blogtags_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'rh_module_blogpost';
   $strongarm->value = 'rh_node';
   $export['rh_module_blogpost'] = $strongarm;
@@ -407,16 +400,6 @@ function pw_blog_strongarm() {
     'priority' => '0.5',
   );
   $export['xmlsitemap_settings_taxonomy_term_blogcategories'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'xmlsitemap_settings_taxonomy_term_blogtags';
-  $strongarm->value = array(
-    'status' => '0',
-    'priority' => '0.5',
-  );
-  $export['xmlsitemap_settings_taxonomy_term_blogtags'] = $strongarm;
 
   return $export;
 }
