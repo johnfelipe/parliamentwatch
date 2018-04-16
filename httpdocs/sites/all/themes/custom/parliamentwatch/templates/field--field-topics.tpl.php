@@ -53,4 +53,3 @@ if (sizeof($items) > 0) {
   }
   print substr($string_topics, 2);
 }
-?>
