@@ -597,7 +597,7 @@ function pw_globals_comment_is_spam($comment, $server_vars) {
 
   $node = node_load($comment->nid);
 
-  if (in_array($node->type, variable_get('pw_globals_antispam_exclude'))) {
+  if (in_array($node->type, variable_get('pw_globals_antispam_exclude', []))) {
     return FALSE;
   }
 
