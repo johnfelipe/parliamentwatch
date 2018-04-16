@@ -98,6 +98,9 @@
   &:last-child {
     border-bottom: 0;
   }
+  > a, > a:hover {
+    color: $gray;
+  }
 }
 .d3__label__item__indicator {
   width: $space-small-mobile;
@@ -158,6 +161,7 @@
     }
   }
   .d3__total-label {
+    color: $gray;
     padding-top: $space-xsmall;
     @include breakpoint($breakpoint-s-min) {
       padding-top: $space-xsmall-mobile;
