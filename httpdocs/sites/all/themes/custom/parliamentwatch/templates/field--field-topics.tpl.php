@@ -45,12 +45,12 @@
  */
 ?>
 <?php
-  if (sizeof($items) > 0) {
-    print t("Topics").": ";
-    $string_topics = "";
-    foreach ($items as $item) {
-      $string_topics .= ", ".render($item);
-    }
-    print substr($string_topics, 2);
+if (sizeof($items) > 0) {
+  print t('Topics') . ': ';
+  $string_topics = '';
+  foreach ($items as $item) {
+    $string_topics .= ', ' . render($item);
   }
+  print substr($string_topics, 2);
+}
 ?>
