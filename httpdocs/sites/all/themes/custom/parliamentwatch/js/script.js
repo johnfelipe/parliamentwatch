@@ -2235,7 +2235,13 @@
         $('.form--pw-vote-poll-filters').submit(function (event) {
           event.preventDefault();
           addLoadingAnimation($('.poll_detail__table'));
-          $.ajax(url + '?' + $(this).serialize()).done(function (data) {
+
+          if (window.location.search == '') {
+            var search = '?' + $(this).serialize();
+          } else {
+            var search = window.location.search + '&' + $(this).serialize();
+          }
+          $.ajax(url + search).done(function (data) {
             var dynatable = $('.table--poll-votes').data('dynatable');
             dynatable.records.updateFromJson(data);
             dynatable.records.init();
