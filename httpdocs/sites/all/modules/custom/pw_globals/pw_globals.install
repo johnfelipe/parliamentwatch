@@ -283,7 +283,7 @@ function pw_globals_update_7116() {
  */
 function pw_globals_update_7117() {
   variable_set('pw_globals_antispam_api_key', variable_get('antispam_wpapikey'));
-  variable_set('pw_globals_antispam_exclude', ['dialogue']);
+  variable_set('pw_globals_antispam_exclude', ['comment_node_dialogue']);
   variable_set('antispam_connection_enabled', 0);
 }
 
