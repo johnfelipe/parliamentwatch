@@ -1167,6 +1167,7 @@ function _pw_globals_url_parse_partial_links($match) {
  *   The data for the AntiSpam request.
  */
 function _pw_globals_antispam_prepare_comment_data($comment, $server_vars, $is_test = FALSE) {
+  $content = field_view_field('comment', $comment, 'comment_body');
   $comment_data = [
     'blog' => url('<front>', ['absolute' => TRUE]),
     'blog_charset' => 'UTF-8',
@@ -1174,7 +1175,7 @@ function _pw_globals_antispam_prepare_comment_data($comment, $server_vars, $is_t
     'comment_author' => $comment->name,
     'comment_author_email' => $comment->mail,
     'comment_author_url' => $comment->homepage,
-    'comment_content' => render($comment->comment_body[$comment->language][0]['value']),
+    'comment_content' => $content['#items'][0]['value'],
     'comment_type' => 'comment',
     'is_test' => (int) $is_test,
     'permalink' => url('node/'. $comment->nid, ['fragment' => 'comment-'. $comment->cid]),
