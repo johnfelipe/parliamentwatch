@@ -97,7 +97,7 @@ function pw_blog_views_default_views() {
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['name']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
-  /* Feld: Inhalt: Blog Kategorie */
+  /* Feld: Inhalt: Categories */
   $handler->display->display_options['fields']['field_blogpost_categories']['id'] = 'field_blogpost_categories';
   $handler->display->display_options['fields']['field_blogpost_categories']['table'] = 'field_data_field_blogpost_categories';
   $handler->display->display_options['fields']['field_blogpost_categories']['field'] = 'field_blogpost_categories';
@@ -150,17 +150,11 @@ function pw_blog_views_default_views() {
   $handler->display->display_options['fields']['field_teaser_image']['settings'] = array(
     'file_view_mode' => 'pw_file_landscape_l',
   );
-  /* Feld: Global: Feldgruppe */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['fieldset']['id'] = 'fieldset';
   $handler->display->display_options['fields']['fieldset']['table'] = 'views';
   $handler->display->display_options['fields']['fieldset']['field'] = 'fieldset';
   $handler->display->display_options['fields']['fieldset']['label'] = 'Fieldset Body';
-  $handler->display->display_options['fields']['fieldset']['children'] = array(
-    0 => 'body',
-    1 => 'view_node',
-  );
-  $handler->display->display_options['fields']['fieldset']['fieldset']['type'] = 'div';
-  $handler->display->display_options['fields']['fieldset']['fieldset']['classes'] = 'field-body';
   /* Feld: Inhalt: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -189,17 +183,6 @@ function pw_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_wrapper_class'] = 'read-more';
   $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'weiterlesen';
-  /* Feld: Inhalt: Tags */
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['id'] = 'field_blogpost_blogtags';
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['table'] = 'field_data_field_blogpost_blogtags';
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['field'] = 'field_blogpost_blogtags';
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['label'] = '';
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['element_wrapper_class'] = 'icon-taxonomy clearfix clear-both';
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_blogpost_blogtags']['delta_offset'] = '0';
   /* Feld: Inhalt: Anzahl an Kommentaren */
   $handler->display->display_options['fields']['comment_count']['id'] = 'comment_count';
   $handler->display->display_options['fields']['comment_count']['table'] = 'node_comment_statistics';
