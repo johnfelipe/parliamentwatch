@@ -57,7 +57,7 @@ function username_creator($source, $item_key, $element_key, &$field, $settings) 
       'Ú'=>'U', 'Û'=>'U', 'Ü'=>'Ue', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'ae', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
       'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
       'ö'=>'oe', 'ø'=>'o','ü' => 'ue' , 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y' );
-    $uname = strtr($uname, $replacement_array);
+    $uname = strtr(utf8_decode($uname), $replacement_array);
 
     $uname = strtolower($uname);
     $uname = preg_replace('/[^a-z -]+/', '', $uname);
