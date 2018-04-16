@@ -615,7 +615,7 @@ function pw_globals_comment_is_spam($comment, $server_vars) {
 
   if (isset($response->error)) {
     watchdog('pw_globals', 'Checking a comment for spam failed: @error.', ['@error' => $response->error], WATCHDOG_WARNING);
-    return FALSE;
+    return TRUE;
   }
 
   return ($response->data == 'true') ? TRUE : FALSE;
