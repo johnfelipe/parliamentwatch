@@ -51,6 +51,21 @@
     border-color: $gray;
     &:checked { border-color: $orange; background-color: $orange; }
     &:focus { outline: none; }
+    &:checked {
+      &:after {
+        content: '';
+        font-family: awfont;
+        font-size: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        line-height: 9px;
+        text-align: center;
+        color: $white;
+      }
+    }
   }
 }
 
