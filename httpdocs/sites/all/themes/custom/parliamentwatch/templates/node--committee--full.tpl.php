@@ -92,16 +92,6 @@
       </ul>
       <?php endif; ?>
     </div>
-    <div class="intro__right">
-      <?php if (!empty($content['field_teaser_image'])): ?>
-        <figure>
-          <?php print render($content['field_teaser_image']); ?>
-          <?php if (!empty($content['field_teaser_image']['#items'][0]['field_image_copyright'][LANGUAGE_NONE][0]['value'])): ?>
-            <figcaption><?php print $content['field_teaser_image']['#items'][0]['field_image_copyright'][LANGUAGE_NONE][0]['value'] ?></figcaption>
-          <?php endif; ?>
-        </figure>
-      <?php endif; ?>
-    </div>
   </div>
 
   <div class="tile-wrapper">
