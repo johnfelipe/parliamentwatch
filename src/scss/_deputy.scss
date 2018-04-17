@@ -153,6 +153,19 @@
     padding-bottom: $space-large;
     color: $mediumGray;
     opacity: .8;
+    line-height: 1.3em;
+    @include breakpoint($breakpoint-s-min) {
+      padding-right: 200px;
+    }
+    @include breakpoint($breakpoint-m-min) {
+      padding-right: 250px;
+    }
+    @include breakpoint($breakpoint-l-min) {
+      padding-right: 320px;
+    }
+    > span {
+      display: inline-block;
+    }
   }
   .party-indicator {
     color: $mediumGray;

@@ -99,6 +99,7 @@
     display: block;
     padding: $space-xsmall ($space-large + $space-xsmall) $space-xsmall $space-xsmall;
     line-height: 1.15em;
+    @include text-overflow();
     &:after {
       position: absolute;
       top: 0;
