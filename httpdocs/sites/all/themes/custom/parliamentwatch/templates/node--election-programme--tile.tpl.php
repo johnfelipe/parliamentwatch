@@ -82,9 +82,12 @@
 ?>
 <article id="node-<?php print $node->nid; ?>" class="election-manifesto tile tile--horizontal <?php print $classes; ?>"<?php print $attributes; ?>>
   <?php print render($title_suffix); ?>
-  <div class="tile__image mh-item">
+  <figure class="tile__image mh-item">
     <?php print render($content['field_teaser_image']); ?>
-  </div>
+    <?php if (!empty(trim(render($content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value'])))): ?>
+      <figcaption class="figcaption-overlay"><span>©&nbsp;<?php print $content['field_teaser_image']['#items'][0]['field_image_copyright']['und'][0]['value']; ?></span></figcaption>
+    <?php endif; ?>
+  </figure>
   <div class="tile__content mh-item">
     <h1 class="tile__title" <?php print $title_attributes; ?>><?php print $title; ?></h1>
     <a href="<?php print file_create_url($field_pdf_download[0]['file']->uri); ?>" class="btn btn--mobile-block" target="_blank"><?php print t('Open election program') ?></a>
