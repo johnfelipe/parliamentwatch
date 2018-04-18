@@ -5,11 +5,9 @@
 */
 
 #header {
-  position: relative;
   background: $beige;
   border-bottom: 1px solid $darkBeige;
   width: 100%;
-  z-index: 9999;
   @include breakpoint($breakpoint-l-min) {
     position: fixed;
   }
@@ -60,16 +58,12 @@
 /* Navigation */
 
 .nav--main-menu--level-1 {
-  @include breakpoint($breakpoint-m-min) {
-    float: right;
-    margin-right: $space;
-  }
   background: $white;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 98;
+  z-index: 9999;
   height: 100%;
   width: 280px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .3);
@@ -84,6 +78,8 @@
     width: auto;
     background: transparent;
     box-shadow: none;
+    float: right;
+    margin-right: $space;
 
     @include perspective(initial);
     @include transition(initial);
@@ -221,10 +217,14 @@
     clear: both;
     @include transition(opacity 200ms ease-in-out);
     border-top: 1px solid $brightGray;
+    @media (max-width: $breakpoint-m-max) {
+      position: relative;
+    }
     @include breakpoint($breakpoint-m-min) {
       background: $white;
       border-top: 0;
       width: 500px;
+      left: auto;
       box-shadow: 0 8px 10px rgba(0,0,0,.1);
       @include margin(-1px null null);
     }
@@ -286,6 +286,10 @@
     @include breakpoint($breakpoint-m-min) {
       @include container-regular();
     }
+  }
+  &:hover {
+    position: relative;
+    z-index: 99999;
   }
 }
 .nav--main-menu--level-3 {
@@ -476,7 +480,7 @@
   float: right;
   color: $gray;
   position: relative;
-  z-index: 99;
+  z-index: 99999;
   padding: 5px;
   right: $space-xsmall;
   @include margin(($space - 5px) null);
@@ -543,7 +547,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 99;
+  z-index: 49;
   display: table;
   height: 50px;
   will-change: height;
@@ -603,7 +607,6 @@
       a {
         color: $darkGray;
         background: $brightGray;
-
         position: relative;
         padding-right: 40px;
         &:before {
@@ -652,6 +655,7 @@
     }
   }
 }
+
 
 .header__subnav__archive-hint {
   background: $orangeBG;

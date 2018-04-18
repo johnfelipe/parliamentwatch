@@ -4,6 +4,8 @@
 
 #content {
   background: $white;
+  position: relative;
+  z-index: -1;
 }
 .docready #content {
   @include transition(margin-top 300ms ease);
