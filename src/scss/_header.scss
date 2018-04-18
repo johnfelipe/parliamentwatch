@@ -287,9 +287,11 @@
       @include container-regular();
     }
   }
-  &:hover {
-    position: relative;
-    z-index: 99999;
+  @media (max-width: $breakpoint-m-max) {
+    &:hover {
+      position: relative;
+      z-index: 99999;
+    }
   }
 }
 .nav--main-menu--level-3 {
