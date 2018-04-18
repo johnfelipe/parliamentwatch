@@ -277,7 +277,7 @@ msgstr "Diese UUID wird bereits genutzt von @name"
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:273;608
 msgctxt "Bayern"
 msgid "Constituency"
-msgstr ""
+msgstr "Stimmkreis"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:611
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:780
@@ -352,30 +352,30 @@ msgstr "Alle Filter entfernen"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:1043
 msgid "Constituency result"
-msgstr ""
+msgstr "Wahlkreisergebnis"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:1044
 msgctxt "Bayern"
 msgid "Constituency result"
-msgstr ""
+msgstr "Stimmkreisergebnis"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:1045
 msgid "@result % (via constituency)"
-msgstr ""
+msgstr "@result % (eingezogen über den Wahlkreis)"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:1046
 msgctxt "Bayern"
 msgid "@result % (via constituency)"
-msgstr ""
+msgstr "@result % (eingezogen über den Stimmkreis)"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:1047
 msgid "@result % (via list)"
-msgstr ""
+msgstr "@result % (eingezogen über Liste)"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:1048
 msgctxt "Baden-Württemberg"
 msgid "@result % (via list)"
-msgstr ""
+msgstr "@result % (eingezogen über Zweitmandat)"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:897;902
 #: sites/all/themes/custom/parliamentwatch/template.php:1190;1195
@@ -395,8 +395,8 @@ msgstr[1] "@count Wahlkreisen"
 msgctxt "Bayern"
 msgid "1 constituency"
 msgid_plural "@count constituencies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "einem Stimmkreis"
+msgstr[1] "@count Stimmkreisen"
 
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:921
 msgid "Found 1 candidate from !parties and !constituencies"
@@ -540,7 +540,7 @@ msgstr "Veröffentlicht von !username am !datetime"
 #: sites/all/themes/custom/parliamentwatch/template.php:319
 msgctxt "Bayern"
 msgid "Constituency @number: @title"
-msgstr ""
+msgstr "Stimmkreis @number: @title"
 
 #: sites/all/themes/custom/parliamentwatch/template.php:322
 msgid "Constituency @number: @title"
