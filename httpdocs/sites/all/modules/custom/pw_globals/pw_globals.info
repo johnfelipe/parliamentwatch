@@ -95,7 +95,6 @@ features[user_permission][] = edit any webform content
 features[user_permission][] = edit own page content
 features[user_permission][] = edit own webform content
 features[user_permission][] = edit own webform submissions
-features[user_permission][] = moderate spam in nodes of type Webform
 features[user_permission][] = php redirect rh_node
 features[user_permission][] = setup own tfa
 features[user_role][] = API User
