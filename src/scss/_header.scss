@@ -10,6 +10,7 @@
   width: 100%;
   @include breakpoint($breakpoint-l-min) {
     position: fixed;
+    z-index: 99999;
   }
 }
 
