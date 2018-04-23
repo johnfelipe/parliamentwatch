@@ -6,7 +6,6 @@
   <meta name="robots" content="noindex" />
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
-  <?php print $scripts; ?>
   <?php print render($assets); ?>
 </head>
 <body class="<?php print $classes; ?> blank-theme" <?php print $attributes;?>>
@@ -17,5 +16,6 @@
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
+  <?php print $scripts; ?>
 </body>
 </html>
