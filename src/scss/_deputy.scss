@@ -264,8 +264,12 @@
       }
     }
 
-    .dl__dd p {
-      margin-bottom: 0;
+    .dl__dd {
+      display: table;
+      padding-left: 0;
+      p {
+        margin-bottom: 0;
+      }
     }
   }
   .deputy__intro__sidebar {
