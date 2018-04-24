@@ -270,7 +270,7 @@ function pw_api_shorten_names(&$items){
         if (strlen($key) == $i) {
           break;
         }
-        $newkey = substr($key, 0, $i);
+        $newkey = substr(base64_encode(md5($key)), -1 -$i, $i);  # hash, base64, truncate
       }
       $items[$newkey] = $items[$key];
       unset($items[$key]);
