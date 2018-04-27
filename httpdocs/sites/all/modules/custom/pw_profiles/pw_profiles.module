@@ -814,7 +814,7 @@ function _pw_profiles_constituency_selection_items(array $constituency_values, $
     $parameters['constituency'] = $term->tid;
     $descriptor_items = field_get_items('taxonomy_term', $term, 'field_constituency_ac_descriptor');
     if (!$descriptor_items) {
-      $items[] = ['data' => $term->name, url($url, ['query' => $parameters])];
+      $items[] = ['data' => $term->name, 'href' => url($url, ['query' => $parameters])];
     }
     else {
       foreach (explode(',', rtrim($descriptor_items[0]['safe_value'], ',')) as $descriptor) {

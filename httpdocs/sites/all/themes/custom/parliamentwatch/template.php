@@ -841,10 +841,10 @@ function parliamentwatch_item_list__constituency_selection($variables) {
       }
       $output .= '<div class="tile constituency-selection__item">';
       $output .= '<div class="tile__title mh-item">' . $data . '</div>';
-      $output .= '<a ' . drupal_attributes($attributes) . '" class="btn btn--small">' . t('Select constituency') . '</a>';
+      $output .= '<a ' . drupal_attributes($attributes) . ' class="btn btn--small">' . t('Select constituency') . '</a>';
       $output .= "</div>\n";
     }
-    $output .= "</div>";
+    $output .= '</div>';
   }
   return $output;
 }
