@@ -12,7 +12,7 @@
  */
 function pw_maintenance_user_merge($form, &$form_state) {
 
-  $selected = isset($form_state['values']['user_source']) ? $form_state['values']['user_source'] : '';
+  $user_source = isset($form_state['values']['user_source']) ? $form_state['values']['user_source'] : '';
 
   $form['user_source'] = array(
     '#type' => 'textfield',
@@ -28,14 +28,11 @@ function pw_maintenance_user_merge($form, &$form_state) {
 
   $form['dropdown_second'] = array(
     '#type' => 'select',
-    '#title' => "What ever",
-    // The entire enclosing div created here gets replaced when dropdown_first
-    // is changed.
+    '#multiple' => TRUE,
+    '#title' => t('Parliaments'),
     '#prefix' => '<div id="dropdown-second-replace">',
     '#suffix' => '</div>',
-    // When the form is rebuilt during ajax processing, the $selected variable
-    // will now have the new value and so the options will change.
-    '#options' => temp_get_second_dropdown_options($selected),
+    '#options' => get_dropdown_options($user_source),
     '#default_value' => isset($form_state['values']['dropdown_second']) ? $form_state['values']['dropdown_second'] : '',
   );
 
@@ -86,50 +83,22 @@ function temp_dependent_dropdown_callback($form, $form_state) {
  * @return array
  *   Dropdown options
  */
-function temp_get_second_dropdown_options($key = '') {
-  $options = array(
-    t('String') => drupal_map_assoc(
-      array(
-        t('Violin'),
-        t('Viola'),
-        t('Cello'),
-        t('Double Bass'),
-      )
-    ),
-    t('Woodwind') => drupal_map_assoc(
-      array(
-        t('Flute'),
-        t('Clarinet'),
-        t('Oboe'),
-        t('Bassoon'),
-      )
-    ),
-    t('Brass') => drupal_map_assoc(
-      array(
-        t('Trumpet'),
-        t('Trombone'),
-        t('French Horn'),
-        t('Euphonium'),
-      )
-    ),
-    t('Percussion') => drupal_map_assoc(
-      array(
-        t('Bass Drum'),
-        t('Timpani'),
-        t('Snare Drum'),
-        t('Tambourine'),
-      )
-    ),
+function get_dropdown_options($user_source = '') {
+  if (empty($user_source)) {
+    return [];
+  }
+  $query = db_select('user_archive_cache', 'uac')
+  ->fields('uac', ['parliament_name', 'user_role']);
+  _pw_uac_add_conditions($query, [
+      'username' => $user_source,
+    ]
   );
-    dd($key);
-  if (isset($options[$key])) {
-    dd("ok");
-    return $options[$key];
+
+  $options = [];
+  foreach ($query->execute()->fetchAll() as $result) {
+    $options[] = $result->parliament_name . ' (' . t($result->user_role) . ')';
   }
-  else {
-    dd("empty");
-    return array();
-  }
+  return $options;
 }
 
 
