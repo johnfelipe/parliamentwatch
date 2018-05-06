@@ -1,10 +1,10 @@
 # German translation of Role Export (7.x-1.0)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Role Export (7.x-1.0)\n"
-"POT-Creation-Date: 2017-01-12 04:08+0000\n"
+"POT-Creation-Date: 2018-05-01 00:38+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr "Gewichtung"
 msgid "Name"
 msgstr "Name"
 msgid "Machine name"
-msgstr "Systemname"
+msgstr "Maschinenname"
 msgid "edit permissions"
 msgstr "Berechtigungen bearbeiten"
 msgid "edit role"

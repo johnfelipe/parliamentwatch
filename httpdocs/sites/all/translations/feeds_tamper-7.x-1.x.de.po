@@ -1,10 +1,10 @@
-# German translation of Feeds Tamper (7.x-1.2)
-# Copyright (c) 2017 by the German translation team
+# German translation of Feeds Tamper (7.x-1.1)
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Feeds Tamper (7.x-1.2)\n"
-"POT-Creation-Date: 2017-12-10 08:43+0000\n"
+"Project-Id-Version: Feeds Tamper (7.x-1.1)\n"
+"POT-Creation-Date: 2018-05-01 00:33+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "Rohdaten"
 msgid "Local"
 msgstr "Lokal"
 msgid "Machine name"
-msgstr "Systemname"
+msgstr "Maschinenname"
 msgid "Case sensitive"
 msgstr "Groß- und Kleinschreibung berücksichtigen"
 msgid "Column"
@@ -120,7 +120,7 @@ msgid "Side"
 msgstr "Seite"
 msgid "The machine-readable name is already in use. It must be unique."
 msgstr ""
-"Dieser maschinenlesbare Name ist bereits vergeben. Er muss einzigartig "
+"Dieser maschinenlesbare Name ist bereits vergeben. Er muss eindeutig "
 "sein."
 msgid "Add plugin"
 msgstr "Plugin hinzufügen"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-04-11 15:43+0200\n"
+"POT-Creation-Date: 2018-05-06 17:38+0200\n"
 "PO-Revision-Date: 2017-12-11 09:27+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -88,12 +88,12 @@ msgid "imports dialogue"
 msgstr ""
 
 #: sites/all/modules/custom/pw_globals/pw_globals.module:70;90
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:318
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:327
 msgid "Tile"
 msgstr ""
 
 #: sites/all/modules/custom/pw_globals/pw_globals.module:74
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:314
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:323
 msgid "List item"
 msgstr ""
 
@@ -131,54 +131,62 @@ msgstr ""
 "Hier können Sie sich als Politikerin bzw. Politiker einloggen und auf Ihr "
 "Profil zu einer Wahl bzw. einem Parlament zugreifen."
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:155;349
+#: sites/all/modules/custom/pw_globals/pw_globals.module:164;358
 #: sites/all/themes/custom/parliamentwatch/templates/comment-wrapper.tpl.php:41
 #: sites/all/themes/custom/parliamentwatch/templates/node--blogpost--full.tpl.php:179
 msgid "Comments"
 msgstr "Kommentare"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:159;363
+#: sites/all/modules/custom/pw_globals/pw_globals.module:168;372
 msgid "Title"
 msgstr "Titel"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:202
+#: sites/all/modules/custom/pw_globals/pw_globals.module:211
 msgid "Encrypt marked strings"
 msgstr ""
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:203
+#: sites/all/modules/custom/pw_globals/pw_globals.module:212
 msgid "Makes strings illegible unless viewed with the matching font."
 msgstr ""
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:279
+#: sites/all/modules/custom/pw_globals/pw_globals.module:288
 msgid "There is currently no content classified with this term."
 msgstr ""
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:385
+#: sites/all/modules/custom/pw_globals/pw_globals.module:394
 msgid "Find your <span>deputy</span>"
 msgstr "Finden Sie Ihre <span>Abgeordneten</span>"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:388
+#: sites/all/modules/custom/pw_globals/pw_globals.module:397
 msgid "Find your <span>candidate</span>"
 msgstr "Finden Sie Ihre <span>Kandidierenden</span>"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:448
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:589
+#: sites/all/modules/custom/pw_globals/pw_globals.module:457
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:603
 msgid "Enter a locality or name"
 msgstr "Ort oder Namen eingeben"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:451
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:592
+#: sites/all/modules/custom/pw_globals/pw_globals.module:460
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:606
 msgid "Enter a postal code, locality or name"
 msgstr "PLZ oder Namen eingeben"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:456
+#: sites/all/modules/custom/pw_globals/pw_globals.module:465
 msgid "Keywords"
 msgstr "Schlagwörter"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:468;484
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:601
+#: sites/all/modules/custom/pw_globals/pw_globals.module:477;493
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:615
 msgid "Search"
 msgstr "Suchen"
+
+#: sites/all/modules/custom/pw_globals/pw_globals.module:619
+msgid "pw_globals"
+msgstr ""
+
+#: sites/all/modules/custom/pw_globals/pw_globals.module:619
+msgid "Checking a comment for spam failed: @error."
+msgstr ""
 
 #: sites/all/modules/custom/pw_globals/pw_globals.module:25
 msgid "Parliamentwatch"
@@ -266,125 +274,137 @@ msgstr ""
 "bei uns: Tel.: 030 - 2574 2081 oder Mail: <a href=\"mailto:"
 "service@abgeordnetenwatch.de\">service@abgeordnetenwatch.de</a>."
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:147
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:156
 msgid "Please enter a valid UUID."
 msgstr "Bitte geben Sie eine gültige UUID ein."
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:152
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:161
 msgid "UUID already used by @name"
 msgstr "Diese UUID wird bereits genutzt von @name"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:273;608
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:282;622
 msgctxt "Bayern"
 msgid "Constituency"
 msgstr "Stimmkreis"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:611
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:625
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:780
 msgid "Constituency"
 msgstr "Wahlkreis"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:300
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:309
 msgid "@result %"
 msgstr ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:310
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:319
 msgid "Full"
 msgstr ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:516
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:530
 msgid "Candidates @parliament"
 msgstr "Kandidierende @parliament"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:519
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:533
 msgid "Deputies @parliament"
 msgstr "Abgeordnete @parliament"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:617;627;637
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:631;641;651
 msgid "All"
 msgstr "Alle"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:625
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:639
 msgid "List"
 msgstr "Liste"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:635
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:649
 msgid "List position"
 msgstr "Listenplatz"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:645
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:659
 msgid "Filter by party"
 msgstr "Partei"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:656
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:670
 msgid "Gender"
 msgstr "Geschlecht"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:666
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:680
 msgid "Filter profiles"
 msgstr "Profile filtern"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:965;974
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:694
+msgid "Please select a street address to find your constituency."
+msgstr ""
+"In München und Nürnberg benutzen wir eine Straßensuche zur "
+"Stimmkreiszuordnung. Bitte tippen Sie Ihre Straße in das unten "
+"stehende Suchfeld ein und wählen Sie die richtige Angabe aus."
+
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:704
+msgctxt "Bayern"
+msgid "To constituency"
+msgstr "Zum Stimmkreis"
+
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1051;1060
 #: sites/all/themes/custom/parliamentwatch/template.php:1273;1282
 msgid "list position @position"
 msgstr "Listenplatz @position"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:967
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1053
 msgid " having !position of !list"
 msgstr ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:971
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1057
 msgid " of !list"
 msgstr ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:976
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1062
 msgid " having !position"
 msgstr ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:981
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1067
 msgid ", matching: !keys"
 msgstr ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:985
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1071
 #: sites/all/themes/custom/parliamentwatch/template.php:1310
 msgid "Reset all filters"
 msgstr "Alle Filter entfernen"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1043
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1129
 msgid "Constituency result"
 msgstr "Wahlkreisergebnis"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1044
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1130
 msgctxt "Bayern"
 msgid "Constituency result"
 msgstr "Stimmkreisergebnis"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1045
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1131
 msgid "@result % (via constituency)"
 msgstr "@result % (eingezogen über den Wahlkreis)"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1046
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1132
 msgctxt "Bayern"
 msgid "@result % (via constituency)"
 msgstr "@result % (eingezogen über den Stimmkreis)"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1047
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1133
 msgid "@result % (via list)"
 msgstr "@result % (eingezogen über Liste)"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1048
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1134
 msgctxt "Baden-Württemberg"
 msgid "@result % (via list)"
 msgstr "@result % (eingezogen über Zweitmandat)"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:897;902
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:983;988
 #: sites/all/themes/custom/parliamentwatch/template.php:1190;1195
 msgid "1 party"
 msgid_plural "@count parties"
 msgstr[0] "einer Partei"
 msgstr[1] "@count Parteien"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:908;913
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:994;999
 #: sites/all/themes/custom/parliamentwatch/template.php:1359
 msgid "1 constituency"
 msgid_plural "@count constituencies"
@@ -398,19 +418,19 @@ msgid_plural "@count constituencies"
 msgstr[0] "einem Stimmkreis"
 msgstr[1] "@count Stimmkreisen"
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:921
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1007
 msgid "Found 1 candidate from !parties and !constituencies"
 msgid_plural "Found @count candidates from !parties and !constituencies"
 msgstr[0] ""
 msgstr[1] ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:924
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1010
 msgid "Found 1 deputy from !parties and !constituencies"
 msgid_plural "Found @count deputies from !parties and !constituencies"
 msgstr[0] ""
 msgstr[1] ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:930
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1016
 msgid ""
 "Found @count <a href=\"@url\" data-ajax-target=\"@data-ajax-target\">female "
 "or male</a> candidate from !parties and !constituencies"
@@ -420,7 +440,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:933
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1019
 msgid ""
 "Found @count <a href=\"@url\" data-ajax-target=\"@data-ajax-target\">female "
 "or male</a> deputy from !parties and !constituencies"
@@ -430,7 +450,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:939
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1025
 msgid ""
 "Found 1 <a href=\"@url\" data-ajax-target=\"@data-ajax-target\">male</a> "
 "candidate from !parties and !constituencies"
@@ -440,7 +460,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:942
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1028
 msgid ""
 "Found 1 <a href=\"@url\" data-ajax-target=\"@data-ajax-target\">male</a> "
 "deputy from !parties and !constituencies"
@@ -450,7 +470,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:948
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1034
 msgid ""
 "Found 1 <a href=\"@url\" data-ajax-target=\"@data-ajax-target\">female</a> "
 "candidate from !parties and !constituencies"
@@ -460,7 +480,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: sites/all/modules/custom/pw_profiles/pw_profiles.module:951
+#: sites/all/modules/custom/pw_profiles/pw_profiles.module:1037
 msgid ""
 "Found 1 <a href=\"@url\" data-ajax-target=\"@data-ajax-target\">female</a> "
 "deputy from !parties and !constituencies"
@@ -688,8 +708,8 @@ msgstr[0] ""
 "<span>Kandidierenden aus</span> !parties <span>und</span> !constituencies"
 msgstr[1] ""
 "<span>Sie sehen @count</span> <a href=\"@url\" class=\"@class\" data-ajax-"
-"target=\"@data-ajax-target\">weibliche und männliche</a> "
-"<span>Kandidierende aus</span> !parties <span>und</span> !constituencies"
+"target=\"@data-ajax-target\">weibliche und männliche</a> <span>Kandidierende "
+"aus</span> !parties <span>und</span> !constituencies"
 
 #: sites/all/themes/custom/parliamentwatch/template.php:1234
 msgid ""
@@ -905,13 +925,13 @@ msgstr ""
 msgid "Editor's note"
 msgstr "Anmerkung von abgeordnetenwatch.de"
 
-#: sites/all/themes/custom/parliamentwatch/templates/comment-wrapper.tpl.php:45
-msgid "Add new comment"
-msgstr "Neuen Kommentar schreiben"
-
 #: sites/all/themes/custom/parliamentwatch/templates/comment.tpl.php:64
 msgid "posted on"
 msgstr "veröffentlicht am"
+
+#: sites/all/themes/custom/parliamentwatch/templates/comment-wrapper.tpl.php:45
+msgid "Add new comment"
+msgstr "Neuen Kommentar schreiben"
 
 #: sites/all/themes/custom/parliamentwatch/templates/dialogues-stats.tpl.php:37
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:556
@@ -949,6 +969,10 @@ msgid "@count_answers of 1 question answered (@percentage %)"
 msgid_plural "@count_answers of @count questions answered (@percentage %)"
 msgstr[0] "@count_answers von 1 Frage beantwortet (@percentage %)"
 msgstr[1] "@count_answers von @count Fragen beantwortet (@percentage %)"
+
+#: sites/all/themes/custom/parliamentwatch/templates/field--field-topics.tpl.php:49
+msgid "Topics"
+msgstr ""
 
 #: sites/all/themes/custom/parliamentwatch/templates/html.tpl.php:55
 #: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:14
@@ -1152,7 +1176,7 @@ msgstr ""
 msgid "details"
 msgstr "Details"
 
-#: sites/all/themes/custom/parliamentwatch/templates/node--election-programme--tile.tpl.php:90
+#: sites/all/themes/custom/parliamentwatch/templates/node--election-programme--tile.tpl.php:93
 msgid "Open election program"
 msgstr "Wahlprogramm öffnen"
 
