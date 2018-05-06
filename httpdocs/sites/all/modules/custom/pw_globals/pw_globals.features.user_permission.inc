@@ -204,15 +204,6 @@ function pw_globals_user_default_permissions() {
     'module' => 'webform',
   );
 
-  // Exported permission: moderate spam in nodes of type Webform.
-  $permissions['moderate spam in nodes of type Webform'] = array(
-    'name' => 'moderate spam in nodes of type Webform',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'antispam',
-  );
-
   // Exported permission: php redirect rh_node.
   $permissions['php redirect rh_node'] = array(
     'name' => 'php redirect rh_node',
