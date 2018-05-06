@@ -799,9 +799,11 @@ function _pw_profiles_facets() {
 function _pw_profiles_facet_values($facet) {
   $values = [];
 
-  foreach ($facet as $result) {
-    if ($result['filter'] != '!') {
-      $values[] = trim($result['filter'], '"');
+  if (is_array($facet)) {
+    foreach ($facet as $result) {
+      if ($result['filter'] != '!') {
+        $values[] = trim($result['filter'], '"');
+      }
     }
   }
 
