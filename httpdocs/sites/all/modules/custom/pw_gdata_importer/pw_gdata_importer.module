@@ -36,6 +36,9 @@ function pw_gdata_importer_feeds_processor_targets_alter(&$targets, $entity_type
       $targets['Temporary target 1']['unique_callbacks'][] = '_pw_gdata_importer_constituency_tid';
       $targets['Temporary target 1']['optional_unique'] = TRUE;
     }
+    if (isset($targets['field_constituency_street'])) {
+      $targets['field_constituency_street']['callback'] = '_pw_gdata_importer_add_constituency_street';
+    }
   }
 }
 
@@ -269,4 +272,32 @@ function _pw_gdata_importer_constituency_tid(FeedsSource $source, $entity_type, 
       ->execute()
       ->fetchField();
   }
+}
+
+/**
+ * Callback for mapping constituency street field.
+ *
+ * Adds given value to existing values if it does not exist yet.
+ *
+ * @param FeedsSource $source
+ *   The Feed source.
+ * @param object $entity
+ *   An entity object. This must be a taxonomy term
+ * @param string $target
+ *    A string identifying the target on the entity.
+ * @param array $values
+ *   The values to populate the target with.
+ * @param array $mapping
+ *   An associative array of the mapping settings.
+ */
+function _pw_gdata_importer_add_constituency_street(FeedsSource $source, $entity, $target, array $values, array $mapping) {
+  $current_values = db_select('field_data_field_constituency_street', 'f')
+    ->fields('f', ['field_constituency_street_value'])
+    ->condition('entity_type', 'taxonomy_term')
+    ->condition('bundle', 'constituency')
+    ->condition('entity_id', entity_id('taxonomy_term', $entity))
+    ->execute()
+    ->fetchCol();
+  $new_values = array_unique(array_merge($current_values, $values));
+  text_feeds_set_target($source, $entity, $target, $new_values, $mapping);
 }
