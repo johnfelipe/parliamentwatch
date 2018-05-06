@@ -6,7 +6,6 @@
 
 include_once 'pw_gdata_importer.features.inc';
 
-
 /**
  * Implements hook_feeds_processor_targets_alter().
  */
@@ -30,6 +29,13 @@ function pw_gdata_importer_feeds_processor_targets_alter(&$targets, $entity_type
       'name' => t('uid (by UUID)', array('@label' => $instance['label'])),
       'callback' => 'pw_gdata_importer_feeds_set_target',
     );
+  }
+
+  if ($entity_type == 'taxonomy_term' && $bundle_name == 'constituency') {
+    if (isset($targets['Temporary target 1'])) {
+      $targets['Temporary target 1']['unique_callbacks'][] = '_pw_gdata_importer_constituency_tid';
+      $targets['Temporary target 1']['optional_unique'] = TRUE;
+    }
   }
 }
 
@@ -98,7 +104,6 @@ function pw_gdata_importer_feeds_set_target($source, $entity, $target, $value, $
 
 /**
  *  Implements hook_feeds_after_parse().
- *
  */
 function pw_gdata_importer_feeds_after_parse(FeedsSource $source, FeedsParserResult $result) {
 
@@ -228,5 +233,40 @@ function pw_gdata_importer_feeds_presave(FeedsSource $source, $entity, $item, $e
         $entity->roles[$rid] = $role_name;
       }
     }
+  }
+}
+
+/**
+ * Returns tid of constituency by parliament and number.
+ *
+ * @param FeedsSource $source
+ *   The Feed source.
+ * @param string $entity_type
+ *   Entity type for the entity to be processed.
+ * @param string $bundle
+ *   Bundle name for the entity to be processed.
+ * @param string $target
+ *   A string identifying the unique target on the entity.
+ * @param array $values
+ *   The unique values to be checked.
+ *
+ * @return int
+ *   The existing entity id, or NULL if no existing entity is found.
+ *
+ * @see pw_gdata_importer_feeds_processor_targets_alter()
+ */
+function _pw_gdata_importer_constituency_tid(FeedsSource $source, $entity_type, $bundle, $target, array $values) {
+  $number  = strtok($values[0], '-');
+  $parliament_name = strtok('');
+  $parliament_terms = taxonomy_get_term_by_name($parliament_name, 'parliaments');
+
+  if (is_array($parliament_terms) && count($parliament_terms == 1)) {
+    $q = db_select('field_data_field_constituency_nr', 'nr');
+    $q->join('field_data_field_parliament', 'p', 'nr.entity_id = p.entity_id AND p.bundle = :bundle', [':bundle' => 'constituency']);
+    return $q->fields('nr', ['entity_id'])
+      ->condition('field_constituency_nr_value', $number)
+      ->condition('field_parliament_tid', key($parliament_terms))
+      ->execute()
+      ->fetchField();
   }
 }
