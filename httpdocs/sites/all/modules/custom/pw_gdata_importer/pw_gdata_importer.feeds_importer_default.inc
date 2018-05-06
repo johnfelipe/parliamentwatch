@@ -13,7 +13,7 @@ function pw_gdata_importer_feeds_importer_default() {
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
-  $feeds_importer->id = 'bavarian_streets_importer';
+  $feeds_importer->id = 'gdata_bavarian_streets_importer';
   $feeds_importer->config = array(
     'name' => 'Bavarian streets importer',
     'description' => 'Importiert Adressen für die Stimmkreise in München und Nürnberg',
@@ -103,7 +103,7 @@ function pw_gdata_importer_feeds_importer_default() {
     'import_on_create' => 1,
     'process_in_background' => 0,
   );
-  $export['bavarian_streets_importer'] = $feeds_importer;
+  $export['gdata_bavarian_streets_importer'] = $feeds_importer;
 
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
