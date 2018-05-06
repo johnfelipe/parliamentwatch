@@ -16,7 +16,7 @@ function pw_gdata_importer_feeds_importer_default() {
   $feeds_importer->id = 'bavarian_streets_importer';
   $feeds_importer->config = array(
     'name' => 'Bavarian streets importer',
-    'description' => '',
+    'description' => 'Importiert Adressen für die Stimmkreise in München und Nürnberg',
     'fetcher' => array(
       'plugin_key' => 'FeedsHTTPFetcher',
       'config' => array(
@@ -35,7 +35,7 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:0' => 'parliament',
           'xpathparser:1' => 'stimmkreis',
           'xpathparser:2' => 'concat',
-          'xpathparser:3' => 'concat(parliament, \'-\', stimmkreis)',
+          'xpathparser:3' => 'concat(stimmkreis, \'-\', parliament)',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
@@ -83,8 +83,8 @@ function pw_gdata_importer_feeds_importer_default() {
           ),
           3 => array(
             'source' => 'xpathparser:3',
-            'target' => 'parentguid',
-            'unique' => 1,
+            'target' => 'Temporary target 1',
+            'unique' => TRUE,
           ),
         ),
         'insert_new' => '0',
@@ -98,10 +98,10 @@ function pw_gdata_importer_feeds_importer_default() {
     ),
     'content_type' => '',
     'update' => 0,
-    'import_period' => 1800,
+    'import_period' => '-1',
     'expire_period' => 3600,
-    'import_on_create' => TRUE,
-    'process_in_background' => FALSE,
+    'import_on_create' => 1,
+    'process_in_background' => 0,
   );
   $export['bavarian_streets_importer'] = $feeds_importer;
 
