@@ -19,6 +19,24 @@ function pw_profiles_user_default_permissions() {
     'module' => 'overlay',
   );
 
+  // Exported permission: administer rh_user.
+  $permissions['administer rh_user'] = array(
+    'name' => 'administer rh_user',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'rabbit_hole',
+  );
+
+  // Exported permission: bypass rh_user.
+  $permissions['bypass rh_user'] = array(
+    'name' => 'bypass rh_user',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'rabbit_hole',
+  );
+
   // Exported permission: create field_user_about.
   $permissions['create field_user_about'] = array(
     'name' => 'create field_user_about',
@@ -1252,6 +1270,15 @@ function pw_profiles_user_default_permissions() {
       1 => 'administrator',
     ),
     'module' => 'field_permissions',
+  );
+
+  // Exported permission: php redirect rh_user.
+  $permissions['php redirect rh_user'] = array(
+    'name' => 'php redirect rh_user',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'rabbit_hole',
   );
 
   // Exported permission: use text format copyright.
