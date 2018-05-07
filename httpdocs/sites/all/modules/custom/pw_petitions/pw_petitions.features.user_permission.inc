@@ -60,14 +60,5 @@ function pw_petitions_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: moderate spam in nodes of type Petition.
-  $permissions['moderate spam in nodes of type Petition'] = array(
-    'name' => 'moderate spam in nodes of type Petition',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'antispam',
-  );
-
   return $permissions;
 }

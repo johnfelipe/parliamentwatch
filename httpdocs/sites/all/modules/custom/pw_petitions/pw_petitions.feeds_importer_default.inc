@@ -79,26 +79,25 @@ function pw_petitions_feeds_importer_default() {
             'source' => 'xpathparser:1',
             'target' => 'field_petition_external_url:url',
             'unique' => FALSE,
+            'language' => 'und',
           ),
           1 => array(
-            'source' => 'xpathparser:2',
-            'target' => 'field_teaser_image',
-            'unique' => FALSE,
-          ),
-          2 => array(
             'source' => 'xpathparser:4',
             'target' => 'field_petition_signings',
             'unique' => FALSE,
+            'language' => 'und',
           ),
-          3 => array(
+          2 => array(
             'source' => 'xpathparser:5',
             'target' => 'field_petition_recipient',
             'unique' => FALSE,
+            'language' => 'und',
           ),
-          4 => array(
+          3 => array(
             'source' => 'xpathparser:6',
             'target' => 'field_petition_content',
             'unique' => FALSE,
+            'language' => 'und',
           ),
         ),
         'update_existing' => '2',
