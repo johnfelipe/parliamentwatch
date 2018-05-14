@@ -14,7 +14,9 @@ function pw_sidejobs_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'sidejob' && $view_mode == 'embedded') {
     $base_income_range = pw_sidejobs_base_income_range(pw_sidejobs_classification($node));
     $income_range = pw_sidejobs_income_range($node);
+    $income_interval = pw_sidejobs_interval($node);
     $date = pw_sidejobs_date($node);
+    $enddate_is_today = isset($date[1]) && $date[1]->format('Y-m-d') == date('Y-m-d');
 
     $node->content['field_sidejob_date'] = '';
     if ($date[0]->format('n') == 1 && $date[0]->format('j') == 1) {
@@ -23,9 +25,9 @@ function pw_sidejobs_node_view($node, $view_mode, $langcode) {
     else {
       $field_parliament_valid = field_get_items('taxonomy_term', pw_globals_parliament($node), 'field_parliament_valid');
       $date_parliament_start = end($field_parliament_valid)['value'];
-      if (substr($date_parliament_start, 0, 10) != $date[0]->format('Y-m-d')) {
-        if (empty(isset($date[1]))) {
-          $node->content['field_sidejob_date'] = t('starts').' '.$date[0]->format('d.m.Y');
+      if (substr($date_parliament_start, 0, 10) != $date[0]->format('Y-m-d') || $income_interval == 1) {
+        if ($enddate_is_today) {
+          $node->content['field_sidejob_date'] = t('since').' '.$date[0]->format('d.m.Y');
         }
         else {
           $node->content['field_sidejob_date'] = $date[0]->format('d.m.Y');
@@ -33,12 +35,12 @@ function pw_sidejobs_node_view($node, $view_mode, $langcode) {
       }
     }
 
-    if (isset($date[1]) && $date[1]->format('Y-m-d') != date('Y-m-d')) {
+    if (isset($date[1]) && !$enddate_is_today) {
       if (!empty($node->content['field_sidejob_date'])) {
         $node->content['field_sidejob_date'] .= '–' . $date[1]->format('d.m.Y');
       }
       else {
-        $node->content['field_sidejob_date'] = t('ends').' '.$date[1]->format('d.m.Y');
+        $node->content['field_sidejob_date'] = t('until').' '.$date[1]->format('d.m.Y');
       }
     }
 

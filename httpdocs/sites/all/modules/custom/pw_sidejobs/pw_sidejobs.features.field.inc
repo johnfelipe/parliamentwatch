@@ -74,7 +74,7 @@ function pw_sidejobs_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '16',
+          'weight' => '14',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -207,7 +207,7 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_plain',
-          'weight' => '1',
+          'weight' => '2',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -328,7 +328,7 @@ function pw_sidejobs_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '14',
+          'weight' => '12',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -444,7 +444,7 @@ function pw_sidejobs_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '15',
+          'weight' => '13',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -551,7 +551,7 @@ function pw_sidejobs_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => '11',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -658,7 +658,7 @@ function pw_sidejobs_field_default_fields() {
             'separator' => ', ',
           ),
           'type' => 'addressfield_components',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -780,7 +780,7 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'text_plain',
-          'weight' => '8',
+          'weight' => '7',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -959,7 +959,7 @@ function pw_sidejobs_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1113,7 +1113,7 @@ function pw_sidejobs_field_default_fields() {
             'show_remaining_days' => FALSE,
           ),
           'type' => 'date_default',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1257,7 +1257,7 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'list_default',
-          'weight' => '7',
+          'weight' => '6',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1360,7 +1360,7 @@ function pw_sidejobs_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '9',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1470,10 +1470,23 @@ function pw_sidejobs_field_default_fields() {
           'weight' => 29,
         ),
         'embedded' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '0',
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(
+            'linked_field' => array(
+              'advanced' => array(
+                'class' => '',
+                'rel' => '',
+                'target' => '',
+                'text' => '',
+                'title' => '',
+              ),
+              'destination' => '',
+              'linked' => 0,
+            ),
+          ),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '8',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1562,7 +1575,7 @@ function pw_sidejobs_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '10',
         ),
         'tabular' => array(
           'label' => 'above',
@@ -1861,7 +1874,7 @@ function pw_sidejobs_field_default_fields() {
             ),
           ),
           'type' => 'taxonomy_term_reference_plain',
-          'weight' => '0',
+          'weight' => '1',
         ),
         'tabular' => array(
           'label' => 'above',

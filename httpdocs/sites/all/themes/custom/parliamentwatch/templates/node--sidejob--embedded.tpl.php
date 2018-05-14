@@ -83,9 +83,7 @@
 <tr class="sidejob-overview__item <?php print $classes; ?>"<?php print $attributes; ?> data-sidejobid="<?php print $node->nid; ?>">
   <td class="sidejob-overview__item__customer" data-sort-value="<?php print trim(render($content['field_sidejob_organization'])); ?>">
     <?php print render($content['field_sidejob_organization']); ?>
-    <small>
-      <?php print render($content['field_sidejob_address']); ?>
-    </small>
+    <small><?php print render($content['field_sidejob_address']); ?></small>
     <?php
     // Contextual Links
     print render($title_suffix); ?>
