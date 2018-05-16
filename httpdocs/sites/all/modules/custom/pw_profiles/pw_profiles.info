@@ -19,6 +19,7 @@ dependencies[] = media
 dependencies[] = menu
 dependencies[] = number
 dependencies[] = overlay
+dependencies[] = rh_user
 dependencies[] = php
 dependencies[] = pw_committees
 dependencies[] = pw_globals
