@@ -203,7 +203,7 @@ function pw_api_user_to_array($user, $subsets = array()) {
     // add location
     $profile['personal']['location'] = array();
     $profile['personal']['location']['country'] = $w_user->field_user_address->country->value();
-    $profile['personal']['location']['county'] = $w_user->field_user_address->administrative_area->value();
+    $profile['personal']['location']['state'] = $w_user->field_user_address->administrative_area->value();
     $profile['personal']['location']['city'] = $w_user->field_user_address->locality->value();
     $profile['personal']['location']['postal_code'] = $w_user->field_user_address->postal_code->value();
 
