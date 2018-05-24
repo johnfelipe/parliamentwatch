@@ -207,7 +207,16 @@
       span {
         font-size: .7em;
         color: $gray;
-        float: right;
+        float: left;
+        display: block;
+        width: 100%;
+        padding-top: $space-small;
+        @include breakpoint($breakpoint-m-max) {
+          float: right;
+          display: inline;
+          width: auto;
+          padding-top: 0;
+        }
       }
     }
     .d3__label {
