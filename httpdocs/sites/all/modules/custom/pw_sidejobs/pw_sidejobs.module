@@ -347,13 +347,26 @@ function pw_sidejobs_multiplier($interval, $date) {
     return 0;
   }
 
-  $datetime_diff = $date[0]->diff($date[1]);
-
   if ($interval == 12) {
+    if ($date[0]->format('m-d') != '01-01') {
+      $date_start = new DateTime(($date[0]->format('Y') + 1).'-01-01');
+      $datetime_diff = $date_start->diff($date[1]);
+    }
+    else {
+      $datetime_diff = $date[0]->diff($date[1]);
+    }
     $multiplier = $datetime_diff->y;
+    if ($datetime_diff->m > 0) {
+      $multiplier++;
+    }
   }
   else {
+    $date_start = new DateTime($date[0]->format('Y-m').'-01');
+    $datetime_diff = $date_start->diff($date[1]);
     $multiplier = $datetime_diff->y * 12 + $datetime_diff->m;
+    if ($datetime_diff->d > 0) {
+      $multiplier++;
+    }
   }
 
   return (int) $multiplier;
