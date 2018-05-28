@@ -200,7 +200,7 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = 'delete press article';
-  /* Feld: Global: Contextual Links */
+  /* Feld: Global: Kontextlinks */
   $handler->display->display_options['fields']['contextual_links']['id'] = 'contextual_links';
   $handler->display->display_options['fields']['contextual_links']['table'] = 'views';
   $handler->display->display_options['fields']['contextual_links']['field'] = 'contextual_links';
@@ -410,7 +410,7 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = 'delete press article';
-  /* Feld: Global: Contextual Links */
+  /* Feld: Global: Kontextlinks */
   $handler->display->display_options['fields']['contextual_links']['id'] = 'contextual_links';
   $handler->display->display_options['fields']['contextual_links']['table'] = 'views';
   $handler->display->display_options['fields']['contextual_links']['field'] = 'contextual_links';
@@ -533,17 +533,11 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['title']['element_class'] = 'pushfloat-2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  /* Feld: Global: Feldgruppe */
+  /* Feld: Beschädigte/fehlende Behandlungsroutine */
   $handler->display->display_options['fields']['fieldset']['id'] = 'fieldset';
   $handler->display->display_options['fields']['fieldset']['table'] = 'views';
   $handler->display->display_options['fields']['fieldset']['field'] = 'fieldset';
   $handler->display->display_options['fields']['fieldset']['label'] = 'Fieldset Body';
-  $handler->display->display_options['fields']['fieldset']['children'] = array(
-    0 => 'field_press_release_body',
-    1 => 'view_node',
-  );
-  $handler->display->display_options['fields']['fieldset']['fieldset']['type'] = 'div';
-  $handler->display->display_options['fields']['fieldset']['fieldset']['classes'] = 'field-body pushfloat-2 managed-content';
   /* Feld: Inhalt: Body */
   $handler->display->display_options['fields']['field_press_release_body']['id'] = 'field_press_release_body';
   $handler->display->display_options['fields']['field_press_release_body']['table'] = 'field_data_field_press_release_body';
@@ -588,7 +582,7 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = 'delete press release';
-  /* Feld: Global: Contextual Links */
+  /* Feld: Global: Kontextlinks */
   $handler->display->display_options['fields']['contextual_links']['id'] = 'contextual_links';
   $handler->display->display_options['fields']['contextual_links']['table'] = 'views';
   $handler->display->display_options['fields']['contextual_links']['field'] = 'contextual_links';
@@ -607,7 +601,7 @@ function pw_press_views_default_views() {
   $handler->display->display_options['sorts']['field_press_release_date_value']['table'] = 'field_data_field_press_release_date';
   $handler->display->display_options['sorts']['field_press_release_date_value']['field'] = 'field_press_release_date_value';
   $handler->display->display_options['sorts']['field_press_release_date_value']['order'] = 'DESC';
-  /* Sortierkriterien: Inhalt: Datum */
+  /* Sortierkriterien: Inhalt: Beitragsdatum */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
@@ -772,7 +766,7 @@ function pw_press_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete_node']['text'] = 'delete press release';
-  /* Feld: Global: Contextual Links */
+  /* Feld: Global: Kontextlinks */
   $handler->display->display_options['fields']['contextual_links']['id'] = 'contextual_links';
   $handler->display->display_options['fields']['contextual_links']['table'] = 'views';
   $handler->display->display_options['fields']['contextual_links']['field'] = 'contextual_links';

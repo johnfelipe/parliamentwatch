@@ -52,7 +52,6 @@ function pw_search_api_field_default_fields() {
           'label' => 'above',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(

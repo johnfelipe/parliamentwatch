@@ -146,15 +146,6 @@ function pw_press_user_default_permissions() {
     'module' => 'feeds',
   );
 
-  // Exported permission: moderate spam in nodes of type Presseartikel.
-  $permissions['moderate spam in nodes of type Presseartikel'] = array(
-    'name' => 'moderate spam in nodes of type Presseartikel',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'antispam',
-  );
-
   // Exported permission: unlock press_articles feeds.
   $permissions['unlock press_articles feeds'] = array(
     'name' => 'unlock press_articles feeds',

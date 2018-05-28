@@ -56,7 +56,6 @@ function pw_press_field_default_fields() {
           'label' => 'above',
           'module' => 'file',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -76,7 +75,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'file',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -96,7 +94,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'file',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -205,7 +202,6 @@ function pw_press_field_default_fields() {
           'label' => 'above',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(
@@ -231,7 +227,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'date_only_short',
             'fromto' => 'both',
             'linked_field' => array(
@@ -257,7 +252,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'date_only_short',
             'fromto' => 'both',
             'linked_field' => array(
@@ -674,7 +668,6 @@ function pw_press_field_default_fields() {
           'label' => 'above',
           'module' => 'mediafield',
           'settings' => array(
-            'field_delimiter' => '',
             'file_view_mode' => 'default',
             'linked_field' => array(
               'advanced' => array(
@@ -695,7 +688,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'mediafield',
           'settings' => array(
-            'field_delimiter' => '',
             'file_view_mode' => 'default',
             'linked_field' => array(
               'advanced' => array(
@@ -716,7 +708,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'mediafield',
           'settings' => array(
-            'field_delimiter' => '',
             'file_view_mode' => 'default',
             'linked_field' => array(
               'advanced' => array(
@@ -822,7 +813,6 @@ function pw_press_field_default_fields() {
           'label' => 'above',
           'module' => 'mediafield',
           'settings' => array(
-            'field_delimiter' => '',
             'file_view_mode' => 'default',
             'linked_field' => array(
               'advanced' => array(
@@ -843,7 +833,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'mediafield',
           'settings' => array(
-            'field_delimiter' => '',
             'file_view_mode' => 'default',
             'linked_field' => array(
               'advanced' => array(
@@ -864,7 +853,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'mediafield',
           'settings' => array(
-            'field_delimiter' => '',
             'file_view_mode' => 'default',
             'linked_field' => array(
               'advanced' => array(
@@ -965,7 +953,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -985,7 +972,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1011,7 +997,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1125,7 +1110,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(
@@ -1151,7 +1135,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(
@@ -1177,7 +1160,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'date_only_short',
             'fromto' => 'both',
             'linked_field' => array(
@@ -1203,7 +1185,6 @@ function pw_press_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(

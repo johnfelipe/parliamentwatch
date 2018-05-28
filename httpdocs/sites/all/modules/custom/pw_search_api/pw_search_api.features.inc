@@ -47,7 +47,6 @@ function pw_search_api_default_search_api_index() {
         "created" : { "type" : "date" },
         "edit_url" : { "type" : "uri" },
         "feed_nid" : { "type" : "integer" },
-        "field_blogpost_blogtags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_blogpost_categories" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_dialogue_before_election" : { "type" : "boolean" },
         "field_dialogue_id" : { "type" : "integer" },
