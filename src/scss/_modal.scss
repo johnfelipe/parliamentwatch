@@ -171,6 +171,11 @@
         @include grid-column(6);
       }
     }
+    .modal--newsletter__whole {
+      @include breakpoint($breakpoint-m-min) {
+        @include grid-column(12);
+      }
+    }
   }
   .modal__footer {
     margin-top: 0;
