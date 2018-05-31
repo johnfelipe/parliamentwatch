@@ -15,6 +15,7 @@ apt-get -y install \
 	php5-cli \
 	php5-curl \
 	php5-gd \
+	php5-mcrypt \
 	php5-mysql \
 	php5-xdebug \
 	ruby-sass \
@@ -31,6 +32,7 @@ chmod -R u+w /vagrant/httpdocs/sites/default
 cp /vagrant/provisioning/settings.php /vagrant/httpdocs/sites/default/
 
 php5enmod vagrant
+php5enmod mcrypt
 
 # Create folder for private files
 if [ ! -d /srv/drupal/private ]; then
