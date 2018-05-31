@@ -1,0 +1,86 @@
+<?php
+/**
+ * @file
+ * Contains a test about refining calculation of sidejob earnings
+ */
+
+/**
+ * Defines a class for testing the calculation of sidejob earnings
+ * in different periods
+ */
+
+class PWSidejobsUnitTestsTestCase extends DrupalUnitTestCase {
+
+  /**
+   * Info for this test case.
+   */
+  public static function getInfo() {
+    return array(
+      'name' => t('Multiplier function check'),
+      'description' => t('Check if the refined income calculation of sidejobs earnings shows the expected result for the multiplier as predefined in Ticket AW-5555'),
+      'group' => 'PW Sidejobs',
+    );
+  }
+
+  /**
+   * Test for function to calculate multiplier.
+   *
+   * Define an array of periods with expected multiplier
+   * excute calculation and compare results
+   */
+
+  public function testSidejobsMultiplier() {
+
+    // make testcases
+    // give intervall (1 for monthly, 12 for yearly), begin and end date (format: YYYYMMDD), the expected value for the multiplier
+    // defined in AW-5555 - Nebeneinkünfte (Parser): Formel anpassen
+
+    $test_jobs[] = array( 'interval' => 1,
+                          'start'   => 20171024,
+                          'stop'  => 20171031,
+                          'expected' => 1 );
+    $test_jobs[] = array( 'interval' => 1,
+                          'start'   => 20171024,
+                          'stop'  => 20171130,
+                          'expected' => 2 );
+    $test_jobs[] = array( 'interval' => 1,
+                          'start'   => 20171024,
+                          'stop'  => 20171231,
+                          'expected' => 3 );
+    $test_jobs[] = array( 'interval' => 1,
+                          'start'   => 20171024,
+                          'stop'  => 20180213,
+                          'expected' => 5 );
+    $test_jobs[] = array( 'interval' => 1,
+                          'start'   => 20171024,
+                          'stop'  => 20180504,
+                          'expected' => 8 );
+    $test_jobs[] = array( 'interval' => 12,
+                          'start'   => 20171024,
+                          'stop'  => 20180504,
+                          'expected' => 1 );
+
+    foreach ($test_jobs as $job) {
+      $start = new DateTime($job['start']);
+      $stop = new DateTime($job['stop']);
+      $date = array($start, $stop);
+
+      // execute calculation
+      $result = pw_sidejobs_multiplier($job['interval'], $date);
+
+      // compare result with expected value
+      $message = "Period ". $start->format('d.m.Y') . " - ". $stop->format('d.m.Y') . "<br />".
+                  "Expected value for multiplier: " . $job['expected'] . " calculated: " . $result;
+
+      if ($result == $job['expected']) {
+        $this->assertTrue($result, $message);
+      }
+      else {
+        $this->assertFalse($result, $message);
+      }
+
+    }
+
+  }
+
+}
