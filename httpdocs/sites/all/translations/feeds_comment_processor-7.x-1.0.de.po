@@ -1,10 +1,10 @@
 # German translation of Feeds Comment Processor (7.x-1.0)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Feeds Comment Processor (7.x-1.0)\n"
-"POT-Creation-Date: 2017-07-16 15:54+0000\n"
+"POT-Creation-Date: 2018-05-11 13:58+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -58,5 +58,7 @@ msgid "The author's host name."
 msgstr "Der Hostname des Authors."
 msgid "The comment author's name."
 msgstr "Der Name des Kommentarautors."
+msgid "The comment author's e-mail address."
+msgstr "Die E-Mail-Adresse des Kommentarautors."
 msgid "Authorize"
 msgstr "Autorisieren"
