@@ -356,9 +356,7 @@ function pw_sidejobs_multiplier($interval, $date) {
       $datetime_diff = $date[0]->diff($date[1]);
     }
     $multiplier = $datetime_diff->y;
-    if ($datetime_diff->m > 0) {
-      $multiplier++;
-    }
+    $multiplier++;
   }
   else {
     $date_start = new DateTime($date[0]->format('Y-m').'-01');

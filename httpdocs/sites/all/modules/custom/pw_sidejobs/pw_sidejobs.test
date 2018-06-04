@@ -59,6 +59,26 @@ class PWSidejobsUnitTestsTestCase extends DrupalUnitTestCase {
                           'start'   => 20171024,
                           'stop'  => 20180504,
                           'expected' => 1 );
+    $test_jobs[] = array( 'interval' => 12,
+                          'start'   => 20180101,
+                          'stop'  => 20180101,
+                          'expected' => 1 );
+    $test_jobs[] = array( 'interval' => 12,
+                          'start'   => 20180101,
+                          'stop'  => 20180604,
+                          'expected' => 1 );
+    $test_jobs[] = array( 'interval' => 12,
+                          'start'   => 20180101,
+                          'stop'  => 20180131,
+                          'expected' => 1 );
+    $test_jobs[] = array( 'interval' => 12,
+                          'start'   => 20180101,
+                          'stop'  => 20190101,
+                          'expected' => 2 );
+    $test_jobs[] = array( 'interval' => 12,
+                          'start'   => 20180101,
+                          'stop'  => 20190102,
+                          'expected' => 2 );
 
     foreach ($test_jobs as $job) {
       $start = new DateTime($job['start']);
@@ -72,13 +92,7 @@ class PWSidejobsUnitTestsTestCase extends DrupalUnitTestCase {
       $message = "Period ". $start->format('d.m.Y') . " - ". $stop->format('d.m.Y') . "<br />".
                   "Expected value for multiplier: " . $job['expected'] . " calculated: " . $result;
 
-      if ($result == $job['expected']) {
-        $this->assertTrue($result, $message);
-      }
-      else {
-        $this->assertFalse($result, $message);
-      }
-
+      $this->assertEqual($job['expected'], $result, $message, $group= 'PW Sidejobs');
     }
 
   }
