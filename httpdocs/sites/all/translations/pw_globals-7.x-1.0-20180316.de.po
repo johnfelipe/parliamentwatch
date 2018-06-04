@@ -1486,9 +1486,9 @@ msgstr "Alle anzeigen"
 #: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:206
 msgid ""
 "By registering you confirm that you have read our <a href=\"/"
-"datenschutzerklaerung\">privacy policy</a> and agree to the receipt of our "
+"datenschutzerklaerung\" target=\"_blank\">privacy policy</a> and agree to the receipt of our "
 "newsletter and the associated storage of your data."
-msgstr "Mit der Eintragung bestätigen Sie, dass Sie unsere <a href=\"/datenschutzerklaerung\">Datenschutzbestimmungen</a> gelesen haben und mit dem Empfang unseres Newsletters sowie der damit verbundenen Speicherung Ihrer Daten einverstanden sind."
+msgstr "Mit der Eintragung bestätigen Sie, dass Sie unsere <a href=\"/datenschutzerklaerung\" target=\"_blank\">Datenschutzbestimmungen</a> gelesen haben und mit dem Empfang unseres Newsletters sowie der damit verbundenen Speicherung Ihrer Daten einverstanden sind."
 
 #: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:210
 msgid "Go further for the content of abgeordnetenwatch.de"

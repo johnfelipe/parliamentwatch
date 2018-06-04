@@ -203,7 +203,7 @@
           </form>
         </div>
         <div class="modal--newsletter__whole">
-          <p><?php print t('By registering you confirm that you have read our <a href="/datenschutzerklaerung">privacy policy</a> and agree to the receipt of our newsletter and the associated storage of your data.') ?></p>
+          <p><?php print t('By registering you confirm that you have read our <a href="/datenschutzerklaerung" target="_blank">privacy policy</a> and agree to the receipt of our newsletter and the associated storage of your data.') ?></p>
         </div>
       </div>
       <div class="modal__footer">
