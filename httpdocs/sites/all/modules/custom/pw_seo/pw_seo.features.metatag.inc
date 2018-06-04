@@ -565,6 +565,9 @@ function pw_seo_metatag_export_default() {
     'instance' => 'node:blogpost',
     'disabled' => FALSE,
     'config' => array(
+      'description' => array(
+        'value' => '[node:field_blogpost_intro]',
+      ),
       'abstract' => array(
         'value' => '[node:summary]',
       ),
