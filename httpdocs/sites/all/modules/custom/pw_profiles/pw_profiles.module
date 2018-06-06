@@ -266,6 +266,9 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
       'type' => 'file',
     ];
   }
+  elseif (!user_is_logged_in()) {
+    drupal_not_found();
+  }
 
   if (in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show'])) {
     $parliament_tid = pw_profiles_parliament($account)->tid;
