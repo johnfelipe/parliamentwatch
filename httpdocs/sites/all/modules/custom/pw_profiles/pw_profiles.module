@@ -266,7 +266,7 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
       'type' => 'file',
     ];
   }
-  elseif (!user_is_logged_in()) {
+  elseif ($view_mode == 'full' && !user_is_logged_in()) {
     drupal_not_found();
   }
 
