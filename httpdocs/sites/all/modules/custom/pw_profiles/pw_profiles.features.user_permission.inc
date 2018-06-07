@@ -412,16 +412,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: create field_user_valid.
-  $permissions['create field_user_valid'] = array(
-    'name' => 'create field_user_valid',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'anonymous user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: create files.
   $permissions['create files'] = array(
     'name' => 'create files',
@@ -813,16 +803,6 @@ function pw_profiles_user_default_permissions() {
   // Exported permission: edit field_user_twitter_account.
   $permissions['edit field_user_twitter_account'] = array(
     'name' => 'edit field_user_twitter_account',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit field_user_valid.
-  $permissions['edit field_user_valid'] = array(
-    'name' => 'edit field_user_valid',
     'roles' => array(
       0 => 'Content Manager',
       1 => 'administrator',
@@ -1258,16 +1238,6 @@ function pw_profiles_user_default_permissions() {
       3 => 'Politician',
       4 => 'Premium User',
       5 => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_user_valid.
-  $permissions['edit own field_user_valid'] = array(
-    'name' => 'edit own field_user_valid',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -1806,18 +1776,6 @@ function pw_profiles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view field_user_valid.
-  $permissions['view field_user_valid'] = array(
-    'name' => 'view field_user_valid',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-      2 => 'anonymous user',
-      3 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: view files.
   $permissions['view files'] = array(
     'name' => 'view files',
@@ -2268,18 +2226,6 @@ function pw_profiles_user_default_permissions() {
       2 => 'administrator',
       3 => 'anonymous user',
       4 => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_user_valid.
-  $permissions['view own field_user_valid'] = array(
-    'name' => 'view own field_user_valid',
-    'roles' => array(
-      0 => 'Content Manager',
-      1 => 'administrator',
-      2 => 'anonymous user',
-      3 => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
