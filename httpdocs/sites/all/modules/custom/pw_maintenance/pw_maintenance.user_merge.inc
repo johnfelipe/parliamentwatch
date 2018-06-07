@@ -21,19 +21,20 @@ function pw_maintenance_user_merge($form, &$form_state) {
     '#default_value' => '',
     '#required' => TRUE,
     '#ajax' => array(
-      'callback' => 'temp_dependent_dropdown_callback',
-      'wrapper' => 'dropdown-second-replace',
+      'callback' => 'dependent_parliaments_callback',
+      'wrapper' => 'select-replace',
     ),
   );
 
-  $form['dropdown_second'] = array(
+  $options = get_parliaments_options($user_source);
+  $form['parliaments_replace'] = array(
     '#type' => 'select',
     '#multiple' => TRUE,
     '#title' => t('Parliaments'),
-    '#prefix' => '<div id="dropdown-second-replace">',
+    '#prefix' => '<div id="select-replace">',
     '#suffix' => '</div>',
-    '#options' => get_dropdown_options($user_source),
-    '#default_value' => isset($form_state['values']['dropdown_second']) ? $form_state['values']['dropdown_second'] : '',
+    '#options' => $options,
+    '#default_value' => isset($form_state['values']['parliaments_replace']) ? $form_state['values']['parliaments_replace'] : $options,
   );
 
   $form['user_target'] = array(
@@ -68,8 +69,8 @@ function pw_maintenance_user_merge($form, &$form_state) {
  * @return array
  *   Renderable array (the second dropdown)
  */
-function temp_dependent_dropdown_callback($form, $form_state) {
-  return $form['dropdown_second'];
+function dependent_parliaments_callback($form, $form_state) {
+  return $form['parliaments_replace'];
 }
 
 /**
@@ -83,7 +84,7 @@ function temp_dependent_dropdown_callback($form, $form_state) {
  * @return array
  *   Dropdown options
  */
-function get_dropdown_options($user_source = '') {
+function get_parliaments_options($user_source = '') {
   if (empty($user_source)) {
     return [];
   }
