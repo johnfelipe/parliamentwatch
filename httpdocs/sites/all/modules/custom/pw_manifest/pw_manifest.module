@@ -5,3 +5,10 @@
  * Date: 31.05.18
  * Time: 10:32
  */
+
+/**
+ * Implements hook_init().
+ */
+function pw_manifest_init() {
+  drupal_add_html_head_link(array('rel' => 'manifest', 'href' => drupal_get_path('module', 'pw_manifest') . '/manifest.json'));
+}

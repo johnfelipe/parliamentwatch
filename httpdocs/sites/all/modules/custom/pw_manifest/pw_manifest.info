@@ -1,0 +1,5 @@
+name = PW Manifest
+description = Enables a PWA manifest file.
+core = 7.x
+version = 7.x-1.0-20180607
+project = pw_manifest
