@@ -8,10 +8,8 @@
   background: $beige;
   border-bottom: 1px solid $darkBeige;
   width: 100%;
-  @include breakpoint($breakpoint-l-min) {
-    position: fixed;
-    z-index: 99999;
-  }
+  position: fixed;
+  z-index: 99999;
 }
 
 .header__inner {
