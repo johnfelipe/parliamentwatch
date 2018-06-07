@@ -216,11 +216,11 @@
     clear: both;
     @include transition(opacity 200ms ease-in-out);
     border-top: 1px solid $brightGray;
+    background: $white;
     @media (max-width: $breakpoint-m-max) {
       position: relative;
     }
     @include breakpoint($breakpoint-m-min) {
-      background: $white;
       border-top: 0;
       width: 500px;
       left: auto;
