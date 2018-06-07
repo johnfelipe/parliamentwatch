@@ -666,12 +666,7 @@
           headerHeight = $('#header').height(),
           contentOffset = 0;
         var lastScrollTop = 0, delta = 2;
-
-        if (windowWidth >= breakpointLMin) {
-          contentOffset = headerHeight - 1;
-        } else {
-          contentOffset = 0;
-        }
+        contentOffset = headerHeight - 1;
         $('#content').css('margin-top', contentOffset);
         setTimeout(docReadyClass, 200);
       }
