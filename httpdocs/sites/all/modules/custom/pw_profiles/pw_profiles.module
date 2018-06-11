@@ -699,7 +699,9 @@ function pw_profiles_street_form($form, &$form_state, $parliament, $parameters) 
 
   $form['constituency'] = [
     '#type' => 'select',
-    '#options' => _pw_profiles_constituency_options($parliament, $parameters),
+    '#options' =>  ['' => t('All')] + _pw_profiles_constituency_options($parliament, $parameters),
+    '#attributes' => ['multiple' => 'multiple', 'data-placeholder' => t('Please enter your street name'), 'data-maximum-selection-length' => '1'],
+    '#default_value' => '0',
   ];
 
   $form['submit'] = [

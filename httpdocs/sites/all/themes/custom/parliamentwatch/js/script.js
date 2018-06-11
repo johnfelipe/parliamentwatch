@@ -945,6 +945,12 @@
         $(this).select2({
           minimumResultsForSearch: 20,
           placeholder: 'Bitte wählen',
+          language: {
+            maximumSelected:function(e){
+              var t="Sie können maximal "+e.maximum+" Element auswählen";
+              return e.maximum!=1&&(t="Sie können maximal "+e.maximum+" Elemente auswählen"),t
+            }
+          },
           dropdownParent: $('.page-container')
         });
         $(this).on("select2:open", function (e) {

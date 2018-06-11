@@ -500,6 +500,27 @@ textarea.form__item__control {
 }
 
 
+/* Select deputies by Street */
+
+.form--pw-profiles-street-form {
+  @include grid-column(12);
+  margin-bottom: $space-large;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(8);
+  }
+  .form__item--select {
+    @include breakpoint($breakpoint-s-min) {
+      min-width: 400px;
+      float: left;
+      margin-right: $space;
+    }
+    .select2-container .select2-search--inline .select2-search__field {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+  }
+}
+
 /* Contact */
 
 #webform-ajax-wrapper-6578 {
