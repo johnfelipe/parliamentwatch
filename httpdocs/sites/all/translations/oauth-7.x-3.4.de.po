@@ -1,10 +1,10 @@
 # German translation of OAuth (7.x-3.4)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OAuth (7.x-3.4)\n"
-"POT-Creation-Date: 2017-05-07 01:43+0000\n"
+"POT-Creation-Date: 2018-06-10 23:53+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Exportieren"
 msgid "Save"
 msgstr "Speichern"
 msgid "Created"
-msgstr "Erstellt am"
+msgstr "Erstellt"
 msgid "Page title"
 msgstr "Seitentitel"
 msgid "Never"
