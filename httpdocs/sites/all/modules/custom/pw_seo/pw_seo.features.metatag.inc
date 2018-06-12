@@ -600,11 +600,17 @@ function pw_seo_metatag_export_default() {
       'og:title' => array(
         'value' => '[site:name] | [node:title]',
       ),
+      'og:description' => array(
+        'value' => '[node:field_blogpost_intro]',
+      ),
       'og:image' => array(
         'value' => '[node:field_teaser_image:share_image]',
       ),
       'twitter:title' => array(
         'value' => '[site:name] | [node:title]',
+      ),
+      'twitter:description' => array(
+        'value' => '[node:field_blogpost_intro]',
       ),
       'twitter:image' => array(
         'value' => '[node:field-teaser-image:file:url]',
