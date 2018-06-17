@@ -3,11 +3,31 @@
 */
 
 #sliding-popup {
-
   background: $orangeBG;
-  padding: $space;
+  padding: $space 0;
   border-top: 1px solid $mediumGray;
   box-shadow: 0 -5px 10px 3px rgba(0,0,0,0.1);
+  > div {
+    @include container();
+  }
+  .popup-content {
+    max-width: none;
+    width: auto;
+    display: block;
+    margin: 0;
+    @include grid-column(12);
+    #popup-buttons {
+      padding-top: $space;
+      @include breakpoint($breakpoint-xs-min + 41) {
+        padding-top: 0;
+        text-align: right;
+      }
+      .btn {
+        margin-bottom: 5px;
+
+      }
+    }
+  }
   p {
     color: $white;
   }
