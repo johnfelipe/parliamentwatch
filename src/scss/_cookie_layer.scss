@@ -24,11 +24,20 @@
       }
       .btn {
         margin-bottom: 5px;
-
+        font-size: .8em;
+        @include button($white, $orange, 10px, 8px);
+        @include breakpoint($breakpoint-s-min) {
+          font-size: 1em;
+          @include button($white, $orange, 15px, 12px);
+        }
       }
     }
   }
   p {
+    font-size: .8em;
     color: $white;
+    @include breakpoint($breakpoint-s-min) {
+      font-size: 1em;
+    }
   }
 }
