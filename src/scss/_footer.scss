@@ -32,10 +32,13 @@
   @include grid-column(12);
 }
 .footer__maincol__col__nav {
-  margin: 0;
+  margin: 0 0 $space;
   padding: 0;
   list-style: none;
   @include grid-container();
+  @include breakpoint($breakpoint-s-min) {
+    margin: 0;
+  }
   & + strong {
     margin-top: $space-large;
   }
@@ -43,13 +46,13 @@
 .footer__maincol__col__nav__item {
   position: relative;
   border-bottom: 1px solid $gray;
-  margin-right: $space-large;
   padding-left: 0;
   padding-top: 8px;
   padding-bottom: 8px;
   margin-bottom: 0;
-  float: left;
   @include breakpoint($breakpoint-s-min) {
+    margin-right: $space-large;
+    float: left;
     margin-bottom: $space-xsmall;
     border-bottom: 0;
     padding-bottom: 0;
@@ -57,8 +60,12 @@
   }
 
   &:last-child {
-    float: right;
     margin-right: 0;
+    border-bottom: 0;
+    @include breakpoint($breakpoint-s-min) {
+      float: right;
+      border-bottom: 1px solid $gray;
+    }
   }
 }
 .footer__maincol__col__nav__item__link {

@@ -84,7 +84,6 @@
     margin-right: $space;
     overflow: visible;
     height: auto;
-
     @include perspective(initial);
     @include transition(initial);
     @include grid-container;
