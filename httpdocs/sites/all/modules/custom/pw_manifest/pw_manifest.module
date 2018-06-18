@@ -11,5 +11,4 @@
  */
 function pw_manifest_init() {
   drupal_add_html_head_link(array('rel' => 'manifest', 'href' => drupal_get_path('module', 'pw_manifest') . '/manifest.json'));
-  drupal_add_js(drupal_get_path('module', 'pw_manifest') . '/js/service-worker-init.js');
 }
