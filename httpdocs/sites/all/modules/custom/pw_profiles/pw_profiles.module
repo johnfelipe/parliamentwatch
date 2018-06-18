@@ -8,6 +8,20 @@
 include_once 'pw_profiles.features.inc';
 
 /**
+ * Implements hook_init().
+ *
+ * Hides profile pages of non-politicians from anonymous users.
+ */
+function pw_profiles_init() {
+  $account = menu_get_object('user');
+  $is_profile_page = in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show']);
+
+  if ($is_profile_page && !_pw_user_has_role($account, 'Politician') && !user_is_logged_in()) {
+    drupal_not_found();
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function pw_profiles_menu() {
@@ -265,9 +279,6 @@ function pw_profiles_user_view($account, $view_mode, $langcode) {
     $account->content['#attached']['js'][drupal_get_path('module', 'pw_profiles') . '/twitter-widgets.js'] = [
       'type' => 'file',
     ];
-  }
-  elseif ($view_mode == 'full' && !user_is_logged_in()) {
-    drupal_not_found();
   }
 
   if (in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show'])) {
