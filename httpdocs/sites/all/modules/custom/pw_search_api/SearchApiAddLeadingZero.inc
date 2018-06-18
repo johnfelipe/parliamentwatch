@@ -12,7 +12,7 @@ class SearchApiAddLeadingZero extends SearchApiAbstractProcessor {
 
   public function preprocessIndexItems(array &$items) {
     $zero_pad = function ($input) {
-      return str_pad($input, 5, '0');
+      return str_pad($input, 5, '0', STR_PAD_LEFT);
     };
 
     foreach ($items as &$item) {
