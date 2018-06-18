@@ -62,12 +62,14 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 9999;
+  z-index: 999999;
   opacity: .9999;
   height: 100%;
   width: 280px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .3);
   perspective: 1000px;
+  overflow-y: scroll;
+  overflow-x: visible;
   @include transition(transform 0.5s);
   @media (max-width: $breakpoint-m-max) {
     @include transform(translate3d(120%, 0, 0));
@@ -80,10 +82,22 @@
     box-shadow: none;
     float: right;
     margin-right: $space;
+    overflow: visible;
+    height: auto;
 
     @include perspective(initial);
     @include transition(initial);
     @include grid-container;
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $brightGray;
+    border-left: 1px solid $darkBeige;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $mediumGray;
   }
   .nav__item {
     border-bottom: 1px solid $darkBeige;
@@ -143,7 +157,6 @@
       background: $beige - 10;
     }
   }
-
   // active
   .nav__item--active {
     position: relative;
@@ -153,11 +166,11 @@
       z-index: 99;
       border-bottom: 1px solid $white;
     }
-    &:after {
+    &:before {
       content: '';
       position: absolute;
       right: 100%;
-      top: 50%;
+      top: $space-large;
       width: 0;
       height: 0;
       border-style: solid;
@@ -171,6 +184,11 @@
     .nav__item__trigger {
       background: $white;
       border-bottom: 1px solid $darkBeige;
+    }
+    > .dropdown__list {
+      @media (max-width: $breakpoint-m-max) {
+        display: block;
+      }
     }
   }
 
@@ -250,6 +268,10 @@
       margin-right: 4px;
       width: $space-large;
       text-align: center;
+    }
+    &.active {
+      font-weight: 600;
+      color: $darkGray;
     }
   }
   .dropdown__list__item:nth-child(1) .dropdown__list__item__link:before { content: '\e80f'; }
@@ -482,9 +504,9 @@
   float: right;
   color: $gray;
   position: relative;
-  z-index: 99999;
+  z-index: 9999999;
   padding: 5px;
-  right: $space-xsmall;
+  right: $space-small;
   @include margin(($space - 5px) null);
   @include breakpoint($breakpoint-m-min) {
     display: none;
