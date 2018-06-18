@@ -68,7 +68,7 @@ function pw_gdpr_strongarm() {
     'cookie_name' => '',
     'domains_option' => '1',
     'domains_list' => '',
-    'exclude_paths' => '',
+    'exclude_paths' => 'datenschutzerklaerung',
     'exclude_admin_pages' => 1,
     'exclude_uid_1' => 0,
     'script_scope' => 'footer',
