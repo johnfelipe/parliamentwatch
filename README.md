@@ -6,7 +6,7 @@
 1. Install [Vagrant](http://vagrantup.com)
 1. `$ git clone -b develop git@github.com:parliamentwatch/parliamentwatch.git`
 1. `$ cd parliamentwatch`
-1. `$ export AW_USERNAME=... AW_PASSSWORD=...`
+1. `$ export AW_USERNAME=... AW_PASSWORD=...`
 1. `$ vagrant up`
 1. Open [http://localhost:8080](http://localhost:8080) in your browser.
 
