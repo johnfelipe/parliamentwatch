@@ -179,6 +179,13 @@ div.contextual-links-wrapper {
   }
 }
 
+
+/* Modal Overlay */
+
+#overlay-container {
+  z-index: 999999999;
+}
+
 /* Temp */
 
 .view-content {

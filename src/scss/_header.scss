@@ -75,7 +75,7 @@
     @include transform(translate3d(120%, 0, 0));
   }
   @include breakpoint($breakpoint-m-min) {
-    position: static;
+    position: relative;
     display: block;
     width: auto;
     background: transparent;
