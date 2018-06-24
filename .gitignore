@@ -62,3 +62,6 @@ src/package-lock.json
 
 # Ignore translation templates
 *.pot
+
+# Ignore database backups
+provisioning/var/backup/mysql
