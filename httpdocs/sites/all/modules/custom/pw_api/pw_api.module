@@ -254,31 +254,6 @@ function pw_api_json_array_rebuild(&$items){
 
 
 /**
- * Shorten all names in json array.
- *
- * @param array $items
- */
-
-function pw_api_shorten_names(&$items){
-  $keys = array_keys($items);
-  foreach ($keys as $key) {
-    if (is_array($items[$key])) {
-      pw_api_shorten_names($items[$key]);
-    }
-    if (!is_numeric($key)){
-      for ($i = 2; !isset($newkey) || isset($items[$newkey]); $i++) {
-        if (strlen($key) == $i) {
-          break;
-        }
-        $newkey = substr($key, 0, $i);
-      }
-      $items[$newkey] = $items[$key];
-      unset($items[$key]);
-    }
-  }
-}
-
-/**
  * Delivery callback; returns JSON.
  *
  * @param array $page_result
@@ -293,10 +268,6 @@ function pw_api_deliver_json($page_result) {
   else {
     drupal_add_http_header('Cache-Control', 'public, max-age=86400');
     pw_api_json_array_rebuild($page_result);
-    if(isset(drupal_get_query_parameters()['shorten']) && drupal_get_query_parameters()['shorten'] == '1'){
-      pw_api_shorten_names($page_result);
-      $page_result = array('full_document' => url(current_path(), array('absolute' => TRUE))) + $page_result;
-    }
     print drupal_json_encode($page_result);
   }
 }
