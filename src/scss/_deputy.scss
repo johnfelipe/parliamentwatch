@@ -117,7 +117,6 @@
   }
   header {
     position: relative;
-    opacity: .9999;
     .dropdown--default,
     .select2 {
       margin-bottom: $space-large;
@@ -243,7 +242,6 @@
     .hstats__item__label {
       padding-left: $space-xsmall;
       width:auto;
-      opacity: .9999;
       @include breakpoint($breakpoint-xs-min) {
         padding-left: $space-small;
       }
