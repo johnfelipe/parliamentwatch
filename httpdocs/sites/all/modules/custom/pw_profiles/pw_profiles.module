@@ -13,7 +13,14 @@ include_once 'pw_profiles.features.inc';
  * Hides profile pages of non-politicians from anonymous users.
  */
 function pw_profiles_init() {
-  $account = menu_get_object('user');
+  if (menu_get_item()['page_callback'] == 'user_revision_show') {
+    $map = menu_get_item()['original_map'];
+    $account = user_revision_load($map[1], $map[3]);
+  }
+  else {
+    $account = menu_get_object('user');
+  }
+
   $is_profile_page = in_array(menu_get_item()['page_callback'], ['user_view_page', 'user_revision_show']);
 
   if ($is_profile_page && !_pw_user_has_role($account, 'Politician') && !user_is_logged_in()) {
