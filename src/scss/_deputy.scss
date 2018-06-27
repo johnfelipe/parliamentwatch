@@ -117,6 +117,7 @@
   }
   header {
     position: relative;
+    z-index: 500;
     .dropdown--default,
     .select2 {
       margin-bottom: $space-large;

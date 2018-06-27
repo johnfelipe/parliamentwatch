@@ -75,14 +75,11 @@
     z-index: 99;
   }
 }
-.dropdown--open {
-  z-index: 9999;
-  .dropdown__list {
-    display: block;
-    @include breakpoint($breakpoint-m-min) {
-      opacity: 1;
-      pointer-events: auto;
-    }
+.dropdown--open .dropdown__list {
+  display: block;
+  @include breakpoint($breakpoint-m-min) {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 .dropdown__list__item__link {
@@ -97,6 +94,7 @@
 .dropdown--default {
   border: 1px solid $gray;
   position: relative;
+  z-index: 9;
 
   > span {
     position: relative;
