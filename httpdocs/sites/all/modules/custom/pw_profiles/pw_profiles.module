@@ -46,6 +46,12 @@ function pw_profiles_menu() {
     'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
   ];
+  $items['profiles/%taxonomy_term/%/street-search'] = [
+    'page callback' => 'pw_profiles_street_search',
+    'page arguments' => [1, 2],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
   return $items;
 }
 
@@ -556,6 +562,46 @@ function pw_profiles_page_title($parliament, $role_name) {
     return t('Deputies @parliament', ['@parliament' => $parliament->name]);
   }
 }
+
+/**
+ * Page callback: Returns options for selecting a constituency by street address.
+ *
+ * @param object $parliament
+ *   The parliament term.
+ * @param string $postal_code
+ *   The postal code.
+ *
+ * @return string
+ *   The JSON data for selecting a constituency.
+ */
+function pw_profiles_street_search($parliament, $postal_code) {
+  $matches = [];
+
+  $q = db_select('field_data_field_constituency_area_codes', 'ac');
+  $q->join('field_data_field_parliament', 'p', 'ac.entity_id = p.entity_id AND p.bundle = :bundle', [':bundle' => 'constituency']);
+  $q->join('field_data_field_constituency_street', 's', 'ac.entity_id = s.entity_id');
+  $q->join('taxonomy_term_data', 'td', 'ac.field_constituency_area_codes_tid = td.tid');
+  $q->fields('s', ['field_constituency_street_value', 'entity_id'])
+    ->condition('td.name', $postal_code)
+    ->condition('p.field_parliament_tid', $parliament->tid)
+    ->orderBy('s.field_constituency_street_value');
+
+  if (isset(drupal_get_query_parameters()['term'])) {
+    $q->condition('s.field_constituency_street_value', drupal_get_query_parameters()['term'] . '%', 'LIKE');
+  }
+
+  $result = $q->execute();
+
+  foreach ($result as $row) {
+    $matches[] = [
+      'id' => $row->entity_id,
+      'text' => $row->field_constituency_street_value,
+    ];
+  }
+
+  drupal_json_output(['results' => $matches]);
+}
+
 
 /**
  * Returns parliament term associated with the given account.
