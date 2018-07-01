@@ -501,6 +501,9 @@ function pw_profiles_page($parliament_term, $role_name) {
  *   The parliament term.
  * @param type $role_name
  *   The role.
+ *
+ * @return string
+ *   The JSON object for autosuggest.
  */
 function pw_profiles_autocomplete($parliament_term, $role_name) {
   $response = pw_profiles_base_search_query($parliament_term, $role_name)->execute();
@@ -537,11 +540,10 @@ function pw_profiles_autocomplete($parliament_term, $role_name) {
 /**
  * Title callback: Returns title for list of profiles.
  *
- * @param string $parliament
- *   The parliament name
- *
+ * @param object $parliament
+ *   The parliament term.
  * @param string $role_name
- *   The role
+ *   The role.
  *
  * @return string
  *   The title of the page
