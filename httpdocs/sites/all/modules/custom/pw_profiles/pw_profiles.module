@@ -763,10 +763,14 @@ function pw_profiles_street_form($form, &$form_state, $parliament, $parameters) 
     '#markup' => '<p>' . t('Please select a street address to find your constituency.') . '</p>',
   ];
 
+  $attributes = [
+    'data-ajax--url' => url("profiles/$parliament->tid/${parameters['keys']}/street-search"),
+    'data-placeholder' => t('Please enter your street name'),
+  ];
   $form['constituency'] = [
     '#type' => 'select',
-    '#options' =>  ['' => t('All')] + _pw_profiles_constituency_options($parliament, $parameters),
-    '#attributes' => ['multiple' => 'multiple', 'data-placeholder' => t('Please enter your street name'), 'data-maximum-selection-length' => '1'],
+    '#options' =>  [],
+    '#attributes' => $attributes,
     '#default_value' => '0',
   ];
 
@@ -999,39 +1003,6 @@ function _pw_profiles_street_required($parameters, $parliament) {
   $is_bavaria = strpos($parliament->name, 'Bayern') === 0;
   $postal_codes_mn = variable_get('pw_profiles_postal_codes_mn', []);
   return $is_bavaria && in_array(trim($parameters['keys']), $postal_codes_mn);
-}
-
-/**
- * Returns options for selecting a constituency via street address.
- *
- * @param array $parameters
- *   The query parameters.
- *
- * @param object $parliament
- *   The parliament term.
- *
- * @return array
- *   The constituency options.
- */
-function _pw_profiles_constituency_options($parliament, $parameters) {
-  $options = [];
-
-  $q = db_select('field_data_field_constituency_area_codes', 'ac');
-  $q->join('field_data_field_parliament', 'p', 'ac.entity_id = p.entity_id AND p.bundle = :bundle', [':bundle' => 'constituency']);
-  $q->join('field_data_field_constituency_street', 's', 'ac.entity_id = s.entity_id');
-  $q->join('taxonomy_term_data', 'td', 'ac.field_constituency_area_codes_tid = td.tid');
-
-  $result = $q->fields('s', ['field_constituency_street_value', 'entity_id'])
-    ->condition('td.name', trim($parameters['keys']))
-    ->condition('p.field_parliament_tid', $parliament->tid)
-    ->orderBy('s.field_constituency_street_value')
-    ->execute();
-
-  foreach ($result as $row) {
-    $options[] = (object) ['option' => [$row->entity_id => $row->field_constituency_street_value]];
-  }
-
-  return $options;
 }
 
 /**

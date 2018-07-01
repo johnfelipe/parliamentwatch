@@ -942,18 +942,46 @@
   Drupal.behaviors.select2init = {
     attach: function (context) {
       $('select.form__item__control', context).once('select2init', function () {
-        $(this).select2({
-          minimumResultsForSearch: 20,
-          placeholder: 'Bitte wählen',
-          language: {
-            maximumSelected:function(e){
-              var t="Sie können maximal "+e.maximum+" Element auswählen";
-              return e.maximum!=1&&(t="Sie können maximal "+e.maximum+" Elemente auswählen"),t
-            }
-          },
-          dropdownParent: $('.page-container')
-        });
-        $(this).on("select2:open", function (e) {
+        if ($(this).parents('.form--pw-profiles-street-form').length > 0) {
+          $(this).select2({
+            ajax: {
+              url: $(this).data('ajaxUrl'),
+              data: function (params) {
+                var query = {
+                  term: params.term,
+                };
+                return query;
+              },
+              dataType: 'json'
+            },
+            delay: 250,
+            dropdownParent: $('.page-container'),
+            language: {
+              errorLoading: function () {
+                return 'Die Ergebnisse konnten nicht geladen werden.';
+              },
+              loadingMore: function () {
+                return 'Lade mehr Ergebnisse…';
+              },
+              maximumSelected: function (e) {
+                var t = 'Sie können höchstens eine Straße auswählen';
+                return e.maximum != 1 && (t = 'Sie können höchstens ' + e.maximum + ' Straßen auswählen'), t
+              },
+              searching: function () {
+                return 'Suche…';
+              }
+            },
+            maximumSelectionLength: 1,
+            multiple: true
+          })
+        } else {
+          $(this).select2({
+            minimumResultsForSearch: 20,
+            placeholder: 'Bitte wählen',
+            dropdownParent: $('.page-container')
+          });
+        }
+        $(this).on('select2:open', function (e) {
           // close all dropdowns
           $('.dropdown__list').removeClass('dropdown__list--open');
         });
