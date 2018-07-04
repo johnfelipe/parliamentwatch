@@ -15,18 +15,18 @@ define('PW_DIALOGUES_INTERVAL', 86400); // one day buffer
  * Implements hook_menu().
  */
 function pw_dialogues_menu() {
-  $items['dialogues/%taxonomy_term'] = [
-    'title callback' => 'pw_dialogues_page_title',
-    'title arguments' => [1],
-    'page callback' => 'pw_dialogues_page',
-    'page arguments' => [1],
-    'access arguments' => ['access content'],
-    'type' => MENU_CALLBACK,
-  ];
   $items['dialogues/%taxonomy_term/%'] = [
     'title callback' => 'pw_dialogues_page_title',
     'title arguments' => [1, 2],
+    'page callback' => 'pw_dialogues_page',
     'page arguments' => [1, 2],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  $items['dialogues/%taxonomy_term/%/%'] = [
+    'title callback' => 'pw_dialogues_page_title',
+    'title arguments' => [1, 2, 3],
+    'page arguments' => [1, 2, 3],
     'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
   ];
@@ -320,23 +320,33 @@ function pw_dialogues_query_ignore_standard_replies_alter(QueryAlterableInterfac
 /**
  * Title callback: Sets the title for the dialogues page.
  */
-function pw_dialogues_page_title($parliament_term, $uid = NULL) {
-  if (!isset($uid)) {
+function pw_dialogues_page_title($parliament_term, $role_name, $uid = NULL) {
+  if (isset($uid)) {
+    return t('Questions to @name', ['@name' => _pw_get_fullname(user_load($uid))]);
+
+  }
+  elseif ($role_name == 'deputies') {
     return t('Questions to deputies in @parliament', ['@parliament' => $parliament_term->name]);
   }
-  else {
-    return t('Questions to @name', ['@name' => _pw_get_fullname(user_load($uid))]);
+  elseif ($role_name == 'candidates') {
+    return t('Questions to candidates in @parliament', ['@parliament' => $parliament_term->name]);
   }
 }
 
 /**
  * Page callback: Displays questions and answers for the given parliament.
  */
-function pw_dialogues_page($parliament_term, $uid = NULL) {
+function pw_dialogues_page($parliament_term, $role_name, $uid = NULL) {
   $limit = 12;
   $q = search_api_query('node_index');
   $q->condition('type', 'dialogue');
   $q->condition('field_parliament', $parliament_term->tid);
+
+  if ($role_name == 'candidates') {
+    $q->condition('field_dialogue_before_election',1);
+  } elseif ($role_name == 'deputies') {
+    $q->condition('field_dialogue_before_election',0);
+  }
 
   if (isset($uid)) {
     $q->condition('field_dialogue_recipient', $uid);
@@ -481,7 +491,12 @@ function pw_dialogues_profile_block() {
       'scope' => 'footer',
       'type' => 'inline',
     ];
-    $block['overview_url'] = url('dialogues/' . pw_profiles_parliament($account)->tid . '/' . $account->uid);
+    if (_pw_user_has_role($account, 'Candidate')) {
+      $role_name = 'candidates';
+    } else {
+      $role_name = 'deputies';
+    }
+    $block['overview_url'] = url('dialogues/' . pw_profiles_parliament($account)->tid . '/' . $role_name . '/' . $account->uid);
   }
   $block['content']['question_form'] = node_view(node_load(10446), 'form');
 
