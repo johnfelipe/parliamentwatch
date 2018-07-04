@@ -310,6 +310,13 @@ function pw_globals_update_7118() {
 }
 
 /**
+ * Add index to field_constituency_street.
+ */
+function pw_globals_update_7119() {
+  db_add_index('field_data_field_constituency_street', 'value', ['field_data_field_constituency_street_value']);
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
