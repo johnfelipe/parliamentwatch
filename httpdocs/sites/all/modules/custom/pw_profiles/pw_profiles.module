@@ -994,6 +994,8 @@ function _pw_profiles_is_postal_code_search($parameters) {
 /**
  * Returns whether the given search requires the user to select a street.
  *
+ * @param object $parliament
+ *   The parliament_term.
  * @param array $parameters
  *   The query parameters.
  *
@@ -1001,9 +1003,9 @@ function _pw_profiles_is_postal_code_search($parameters) {
  *   TRUE if $parameters['keys'] is a postal code from Munich or Nuremberg
  */
 function _pw_profiles_street_required($parameters, $parliament) {
-  $is_bavaria = strpos($parliament->name, 'Bayern') === 0;
+  $parliament_has_street_search = in_array($parliament->tid, variable_get('pw_profiles_parliaments_with_street_search', []));
   $postal_codes_mn = variable_get('pw_profiles_postal_codes_mn', []);
-  return $is_bavaria && in_array(trim($parameters['keys']), $postal_codes_mn);
+  return $parliament_has_street_search && in_array(trim($parameters['keys']), $postal_codes_mn);
 }
 
 /**
