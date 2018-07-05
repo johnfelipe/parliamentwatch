@@ -323,7 +323,6 @@ function pw_dialogues_query_ignore_standard_replies_alter(QueryAlterableInterfac
 function pw_dialogues_page_title($parliament_term, $role_name, $uid = NULL) {
   if (isset($uid)) {
     return t('Questions to @name', ['@name' => _pw_get_fullname(user_load($uid))]);
-
   }
   elseif ($role_name == 'deputies') {
     return t('Questions to deputies in @parliament', ['@parliament' => $parliament_term->name]);
@@ -344,8 +343,12 @@ function pw_dialogues_page($parliament_term, $role_name, $uid = NULL) {
 
   if ($role_name == 'candidates') {
     $q->condition('field_dialogue_before_election',1);
-  } elseif ($role_name == 'deputies') {
+  }
+  elseif ($role_name == 'deputies') {
     $q->condition('field_dialogue_before_election',0);
+  }
+  else {
+    return MENU_NOT_FOUND;
   }
 
   if (isset($uid)) {

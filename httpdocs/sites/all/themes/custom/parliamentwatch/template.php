@@ -198,6 +198,20 @@ function parliamentwatch_preprocess_block(&$variables) {
       $variables['classes_array'][] = drupal_html_class('title--' . menu_get_object('node')->type);
     }
   }
+
+  if ($variables['block']->module == 'pw_dialogues' && $variables['block']->delta == 'recent') {
+    $term = menu_get_object('taxonomy_term', 2);
+    if ($term) {
+      $today = new DateTime();
+      $election_date = new DateTime($term->field_parliament_election[LANGUAGE_NONE][0]['value'], new DateTimeZone($term->field_parliament_election[LANGUAGE_NONE][0]['timezone']));
+      if ($today < $election_date) {
+        $variables['overview_url'] = url('dialogues/' . $term->tid . '/candidates');
+      }
+      else {
+        $variables['overview_url'] = url('dialogues/' . $term->tid . '/deputies');
+      }
+    }
+  }
 }
 
 /**
