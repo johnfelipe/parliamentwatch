@@ -11,15 +11,16 @@
 }
 .swiper-button-next,
 .swiper-button-prev {
-  background-color: $white;
+  position: absolute;
   display: inline-block;
   width: 45px;
   height: 45px;
-  text-align: center;
-  background-image: none;
-  position: static;
-  @include transform(translate(0,0));
   margin-top: $space;
+  background-color: $white;
+  background-image: none;
+  outline: none;
+  text-align: center;
+  @include transform(translate(0,0));
   @include breakpoint($breakpoint-xs-min) {
     width: 55px;
     height: 55px;
@@ -42,16 +43,13 @@
   }
 }
 .swiper-button-next {
-  float: right;
+  right: 0;
   @include breakpoint($breakpoint-xl-min) {
-    right: 0;
-    float: none;
-    @include transform(translate(0,-50%));
+    // @include transform(translate(0,-50%));
   }
   &:before { content: '\e805' }
 }
 .swiper-button-prev {
-  float: left;
   left: 0;
   &:before { content: '\e804' }
 }

@@ -457,8 +457,10 @@
         slidesPerView: 'auto',
         resistance: true,
         resistanceRatio: 0.5,
-        nextButton: secondLevel.find('.swiper-button-next'),
-        prevButton: secondLevel.find('.swiper-button-prev'),
+        navigation: {
+            nextEl: secondLevel.find('.swiper-button-next'),
+            prevEl: secondLevel.find('.swiper-button-prev'),
+        },
         onInit: function (swiper) {
           resizeMainNavigation();
           swiper.update();

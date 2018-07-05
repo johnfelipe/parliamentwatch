@@ -302,6 +302,7 @@
   border-top: 1px solid $darkBeige;
   .header__bottom__inner {
     position: relative;
+    display: flex;
     @include grid-container();
     @include breakpoint($breakpoint-m-min) {
       @include container-regular();
@@ -424,6 +425,8 @@
 .header__bottom nav {
   width: auto;
   position: relative;
+  flex: auto;
+  overflow: hidden;
   @include grid-container();
   &.swiper-container-horizontal {
     
@@ -445,16 +448,13 @@
     top: 0;
     bottom: 0;
     margin: 0;
-    right: 0;
     height: auto;
     width: auto;
     padding: 0 $space-xsmall;
     font-size: .6em;
-    left: auto;
     z-index: 9;
     opacity: 1;
     display: block;
-    border-left: 1px solid $darkBeige;
     &:before {
       color: $gray;
       line-height: 50px;
@@ -462,6 +462,13 @@
         line-height: 63px;
       }
     }
+  }
+  .swiper-button-next {
+    border-left: 1px solid $darkBeige;
+  }
+  .swiper-button-prev {
+    border-right: 1px solid $darkBeige;
+
   }
   .swiper-button-disabled {
     display: none;
@@ -560,15 +567,13 @@
 
 .header__subnav__archive {
   @include clearfix();
+  flex: auto;
   cursor: pointer;
   vertical-align: middle;
   border-right: 1px solid $darkBeige;
   padding-left: $space;
   padding-right: $space + 5;
   background: $white;
-  position: absolute;
-  left: 0;
-  top: 0;
   z-index: 49;
   display: table;
   height: 50px;
