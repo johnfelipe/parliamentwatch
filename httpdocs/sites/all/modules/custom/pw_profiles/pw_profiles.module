@@ -766,7 +766,6 @@ function pw_profiles_street_form($form, &$form_state, $parliament, $parameters) 
   $attributes = [
     'data-ajax--url' => url("profiles/$parliament->tid/${parameters['keys']}/street-search"),
     'data-placeholder' => t('Please enter your street name'),
-    'required' => 'required',
   ];
   $form['constituency'] = [
     '#type' => 'select',
