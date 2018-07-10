@@ -945,6 +945,15 @@
     attach: function (context) {
       $('select.form__item__control', context).once('select2init', function () {
         if ($(this).parents('.form--pw-profiles-street-form').length > 0) {
+          var observer = new MutationObserver(function (mutations) {
+            for (var mutation of mutations) {
+              if (mutation.target.className.includes('select2-hidden-accessible')) {
+                $('.select2-search__field', mutation.target.nextSibling).prop('required', true);
+                break;
+              }
+            }
+          });
+          observer.observe(this, {attributes: true});
           $(this).select2({
             ajax: {
               url: $(this).data('ajaxUrl'),
@@ -975,7 +984,7 @@
             },
             maximumSelectionLength: 1,
             multiple: true
-          })
+          });
         } else {
           $(this).select2({
             minimumResultsForSearch: 20,

@@ -1066,7 +1066,9 @@ function parliamentwatch_form_element_label($variables) {
  */
 function parliamentwatch_textfield($variables) {
   $element = $variables['element'];
-  $element['#attributes']['type'] = 'text';
+  if (!isset($element['#attributes']['type'])) {
+    $element['#attributes']['type'] = 'text';
+  }
   element_set_attributes($element, ['id', 'name', 'value', 'size', 'maxlength']);
   _parliamentwatch_form_set_class($element, ['form__item__control']);
 

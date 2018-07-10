@@ -3,24 +3,31 @@
 */
 
 .modal {
-  pointer-events: none;
-  opacity: 0;
-
-  background: $white;
-  position: fixed;
+  position: absolute;
   left: $space;
   right: $space;
-  top: 50%;
-  z-index: 99999;
+  top: $space;
+  z-index: 9999999;
+  opacity: 0;
+  pointer-events: none;
+  background: $white;
   box-shadow: 0 10px 35px 0 rgba(0,0,0,.2);
-  @include transform(translate(0,-60%));
-  @include transition(all 300ms ease);
-  @include breakpoint($breakpoint-m-min) {
+  transform: translate(0,-10%);
+  transition: all 300ms ease;
+
+  @include breakpoint($breakpoint-s-min) {
     left: 50%;
+    right: auto;
+    transform: translate(-50%,0);
+  }
+  @include breakpoint($breakpoint-m-min) {
+    position: fixed;
+    left: 50%;
+    top: 50%;
     right: auto;
     width: 100%;
     max-width: 970px;
-    @include transform(translate(-50%,-60%));
+    transform: translate(-50%,-60%);
   }
 }
 .modal__content {
@@ -76,8 +83,8 @@
   pointer-events: none;
 
   background: $beige;
-  z-index: 99998;
-  @include transition(opacity 800ms ease 200ms);
+  z-index: 9999998;
+  transition: opacity 800ms ease 200ms;
 }
 
 /* Open modal */
@@ -85,9 +92,12 @@
 .modal--open {
   opacity: 1;
   pointer-events: auto;
-  @include transform(translate(0,-50%));
+  transform: translate(0,0);
+  @include breakpoint($breakpoint-s-min) {
+    transform: translate(-50%,0);
+  }
   @include breakpoint($breakpoint-m-min) {
-    @include transform(translate(-50%,-50%));
+    transform: translate(-50%,-50%);
   }
 }
 .modal--open + .modal-overlay {

@@ -316,19 +316,19 @@
   }
 }
 .nav--main-menu--level-3 {
-  @include breakpoint($breakpoint-m-min) {
-    position: relative;
-    z-index: 97;
-  }
   list-style: none;
   float: right;
   @include grid-container;
   @include breakpoint($breakpoint-m-min) {
-    text-align: right;
+    position: relative;
+    z-index: 97;
     @include margin(0);
+    text-align: right;
   }
   .nav__item {
-    display: inline-block;
+    float: left;
+    display: flex;
+    flex-shrink: 0;
     .nav__item__link--abgeordnete:before {
       content: '\e84d';
     }
@@ -348,12 +348,6 @@
       content: '\e900';
       font-size: 1.1em;
     }
-    // &:nth-child(3) .nav__item__link:before {
-    //   content: '\e835';
-    // }
-    // &:nth-child(6) .nav__item__link:before {
-    //   content: '\e822';
-    // }
   }
   .nav__item__link {
     font-family: $font-serif;
@@ -428,16 +422,13 @@
   flex: auto;
   overflow: hidden;
   @include grid-container();
-  &.swiper-container-horizontal {
-    
-  }
   .nav {
     width: 100%;
     height: 100%;
     z-index: 1;
-    @include display(flex);
-    @include transition-property(transform);
-    @include box-sizing(content-box);
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
   }
   .nav__item__link {
     white-space: nowrap;
