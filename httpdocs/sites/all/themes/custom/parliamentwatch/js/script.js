@@ -486,8 +486,8 @@
           var subnavOffsetValue = subnavOffset;
         }
 
-        secondLevel.css('padding-left', subnavOffsetValue + 'px');
-        secondLevel.css('padding-right', '30px');
+        // secondLevel.css('padding-left', subnavOffsetValue + 'px');
+        // secondLevel.css('padding-right', '30px');
         // indicator.css('height', subnavHeight + 'px');
       }
 

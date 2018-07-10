@@ -419,7 +419,8 @@
 .header__bottom nav {
   width: auto;
   position: relative;
-  flex: auto;
+  flex: 1;
+  flex-grow: 13;
   overflow: hidden;
   @include grid-container();
   .nav {
@@ -558,11 +559,11 @@
 
 .header__subnav__archive {
   @include clearfix();
-  flex: auto;
+  flex: 1;
   cursor: pointer;
   vertical-align: middle;
   border-right: 1px solid $darkBeige;
-  padding-left: $space;
+  padding-left: $space-small;
   padding-right: $space + 5;
   background: $white;
   z-index: 49;
@@ -570,6 +571,7 @@
   height: 50px;
   will-change: height;
   transition: height 300ms ease;
+  flex-shrink: 1;
   @include breakpoint($breakpoint-xs-min) {
     height: 60px;
   }
