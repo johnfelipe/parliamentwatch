@@ -53,6 +53,10 @@
   left: 0;
   &:before { content: '\e804' }
 }
+.swiper-button-disabled {
+  display: none;
+}
+
 .swiper-container--tile .swiper-wrapper {
   .tile {
     float: none;
