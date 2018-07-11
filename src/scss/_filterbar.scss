@@ -25,11 +25,15 @@
 .filterbar__inner {
   position: relative;
   @include grid-container();
+
+  > .form {
+    display: flex;
+  }
 }
 .filterbar__pre_swiper {
   position: relative;
   z-index: 9;
-  float: left;
+  flex: 1;
   padding-left: $space;
   @include grid-container();
   .filterbar__item { cursor: default; }
@@ -56,7 +60,10 @@
 
 }
 .filterbar__swiper {
-  position: absolute;
+  position: relative;
+  flex: 1;
+  flex-grow: 13;
+  overflow: hidden;
   @include grid-container();
   .filterbar__item {
     float: none;
@@ -65,19 +72,15 @@
   .swiper-button-next {
     position: absolute;
     top: 0;
-    bottom: 1px;
+    bottom: 0; // 1px;
     margin: 0;
-    right: 0;
     height: auto;
     width: auto;
     padding: 0 $space-xsmall;
     font-size: .6em;
-    left: auto;
     z-index: 9;
     opacity: 1;
-    display: block;
-    margin-right: 0;
-    @include transform(translate(0, 0));
+    transform: translate(0, 0);
     &:before {
       color: $gray;
       line-height: 57px;
@@ -113,7 +116,7 @@
   float: left;
   color: $mediumGray;
   background: $white;
-  margin-bottom: 1px;
+//  margin-bottom: 1px;
   cursor: pointer;
   .form__item {
     margin-bottom: 0;

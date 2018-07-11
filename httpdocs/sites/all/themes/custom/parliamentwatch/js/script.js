@@ -458,8 +458,8 @@
         resistance: true,
         resistanceRatio: 0.5,
         navigation: {
-            nextEl: secondLevel.find('.swiper-button-next'),
-            prevEl: secondLevel.find('.swiper-button-prev'),
+          nextEl: secondLevel.find('.swiper-button-next'),
+          prevEl: secondLevel.find('.swiper-button-prev'),
         },
         onInit: function (swiper) {
           resizeMainNavigation();
@@ -485,10 +485,6 @@
         } else {
           var subnavOffsetValue = subnavOffset;
         }
-
-        // secondLevel.css('padding-left', subnavOffsetValue + 'px');
-        // secondLevel.css('padding-right', '30px');
-        // indicator.css('height', subnavHeight + 'px');
       }
 
       var windowResize = debounce(function () {
@@ -903,8 +899,10 @@
           spaceBetween: 20,
           slidesPerView: 3,
           slidesPerGroup: 3,
-          nextButton: $this.find('.swiper-button-next'),
-          prevButton: $this.find('.swiper-button-prev'),
+          navigation: {
+            nextEl: $this.find('.swiper-button-next'),
+            prevEl: $this.find('.swiper-button-prev'),
+          },
           pagination: $this.find('.swiper-pagination'),
           paginationType: 'fraction',
           breakpoints: {
@@ -1830,8 +1828,10 @@
         wrapperClass: 'filterbar__swiper__inner',
         speed: 400,
         slidesPerView: 'auto',
-        nextButton: filterBarSwiper.find('.swiper-button-next'),
-        prevButton: filterBarSwiper.find('.swiper-button-prev'),
+        navigation: {
+          nextEl: filterBarSwiper.find('.swiper-button-next'),
+          prevEl: filterBarSwiper.find('.swiper-button-prev'),
+        },
         onInit: function (swiper) {
           filterBarSwiperSize();
           swiper.update();
@@ -1949,9 +1949,11 @@
           speed: 400,
           slidesPerView: 1,
           autoHeight: 1,
-          nextButton: candidateCheckSwiper.find('.swiper-button-next'),
-          prevButton: candidateCheckSwiper.find('.swiper-button-prev'),
-          pagination: candidateCheckSwiper.find('.swiper-pagination'),
+          navigation: {
+            nextEl: candidateCheckSwiper.find('.swiper-button-next'),
+            prevEl: candidateCheckSwiper.find('.swiper-button-prev'),
+          },
+        pagination: candidateCheckSwiper.find('.swiper-pagination'),
           paginationType: 'fraction',
           paginationFractionRender: function (swiper, currentClassName, totalClassName) {
             return Drupal.t('Proposition') + ' <span class="' + currentClassName + '"></span> ' +
