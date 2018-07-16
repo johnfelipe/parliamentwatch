@@ -40,12 +40,13 @@ class UserArchiveDataSourceController extends SearchApiAbstractDataSourceControl
    */
   public function loadItems(array $ids) {
     $items = [];
-    $q = db_select('user_archive_cache', 'uac')
-      ->fields('uac', ['vid', 'uid'])
-      ->condition('uac.vid', $ids);
-    $q->join('user_revision', 'ur', 'uac.vid = ur.vid');
+    $q = db_select('user_archive_cache', 'uac');
+    $q->addExpression('MAX(uac.vid)', 'vid');
+    $q->addField('uac', 'uid');
+    $q->condition('uac.vid', $ids);
+    $q->groupBy('uac.uid, uac.parliament_name, uac.user_role');
 
-    foreach ($q->execute()->fetchAllKeyed() as $vid => $uid) {
+    foreach ($q->execute()->fetchAllKeyed(1, 0) as $vid => $uid) {
       $items[$vid] = user_revision_load($uid, $vid);
     }
 
@@ -60,9 +61,9 @@ class UserArchiveDataSourceController extends SearchApiAbstractDataSourceControl
    * {@inheritdoc}
    */
   protected function getAllItemIds() {
-    return db_select('user_archive_cache', 'uac')
-      ->fields('uac', [$this->getIdFieldInfo()['key']])
-      ->execute()
-      ->fetchCol();
+    $q = db_select('user_archive_cache', 'uac')
+      ->groupBy('uac.uid, uac.parliament_name, uac.user_role');
+    $q->addExpression('MAX(uac.vid)');
+    return $q->execute()->fetchCol();
   }
 }

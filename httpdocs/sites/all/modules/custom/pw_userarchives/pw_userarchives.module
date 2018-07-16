@@ -18,8 +18,6 @@ function pw_userarchives_entity_info_alter(&$entity_info) {
 function pw_userarchives_user_insert(&$edit, $account, $category) {
   $reset_actual_profile = !isset($_REQUEST['form_id']);
   pw_userarchives_cron($account->uid, $reset_actual_profile);
-
-  search_api_track_item_insert('user_revision', [$account->vid]);
 }
 
 /**
@@ -28,10 +26,6 @@ function pw_userarchives_user_insert(&$edit, $account, $category) {
 function pw_userarchives_user_update(&$edit, $account, $category) {
   $reset_actual_profile = !isset($_REQUEST['form_id']);
   pw_userarchives_cron($account->uid, $reset_actual_profile);
-
-  if ($account->revision) {
-    search_api_track_item_insert('user_revision', [$account->vid]);
-  }
 }
 
 /**
@@ -46,20 +40,31 @@ function pw_userarchives_user_update(&$edit, $account, $category) {
  */
 function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
   // check if election date or parliaments end date is reached, then delete profiles from meta table for triggering refresh
+  $tracked_items_query = db_select('user_archive_cache', 'uac');
+  $tracked_items_query->addExpression('MAX(uac.vid)');
+  $tracked_items_query->groupBy('uac.uid, uac.parliament_name, uac.user_role');
+
   if ($uid == NULL) {
+    $tracked_items = [];
     $vocabulary = taxonomy_vocabulary_machine_name_load('parliaments');
     $parliaments = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
     foreach ($parliaments as $parliament) {
-
       if (pw_userarchives_check_refresh_profiles($parliament)) {
+        $tracked_items = array_merge($tracked_items, $tracked_items_query
+          ->condition('parliament_name', $parliament->name)
+          ->execute()
+          ->fetchCol());
         db_delete('user_archive_cache')
           ->condition('parliament_name', $parliament->name)
           ->execute();
       }
     }
   }
-  else{
-
+  else {
+    $tracked_items = $tracked_items_query
+      ->condition('uid', $uid)
+      ->execute()
+      ->fetchCol();
     // empty cache if uid is specified
     db_delete('user_archive_cache')
       ->condition('uid', $uid)
@@ -88,8 +93,7 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
     $query->condition('ur.uid', $uid);
   }
   $query->condition('role.name', array('Deputy', 'Candidate'));
-  $query->groupBy('ur.uid, u_parl.field_user_parliament_tid, role_tid.field_user_roles_for_view_mode_s_tid');
-  # GROUP BY: , fraction_tid.field_user_fraction_tid
+  $query->groupBy('ur.uid, u_parl.field_user_parliament_tid, role_tid.field_user_roles_for_view_mode_s_tid, fraction_tid.field_user_fraction_tid');
 
   // fetch all relevant vids as flat array
   $vids = $query->execute()->fetchCol();
@@ -255,15 +259,15 @@ function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
     }
   }
 
-  // update politician index
-  $vids_for_index_update = db_select('user_revision', 'ur')
-    ->fields('ur', ['vid'])
-    ->condition('ur.uid', $uid)
+  $politician_index = search_api_index_load('politician_archive_index');
+  $items_to_track_after_update = $tracked_items_query
+    ->condition('uac.vid', $vids)
     ->execute()
     ->fetchCol();
-  $politician_index = search_api_index_load('politician_archive_index');
+
   if ($politician_index) {
-    search_api_index_specific_items($politician_index, $vids_for_index_update);
+    search_api_track_item_insert('user_revision', array_diff($items_to_track_after_update, $tracked_items));
+    search_api_track_item_delete('user_revision', array_diff($tracked_items, $items_to_track_after_update));
   }
 
   return 'Done';
