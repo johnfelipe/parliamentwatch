@@ -3,6 +3,6 @@ jQuery(document).ready(function() {
     _paq.push(['rememberConsentGiven']);
   });
   if (Drupal.eu_cookie_compliance.hasAgreed()){
-    //_paq.push(['setConsentGiven']);
+    _paq.push(['setConsentGiven']);
   }
 });
