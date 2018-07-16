@@ -4,3 +4,36 @@
  * @file
  * Install, update and uninstall functions for the pw_profiles module.
  */
+
+/**
+ * Move twitter links to field_user_more_links.
+ */
+function pw_profiles_update_7201() {
+  $twitter_base_url = 'https://twitter.com/';
+
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'user');
+  $q->fieldCondition('field_user_twitter_account', 'value', '<>');
+  $result = $q->execute();
+
+  if (!empty($result['user'])) {
+    foreach (array_keys($result['user']) as $uid) {
+      $account = user_load($uid);
+      $twitter_account = $account->field_user_twitter_account[LANGUAGE_NONE][0]['value'];
+      if (strpos($twitter_account, $twitter_base_url) === 0) {
+        $url = $twitter_account;
+      }
+      else {
+        $url = $twitter_base_url . ltrim($twitter_account, '@');
+      }
+      $account->field_user_links_more[LANGUAGE_NONE][] = [
+        'url' => $url,
+        'title' => 'Twitter',
+        'attributes' => '',
+      ];
+      field_attach_update('user', $account);
+    }
+  }
+
+  field_delete_field('field_user_twitter_account');
+}

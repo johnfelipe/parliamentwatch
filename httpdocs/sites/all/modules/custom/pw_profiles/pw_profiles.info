@@ -82,7 +82,6 @@ features[field][] = user-user-field_user_public_mail
 features[field][] = user-user-field_user_question_form_closed
 features[field][] = user-user-field_user_retired
 features[field][] = user-user-field_user_roles_for_view_mode_s
-features[field][] = user-user-field_user_twitter_account
 features[field_group][] = group_managed_content|user|user|form
 features[field_group][] = group_user_admin|user|user|form
 features[field_group][] = group_user_affiliation|user|user|form

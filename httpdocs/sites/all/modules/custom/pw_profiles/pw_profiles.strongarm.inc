@@ -74,6 +74,9 @@ function pw_profiles_strongarm() {
         'metatags' => array(
           'weight' => '15',
         ),
+        'rabbit_hole' => array(
+          'weight' => '0',
+        ),
       ),
       'display' => array(
         'summary' => array(
