@@ -1963,7 +1963,7 @@
             nextEl: candidateCheckSwiper.find('.swiper-button-next'),
             prevEl: candidateCheckSwiper.find('.swiper-button-prev'),
           },
-        pagination: candidateCheckSwiper.find('.swiper-pagination'),
+          pagination: candidateCheckSwiper.find('.swiper-pagination'),
           paginationType: 'fraction',
           paginationFractionRender: function (swiper, currentClassName, totalClassName) {
             return Drupal.t('Proposition') + ' <span class="' + currentClassName + '"></span> ' +

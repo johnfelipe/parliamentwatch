@@ -46,13 +46,15 @@
 ?>
 <div class="poll__timeline__container">
   <div class="poll__timeline">
-    <h2><?php print $block->subject; ?></h2>
+    <div class="poll__timeline__title">
+      <div class="swiper-button-next"></div>
+      <h2><?php print $block->subject; ?></h2>
+      <div class="swiper-button-prev"></div>
+    </div>
     <?php print render($title_suffix) ?>
     <div class="poll__timeline__inner">
       <?php print $content ?>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
   </div>
 </div>
 
