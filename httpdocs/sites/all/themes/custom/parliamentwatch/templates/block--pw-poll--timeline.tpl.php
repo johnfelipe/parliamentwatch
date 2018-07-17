@@ -51,6 +51,8 @@
     <div class="poll__timeline__inner">
       <?php print $content ?>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 </div>
 

@@ -446,12 +446,15 @@
     font-size: .6em;
     z-index: 9;
     opacity: 1;
-    display: block;
+    transform: translate(0,0);
     &:before {
       color: $gray;
       line-height: 50px;
       @include breakpoint($breakpoint-xs-min) {
         line-height: 63px;
+      }
+      @include breakpoint($breakpoint-l-min) {
+        line-height: 80px;
       }
     }
   }

@@ -433,7 +433,7 @@
     @include h3();
     position: relative;
     text-align: center;
-    padding: ($space * 2) $space;
+    padding: ($space * 2);
     margin-bottom: 0;
     display: block;
     background: $white;
@@ -470,6 +470,18 @@
   }
   &:before { top: 45.1%; }
   &:after { top: 71%; }
+
+  // Timeline navigation
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: 26px;
+    margin-top: 0;
+    @include breakpoint($breakpoint-xl-min) {
+      top: 26px;
+      transform: translate(0,0);
+    }
+  }
 }
 .poll__timeline__inner {
   @include grid-container();

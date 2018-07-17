@@ -20,7 +20,7 @@
   background-image: none;
   outline: none;
   text-align: center;
-  @include transform(translate(0,0));
+  transform: translate(0,0);
   @include breakpoint($breakpoint-xs-min) {
     width: 55px;
     height: 55px;
@@ -29,7 +29,7 @@
     position: absolute;
     top: 50%;
     margin-top: 0;
-    @include transform(translate(0,-50%));
+    transform: translate(0,-50%);
   }
   &:before {
     font-family: "awfont";

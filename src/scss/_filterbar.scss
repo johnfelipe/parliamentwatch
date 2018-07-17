@@ -25,20 +25,21 @@
 .filterbar__inner {
   position: relative;
   @include grid-container();
-
-  > .form {
-    display: flex;
-  }
 }
 .filterbar__pre_swiper {
-  position: relative;
+  position: absolute;
+  left: 0;
   z-index: 9;
-  flex: 1;
   padding-left: $space;
+  display: inline-block;
   @include grid-container();
-  .filterbar__item { cursor: default; }
+  .filterbar__item {
+    cursor: default;
+    flex: 1;
+  }
   .filterbar__item--input {
     width: 150px;
+    flex-grow: 10;
     @include breakpoint($breakpoint-xs-min) {
       width: 200px;
     }
@@ -61,9 +62,6 @@
 }
 .filterbar__swiper {
   position: relative;
-  flex: 1;
-  flex-grow: 13;
-  overflow: hidden;
   @include grid-container();
   .filterbar__item {
     float: none;
@@ -99,9 +97,6 @@
   &.swiper-container-horizontal .filterbar__item:last-child {
     border-right: 0;
   }
-  .filterbar__item:last-child {
-    margin-right: $space-large;
-  }
 }
 .filterbar__swiper__inner {
   width: 100%;
@@ -123,18 +118,18 @@
   }
 }
 .filterbar__item--label {
-  font-weight: 600;
-  float: left;
-  padding-top: $space;
-  padding-bottom: $space;
-  padding-right: $space-small;
   display: none;
-  position: relative;
-  z-index: 9;
   @include breakpoint($breakpoint-s-min) {
     display: block;
+    font-weight: 600;
+    white-space: nowrap;
+    float: left;
+    padding-top: $space;
+    padding-bottom: $space;
+    padding-right: $space-small;
+    position: relative;
+    z-index: 9;
   }
-
 }
 
 .filterbar__item--active {
@@ -206,11 +201,8 @@ _:-ms-fullscreen,
     display: block;
     color: $mediumGray;
     line-height: $space - 1;
-    @include breakpoint($breakpoint-m-min) {
-      line-height: $space;
-    }
     @include breakpoint($breakpoint-l-min) {
-      line-height: $space + 1;
+      line-height: $space;
     }
     .badge {
       display: inline-block;
