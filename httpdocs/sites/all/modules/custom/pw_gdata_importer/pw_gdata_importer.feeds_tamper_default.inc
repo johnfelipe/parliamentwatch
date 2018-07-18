@@ -275,7 +275,7 @@ return $user->field_user_address[\'und\'][0][\'postal_code\'];',
   $export['gdata_profiles_importer_v2-blank_source_2-username_creator'] = $feeds_tamper;
 
   $feeds_tamper = new stdClass();
-  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
+  $feeds_tamper->disabled = TRUE; /* Edit this to true to make a default feeds_tamper disabled initially */
   $feeds_tamper->api_version = 2;
   $feeds_tamper->id = 'gdata_profiles_importer_v2-xpathparser_1-username_creator';
   $feeds_tamper->importer = 'gdata_profiles_importer_v2';
@@ -702,45 +702,6 @@ return $user->field_user_address[\'und\'][0][\'postal_code\'];',
   $feeds_tamper->weight = 0;
   $feeds_tamper->description = 'Add term to existing parliament terms on update';
   $export['gdata_subject_importer-xpathparser_3-add_parliament'] = $feeds_tamper;
-
-  $feeds_tamper = new stdClass();
-  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
-  $feeds_tamper->api_version = 2;
-  $feeds_tamper->id = 'gdata_twitter_handle_importer-xpathparser_1-required';
-  $feeds_tamper->importer = 'gdata_twitter_handle_importer';
-  $feeds_tamper->source = 'xpathparser:1';
-  $feeds_tamper->plugin_id = 'required';
-  $feeds_tamper->settings = array(
-    'invert' => 0,
-    'log' => 0,
-  );
-  $feeds_tamper->weight = 1;
-  $feeds_tamper->description = 'Pflichtfeld';
-  $export['gdata_twitter_handle_importer-xpathparser_1-required'] = $feeds_tamper;
-
-  $feeds_tamper = new stdClass();
-  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
-  $feeds_tamper->api_version = 2;
-  $feeds_tamper->id = 'gdata_twitter_handle_importer-xpathparser_1-twitter_names';
-  $feeds_tamper->importer = 'gdata_twitter_handle_importer';
-  $feeds_tamper->source = 'xpathparser:1';
-  $feeds_tamper->plugin_id = 'twitter_names';
-  $feeds_tamper->settings = array();
-  $feeds_tamper->weight = 0;
-  $feeds_tamper->description = 'Parse twitter name';
-  $export['gdata_twitter_handle_importer-xpathparser_1-twitter_names'] = $feeds_tamper;
-
-  $feeds_tamper = new stdClass();
-  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
-  $feeds_tamper->api_version = 2;
-  $feeds_tamper->id = 'gdata_twitter_handle_importer-xpathparser_2-find_username_by_uuid';
-  $feeds_tamper->importer = 'gdata_twitter_handle_importer';
-  $feeds_tamper->source = 'xpathparser:2';
-  $feeds_tamper->plugin_id = 'find_username_by_uuid';
-  $feeds_tamper->settings = array();
-  $feeds_tamper->weight = 0;
-  $feeds_tamper->description = 'Finds username by UUID';
-  $export['gdata_twitter_handle_importer-xpathparser_2-find_username_by_uuid'] = $feeds_tamper;
 
   return $export;
 }
