@@ -197,7 +197,6 @@ function pw_api_user_to_array($user, $subsets = array()) {
       $profile['personal']['email'] = $w_user->field_user_public_mail->value();
     }
 
-    $profile['personal']['twitter'] = $w_user->field_user_twitter_account->value();
     $profile['party'] = $w_user->field_user_party->label();
 
     // add location
