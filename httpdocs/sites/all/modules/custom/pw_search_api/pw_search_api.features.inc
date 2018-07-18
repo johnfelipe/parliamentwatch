@@ -190,7 +190,6 @@ function pw_search_api_default_search_api_index() {
           "type" : "list\\u003Clist\\u003Cinteger\\u003E\\u003E",
           "entity_type" : "taxonomy_term"
         },
-        "field_politician:field_user_twitter_account" : { "type" : "list\\u003Ctext\\u003E" },
         "field_politician:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_politician:roles" : { "type" : "list\\u003Clist\\u003Cinteger\\u003E\\u003E" },
         "field_politician:status" : { "type" : "list\\u003Cinteger\\u003E" },
@@ -264,7 +263,6 @@ function pw_search_api_default_search_api_index() {
         "field_vote_user:field_user_qanda_ratio" : { "type" : "integer" },
         "field_vote_user:field_user_question_form_closed" : { "type" : "text" },
         "field_vote_user:field_user_roles_for_view_mode_s" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_vote_user:field_user_twitter_account" : { "type" : "text" },
         "field_vote_user:ip" : { "type" : "text" },
         "field_vote_user:language" : { "type" : "string" },
         "field_vote_user:last_access" : { "type" : "date" },
@@ -349,7 +347,6 @@ function pw_search_api_default_search_api_index() {
               "field_politician:field_user_pseudonym" : true,
               "field_politician:field_user_education" : true,
               "field_politician:field_user_first_letter_lname" : true,
-              "field_politician:field_user_twitter_account" : true,
               "field_politician:field_user_election_result" : true,
               "field_politician:field_user_phone" : true,
               "field_politician:field_user_picture_copyright" : true,
@@ -401,7 +398,6 @@ function pw_search_api_default_search_api_index() {
               "field_politician:field_user_pseudonym" : true,
               "field_politician:field_user_education" : true,
               "field_politician:field_user_first_letter_lname" : true,
-              "field_politician:field_user_twitter_account" : true,
               "field_politician:field_user_election_result" : true,
               "field_politician:field_user_phone" : true,
               "field_politician:field_user_picture_copyright" : true,
@@ -455,7 +451,6 @@ function pw_search_api_default_search_api_index() {
               "field_politician:field_user_pseudonym" : true,
               "field_politician:field_user_education" : true,
               "field_politician:field_user_first_letter_lname" : true,
-              "field_politician:field_user_twitter_account" : true,
               "field_politician:field_user_election_result" : true,
               "field_politician:field_user_phone" : true,
               "field_politician:field_user_picture_copyright" : true,
@@ -507,7 +502,6 @@ function pw_search_api_default_search_api_index() {
               "field_politician:field_user_pseudonym" : true,
               "field_politician:field_user_education" : true,
               "field_politician:field_user_first_letter_lname" : true,
-              "field_politician:field_user_twitter_account" : true,
               "field_politician:field_user_election_result" : true,
               "field_politician:field_user_phone" : true,
               "field_politician:field_user_picture_copyright" : true,
@@ -561,7 +555,6 @@ function pw_search_api_default_search_api_index() {
               "field_politician:field_user_pseudonym" : true,
               "field_politician:field_user_education" : true,
               "field_politician:field_user_first_letter_lname" : true,
-              "field_politician:field_user_twitter_account" : true,
               "field_politician:field_user_election_result" : true,
               "field_politician:field_user_phone" : true,
               "field_politician:field_user_picture_copyright" : true,
@@ -632,7 +625,6 @@ function pw_search_api_default_search_api_index() {
               "field_politician:field_user_pseudonym" : "field_politician:field_user_pseudonym",
               "field_politician:field_user_public_mail" : "field_politician:field_user_public_mail",
               "field_politician:field_user_prefix" : "field_politician:field_user_prefix",
-              "field_politician:field_user_twitter_account" : "field_politician:field_user_twitter_account",
               "field_politician:name" : "field_politician:name",
               "field_politician:theme" : "field_politician:theme",
               "field_politician:uuid" : "field_politician:uuid",
@@ -656,7 +648,6 @@ function pw_search_api_default_search_api_index() {
               "field_vote_user:field_user_public_mail" : "field_vote_user:field_user_public_mail",
               "field_vote_user:field_user_question_form_closed" : "field_vote_user:field_user_question_form_closed",
               "field_vote_user:field_user_prefix" : "field_vote_user:field_user_prefix",
-              "field_vote_user:field_user_twitter_account" : "field_vote_user:field_user_twitter_account",
               "field_vote_user:ip" : "field_vote_user:ip",
               "field_vote_user:mail" : "field_vote_user:mail",
               "field_vote_user:name" : "field_vote_user:name",
@@ -726,23 +717,25 @@ function pw_search_api_default_search_api_index() {
             "roles" : { "140336230" : "140336230", "185431326" : "185431326" }
           }
         },
-        "search_api_alter_user_status" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
+        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_add_aggregation" : {
           "status" : 1,
           "weight" : "0",
           "settings" : { "fields" : { "search_api_aggregation_1" : {
                 "name" : "Full name",
                 "type" : "fulltext",
+                "separator" : "\\n\\n",
                 "fields" : [ "field_user_fname", "field_user_lname" ],
                 "description" : "A Fulltext aggregation of the following fields: First Name, Last name."
               }
             }
           }
         },
-        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } }
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
+        "search_api_alter_user_content" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_user_status" : { "status" : 0, "weight" : "0", "settings" : [] }
       },
       "processors" : {
         "add_leading_zero" : {
@@ -757,7 +750,6 @@ function pw_search_api_default_search_api_index() {
               "uuid" : true,
               "field_user_fname" : true,
               "field_user_lname" : true,
-              "field_user_prefix" : true,
               "field_user_constituency:field_constituency_area_codes:name" : true
             }
           }
@@ -770,7 +762,6 @@ function pw_search_api_default_search_api_index() {
               "uuid" : true,
               "field_user_fname" : true,
               "field_user_lname" : true,
-              "field_user_prefix" : true,
               "field_user_constituency:field_constituency_area_codes:name" : true
             },
             "title" : 0,
@@ -784,7 +775,6 @@ function pw_search_api_default_search_api_index() {
           "settings" : { "fields" : {
               "field_user_fname" : true,
               "field_user_lname" : true,
-              "field_user_prefix" : true,
               "search_api_aggregation_1" : true,
               "field_user_constituency:name" : true,
               "field_user_constituency:field_constituency_area_codes:name" : true
@@ -795,11 +785,7 @@ function pw_search_api_default_search_api_index() {
           "status" : 0,
           "weight" : "20",
           "settings" : {
-            "fields" : {
-              "uuid" : true,
-              "field_user_prefix" : true,
-              "field_user_constituency:field_constituency_area_codes:name" : true
-            },
+            "fields" : { "field_user_constituency:field_constituency_area_codes:name" : true },
             "spaces" : "[^[:alnum:]]",
             "ignorable" : "[\\u0027]"
           }
@@ -812,11 +798,23 @@ function pw_search_api_default_search_api_index() {
               "uuid" : true,
               "field_user_fname" : true,
               "field_user_lname" : true,
-              "field_user_prefix" : true,
               "field_user_constituency:field_constituency_area_codes:name" : true
             },
             "file" : "",
             "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"
+          }
+        },
+        "search_api_porter_stemmer" : {
+          "status" : 0,
+          "weight" : "35",
+          "settings" : {
+            "fields" : {
+              "search_api_aggregation_1" : true,
+              "field_user_constituency:name" : true,
+              "field_user_constituency:field_constituency_ac_descriptor" : true,
+              "field_user_constituency:field_constituency_area_codes:name" : true
+            },
+            "exceptions" : "texan=texa"
           }
         },
         "search_api_highlighting" : {
@@ -828,7 +826,8 @@ function pw_search_api_default_search_api_index() {
             "excerpt" : 1,
             "excerpt_length" : "256",
             "exclude_fields" : [],
-            "highlight" : "always"
+            "highlight" : "always",
+            "highlight_partial" : 0
           }
         }
       }

@@ -282,13 +282,6 @@ function pw_content_authoring_layout_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'resp_img_user_user_field_user_twitter_account';
-  $strongarm->value = 0;
-  $export['resp_img_user_user_field_user_twitter_account'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'resp_img_use_device_pixel_ratio';
   $strongarm->value = 0;
   $export['resp_img_use_device_pixel_ratio'] = $strongarm;
