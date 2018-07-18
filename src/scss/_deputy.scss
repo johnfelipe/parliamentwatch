@@ -1015,14 +1015,14 @@ $abstimmverhalten-node-item-width: 18px;
 }
 .deputy__candidate_check__item__thesis {
   background: $brightBeige;
-  padding: ($space-large * 2) 50px ($space-large) 50px;
+  padding: ($space-large) 50px;
 
   text-align: center;
   font-family: $font-serif;
   font-size: 1.5em;
   color: $darkGray;
-  @include breakpoint($breakpoint-s-min) {
-    padding: ($space-large * 3) ($space-large * 3) ($space-large * 2) ($space-large * 3);
+  @include breakpoint($breakpoint-xs-min) {
+    padding: ($space-large * 2) ($space-large * 3);
   }
 }
 .deputy__candidate_check__item__position {

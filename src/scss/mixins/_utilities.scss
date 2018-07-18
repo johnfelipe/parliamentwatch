@@ -63,9 +63,9 @@
   overflow: hidden;
 }
 @mixin text-overflow-multi() {
-  //text-overflow: ellipsis;
   display: block;
-  overflow: auto; //hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /* Container */

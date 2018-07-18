@@ -457,8 +457,10 @@
         slidesPerView: 'auto',
         resistance: true,
         resistanceRatio: 0.5,
-        nextButton: secondLevel.find('.swiper-button-next'),
-        prevButton: secondLevel.find('.swiper-button-prev'),
+        navigation: {
+          nextEl: secondLevel.find('.swiper-button-next'),
+          prevEl: secondLevel.find('.swiper-button-prev'),
+        },
         onInit: function (swiper) {
           resizeMainNavigation();
           swiper.update();
@@ -483,10 +485,6 @@
         } else {
           var subnavOffsetValue = subnavOffset;
         }
-
-        secondLevel.css('padding-left', subnavOffsetValue + 'px');
-        secondLevel.css('padding-right', '30px');
-        // indicator.css('height', subnavHeight + 'px');
       }
 
       var windowResize = debounce(function () {
@@ -894,17 +892,17 @@
   Drupal.behaviors.swiperTile = {
     attach: function () {
       $('.swiper-container--tile').each(function (index, element) {
-        var $this = $(this);
-        $this.swiper({
+        var mySwiper = new Swiper(element, {
           slideClass: 'tile',
           loop: false,
           spaceBetween: 20,
           slidesPerView: 3,
           slidesPerGroup: 3,
-          nextButton: $this.find('.swiper-button-next'),
-          prevButton: $this.find('.swiper-button-prev'),
-          pagination: $this.find('.swiper-pagination'),
-          paginationType: 'fraction',
+          navigation: {
+            type: 'fraction',
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
           breakpoints: {
             550: {
               slidesPerView: 1,
@@ -923,11 +921,15 @@
               slidesPerGroup: 3
             }
           },
-          onInit: function () {
-            $('.question__question').matchHeight();
-            $('.question__answer').matchHeight();
+          on: {
+            init: function () {
+              $('.question__question').matchHeight();
+              $('.question__answer').matchHeight();
+              this.update();
+            }
           }
         });
+
       });
     }
   };
@@ -1782,7 +1784,11 @@
           initialSlide: pollTimelineSlide.index(),
           slidesPerView: 'auto',
           spaceBetween: 30,
-          centeredSlides: true
+          centeredSlides: true,
+          navigation: {
+            nextEl: $('.poll__timeline .swiper-button-next'),
+            prevEl: $('.poll__timeline .swiper-button-prev')
+          }
         });
       });
     }
@@ -1798,12 +1804,14 @@
   Drupal.behaviors.filterBar = {
     attach: function () {
       var filterBarSwiper = $('.filterbar__swiper');
+      var filterBarInner = $('.filterbar .filterbar__inner');
 
       function filterBarSwiperSize() {
         var filterBarOffsetRight = $('.filterbar__view_options').outerWidth();
         var filterBarOffsetLeft = $('.filterbar__pre_swiper').outerWidth();
         var filterBarOffsetRightValue = filterBarOffsetRight;
         var filterBarOffsetLeftValue = filterBarOffsetLeft;
+
         windowWidth = window.innerWidth;
 
         if (windowWidth >= breakpointMMin) {
@@ -1815,9 +1823,9 @@
         else {
           filterBarOffsetRightValue = 0;
         }
-        filterBarSwiper
-          .css('right', filterBarOffsetRightValue + 'px')
-          .css('left', filterBarOffsetLeftValue + 'px');
+        filterBarInner
+          .css('padding-right', filterBarOffsetRightValue + 'px')
+          .css('padding-left', filterBarOffsetLeftValue + 'px');
       }
 
       var mySwiper = new Swiper('.filterbar__swiper', {
@@ -1828,21 +1836,25 @@
         wrapperClass: 'filterbar__swiper__inner',
         speed: 400,
         slidesPerView: 'auto',
-        nextButton: filterBarSwiper.find('.swiper-button-next'),
-        prevButton: filterBarSwiper.find('.swiper-button-prev'),
-        onInit: function (swiper) {
-          filterBarSwiperSize();
-          swiper.update();
+        navigation: {
+          nextEl: $('.filterbar__swiper .swiper-button-next'),
+          prevEl: $('.filterbar__swiper .swiper-button-prev')
         },
-        onAfterResize: function (swiper) {
-          filterBarSwiperSize();
-          swiper.update();
+        on: {
+          init: function () {
+            filterBarSwiperSize();
+            this.update();
+          },
+          resize: function () {
+            filterBarSwiperSize();
+            this.update();
+          }
         }
       });
 
       $('.filterbar__swiper .filterbar__item--dropdown').on("click", function () {
-        var index = $(this).index();
-        mySwiper.slideTo(index, 300);
+        // var index = $(this).index();
+        // mySwiper.slideTo(index, 300);
         $('.dropdown__list').removeClass('dropdown__list--open');
         if ($(this).children('.dropdown__trigger').hasClass('dropdown__trigger--active')) {
           $(this).find('.dropdown__list').addClass('dropdown__list--open');
@@ -1947,8 +1959,10 @@
           speed: 400,
           slidesPerView: 1,
           autoHeight: 1,
-          nextButton: candidateCheckSwiper.find('.swiper-button-next'),
-          prevButton: candidateCheckSwiper.find('.swiper-button-prev'),
+          navigation: {
+            nextEl: candidateCheckSwiper.find('.swiper-button-next'),
+            prevEl: candidateCheckSwiper.find('.swiper-button-prev'),
+          },
           pagination: candidateCheckSwiper.find('.swiper-pagination'),
           paginationType: 'fraction',
           paginationFractionRender: function (swiper, currentClassName, totalClassName) {
