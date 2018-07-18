@@ -246,19 +246,6 @@
         </div>
       <?php endif; ?>
 
-      <?php if (!empty($field_user_twitter_account)): ?>
-        <div class="deputy__twitter">
-          <?php if (isset($field_user_twitter_account)): ?>
-            <a class="twitter-timeline" data-height="300" data-link-color=“#f26a3b" href="https://twitter.com/<?php print $field_user_twitter_account[0]['value']; ?>">Twitter-Timeline</a>
-          <?php else: ?>
-            <div class="deputy__twitter__empty">
-              <h3><?php print t('Twitter'); ?></h3>
-              <p><?php print render($user_profile['field_user_fname']); ?> <?php print render($user_profile['field_user_lname']); ?> <?php print t('did not saved a twitter account yet.'); ?></p>
-            </div>
-          <?php endif; ?>
-        </div>
-      <?php endif; ?>
-
       <?php if (!empty($user_profile['field_user_about'])): ?>
         <div class="deputy__about readmore">
           <h3>
