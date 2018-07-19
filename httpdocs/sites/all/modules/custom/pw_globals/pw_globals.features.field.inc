@@ -52,7 +52,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -131,7 +130,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -212,7 +210,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -232,7 +229,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -258,7 +254,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'smart_trim',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -289,7 +284,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -388,7 +382,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
-            'field_delimiter' => '',
             'image_link' => '',
             'image_style' => 'medium',
             'linked_field' => array(
@@ -410,7 +403,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
-            'field_delimiter' => '',
             'image_link' => '',
             'image_style' => 'width_medium',
             'linked_field' => array(
@@ -521,7 +513,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -541,7 +532,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -668,7 +658,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(
@@ -771,7 +760,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
-            'field_delimiter' => '',
             'image_link' => '',
             'image_style' => 'square_small',
             'linked_field' => array(
@@ -793,7 +781,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
-            'field_delimiter' => '',
             'image_link' => '',
             'image_style' => 'square_small',
             'linked_field' => array(
@@ -902,7 +889,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -922,7 +908,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1063,7 +1048,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1083,7 +1067,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1183,7 +1166,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
-            'field_delimiter' => '',
             'image_link' => '',
             'image_style' => '',
             'linked_field' => array(
@@ -1291,7 +1273,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1311,7 +1292,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1447,7 +1427,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'image',
           'settings' => array(
-            'field_delimiter' => '',
             'image_link' => '',
             'image_style' => '',
             'linked_field' => array(
@@ -1559,7 +1538,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'link',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1659,7 +1637,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1741,7 +1718,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -1819,7 +1795,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2002,6 +1977,7 @@ function pw_globals_field_default_fields() {
             ),
           ),
         ),
+        'exclude_cv' => FALSE,
         'linkit' => array(
           'button_text' => 'Suchen',
           'enable' => 0,
@@ -2072,7 +2048,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2159,7 +2134,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2242,7 +2216,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2329,7 +2302,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2416,7 +2388,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2559,7 +2530,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2640,7 +2610,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2785,7 +2754,6 @@ function pw_globals_field_default_fields() {
           'module' => 'entityreference',
           'settings' => array(
             'bypass_access' => FALSE,
-            'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
               'advanced' => array(
@@ -2871,7 +2839,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -2998,7 +2965,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'link',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3100,7 +3066,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3227,7 +3192,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(
@@ -3331,7 +3295,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'list',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3411,7 +3374,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'text',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3553,7 +3515,6 @@ function pw_globals_field_default_fields() {
           'module' => 'entityreference',
           'settings' => array(
             'bypass_access' => FALSE,
-            'field_delimiter' => '',
             'link' => FALSE,
             'linked_field' => array(
               'advanced' => array(
@@ -3639,7 +3600,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3718,7 +3678,6 @@ function pw_globals_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(
@@ -3744,7 +3703,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'date',
           'settings' => array(
-            'field_delimiter' => '',
             'format_type' => 'long',
             'fromto' => 'both',
             'linked_field' => array(
@@ -3834,7 +3792,6 @@ function pw_globals_field_default_fields() {
           'module' => 'number',
           'settings' => array(
             'decimal_separator' => '.',
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
@@ -3924,7 +3881,6 @@ function pw_globals_field_default_fields() {
           'label' => 'above',
           'module' => 'list',
           'settings' => array(
-            'field_delimiter' => '',
             'linked_field' => array(
               'advanced' => array(
                 'class' => '',
