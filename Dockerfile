@@ -27,10 +27,18 @@ CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 FROM web AS cli
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
+	curl \
+	gettext \
+	git \
+	gnupg \
+	make \
 	mariadb-client \
-	php-cli \
-	wget
+	php-cli
+RUN curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get install -y nodejs
 COPY provisioning/etc/drush/* /etc/drush/
 COPY provisioning/drush.phar /usr/local/bin/drush
 RUN chmod +x /usr/local/bin/drush
-ENTRYPOINT ["drush"]
+WORKDIR /srv/abgeordnetenwatch.de
+ENTRYPOINT ["bash"]

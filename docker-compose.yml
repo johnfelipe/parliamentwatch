@@ -12,12 +12,12 @@ services:
       - ./provisioning/etc/mysql/conf.d:/etc/mysql/conf.d
       - ./provisioning/var/backup/mysql:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
-  drush:
+  cli:
     build: .
     depends_on:
       - log
     volumes:
-      - ./httpdocs:/srv/abgeordnetenwatch.de/httpdocs
+      - .:/srv/abgeordnetenwatch.de
       - /tmp/dev/log:/dev/log
   log:
     image: "jumanjiman/rsyslog"
