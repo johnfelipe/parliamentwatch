@@ -17,7 +17,7 @@ services:
     depends_on:
       - log
     volumes:
-      - ./httpdocs:/var/www/abgeordnetenwatch.de
+      - ./httpdocs:/srv/abgeordnetenwatch.de/httpdocs
       - /tmp/dev/log:/dev/log
   log:
     image: "jumanjiman/rsyslog"
@@ -46,7 +46,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./httpdocs:/var/www/abgeordnetenwatch.de
+      - ./httpdocs:/srv/abgeordnetenwatch.de/httpdocs
       - /tmp/dev/log:/dev/log
 volumes:
   db-data:

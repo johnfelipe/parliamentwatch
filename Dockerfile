@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 	php-xdebug \
 	php-xml \
 	php-zip
-COPY httpdocs /var/www/abgeordnetenwatch.de
+COPY httpdocs /srv/abgeordnetenwatch.de/httpdocs
 COPY provisioning/etc/php/7.0/mods-available/* /etc/php/7.0/mods-available/
 RUN phpenmod development
 COPY provisioning/etc/apache2/sites-available/* /etc/apache2/sites-available/
