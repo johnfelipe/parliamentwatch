@@ -15,11 +15,11 @@ services:
   cli:
     build: .
     depends_on:
-      - log
+      - syslog
     volumes:
       - .:/srv/abgeordnetenwatch.de
       - /tmp/dev/log:/dev/log
-  log:
+  syslog:
     image: "jumanjiman/rsyslog"
     restart: always
     volumes:
@@ -42,7 +42,7 @@ services:
       context: .
       target: web
     depends_on:
-      - log
+      - syslog
     ports:
       - "8080:80"
     volumes:
