@@ -526,7 +526,7 @@ $conf['404_fast_html'] = '<html xmlns="http://www.w3.org/1999/xhtml"><head><titl
  */
 $conf['cache'] = FALSE;
 $conf['drupal_http_request_fails'] = FALSE;
-$conf['file_private_path'] = '/srv/drupal/private';
+$conf['file_private_path'] = '/media/abgeordnetenwatch.de/private-files';
 $conf['file_public_path'] = 'sites/default/files';
 $conf['l10n_update_check_mode'] = 3;
 $conf['preprocess_css'] = FALSE;

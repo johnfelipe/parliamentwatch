@@ -19,6 +19,7 @@ services:
     volumes:
       - .:/srv/abgeordnetenwatch.de
       - /tmp/dev/log:/dev/log
+      - drupal-data:/media/drupal-files
   syslog:
     image: "jumanjiman/rsyslog"
     restart: always
@@ -35,8 +36,8 @@ services:
     ports:
       - 8983:8983
     volumes:
-      - solr-data:/opt/solr/server/solr/mycores
       - ./httpdocs/sites/all/modules/contrib/search_api_solr/solr-conf/5.x:/opt/solr/server/solr/configsets/drupal/conf
+      - solr-data:/opt/solr/server/solr/mycores
   web:
     build:
       context: .
@@ -48,6 +49,8 @@ services:
     volumes:
       - ./httpdocs:/srv/abgeordnetenwatch.de/httpdocs
       - /tmp/dev/log:/dev/log
+      - drupal-data:/media/drupal-files
 volumes:
   db-data:
+  drupal-data:
   solr-data:
