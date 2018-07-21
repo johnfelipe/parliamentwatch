@@ -16,10 +16,11 @@ The local development environment is managed with Docker Compose. It consists of
 
 In order to populate the database place a backup file downloaded from http://backups.parliamentwatch.org in `provisioning/var/backup/mysql`. All files with extensions .sql and .sql.gz will be loaded if the database is not initialised yet. To forget the current state and populate the database from a backup again run `docker-compose down --volume` and `docker-compose up -d`.
 
-Drush commands can be executed with `docker-compose run`:
+Drush commands can be executed in a command line service container:
 
-    $ docker-compose run --rm cli drush sapi-r politician_archive_index
-    $ docker-compose run --rm cli drush sapi-i politician_archive_index 0 1000
+    $ docker-compose run --rm cli
+    # drush sapi-r politician_archive_index
+    # drush sapi-i politician_archive_index 0 1000
 
 ## Git commit messages
 
