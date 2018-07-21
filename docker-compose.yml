@@ -42,6 +42,11 @@ services:
     build:
       context: .
       target: web
+    environment:
+      DB_DATABASE: 'drupal'
+      DB_USERNAME: 'drupal'
+      DB_PASSWORD: 'drupal'
+      DB_HOST: 'db'
     depends_on:
       - syslog
     ports:
