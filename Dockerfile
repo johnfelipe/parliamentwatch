@@ -23,6 +23,7 @@ RUN a2dissite 000-default
 RUN a2ensite drupal
 RUN mkdir -p /media/drupal-files/private
 RUN mkdir -p /media/drupal-files/public
+RUN chown -R www-data:www-data /media/drupal-files
 RUN ln -sf /media/drupal-files/public /srv/abgeordnetenwatch.de/httpdocs/sites/default/files
 VOLUME ["/media/drupal-files"]
 EXPOSE 80
