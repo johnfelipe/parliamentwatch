@@ -14,11 +14,8 @@ services:
       - db-data:/var/lib/mysql
   cli:
     build: .
-    environment:
-      DB_DATABASE: 'drupal'
-      DB_USERNAME: 'drupal'
-      DB_PASSWORD: 'drupal'
-      DB_HOST: 'db'
+    env_file:
+      - ./provisioning/drupal.env
     depends_on:
       - syslog
     volumes:
@@ -47,11 +44,8 @@ services:
     build:
       context: .
       target: web
-    environment:
-      DB_DATABASE: 'drupal'
-      DB_USERNAME: 'drupal'
-      DB_PASSWORD: 'drupal'
-      DB_HOST: 'db'
+    env_file:
+      - ./provisioning/drupal.env
     depends_on:
       - syslog
     ports:
