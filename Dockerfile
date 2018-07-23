@@ -1,6 +1,5 @@
 FROM debian:stretch AS web
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
 	libapache2-mod-php \
 	php-apcu \
 	php-curl \
@@ -30,8 +29,7 @@ EXPOSE 80
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
 FROM web AS cli
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
 	curl \
 	gettext \
 	git \
