@@ -13,7 +13,7 @@ function pw_profiles_update_7201() {
 
   $q = new EntityFieldQuery();
   $q->entityCondition('entity_type', 'user');
-  $q->fieldCondition('field_user_twitter_account', 'value', '<>');
+  $q->fieldCondition('field_user_twitter_account', 'value', '', '<>');
   $result = $q->execute();
 
   if (!empty($result['user'])) {
