@@ -12,16 +12,6 @@ services:
       - ./provisioning/etc/mysql/conf.d:/etc/mysql/conf.d
       - ./provisioning/var/backup/mysql:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
-  cli:
-    build: .
-    env_file:
-      - ./provisioning/drupal.env
-    depends_on:
-      - syslog
-    volumes:
-      - .:/srv/abgeordnetenwatch.de
-      - /tmp/dev/log:/dev/log
-      - drupal-data:/media/drupal-files
   syslog:
     image: "jumanjiman/rsyslog"
     restart: always
@@ -43,7 +33,7 @@ services:
   web:
     build:
       context: .
-      target: web
+      target: development
     env_file:
       - ./provisioning/drupal.env
     depends_on:
@@ -51,7 +41,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./httpdocs:/srv/abgeordnetenwatch.de/httpdocs
+      - .:/srv/abgeordnetenwatch.de
       - /tmp/dev/log:/dev/log
       - drupal-data:/media/drupal-files
 volumes:
