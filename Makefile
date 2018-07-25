@@ -11,7 +11,8 @@ TRANSLATABLE=$(addprefix $(MODULES)/,\
 	pw_sidejobs/pw_sidejobs.module)\
 	$(THEMES)/parliamentwatch/js/script.js \
 	$(THEMES)/parliamentwatch/template.php \
-	$(wildcard $(THEMES)/parliamentwatch/templates/*.tpl.php)
+	$(wildcard $(THEMES)/parliamentwatch/templates/*.tpl.php) \
+	$(wildcard $(THEMES)/blank/templates/*.tpl.php)
 
 null  :=
 space := $(null) #
