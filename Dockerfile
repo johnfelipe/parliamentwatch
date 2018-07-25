@@ -40,6 +40,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
 RUN curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt-get install -y nodejs
+WORKDIR /srv/abgeordnetenwatch.de/src
+RUN npm install
+RUN node_modules/.bin/grunt build
 COPY provisioning/etc/drush/* /etc/drush/
 COPY provisioning/drush.phar /usr/local/bin/drush
 RUN chmod +x /usr/local/bin/drush
