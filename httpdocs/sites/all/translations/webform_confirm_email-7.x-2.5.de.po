@@ -1,10 +1,10 @@
 # German translation of Webform Confirm Email Address (7.x-2.5)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Webform Confirm Email Address (7.x-2.5)\n"
-"POT-Creation-Date: 2017-11-22 13:23+0000\n"
+"POT-Creation-Date: 2018-07-14 04:55+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr "Konfiguration speichern"
 msgid "Delete"
 msgstr "Löschen"
 msgid "Operations"
-msgstr "Operationen"
+msgstr "Aktionen"
 msgid "Subject"
 msgstr "Betreff"
 msgid "Edit"

@@ -1,10 +1,10 @@
 # German translation of Variable (7.x-2.5)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Variable (7.x-2.5)\n"
-"POT-Creation-Date: 2017-07-18 04:44+0000\n"
+"POT-Creation-Date: 2018-07-14 02:09+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -319,8 +319,8 @@ msgid ""
 "Your site's motto, tag line, or catchphrase (often displayed alongside "
 "the title of the site)."
 msgstr ""
-"Das Motto, die Devise oder das Schlagwort für diese Website (wird "
-"zumeist begleitend zum Titel der Website angezeigt)."
+"Das Motto, der Slogan oder Untertitel der Webseite (wird oft neben dem "
+"Titel der Seite angezeigt)."
 msgid "Default 403 (access denied) page"
 msgstr "Seite für 403-Fehler (Zugriff verweigert)"
 msgid "Default 404 (not found) page"
