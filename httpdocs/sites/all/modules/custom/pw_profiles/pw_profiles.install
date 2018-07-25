@@ -13,25 +13,31 @@ function pw_profiles_update_7201() {
 
   $q = new EntityFieldQuery();
   $q->entityCondition('entity_type', 'user');
-  $q->fieldCondition('field_user_twitter_account', 'value', '<>');
+  $q->fieldCondition('field_user_twitter_account', 'value', '', '<>');
   $result = $q->execute();
 
   if (!empty($result['user'])) {
-    foreach (array_keys($result['user']) as $uid) {
-      $account = user_load($uid);
-      $twitter_account = $account->field_user_twitter_account[LANGUAGE_NONE][0]['value'];
-      if (strpos($twitter_account, $twitter_base_url) === 0) {
-        $url = $twitter_account;
+    $transaction = db_transaction();
+    try {
+      foreach (array_keys($result['user']) as $uid) {
+        $account = user_load($uid);
+        $twitter_account = $account->field_user_twitter_account[LANGUAGE_NONE][0]['value'];
+        if (strpos($twitter_account, $twitter_base_url) === 0) {
+          $url = $twitter_account;
+        } else {
+          $url = $twitter_base_url . ltrim($twitter_account, '@');
+        }
+        $account->field_user_links_more[LANGUAGE_NONE][] = [
+          'url' => $url,
+          'title' => 'Twitter',
+          'attributes' => '',
+        ];
+        field_attach_update('user', $account);
       }
-      else {
-        $url = $twitter_base_url . ltrim($twitter_account, '@');
-      }
-      $account->field_user_links_more[LANGUAGE_NONE][] = [
-        'url' => $url,
-        'title' => 'Twitter',
-        'attributes' => '',
-      ];
-      field_attach_update('user', $account);
+    }
+    catch (Exception $e) {
+      $transaction->rollback();
+      throw $e;
     }
   }
 
