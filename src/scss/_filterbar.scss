@@ -2,12 +2,17 @@
 * Filterbar
 */
 .filterbar {
+  min-height: 60px;
+  margin-bottom: -1px;
   border-top: 1px solid $darkBeige;
   border-bottom: 1px solid $darkBeige;
   background: $white;
   position: relative;
   z-index: 9;
   @include container();
+  @include breakpoint($breakpoint-l-min) {
+    min-height: 62px;
+  }
   &.is_stuck {
     z-index: 999;
     position: fixed;
@@ -29,8 +34,11 @@
 .filterbar__pre_swiper {
   position: absolute;
   left: 0;
+  top: 0;
+  bottom: 0;
   z-index: 9;
   padding-left: $space;
+  overflow: hidden;
   display: inline-block;
   @include grid-container();
   .filterbar__item {
@@ -58,7 +66,6 @@
     width: 100%;
     clear: both;
   }
-
 }
 .filterbar__swiper {
   position: relative;
@@ -70,14 +77,14 @@
   .swiper-button-next {
     position: absolute;
     top: 0;
-    bottom: 0; // 1px;
+    bottom: 0;
     margin: 0;
     height: auto;
     width: auto;
     padding: 0 $space-xsmall;
     font-size: .6em;
     z-index: 9;
-    opacity: 1;
+    opacity: 0;
     transform: translate(0, 0);
     &:before {
       color: $gray;
@@ -92,26 +99,33 @@
   }
   .swiper-button-prev {
     border-right: 1px solid $darkBeige;
-
   }
-  &.swiper-container-horizontal .filterbar__item:last-child {
-    border-right: 0;
+
+  // Initialized
+
+  &.swiper-container-horizontal {
+    .filterbar__item:last-child {
+      border-right: 0;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      opacity: 1;
+    }
   }
 }
 .filterbar__swiper__inner {
   width: 100%;
   height: 100%;
 
-  @include transform(translate3d(0,0,0));
-  @include display(flex);
-  @include transition-property(transform);
-  @include box-sizing(content-box);
+  transform: translate3d(0,0,0);
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
 }
 .filterbar__item {
   float: left;
   color: $mediumGray;
   background: $white;
-//  margin-bottom: 1px;
   cursor: pointer;
   .form__item {
     margin-bottom: 0;
@@ -156,6 +170,8 @@
     float: left;
     border-color: $darkBeige;
     border-right: 0;
+    height: $space * 2;
+    line-height: normal;
     @include breakpoint($breakpoint-s-min) {
       display: block;
     }
@@ -232,9 +248,8 @@ _:-ms-fullscreen,
     background: $white;
     padding: $space;
     box-shadow: 0 6px 10px rgba(0,0,0,.1);
-    @include transform(translate(-50%, $space));
+    transform: translate(-50%, $space);
     width: 300px;
-
     @include breakpoint($breakpoint-s-min) {
       width: 710px;
       left: 50%;
@@ -273,7 +288,7 @@ _:-ms-fullscreen,
   }
 }
 .filterbar__item--dropdown.dropdown--open .dropdown__list {
-  @include transform(translate(-50%, 0));
+  transform: translate(-50%, 0);
 }
 .filterbar__item--checkbox {
   border-right: 1px solid $darkBeige;
@@ -400,9 +415,19 @@ _:-ms-fullscreen,
 
 /* Filterbar: Disabled */
 
+.filterbar--disabled .filterbar__swiper {
+  pointer-events: none;
+}
 .filterbar--disabled .filterbar__item {
   opacity: .3;
   pointer-events: none;
+}
+.filterbar--disabled .swiper-button-prev,
+.filterbar--disabled .swiper-button-next {
+  border-color: #f5f4f2;
+  &:before {
+    color: #e6e6e6;
+  }
 }
 
 /* Filterbar: summary */
@@ -468,7 +493,7 @@ _:-ms-fullscreen,
     overflow: hidden;
     margin-right: $space-xsmall-mobile;
     margin-bottom: -6px;
-    @include transition(background 300ms ease);
+    transition: background 300ms ease;
     @include breakpoint($breakpoint-s-min) {
       margin-right: 0;
       margin-bottom: -9px;
@@ -486,7 +511,7 @@ _:-ms-fullscreen,
       bottom: 0;
       width: $space;
       text-align: center;
-      @include transition(background 600ms ease);
+      transition: background 600ms ease;
     }
     &:hover {
       background: $white - 10;
