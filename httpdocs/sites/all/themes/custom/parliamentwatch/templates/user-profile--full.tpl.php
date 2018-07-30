@@ -187,7 +187,7 @@
           <dt class="dl__dt"><?php print $user_profile['field_user_parliament']['#title']; ?></dt>
           <dd class="dl__dd">
             <?php print $user_profile['field_user_parliament'][0]['#markup']; ?>
-            <?php if (!empty($user_profile['field_user_retired']) && !isset($field_user_died['value'][0]) || $field_user_died['value'][0] == '0'): ?>
+            <?php if (!empty($user_profile['field_user_retired']) && (!isset($field_user_died[0]['value']) || $field_user_died[0]['value'] == '0')): ?>
               <p><small><?php print t('Retired on %date', array('%date' => drupal_html_to_text($user_profile['field_user_retired'][0]['#markup']))); ?></small></p>
             <?php endif; ?>
           </dd>
