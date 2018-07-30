@@ -7,8 +7,6 @@ base theme = 'parliamentwatch'
 
 regions[assets] = 'Additional styles and scripts'
 regions[tracking] = 'Tracking code'
-regions[header_top] = Header top
-regions[header_bottom] = Header bottom
 regions[intro_primary] = Intro primary
 regions[intro_secondary] = Intro secondary
 regions[content] = Content
