@@ -56,6 +56,41 @@ function pw_dialogues_menu() {
 }
 
 /**
+ * Implements hook_token_info_alter().
+ */
+function pw_dialogues_token_info_alter(&$data) {
+  $data['tokens']['user']['questions-and-answers'] = [
+    'name' => t('Questions and answers'),
+    'description' => t('The number of questions and answers for the user account.'),
+  ];
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function pw_dialogues_tokens($type, $tokens, array $data = [], array $options = []) {
+  $replacements = [];
+  $sanitize = !empty($options['sanitize']);
+
+  if ($type == 'user' && !empty($data['user'])) {
+    $account = $data['user'];
+
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'questions-and-answers':
+          $args = [
+            '@answers' => $account->number_of_answers,
+            '@questions' => $account->number_of_questions,
+          ];
+          $replacements[$original] = t('answered @answers of @questions questions', $args);
+      }
+    }
+  }
+
+  return $replacements;
+}
+
+/**
  * Implements hook_block_info().
  */
 function pw_dialogues_block_info() {
