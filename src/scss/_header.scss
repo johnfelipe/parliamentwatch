@@ -18,7 +18,7 @@
 
 /* Logo */
 
-.header__logo {
+.logo {
   float: left;
   position: relative;
   z-index: 9;
@@ -793,7 +793,7 @@
 /* Sticky header */
 
 #header.sticky {
-  .header__logo {
+  .logo {
     @include breakpoint($breakpoint-l-min) {
       @include padding($space-small null 0);
     }

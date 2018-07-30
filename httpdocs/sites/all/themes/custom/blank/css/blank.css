@@ -82,41 +82,45 @@
   .tabs__content--qa .tabs__content__content .swiper-container--tile { max-width: 1540px; }
 }
 
-#embed-footer {
+#footer {
   background: #f3efe6;
   border-bottom: 1px solid #dfdbd2;
   padding: 30px 0;
   text-align: right;
 }
-#embed-footer .footer__logo {
+#footer .logo {
   display: block;
+  float: none;
+  padding: 0;
+  margin: 0;
 }
 @media (min-width: 460px) {
-  #embed-footer .footer__logo {
+  #footer .logo {
     float: right;
     margin-right: 20px;
   }
 }
 @media (min-width: 768px) {
-  #embed-footer .footer__logo {
+  #footer .logo {
     margin-right: 40px;
   }
 }
-#embed-footer .footer__logo svg {
+#footer .logo svg {
   padding-bottom: 1px;
   overflow: hidden;
   width: 220px;
   height: 30px;
   margin: 0 auto;
 }
-#embed-footer .footer__presented {
+.footer__presented {
   padding-bottom: 10px;
   text-align: center;
   font-size: .7em;
   float: none;
+  color: #000;
 }
 @media (min-width: 460px) {
-  #embed-footer .footer__presented {
+  .footer__presented {
     display: inline-block;
     margin-top: 8px;
     text-align: left;
