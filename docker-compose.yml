@@ -33,6 +33,7 @@ services:
   web:
     build:
       context: .
+      dockerfile: provisioning/Dockerfile
       target: development
     env_file:
       - ./provisioning/drupal.env
