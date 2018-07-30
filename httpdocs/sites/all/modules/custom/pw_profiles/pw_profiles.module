@@ -65,6 +65,52 @@ function pw_profiles_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_token_info_alter().
+ */
+function pw_profiles_token_info_alter(&$data) {
+  $data['tokens']['user']['constituency'] = [
+    'name' => t('Constituency'),
+    'description' => t('The formatted constituency of the user account.'),
+  ];
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function pw_profiles_tokens($type, $tokens, array $data = [], array $options = []) {
+  $replacements = [];
+
+  if ($type == 'user' && !empty($data['user'])) {
+    $account = $data['user'];
+
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'constituency':
+          if (isset($account->field_user_constituency[LANGUAGE_NONE][0]['tid'])) {
+            $constituency = taxonomy_term_load($account->field_user_constituency[LANGUAGE_NONE][0]['tid']);
+            $placeholders = [
+              '@number' => $constituency->field_constituency_nr[LANGUAGE_NONE][0]['value'],
+              '@title' => $constituency->name,
+            ];
+            $parliament = pw_profiles_parliament($data['user']);
+            if (strpos($parliament->name, 'Bayern') === 0) {
+              $replacements[$original] = t('Constituency @number: @title', $placeholders, ['context' => 'Bayern']) . ',';
+            } else {
+              $replacements[$original] = t('Constituency @number: @title', $placeholders, ['context' => '']) . ',';
+            }
+          }
+          else {
+            $replacements[$original] = '';
+          }
+          break;
+      }
+    }
+  }
+
+  return $replacements;
+}
+
+/**
  * Implements hook_page_delivery_callback_alter().
  *
  * In order to ensure caching mechanisms store a distinct copy for AJAX
