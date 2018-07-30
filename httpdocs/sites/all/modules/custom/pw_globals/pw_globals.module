@@ -884,12 +884,21 @@ function _pw_send_debug_mail($subject, $body) {
  *   Fullname of user.
  */
 function _pw_get_fullname($user) {
+  $fullname = '';
+
   if (!empty($user)) {
     $title = field_get_items('user', $user, 'field_user_prefix');
     $first_name = field_get_items('user', $user, 'field_user_fname');
     $last_name = field_get_items('user', $user, 'field_user_lname');
-    return trim($title[0]['value'] . ' ' . $first_name[0]['value'] . ' ' . $last_name[0]['value']);
+
+    if ($title) {
+      $fullname .= $title[0]['value'] . ' ';
+    }
+
+    $fullname .= $first_name[0]['value'] . ' ' . $last_name[0]['value'];
   }
+
+  return trim($fullname);
 }
 
 /**
