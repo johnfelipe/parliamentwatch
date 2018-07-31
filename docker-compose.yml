@@ -1,0 +1,51 @@
+version: '3.4'
+services:
+  db:
+    image: "mariadb:10.2"
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+    restart: always
+    volumes:
+      - ./provisioning/etc/mysql/conf.d:/etc/mysql/conf.d
+      - ./provisioning/var/backup/mysql:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/mysql
+  syslog:
+    image: "jumanjiman/rsyslog"
+    restart: always
+    volumes:
+      - /tmp/dev:/var/run/rsyslog/dev
+  solr:
+    image: "solr:5"
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - aw-dev
+      - /opt/solr/server/solr/configsets/drupal
+    restart: always
+    ports:
+      - 8983:8983
+    volumes:
+      - ./httpdocs/sites/all/modules/contrib/search_api_solr/solr-conf/5.x:/opt/solr/server/solr/configsets/drupal/conf
+      - solr-data:/opt/solr/server/solr/mycores
+  web:
+    build:
+      context: .
+      dockerfile: provisioning/Dockerfile
+      target: development
+    env_file:
+      - ./provisioning/drupal.env
+    depends_on:
+      - syslog
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/srv/abgeordnetenwatch.de
+      - /tmp/dev/log:/dev/log
+      - drupal-data:/media/drupal-files
+volumes:
+  db-data:
+  drupal-data:
+  solr-data:
