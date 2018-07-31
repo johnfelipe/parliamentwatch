@@ -62,7 +62,7 @@ function pw_mailtokens_tokens($type, $tokens,
     foreach ($tokens as $name => $original) {
       switch ($name) {
         case 'fullname':
-          $replacements[$original] = pw_mailtokens_fullname($account);
+          $replacements[$original] = _pw_get_fullname($account);
           break;
         case 'greeting':
           $replacements[$original] = pw_mailtokens_greeting($account);
@@ -75,20 +75,6 @@ function pw_mailtokens_tokens($type, $tokens,
 
     return $replacements;
   }
-}
-
-/**
- * Generates a full name token including title (if available).
- */
-function pw_mailtokens_fullname($account) {
-  $title = $account->field_user_prefix[LANGUAGE_NONE][0]['value'];
-  $fname = $account->field_user_fname[LANGUAGE_NONE][0]['value'];
-  $lname = $account->field_user_lname[LANGUAGE_NONE][0]['value'];
-  $fullname = '';
-  echo(empty($title)) ?
-    $fullname = $fname . ' ' . $lname
-      : $fullname = $title . ' ' . $fname . ' ' . $lname;
-  return $fullname;
 }
 
 /**

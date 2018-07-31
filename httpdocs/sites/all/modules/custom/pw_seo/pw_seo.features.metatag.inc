@@ -786,6 +786,9 @@ function pw_seo_metatag_export_default() {
       'title' => array(
         'value' => '[site:name] | Profil von [user:field-user-prefix] [user:field-user-fname] [user:field_user_lname], [user:field-user-party] - [user:field-user-parliament]',
       ),
+      'description' => array(
+        'value' => '[user:fullname], [user:field-user-party], [user:constituency] [user:field-user-parliament], [user:questions-and-answers]',
+      ),
       'robots' => array(
         'value' => array(
           'index' => 'index',
