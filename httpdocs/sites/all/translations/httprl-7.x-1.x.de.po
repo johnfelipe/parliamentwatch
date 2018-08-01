@@ -1,0 +1,20 @@
+# German translation of HTTP Parallel Request & Threading Library (7.x-1.8)
+# Copyright (c) 2018 by the German translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: HTTP Parallel Request & Threading Library (7.x-1.8)\n"
+"POT-Creation-Date: 2018-07-31 00:33+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Performance and scalability"
+msgstr "Leistungsstärke und Skalierbarkeit"
+msgid "Must be a valid IP address."
+msgstr "Es muss eine gültige IP-Adresse angegeben werden."
+msgid "Flush your caches"
+msgstr "Caches leeren"

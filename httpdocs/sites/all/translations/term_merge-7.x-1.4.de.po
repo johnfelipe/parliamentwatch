@@ -1,10 +1,10 @@
 # German translation of Term Merge (7.x-1.4)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Term Merge (7.x-1.4)\n"
-"POT-Creation-Date: 2017-03-30 01:43+0000\n"
+"POT-Creation-Date: 2018-07-31 17:08+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Hierarchical Select"
 msgid "Display fields"
 msgstr "Felder anzeigen"
 msgid "Select"
-msgstr "Auswahl"
+msgstr "Auswählen"
 msgid "Step"
 msgstr "Schritt"
 msgid "Default (@default)"

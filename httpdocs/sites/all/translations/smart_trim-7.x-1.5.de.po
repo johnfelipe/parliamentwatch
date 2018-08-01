@@ -1,10 +1,10 @@
 # German translation of Smart Trim (7.x-1.5)
-# Copyright (c) 2017 by the German translation team
+# Copyright (c) 2018 by the German translation team
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Smart Trim (7.x-1.5)\n"
-"POT-Creation-Date: 2017-07-17 21:49+0000\n"
+"POT-Creation-Date: 2018-07-29 16:23+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -40,3 +40,9 @@ msgid "Trim length"
 msgstr "Länge kürzen"
 msgid "Nothing"
 msgstr "Nichts"
+msgid ""
+"This module creates a new text field formatter. There are no global "
+"configuration options."
+msgstr ""
+"Dieses Modul erzeugt einen neues Anzeigeformat für Textfelder. Es "
+"gibt keine globalen Konfigurationsoptionen."
