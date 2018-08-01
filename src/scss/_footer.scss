@@ -192,24 +192,24 @@
       }
     }
   }
-  .logo {
-    display: inline-block;
+}
+.footer__logo {
+  display: inline-block;
 
-    @include breakpoint($breakpoint-s-min) {
-      float: right;
-      display: block;
+  @include breakpoint($breakpoint-s-min) {
+    float: right;
+    display: block;
+  }
+  .svg-container {
+    float: right;
+    margin-top: $space;
+    width: auto;
+    svg {
+      width: 250px;
+      height: 32px;
     }
-    .svg-container {
-      float: right;
-      margin-top: $space;
-      width: auto;
-      svg {
-        width: 250px;
-        height: 32px;
-      }
-    }
-    path {
-      fill: $gray;
-    }
+  }
+  path {
+    fill: $gray;
   }
 }

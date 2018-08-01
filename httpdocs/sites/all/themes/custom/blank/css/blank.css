@@ -88,24 +88,29 @@
   padding: 30px 0;
   text-align: right;
 }
-#footer .logo {
+.footer__logo {
   display: block;
   float: none;
   padding: 0;
   margin: 0;
 }
 @media (min-width: 460px) {
-  #footer .logo {
+  .footer__logo {
     float: right;
     margin-right: 20px;
   }
 }
 @media (min-width: 768px) {
-  #footer .logo {
+  .footer__logo {
     margin-right: 40px;
   }
 }
-#footer .logo svg {
+.footer__logo .svg-container {
+  float: none;
+  margin-top: 0;
+  width: auto;
+}
+.footer__logo svg {
   padding-bottom: 1px;
   overflow: hidden;
   width: 220px;
@@ -119,6 +124,13 @@
   float: none;
   color: #000;
 }
+.footer__logo svg path[fill="#1D1D1B"] {
+  fill: #1D1D1B;
+}
+.footer__logo svg path[fill="#FF6C36"] {
+  fill: #FF6C36;
+}
+
 @media (min-width: 460px) {
   .footer__presented {
     display: inline-block;
