@@ -39,238 +39,243 @@ function pw_userarchives_user_update(&$edit, $account, $category) {
  * 4. Update fields, index, etc.
  */
 function pw_userarchives_cron($uid = NULL, $reset_actual_profile = TRUE) {
-  // check if election date or parliaments end date is reached, then delete profiles from meta table for triggering refresh
   $tracked_items_query = db_select('user_archive_cache', 'uac');
   $tracked_items_query->addExpression('MAX(uac.vid)');
   $tracked_items_query->groupBy('uac.uid, uac.parliament_name, uac.user_role');
 
-  if ($uid == NULL) {
-    $tracked_items = [];
-    $vocabulary = taxonomy_vocabulary_machine_name_load('parliaments');
-    $parliaments = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
-    foreach ($parliaments as $parliament) {
-      if (pw_userarchives_check_refresh_profiles($parliament)) {
-        $tracked_items = array_merge($tracked_items, $tracked_items_query
-          ->condition('parliament_name', $parliament->name)
-          ->execute()
-          ->fetchCol());
-        db_delete('user_archive_cache')
-          ->condition('parliament_name', $parliament->name)
-          ->execute();
+  $transaction = db_transaction();
+
+  try {
+    // check if election date or parliaments end date is reached, then delete profiles from meta table for triggering refresh
+    if ($uid == NULL) {
+      $tracked_items = [];
+      $vocabulary = taxonomy_vocabulary_machine_name_load('parliaments');
+      $parliaments = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
+      foreach ($parliaments as $parliament) {
+        if (pw_userarchives_check_refresh_profiles($parliament)) {
+          $tracked_items = array_merge($tracked_items, $tracked_items_query
+            ->condition('parliament_name', $parliament->name)
+            ->execute()
+            ->fetchCol());
+          db_delete('user_archive_cache')
+            ->condition('parliament_name', $parliament->name)
+            ->execute();
+        }
       }
+    } else {
+      $tracked_items = $tracked_items_query
+        ->condition('uid', $uid)
+        ->execute()
+        ->fetchCol();
+      // empty cache if uid is specified
+      db_delete('user_archive_cache')
+        ->condition('uid', $uid)
+        ->execute();
     }
-  }
-  else {
-    $tracked_items = $tracked_items_query
-      ->condition('uid', $uid)
-      ->execute()
-      ->fetchCol();
-    // empty cache if uid is specified
-    db_delete('user_archive_cache')
-      ->condition('uid', $uid)
-      ->execute();
-  }
 
-  // db_select: user revision
-  $query = db_select('user_revision', 'ur');
-  $query->addExpression('MAX(ur.vid)', 'vid');
+    // db_select: user revision
+    $query = db_select('user_revision', 'ur');
+    $query->addExpression('MAX(ur.vid)', 'vid');
 
-  // join taxonomy terms for parliament names
-  $query->join('field_revision_field_user_parliament', 'u_parl', "u_parl.entity_type = 'user' AND ur.vid = u_parl.revision_id");
-  $query->join('taxonomy_term_data', 'parliament', 'parliament.tid = u_parl.field_user_parliament_tid');
+    // join taxonomy terms for parliament names
+    $query->join('field_revision_field_user_parliament', 'u_parl', "u_parl.entity_type = 'user' AND ur.vid = u_parl.revision_id");
+    $query->join('taxonomy_term_data', 'parliament', 'parliament.tid = u_parl.field_user_parliament_tid');
 
-  // join fractions for fraction tids
-  $query->leftJoin('field_revision_field_user_fraction', 'fraction_tid', "fraction_tid.entity_type = 'user' AND fraction_tid.revision_id = ur.vid");
-  $query->leftJoin('taxonomy_term_data', 'fraction', 'fraction.tid = fraction_tid.field_user_fraction_tid');
+    // join fractions for fraction tids
+    $query->leftJoin('field_revision_field_user_fraction', 'fraction_tid', "fraction_tid.entity_type = 'user' AND fraction_tid.revision_id = ur.vid");
+    $query->leftJoin('taxonomy_term_data', 'fraction', 'fraction.tid = fraction_tid.field_user_fraction_tid');
 
-  // join revisionable roles for user_roles
-  $query->join('field_revision_field_user_roles_for_view_mode_s', 'role_tid', "role_tid.entity_type = 'user' AND role_tid.revision_id = ur.vid");
-  $query->join('taxonomy_term_data', 'role', 'role.tid = role_tid.field_user_roles_for_view_mode_s_tid');
+    // join revisionable roles for user_roles
+    $query->join('field_revision_field_user_roles_for_view_mode_s', 'role_tid', "role_tid.entity_type = 'user' AND role_tid.revision_id = ur.vid");
+    $query->join('taxonomy_term_data', 'role', 'role.tid = role_tid.field_user_roles_for_view_mode_s_tid');
 
-  // query conditions
-  $query->condition('ur.status', '1');
-  if ($uid != NULL) {
-    $query->condition('ur.uid', $uid);
-  }
-  $query->condition('role.name', array('Deputy', 'Candidate'));
-  $query->groupBy('ur.uid, u_parl.field_user_parliament_tid, role_tid.field_user_roles_for_view_mode_s_tid, fraction_tid.field_user_fraction_tid');
+    // query conditions
+    $query->condition('ur.status', '1');
+    if ($uid != NULL) {
+      $query->condition('ur.uid', $uid);
+    }
+    $query->condition('role.name', array('Deputy', 'Candidate'));
+    $query->groupBy('ur.uid, u_parl.field_user_parliament_tid, role_tid.field_user_roles_for_view_mode_s_tid, fraction_tid.field_user_fraction_tid');
 
-  // fetch all relevant vids as flat array
-  $vids = $query->execute()->fetchCol();
+    // fetch all relevant vids as flat array
+    $vids = $query->execute()->fetchCol();
 
-  if (empty($vids)) {
-    return;
-  }
+    if (empty($vids)) {
+      return;
+    }
 
-  /*
-   * second step: modify query and get items by its vids
-   */
+    /*
+     * second step: modify query and get items by its vids
+     */
 
-  // set vids as condition
-  $query->condition('ur.vid', $vids);
+    // set vids as condition
+    $query->condition('ur.vid', $vids);
 
-  // unset group and max(vid) expression
-  array_pop($query->getGroupBy());
-  array_pop($query->getExpressions());
+    // unset group and max(vid) expression
+    array_pop($query->getGroupBy());
+    array_pop($query->getExpressions());
 
-  // readd vid as regular field
-  $query->addField('ur', 'vid', 'vid');
+    // readd vid as regular field
+    $query->addField('ur', 'vid', 'vid');
 
-  // add all the other fields (and joins)
-  $query->addField('ur', 'uid'); // NOTE: keep as index 1 for fetchCol
-  $query->addField('ur', 'name', 'user_name');
-  $query->addField('parliament', 'name', 'parliament_name');
-  $query->addField('fraction', 'name', 'fraction_name');
-  $query->addExpression('LOWER(role.name)', 'user_role');
+    // add all the other fields (and joins)
+    $query->addField('ur', 'uid'); // NOTE: keep as index 1 for fetchCol
+    $query->addField('ur', 'name', 'user_name');
+    $query->addField('parliament', 'name', 'parliament_name');
+    $query->addField('fraction', 'name', 'fraction_name');
+    $query->addExpression('LOWER(role.name)', 'user_role');
 
-  // join parliament election to get timestamp for elections
-  $query->leftJoin('field_revision_field_parliament_election', 'pe', "pe.entity_type='taxonomy_term' AND pe.entity_id = u_parl.field_user_parliament_tid");
-  $query->addExpression('UNIX_TIMESTAMP(pe.field_parliament_election_value)', 'timestamp');
+    // join parliament election to get timestamp for elections
+    $query->leftJoin('field_revision_field_parliament_election', 'pe', "pe.entity_type='taxonomy_term' AND pe.entity_id = u_parl.field_user_parliament_tid");
+    $query->addExpression('UNIX_TIMESTAMP(pe.field_parliament_election_value)', 'timestamp');
 
-  // join parliament valid AND question form closed to check if the profile is open for questions or not
-  $query->leftJoin('field_revision_field_parliament_valid', 'pv', "pv.entity_type='taxonomy_term' AND pv.entity_id = u_parl.field_user_parliament_tid AND pv.field_parliament_valid_value < NOW() AND (pv.field_parliament_valid_value2 IS NULL OR pv.field_parliament_valid_value2 > NOW())");
-  $query->leftJoin('field_revision_field_user_question_form_closed', 'qf_closed', "qf_closed.entity_type='user' AND qf_closed.revision_id = ur.vid");
-  $query->addExpression("
+    // join parliament valid AND question form closed to check if the profile is open for questions or not
+    $query->leftJoin('field_revision_field_parliament_valid', 'pv', "pv.entity_type='taxonomy_term' AND pv.entity_id = u_parl.field_user_parliament_tid AND pv.field_parliament_valid_value < NOW() AND (pv.field_parliament_valid_value2 IS NULL OR pv.field_parliament_valid_value2 > NOW())");
+    $query->leftJoin('field_revision_field_user_question_form_closed', 'qf_closed', "qf_closed.entity_type='user' AND qf_closed.revision_id = ur.vid");
+    $query->addExpression("
       COUNT(pv.field_parliament_valid_value) > 0 AND
       (user_joined.field_user_joined_value IS NULL OR user_joined.field_user_joined_value < NOW()) AND
       (user_retired.field_user_retired_value IS NULL OR user_retired.field_user_retired_value > NOW()) AND
       (role.name = 'deputy' AND pe.field_parliament_election_value < NOW() OR role.name = 'candidate' AND pe.field_parliament_election_value > NOW()) AND
       qf_closed.field_user_question_form_closed_value IS NULL", 'question_form_open');
 
-  // join joined to get valid from
-  $query->leftJoin('field_revision_field_user_joined', 'user_joined', "user_joined.entity_type = 'user' AND user_joined.revision_id = ur.vid");
-  $query->addField('user_joined', 'field_user_joined_value', 'user_joined');
+    // join joined to get valid from
+    $query->leftJoin('field_revision_field_user_joined', 'user_joined', "user_joined.entity_type = 'user' AND user_joined.revision_id = ur.vid");
+    $query->addField('user_joined', 'field_user_joined_value', 'user_joined');
 
-  // join retired to get valid until
-  $query->leftJoin('field_revision_field_user_retired', 'user_retired', "user_retired.entity_type = 'user' AND user_retired.revision_id = ur.vid");
-  $query->addField('user_retired', 'field_user_retired_value', 'user_retired');
+    // join retired to get valid until
+    $query->leftJoin('field_revision_field_user_retired', 'user_retired', "user_retired.entity_type = 'user' AND user_retired.revision_id = ur.vid");
+    $query->addField('user_retired', 'field_user_retired_value', 'user_retired');
 
-  // join dialogues fields to get number of questions
-  $query->leftJoin("field_data_field_dialogue_recipient", "dia_rp", "dia_rp.entity_type = 'node' AND dia_rp.field_dialogue_recipient_target_id = ur.uid");
-  $query->leftJoin("field_data_field_parliament", "dia_parl", "dia_parl.entity_type = 'node' AND dia_parl.entity_id = dia_rp.entity_id AND dia_parl.field_parliament_tid = parliament.tid");
-  $query->leftJoin("field_data_field_dialogue_before_election", "dia_election", "dia_election.entity_type = 'node' AND dia_election.entity_id = dia_parl.entity_id AND
+    // join dialogues fields to get number of questions
+    $query->leftJoin("field_data_field_dialogue_recipient", "dia_rp", "dia_rp.entity_type = 'node' AND dia_rp.field_dialogue_recipient_target_id = ur.uid");
+    $query->leftJoin("field_data_field_parliament", "dia_parl", "dia_parl.entity_type = 'node' AND dia_parl.entity_id = dia_rp.entity_id AND dia_parl.field_parliament_tid = parliament.tid");
+    $query->leftJoin("field_data_field_dialogue_before_election", "dia_election", "dia_election.entity_type = 'node' AND dia_election.entity_id = dia_parl.entity_id AND
           CASE
           WHEN role.name = 'Candidate' THEN dia_election.field_dialogue_before_election_value = 1
           ELSE dia_election.field_dialogue_before_election_value = 0
           END");
-  $query->leftJoin("node", "n", "dia_rp.entity_id = n.nid AND n.status = 1");
-  $query->addExpression("IFNULL(COUNT(DISTINCT dia_election.entity_id), 0)", "number_of_questions");
+    $query->leftJoin("node", "n", "dia_rp.entity_id = n.nid AND n.status = 1");
+    $query->addExpression("IFNULL(COUNT(DISTINCT dia_election.entity_id), 0)", "number_of_questions");
 
-  // join comments to dialogues to get number of answers without standard replies
-  $query->leftJoin("comment", "c", "dia_election.entity_id = c.nid AND c.status = 1");
-  $query->leftJoin("field_data_field_dialogue_is_standard_reply", "standard_reply", "standard_reply.entity_type = 'comment' AND standard_reply.entity_id = c.cid");
-  $query->addExpression("IFNULL(COUNT(DISTINCT c.nid), 0) - IFNULL(SUM(standard_reply.field_dialogue_is_standard_reply_value), 0)", "number_of_answers");
+    // join comments to dialogues to get number of answers without standard replies
+    $query->leftJoin("comment", "c", "dia_election.entity_id = c.nid AND c.status = 1");
+    $query->leftJoin("field_data_field_dialogue_is_standard_reply", "standard_reply", "standard_reply.entity_type = 'comment' AND standard_reply.entity_id = c.cid");
+    $query->addExpression("IFNULL(COUNT(DISTINCT c.nid), 0) - IFNULL(SUM(standard_reply.field_dialogue_is_standard_reply_value), 0)", "number_of_answers");
 
-  // get number of standard replies
-  $query->addExpression("IFNULL(SUM(standard_reply.field_dialogue_is_standard_reply_value), 0)", "number_of_standard_replies");
+    // get number of standard replies
+    $query->addExpression("IFNULL(SUM(standard_reply.field_dialogue_is_standard_reply_value), 0)", "number_of_standard_replies");
 
-  // join users to get actual profile
-  $query->leftJoin("users", "u", "ur.vid = u.vid");
-  $query->groupBy('ur.vid');
-  $query->addExpression("NOT ISNULL(u.vid)", "actual_profile");
+    // join users to get actual profile
+    $query->leftJoin("users", "u", "ur.vid = u.vid");
+    $query->groupBy('ur.vid');
+    $query->addExpression("NOT ISNULL(u.vid)", "actual_profile");
 
-  // join user archive cache for comparing
-  $query->leftJoin('user_archive_cache', 'uac', "ur.vid = uac.vid");
+    // join user archive cache for comparing
+    $query->leftJoin('user_archive_cache', 'uac', "ur.vid = uac.vid");
 
-  // need fields for comparison in having clause
-  $query->addField("uac", "number_of_questions", "uac_number_of_questions");
-  $query->addField("uac", "number_of_answers", "uac_number_of_answers");
-  $query->addField("uac", "number_of_standard_replies", "uac_number_of_standard_replies");
+    // need fields for comparison in having clause
+    $query->addField("uac", "number_of_questions", "uac_number_of_questions");
+    $query->addField("uac", "number_of_answers", "uac_number_of_answers");
+    $query->addField("uac", "number_of_standard_replies", "uac_number_of_standard_replies");
 
-  $query->having('(ISNULL(uac.number_of_questions)
+    $query->having('(ISNULL(uac.number_of_questions)
           OR uac_number_of_questions != number_of_questions
           OR uac_number_of_answers != number_of_answers
           OR uac_number_of_standard_replies != number_of_standard_replies)');
 
-  // nothing to update
-  if (empty($query) || $query->execute()->rowCount() == 0) {
-    return;
-  }
-
-  // fetch vids and uids
-  $result = $query->execute()->fetchAllAssoc('vid', PDO::FETCH_ASSOC);
-  $uids = array_unique(array_column($result, 'uid'));
-
-  // delete and insert archive cache
-  $fields = array_merge(array_keys($query->getFields()), array_keys($query->getExpressions()));
-  unset($fields[array_search('uac_number_of_questions', $fields)]);
-  unset($fields[array_search('uac_number_of_answers', $fields)]);
-  unset($fields[array_search('uac_number_of_standard_replies', $fields)]);
-  sort($fields);
-
-  foreach ($result as $row) {
-    db_delete('user_archive_cache')
-      ->condition('parliament_name', $row['parliament_name'])
-      ->condition('user_role', $row['user_role'])
-      ->condition('uid', $row['uid'])
-      ->condition('fraction_name', $row['fraction_name'])
-      ->execute();
-
-    unset($row['uac_number_of_questions']);
-    unset($row['uac_number_of_answers']);
-    unset($row['uac_number_of_standard_replies']);
-    ksort($row);
-
-    db_insert('user_archive_cache')
-      ->fields($fields)
-      ->values($row)
-      ->execute();
-  }
-
-  // set actual / newest profile
-  if ($reset_actual_profile) {
-    foreach ($uids as $uid) {
-      // restore to newest profile, especially after importing older profiles
-      pw_reset_actuale_profile($uid);
+    // nothing to update
+    if (empty($query) || $query->execute()->rowCount() == 0) {
+      return;
     }
-  }
 
-  // delete file entries with fid=0 because it will break field_attach_update
-  db_delete('file_usage')
-    ->condition('fid', 0)
-    ->condition('type', 'user')
-    ->condition('id', $uids)
-    ->execute();
-  db_delete('field_data_field_user_image_gallery')
-    ->condition('field_user_image_gallery_fid', 0)
-    ->condition('entity_type', 'user')
-    ->condition('entity_id', $uids)
-    ->execute();
-  db_delete('field_revision_field_user_image_gallery')
-    ->condition('field_user_image_gallery_fid', 0)
-    ->condition('entity_type', 'user')
-    ->condition('entity_id', $uids)
-    ->execute();
+    // fetch vids and uids
+    $result = $query->execute()->fetchAllAssoc('vid', PDO::FETCH_ASSOC);
+    $uids = array_unique(array_column($result, 'uid'));
 
-  // update fields
-  foreach ($result as $row) {
+    // delete and insert archive cache
+    $fields = array_merge(array_keys($query->getFields()), array_keys($query->getExpressions()));
+    unset($fields[array_search('uac_number_of_questions', $fields)]);
+    unset($fields[array_search('uac_number_of_answers', $fields)]);
+    unset($fields[array_search('uac_number_of_standard_replies', $fields)]);
+    sort($fields);
 
-    // load revision
-    $user_revision = user_revision_load($row['uid'], $row['vid']);
-    if ($user_revision) {
-      $revision_edit = array();
+    foreach ($result as $row) {
+      db_delete('user_archive_cache')
+        ->condition('parliament_name', $row['parliament_name'])
+        ->condition('user_role', $row['user_role'])
+        ->condition('uid', $row['uid'])
+        ->condition('fraction_name', $row['fraction_name'])
+        ->execute();
 
-      // reset pictures which have a null value
-      if (key_exists('und', $user_revision->field_user_picture) && $user_revision->field_user_picture['und'][0] === NULL) {
-        $revision_edit['field_user_picture'] = array();
-        _pw_send_debug_mail('field_user_picture is NULL', $user_revision);
+      unset($row['uac_number_of_questions']);
+      unset($row['uac_number_of_answers']);
+      unset($row['uac_number_of_standard_replies']);
+      ksort($row);
+
+      db_insert('user_archive_cache')
+        ->fields($fields)
+        ->values($row)
+        ->execute();
+    }
+
+    // set actual / newest profile
+    if ($reset_actual_profile) {
+      foreach ($uids as $uid) {
+        // restore to newest profile, especially after importing older profiles
+        pw_reset_actuale_profile($uid);
       }
-      // _user_revision_edit_save($user_revision, $revision_edit);
+    }
+
+    // delete file entries with fid=0 because it will break field_attach_update
+    db_delete('file_usage')
+      ->condition('fid', 0)
+      ->condition('type', 'user')
+      ->condition('id', $uids)
+      ->execute();
+    db_delete('field_data_field_user_image_gallery')
+      ->condition('field_user_image_gallery_fid', 0)
+      ->condition('entity_type', 'user')
+      ->condition('entity_id', $uids)
+      ->execute();
+    db_delete('field_revision_field_user_image_gallery')
+      ->condition('field_user_image_gallery_fid', 0)
+      ->condition('entity_type', 'user')
+      ->condition('entity_id', $uids)
+      ->execute();
+
+    // update fields
+    foreach ($result as $row) {
+
+      // load revision
+      $user_revision = user_revision_load($row['uid'], $row['vid']);
+      if ($user_revision) {
+        $revision_edit = array();
+
+        // reset pictures which have a null value
+        if (key_exists('und', $user_revision->field_user_picture) && $user_revision->field_user_picture['und'][0] === NULL) {
+          $revision_edit['field_user_picture'] = array();
+          _pw_send_debug_mail('field_user_picture is NULL', $user_revision);
+        }
+        // _user_revision_edit_save($user_revision, $revision_edit);
+      }
+    }
+
+    $politician_index = search_api_index_load('politician_archive_index');
+    $items_to_track_after_update = $tracked_items_query
+      ->condition('uac.vid', $vids)
+      ->execute()
+      ->fetchCol();
+
+    if ($politician_index) {
+      search_api_track_item_insert('user_revision', array_diff($items_to_track_after_update, $tracked_items));
+      search_api_track_item_delete('user_revision', array_diff($tracked_items, $items_to_track_after_update));
     }
   }
-
-  $politician_index = search_api_index_load('politician_archive_index');
-  $items_to_track_after_update = $tracked_items_query
-    ->condition('uac.vid', $vids)
-    ->execute()
-    ->fetchCol();
-
-  if ($politician_index) {
-    search_api_track_item_insert('user_revision', array_diff($items_to_track_after_update, $tracked_items));
-    search_api_track_item_delete('user_revision', array_diff($tracked_items, $items_to_track_after_update));
+  catch (Exception $e) {
+    $transaction->rollback();
+    throw $e;
   }
-
-  return 'Done';
 }
 
 /**
