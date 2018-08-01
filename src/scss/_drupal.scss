@@ -113,7 +113,7 @@
 .maintenance-message {
   @include shadow();
   max-width: 500px;
-  margin: 0 auto;
+  margin: $space-large auto ($space-large + $space);
   line-height: 1.5em;
   padding: $space-large;
   text-align: center;

@@ -2,10 +2,6 @@
 * Blank theme specific overrides
 */
 
-#header,
-#footer {
-  display: none;
-}
 #content {
   margin-top: 0 !important;
 }
@@ -84,4 +80,63 @@
 }
 @media (min-width: 1600px) {
   .tabs__content--qa .tabs__content__content .swiper-container--tile { max-width: 1540px; }
+}
+
+#footer {
+  background: #f3efe6;
+  border-bottom: 1px solid #dfdbd2;
+  padding: 30px 0;
+  text-align: right;
+}
+.footer__logo {
+  display: block;
+  float: none;
+  padding: 0;
+  margin: 0;
+}
+@media (min-width: 460px) {
+  .footer__logo {
+    float: right;
+    margin-right: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .footer__logo {
+    margin-right: 40px;
+  }
+}
+.footer__logo .svg-container {
+  float: none;
+  margin-top: 0;
+  width: auto;
+}
+.footer__logo svg {
+  padding-bottom: 1px;
+  overflow: hidden;
+  width: 220px;
+  height: 30px;
+  margin: 0 auto;
+}
+.footer__presented {
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: .7em;
+  float: none;
+  color: #000;
+}
+.footer__logo svg path[fill="#1D1D1B"] {
+  fill: #1D1D1B;
+}
+.footer__logo svg path[fill="#FF6C36"] {
+  fill: #FF6C36;
+}
+
+@media (min-width: 460px) {
+  .footer__presented {
+    display: inline-block;
+    margin-top: 8px;
+    text-align: left;
+    float: none;
+    margin-right: 20px;
+  }
 }
