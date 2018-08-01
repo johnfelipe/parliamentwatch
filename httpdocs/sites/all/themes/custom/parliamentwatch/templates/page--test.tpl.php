@@ -114,10 +114,60 @@
   </header>
   <?php print $messages; ?>
 
-
-
   <main id="content">
     <a id="main-content"></a>
+
+
+    <div class="container">
+
+      <h2>Videos von [Politikername]</h2>
+      <div class="player">
+        <div class="player__stage">
+          <div class="player__stage__video">
+            <div class="media_embed">
+              <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/sNpcidQtvzk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="player__stage__desc">
+            <h3>Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)</h3>
+            <div class="player__stage__desc__text">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>
+            </div>
+            <a href="" class="player__stage__desc__link"><?php print t('Read more'); ?></a>
+          </div>
+        </div>
+        <ul class="player__playlist">
+          <li class="player__playlist__item player__playlist__item--active"
+              data-embedcode="<iframe width='560' height='315' src='https://www.youtube-nocookie.com/embed/sNpcidQtvzk' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>"
+              data-title="Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)"
+              data-description="<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>">
+            <span class="player__playlist__item__image">
+              <img src="https://img.youtube.com/vi/sNpcidQtvzk/mqdefault.jpg" alt="Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)">
+            </span>
+            <span class="player__playlist__item__title">Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)</span>
+          </li>
+          <li class="player__playlist__item"
+              data-embedcode="<iframe width='560' height='315' src='https://www.youtube.com/embed/Wf1blqLEbY0' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>"
+              data-title="Bundestag: Etats des Finanzministeriums und des Bundesrechnungshofes genehmigt"
+              data-description="<p>Consectetur adipisicing elit. Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>">
+            <span class="player__playlist__item__image">
+              <img src="https://img.youtube.com/vi/Wf1blqLEbY0/mqdefault.jpg" alt="Bundestag: Etats des Finanzministeriums und des Bundesrechnungshofes genehmigt">
+            </span>
+            <span class="player__playlist__item__title">Bundestag: Etats des Finanzministeriums und des Bundesrechnungshofes genehmigt</span>
+          </li>
+          <li class="player__playlist__item"
+              data-embedcode="<iframe width='560' height='315' src='https://www.youtube.com/embed/vbxrp2-gC54' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>"
+              data-title="Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers"
+              data-description="<p>Adipisicing elit Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>">
+            <span class="player__playlist__item__image">
+              <img src="https://img.youtube.com/vi/vbxrp2-gC54/mqdefault.jpg" alt="Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)">
+            </span>
+            <span class="player__playlist__item__title">Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
 
 
 

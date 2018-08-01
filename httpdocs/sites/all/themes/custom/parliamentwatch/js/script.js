@@ -2020,6 +2020,54 @@
   };
 
   /**
+   * Attaches the video-player behavior.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~attachBehavior}
+   */
+  Drupal.behaviors.videoPlayer = {
+    attach: function (context) {
+      $('.player', context).once('videoPlayer', function () {
+
+        var player = $(this);
+        player.find('.player__stage__desc__text').truncate({
+          lines: 3
+        });
+        player.find('.player__playlist__item__title').truncate({
+          lines: 2
+        });
+
+        player.find('.player__playlist__item').click(function (event) {
+          var embedCode = $(this).attr('data-embedcode');
+          var title = $(this).attr('data-title');
+          var desc = $(this).attr('data-description');
+
+          // Clear player stage
+
+          player.find('.player__stage__video .media_embed, .player__stage__desc h3, .player__stage__desc__text').empty();
+
+          // Set active-class
+
+          $('.player__playlist__item').removeClass('player__playlist__item--active');
+          $(this).addClass('player__playlist__item--active');
+
+          // Add new video to stage
+
+          player.find('.player__stage__video .media_embed').html(embedCode);
+          player.find('.player__stage__desc h3').html(title);
+          player.find('.player__stage__desc__text').truncate('update', desc);
+
+          // Expand description
+
+          $('.player__stage__desc__link').
+
+        });
+      });
+    }
+  };
+
+  /**
    * Attaches the landing page teaser behavior.
    *
    * @type {Drupal~behavior}

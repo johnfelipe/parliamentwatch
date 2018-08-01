@@ -1,0 +1,110 @@
+/**
+* Player
+*
+* Defines video player widget
+*/
+
+.player {
+  background: $beige;
+  position: relative;
+  @include grid-container();
+}
+.player__stage {
+  padding: $space-small;
+  @include breakpoint($breakpoint-s-min) {
+    padding: $space;
+    @include grid-column(8, $neat-grid-no-gutter);
+  }
+  @include breakpoint($breakpoint-m-min) {
+    padding: $space-large;
+  }
+}
+.player__stage__video {
+  margin-bottom: $space;
+  padding: $space-xsmall;
+  background: $white;
+  box-shadow: 0 3px 5px rgba(0,0,0,.1);
+  @include breakpoint($breakpoint-s-min) {
+    padding: $space-small;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    padding: $space;
+  }
+}
+
+.player__stage__desc {
+  padding: 0 $space-xsmall;
+  @include breakpoint($breakpoint-s-min) {
+    padding: 0 $space-small;
+  }
+  @include breakpoint($breakpoint-m-min) {
+    padding: 0 $space;
+  }
+  h3 {
+    @include text-overflow();
+  }
+}
+.player__stage__desc__link {
+  margin-top: $space-xsmall;
+  display: inline-block;
+}
+
+.player__playlist {
+  background: $brightBeige;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+  @include breakpoint($breakpoint-s-min) {
+    @include grid-column(4, $neat-grid-no-gutter);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $brightGray;
+    border-left: 1px solid $darkBeige;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $darkBeige;
+  }
+}
+.player__playlist__item {
+  padding: $space;
+  display: table;
+  width: 100%;
+  margin-bottom: 0;
+  @include grid-container();
+  @include breakpoint($breakpoint-l-min) {
+    padding: $space-large;
+  }
+}
+.player__playlist__item--active {
+  background: $beige;
+}
+.player__playlist__item__image {
+  display: table-cell;
+  width: 80px;
+  @include breakpoint($breakpoint-m-min) {
+    width: 90px;
+  }
+  @include breakpoint($breakpoint-l-min) {
+    width: 100px;
+  }
+  img {
+    display: block;
+    border: 4px solid $white;
+  }
+}
+.player__playlist__item__title {
+  padding-left: $space-small;
+  display: table-cell;
+  vertical-align: middle;
+  @include breakpoint($breakpoint-m-min) {
+    padding-left: $space;
+  }
+}
