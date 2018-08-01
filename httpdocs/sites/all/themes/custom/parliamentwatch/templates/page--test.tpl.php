@@ -164,6 +164,51 @@
             </span>
             <span class="player__playlist__item__title">Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers</span>
           </li>
+          <li class="player__playlist__item"
+              data-embedcode="<iframe width='560' height='315' src='http://kandidatencheck.wdr.de/kandidatencheck/video/683351' frameborder='0'></iframe>"
+              data-title="WDR Kandidatencheck"
+              data-description="<p>Adipisicing elit Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>">
+            <span class="player__playlist__item__image">
+              <img src="http://kandidatencheck.wdr.de/kandidatencheck/img/Sylvia_Loehrmann/683351-S.jpg" alt="WDR Kandidatencheck">
+            </span>
+            <span class="player__playlist__item__title">WDR Kandidatencheck</span>
+          </li>
+          <li class="player__playlist__item"
+              data-embedcode="<iframe width='560' height='315' src='https://www.youtube.com/embed/vbxrp2-gC54' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>"
+              data-title="Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers"
+              data-description="<p>Adipisicing elit Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>">
+            <span class="player__playlist__item__image">
+              <img src="https://img.youtube.com/vi/vbxrp2-gC54/mqdefault.jpg" alt="Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)">
+            </span>
+            <span class="player__playlist__item__title">Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers</span>
+          </li>
+          <li class="player__playlist__item"
+              data-embedcode="<iframe width='560' height='315' src='https://www.youtube.com/embed/vbxrp2-gC54' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>"
+              data-title="Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers"
+              data-description="<p>Adipisicing elit Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>">
+            <span class="player__playlist__item__image">
+              <img src="https://img.youtube.com/vi/vbxrp2-gC54/mqdefault.jpg" alt="Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)">
+            </span>
+            <span class="player__playlist__item__title">Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers</span>
+          </li>
+          <li class="player__playlist__item"
+              data-embedcode="<iframe width='560' height='315' src='https://www.youtube.com/embed/vbxrp2-gC54' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>"
+              data-title="Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers"
+              data-description="<p>Adipisicing elit Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>">
+            <span class="player__playlist__item__image">
+              <img src="https://img.youtube.com/vi/vbxrp2-gC54/mqdefault.jpg" alt="Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)">
+            </span>
+            <span class="player__playlist__item__title">Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers</span>
+          </li>
+          <li class="player__playlist__item"
+              data-embedcode="<iframe width='560' height='315' src='https://www.youtube.com/embed/vbxrp2-gC54' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>"
+              data-title="Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers"
+              data-description="<p>Adipisicing elit Accusantium alias, architecto aut consectetur cupiditate, doloremque doloribus eius ipsam laboriosam nesciunt quae quam reprehenderit. Doloremque eum in iure labore quae repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi assumenda autem blanditiis dolore eius et ipsa laborum magni molestias non quam quibusdam quis quo quos repellendus reprehenderit, totam voluptatem.</p>">
+            <span class="player__playlist__item__image">
+              <img src="https://img.youtube.com/vi/vbxrp2-gC54/mqdefault.jpg" alt="Generalaussprache zur Regierungspolitik - Andrea Nahles (SPD)">
+            </span>
+            <span class="player__playlist__item__title">Bundestag: Aktuelle Stunde zur Nitratbelastung des Trinkwassers</span>
+          </li>
         </ul>
       </div>
 

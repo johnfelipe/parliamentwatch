@@ -11,6 +11,8 @@
 }
 .player__stage {
   padding: $space-small;
+  position: relative;
+  overflow: hidden;
   @include breakpoint($breakpoint-s-min) {
     padding: $space;
     @include grid-column(8, $neat-grid-no-gutter);
@@ -18,30 +20,52 @@
   @include breakpoint($breakpoint-m-min) {
     padding: $space-large;
   }
+  @include breakpoint($breakpoint-l-min) {
+    @include grid-column(7, $neat-grid-no-gutter);
+  }
 }
 .player__stage__video {
-  margin-bottom: $space;
+  margin-bottom: $space-small;
   padding: $space-xsmall;
   background: $white;
   box-shadow: 0 3px 5px rgba(0,0,0,.1);
   @include breakpoint($breakpoint-s-min) {
     padding: $space-small;
+    margin-bottom: $space-xsmall-mobile;
   }
   @include breakpoint($breakpoint-m-min) {
     padding: $space;
+  }
+  iframe {
+    overflow: hidden;
   }
 }
 
 .player__stage__desc {
   padding: 0 $space-xsmall;
+  background: $beige;
   @include breakpoint($breakpoint-s-min) {
-    padding: 0 $space-small;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $space;
   }
   @include breakpoint($breakpoint-m-min) {
-    padding: 0 $space;
+    padding: $space-large;
   }
   h3 {
     @include text-overflow();
+  }
+}
+.player__stage__desc--expanded {
+  @include breakpoint($breakpoint-s-min) {
+    box-shadow: 0 -3px 5px rgba(0, 0, 0, .1);
+  }
+  h3 {
+    overflow: auto;
+    white-space: normal;
+    text-overflow: inherit;
   }
 }
 .player__stage__desc__link {
@@ -55,12 +79,19 @@
   padding: 0;
   list-style: none;
   overflow-y: auto;
+  border-top: 10px solid $white;
+  max-height: 180px;
   @include breakpoint($breakpoint-s-min) {
     @include grid-column(4, $neat-grid-no-gutter);
+    max-height: none;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
+    border-top: 0;
+  }
+  @include breakpoint($breakpoint-l-min) {
+    @include grid-column(5, $neat-grid-no-gutter);
   }
   &::-webkit-scrollbar {
     width: 10px;
