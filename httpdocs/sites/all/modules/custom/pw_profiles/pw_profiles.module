@@ -217,10 +217,8 @@ function pw_profiles_form_pw_profiles_street_form_alter(&$form, &$form_state) {
 function pw_profiles_metatag_metatags_view_alter(&$output, $instance, $options) {
   if ($instance == 'user:user') {
     $canonical_url = 'https://www.abgeordnetenwatch.de/' . user_uri($options['entity'])['path'];
-    $description = '';
     $output['canonical']['#attached']['drupal_add_html_head'][0][0]['#value'] = $canonical_url;
     $output['canonical']['#attached']['drupal_add_html_head'][0][0]['#attached']['drupal_add_http_header'][0][1] = '<' . $canonical_url .'>; rel=canonical';
-    $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = $description;
   }
 }
 

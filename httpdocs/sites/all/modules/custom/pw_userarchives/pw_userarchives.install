@@ -177,3 +177,24 @@ function pw_userarchives_update_7107() {
   db_add_field('user_archive_cache', 'number_of_standard_replies', array('type' => 'int', 'not null' => FALSE, 'description' => 'Number of standard replies.'));
   db_add_index('user_archive_cache', 'number_of_standard_replies', array('number_of_standard_replies'));
 }
+
+/**
+ * Rebuild user_archive_cache.
+ */
+function pw_userarchives_update_7108() {
+  $transaction = db_transaction();
+
+  try {
+    $politician_archive_index = search_api_index_load('politician_archive_index');
+    $politician_archive_index->datasource()->stopTracking([$politician_archive_index]);
+    $politician_archive_index->update(['enabled' => FALSE]);
+    db_delete('user_archive_cache')->execute();
+    pw_userarchives_cron();
+    $politician_archive_index->update(['enabled' => TRUE]);
+    $politician_archive_index->datasource()->startTracking([$politician_archive_index]);
+  }
+  catch (Exception $e) {
+    $transaction->rollback();
+    throw $e;
+  }
+}
