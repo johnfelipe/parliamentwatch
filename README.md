@@ -5,7 +5,7 @@
 1. Install [Docker](https://www.docker.com/community-edition)
 1. `$ git clone -b develop git@github.com:parliamentwatch/parliamentwatch.git`
 1. `$ cd parliamentwatch`
-1. `$ curl -u root https://backups.parliamentwatch.org/abgeordnetenwatch.de/abgeordnetenwatch.de_latest.sql.gz > provisioning/var/backup/mysql/abgeordnetenwatch.de_latest.sql.gz`
+1. `$ curl -f -u root https://backups.parliamentwatch.org/abgeordnetenwatch.de/abgeordnetenwatch.de_latest.sql.gz > provisioning/var/backup/mysql/abgeordnetenwatch.de_latest.sql.gz`
 1. `$ docker-compose up -d`
 1. Open [http://localhost:8080](http://localhost:8080) in your browser. It may take a while until the site becomes available during the initial loading of the database backup.
 
