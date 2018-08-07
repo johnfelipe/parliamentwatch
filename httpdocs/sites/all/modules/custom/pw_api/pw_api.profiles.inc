@@ -194,9 +194,6 @@ function pw_api_user_to_array($user, $subsets = array()) {
         $profile['meta']['candidate_match_theses'] = 0;
       }
     }
-    else{
-      $profile['personal']['email'] = $w_user->field_user_public_mail->value();
-    }
 
     $profile['party'] = $w_user->field_user_party->label();
 
