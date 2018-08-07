@@ -164,6 +164,7 @@ function pw_blog_recent_blogposts_block() {
  */
 function pw_blog_newsletter_subscription_block() {
   $block = [];
+  $block['content'] = ' ';
   return $block;
 }
 
