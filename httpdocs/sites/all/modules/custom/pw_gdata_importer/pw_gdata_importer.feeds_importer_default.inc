@@ -1192,6 +1192,7 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:48' => 'moreurls2title',
           'xpathparser:49' => 'moreurls3',
           'xpathparser:50' => 'moreurls3title',
+          'xpathparser:51' => 'email2',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
@@ -1235,6 +1236,7 @@ function pw_gdata_importer_feeds_importer_default() {
           'xpathparser:48' => 0,
           'xpathparser:49' => 0,
           'xpathparser:50' => 0,
+          'xpathparser:51' => 0,
         ),
         'context' => '//row',
         'exp' => array(
@@ -1282,6 +1284,7 @@ function pw_gdata_importer_feeds_importer_default() {
             'xpathparser:48' => 0,
             'xpathparser:49' => 0,
             'xpathparser:50' => 0,
+            'xpathparser:51' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -1563,6 +1566,12 @@ function pw_gdata_importer_feeds_importer_default() {
           42 => array(
             'source' => 'xpathparser:50',
             'target' => 'field_user_links_more:title',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          43 => array(
+            'source' => 'xpathparser:51',
+            'target' => 'field_user_public_mail',
             'unique' => FALSE,
           ),
         ),
