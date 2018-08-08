@@ -1230,7 +1230,7 @@ msgid ""
 "2081."
 msgstr ""
 "Bitte geben Sie Ihre bei uns hinterlegte E-Mail-Adresse ein. Wir senden Ihnen dann einen Link zu."
-"Sollten Sie die E-Mail nicht erhalten, wenden Sie sich bitte an "
+" Sollten Sie die E-Mail nicht erhalten, wenden Sie sich bitte an "
 "<a href=\"mailto: service@abgeordnetenwatch.de\">service@abgeordnetenwatch.de</a> oder 030-2574 2081."
 
 #: sites/all/themes/custom/parliamentwatch/templates/user-pass.tpl.php:6
