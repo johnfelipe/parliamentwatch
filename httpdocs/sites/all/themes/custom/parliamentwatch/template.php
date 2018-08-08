@@ -9,6 +9,12 @@ function parliamentwatch_theme(&$existing, $type, $theme, $path) {
       'render element' => 'form',
       'template' => 'templates/filterbar',
     ],
+    'user_login' => array(
+      'template' => 'templates/user-login'
+    ),
+    'user_pass' => array(
+      'template' => 'templates/user-pass'
+    ),
   );
 }
 
@@ -929,6 +935,23 @@ function parliamentwatch_item_list__politician_dropdown($variables) {
   }
 
   return $output;
+}
+
+/**
+ * Overrides theme_preprocess_user_login().
+ */
+
+function parliamentwatch_preprocess_user_login(&$variables) {
+  $variables['form'] = drupal_build_form('user_login', user_login(array(),$form_state));
+}
+
+/**
+ * Overrides theme_preprocess_user_pass().
+ */
+
+function parliamentwatch_preprocess_user_pass(&$variables) {
+  $variables['form'] = drupal_build_form('user_pass', user_pass(array(),$form_state));
+  $variables['form']['actions']['submit'] = array('#type' => 'submit', '#value' => t('Reset password'));
 }
 
 
