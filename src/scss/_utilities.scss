@@ -59,6 +59,7 @@ textarea {
 .link-icon {
   color: $darkGray;
   font-weight: 600;
+  transition: color 300ms ease;
   .icon {
     color: $orange;
     display: inline-block;
@@ -67,6 +68,9 @@ textarea {
     font-size: .7em;
     position: relative;
     top: -.2em;
+  }
+  &:hover {
+    color: $orange;
   }
 }
 
