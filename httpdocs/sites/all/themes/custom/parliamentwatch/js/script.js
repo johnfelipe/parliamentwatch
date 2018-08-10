@@ -457,10 +457,8 @@
         slidesPerView: 'auto',
         resistance: true,
         resistanceRatio: 0.5,
-        navigation: {
-          nextEl: secondLevel.find('.swiper-button-next'),
-          prevEl: secondLevel.find('.swiper-button-prev'),
-        },
+        nextButton: secondLevel.find('.swiper-button-next'),
+        prevButton: secondLevel.find('.swiper-button-prev'),
         onInit: function (swiper) {
           resizeMainNavigation();
           swiper.update();
@@ -892,17 +890,15 @@
   Drupal.behaviors.swiperTile = {
     attach: function () {
       $('.swiper-container--tile').each(function (index, element) {
-        var mySwiper = new Swiper(element, {
+        var $this = $(this);
+        $this.swiper({
           slideClass: 'tile',
           loop: false,
           spaceBetween: 20,
           slidesPerView: 3,
           slidesPerGroup: 3,
-          navigation: {
-            type: 'fraction',
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
+          nextButton: $this.find('.swiper-button-next'),
+          prevButton: $this.find('.swiper-button-prev'),
           breakpoints: {
             550: {
               slidesPerView: 1,
@@ -921,12 +917,15 @@
               slidesPerGroup: 3
             }
           },
-          on: {
-            init: function () {
-              $('.question__question').matchHeight();
-              $('.question__answer').matchHeight();
-              this.update();
-            }
+          onInit: function (swiper) {
+            $('.question__question').matchHeight();
+            $('.question__answer').matchHeight();
+            swiper.update();
+          },
+          onAfterResize: function (swiper) {
+            $('.question__question').matchHeight();
+            $('.question__answer').matchHeight();
+            swiper.update();
           }
         });
 
@@ -1776,10 +1775,8 @@
           slidesPerView: 'auto',
           spaceBetween: 30,
           centeredSlides: true,
-          navigation: {
-            nextEl: $('.poll__timeline .swiper-button-next'),
-            prevEl: $('.poll__timeline .swiper-button-prev')
-          }
+          nextButton: $('.poll__timeline .swiper-button-next'),
+          prevButton: $('.poll__timeline .swiper-button-prev'),
         });
       });
     }
@@ -1820,35 +1817,32 @@
       }
 
       var mySwiper = new Swiper('.filterbar__swiper', {
-        freeMode: true,
+        freeMode: false,
         resistance: true,
         resistanceRatio: 0.5,
         slideClass: 'filterbar__item',
         wrapperClass: 'filterbar__swiper__inner',
         speed: 400,
         slidesPerView: 'auto',
-        navigation: {
-          nextEl: $('.filterbar__swiper .swiper-button-next'),
-          prevEl: $('.filterbar__swiper .swiper-button-prev')
+        simulateTouch: true,
+        nextButton: filterBarSwiper.find('.swiper-button-next'),
+        prevButton: filterBarSwiper.find('.swiper-button-prev'),
+        onInit: function (swiper) {
+          filterBarSwiperSize();
+          swiper.update();
         },
-        on: {
-          init: function () {
-            filterBarSwiperSize();
-            this.update();
-          },
-          resize: function () {
-            filterBarSwiperSize();
-            this.update();
-          }
+        onAfterResize: function (swiper) {
+          filterBarSwiperSize();
+          swiper.update();
         }
       });
 
-      $('.filterbar__swiper .filterbar__item--dropdown').on("click", function () {
+      $('.filterbar__swiper .filterbar__item--dropdown .dropdown__trigger').on("click", function () {
         // var index = $(this).index();
         // mySwiper.slideTo(index, 300);
         $('.dropdown__list').removeClass('dropdown__list--open');
-        if ($(this).children('.dropdown__trigger').hasClass('dropdown__trigger--active')) {
-          $(this).find('.dropdown__list').addClass('dropdown__list--open');
+        if ($(this).hasClass('dropdown__trigger--active')) {
+          $(this).parent('.filterbar__item--dropdown').find('.dropdown__list').addClass('dropdown__list--open');
         }
       });
     }
@@ -1950,10 +1944,8 @@
           speed: 400,
           slidesPerView: 1,
           autoHeight: 1,
-          navigation: {
-            nextEl: candidateCheckSwiper.find('.swiper-button-next'),
-            prevEl: candidateCheckSwiper.find('.swiper-button-prev'),
-          },
+          nextButton: candidateCheckSwiper.find('.swiper-button-next'),
+          prevButton: candidateCheckSwiper.find('.swiper-button-prev'),
           pagination: candidateCheckSwiper.find('.swiper-pagination'),
           paginationType: 'fraction',
           paginationFractionRender: function (swiper, currentClassName, totalClassName) {
