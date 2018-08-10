@@ -140,18 +140,21 @@
   }
 }
 
-
-
 .blog__content {
   @include basic-content();
   .well {
     font-size: .9em;
     margin-top: $space-large * 2;
-    padding: $space-large 0;
+    @include breakpoint($breakpoint-m-min) {
+      padding: $space-large 0;
+    }
     > div {
       @include grid-container();
     }
     .well__left {
+      @include breakpoint($breakpoint-s-min) {
+        @include grid-column(12);
+      }
       @include breakpoint($breakpoint-m-min) {
         margin-top: 0;
         margin-bottom: 0;
@@ -165,6 +168,7 @@
     .form {
       border-top: 1px solid $darkBeige;
       padding-top: $space;
+      padding-bottom: $space;
       @include grid-column(12);
       @include breakpoint($breakpoint-m-min) {
         border-top: 0;
