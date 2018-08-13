@@ -2132,9 +2132,9 @@
    */
   Drupal.behaviors.donationForm = {
     attach: function (context, settings) {
-      function pw_donation_form_multiply(){
-        var pw_amount = $('input:radio[name ="submitted[fieldset_donationform_yourdonation][donation_amount]"]:checked').val();
+      function pw_donation_form_update(){
         var pw_interval = $('input:radio[name ="submitted[fieldset_donationform_yourdonation][donation_frequency]"]:checked').val();
+        var $pw_amount_active = $('input[name*=donation_amount]:checked');
 
         pw_interval = pw_interval == 0 ? 1 : pw_interval;
 
@@ -2142,12 +2142,15 @@
         $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-2 + label').text(pw_interval * 20 + ' €');
         $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-3 + label').text(pw_interval * 50 + ' €');
         $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-4 + label').text(pw_interval * 100 + ' €');
+
+        if ($pw_amount_active.length > 0 && $pw_amount_active.val() !== 'free') {
+          $pw_amount_active.get(0).checked = false;
+        }
       }
 
-      $('.webform-component--fieldset-donationform-yourdonation--donation-amount, .webform-component--fieldset-donationform-yourdonation--donation-frequency').click(function() {
-        pw_donation_form_multiply();
+      $('.webform-component--fieldset-donationform-yourdonation--donation-frequency input[type=radio]').change(function() {
+        pw_donation_form_update();
       });
-      pw_donation_form_multiply();
     }
   };
 
