@@ -2132,7 +2132,7 @@
    */
   Drupal.behaviors.donationForm = {
     attach: function (context, settings) {
-      function pw_donation_form_update(){
+      $('.webform-component--fieldset-donationform-yourdonation--donation-frequency input[type=radio]').change(function() {
         var pw_interval = $('input:radio[name ="submitted[fieldset_donationform_yourdonation][donation_frequency]"]:checked').val();
         var $pw_amount_active = $('input[name*=donation_amount]:checked');
 
@@ -2146,10 +2146,6 @@
         if ($pw_amount_active.length > 0 && $pw_amount_active.val() !== 'free') {
           $pw_amount_active.get(0).checked = false;
         }
-      }
-
-      $('.webform-component--fieldset-donationform-yourdonation--donation-frequency input[type=radio]').change(function() {
-        pw_donation_form_update();
       });
     }
   };
