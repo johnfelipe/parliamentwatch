@@ -2133,8 +2133,9 @@
   Drupal.behaviors.donationForm = {
     attach: function (context, settings) {
       $('.webform-component--fieldset-donationform-yourdonation--donation-frequency input[type=radio]').change(function() {
-        var pw_interval = $('input:radio[name ="submitted[fieldset_donationform_yourdonation][donation_frequency]"]:checked').val();
-        var $pw_amount_active = $('input[name*=donation_amount]:checked');
+        var pw_interval = $('input:radio[name="submitted[fieldset_donationform_yourdonation][donation_frequency]"]:checked').val();
+        var pw_amount_label = Drupal.t('Your donation amount');
+        var $pw_amount_active = $('input[name*="donation_amount"]:checked');
 
         pw_interval = pw_interval == 0 ? 1 : pw_interval;
 
@@ -2142,6 +2143,25 @@
         $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-2 + label').text(pw_interval * 20 + ' €');
         $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-3 + label').text(pw_interval * 50 + ' €');
         $('#edit-submitted-fieldset-donationform-yourdonation-donation-amount-4 + label').text(pw_interval * 100 + ' €');
+
+        switch (pw_interval) {
+          case '1':
+            pw_amount_label = Drupal.t('Your monthly donation amount');
+            break;
+          case '3':
+            pw_amount_label = Drupal.t('Your quarterly donation amount');
+            break;
+          case '6':
+            pw_amount_label = Drupal.t('Your half-yearly donation amount');
+            break;
+          case '12':
+            pw_amount_label = Drupal.t('Your yearly donation amount');
+            break;
+        }
+
+        $('label[for="edit-submitted-fieldset-donationform-yourdonation-donation-amount"]').contents().filter(function(){
+          return (this.nodeType == 3);
+        }).replaceWith(pw_amount_label + ' ');
 
         if ($pw_amount_active.length > 0 && $pw_amount_active.val() !== 'free') {
           $pw_amount_active.get(0).checked = false;
