@@ -2147,6 +2147,10 @@
           $pw_amount_active.get(0).checked = false;
         }
       });
+
+      $('.webform-component--fieldset-donationform-yourdonation--donation-amount input[type=radio]').change(function() {
+        $('.form__item--submitted-fieldset-donationform-yourdonation-donation-free-amount').find('input').val('');
+      });
     }
   };
 
