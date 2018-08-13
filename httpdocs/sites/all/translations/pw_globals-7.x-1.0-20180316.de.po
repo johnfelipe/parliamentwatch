@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-08-08 17:28+0200\n"
+"POT-Creation-Date: 2018-08-13 17:23+0200\n"
 "PO-Revision-Date: 2017-12-11 09:27+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -559,6 +559,26 @@ msgstr "These"
 #: sites/all/themes/custom/parliamentwatch/templates/node--pw-petition--tile.tpl.php:117
 msgid "of"
 msgstr "von"
+
+#: sites/all/themes/custom/parliamentwatch/js/script.js:0
+msgid "Your donation amount"
+msgstr "Ihr Spendenbetrag"
+
+#: sites/all/themes/custom/parliamentwatch/js/script.js:0
+msgid "Your monthly donation amount"
+msgstr "Ihr monatlicher Spendenbetrag"
+
+#: sites/all/themes/custom/parliamentwatch/js/script.js:0
+msgid "Your quarterly donation amount"
+msgstr "Ihr vierteljährlicher Spendenbetrag"
+
+#: sites/all/themes/custom/parliamentwatch/js/script.js:0
+msgid "Your half-yearly donation amount"
+msgstr "Ihr halbjährlicher Spendenbetrag"
+
+#: sites/all/themes/custom/parliamentwatch/js/script.js:0
+msgid "Your yearly donation amount"
+msgstr "Ihr jährlicher Spendenbetrag"
 
 #: sites/all/themes/custom/parliamentwatch/js/script.js:0
 #: sites/all/themes/custom/parliamentwatch/template.php:716
@@ -1229,9 +1249,10 @@ msgid ""
 "service@abgeordnetenwatch.de\">service@abgeordnetenwatch.de</a> or 030-2574 "
 "2081."
 msgstr ""
-"Bitte geben Sie Ihre bei uns hinterlegte E-Mail-Adresse ein. Wir senden Ihnen dann einen Link zu."
-" Sollten Sie die E-Mail nicht erhalten, wenden Sie sich bitte an "
-"<a href=\"mailto: service@abgeordnetenwatch.de\">service@abgeordnetenwatch.de</a> oder 030-2574 2081."
+"Bitte geben Sie Ihre bei uns hinterlegte E-Mail-Adresse ein. Wir senden "
+"Ihnen dann einen Link zu. Sollten Sie die E-Mail nicht erhalten, wenden Sie "
+"sich bitte an <a href=\"mailto: service@abgeordnetenwatch.de"
+"\">service@abgeordnetenwatch.de</a> oder 030-2574 2081."
 
 #: sites/all/themes/custom/parliamentwatch/templates/user-pass.tpl.php:6
 msgid "Back"
