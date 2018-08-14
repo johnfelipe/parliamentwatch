@@ -57,7 +57,7 @@ msgstr "Fragen an Abgeordnete in @parliament"
 
 #: sites/all/modules/custom/pw_dialogues/pw_dialogues.module:366
 msgid "Questions to candidates in @parliament"
-msgstr ""
+msgstr "Fragen an Kandidierende in @parliament"
 
 #: sites/all/modules/custom/pw_dialogues/pw_dialogues.module:417
 msgid "Sorry, there are no results matching your query."
