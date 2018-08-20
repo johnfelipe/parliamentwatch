@@ -317,6 +317,14 @@ function pw_globals_update_7119() {
 }
 
 /**
+ * Remove field_blogpost_categories from some content types.
+ */
+function pw_globals_update_7120() {
+  field_delete_field('field_parliament_constit_rename');
+  field_delete_field('field_parliament_list_rename');
+}
+
+/**
  * Adds a new menu block.
  *
  * @param array $block
