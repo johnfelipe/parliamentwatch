@@ -396,8 +396,12 @@ function pw_globals_politician_search_form_block() {
   else {
     $block['subject'] = t('Find your <span>candidate</span>');
   }
-  $block['content'] = drupal_get_form('pw_globals_politician_search_form', $term);
-
+  $block['content']['form'] = drupal_get_form('pw_globals_politician_search_form', $term);
+  $block['content']['teaser'] = [
+    '#theme' => 'html_tag',
+    '#tag' => 'p',
+    '#value' => t('Ask your questions to your deputies and find out about voting results and committee memberships.'),
+  ];
   return $block;
 }
 

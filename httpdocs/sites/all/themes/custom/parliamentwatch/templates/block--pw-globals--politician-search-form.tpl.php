@@ -52,7 +52,6 @@
   <div class="lp-header__right">
     <h2><?php print $block->subject; ?></h2>
     <?php print $content; ?>
-    <p><?php print t('Ask your questions to your deputies and find out about voting results and committee memberships.'); ?></p>
   </div>
   <div class="lp-header__bg"></div>
 </div>
