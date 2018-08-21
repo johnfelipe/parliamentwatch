@@ -180,10 +180,6 @@ function pw_globals_block_info() {
     'info' => 'Testimonial teaser',
     'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
   ];
-  $blocks['election_teaser'] = [
-    'info' => 'Election teaser',
-    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
-  ];
   return $blocks;
 }
 
@@ -202,8 +198,6 @@ function pw_globals_block_view($delta = '') {
       return pw_globals_parliament_patron_block();
     case 'testimonial':
       return pw_globals_testimonial_block();
-    case 'election_teaser':
-      return pw_globals_election_teaser_block();
     default:
       return [];
   }
@@ -449,19 +443,6 @@ function pw_globals_testimonial_block() {
   }
   return $block;
 }
-
-/**
- * Displays election teaser for landing pages.
- *
- * @return array
- *   The block render array.
- */
-function pw_globals_election_teaser_block() {
-  $block = [];
-  $block['content'] = ' ';
-  return $block;
-}
-
 
 /**
  * Form constructor for the politician search form.

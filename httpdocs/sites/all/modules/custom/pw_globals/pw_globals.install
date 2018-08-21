@@ -317,24 +317,6 @@ function pw_globals_update_7119() {
 }
 
 /**
- * Configure new election-teaser block.
- */
-function pw_globals_update_7120() {
-  $config = [
-    'module' => 'pw_globals',
-    'delta' => 'election_teaser',
-    'weight' => -17,
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => '<front>',
-    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
-    'title' => '<none>',
-    'regions' => ['parliamentwatch' => 'content']
-  ];
-  _pw_globals_configure_block($config);
-}
-
-
-/**
  * Adds a new menu block.
  *
  * @param array $block
