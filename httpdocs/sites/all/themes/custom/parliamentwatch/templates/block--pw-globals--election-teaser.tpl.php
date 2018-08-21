@@ -44,11 +44,6 @@
  * @ingroup themeable
  */
 ?>
-
-<?php
-  $node_url = url('node/' . $elements['#node']->nid, ['absolute' => TRUE]);
-?>
-
 <div class="election-teaser">
   <a class="election-teaser__col" href="/bayern">
     <div class="election-teaser__col__title">
