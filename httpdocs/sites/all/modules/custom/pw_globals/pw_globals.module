@@ -180,6 +180,10 @@ function pw_globals_block_info() {
     'info' => 'Testimonial teaser',
     'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
   ];
+  $blocks['election_teaser'] = [
+    'info' => 'Election teaser',
+    'cache' => DRUPAL_CACHE_PER_ROLE | DRUPAL_CACHE_PER_PAGE,
+  ];
   return $blocks;
 }
 
@@ -198,6 +202,8 @@ function pw_globals_block_view($delta = '') {
       return pw_globals_parliament_patron_block();
     case 'testimonial':
       return pw_globals_testimonial_block();
+    case 'election_teaser':
+      return pw_globals_election_teaser_block();
     default:
       return [];
   }
@@ -441,6 +447,22 @@ function pw_globals_testimonial_block() {
   if (!empty($nodes)) {
     $block['content'] = node_view(reset($nodes),'full');
   }
+  return $block;
+}
+
+/**
+ * Displays election teaser for landing pages.
+ *
+ * The content of the block is defined in the template file.
+ * Beware the $block['content'] cannot be empty, otherwise the block will not be
+ * displayed.
+ * 
+ * @return array
+ *   The block render array.
+ */
+function pw_globals_election_teaser_block() {
+  $block = [];
+  $block['content'] = ' ';
   return $block;
 }
 
