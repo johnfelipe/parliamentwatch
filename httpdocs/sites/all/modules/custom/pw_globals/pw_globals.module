@@ -398,12 +398,18 @@ function pw_globals_politician_search_form_block() {
 
   if (_pw_globals_politician_search_role_condition($term) == 'deputies') {
     $block['subject'] = t('Find your <span>deputy</span>');
+    $teaser = t('Ask your questions to your deputies and find out about voting results and committee memberships.');
   }
   else {
     $block['subject'] = t('Find your <span>candidate</span>');
+    $teaser = t('Ask your questions and find out about your direct candidates!');
   }
-  $block['content'] = drupal_get_form('pw_globals_politician_search_form', $term);
-
+  $block['content']['form'] = drupal_get_form('pw_globals_politician_search_form', $term);
+  $block['content']['teaser'] = [
+    '#theme' => 'html_tag',
+    '#tag' => 'p',
+    '#value' => $teaser,
+  ];
   return $block;
 }
 
