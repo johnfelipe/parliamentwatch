@@ -756,7 +756,7 @@ function pw_profiles_filters_form($form, &$form_state, $parliament, $facets, $ad
     $list_position_title = t('List position', [], ['context' => 'Bayern']);
   }
   else {
-    $constituency_title = t('List', [], ['context' => '']);
+    $constituency_title = t('Constituency', [], ['context' => '']);
     $list_title = t('List', [], ['context' => '']);
     $list_position_title = t('List position', [], ['context' => '']);
   }
