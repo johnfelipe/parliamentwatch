@@ -1237,9 +1237,11 @@ function parliamentwatch_profile_search_summary($variables) {
 
   if (strpos($variables['parliament']->name, 'Bayern') === 0) {
     $constituency_context = 'Bayern';
+    $list_context = 'Bayern';
   }
   else {
     $constituency_context = '';
+    $list_context = '';
   }
 
   if (!empty($variables['filters']['constituency'])) {
@@ -1309,18 +1311,18 @@ function parliamentwatch_profile_search_summary($variables) {
 
   if (isset($list) && isset($list_position)) {
     $list_link = l($list->name, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list')]);
-    $position_text = t('list position @position', ['@position' => $list_position->name]);
+    $position_text = t('list position @position', ['@position' => $list_position->name], ['context' => $list_context]);
     $position_link = l($position_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list_position')]);
     $summary .= t('<span> having </span>!position<span> of </span>!list', ['!position' => $position_link, '!list' => $list_link]);
   }
   elseif (isset($list)) {
     $list_link = l($list->name, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list')]);
-    $summary .= t('<span> of </span>!list', ['!list' => $list_link]);
+    $summary .= t('<span> of </span>!list', ['!list' => $list_link], ['context' => $list_context]);
   }
   elseif (isset($list_position)) {
-    $position_text = t('list position @position', ['@position' => $list_position->name]);
+    $position_text = t('list position @position', ['@position' => $list_position->name], ['context' => $list_context]);
     $position_link = l($position_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'list_position')]);
-    $summary .= t('<span> having </span>!position', ['!position' => $position_link]);
+    $summary .= t('<span> having </span>!position', ['!position' => $position_link], ['context' => $list_context]);
   }
 
   if (!empty(array_filter($variables['filters']))) {
