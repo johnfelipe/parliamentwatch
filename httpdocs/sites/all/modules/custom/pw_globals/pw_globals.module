@@ -396,7 +396,7 @@ function pw_globals_politician_search_form_block() {
   }
   else {
     $block['subject'] = t('Find your <span>candidate</span>');
-    $teaser = t('Ask your candidate!');
+    $teaser = t('Ask your questions and find out about your direct candidates!');
   }
   $block['content']['form'] = drupal_get_form('pw_globals_politician_search_form', $term);
   $block['content']['teaser'] = [
