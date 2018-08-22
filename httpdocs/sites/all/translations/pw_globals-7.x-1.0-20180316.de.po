@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-08-08 17:28+0200\n"
+"POT-Creation-Date: 2018-08-22 16:04+0200\n"
 "PO-Revision-Date: 2017-12-11 09:27+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -169,34 +169,46 @@ msgstr ""
 msgid "Find your <span>deputy</span>"
 msgstr "Finden Sie Ihre <span>Abgeordneten</span>"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:397
+#: sites/all/modules/custom/pw_globals/pw_globals.module:395
+msgid ""
+"Ask your questions to your deputies and find out about voting results and "
+"committee memberships."
+msgstr ""
+"Stellen Sie Ihre Fragen an Ihre Abgeordneten, informieren Sie sich über "
+"Abstimmungsergebnisse und Ausschussmitgliedschaften."
+
+#: sites/all/modules/custom/pw_globals/pw_globals.module:398
 msgid "Find your <span>candidate</span>"
 msgstr "Finden Sie Ihre <span>Kandidierenden</span>"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:457
+#: sites/all/modules/custom/pw_globals/pw_globals.module:399
+msgid "Ask your questions and find out about your direct candidates!"
+msgstr "Stellen Sie Ihre Fragen und informieren Sie sich über Ihre Direktkandidierenden!"
+
+#: sites/all/modules/custom/pw_globals/pw_globals.module:463
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:729
 msgid "Enter a locality or name"
 msgstr "Ort oder Namen eingeben"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:460
+#: sites/all/modules/custom/pw_globals/pw_globals.module:466
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:732
 msgid "Enter a postal code, locality or name"
 msgstr "PLZ oder Namen eingeben"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:465
+#: sites/all/modules/custom/pw_globals/pw_globals.module:471
 msgid "Keywords"
 msgstr "Schlagwörter"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:477;493
+#: sites/all/modules/custom/pw_globals/pw_globals.module:483;499
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:741
 msgid "Search"
 msgstr "Suchen"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:619
+#: sites/all/modules/custom/pw_globals/pw_globals.module:625
 msgid "pw_globals"
 msgstr ""
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:619
+#: sites/all/modules/custom/pw_globals/pw_globals.module:625
 msgid "Checking a comment for spam failed: @error."
 msgstr ""
 
@@ -871,18 +883,6 @@ msgstr ""
 msgid "Take a look at this petition:"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/block--pw-globals--politician-search-form.tpl.php:55
-msgid ""
-"Ask your questions to your deputies and find out about voting results and "
-"committee memberships."
-msgstr ""
-"Stellen Sie Ihre Fragen an Ihre Abgeordneten, informieren Sie sich über "
-"Abstimmungsergebnisse und Ausschussmitgliedschaften."
-
-#: sites/all/themes/custom/parliamentwatch/templates/block--pw-globals--politician-search-form.tpl.php:57
-msgid "Use my current location"
-msgstr ""
-
 #: sites/all/themes/custom/parliamentwatch/templates/node--poll--teaser.tpl.php:99
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:688;735
 msgid "Accepeted"
@@ -1229,9 +1229,10 @@ msgid ""
 "service@abgeordnetenwatch.de\">service@abgeordnetenwatch.de</a> or 030-2574 "
 "2081."
 msgstr ""
-"Bitte geben Sie Ihre bei uns hinterlegte E-Mail-Adresse ein. Wir senden Ihnen dann einen Link zu."
-" Sollten Sie die E-Mail nicht erhalten, wenden Sie sich bitte an "
-"<a href=\"mailto: service@abgeordnetenwatch.de\">service@abgeordnetenwatch.de</a> oder 030-2574 2081."
+"Bitte geben Sie Ihre bei uns hinterlegte E-Mail-Adresse ein. Wir senden "
+"Ihnen dann einen Link zu. Sollten Sie die E-Mail nicht erhalten, wenden Sie "
+"sich bitte an <a href=\"mailto: service@abgeordnetenwatch.de"
+"\">service@abgeordnetenwatch.de</a> oder 030-2574 2081."
 
 #: sites/all/themes/custom/parliamentwatch/templates/user-pass.tpl.php:6
 msgid "Back"
