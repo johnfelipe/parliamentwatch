@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-08-20 14:30+0200\n"
+"POT-Creation-Date: 2018-08-22 17:23+0200\n"
 "PO-Revision-Date: 2017-12-11 09:27+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -143,60 +143,72 @@ msgstr ""
 "Hier können Sie sich als Politikerin bzw. Politiker einloggen und auf Ihr "
 "Profil zu einer Wahl bzw. einem Parlament zugreifen."
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:164;358
+#: sites/all/modules/custom/pw_globals/pw_globals.module:164;364
 #: sites/all/themes/custom/parliamentwatch/templates/node--blogpost--full.tpl.php:179
 #: sites/all/themes/custom/parliamentwatch/templates/comment-wrapper.tpl.php:41
 msgid "Comments"
 msgstr "Kommentare"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:168;372
+#: sites/all/modules/custom/pw_globals/pw_globals.module:168;378
 msgid "Title"
 msgstr "Titel"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:211
+#: sites/all/modules/custom/pw_globals/pw_globals.module:217
 msgid "Encrypt marked strings"
 msgstr ""
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:212
+#: sites/all/modules/custom/pw_globals/pw_globals.module:218
 msgid "Makes strings illegible unless viewed with the matching font."
 msgstr ""
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:288
+#: sites/all/modules/custom/pw_globals/pw_globals.module:294
 msgid "There is currently no content classified with this term."
 msgstr ""
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:394
+#: sites/all/modules/custom/pw_globals/pw_globals.module:400
 msgid "Find your <span>deputy</span>"
 msgstr "Finden Sie Ihre <span>Abgeordneten</span>"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:397
+#: sites/all/modules/custom/pw_globals/pw_globals.module:401
+msgid ""
+"Ask your questions to your deputies and find out about voting results and "
+"committee memberships."
+msgstr ""
+"Stellen Sie Ihre Fragen an Ihre Abgeordneten, informieren Sie sich über "
+"Abstimmungsergebnisse und Ausschussmitgliedschaften."
+
+#: sites/all/modules/custom/pw_globals/pw_globals.module:404
 msgid "Find your <span>candidate</span>"
 msgstr "Finden Sie Ihre <span>Kandidierenden</span>"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:457
+#: sites/all/modules/custom/pw_globals/pw_globals.module:405
+msgid "Ask your questions and find out about your direct candidates!"
+msgstr "Stellen Sie Ihre Fragen und informieren Sie sich über Ihre Direktkandidierenden!"
+
+#: sites/all/modules/custom/pw_globals/pw_globals.module:485
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:735
 msgid "Enter a locality or name"
 msgstr "Ort oder Namen eingeben"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:460
+#: sites/all/modules/custom/pw_globals/pw_globals.module:488
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:738
 msgid "Enter a postal code, locality or name"
 msgstr "PLZ oder Namen eingeben"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:465
+#: sites/all/modules/custom/pw_globals/pw_globals.module:493
 msgid "Keywords"
 msgstr "Schlagwörter"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:477;493
+#: sites/all/modules/custom/pw_globals/pw_globals.module:505;521
 #: sites/all/modules/custom/pw_profiles/pw_profiles.module:747
 msgid "Search"
 msgstr "Suchen"
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:619
+#: sites/all/modules/custom/pw_globals/pw_globals.module:647
 msgid "pw_globals"
 msgstr ""
 
-#: sites/all/modules/custom/pw_globals/pw_globals.module:619
+#: sites/all/modules/custom/pw_globals/pw_globals.module:647
 msgid "Checking a comment for spam failed: @error."
 msgstr ""
 
@@ -877,17 +889,9 @@ msgstr ""
 msgid "Take a look at this petition:"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/block--pw-globals--politician-search-form.tpl.php:55
-msgid ""
-"Ask your questions to your deputies and find out about voting results and "
-"committee memberships."
-msgstr ""
-"Stellen Sie Ihre Fragen an Ihre Abgeordneten, informieren Sie sich über "
-"Abstimmungsergebnisse und Ausschussmitgliedschaften."
-
-#: sites/all/themes/custom/parliamentwatch/templates/block--pw-globals--politician-search-form.tpl.php:57
-msgid "Use my current location"
-msgstr ""
+#: sites/all/themes/custom/parliamentwatch/templates/block--pw-globals--parliament-patron.tpl.php:55
+msgid "Read greeting words"
+msgstr "Grußwort lesen"
 
 #: sites/all/themes/custom/parliamentwatch/templates/node--poll--teaser.tpl.php:99
 #: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:688;735
@@ -912,12 +916,8 @@ msgstr "Nicht beteiligt"
 msgid "Voting results by a total of %count deputies."
 msgstr "Abstimmungsverhalten von insgesamt %count Abgeordneten."
 
-#: sites/all/themes/custom/parliamentwatch/templates/block--pw-blog--recent-blogposts.tpl.php:51
-msgid "Blog overview"
-msgstr "Blog-Übersicht"
-
-#: sites/all/themes/custom/parliamentwatch/templates/node--page--tile.tpl.php:93
 #: sites/all/themes/custom/parliamentwatch/templates/node--committee--tile.tpl.php:96
+#: sites/all/themes/custom/parliamentwatch/templates/node--page--tile.tpl.php:93
 #: sites/all/themes/custom/parliamentwatch/templates/node--blogpost--tile.tpl.php:97
 #: sites/all/themes/custom/parliamentwatch/templates/node--webform--tile.tpl.php:90
 #: sites/all/themes/custom/parliamentwatch/templates/node--poll--tile.tpl.php:107
@@ -926,40 +926,18 @@ msgstr "Blog-Übersicht"
 msgid "read more"
 msgstr "weiterlesen"
 
-#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:14
-#: sites/all/themes/custom/parliamentwatch/templates/html.tpl.php:55
-#: sites/all/themes/custom/blank/templates/html.tpl.php:14
-msgid "Skip to main content"
-msgstr "Zur Übersicht"
+#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue.tpl.php:64
+#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:80
+msgid ""
+"This answer is a standardized text, which does not answer the actual "
+"question and will not be counted."
+msgstr ""
+"Dieser Text ist ein Standard-Textbaustein, der die Frage nicht beantwortet. "
+"Wir zählen sie daher nicht in der Statistik."
 
-#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:21;53
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:80;166
-#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:81;1538
-msgid "Back to home"
-msgstr "Zurück zur Homepage"
-
-#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:46
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:153
-#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1531
-msgid "Logo of Spiegel Online"
-msgstr "Logo Spiegel Online"
-
-#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:47
-#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1532
-msgid "Logo of Süddeutsche"
-msgstr "Logo Süddeutsche"
-
-#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:48
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:155
-#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1533
-msgid "Logo of Welt-Online"
-msgstr "Logo Welt Online"
-
-#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:49
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:156
-#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1534
-msgid "Logo of T-Online"
-msgstr "Logo T-Online"
+#: sites/all/themes/custom/parliamentwatch/templates/block--pw-blog--recent-blogposts.tpl.php:51
+msgid "Blog overview"
+msgstr "Blog-Übersicht"
 
 #: sites/all/themes/custom/parliamentwatch/templates/node--10446.tpl.php:88
 msgid "Ask question"
@@ -1077,14 +1055,120 @@ msgstr ""
 msgid "level"
 msgstr "Stufe"
 
-#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue.tpl.php:64
-#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:80
-msgid ""
-"This answer is a standardized text, which does not answer the actual "
-"question and will not be counted."
+#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:66
+msgid "Response by <strong>@name</strong>"
+msgstr "Antwort von <strong>@name</strong>"
+
+#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:68
+msgid "Addition by <strong>@name</strong>"
+msgstr "Ergänzung von <strong>@name</strong>"
+
+#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:73
+msgid "Response time"
+msgstr "Dauer bis zur Antwort"
+
+#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:84
+msgid "Documents"
 msgstr ""
-"Dieser Text ist ein Standard-Textbaustein, der die Frage nicht beantwortet. "
-"Wir zählen sie daher nicht in der Statistik."
+
+#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:90
+#: sites/all/themes/custom/parliamentwatch/templates/node--dialogue--full.tpl.php:108
+msgid "Editor's note"
+msgstr "Anmerkung von abgeordnetenwatch.de"
+
+#: sites/all/themes/custom/parliamentwatch/templates/html.tpl.php:55
+#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:14
+#: sites/all/themes/custom/blank/templates/html.tpl.php:14
+msgid "Skip to main content"
+msgstr "Zur Übersicht"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:80;166
+#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:21;53
+#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:81;1538
+msgid "Back to home"
+msgstr "Zurück zur Homepage"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:131
+#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1508
+msgid "Imprint"
+msgstr "Impressum"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:134
+msgid "Jobs"
+msgstr ""
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:137
+msgid "Contact"
+msgstr "Kontakt"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:143
+msgid "Newsletter subscription"
+msgstr "Newsletter anfordern"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:146
+msgid "More Information in English"
+msgstr ""
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:153
+msgid "Go to website of Spiegel Online"
+msgstr ""
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:153
+#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:46
+#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1531
+msgid "Logo of Spiegel Online"
+msgstr "Logo Spiegel Online"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:154
+msgid "Go to website of Tagesspiegel"
+msgstr ""
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:154
+msgid "Logo of Tagesspiegel"
+msgstr ""
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:155
+msgid "Go to website of WELT-Online"
+msgstr ""
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:155
+#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:48
+#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1533
+msgid "Logo of Welt-Online"
+msgstr "Logo Welt Online"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:156
+msgid "Go to website of T-Online"
+msgstr ""
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:156
+#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:49
+#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1534
+msgid "Logo of T-Online"
+msgstr "Logo T-Online"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:157
+msgid "Show all"
+msgstr "Alle anzeigen"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:210
+msgid ""
+"By registering you confirm that you have read our <a href=\"/"
+"datenschutzerklaerung\" target=\"_blank\">privacy policy</a> and agree to "
+"the receipt of our newsletter and the associated storage of your data."
+msgstr ""
+"Mit der Eintragung bestätigen Sie, dass Sie unsere <a href=\"/"
+"datenschutzerklaerung\" target=\"_blank\">Datenschutzbestimmungen</a> "
+"gelesen haben und mit dem Empfang unseres Newsletters sowie der damit "
+"verbundenen Speicherung Ihrer Daten einverstanden sind."
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:214
+msgid "Go further for the content of abgeordnetenwatch.de"
+msgstr "Zurückkehren zum Inhalt von abgeordnetenwatch.de"
+
+#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:215
+msgid "Close"
+msgstr "Schließen"
 
 #: sites/all/themes/custom/parliamentwatch/templates/comment-wrapper.tpl.php:45
 msgid "Add new comment"
@@ -1119,102 +1203,18 @@ msgstr "Abstimmungsergebnis nach"
 msgid "Members"
 msgstr "Mitglieder"
 
-#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:66
-msgid "Response by <strong>@name</strong>"
-msgstr "Antwort von <strong>@name</strong>"
-
-#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:68
-msgid "Addition by <strong>@name</strong>"
-msgstr "Ergänzung von <strong>@name</strong>"
-
-#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:73
-msgid "Response time"
-msgstr "Dauer bis zur Antwort"
-
-#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:84
-msgid "Documents"
-msgstr ""
-
-#: sites/all/themes/custom/parliamentwatch/templates/comment--node-dialogue--full.tpl.php:90
-#: sites/all/themes/custom/parliamentwatch/templates/node--dialogue--full.tpl.php:108
-msgid "Editor's note"
-msgstr "Anmerkung von abgeordnetenwatch.de"
+#: sites/all/themes/custom/parliamentwatch/templates/maintenance-page.tpl.php:47
+#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1532
+msgid "Logo of Süddeutsche"
+msgstr "Logo Süddeutsche"
 
 #: sites/all/themes/custom/parliamentwatch/templates/field--field-topics.tpl.php:49
 msgid "Topics"
 msgstr ""
 
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:131
-#: sites/all/themes/custom/parliamentwatch/templates/page--test.tpl.php:1508
-msgid "Imprint"
-msgstr "Impressum"
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:134
-msgid "Jobs"
-msgstr ""
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:137
-msgid "Contact"
-msgstr "Kontakt"
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:143
-msgid "Newsletter subscription"
-msgstr "Newsletter anfordern"
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:146
-msgid "More Information in English"
-msgstr ""
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:153
-msgid "Go to website of Spiegel Online"
-msgstr ""
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:154
-msgid "Go to website of Tagesspiegel"
-msgstr ""
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:154
-msgid "Logo of Tagesspiegel"
-msgstr ""
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:155
-msgid "Go to website of WELT-Online"
-msgstr ""
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:156
-msgid "Go to website of T-Online"
-msgstr ""
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:157
-msgid "Show all"
-msgstr "Alle anzeigen"
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:210
-msgid ""
-"By registering you confirm that you have read our <a href=\"/"
-"datenschutzerklaerung\" target=\"_blank\">privacy policy</a> and agree to "
-"the receipt of our newsletter and the associated storage of your data."
-msgstr ""
-"Mit der Eintragung bestätigen Sie, dass Sie unsere <a href=\"/"
-"datenschutzerklaerung\" target=\"_blank\">Datenschutzbestimmungen</a> "
-"gelesen haben und mit dem Empfang unseres Newsletters sowie der damit "
-"verbundenen Speicherung Ihrer Daten einverstanden sind."
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:214
-msgid "Go further for the content of abgeordnetenwatch.de"
-msgstr "Zurückkehren zum Inhalt von abgeordnetenwatch.de"
-
-#: sites/all/themes/custom/parliamentwatch/templates/page.tpl.php:215
-msgid "Close"
-msgstr "Schließen"
-
 #: sites/all/themes/custom/parliamentwatch/templates/comment.tpl.php:64
 msgid "posted on"
 msgstr "veröffentlicht am"
-
-#: sites/all/themes/custom/parliamentwatch/templates/block--pw-globals--parliament-patron.tpl.php:55
-msgid "Read greeting words"
-msgstr "Grußwort lesen"
 
 #: sites/all/themes/custom/parliamentwatch/templates/node--pw-testimonial.tpl.php:98
 msgid "Jetzt fördern"
