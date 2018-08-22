@@ -387,7 +387,7 @@
       if (!$('body').hasClass('blank-theme') || isIE11 == false) {
         var lastScrollTop = 0, delta = 2;
         $(window).scroll(function(event){
-          var scrollPosition = $(this).scrollTop();
+          var scrollPosition = Math.max($(this).scrollTop(), 0);
           if(Math.abs(lastScrollTop - scrollPosition) <= delta)
             return;
 
