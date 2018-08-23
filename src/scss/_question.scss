@@ -331,9 +331,32 @@
     padding-top: 0;
     margin-bottom: 0;
     &__inner {
-    @include container();
+      @include container();
       .btn {
         top: $space-xsmall;
+      }
+      &__image {
+        @include image-circle(65px, 65px);
+        display: none;
+        @include breakpoint($breakpoint-m-min) {
+          display: block;
+        }
+      }
+      &__content {
+        padding-top: 0;
+        &__name {
+          @include h1();
+          padding-left: 20px;
+          @include breakpoint($breakpoint-m-min) {
+            padding-left: 0;
+          }
+        }
+        &__subtitle {
+          padding-left: 20px;
+          @include breakpoint($breakpoint-m-min) {
+            padding-left: 0;
+          }
+        }
       }
     }
   }

@@ -52,7 +52,7 @@
           <img src="/sites/default/files/styles/square_small/public/users/nahles-andrea.jpg" width="150" height="150">
         </div>
         <div class="question__profile_teaser__inner__content">
-          <h1 class="question__profile_teaser__inner__content__name">Andrea Nahles</h1>
+          <h1 class="question__profile_teaser__inner__content__name">Fragen an Andrea Nahles</h1>
           <div class="question__profile_teaser__inner__content__subtitle">
             <span class="party-indicator party-indicator--spd"><a href="/bundestag/profile?party%5B%5D=16118">SPD</a></span> | <span>Bundestag</span>
           </div>
