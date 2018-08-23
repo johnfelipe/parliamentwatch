@@ -302,8 +302,11 @@
   .question__profile_teaser__inner__content {
     position: relative;
     padding-top: $space-xsmall;
-    .question__profile_teaser__inner__content__name {
-      font-size: 1.2em;
+    &__name {
+      @include h4();
+      font-family: $font-serif;
+      font-weight: 300;
+      color: $darkGray;
       display: block;
       margin-bottom: $space-xsmall-mobile;
     }
