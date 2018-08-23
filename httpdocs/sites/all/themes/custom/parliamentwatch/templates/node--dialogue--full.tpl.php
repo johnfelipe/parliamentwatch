@@ -81,7 +81,7 @@
  */
 ?>
 <div class="question full <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="question__profile_teaser" href="<?php print $content['user_url']; ?>">
+  <div class="question__profile_teaser">
     <div class="question__profile_teaser__inner">
       <div class="question__profile_teaser__inner__image">
         <?php print render($content['user_picture']); ?>
