@@ -258,7 +258,7 @@
   padding-top: $space-large;
   margin-bottom: $space-large + $space;
   @include grid-container();
-  h1 {
+  &__title {
     @include h4();
     font-family: $font-sans-serif;
     font-weight: 300;
