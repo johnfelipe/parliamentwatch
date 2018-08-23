@@ -307,9 +307,6 @@
       display: block;
       margin-bottom: $space-xsmall-mobile;
     }
-    .party-indicator {
-      display: block;
-    }
     .btn {
       clear: both;
       @include margin($space-large $space 0 $space);
@@ -319,6 +316,21 @@
         right: $space;
         top: $space;
         margin: 0;
+      }
+    }
+  }
+}
+
+/* Variant: List view */
+
+.question--list {
+  .question__profile_teaser {
+    padding-top: 0;
+    margin-bottom: 0;
+    &__inner {
+    @include container();
+      .btn {
+        top: $space-xsmall;
       }
     }
   }
