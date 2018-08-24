@@ -402,7 +402,7 @@ function pw_globals_politician_search_form_block() {
   }
   else {
     $block['subject'] = t('Find your <span>candidate</span>');
-    $teaser = t('Ask your questions and find out about your direct candidates!');
+    $teaser = t('Ask your questions and find out about your direct candidates for the upcoming elections!', ['@parliament' => $term->name], ['context' => $term->name]);
   }
   $block['content']['form'] = drupal_get_form('pw_globals_politician_search_form', $term);
   $block['content']['teaser'] = [
@@ -1251,3 +1251,21 @@ function _pw_globals_antispam_prepare_comment_data($comment, $server_vars, $is_t
 
   return $comment_data;
 }
+
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Bundestag']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Baden-Württemberg']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Bayern']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Berlin']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Brandenburg']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Bremen']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Hamburg']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Hessen']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Mecklenburg-Vorpommern']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Niedersachsen']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Nordrhein-Westfalen']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Rheinland-Pfalz']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Saarland']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Sachsen']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Sachsen-Anhalt']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Schleswig-Holstein']);
+t('Ask your questions and find out about your direct candidates for the upcoming elections!', [], ['context' => 'Thüringen']);

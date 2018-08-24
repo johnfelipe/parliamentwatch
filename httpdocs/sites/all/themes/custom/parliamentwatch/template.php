@@ -1245,13 +1245,16 @@ function parliamentwatch_profile_search_summary($variables) {
   }
 
   if (!empty($variables['filters']['constituency'])) {
-    $constituencies_count = 1;
-    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies', [], ['context' => $constituency_context]);
-    $options['!constituencies'] = l($constituencies_text, current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'constituency')]);
+    $constituency = taxonomy_term_load((int) $variables['filters']['constituency']);
+    $url = url(current_path(), $link_options + ['query' => _pw_profiles_reject_filter($variables['filters'], 'constituency')]);
+    $constituencies_text = t('<span>in</span> <a href="@url" class="filter-summary__content__link">constituency @name</a>', ['@name' => $constituency->name, '@url' => $url], ['context' => $constituency_context]);
+    $options['!constituencies'] = $constituencies_text;
   }
   else {
-    $constituencies_count = count(_pw_profiles_facet_values($facets['field_user_constituency']));
-    $constituencies_text = format_plural($constituencies_count, '1 constituency', '@count constituencies', [], ['context' => $constituency_context]);
+    $facet_values = _pw_profiles_facet_values($facets['field_user_constituency']);
+    $constituencies_count = count($facet_values);
+    $constituencies = taxonomy_term_load_multiple($facet_values);
+    $constituencies_text = format_plural($constituencies_count, 'in constituency @name', 'and @count constituencies', ['@name' => reset($constituencies)->name], ['context' => $constituency_context]);
     $options['!constituencies'] = "<span>$constituencies_text</span>";
   }
 
@@ -1260,37 +1263,37 @@ function parliamentwatch_profile_search_summary($variables) {
 
   if (empty($variables['filters']['gender'])) {
     if ($variables['role_name'] == 'candidates') {
-      $summary = format_plural($variables['response']['result count'], '<span>Found 1 candidate from</span> !parties <span>and</span> !constituencies', '<span>Found @count candidates from</span> !parties <span>and</span> !constituencies', $options);
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1 candidate from</span> !parties !constituencies', '<span>Found @count candidates from</span> !parties !constituencies', $options);
     }
     else {
-      $summary = format_plural($variables['response']['result count'], '<span>Found 1 deputy from</span> !parties <span>and</span> !constituencies', '<span>Found @count deputies from</span> !parties <span>and</span> !constituencies', $options);
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1 deputy from</span> !parties !constituencies', '<span>Found @count deputies from</span> !parties !constituencies', $options);
     }
   }
   elseif ($variables['filters']['gender'] == ['male' => 'male', 'female' => 'female']) {
     $options['@url'] = url(current_path(), ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
     if ($variables['role_name'] == 'candidates') {
-      $summary = format_plural($variables['response']['result count'], '<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female or male</a> candidate from </span> !parties <span>and</span> !constituencies','<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female and male</a> <span>candidates from </span> !parties <span>and</span> !constituencies', $options);
+      $summary = format_plural($variables['response']['result count'], '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female or male</a> <span>candidate from </span> !parties !constituencies','<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female and male</a> <span>candidates from </span> !parties !constituencies', $options);
     }
     else {
-      $summary = format_plural($variables['response']['result count'], '<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female or male</a> deputy from </span> !parties <span>and</span> !constituencies','<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female and male</a> <span>deputies from </span> !parties <span>and</span> !constituencies', $options);
+      $summary = format_plural($variables['response']['result count'], '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female or male</a> <span>deputy from </span> !parties !constituencies','<span>Found @count <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female and male</a> <span>deputies from </span> !parties !constituencies', $options);
     }
   }
   elseif (!empty($variables['filters']['gender']['male'])) {
     $options['@url'] = url(current_path(), ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
     if ($variables['role_name'] == 'candidates') {
-      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>candidate from</span> !parties <span>and</span> !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>candidates from</span> !parties <span>and</span> !constituencies', $options);
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>candidate from</span> !parties !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>candidates from</span> !parties !constituencies', $options);
     }
     else {
-      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>deputy from</span> !parties <span>and</span> !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>deputies from</span> !parties <span>and</span> !constituencies', $options);
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>deputy from</span> !parties !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">male</a> <span>deputies from</span> !parties !constituencies', $options);
     }
   }
   elseif (!empty($variables['filters']['gender']['female'])) {
     $options['@url'] = url(current_path(), ['query' => _pw_profiles_reject_filter($variables['filters'], 'gender')]);
     if ($variables['role_name'] == 'candidates') {
-      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>candidate from </span> !parties <span>and</span> !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>candidates from </span> !parties <span>and</span> !constituencies', $options);
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>candidate from </span> !parties !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>candidates from </span> !parties !constituencies', $options);
     }
     else {
-      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>deputy from </span> !parties <span>and</span> !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>deputies from </span> !parties <span>and</span> !constituencies', $options);
+      $summary = format_plural($variables['response']['result count'], '<span>Found 1</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>deputy from </span> !parties !constituencies', '<span>Found @count</span> <a href="@url" class="@class" data-ajax-target="@data-ajax-target">female</a> <span>deputies from </span> !parties !constituencies', $options);
     }
   }
 
@@ -1397,5 +1400,9 @@ t('Candidate', [], ['context' => 'female']);
 t('Candidate', [], ['context' => 'male']);
 t('Deputy', [], ['context' => 'female']);
 t('Deputy', [], ['context' => 'male']);
+t('<span>in</span> <a href="@url" class="filter-summary__content__link">constituency @name</a>', [], ['context' => '']);
+t('<span>in</span> <a href="@url" class="filter-summary__content__link">constituency @name</a>', [], ['context' => 'Bayern']);
 format_plural(0, '1 constituency', '@count constituencies', [], ['context' => '']);
 format_plural(0, '1 constituency', '@count constituencies', [], ['context' => 'Bayern']);
+format_plural(0, 'in constituency @name', 'and @count constituencies', [], ['context' => '']);
+format_plural(0, 'in constituency @name', 'and @count constituencies', [], ['context' => 'Bayern']);
