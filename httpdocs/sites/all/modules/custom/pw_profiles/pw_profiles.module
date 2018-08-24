@@ -510,9 +510,9 @@ function pw_profiles_page($parliament_term, $role_name) {
   }
 
   $response = $q
-    ->sort('has_picture', 'DESC')
     ->sort('number_of_answers', 'DESC')
     ->sort('number_of_questions', 'DESC')
+    ->sort('has_picture', 'DESC')
     ->sort('field_user_lname')
     ->sort('search_api_relevance')
     ->range(pager_find_page() * $limit, $limit)
