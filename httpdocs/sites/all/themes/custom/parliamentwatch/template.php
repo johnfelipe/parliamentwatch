@@ -9,12 +9,14 @@ function parliamentwatch_theme(&$existing, $type, $theme, $path) {
       'render element' => 'form',
       'template' => 'templates/filterbar',
     ],
-    'user_login' => array(
+    'user_login' => [
+      'render element' => 'form',
       'template' => 'templates/user-login'
-    ),
-    'user_pass' => array(
+    ],
+    'user_pass' => [
+      'render element' => 'form',
       'template' => 'templates/user-pass'
-    ),
+    ],
   );
 }
 
@@ -36,6 +38,21 @@ function parliamentwatch_form_alter(&$form, &$form_state, $form_id) {
     $form['actions']['#type'] = 'container';
     $form['actions']['#attributes'] = ['class' => ['form__item']];
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function parliamentwatch_form_user_login_alter(&$form, &$form_state) {
+  $form['#theme'] = 'user_login';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pw_globals_form_user_pass_alter(&$form, &$form_state) {
+  $form['#theme'] = 'user_pass';
+  $form['actions']['submit']['#value'] = t('Reset password');
 }
 
 /**
@@ -946,24 +963,6 @@ function parliamentwatch_item_list__politician_dropdown($variables) {
 
   return $output;
 }
-
-/**
- * Overrides theme_preprocess_user_login().
- */
-
-function parliamentwatch_preprocess_user_login(&$variables) {
-  $variables['form'] = drupal_build_form('user_login', user_login(array(),$form_state));
-}
-
-/**
- * Overrides theme_preprocess_user_pass().
- */
-
-function parliamentwatch_preprocess_user_pass(&$variables) {
-  $variables['form'] = drupal_build_form('user_pass', user_pass(array(),$form_state));
-  $variables['form']['actions']['submit'] = array('#type' => 'submit', '#value' => t('Reset password'));
-}
-
 
 /**
  * Overrides theme_form().
