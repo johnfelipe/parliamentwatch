@@ -870,7 +870,7 @@
 
         // Set initial tab by checking url for hash
         if ($('.tabs__navigation').length && window.location.hash) {
-          $('.tabs__navigation a[href=' + window.location.hash + ']').trigger('click');
+          $('.tabs__navigation a[href="' + window.location.hash + '"]').trigger('click');
         }
 
         $('.tabs__content__content .pager__item a').each(function () {
