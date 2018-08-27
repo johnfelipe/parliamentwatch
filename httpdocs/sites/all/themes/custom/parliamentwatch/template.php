@@ -19,6 +19,16 @@ function parliamentwatch_theme(&$existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_menu_link_alter().
+ *
+ * Hides tabs for login and password pages.
+ */
+function parliamentwatch_menu_alter(&$items) {
+  $items['user/login']['type'] = MENU_CALLBACK;
+  $items['user/password']['type'] = MENU_CALLBACK;
+}
+
+/**
  * Implements hook_form_alter().
  */
 function parliamentwatch_form_alter(&$form, &$form_state, $form_id) {
